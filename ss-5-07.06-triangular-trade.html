@@ -2669,7 +2669,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 34 — Triangular Trade</div>
@@ -2678,6 +2680,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Welcome students to Issue 34. Recap daily life differences. Today: the triangular trade — a three-sided trade network across the Atlantic. One leg of that triangle was the Middle Passage, the forced transport of enslaved Africans. This is a serious and painful topic. The Herald calls it ordinary business. Under 90 seconds, respectful tone.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2780,7 +2783,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Source Desk: Triangular Trade</div>
@@ -2789,6 +2794,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Cover the three legs: (1) Europe to Africa: manufactured goods (textiles, guns, metal tools) traded for enslaved people. (2) Africa to the Americas (the Middle Passage): enslaved Africans packed into ships for weeks, chained below deck in horrific conditions; many died. (3) Americas to Europe: raw materials (sugar, tobacco, cotton, rum) produced by enslaved labor shipped to European markets. The system was profitable for European merchants and colonial planters. The human cost fell on enslaved Africans. Emphasize: “ordinary business” erases millions of people’s suffering. A responsible editor names the human cost. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
@@ -3009,7 +3015,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3018,10 +3026,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Great work — you got all three right! You clearly understand today's topic. Head to the next tab to publish your Gazette Correction.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3030,6 +3041,7 @@ html, body {
         <strong>Teacher recording notes:</strong> No worries — let's review the key ideas. Remember: the triangular trade moved goods and raw materials across the Atlantic, but the Middle Passage — the forced transport of enslaved Africans — was at its center. Over 12 million people were forcibly taken. That is not ordinary business. When you're ready, head to the next tab to write your Gazette Correction.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3052,7 +3064,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
@@ -3061,6 +3075,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk students through the Gazette Correction: (1) quote the Herald’s claim, (2) describe each leg of the trade AND the human cost of the Middle Passage, (3) rewrite the claim. This is a sensitive topic — encourage accuracy, respect, and responsibility. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3176,7 +3191,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-07-06-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 34 Filed</div>
@@ -3185,6 +3202,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on publishing Issue 34 about the triangular trade. Restate: a responsible editor names the human cost — the Middle Passage was not ordinary business. Tease the next lesson: slavery in the colonies and African American life. About 1 minute, warm and serious tone.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3533,6 +3551,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

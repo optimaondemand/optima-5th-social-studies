@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 59: Federalism, Amendments, and the Florida Constitution</div>
@@ -2675,6 +2677,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Welcome back, Junior Editors. Last issue we examined the Bill of Rights. Today we investigate federalism — how the national government and state governments divide power. We'll also look at how the Constitution changes through amendments and how Florida has its own constitution. The Herald says it's all the same. Let's see.</div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2774,7 +2777,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Front Page Desk: Federalism, Amendments, and the Florida Constitution</div>
@@ -2782,6 +2787,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Walk students through federalism: enumerated powers (national), reserved powers (states), concurrent powers (shared). Briefly explain the amendment process (2/3 of Congress + 3/4 of states). Introduce the Florida Constitution as a state-level governing document.</div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
@@ -3025,7 +3031,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3033,10 +3041,13 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Perfect score! You understand how federalism divides power on purpose. Next issue, we'll explore rights, human dignity, and the Holocaust.</div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3044,6 +3055,7 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Let's review. Federalism divides power: the national government handles things like war and treaties, states handle things like schools and licenses, and some powers are shared. The amendment process is hard because the founders wanted widespread agreement.</div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3066,7 +3078,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Front Page Brief</div>
@@ -3074,6 +3088,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> For your Front Page Brief, use your notebook notes. Write 3-5 sentences explaining how federalism divides power and why that division serves the common good.</div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3189,7 +3204,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-05-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 59</div>
@@ -3197,6 +3214,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Today you investigated federalism and discovered that the founders divided power between national and state governments on purpose. Next time, the Editorial Board meets to examine rights, human dignity, and the Holocaust definition.</div>
   </div>
+</div>
 
 </div>
 
@@ -3545,6 +3563,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

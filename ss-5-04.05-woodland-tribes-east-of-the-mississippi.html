@@ -2669,7 +2669,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 19 — Woodland Tribes East of the Mississippi</div>
@@ -2678,6 +2680,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Welcome students to Issue 19. Recap the Great Plains lesson. Today the Map Room covers the Eastern Woodlands — the vast forested region east of the Mississippi. Peoples here built longhouses, farmed, governed, and traded. The Herald claims they all had the same culture. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2780,7 +2783,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Map Room: Woodland Tribes East of the Mississippi</div>
@@ -2789,6 +2794,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Cover the Eastern Woodlands: dense forests, rivers, lakes, four seasons, fertile soil. Haudenosaunee (Iroquois) in the Northeast: longhouses, clan mothers, the Great Law of Peace (a democratic confederacy of six nations). Cherokee in the Southeast: farming communities, council houses, a written syllabary later developed by Sequoyah. Creek and Powhatan: farming, hunting, chiefdoms. All farmed corn-beans-squash but organized differently. The region was vast — Northeast vs Southeast had different climates and structures. Connect to the Herald: shared the forest, but not one culture. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header map-room">
@@ -3009,7 +3015,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3018,10 +3026,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Great work — you got all three right! You clearly understand today's topic. Head to the next tab to publish your Gazette Map Note.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3030,6 +3041,7 @@ html, body {
         <strong>Teacher recording notes:</strong> No worries — let's review the key ideas. Remember: the Eastern Woodlands held many peoples with different governing systems — the Haudenosaunee confederacy, Cherokee councils, Creek towns, and Powhatan chiefdoms. Same forest, different cultures. When you're ready, head to the next tab to write your Gazette Map Note.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3052,7 +3064,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Map Note</div>
@@ -3061,6 +3075,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk students through the Gazette Map Note: (1) describe the Eastern Woodlands geography, (2) compare at least two peoples to show diversity, (3) revise the Herald's claim. This is the last regional lesson before the comparison — encourage detailed evidence. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3176,7 +3191,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-04-05-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 19 Filed</div>
@@ -3185,6 +3202,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on publishing Issue 19 about the Eastern Woodlands. Restate that one region held many different peoples and governing systems. Tease the next lesson: comparing all the regions together. About 1 minute, warm tone.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3533,6 +3551,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

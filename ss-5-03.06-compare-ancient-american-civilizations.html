@@ -2669,7 +2669,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 14 — Compare Ancient American Civilizations</div>
@@ -2678,6 +2680,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Welcome students to Issue 14 — the final issue of the before-colonization special edition. Recap all five civilizations covered so far: Mound Builders, Ancestral Pueblo, Maya, Aztec, Inca. Today the team compares them. The Hasty Herald says they all developed the same way. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2780,7 +2783,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Source Desk: Compare Ancient American Civilizations</div>
@@ -2789,6 +2794,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Guide students through the comparison SVG chart. Walk through each civilization briefly: Mound Builders (earthen mounds, rivers, eastern NA), Ancestral Pueblo (cliff dwellings, Southwest), Maya (pyramids, writing, Mesoamerica), Aztec (Tenochtitlan, lake city, central Mexico), Inca (roads, mountains, South America). Point out similarities (all built lasting structures, all organized communities) and differences (geography, building materials, writing vs no writing, governing systems). Connect to the Herald's claim: they shared some qualities but developed in very different ways. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
@@ -3099,7 +3105,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3108,10 +3116,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Great work — you got all three right! You clearly understand today's topic. Head to the next tab to publish your Gazette Correction.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3120,6 +3131,7 @@ html, body {
         <strong>Teacher recording notes:</strong> No worries — let's review the key ideas. Remember: these civilizations shared some qualities (building, organizing, adapting) but differed in important ways — geography, materials, writing systems, and how they governed. When you're ready, head to the next tab to write your Gazette Correction.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3142,7 +3154,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
@@ -3151,6 +3165,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk students through the Gazette Correction structure: (1) quote the Herald's claim, (2) describe evidence showing both similarities AND differences, (3) rewrite the claim honestly. This is a synthesis lesson — encourage students to draw on all five civilizations. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3266,7 +3281,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-06-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 14 Filed</div>
@@ -3275,6 +3292,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on completing the before-colonization special edition — six issues covering five civilizations. Restate the key lesson: honest reporting shows both similarities and differences. Tease the next unit: Indigenous Peoples of North America. About 1 minute, warm tone.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3623,6 +3641,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

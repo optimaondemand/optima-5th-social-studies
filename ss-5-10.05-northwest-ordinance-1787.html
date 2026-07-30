@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 51 · Northwest Ordinance of 1787</div>
@@ -2676,6 +2678,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Greet students. Reference Ms. Avery's note. Read the Herald's claim. Preview today's path. Mention courage. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2778,7 +2781,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Front Page Desk: Northwest Ordinance of 1787</div>
@@ -2787,6 +2792,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the four provisions: the territory, statehood process, slavery ban, and rights guarantees. Note the broken promise to Native Americans. Connect to the Herald's claim. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
@@ -3008,7 +3014,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish Issue 51</div>
@@ -3017,10 +3025,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Outstanding! You understand the Ordinance shaped the nation far beyond adding land. Now write your Front Page Brief!
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press — Issue 51</div>
@@ -3029,6 +3040,7 @@ html, body {
         <strong>Teacher recording notes:</strong> Review the Ordinance's provisions: statehood, slavery ban, rights, and Native Americans. Re-read the desk content.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3051,7 +3063,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Front Page Brief</div>
@@ -3060,6 +3074,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the Front Page Brief: what the Ordinance did beyond land, specific provisions, why the Herald is wrong. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3175,7 +3190,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-10-05-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 51 Complete</div>
@@ -3184,6 +3201,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on Issue 51. The Northwest Ordinance was a landmark law. Tease 5.10.06 — the Articles of Confederation. ~1 minute, warm.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3532,6 +3550,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

@@ -2620,7 +2620,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to The Republic Gazette</div>
@@ -2629,6 +2631,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Welcome students to The Republic Gazette as junior editors. Introduce Ms. Avery, the Editor-in-Chief, in a warm voice. Set the stakes: every claim gets checked with evidence. Briefly mention The Hasty Herald as a rival paper that rushes to print without checking. Tease today's question (how to tell primary vs secondary sources). Under 90 seconds. Warm, year-opener energy.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH -->
   <div class="todays-path">
@@ -2702,7 +2705,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Front Page Desk: Primary vs Secondary Sources</div>
@@ -2711,6 +2716,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Explain the difference between primary and secondary sources with clear examples from American history. Primary: a soldier's letter from the Civil War, a Native American oral history recording, a photo of Ellis Island in 1905, the actual Declaration of Independence. Secondary: a textbook chapter about the Civil War, a museum's article about Ellis Island, a Wikipedia entry on the Declaration. Stress that BOTH kinds of sources are useful — but honest editors know which they're holding. Connect back to the Herald's claim: "old documents always tell the whole truth by themselves." Explain why that's incomplete (sources have authors, perspectives, gaps). About 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER (Front Page Desk variant) -->
   <div class="desk-header front-page">
@@ -2899,7 +2905,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS (one for perfect score, one for review) -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready for the Front Page</div>
@@ -2908,10 +2916,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Celebrate the perfect score. Reinforce: the student now thinks like a careful editor — checks the source, considers perspective, asks for more before printing. Tease the Front Page Brief assignment on the next tab. Under 45 seconds.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before the Brief</div>
@@ -2920,6 +2931,7 @@ html, body {
         <strong>Teacher recording notes:</strong> Reassure students who missed any questions. Re-explain the key distinction: primary = at the time, by someone there; secondary = later, by someone studying. Reinforce that honest editors gather multiple sources before publishing. Encourage them to go back to The Desk tab and re-read the source comparison cards before doing the Front Page Brief. Under 1 minute. Warm and supportive — no shame.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -2933,7 +2945,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your First Front Page Brief</div>
@@ -2942,6 +2956,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk students through the Front Page Brief assignment. A Brief is a SHORT newspaper article that makes ONE clear claim and supports it with ONE piece of evidence. Show what a strong claim looks like (specific, accurate, not exaggerated). Show what weak claims look like (like the Herald's "always tells the whole truth"). Then walk through the parts of a Brief: headline, byline, opening sentence (the claim), supporting sentences (evidence + reasoning), closing sentence. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE FRONT PAGE BRIEF — student composes their published artifact -->
   <div class="gazette-assignment-wrap">
@@ -3036,7 +3051,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-01-01-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Setting Up the Next Issue</div>
@@ -3045,6 +3062,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on filing the first Front Page Brief of the year. Restate the key idea in one sentence: primary = at the time, by someone there; secondary = later, by someone studying. Tease lesson 5.01.02 — a new dispatch arrives at the Source Desk, the Herald has rushed to print a claim about timelines, and the team will learn to read sources for what they say AND what they leave out. Under 1 minute. Warm and encouraging.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3408,6 +3426,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

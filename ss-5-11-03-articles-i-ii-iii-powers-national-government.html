@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 57: Articles I, II, and III: Powers of the National Government</div>
@@ -2675,6 +2677,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Welcome back, Junior Editors. Last time we explored representative government. Today we open the Constitution itself — Articles I, II, and III — and discover how the founders divided power into three branches. The Herald says they're all the same. Let's investigate.</div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2774,7 +2777,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Front Page Desk: Articles I, II, and III: Powers of the National Government</div>
@@ -2782,6 +2787,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Walk students through the three articles: Article I (Congress — makes laws), Article II (President — enforces laws), Article III (Courts — interprets laws). Use simple examples. Emphasize checks and balances.</div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
@@ -3012,7 +3018,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3020,10 +3028,13 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Perfect score! You clearly understand how the founders divided power. Next issue, we'll explore the Bill of Rights.</div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3031,6 +3042,7 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Let's review. Article I gives Congress the power to make laws. Article II gives the President the power to enforce laws. Article III gives courts the power to interpret laws. Checks and balances keep any one branch from becoming too powerful.</div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3053,7 +3065,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Front Page Brief</div>
@@ -3061,6 +3075,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> For your Front Page Brief, use your Editor's Notebook notes. Write 3-5 sentences explaining how the Constitution divides power and why checks and balances matter.</div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3178,7 +3193,9 @@ The Constitution divides power into three branches... Article I gives Congress..
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-11-03-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 57</div>
@@ -3186,6 +3203,7 @@ The Constitution divides power into three branches... Article I gives Congress..
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Today you investigated Articles I, II, and III and discovered that the three branches aren't just lists — they're a system of separated powers with checks and balances. Next time, the Editorial Board meets to examine the Bill of Rights.</div>
   </div>
+</div>
 
 </div>
 
@@ -3534,6 +3552,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

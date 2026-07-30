@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 44 · Patriot or Loyalist Evidence Response</div>
@@ -2676,6 +2678,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Greet students. Reference Ms. Avery's note that the evidence shows two sides, not one. Read the Herald's claim — "The Patriot side was obviously right to everyone who cared about liberty." Ask: is that what the evidence shows? Preview: we'll examine both perspectives at the Source Desk. Mention honesty as today's virtue. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2778,7 +2781,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Source Desk: Patriot or Loyalist Evidence Response</div>
@@ -2787,6 +2792,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through both perspectives: Patriot arguments (natural rights, taxation without representation, Declaration of Independence) and Loyalist arguments (stability, loyalty to Crown, fear of chaos, economic ties). Note that about one-third of colonists were on each side. Connect to the Herald's claim — why is "obviously right to everyone" wrong? 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
@@ -3040,7 +3046,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish Issue 44</div>
@@ -3049,10 +3057,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Excellent fact-checking! You examined both perspectives like a real editor. Now head to Go to Press and write your Gazette Correction — show the Herald what an honest account of the debate looks like.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press — Issue 44</div>
@@ -3061,6 +3072,7 @@ html, body {
         <strong>Teacher recording notes:</strong> The Patriot-Loyalist debate was not simple or one-sided. Remember: about one-third of colonists supported each position, and Loyalists had real arguments about stability and reform. Re-read the two perspectives on the Desk tab, then try the assignment.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3083,7 +3095,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
@@ -3092,6 +3106,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the Gazette Correction structure: (1) quote the Herald, (2) present evidence from both Patriot and Loyalist perspectives, (3) rewrite the claim honestly. Model how to present a losing side's arguments fairly. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3207,7 +3222,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-08-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 44 Complete</div>
@@ -3216,6 +3233,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on Issue 44. Restate the key idea: the Patriot-Loyalist debate was complex, and an honest editor reports both sides. Tease 5.08.09 — the unit review arrives at the Front Page Desk. Warm, ~1 minute.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3564,6 +3582,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

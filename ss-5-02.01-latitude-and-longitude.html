@@ -2668,7 +2668,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to the Map Room</div>
@@ -2677,6 +2679,7 @@ html, body {
       <strong>Teacher recording notes:</strong> As Ms. Avery: dramatic moment — the Map Room is opening for the first time. Briefly recap CER from last issue. Hold up the Herald clipping about lat/long being 'just numbers.' Charge the team to prove the Herald wrong using map evidence. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2779,7 +2782,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">In the Map Room: Latitude and Longitude</div>
@@ -2788,6 +2793,7 @@ html, body {
       <strong>Teacher recording notes:</strong> As Ms. Avery: teach latitude (horizontal lines, N/S from equator, affect climate) and longitude (vertical lines, E/W from prime meridian, affect time zones and navigation). Use a globe or world map. Show a concrete example: why colonies at similar latitudes share crop types (Virginia and Spain, for example). Connect to the Herald's claim. 3–4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header map-room">
@@ -3011,7 +3017,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Map Room Verified</div>
@@ -3020,10 +3028,13 @@ html, body {
         <strong>Teacher recording notes:</strong> "Editors, the Map Room is proud of its first team. Now let's publish a Map Note the Gazette can stand behind." Under 45 seconds.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3032,6 +3043,7 @@ html, body {
         <strong>Teacher recording notes:</strong> "Every editor reviews. Let's look at the latitude/longitude explanation one more time." Re-explain the difference between lat and long and how they act as evidence. Under 1 minute.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3054,7 +3066,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Map Note</div>
@@ -3063,6 +3077,7 @@ html, body {
       <strong>Teacher recording notes:</strong> As Ms. Avery: walk students through the three parts of a Map Note — what the Herald got partly right, map evidence showing what coordinates reveal, and a corrected claim. Show a strong example. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3175,7 +3190,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-02-01-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Setting Up Issue 6</div>
@@ -3184,6 +3201,7 @@ html, body {
       <strong>Teacher recording notes:</strong> As Ms. Avery: congratulate the team on the Map Room's first issue. Restate one key idea (coordinates reveal climate, trade, and settlement patterns). Tease tomorrow's dispatch — still in the Map Room, about physical features. The Herald has already called mountains and rivers 'just scenery.' About 1 minute.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3532,6 +3550,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

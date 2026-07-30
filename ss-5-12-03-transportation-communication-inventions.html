@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 63: Transportation, Communication, and Inventions</div>
@@ -2675,6 +2677,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Welcome back, Junior Editors. Today at the Front Page Desk, we investigate the inventions that transformed America — steamboats, railroads, the telegraph, and the cotton gin. The Herald says they helped everyone equally. Let's check the evidence.</div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2774,7 +2777,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Front Page Desk: Transportation, Communication, and Inventions</div>
@@ -2782,6 +2787,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Walk students through: steamboats (faster river trade), railroads (connected markets), telegraph (instant communication), cotton gin (increased cotton production but also increased demand for enslaved labor).</div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
@@ -3000,7 +3006,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3008,10 +3016,13 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Perfect score! You reported the full picture of innovation. Next issue, we head to the Map Room to examine Manifest Destiny.</div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3019,6 +3030,7 @@ html, body {
       <div class="video-placeholder-notes">
         <strong>Teacher recording notes:</strong> Let's review. Steamboats, railroads, and the telegraph transformed trade and communication. But the cotton gin, while profitable, increased the demand for enslaved labor. Inventions don't help everyone the same way.</div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3041,7 +3053,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Front Page Brief</div>
@@ -3049,6 +3063,7 @@ html, body {
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> For your Front Page Brief, write 3-5 sentences explaining how inventions changed America — and why the effects weren't equal.</div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3166,7 +3181,9 @@ New inventions changed America by... The cotton gin... Not everyone was affected
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-12-03-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 63</div>
@@ -3174,6 +3191,7 @@ New inventions changed America by... The cotton gin... Not everyone was affected
     <div class="video-placeholder-notes">
       <strong>Teacher recording notes:</strong> Today you investigated inventions and discovered that progress wasn't equal. The cotton gin made some wealthy while deepening slavery. Next time, the Map Room opens to examine Manifest Destiny.</div>
   </div>
+</div>
 
 </div>
 
@@ -3522,6 +3540,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

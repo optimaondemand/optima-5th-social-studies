@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 12 — Aztec Civilization</div>
@@ -2676,6 +2678,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Welcome to Issue 12! Last time we studied the Maya and found evidence of many achievements. Today we're heading to the Source Desk to examine the Aztec civilization. The Aztecs built one of the most remarkable cities in the ancient world — Tenochtitlan — on an island in the middle of a lake. The Hasty Herald claims "the Aztec capital tells us everything we need to know about the whole civilization." Ms. Avery wants us to look more carefully. Today's virtue is self-governance — the Aztecs governed a complex empire, and a careful editor governs their own conclusions by using evidence. Let's study the source. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2778,7 +2781,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Source Desk: Aztec Civilization</div>
@@ -2787,6 +2792,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the Aztec civilization: they called themselves the Mexica and built their capital, Tenochtitlan, on an island in Lake Texcoco around 1325 CE. By the early 1500s it had 200,000+ residents — larger than most European cities. Describe the chinampas (floating gardens), the aqueducts, the causeways connecting the island to the mainland, the great marketplace at Tlatelolco, and the central temple precinct. Then broaden: the Aztec Empire included tribute from hundreds of conquered city-states, a complex legal system, mandatory education for children, a rich poetic and artistic tradition, and long-distance trade networks. Push back on the Herald: the capital is extraordinary, but it's one chapter of a much longer story. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
@@ -3012,7 +3018,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish</div>
@@ -3021,10 +3029,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Excellent — 3 for 3! You really understand the Aztec civilization. Head to the next tab to write your Gazette Correction. Under 45 seconds.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press</div>
@@ -3033,6 +3044,7 @@ html, body {
         <strong>Teacher recording notes:</strong> No problem — let's review. The key idea is that the Aztec capital was remarkable, but the civilization also included mandatory schools, poetry, long-distance trade, and a tribute empire spanning central Mexico. Go back and reread the Source Desk content, then write your correction. Under 1 minute.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3055,7 +3067,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
@@ -3064,6 +3078,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the Gazette Correction structure: (1) quote or describe the Herald's claim, (2) describe evidence from the source that corrects or complicates it, (3) rewrite the claim so it's accurate and fair. A strong correction names specific evidence from beyond the capital. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3179,7 +3194,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-03-04-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Setting Up Issue 13</div>
@@ -3188,6 +3205,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Great work on Issue 12! Today you proved that the Aztec civilization was far more than its capital city — it included education, poetry, trade, law, and tribute from hundreds of communities. Next issue, we meet the Inca civilization on the Front Page Desk. The Herald has already rushed a claim about them. See you there! ~1 minute.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3536,6 +3554,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>

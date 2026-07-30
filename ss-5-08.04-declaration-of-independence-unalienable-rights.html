@@ -2667,7 +2667,9 @@ html, body {
 <div class="tab-panel active" id="panel-dispatch">
 
   <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-welcome -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Welcome Video</div>
     <div class="video-placeholder-title">Welcome to Issue 40 · Declaration of Independence: Unalienable Rights</div>
@@ -2676,6 +2678,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Greet students. Reference Ms. Avery's note that the Declaration is an argument, not just a document. Read the Herald's claim — "The Declaration of Independence was just a list of complaints." Ask: is that all it is? Preview: we'll read the actual words at the Source Desk and decide. Mention honesty as today's virtue. Under 90 seconds.
     </div>
   </div>
+</div>
 
   <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
@@ -2778,7 +2781,9 @@ html, body {
 <div class="tab-panel" id="panel-desk">
 
   <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
     <div class="video-placeholder-title">At the Source Desk: Declaration of Independence</div>
@@ -2787,6 +2792,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the four parts of the Declaration: the big ideas (unalienable rights, consent of the governed), the grievances as evidence, the attempts at peace, and the formal declaration. Read the Preamble excerpt aloud. Connect to the Herald's claim — why is "just a list of complaints" wrong? Address honesty: "all men are created equal" did not extend to everyone. 3-4 minutes.
     </div>
   </div>
+</div>
 
   <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
@@ -3032,7 +3038,9 @@ html, body {
 
   <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-quiz-perfect -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Perfect Video</div>
       <div class="video-placeholder-title">3 for 3 — Ready to Publish Issue 40</div>
@@ -3041,10 +3049,13 @@ html, body {
         <strong>Teacher recording notes:</strong> Excellent fact-checking! You read the Declaration like a real editor. Now head to Go to Press and write your Gazette Correction — show the Herald what the Declaration actually does.
       </div>
     </div>
+</div>
   </div>
 
   <div id="quizReviewVideo" style="display:none;">
-    <div class="video-placeholder">
+    <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-quiz-review -->
       <span class="video-placeholder-icon">🎬</span>
       <div class="video-placeholder-label">Quiz Review Video</div>
       <div class="video-placeholder-title">Let's Review Before Press — Issue 40</div>
@@ -3053,6 +3064,7 @@ html, body {
         <strong>Teacher recording notes:</strong> The Declaration can be dense, but the key ideas are clear once you spot them. Remember: unalienable rights are rights no one can take away, and "consent of the governed" means government power comes from the people. Re-read the four-part breakdown on the Desk tab before writing your Correction.
       </div>
     </div>
+</div>
   </div>
 
   <div class="tab-next-btn-wrap">
@@ -3075,7 +3087,9 @@ html, body {
 <div class="tab-panel" id="panel-press">
 
   <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-assignment-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Assignment Explainer Video</div>
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
@@ -3084,6 +3098,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Walk through the Gazette Correction structure: (1) quote the Herald, (2) cite specific evidence from the Declaration, (3) rewrite the claim accurately. Model how to quote the Preamble as evidence. About 2 minutes.
     </div>
   </div>
+</div>
 
   <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
@@ -3199,7 +3214,9 @@ html, body {
   </div>
 
   <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-placeholder">
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-08-04-closing -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Closing Video</div>
     <div class="video-placeholder-title">Going to Press · Issue 40 Complete</div>
@@ -3208,6 +3225,7 @@ html, body {
       <strong>Teacher recording notes:</strong> Congratulate students on Issue 40. Restate the key idea: the Declaration is a structured argument about natural rights, not just complaints. Tease 5.08.05 — who actually fought and led the Revolution? Warm, ~1 minute.
     </div>
   </div>
+</div>
 
 </div>
 
@@ -3556,6 +3574,43 @@ function updateProgress() {
 
 /* Initial state */
 updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
 </script>
 
 </body>
