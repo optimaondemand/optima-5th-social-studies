@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5.11.06: Rights, Human Dignity, and the Holocaust Definition | The Republic Gazette (Grade 5)</title>
+<title>5.14.05: American Geography, Symbols & Culture | The Republic Gazette (Grade 5)</title>
 
-<!-- Newspaper-themed Google Fonts (with system fallbacks if blocked) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Special+Elite&family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -29,7 +28,7 @@
    │ Routine (planning table)  │ Desk variant    │ Assignment artifact           │
    ├───────────────────────────┼─────────────────┼───────────────────────────────┤
    │ Enter the Scene           │ Front Page Desk │ Front Page Brief              │
-   │ Source Study              │ Source Desk     │ Gazette Correction            │
+   │ Source Study              │ Map Room     │ Gazette Correction            │
    │ Map Quest                 │ Map Room        │ Gazette Map Note              │
    │ Socratic Seminar          │ Editorial Board │ Editorial Board Recommendation│
    └───────────────────────────┴─────────────────┴───────────────────────────────┘
@@ -1142,7 +1141,7 @@ html, body {
 
 /* ═══════════════════════════════════════════════════════════════════════
    THE DESK (Tab 2) — desk-of-the-day with rotating visual identity
-   Four variants: Front Page Desk, Source Desk, Map Room, Editorial Board.
+   Four variants: Front Page Desk, Map Room, Map Room, Editorial Board.
    Each has its own accent color and iconography to prevent staleness.
    ═══════════════════════════════════════════════════════════════════════ */
 .desk-header {
@@ -1168,9 +1167,9 @@ html, body {
 /* DESK VARIANT: Front Page Desk (this lesson) */
 .desk-header.front-page::before { background: var(--gazette-gold); }
 .desk-header.front-page .desk-icon-wrap { background: var(--gazette-gold); color: var(--gazette-navy-dark); }
-/* DESK VARIANT: Source Desk */
-.desk-header.source-desk::before { background: #4A6FB5; }
-.desk-header.source-desk .desk-icon-wrap { background: #4A6FB5; color: var(--paper-cream); }
+/* DESK VARIANT: Map Room */
+.desk-header.map-room::before { background: #4A6FB5; }
+.desk-header.map-room .desk-icon-wrap { background: #4A6FB5; color: var(--paper-cream); }
 /* DESK VARIANT: Map Room */
 .desk-header.map-room::before { background: #5C7A4A; }
 .desk-header.map-room .desk-icon-wrap { background: #5C7A4A; color: var(--paper-cream); }
@@ -2256,7 +2255,6 @@ html, body {
 </head>
 <body>
 
-<!-- ═══ OPTIMA ACADEMY ONLINE HEADER (above the hero banner) — STATIC ACROSS ALL LESSONS ═══ -->
 <div class="oao-header">
   <div class="oao-header-brand">
     <div class="oao-header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" /></div>
@@ -2265,42 +2263,31 @@ html, body {
       <div class="oao-header-sub">An Education Experience Company</div>
     </div>
   </div>
-  <div class="oao-header-title">Social Studies · <em>Rights, Human Dignity, and the Holocaust Definition</em></div>
+  <div class="oao-header-title">Social Studies · <em>American Geography, Symbols &amp; Culture</em></div>
   <div class="oao-header-badge">
     <span class="oao-header-badge-icon">🗞️</span>
-    <span class="oao-header-badge-text">Lesson 5.11.06</span>
+    <span class="oao-header-badge-text">Lesson 5.14.05</span>
   </div>
 </div>
 
 <div class="lesson-shell">
 
-<!-- ═══ PROGRESS BAR ═══ -->
 <div class="progress-wrap">
   <span class="progress-label">📰 Edition Progress</span>
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
-      <span class="masthead-flag-left">★ Vol. 1 · Issue 60 ★</span>
-      <span class="masthead-flag-right">★ Week 30 · Q4 ★</span>
+      <span class="masthead-flag-left">★ Vol. 1 · Issue 71 ★</span>
+      <span class="masthead-flag-right">★ Week 36 · Q4 ★</span>
     </div>
     <div class="masthead-title serif">The Republic Gazette</div>
     <div class="masthead-tagline">Honest Reporting · Evidence First · For Every Citizen</div>
   </div>
-
   <div class="hero-illustration-wrap">
-    <!-- STANDARD G5 HERO — Historian's Desk scene. Same on every G5 lesson.
-         Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
-         magnifying glass, gazette pages, quill + inkwell) represents the
-         Republic Gazette editorial workspace year-round. -->
     <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
@@ -2459,96 +2446,73 @@ html, body {
       </style>
     </svg>
   </div>
-
-  <div class="hero-headline-strip serif">Rights, Human Dignity, and the Holocaust Definition</div>
+  <div class="hero-headline-strip serif">American Geography, Symbols & Culture</div>
 </div>
 
-<!-- ═══ INFO STRIP ═══ -->
 <div class="info-strip">
   <div class="info-cell">
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
-      <div class="info-value">Week 30 · Q4</div>
+      <div class="info-value">Week 36 · Q4</div>
     </div>
   </div>
   <div class="info-cell">
     <div class="info-icon">🗞️</div>
     <div>
-      <div class="info-label">Unit G5-U11</div>
-      <div class="info-value">Constitution and Constitutional Republic</div>
+      <div class="info-label">Unit G5-U14</div>
+      <div class="info-value">America After 1850: The Texas Supplement</div>
     </div>
   </div>
   <div class="info-cell">
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
-      <div class="info-value">Honesty</div>
+      <div class="info-value">Patriotism</div>
     </div>
   </div>
   <div class="info-cell">
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
-      <div class="info-value" style="font-size:12px;">SS.5.CG.1.2 · SS.5.CG.1.3 · SS.5.CG.1.4 · SS.5.CG.2.3 · SS.5.CG.2.4 · SS.5.CG.2.5 · SS.5.CG.3.1 · SS.5.CG.3.2 · TEKS 19(A)</div>
+      <div class="info-value" style="font-size:12px;">TEKS 6(B), 7(A)–(B), 16(A)–(B), 20(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 60 · Circulation ~4,000 · <em>Investigating rights, human dignity, and the holocaust definition.</em>
+      Vol. 1 · Issue 71 · Circulation ~4,200 · <em>Investigating american geography, symbols & culture.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
-      <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 60</strong> — <em>Civic editor's desk: explain constitutional principles, rights, limits, dignity, and responsibility.</em>
-      </span>
+      <span class="ns-row-value"><strong>Vol. 1 · Issue 71</strong> — <em>The Texas Supplement: covering the American story from 1850 to today.</em></span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Circulation</span>
       <span class="ns-row-value">
-        <span class="circulation-meter">
-          <span class="circulation-number">~4,000</span>
-          <span class="circulation-unit">readers</span>
-        </span>
-        — Readership climbing. Your courageous reporting is making a difference.
+        <span class="circulation-meter"><span class="circulation-number">~4,200</span> <span class="circulation-unit">readers</span></span>
+        — Full circulation. The Gazette is the paper of record.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
-        <span class="desk-chip">🔍 Source Desk</span>
+        <span class="desk-chip">🔍 Map Room</span>
         <span class="desk-chip">🗺️ Map Room</span>
         <span class="desk-chip">⚖️ Editorial Board</span>
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
-      <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — convening the Editorial Board to examine human dignity and why it must be protected.
-      </span>
+      <span class="ns-row-value"><strong>Ms. Avery</strong> — investigating american geography, symbols & culture.</span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Rival Watch</span>
@@ -2560,28 +2524,20 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
-    <span class="story-block-summary">
-      Last issue, we investigated <em>federalism</em>, the amendment process, and the Florida Constitution.
-    </span>
+    <span class="story-block-summary">Last issue, we investigated the civil rights movement and modern America — from Rosa Parks to the 2008 election. Now we zoom out to see the whole picture: the land, the symbols, and the culture that make America what it is.</span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      Last issue’s Archive Line read: <em>“Freedom without a framework is chaos — the Constitution was built not to limit liberty, but to protect it.”</em> We learned why the founders created the Constitution. Now we ask: what kind of government did they build?
+      Last issue, we investigated the civil rights movement and modern America — from Rosa Parks to the 2008 election. Now we zoom out to see the whole picture: the land, the symbols, and the culture that make America what it is.
     </div>
   </div>
 </div>
 
-<!-- ═══ INTRO SECTION (auto-collapses on non-scene tabs) ═══ -->
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
@@ -2589,25 +2545,16 @@ html, body {
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
-  <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
-      <span class="dispatch-label">▶ Dispatch · 5.11.06</span>
+      <span class="dispatch-label">▶ Dispatch · 5.14.05</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>The Editorial Board is in session, and the file on the table is <em>5.11.06 — Rights, Human Dignity, and the Holocaust Definition</em>. Last issue, we investigated federalism. Now we face the hardest question: what happens when a government denies human dignity? The Hasty Herald has already rushed its version to print, claiming dignity is "just a feeling."</p>
+      <p>A new file arrives at the Map Room: <em>5.14.05 — American Geography, Symbols &amp; Culture</em>. We've studied the American story through time. Now we study it through space — the cities, landmarks, symbols, and cultural traditions that define the nation. The Hasty Herald has already rushed its version to print, saying America is "just one big country — same everywhere."</p>
     </div>
   </div>
 
-  <!-- 2-column intro: Today's Beat (Wonder Question) + Today's Coverage (Objectives) -->
   <div class="intro-2col">
     <div class="intro-card">
       <div class="intro-card-head">
@@ -2618,10 +2565,7 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
-        <p>What happens when a government treats human dignity as something that can be taken away — and why does understanding the Holocaust matter for protecting rights today?</p>
+        <p>Is America really 'the same everywhere' — or do geography, symbols, and culture reveal a nation of extraordinary diversity held together by shared ideals?</p>
       </div>
     </div>
 
@@ -2634,226 +2578,162 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
-        <div class="obj-line"><span class="obj-icon">▸</span> I can explain why human dignity is a principle, not just a feeling.</div>
-        <div class="obj-line"><span class="obj-icon">▸</span> I can describe what happened when the Holocaust denied human dignity.</div>
-        <div class="obj-line"><span class="obj-icon">▸</span> I can explain how constitutional protections help safeguard human dignity.</div>
+        <div class="obj-line"><span class="obj-icon">▸</span> I can locate major U.S. cities and explain settlement patterns.</div>
+        <div class="obj-line"><span class="obj-icon">▸</span> I can identify patriotic symbols, landmarks, and celebrations and explain what they represent.</div>
+        <div class="obj-line"><span class="obj-icon">▸</span> I can describe how American arts, literature, and cultural traditions reflect the nation's diversity.</div>
       </div>
     </div>
   </div>
 
-  <!-- At Your Desk (need strip) -->
   <div class="need-strip">
     <span class="need-strip-label">At Your Desk</span>
-    <span class="need-chip">Editorial Board Recommendation</span>
+    <span class="need-chip">Gazette Map Note</span>
     <span class="need-chip">📓 Editor's Notebook</span>
     <span class="need-chip">🗞️ This Lesson Page</span>
   </div>
 </div>
 
-
-<!-- ═══ TAB BAR (4 tabs) ═══ -->
 <div class="tab-bar" id="tabBar">
   <button class="tab-btn active" onclick="switchTab('dispatch')" id="btn-dispatch">🗞️ The Dispatch <span class="tab-check">✓</span></button>
-  <button class="tab-btn" onclick="switchTab('desk')" id="btn-desk">🔍 The Desk <span class="tab-check">✓</span></button>
+  <button class="tab-btn" onclick="switchTab('desk')" id="btn-desk">🗺️ The Desk <span class="tab-check">✓</span></button>
   <button class="tab-btn" onclick="switchTab('factcheck')" id="btn-factcheck">Fact-Check <span class="tab-check">✓</span></button>
   <button class="tab-btn" onclick="switchTab('press')" id="btn-press">📰 Go to Press <span class="tab-check">✓</span></button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 1 — 🗞️ THE DISPATCH
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
-<div class="video-placeholder video-placeholder-id">
-<!-- slot: 5-11-06-welcome -->
-    <span class="video-placeholder-icon">🎬</span>
-    <div class="video-placeholder-label">Welcome Video</div>
-    <div class="video-placeholder-title">Welcome to Issue 60: Rights, Human Dignity, and the Holocaust Definition</div>
-    <div class="video-placeholder-filename">5-11-06-welcome.mp4</div>
-    <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Welcome back, Junior Editors. This is the most serious issue we've published. We're going to talk about human dignity and what happens when governments deny it. The Herald says dignity is just a feeling. We'll investigate why it's much more than that.</div>
+    <div class="video-placeholder video-placeholder-id">
+      <!-- slot: 5-14-05-welcome -->
+      <span class="video-placeholder-icon">🎬</span>
+      <div class="video-placeholder-label">Welcome Video</div>
+      <div class="video-placeholder-title">Welcome to Issue 71: American Geography, Symbols & Culture</div>
+      <div class="video-placeholder-filename">5-14-05-welcome.mp4</div>
+      <div class="video-placeholder-notes">
+        <strong>Teacher recording notes:</strong> Welcome back, Junior Editors. Walk students through: major U.S. cities (New York, Los Angeles, Chicago, Houston, Phoenix) and their locations near waterways and coastlines, metropolitan areas and why people settled where they did,...</div>
+    </div>
   </div>
-</div>
 
-  <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- Read two perspectives — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>Read two perspectives</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>Read the Hasty Herald's claim</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>Weigh perspectives on human dignity</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>Explore American geography, symbols, and culture</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>Write your Editorial Recommendation</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>Write your Gazette Map Note</span>
     </div>
   </div>
 
-  <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
-    <div class="virtue-lens-label">★ Editor's Lens · Honesty ★</div>
-    <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      Honesty means facing difficult truths — even when they're uncomfortable. The Herald dismisses dignity as a feeling. An honest editor reports that dignity is a principle people have fought and died to protect.
-    </div>
+    <div class="virtue-lens-label">★ Editor's Lens · Patriotism ★</div>
+    <div class="virtue-lens-text">Patriotism means loving your country enough to understand it — including its diversity, its symbols, and its ongoing work. A patriotic editor celebrates what unites us while honestly exploring what makes each region unique.</div>
   </div>
 
-  <!-- HASTY HERALD CLIPPING — required on every lesson -->
   <div class="herald-wrap">
     <div class="herald-pin"></div>
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
-      <div class="herald-headline">Dignity Is Just a Feeling!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
-      <p class="herald-claim">The Hasty Herald says human dignity is a feeling, not a principle citizens must understand and protect.</p>
+      <div class="herald-headline">America: Same Everywhere!</div>
+      <p class="herald-claim">The Hasty Herald says America is just one big country — the same everywhere you go.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> You'll investigate why human dignity is a principle — not just an emotion — and what happens when governments deny it.
+      <strong>Your job, junior editor:</strong> You'll investigate America's geography, symbols, and culture to discover why 'the same everywhere' couldn't be further from the truth.
     </div>
   </div>
 
-  <!-- JUNIOR EDITOR ROLE CALLOUT — slightly varies by desk-of-the-day -->
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Editorial Board</strong> at The Republic Gazette. You'll examine why human dignity is a foundational principle, learn what the Holocaust was, and weigh why citizens have a responsibility to protect dignity — then write your recommendation.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Map Room</strong> at The Republic Gazette. You'll examine American cities, settlement patterns, patriotic symbols, and cultural traditions — then write your gazette map note.
     </div>
   </div>
 
-  <!-- EDITOR'S DESK QUESTION — Socratic question framed by virtue -->
   <div class="editors-desk">
     <div class="editors-desk-header">
       <span>★ At the Editor's Desk ★</span>
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
-      <span class="editors-desk-virtue-tag">Honesty</span>
-      <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
-        "What decision would serve the common good, and what evidence supports that judgment?"
-      </div>
-      <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk. This is a hard topic. The founders believed every person has inherent worth. When governments deny that principle, the consequences are devastating. Your job is to report the truth with honesty and care.
-      </div>
+      <span class="editors-desk-virtue-tag">Patriotism</span>
+      <div class="editors-desk-question">"What do America's cities, symbols, and cultural traditions reveal about who we are as a nation?"</div>
+      <div class="editors-desk-prompt">Keep this question on your desk. The Herald says America is the same everywhere. Your job is to investigate the geography, symbols, and culture that make each part of America unique — and the shared ideals that hold the nation together.</div>
     </div>
   </div>
 
   <div class="tab-next-btn-wrap">
-    <button class="tab-next-btn" onclick="switchTab('desk')">Continue to 🔍 The Desk →</button>
+    <button class="tab-next-btn" onclick="switchTab('desk')">Continue to 🗺️ The Desk →</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
-<div class="video-placeholder video-placeholder-id">
-<!-- slot: 5-11-06-explore-explainer -->
-    <span class="video-placeholder-icon">🎬</span>
-    <div class="video-placeholder-label">Explore Video</div>
-    <div class="video-placeholder-title">At the Editorial Board: Rights, Human Dignity, and the Holocaust Definition</div>
-    <div class="video-placeholder-filename">5-11-06-explore-explainer.mp4</div>
-    <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Age-appropriate: define human dignity as inherent worth every person has. Define the Holocaust: the systematic murder of 6 million Jewish people by Nazi Germany. Connect to the Constitution — the founders built protections because they understood governments can abuse power. Keep the tone serious and respectful.</div>
+    <div class="video-placeholder video-placeholder-id">
+      <!-- slot: 5-14-05-explore-explainer -->
+      <span class="video-placeholder-icon">🎬</span>
+      <div class="video-placeholder-label">Explore Video</div>
+      <div class="video-placeholder-title">At the Map Room: American Geography, Symbols & Culture</div>
+      <div class="video-placeholder-filename">5-14-05-explore-explainer.mp4</div>
+      <div class="video-placeholder-notes">
+        <strong>Teacher recording notes:</strong> Walk students through: major U.S. cities (New York, Los Angeles, Chicago, Houston, Phoenix) and their locations near waterways and coastlines, metropolitan areas and why people settled where they did, patriotic symbols (the flag, the bald eagle, the Statue of Liberty, the Liberty Bell, the national anthem), landmarks (Washington Monument, Mount Rushmore, the White House), patriotic celebrations (Independence Day, Veterans Day, Memorial Day), and American arts and literature (jazz, folk music, poetry, literature reflecting diverse cultural traditions).</div>
+    </div>
   </div>
-</div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
-  <div class="desk-header editorial-board">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
-    <div class="desk-icon-wrap">⚖️</div>
+  <div class="desk-header map-room">
+    <div class="desk-icon-wrap">🗺️</div>
     <div class="desk-meta">
       <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
-      <div class="desk-title">Editorial Board</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where editors weigh evidence and decide what the Gazette will say.</div>
+      <div class="desk-title">Map Room</div>
+      <div class="desk-subtitle">Where map evidence helps explain patterns and choices.</div>
     </div>
   </div>
 
-  <!-- ═══ CONTENT SECTIONS — vary by lesson type ═══
-       Patterns by routine:
-       • Enter the Scene → explainer + example cards (like primary/secondary comparison grid)
-       • Source Study   → source quote + observation/inference split
-       • Map Quest      → map + pattern callouts
-       • Socratic Seminar → two perspectives in a roundtable layout
-  -->
-    <div class="content-section">
-    <h2>⚖️ What Is Human Dignity — and Why Must We Protect It?</h2>
-    <p>The Hasty Herald says "human dignity is a feeling, not a principle citizens must understand and protect." Today the Editorial Board faces the hardest question in this unit: what happens when a government denies the worth of its own people?</p>
 
-    <div class="callout callout-info" style="border-left-color: var(--editor-wood);">
-      <div class="callout-icon">⚖️</div>
-      <div>
-        <strong>A Serious Topic</strong>
-        <p>This lesson covers a difficult subject. Read carefully and thoughtfully. An honest editor treats serious topics with respect.</p>
+  <div class="content-section">
+    <h2>🗺️ America's Geography, Symbols, and Culture</h2>
+    <p>The Hasty Herald says America is "just one big country — the same everywhere." But one look at the map tells a different story. Today in the Map Room, you'll discover how geography shaped where Americans live, what symbols unite us, and how our diverse culture makes us who we are.</p>
+
+    <div class="source-image-placeholder" data-image="source-5-14-05-geography-symbols-culture">
+      <p><strong>🗺️ Map: Major U.S. Cities, Landmarks, and Cultural Regions</strong></p>
+      <p>This map will show the nation's largest cities, key landmarks, and cultural geography.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0;">
+      <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; border-top:4px solid #4A6FB5;">
+        <div style="font-family:'Playfair Display',serif; font-weight:800; color:#4A6FB5; font-size:15px; margin-bottom:8px;">🏙️ Major Cities & Settlement Patterns</div>
+        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink);">
+          <p style="margin:0 0 8px;">The five largest U.S. cities are <strong>New York, Los Angeles, Chicago, Houston,</strong> and <strong>Phoenix</strong>. Notice the pattern: most sit near <strong>waterways, harbors, or coastlines</strong>.</p>
+          <p style="margin:0 0 8px;"><strong>Metropolitan areas</strong> — cities plus their surrounding suburbs — are where most Americans live today. People settled near water for trade, transportation, and farming; later, railroads and highways shaped where cities grew.</p>
+          <p style="margin:0;">Geography didn't just shape the past — it shapes where Americans live right now.</p>
+        </div>
+      </div>
+      <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; border-top:4px solid #B8923E;">
+        <div style="font-family:'Playfair Display',serif; font-weight:800; color:#B8923E; font-size:15px; margin-bottom:8px;">🇺🇸 Patriotic Symbols & Landmarks</div>
+        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink);">
+          <p style="margin:0 0 8px;">America's symbols represent shared ideals: the <strong>American flag</strong> (unity), the <strong>bald eagle</strong> (strength and freedom), the <strong>Statue of Liberty</strong> ("give me your tired, your poor"), and the <strong>Liberty Bell</strong> (independence).</p>
+          <p style="margin:0 0 8px;">National landmarks include the <strong>Washington Monument, Mount Rushmore, the White House,</strong> and the <strong>Lincoln Memorial</strong>.</p>
+          <p style="margin:0;">We celebrate these ideals through <strong>Independence Day, Veterans Day, Memorial Day,</strong> and other national observances.</p>
+        </div>
       </div>
     </div>
 
-    <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; margin:16px 0; border-top:4px solid #1A2138;">
-      <div style="font-family:'Playfair Display',serif; font-weight:800; color:#1A2138; font-size:15px; margin-bottom:8px;">📜 What Is Human Dignity?</div>
+    <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; margin:16px 0; border-top:4px solid #5C7A4A;">
+      <div style="font-family:'Playfair Display',serif; font-weight:800; color:#5C7A4A; font-size:15px; margin-bottom:8px;">🎵 American Arts, Literature & Culture</div>
       <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink);">
-        <p style="margin:0 0 8px;"><strong>Human dignity</strong> means that every person has inherent worth — value that doesn't depend on what they look like, where they come from, or what they believe. It's not a feeling you have sometimes. It's a principle: the idea that every human being deserves to be treated with respect.</p>
-        <p style="margin:0;">The founders built this idea into the Declaration of Independence: "all men are created equal." The Constitution and the Bill of Rights were designed to protect this principle through laws and limits on government power.</p>
-      </div>
-    </div>
-
-    <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; margin:16px 0; border-top:4px solid #8B2D26;">
-      <div style="font-family:'Playfair Display',serif; font-weight:800; color:#8B2D26; font-size:15px; margin-bottom:8px;">🕯️ The Holocaust: When Dignity Was Denied</div>
-      <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink);">
-        <p style="margin:0 0 8px;">The <strong>Holocaust</strong> was the systematic, state-sponsored persecution and murder of approximately six million Jewish people by the Nazi German government and its collaborators between 1933 and 1945. Millions of others were also targeted.</p>
-        <p style="margin:0 0 8px;">The Nazi government stripped Jewish citizens of their rights, forced them from their homes, and ultimately carried out mass murder. It began with words: propaganda that denied Jewish people's dignity and worth.</p>
-        <p style="margin:0;">The Holocaust is the most devastating example of what happens when a government denies human dignity.</p>
-      </div>
-    </div>
-
-    <div class="callout callout-think">
-      <div class="callout-icon">⚖️</div>
-      <div>
-        <strong>Why This Matters for Citizens Today</strong>
-        <p>The Constitution protects citizens from government abuse. But those protections only work if citizens understand <em>why</em> they exist. The Holocaust teaches us that when people stop defending dignity, governments can take it away.</p>
+        <p style="margin:0 0 8px;">America's cultural traditions reflect the diversity of its people. <strong>Jazz</strong> — born from African American musical traditions in New Orleans — became one of America's greatest cultural contributions to the world.</p>
+        <p style="margin:0 0 8px;"><strong>Folk music, literature, poetry,</strong> and visual arts tell the stories of every region and every community. From the spirituals of enslaved people to the cowboy songs of the West to the poetry of the Harlem Renaissance, American culture is a tapestry of voices.</p>
+        <p style="margin:0;">This diversity isn't a weakness — it's what makes American culture rich, surprising, and alive.</p>
       </div>
     </div>
 
     <div class="owl-buddy">
-      <div class="owl-icon">🦉⚖️</div>
+      <div class="owl-icon">🦉🗺️</div>
       <div class="owl-bubble">
-        The Herald calls dignity "just a feeling." But look at the evidence: the Declaration, the Constitution, and the Bill of Rights all protect human dignity as a principle. When governments have denied that principle, the consequences have been devastating.
+        The Herald says America is "the same everywhere." But New York's skyscrapers, Houston's sprawl, and Phoenix's desert look nothing alike. Jazz sounds nothing like country music. And the Statue of Liberty stands for welcoming newcomers — not sameness. A good map reader sees both the patterns and the differences.
       </div>
     </div>
 
@@ -2861,56 +2741,46 @@ html, body {
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
-        <p>Human dignity is the principle that every person has inherent worth. The Holocaust shows what happens when governments deny that principle. Citizens have a responsibility to understand and protect dignity — it's the foundation of just government.</p>
+        <p>America's major cities grew near waterways and coastlines. Patriotic symbols like the flag, the eagle, and the Statue of Liberty represent shared ideals. And American culture — from jazz to folk music to literature — reflects the diversity of its people.</p>
       </div>
     </div>
   </div>
 
-  
-
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
-    <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">Write a few sentences for each. These notes will help you write your Editorial Board Recommendation on the next tab.</p>
+    <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">Write a few sentences for each. These notes will help you write your Gazette Map Note on the next tab.</p>
 
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
-        What is human dignity? Why is it a principle, not just a feeling?
+        Name three major U.S. cities and explain why most large cities are located near water.
         <span class="reflection-save-dot" id="dot-q1"></span>
       </div>
-      <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Evidence for each perspective" placeholder="Human dignity means... It's a principle because..." oninput="autoSave(this, 'dot-q1')"></textarea>
+      <textarea class="reflection-textarea" id="journal-q1" data-label="Q1" placeholder="Three major cities are..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
-
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
-        What was the Holocaust? How did denying human dignity lead to this tragedy?
+        Choose one patriotic symbol or landmark and explain what it represents.
         <span class="reflection-save-dot" id="dot-q2"></span>
       </div>
-      <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Democracy vs republic" placeholder="The Holocaust was... It happened because..." oninput="autoSave(this, 'dot-q2')"></textarea>
+      <textarea class="reflection-textarea" id="journal-q2" data-label="Q2" placeholder="I chose... It represents..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
-
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
-        Why is the Herald wrong to say human dignity is 'just a feeling'?
+        Why is the Herald wrong to say America is 'the same everywhere'?
         <span class="reflection-save-dot" id="dot-q3"></span>
       </div>
-      <textarea class="reflection-textarea" id="journal-q3" data-label="Q3 — Limits on majority" placeholder="The Herald is wrong because..." oninput="autoSave(this, 'dot-q3')"></textarea>
+      <textarea class="reflection-textarea" id="journal-q3" data-label="Q3" placeholder="The Herald is wrong because..." oninput="autoSave(this, 'dot-q3')"></textarea>
     </div>
   </div>
-
 
   <div class="tab-next-btn-wrap">
     <button class="tab-next-btn" onclick="switchTab('factcheck')">Continue to Fact-Check →</button>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -2919,91 +2789,75 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
-
-  <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
     <div class="factcheck-q-header">
       <span class="factcheck-q-num">1</span>
-      <span class="factcheck-q-text">What does 'human dignity' mean?</span>
+      <span class="factcheck-q-text">Why are most major U.S. cities located near waterways or coastlines?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>A feeling that comes and goes depending on your mood</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">A</span>
+        <span>Because water provides trade routes, transportation, and resources that help cities grow</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">B</span>
-        <span>The principle that every person has inherent worth and deserves respect</span>
+        <span>Because the government required all cities to be built near water</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">C</span>
-        <span>A rule that only applies to people in government</span>
+        <span>Because people didn't like living inland</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q1"></div>
   </div>
-
-  <!-- QUESTION 2 -->
   <div class="factcheck-q" id="fc-q2">
     <div class="factcheck-q-header">
       <span class="factcheck-q-num">2</span>
-      <span class="factcheck-q-text">What was the Holocaust?</span>
+      <span class="factcheck-q-text">What does the Statue of Liberty represent?</span>
     </div>
     <div class="factcheck-options">
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">A</span>
-        <span>A war between the United States and Germany</span>
+        <span>The power of the U.S. military</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
         <span class="factcheck-option-letter">B</span>
-        <span>The systematic, state-sponsored murder of six million Jewish people by the Nazi German government</span>
+        <span>Freedom and the welcoming of immigrants to America</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
-        <span>A period when all European countries lost their constitutions</span>
+        <span>The importance of farming in American history</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q2"></div>
   </div>
-
-  <!-- QUESTION 3 -->
   <div class="factcheck-q" id="fc-q3">
     <div class="factcheck-q-header">
       <span class="factcheck-q-num">3</span>
-      <span class="factcheck-q-text">Why is the Herald's claim that dignity is 'just a feeling' dangerous?</span>
+      <span class="factcheck-q-text">Why is the Herald's claim that America is 'the same everywhere' wrong?</span>
     </div>
     <div class="factcheck-options">
       <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, false)">
         <span class="factcheck-option-letter">A</span>
-        <span>Because feelings are more important than principles</span>
+        <span>Because America has only one city</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, true)">
         <span class="factcheck-option-letter">B</span>
-        <span>Because treating dignity as optional allowed governments like Nazi Germany to deny people's rights, leading to devastation</span>
+        <span>Because America's geography, culture, arts, and traditions vary enormously from region to region — diversity is one of the nation's defining features</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, false)">
         <span class="factcheck-option-letter">C</span>
-        <span>Because the Herald never prints anything about feelings</span>
+        <span>Because no one lives in America anymore</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q3"></div>
   </div>
 
-  <!-- SCORE -->
   <div class="factcheck-score" id="factcheckScore">
     <span id="factcheckScoreText"></span>
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3011,7 +2865,6 @@ html, body {
       <div class="video-placeholder-notes">Great work today — you're ready to move on.</div>
     </div>
   </div>
-
   <div id="quizReviewVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">📖</span>
@@ -3025,85 +2878,48 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "lines.push('--- EDITORIAL BOARD RECOMMENDATION ---')" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
-<div class="video-placeholder video-placeholder-id">
-<!-- slot: 5-11-06-assignment-explainer -->
-    <span class="video-placeholder-icon">🎬</span>
-    <div class="video-placeholder-label">Assignment Explainer Video</div>
-    <div class="video-placeholder-title">Writing Your Editorial Board Recommendation</div>
-    <div class="video-placeholder-filename">5-11-06-assignment-explainer.mp4</div>
-    <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> For your Editorial Board Recommendation, use your notebook notes. Write 3-5 sentences explaining what human dignity means, why the Holocaust is an important lesson, and why citizens must protect dignity.</div>
+    <div class="video-placeholder video-placeholder-id">
+      <!-- slot: 5-14-05-assignment-explainer -->
+      <span class="video-placeholder-icon">🎬</span>
+      <div class="video-placeholder-label">Assignment Explainer Video</div>
+      <div class="video-placeholder-title">Writing Your Gazette Map Note</div>
+      <div class="video-placeholder-filename">5-14-05-assignment-explainer.mp4</div>
+      <div class="video-placeholder-notes">
+        <strong>Teacher recording notes:</strong> For your Gazette Map Note, use your notebook notes. Write 3-5 sentences about American cities, symbols, and culture. Correct the Herald's claim that America is the same everywhere.</div>
+    </div>
   </div>
-</div>
 
-  <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
   <div class="gazette-assignment-wrap">
     <div class="gazette-assignment">
-      <!-- Mini masthead at the top of the published artifact -->
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
-          <span>Vol. 1 · Issue 60</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
-          <span>Editorial Board Recommendation</span>
+          <span>Vol. 1 · Issue 71</span>
+          <span>Gazette Map Note</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
         <div class="gazette-masthead-mini-tag">Honest Reporting · Evidence First</div>
       </div>
-
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
-        <div class="gazette-article-label">★ Editorial Board Recommendation — Junior Editor's Submission ★</div>
-
+        <div class="gazette-article-label">★ Gazette Map Note — Junior Editor's Submission ★</div>
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="✏️ Type your name" /></div>
-
-        <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
-          <strong>What goes in a Editorial Board Recommendation:</strong>
-          <span>Write a recommendation (3-5 sentences) explaining what human dignity means as a principle. Reference the Holocaust as evidence for why dignity must be protected. Correct the Herald's claim.</span>
-        </div>
-
-        <textarea class="gazette-body-input" id="brief-body" data-label="Editorial Board Recommendation" placeholder="EDITORIAL BOARD RECOMMENDATION — Human Dignity
-
-The Hasty Herald calls dignity 'just a feeling.' But human dignity means... The Holocaust showed... Citizens must..."></textarea>
+        <div class="gazette-body-guidance"><strong>What goes in a Gazette Map Note:</strong> <span>Write a map note (3–5 sentences) explaining what U.S. geography, patriotic symbols, and cultural traditions reveal about America. Include at least one city, one symbol, and one cultural tradition. Correct the Herald's claim.</span></div>
+        <textarea class="gazette-body-input" id="brief-body" data-label="Gazette Map Note" placeholder="GAZETTE MAP NOTE — American Geography, Symbols & Culture\n\nMajor cities like... Patriotic symbols such as... American culture includes... The Herald is wrong because..."></textarea>
       </div>
     </div>
   </div>
 
-  <!-- ARCHIVE LINE — required on every G5 lesson -->
   <div class="archive-line-card">
     <div class="archive-line-stamp">📜</div>
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
-    <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
-      Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about human dignity and the lessons of the Holocaust.
-    </div>
+    <div class="archive-line-desc">Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about America's geography, symbols, and cultural diversity.</div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
   </div>
 
-  <!-- GATHERED ANSWERS — auto-pulls all student writing for turn-in -->
   <div class="gathered-card">
     <div class="gathered-header">
       <div class="gathered-header-icon">📋</div>
@@ -3113,7 +2929,7 @@ The Hasty Herald calls dignity 'just a feeling.' But human dignity means... The 
       </div>
     </div>
     <div class="gathered-body">
-      <div class="gathered-intro">All of your editor's notes, editorial board recommendation, and archive line — gathered in one place for turn-in.</div>
+      <div class="gathered-intro">All of your editor's notes, gazette map note, and archive line — gathered in one place for turn-in.</div>
       <textarea class="gathered-output" id="gatheredOutput" readonly></textarea>
       <div class="gathered-actions">
         <button class="gathered-btn gathered-btn-copy" onclick="copyGathered()">📋 Copy to Clipboard</button>
@@ -3123,84 +2939,57 @@ The Hasty Herald calls dignity 'just a feeling.' But human dignity means... The 
     </div>
   </div>
 
-  <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
-    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and editorial board recommendation</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and gazette map note</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Added your name to the byline</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote one careful Archive Line sentence</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Copied or downloaded the Gathered Answers</span></div>
     <div class="checklist-hint" id="checklistHint">
-      <strong>Almost there:</strong> Check every box above to publish Issue 60 and certify the edition.
+      <strong>Almost there:</strong> Check every box above to publish Issue 71 and certify the edition.
     </div>
   </div>
 
-  <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue 60 Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
-    <div class="cert-headline">Issue 60 Published</div>
-    <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> You faced a difficult truth with honesty and care. Protecting dignity is every citizen's responsibility — and every editor's.
-    </div>
+    <div class="cert-headline">Issue 71 Published</div>
+    <div class="cert-message"><strong>Well done, Junior Editor.</strong> You explored America's geography, symbols, and culture with patriotism — celebrating what unites us while respecting what makes each region unique. That's what a great editor does.</div>
   </div>
 
-  <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
+
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
-    <div class="next-issue-label">★ In the Next Issue (5.12.01) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
-    <div class="next-issue-title">Louisiana Purchase and Western Exploration</div>
-    <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      A new dispatch arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong>. Next issue, we open a new unit: Expansion, Innovation, and Consequences. The Herald says the Louisiana Purchase was simply a great bargain. You'll investigate what it really meant. Editors, sharpen your pencils.
+    <div class="next-issue-label">★ In the Next Issue (5.14.06) ★</div>
+    <div class="next-issue-title">Capstone: The American Story — Then to Now</div>
+    <div class="next-issue-tease">A new dispatch arrives at the <em>Editorial Board</em>. This is the final edition — the capstone. You'll look back across the entire American story, from before colonization to the 21st century, and write one final claim supported by evidence. The Herald will try one last rushed headline. You'll set the record straight.</div>
+  </div>
+
+  <div class="video-ratio">
+    <div class="video-placeholder video-placeholder-id">
+      <!-- slot: 5-14-05-closing -->
+      <span class="video-placeholder-icon">🎬</span>
+      <div class="video-placeholder-label">Closing Video</div>
+      <div class="video-placeholder-title">Going to Press · Issue 71</div>
+      <div class="video-placeholder-filename">5-14-05-closing.mp4</div>
+      <div class="video-placeholder-notes">
+        <strong>Teacher recording notes:</strong> Today you explored America's geography, symbols, and culture — and proved the Herald wrong about America being 'the same everywhere.' Next time: the capstone. You'll write your final claim about the American story.</div>
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
-  <div class="video-ratio">
-<div class="video-placeholder video-placeholder-id">
-<!-- slot: 5-11-06-closing -->
-    <span class="video-placeholder-icon">🎬</span>
-    <div class="video-placeholder-label">Closing Video</div>
-    <div class="video-placeholder-title">Going to Press · Issue 60</div>
-    <div class="video-placeholder-filename">5-11-06-closing.mp4</div>
-    <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Today the Editorial Board faced the hardest question in this unit. You reported the truth about human dignity — it's a principle, not a feeling. The Holocaust shows why. Next time, we open a new unit about expansion.</div>
-  </div>
 </div>
 
 </div>
 
-
-</div><!-- end lesson-shell -->
-
-<!-- ═══ OPTIMA ACADEMY ONLINE FOOTER ═══ -->
 <div class="oao-footer">
   <div class="oao-footer-main">🏫 <span>Optima Academy Online</span></div>
-  <div class="oao-footer-sub">Social Studies · Grade 5 · Lesson 5.11.06 · The Republic Gazette</div>
+  <div class="oao-footer-sub">Social Studies · Grade 5 · Lesson 5.14.05 · The Republic Gazette</div>
   <div class="oao-footer-copy">© 2025 Optima Academy Online</div>
 </div>
 
-<!-- ═══ CONFETTI CANVAS (fires when all checklist items complete) ═══ -->
 <canvas id="confettiCanvas"></canvas>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════════════
-   G5 LESSON JS — Republic Gazette
-   Same backbone as G4 (tabs, intro collapse, story-block, gather, save)
-   ═══════════════════════════════════════════════════════════════════════ */
-
 const TAB_ORDER = ['dispatch','desk','factcheck','press'];
 const visited = new Set(['dispatch']);
 
@@ -3214,48 +3003,28 @@ function switchTab(name) {
     const btn = document.getElementById('btn-' + v);
     if (btn && !btn.classList.contains('active')) btn.classList.add('visited');
   });
-
-  // Auto-collapse intro on non-Dispatch tabs (mirrors G4 behavior)
   const intro = document.getElementById('introSection');
   if (name === 'dispatch') intro.classList.remove('collapsed');
   else intro.classList.add('collapsed');
-
-  // Refresh gathered answers when entering press tab
   if (name === 'press') refreshGathered();
-
   updateProgress();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-function toggleIntro() {
-  document.getElementById('introSection').classList.toggle('collapsed');
-}
+function toggleIntro() { document.getElementById('introSection').classList.toggle('collapsed'); }
+function toggleStoryBlock(id) { document.getElementById(id).classList.toggle('collapsed'); }
 
-function toggleStoryBlock(id) {
-  document.getElementById(id).classList.toggle('collapsed');
-}
-
-/* ─── Fact-Check ─── */
 const fcAnswered = {};
 function checkAnswer(qId, optionEl, isCorrect) {
   if (fcAnswered[qId]) return;
   fcAnswered[qId] = isCorrect;
   const parent = optionEl.parentElement;
-  parent.querySelectorAll('.factcheck-option').forEach(o => {
-    o.classList.add('disabled');
-    o.onclick = null;
-  });
+  parent.querySelectorAll('.factcheck-option').forEach(o => { o.classList.add('disabled'); o.onclick = null; });
   optionEl.classList.add(isCorrect ? 'correct' : 'incorrect');
   const fb = document.getElementById('fb-' + qId.replace('fc-',''));
   fb.classList.add('show');
-  if (isCorrect) {
-    fb.classList.add('correct');
-    fb.innerHTML = '<strong>✓ Confirmed.</strong> Honest editors verify the source before they print.';
-  } else {
-    fb.classList.add('incorrect');
-    fb.innerHTML = '<strong>✗ Not quite.</strong> Take another look — a careful editor reads the question one more time before printing.';
-  }
-  // If all 3 answered, show score
+  if (isCorrect) { fb.classList.add('correct'); fb.innerHTML = '<strong>✓ Confirmed.</strong> Honest editors verify the source before they print.'; }
+  else { fb.classList.add('incorrect'); fb.innerHTML = '<strong>✗ Not quite.</strong> Take another look — a careful editor reads the question one more time before printing.'; }
   if (Object.keys(fcAnswered).length === 3) showScore();
   updateProgress();
 }
@@ -3277,7 +3046,6 @@ function showScore() {
   updateProgress();
 }
 
-/* ─── Auto-save indicator ─── */
 function autoSave(textareaEl, dotId) {
   const dot = document.getElementById(dotId);
   if (textareaEl.value.trim().length > 0) dot.classList.add('saved');
@@ -3285,22 +3053,17 @@ function autoSave(textareaEl, dotId) {
   updateProgress();
 }
 
-/* ─── Gathered Answers ─── */
 function refreshGathered() {
   const out = document.getElementById('gatheredOutput');
   const lines = [];
-
-  // Byline name appears at top of the submission packet
   const byname = (document.getElementById('brief-byline-name').value || '').trim();
   lines.push('═══════════════════════════════════════════');
   lines.push('  THE REPUBLIC GAZETTE — EDITOR\'S PACKET');
-  lines.push('  Lesson 5.11.06 · Rights, Human Dignity, and the Holocaust Definition');
-  lines.push('  Vol. 1 · Issue 60 · Editorial Board');
-  lines.push('  Junior Editor: ' + (byname || '(blank — add your name on the editorial board recommendation)'));
+  lines.push('  Lesson 5.14.05 · American Geography, Symbols & Culture');
+  lines.push('  Vol. 1 · Issue 71 · Map Room');
+  lines.push('  Junior Editor: ' + (byname || '(blank — add your name on the gazette map note)'));
   lines.push('═══════════════════════════════════════════');
   lines.push('');
-
-  // Editor's Notebook entries (Tab 2)
   lines.push('--- EDITOR\'S NOTEBOOK ---');
   document.querySelectorAll('.reflection-textarea').forEach(t => {
     const label = t.dataset.label || 'Note';
@@ -3308,37 +3071,27 @@ function refreshGathered() {
     lines.push((t.value || '(blank)').trim());
     lines.push('');
   });
-
-  // Fact-Check results
   lines.push('--- FACT-CHECK ---');
   if (Object.keys(fcAnswered).length > 0) {
     const total = Object.values(fcAnswered).filter(v => v).length;
     lines.push('Verified: ' + total + ' / 3');
-  } else {
-    lines.push('(not yet completed)');
-  }
+  } else { lines.push('(not yet completed)'); }
   lines.push('');
-
-  // Front Page Brief
   const headline = document.getElementById('brief-headline').value.trim();
   const briefBody = document.getElementById('brief-body').value.trim();
-  lines.push('--- EDITORIAL BOARD RECOMMENDATION ---');
+  lines.push('--- GAZETTE MAP NOTE ---');
   lines.push('Headline: ' + (headline || '(blank)'));
   lines.push('Byline: ' + (byname || '(blank)'));
   lines.push('');
   lines.push(briefBody || '(blank)');
   lines.push('');
-
-  // Archive Line (always included)
   const archive = document.getElementById('archive-line').value.trim();
   lines.push('--- ARCHIVE LINE ---');
   lines.push(archive || '(blank)');
   lines.push('');
-
   out.value = lines.join('\n');
 }
 
-/* Watch all textareas/inputs for refresh */
 document.addEventListener('input', (e) => {
   if (e.target.matches('.reflection-textarea, .gazette-headline-input, .gazette-byline-name-input, .gazette-body-input, .archive-line-input')) {
     if (document.getElementById('panel-press').classList.contains('active')) refreshGathered();
@@ -3362,141 +3115,85 @@ function downloadJournal() {
   const blob = new Blob([text], {type: 'text/plain'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'gazette-issue-60-editor-packet.txt';
+  a.download = 'gazette-issue-71-editor-packet.txt';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
 }
 
-/* ─── Checklist tracking → reveal certificate + fire confetti when complete ─── */
 let confettiFired = false;
-function toggleCheck(rowEl) {
-  rowEl.classList.toggle('checked');
-  checklistCheck();
-}
+function toggleCheck(rowEl) { rowEl.classList.toggle('checked'); checklistCheck(); }
 function checklistCheck() {
   const rows = document.querySelectorAll('.checklist-card .checklist-row');
   let checked = 0;
   rows.forEach(r => { if (r.classList.contains('checked')) checked++; });
   const allDone = checked === rows.length;
-
   const cert = document.getElementById('certCard');
   const hint = document.getElementById('checklistHint');
-
   if (allDone) {
     if (cert.classList.contains('locked')) {
       cert.classList.remove('locked');
       cert.classList.add('unlocked');
-      hint.innerHTML = '<strong>🎉 Issue 1 certified!</strong> Your Front Page Brief is filed. The Gazette grows by one issue.';
+      hint.innerHTML = '<strong>🎉 Issue 71 certified!</strong> Your Gazette Map Note is filed. The Gazette grows by one issue.';
       hint.style.borderLeftColor = 'var(--editor-stamp)';
       hint.style.background = 'rgba(92, 122, 74, 0.12)';
-      if (!confettiFired) {
-        confettiFired = true;
-        fireConfetti();
-      }
+      if (!confettiFired) { confettiFired = true; fireConfetti(); }
     }
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 71 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
-    confettiFired = false; // allow re-fire if user unchecks and re-completes
+    confettiFired = false;
   }
 }
 
-/* ─── Confetti (patriotic emoji set + Gazette colors) ─── */
 function fireConfetti() {
   const canvas = document.getElementById('confettiCanvas');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   canvas.style.opacity = 1;
-
   const colors = ['#BF0A30','#FFFFFF','#002868','#BF0A30','#002868','#FFFFFF'];
   const emojis = ['🗽','📰','🖊️','🌎','🦅'];
   const particles = [];
-
-  // Confetti rectangles in Gazette palette
   for (let i = 0; i < 140; i++) {
-    particles.push({
-      type: 'rect',
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      r: Math.random() * 6 + 3,
-      c: colors[Math.floor(Math.random() * colors.length)],
-      vx: (Math.random() - 0.5) * 4,
-      vy: Math.random() * 3 + 2,
-      rot: Math.random() * 360,
-      rv: (Math.random() - 0.5) * 8
-    });
+    particles.push({type:'rect',x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,r:Math.random()*6+3,c:colors[Math.floor(Math.random()*colors.length)],vx:(Math.random()-0.5)*4,vy:Math.random()*3+2,rot:Math.random()*360,rv:(Math.random()-0.5)*8});
   }
-  // Patriotic emoji particles
   for (let j = 0; j < 30; j++) {
-    particles.push({
-      type: 'emoji',
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
-      emoji: emojis[Math.floor(Math.random() * emojis.length)],
-      size: Math.random() * 16 + 28,
-      vx: (Math.random() - 0.5) * 3,
-      vy: Math.random() * 2.5 + 1.5,
-      rot: Math.random() * 360,
-      rv: (Math.random() - 0.5) * 5
-    });
+    particles.push({type:'emoji',x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,emoji:emojis[Math.floor(Math.random()*emojis.length)],size:Math.random()*16+28,vx:(Math.random()-0.5)*3,vy:Math.random()*2.5+1.5,rot:Math.random()*360,rv:(Math.random()-0.5)*5});
   }
-
   let frames = 0;
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p => {
       ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot * Math.PI / 180);
-      if (p.type === 'emoji') {
-        ctx.font = p.size + 'px serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(p.emoji, 0, 0);
-      } else {
-        ctx.fillStyle = p.c;
-        ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r);
-      }
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot*Math.PI/180);
+      if (p.type==='emoji') {ctx.font=p.size+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.emoji,0,0);}
+      else {ctx.fillStyle=p.c;ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);}
       ctx.restore();
-      p.x += p.vx;
-      p.y += p.vy;
-      p.rot += p.rv;
-      p.vy += 0.04;
+      p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.vy+=0.04;
     });
     frames++;
-    if (frames < 320) {
-      if (frames > 240) {
-        canvas.style.opacity = 1 - ((frames - 240) / 80);
-      }
+    if (frames<320) {
+      if (frames>240) canvas.style.opacity=1-((frames-240)/80);
       requestAnimationFrame(animate);
-    } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.style.opacity = 1;
-    }
+    } else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.opacity=1; }
   }
   animate();
 }
 
-/* ─── Progress meter ─── */
 function updateProgress() {
-  const tabOrder = ['dispatch', 'desk', 'factcheck', 'press'];
+  const tabOrder = ['dispatch','desk','factcheck','press'];
   const activeBtn = document.querySelector('.tab-btn.active');
-  const activeTab = activeBtn ? activeBtn.id.replace('btn-', '') : 'dispatch';
-  const pct = (tabOrder.indexOf(activeTab) + 1) * 25;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressPct').textContent = pct + '%';
+  const activeTab = activeBtn ? activeBtn.id.replace('btn-','') : 'dispatch';
+  const pct = (tabOrder.indexOf(activeTab)+1)*25;
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressPct').textContent = pct+'%';
 }
 
-/* ─── Source Image Autoloader (G5 repo) ─────────────────────────────────
-   Tries .jpg → .png → .jpeg → .webp from the G5 GitHub images folder.
-   Placeholders with a data-image attribute are replaced when an image
-   loads successfully. Otherwise the placeholder remains visible.
-   IMPORTANT: this loop must inject before the LAST </body> only. */
 (function() {
   var B = 'https://raw.githubusercontent.com/bbirchum1/optima-5th-social-studies/main/images/';
   var E = ['.jpg','.png','.jpeg','.webp'];
@@ -3525,12 +3222,9 @@ function updateProgress() {
   });
 })();
 
-/* Initial state */
 updateProgress();
 </script>
 
-
-<!-- Video Manifest Loader -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
@@ -3541,22 +3235,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!m) return;
         var entry = manifest[m[1]];
         if (!entry || entry.status !== 'ready' || !entry.embed) return;
-
         var temp = document.createElement('div');
         temp.innerHTML = entry.embed;
         var iframe = temp.querySelector('iframe');
         if (!iframe) return;
-
         var wrapper = placeholder.closest('.video-ratio');
-        if (wrapper) {
-          wrapper.style.position = 'relative';
-          wrapper.style.aspectRatio = '16 / 9';
-        }
-
+        if (wrapper) { wrapper.style.position = 'relative'; wrapper.style.aspectRatio = '16 / 9'; }
         iframe.removeAttribute('width');
         iframe.removeAttribute('height');
         iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
-
         placeholder.innerHTML = '';
         placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
         placeholder.appendChild(iframe);
