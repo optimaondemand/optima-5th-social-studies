@@ -547,6 +547,32 @@ function showCopied(){var fb=document.getElementById('copy-feedback');if(fb){fb.
 function checkComplete(){var boxes=document.querySelectorAll('.cl-item input[type=checkbox]');var all=Array.from(boxes).every(function(b){return b.checked});var msg=document.getElementById('complete-msg');if(msg)msg.style.display=all?'block':'none';}
 function toggleRubric(){var rb=document.getElementById('rubric-body'),btn=document.getElementById('rubric-btn');if(!rb||!btn)return;var open=rb.style.display==='block';rb.style.display=open?'none':'block';btn.querySelector('span').textContent=open?'View Assessment Rubric':'Hide Assessment Rubric';}
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('textarea[data-label]').forEach(function(ta){ta.addEventListener('input',gatherAnswers);});gatherAnswers();});
+
+
+/* ───── AUTO-SAVE (persistence patch) ───── */
+var _lessonKey = (document.title || 'ss-lesson').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase();
+
+(function(){
+  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea').forEach(function(t){
+    if(!t.id) return;
+    try{
+      var v = localStorage.getItem(_lessonKey+'-'+t.id);
+      if(v){ t.value = v; }
+    }catch(e){}
+    t.addEventListener('input', function(){
+      try{ localStorage.setItem(_lessonKey+'-'+this.id, this.value); }catch(e){}
+    });
+  });
+})();
+
+window.addEventListener('beforeunload', function(e){
+  var hasWork = false;
+  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea').forEach(function(t){
+    if(t.value && t.value.trim().length > 0){ hasWork = true; }
+  });
+  if(hasWork){ e.preventDefault(); e.returnValue = ''; }
+});
+
 </script>
 </body>
 </html>
