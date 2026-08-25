@@ -3536,9 +3536,21 @@ function restoreJournals(){
 }
 restoreJournals();
 
+/* restore gazette & archive inputs */
+(function(){
+  var els = document.querySelectorAll('.gazette-headline-input, .gazette-byline-name-input, .gazette-body-input, .archive-line-input');
+  els.forEach(function(el){
+    if(!el.id) return;
+    try{
+      var v = localStorage.getItem(_lessonKey+'-'+el.id);
+      if(v){ el.value = v; }
+    }catch(e){}
+  });
+})();
+
 window.addEventListener('beforeunload', function(e){
   var hasWork = false;
-  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea').forEach(function(t){
+  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea,.gazette-headline-input,.gazette-byline-name-input,.gazette-body-input,.archive-line-input').forEach(function(t){
     if(t.value && t.value.trim().length > 0){ hasWork = true; }
   });
   if(hasWork){ e.preventDefault(); e.returnValue = ''; }
@@ -3600,6 +3612,7 @@ function refreshGathered() {
 /* Watch all textareas/inputs for refresh */
 document.addEventListener('input', (e) => {
   if (e.target.matches('.reflection-textarea, .gazette-headline-input, .gazette-byline-name-input, .gazette-body-input, .archive-line-input')) {
+    try{ localStorage.setItem(_lessonKey+'-'+e.target.id, e.target.value); }catch(ex){}
     if (document.getElementById('panel-press').classList.contains('active')) refreshGathered();
     updateProgress();
   }
