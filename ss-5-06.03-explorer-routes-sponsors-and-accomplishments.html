@@ -1,0 +1,4021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5.06.03: Explorer Routes, Sponsors, and Accomplishments | The Republic Gazette (Grade 5)</title>
+
+<!-- Newspaper-themed Google Fonts (with system fallbacks if blocked) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Special+Elite&family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   GRADE 5 SOCIAL STUDIES — THE REPUBLIC GAZETTE TEMPLATE
+   ═══════════════════════════════════════════════════════════════════════
+   Every G5 lesson reuses this CSS as-is. The structural shell (header,
+   masthead, info-strip, story-blocks, intro-section, 4 tabs, Gazette
+   artifact, Archive Line, checklist, certificate, confetti) is identical
+   across all lessons. Only the lesson-specific content marked with ✏️
+   changes per lesson.
+
+   ✏️ MARKERS in this file indicate places to swap in lesson-specific text,
+   classes, or assets. See SKILL.md "Grade 5 — The Republic Gazette" for
+   the full per-lesson build workflow.
+
+   PER-LESSON ROUTINE → DESK → ASSIGNMENT MAPPING
+   ┌───────────────────────────┬─────────────────┬───────────────────────────────┐
+   │ Routine (planning table)  │ Desk variant    │ Assignment artifact           │
+   ├───────────────────────────┼─────────────────┼───────────────────────────────┤
+   │ Enter the Scene           │ Front Page Desk │ Front Page Brief              │
+   │ Source Study              │ Source Desk     │ Gazette Correction            │
+   │ Map Quest                 │ Map Room        │ Gazette Map Note              │
+   │ Socratic Seminar          │ Editorial Board │ Editorial Board Recommendation│
+   └───────────────────────────┴─────────────────┴───────────────────────────────┘
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   5TH GRADE SOCIAL STUDIES — THE REPUBLIC GAZETTE
+   Lesson 5.01.01 — Primary and Secondary Sources in American History
+   ═══════════════════════════════════════════════════════════════════════
+   Visual approach: Modern UI scaffolding with authentic newspaper
+   components inside. Students operate in a clean editorial workspace
+   that produces newspaper artifacts (clippings, briefs, mastheads). */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* Modern lesson UI */
+  --bg: #F5F1E8;
+  --surface: #FFFFFF;
+  --ink: #1A1F2E;
+  --ink-soft: #4A5568;
+  --ink-muted: #7A8398;
+  --border-soft: #E5DFD0;
+  --shadow: 0 2px 8px rgba(26, 31, 46, 0.08);
+  --shadow-lift: 0 6px 20px rgba(26, 31, 46, 0.12);
+
+  /* Newspaper paper tones */
+  --paper-cream: #FAF3E0;
+  --paper-ivory: #FAF0E0;
+  --paper-manila: #E8DCC0;
+  --paper-newsprint: #F5F2EC;
+  --paper-edge: #D4C9A8;
+
+  /* Gazette identity */
+  --gazette-gold: #B8923E;
+  --gazette-gold-dark: #8B6F2E;
+  --gazette-navy: #1A2138;
+  --gazette-navy-dark: #0E1426;
+
+  /* Hasty Herald — rival paper (cheaper, redder, more urgent) */
+  --herald-red: #8B2D26;
+  --herald-red-bright: #B83D2C;
+  --herald-paper: #F2E8D8;
+  --herald-stain: #C4A672;
+
+  /* Editor's accents */
+  --editor-wood: #8B5A2E;
+  --editor-leather: #5C3D24;
+  --editor-brass: #C9A66B;
+  --editor-stamp: #5C7A4A;
+
+  /* Tab system */
+  --tab-active: #1A2138;
+  --tab-bg: #F0E9D8;
+  --tab-hover: #FAF0E0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+.typewriter { font-family: 'Special Elite', 'Courier New', monospace; }
+.body-serif { font-family: 'Crimson Text', Georgia, serif; }
+
+.lesson-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 18px 80px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROGRESS BAR
+   ═══════════════════════════════════════════════════════════════════════ */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  /* Sticky to top of viewport as the student scrolls through the lesson */
+  position: sticky;
+  top: 8px;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.96);
+}
+.progress-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #E8DCC0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gazette-gold), var(--gazette-gold-dark));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.progress-pct {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO — NEWSPAPER MASTHEAD
+   SVG holds the thematic illustration (no text in SVG, per skill rule).
+   HTML overlay holds the masthead text (title, date, vol/issue, tagline).
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero-newspaper {
+  position: relative;
+  background:
+    radial-gradient(ellipse at top, rgba(184, 146, 62, 0.08), transparent 60%),
+    linear-gradient(180deg, var(--paper-cream) 0%, var(--paper-ivory) 100%);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-lift);
+}
+.hero-newspaper::before {
+  /* Subtle paper texture overlay */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(184, 146, 62, 0.025) 0px, rgba(184, 146, 62, 0.025) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.012) 0px, rgba(0, 0, 0, 0.012) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+}
+
+.masthead-overlay {
+  position: relative;
+  padding: 14px 24px 10px;
+  border-bottom: 3px double var(--gazette-navy);
+  text-align: center;
+}
+.masthead-flags {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.masthead-flag-left,
+.masthead-flag-right { display: inline-flex; align-items: center; gap: 6px; }
+.masthead-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5.5vw, 46px);
+  color: var(--gazette-navy);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(184, 146, 62, 0.15);
+}
+.masthead-tagline {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--editor-leather);
+  margin-top: 2px;
+}
+
+.hero-illustration-wrap {
+  position: relative;
+  padding: 8px 14px 14px;
+}
+.hero-illustration-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  border: 1px solid var(--paper-edge);
+  border-radius: 6px;
+  background: var(--paper-newsprint);
+}
+.hero-headline-strip {
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 800;
+  font-size: 18px;
+  text-align: center;
+  padding: 8px 16px;
+  margin: 8px 14px 14px;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  position: relative;
+  text-transform: uppercase;
+}
+.hero-headline-strip::before,
+.hero-headline-strip::after {
+  content: '★';
+  margin: 0 10px;
+  color: var(--gazette-gold);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INFO STRIP (modern UI — unit, week, virtue, standards)
+   ═══════════════════════════════════════════════════════════════════════ */
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.info-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-right: 1px solid var(--border-soft);
+}
+.info-cell:last-child { border-right: none; }
+.info-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: #F4ECD8;
+}
+.info-label {
+  font-size: 10px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+}
+.info-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+@media (max-width: 720px) {
+  .info-strip { grid-template-columns: repeat(2, 1fr); }
+  .info-cell:nth-child(2) { border-right: none; }
+  .info-cell:nth-child(1),
+  .info-cell:nth-child(2) { border-bottom: 1px solid var(--border-soft); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STORY-ARC COLLAPSIBLE BLOCKS (Grade 5 — Newsroom Status + Last Edition)
+   These mirror G4's story-block system but with newspaper theming.
+   Both default collapsed. Manual toggle only. No tab-switch hook.
+   ═══════════════════════════════════════════════════════════════════════ */
+.story-block {
+  background: linear-gradient(180deg, var(--paper-cream), var(--paper-ivory));
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-left: 4px solid var(--gazette-gold);
+  transition: border-color 0.2s ease;
+  position: relative;
+}
+.story-block.newsroom-status { border-left-color: var(--gazette-gold); }
+.story-block.last-edition { border-left-color: var(--editor-wood); }
+.story-block::before {
+  /* Subtle paper grain */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(184, 146, 62, 0.02) 0px, rgba(184, 146, 62, 0.02) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+}
+.story-block-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+  position: relative;
+}
+.story-block-bar:hover { background: rgba(184, 146, 62, 0.06); }
+.story-block-icon { font-size: 18px; flex-shrink: 0; }
+.story-block-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.story-block.last-edition .story-block-label { color: var(--editor-wood); }
+.story-block-summary {
+  flex: 1;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.story-block-summary em {
+  font-style: italic;
+  color: var(--gazette-gold-dark);
+  font-weight: 600;
+}
+.story-block.last-edition .story-block-summary em { color: var(--editor-wood); }
+.story-block-toggle {
+  font-size: 13px;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.story-block:not(.collapsed) .story-block-toggle { transform: rotate(180deg); }
+.story-block:not(.collapsed) .story-block-summary { display: none; }
+.story-block-body {
+  max-height: 0;
+  padding: 0 16px;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.story-block:not(.collapsed) .story-block-body {
+  max-height: 600px;
+  padding: 4px 16px 14px;
+}
+
+/* Newsroom Status rows */
+.ns-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(184, 146, 62, 0.18);
+}
+.ns-row:last-child { border-bottom: none; }
+.ns-row-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  min-width: 130px;
+  padding-top: 3px;
+}
+.ns-row-value {
+  flex: 1;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.ns-row-value strong { color: var(--gazette-navy); font-weight: 700; }
+
+/* Desk indicator chips inside Newsroom Status */
+.desk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 12px;
+  margin: 2px 4px 2px 0;
+}
+.desk-chip.locked {
+  background: rgba(26, 33, 56, 0.15);
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.circulation-meter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.circulation-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gazette-navy);
+}
+.circulation-unit {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.threat-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(139, 45, 38, 0.12);
+  border: 1px solid var(--herald-red);
+  border-radius: 12px;
+  color: var(--herald-red);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 620px) {
+  .story-block-label { font-size: 9px; letter-spacing: 1.5px; }
+  .story-block-summary { font-size: 13px; }
+  .ns-row-label { font-size: 9px; min-width: 100px; }
+  .ns-row-value { font-size: 13px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INTRO SECTION (auto-collapses on non-scene tabs)
+   Contains: The Dispatch, Today's Beat (Mission Question), Today's Coverage
+   (Objectives), At Your Desk (Need Strip). Mirrors G4 behavior exactly.
+   ═══════════════════════════════════════════════════════════════════════ */
+.intro-section { transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease; overflow: hidden; }
+.intro-section.collapsed > *:not(.intro-collapsed-bar) { display: none; }
+.intro-collapsed-bar {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--paper-cream);
+  border: 1px solid var(--paper-edge);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+}
+.intro-collapsed-bar:hover { background: var(--paper-ivory); }
+.intro-section.collapsed .intro-collapsed-bar { display: flex; }
+.intro-collapsed-icon { font-size: 18px; }
+.intro-collapsed-text {
+  flex: 1;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gazette-navy);
+}
+.intro-collapsed-toggle {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE DISPATCH — wire-service telegram look (replaces G4 Mission Brief)
+   ═══════════════════════════════════════════════════════════════════════ */
+.dispatch-card {
+  background: var(--paper-newsprint);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.dispatch-card::before {
+  /* Corner ticker tape effect */
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 22px;
+  background:
+    repeating-linear-gradient(90deg,
+      var(--gazette-navy) 0px, var(--gazette-navy) 6px,
+      transparent 6px, transparent 12px),
+    var(--gazette-navy-dark);
+  border-radius: 9px 9px 0 0;
+}
+.dispatch-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 9px;
+  color: var(--paper-cream);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+  padding: 2px 0;
+  z-index: 1;
+}
+.dispatch-label {
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.dispatch-stamp {
+  background: var(--herald-red);
+  color: var(--paper-cream);
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.dispatch-body {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+.dispatch-body p { margin: 0 0 8px; }
+.dispatch-body p:last-child { margin-bottom: 0; }
+.dispatch-body em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gazette-gold-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TWO-COLUMN INTRO (Today's Beat + Today's Coverage)
+   ═══════════════════════════════════════════════════════════════════════ */
+.intro-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 720px) { .intro-2col { grid-template-columns: 1fr; } }
+
+.intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.intro-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--paper-cream);
+}
+.intro-card-head-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+}
+.intro-card-head-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+.intro-card-head-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+}
+.intro-card-body {
+  padding: 12px 14px 14px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.obj-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 14px;
+}
+.obj-icon { color: var(--gazette-gold-dark); font-weight: 700; flex-shrink: 0; }
+
+/* You'll need strip (At Your Desk) */
+.need-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper-cream);
+  border: 1px dashed var(--paper-edge);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.need-strip-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+.need-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--surface);
+  border: 1px solid var(--paper-edge);
+  border-radius: 14px;
+  padding: 4px 11px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAB BAR
+   ═══════════════════════════════════════════════════════════════════════ */
+.tab-bar {
+  display: flex;
+  background: var(--gazette-navy);
+  border-radius: 12px;
+  padding: 6px;
+  margin-bottom: 14px;
+  gap: 4px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  position: sticky;
+  top: 52px;
+  z-index: 99;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: rgba(250, 243, 224, 0.75);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+.tab-btn:hover { background: rgba(184, 146, 62, 0.15); color: var(--paper-cream); }
+.tab-btn.active {
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+  box-shadow: 0 2px 8px rgba(184, 146, 62, 0.4);
+}
+.tab-btn .tab-check {
+  display: none;
+  margin-left: 6px;
+  color: var(--editor-stamp);
+}
+.tab-btn.visited:not(.active) .tab-check { display: inline; }
+
+.tab-panel { display: none; animation: panelFade 0.3s ease; }
+.tab-panel.active { display: block; }
+@keyframes panelFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-next-btn-wrap {
+  text-align: center;
+  margin-top: 20px;
+  padding: 16px 0 8px;
+  border-top: 1px solid var(--border-soft);
+}
+.tab-next-btn {
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  border: none;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+.tab-next-btn:hover {
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VIDEO PLACEHOLDERS (consistent with G4 — for teacher to swap in MP4 later)
+   ═══════════════════════════════════════════════════════════════════════ */
+.video-placeholder {
+  background: linear-gradient(135deg, #2C3245, #1A2138);
+  border: 2px dashed rgba(184, 146, 62, 0.4);
+  border-radius: 12px;
+  padding: 24px 20px;
+  margin: 14px 0;
+  color: var(--paper-cream);
+  text-align: center;
+  position: relative;
+}
+.video-placeholder-icon {
+  font-size: 38px;
+  margin-bottom: 8px;
+  display: block;
+}
+.video-placeholder-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.video-placeholder-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.video-placeholder-filename {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--gazette-gold);
+  background: rgba(184, 146, 62, 0.15);
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.video-placeholder-notes {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 13px;
+  color: rgba(250, 243, 224, 0.8);
+  font-style: italic;
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border-left: 3px solid var(--gazette-gold);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TODAY'S PATH (3 pill steps — same UX as G4)
+   ═══════════════════════════════════════════════════════════════════════ */
+.todays-path {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.todays-path-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 10px;
+}
+.todays-path-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.todays-path-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper-cream);
+  border: 1px solid var(--paper-edge);
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.todays-path-step-num {
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.todays-path-arrow { color: var(--gazette-gold-dark); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VIRTUE LENS — "An honest editor checks the source before printing"
+   ═══════════════════════════════════════════════════════════════════════ */
+.virtue-lens {
+  background: linear-gradient(135deg, #FAF3E0, #F0E6CC);
+  border-left: 4px solid var(--editor-stamp);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  position: relative;
+  overflow: hidden;
+}
+.virtue-lens::before {
+  /* Wax-seal-style accent */
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  background: radial-gradient(circle, var(--editor-stamp), #3D5530);
+  border-radius: 50%;
+  opacity: 0.15;
+}
+.virtue-lens-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--editor-stamp);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.virtue-lens-text {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.virtue-lens-text strong { color: var(--editor-stamp); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HASTY HERALD CLIPPING — torn rival paper, rotated, stamped RUSHED TO PRINT
+   ═══════════════════════════════════════════════════════════════════════ */
+.herald-wrap {
+  position: relative;
+  margin: 20px 0 28px;
+  perspective: 800px;
+}
+.herald-pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 35% 30%, #E84840, #8B1F1A);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+.herald-clipping {
+  background: var(--herald-paper);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(196, 166, 114, 0.3), transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(196, 166, 114, 0.25), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(139, 45, 38, 0.02) 0px, rgba(139, 45, 38, 0.02) 1px, transparent 1px, transparent 3px);
+  border: 1px solid var(--herald-stain);
+  padding: 16px 22px 18px;
+  position: relative;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 4px 16px rgba(26, 31, 46, 0.18);
+  /* Torn-edge effect using clip-path approximation */
+  clip-path: polygon(
+    0% 4%, 3% 0%, 8% 3%, 14% 0%, 22% 4%, 30% 1%, 38% 4%, 46% 0%, 55% 3%, 63% 0%, 71% 4%, 80% 1%, 88% 3%, 95% 0%, 100% 4%,
+    100% 96%, 95% 100%, 88% 97%, 80% 100%, 71% 96%, 63% 99%, 55% 97%, 46% 100%, 38% 96%, 30% 99%, 22% 96%, 14% 100%, 8% 97%, 3% 100%, 0% 96%
+  );
+}
+.herald-masthead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--herald-red);
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--herald-red);
+  padding-bottom: 5px;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+.herald-tagline {
+  text-align: center;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 9px;
+  color: var(--herald-red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: 0.75;
+}
+.herald-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.herald-claim {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.5;
+  padding: 6px 8px;
+  border-top: 1px dashed rgba(139, 45, 38, 0.4);
+  border-bottom: 1px dashed rgba(139, 45, 38, 0.4);
+}
+.herald-claim::before { content: '"'; color: var(--herald-red); font-size: 22px; vertical-align: -3px; margin-right: 2px; }
+.herald-claim::after { content: '"'; color: var(--herald-red); font-size: 22px; vertical-align: -3px; margin-left: 2px; }
+.herald-byline {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 9px;
+  color: var(--herald-red);
+  text-align: right;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-style: italic;
+}
+.herald-stamp {
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  background: var(--herald-red-bright);
+  color: var(--paper-cream);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transform: rotate(8deg);
+  box-shadow: 0 3px 8px rgba(184, 61, 44, 0.4);
+  border: 2px solid var(--herald-red);
+  z-index: 4;
+}
+.herald-task {
+  margin-top: 18px;
+  text-align: center;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.herald-task strong { color: var(--gazette-navy); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   JUNIOR EDITOR ROLE CALLOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.role-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--gazette-navy);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  box-shadow: var(--shadow);
+}
+.role-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gazette-navy);
+  color: var(--gazette-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.role-text {
+  flex: 1;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.role-text strong { color: var(--gazette-navy); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   EDITOR'S DESK QUESTION — Socratic question framed by virtue
+   Styled like a note on the Editor-in-Chief's leather desk
+   ═══════════════════════════════════════════════════════════════════════ */
+.editors-desk {
+  background:
+    linear-gradient(135deg, #FAF3E0 0%, #F0E6CC 100%);
+  border: 1.5px solid var(--editor-wood);
+  border-radius: 8px;
+  padding: 0;
+  margin: 18px 0;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(92, 61, 36, 0.2);
+  overflow: hidden;
+}
+.editors-desk::before {
+  /* Desk-edge wood grain accent strip on left */
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: repeating-linear-gradient(180deg,
+    var(--editor-wood) 0px, var(--editor-wood) 8px,
+    #6B4520 8px, #6B4520 11px);
+}
+.editors-desk-header {
+  background: var(--editor-leather);
+  color: var(--editor-brass);
+  padding: 8px 18px 8px 24px;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editors-desk-from {
+  font-style: italic;
+  font-size: 10px;
+  opacity: 0.85;
+}
+.editors-desk-body {
+  padding: 16px 22px 16px 28px;
+}
+.editors-desk-question {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+.editors-desk-virtue-tag {
+  display: inline-block;
+  background: var(--editor-stamp);
+  color: var(--paper-cream);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+.editors-desk-prompt {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  font-style: italic;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(92, 61, 36, 0.3);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE DESK (Tab 2) — desk-of-the-day with rotating visual identity
+   Four variants: Front Page Desk, Source Desk, Map Room, Editorial Board.
+   Each has its own accent color and iconography to prevent staleness.
+   ═══════════════════════════════════════════════════════════════════════ */
+.desk-header {
+  background: var(--surface);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.desk-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 6px;
+}
+
+/* DESK VARIANT: Front Page Desk (this lesson) */
+.desk-header.front-page::before { background: var(--gazette-gold); }
+.desk-header.front-page .desk-icon-wrap { background: var(--gazette-gold); color: var(--gazette-navy-dark); }
+/* DESK VARIANT: Source Desk */
+.desk-header.source-desk::before { background: #4A6FB5; }
+.desk-header.source-desk .desk-icon-wrap { background: #4A6FB5; color: var(--paper-cream); }
+/* DESK VARIANT: Map Room */
+.desk-header.map-room::before { background: #5C7A4A; }
+.desk-header.map-room .desk-icon-wrap { background: #5C7A4A; color: var(--paper-cream); }
+/* DESK VARIANT: Editorial Board */
+.desk-header.editorial-board::before { background: var(--editor-wood); }
+.desk-header.editorial-board .desk-icon-wrap { background: var(--editor-wood); color: var(--paper-cream); }
+
+.desk-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.desk-meta { flex: 1; }
+.desk-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.desk-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  line-height: 1.1;
+}
+.desk-subtitle {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTENT BLOCKS — explainer cards on Tab 2
+   ═══════════════════════════════════════════════════════════════════════ */
+.content-section {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.content-section h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--paper-edge);
+}
+.content-section p {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.content-section p:last-child { margin-bottom: 0; }
+.content-section strong { color: var(--gazette-navy); font-weight: 700; }
+
+.source-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+}
+@media (max-width: 620px) { .source-comparison-grid { grid-template-columns: 1fr; } }
+
+.source-type-card {
+  background: var(--paper-cream);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 10px;
+  padding: 14px 16px;
+  position: relative;
+}
+.source-type-card.primary { border-left: 4px solid var(--gazette-gold); }
+.source-type-card.secondary { border-left: 4px solid #4A6FB5; }
+.source-type-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.source-type-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 8px;
+}
+.source-type-defn {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.source-type-examples {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.source-type-examples-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 9px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  display: block;
+  margin-bottom: 3px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SOURCE STUDY IMAGE PLACEHOLDER
+   ═══════════════════════════════════════════════════════════════════════ */
+.source-image-frame {
+  background: var(--paper-newsprint);
+  border: 6px solid var(--surface);
+  border-radius: 4px;
+  margin: 16px 0;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(26, 31, 46, 0.15), 0 0 0 1px var(--paper-edge);
+}
+.source-image-frame::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 30px;
+  width: 60px;
+  height: 16px;
+  background: rgba(250, 243, 224, 0.7);
+  border: 1px solid var(--paper-edge);
+  transform: rotate(-3deg);
+}
+.source-image-placeholder {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background:
+    repeating-linear-gradient(45deg, transparent 0, transparent 10px, rgba(184, 146, 62, 0.04) 10px, rgba(184, 146, 62, 0.04) 11px);
+  color: var(--ink-soft);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.source-image-placeholder strong { font-style: normal; color: var(--gazette-gold-dark); }
+.source-image-placeholder code {
+  background: var(--gazette-navy);
+  color: var(--gazette-gold);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 12px;
+  font-style: normal;
+  display: inline-block;
+  margin-top: 6px;
+}
+.source-image-caption {
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  padding: 8px 14px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 13px;
+  text-align: center;
+  font-style: italic;
+  border-radius: 0 0 0 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   REFLECTION PROMPTS (short-answer textareas for student notes)
+   These feed into Gathered Answers on Tab 4.
+   ═══════════════════════════════════════════════════════════════════════ */
+.reflection-block {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.reflection-block h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reflection-q {
+  margin: 12px 0;
+}
+.reflection-q-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.reflection-q-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gazette-gold);
+  color: var(--gazette-navy-dark);
+  font-size: 12px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
+}
+.reflection-textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 10px 12px;
+  border: 1px solid var(--paper-edge);
+  border-radius: 8px;
+  background: var(--paper-cream);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink);
+  resize: vertical;
+  line-height: 1.5;
+}
+.reflection-textarea:focus {
+  outline: none;
+  border-color: var(--gazette-gold);
+  box-shadow: 0 0 0 3px rgba(184, 146, 62, 0.15);
+  background: var(--surface);
+}
+.reflection-save-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--paper-edge);
+  margin-left: 6px;
+  transition: background 0.3s;
+}
+.reflection-save-dot.saved { background: var(--editor-stamp); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FACT-CHECK QUESTIONS (Tab 3 — 3 MC)
+   "Before the Gazette goes to print, fact-check the claims"
+   ═══════════════════════════════════════════════════════════════════════ */
+.factcheck-intro {
+  background: var(--paper-cream);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.factcheck-intro-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.factcheck-intro-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 4px;
+}
+.factcheck-intro-sub {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.factcheck-q {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 12px 0;
+  box-shadow: var(--shadow);
+}
+.factcheck-q-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.factcheck-q-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gazette-navy);
+  color: var(--gazette-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+.factcheck-q-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.factcheck-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.factcheck-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--paper-cream);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+.factcheck-option:hover { background: var(--paper-ivory); border-color: var(--gazette-gold); }
+.factcheck-option.correct {
+  background: rgba(92, 122, 74, 0.12);
+  border-color: var(--editor-stamp);
+  color: var(--editor-stamp);
+  font-weight: 600;
+}
+.factcheck-option.incorrect {
+  background: rgba(139, 45, 38, 0.1);
+  border-color: var(--herald-red);
+  color: var(--herald-red);
+}
+.factcheck-option.disabled { cursor: default; opacity: 0.6; }
+.factcheck-option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--surface);
+  border: 1px solid var(--paper-edge);
+  border-radius: 4px;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: var(--ink);
+}
+.factcheck-feedback {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  display: none;
+}
+.factcheck-feedback.show { display: block; }
+.factcheck-feedback.correct {
+  background: rgba(92, 122, 74, 0.1);
+  border-left: 3px solid var(--editor-stamp);
+  color: var(--editor-stamp);
+}
+.factcheck-feedback.incorrect {
+  background: rgba(139, 45, 38, 0.08);
+  border-left: 3px solid var(--herald-red);
+  color: var(--herald-red);
+}
+.factcheck-score {
+  text-align: center;
+  background: var(--surface);
+  border: 1.5px solid var(--paper-edge);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 14px 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  display: none;
+  box-shadow: var(--shadow);
+}
+.factcheck-score.show { display: block; }
+.factcheck-score-meta {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GAZETTE ASSIGNMENT — Tab 4 — the published artifact
+   Front Page Brief variant: looks like a real newspaper column being composed
+   ═══════════════════════════════════════════════════════════════════════ */
+.gazette-assignment-wrap {
+  margin: 16px 0 20px;
+}
+.gazette-assignment {
+  background: var(--paper-newsprint);
+  border: 1px solid var(--paper-edge);
+  border-radius: 4px;
+  padding: 0;
+  box-shadow: 0 8px 28px rgba(26, 31, 46, 0.18);
+  overflow: hidden;
+  position: relative;
+}
+.gazette-assignment::before {
+  /* Soft paper texture */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(184, 146, 62, 0.025) 0px, rgba(184, 146, 62, 0.025) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+}
+.gazette-masthead-mini {
+  background: var(--paper-cream);
+  padding: 10px 18px 6px;
+  border-bottom: 2px double var(--gazette-navy);
+  text-align: center;
+  position: relative;
+}
+.gazette-masthead-mini-flags {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 9px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.gazette-masthead-mini-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--gazette-navy);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin: 2px 0;
+}
+.gazette-masthead-mini-tag {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--editor-leather);
+}
+
+.gazette-article-area {
+  padding: 18px 22px 20px;
+  position: relative;
+}
+.gazette-article-label {
+  display: inline-block;
+  background: var(--gazette-navy);
+  color: var(--gazette-gold);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.gazette-headline-input {
+  width: 100%;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1.2;
+  border: none;
+  border-bottom: 2px solid var(--paper-edge);
+  background: transparent;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.gazette-headline-input::placeholder {
+  color: var(--ink-muted);
+  font-style: italic;
+  font-weight: 600;
+}
+.gazette-headline-input:focus {
+  outline: none;
+  border-bottom-color: var(--gazette-gold);
+}
+.gazette-byline {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--paper-edge);
+}
+.gazette-byline-name-input {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--gazette-navy);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--gazette-gold);
+  padding: 1px 6px;
+  text-align: center;
+  font-weight: 700;
+  min-width: 140px;
+  max-width: 220px;
+}
+.gazette-byline-name-input::placeholder {
+  color: var(--herald-red);
+  font-style: italic;
+  text-transform: uppercase;
+}
+.gazette-byline-name-input:focus {
+  outline: none;
+  border-bottom-color: var(--gazette-navy);
+  background: rgba(184, 146, 62, 0.08);
+}
+.gazette-body-input {
+  width: 100%;
+  min-height: 120px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+  background: transparent;
+  border: none;
+  resize: vertical;
+  /* Two-column newspaper feel on wider screens */
+  column-count: 1;
+  padding: 0;
+}
+.gazette-body-input::placeholder {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.gazette-body-input:focus { outline: none; }
+.gazette-body-guidance {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  background: var(--paper-cream);
+  border-left: 3px solid var(--gazette-gold);
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 0 4px 4px 0;
+}
+.gazette-body-guidance strong { color: var(--gazette-navy); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ARCHIVE LINE — one careful sentence future citizens should remember
+   Minimal, almost reverential. Wax-seal accent.
+   ═══════════════════════════════════════════════════════════════════════ */
+.archive-line-card {
+  background:
+    radial-gradient(circle at 90% 50%, rgba(184, 146, 62, 0.08), transparent 60%),
+    linear-gradient(180deg, var(--paper-ivory), var(--paper-manila));
+  border: 1.5px solid var(--paper-edge);
+  border-top: 3px solid var(--editor-wood);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  position: relative;
+  box-shadow: var(--shadow-lift);
+}
+.archive-line-stamp {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #C4332C, var(--herald-red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(139, 45, 38, 0.45);
+  border: 2px solid var(--paper-ivory);
+}
+.archive-line-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--editor-wood);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.archive-line-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 8px;
+}
+.archive-line-desc {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.archive-line-input {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 14px;
+  border: 1px solid var(--paper-edge);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.55;
+  resize: vertical;
+}
+.archive-line-input:focus {
+  outline: none;
+  border-color: var(--editor-wood);
+  box-shadow: 0 0 0 3px rgba(139, 90, 46, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NEXT ISSUE TEASER (bottom of Tab 4 — newspaper-clipping cliffhanger)
+   ═══════════════════════════════════════════════════════════════════════ */
+.next-issue-teaser {
+  background: var(--paper-cream);
+  border: 1px solid var(--paper-edge);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.next-issue-teaser::before {
+  /* Torn left edge */
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0;
+  width: 6px;
+  background: repeating-linear-gradient(180deg,
+    var(--gazette-gold) 0px, var(--gazette-gold) 4px,
+    transparent 4px, transparent 8px);
+}
+.next-issue-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.next-issue-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.next-issue-tease {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.55;
+}
+.next-issue-tease strong { color: var(--herald-red); font-style: normal; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GATHERED ANSWERS (Tab 4 — auto-pulls all student writing for turn-in)
+   ═══════════════════════════════════════════════════════════════════════ */
+.gathered-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.gathered-header {
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gathered-header-icon { font-size: 22px; color: var(--gazette-gold); }
+.gathered-header-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gazette-gold);
+  font-weight: 700;
+}
+.gathered-header-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+}
+.gathered-body { padding: 14px 18px 16px; }
+.gathered-intro {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.gathered-output {
+  width: 100%;
+  min-height: 180px;
+  padding: 12px;
+  border: 1px solid var(--paper-edge);
+  border-radius: 8px;
+  background: var(--paper-cream);
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--ink);
+  resize: vertical;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.gathered-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.gathered-btn {
+  background: var(--gazette-navy);
+  color: var(--paper-cream);
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gathered-btn:hover { background: var(--gazette-gold); color: var(--gazette-navy-dark); transform: translateY(-1px); }
+.gathered-btn-copy { background: var(--editor-stamp); }
+.gathered-btn-pdf { background: var(--editor-wood); }
+.gathered-copied {
+  display: none;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(92, 122, 74, 0.12);
+  color: var(--editor-stamp);
+  border-radius: 6px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+}
+.gathered-copied.show { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CERTIFICATE — at end of Tab 4
+   ═══════════════════════════════════════════════════════════════════════ */
+.cert-card {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(184, 146, 62, 0.12), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(92, 61, 36, 0.08), transparent 50%),
+    linear-gradient(135deg, var(--paper-cream), var(--paper-ivory));
+  border: 2px solid var(--gazette-gold);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+.cert-card::before {
+  /* Decorative corner flourishes */
+  content: '★';
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-size: 22px;
+  color: var(--gazette-gold);
+  opacity: 0.6;
+}
+.cert-card::after {
+  content: '★';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 22px;
+  color: var(--gazette-gold);
+  opacity: 0.6;
+}
+.cert-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--gazette-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.cert-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--gazette-navy);
+  margin-bottom: 10px;
+}
+.cert-message {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.cert-message strong { color: var(--gazette-navy); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TURN-IN CHECKLIST
+   ═══════════════════════════════════════════════════════════════════════ */
+.checklist-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  box-shadow: var(--shadow);
+}
+.checklist-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--gazette-navy);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.checklist-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 0;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+}
+.checklist-row:hover .checklist-box { border-color: var(--gazette-gold); }
+.checklist-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--paper-edge);
+  border-radius: 4px;
+  background: var(--paper-cream);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.checklist-row.checked .checklist-box {
+  background: var(--editor-stamp);
+  border-color: var(--editor-stamp);
+}
+.checklist-row.checked .checklist-box::after {
+  content: '✓';
+  color: var(--paper-cream);
+  font-weight: 900;
+  font-size: 13px;
+}
+.checklist-row.checked { color: var(--ink-muted); text-decoration: line-through; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTIMA ACADEMY ONLINE HEADER (above hero banner)
+   ═══════════════════════════════════════════════════════════════════════ */
+.oao-header {
+  background: var(--gazette-navy);
+  border-bottom: 6px solid var(--gazette-gold);
+  padding: 20px 28px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.oao-header::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gazette-gold), #E0B560, var(--gazette-gold));
+}
+.oao-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.oao-header-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.oao-header-logo img { width: 48px; height: 38px; }
+.oao-header-org {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.oao-header-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--gazette-gold);
+  letter-spacing: 0.5px;
+}
+.oao-header-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.oao-header-title em {
+  color: #E0B560;
+  font-style: italic;
+}
+.oao-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(184, 146, 62, 0.18);
+  border: 1.5px solid rgba(184, 146, 62, 0.45);
+  border-radius: 28px;
+  padding: 6px 16px;
+}
+.oao-header-badge-icon { font-size: 22px; }
+.oao-header-badge-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 800;
+}
+@media (max-width: 620px) {
+  .oao-header { padding: 14px 18px 12px; }
+  .oao-header-title { font-size: 20px; }
+  .oao-header-org { font-size: 18px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTIMA ACADEMY ONLINE FOOTER
+   ═══════════════════════════════════════════════════════════════════════ */
+.oao-footer {
+  background: var(--gazette-navy);
+  border-top: 4px solid var(--gazette-gold);
+  padding: 18px 28px;
+  text-align: center;
+}
+.oao-footer-main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.oao-footer-main span { color: var(--gazette-gold); font-weight: 700; }
+.oao-footer-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 2px;
+}
+.oao-footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFETTI CANVAS (fires when all checklist items complete)
+   ═══════════════════════════════════════════════════════════════════════ */
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* Certificate hidden by default; revealed when all checks complete */
+.cert-card.locked { display: none; }
+.cert-card.unlocked {
+  animation: certReveal 0.7s ease;
+}
+@keyframes certReveal {
+  0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Checklist hint shown until completion */
+.checklist-hint {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--paper-cream);
+  border-left: 3px solid var(--gazette-gold);
+  border-radius: 0 6px 6px 0;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.checklist-hint strong { color: var(--gazette-navy); font-style: normal; }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     OPTIMA READ-ALOUD PLAYER — drop-in snippet for GitHub-hosted lesson pages
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div id="optima-read-aloud">
+<style>
+    #optima-read-aloud { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 14px 18px; margin: 0 0 20px 0; }
+    #optima-read-aloud .ora-kicker { font-size: 11px; color: #1B6A94; letter-spacing: 0.4px; margin-bottom: 10px; }
+    #optima-read-aloud .ora-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    #optima-read-aloud .ora-controls button { border-radius: 8px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    #ora-play { background: #0E1C42; color: #FFFFFF; border: 1.5px solid #0E1C42; }
+    #ora-play:hover:enabled { background: #1B2D5E; }
+    #ora-play:disabled { background: #D0D9E8; border-color: #D0D9E8; color: #6b7a99; cursor: default; }
+    #ora-stop { background: #FFFFFF; color: #0E1C42; border: 1.5px solid #D0D9E8; }
+    #ora-stop:hover:enabled { background: #F4F6FA; border-color: #55C8E8; }
+    #ora-stop:disabled { color: #999; border-color: #E4E9F2; cursor: default; }
+    #optima-read-aloud .ora-speed { font-size: 12px; color: #6b7a99; display: flex; align-items: center; gap: 6px; }
+    #ora-rate { font-family: inherit; font-size: 13px; color: #0E1C42; border: 1.5px solid #D0D9E8; border-radius: 6px; padding: 5px 8px; background: #FFFFFF; }
+    #ora-status { font-size: 12px; color: #666; }
+    .ora-highlight { background: #FDF3E3 !important; box-shadow: inset 4px 0 0 #C7922C; border-radius: 4px; transition: background 0.2s; }
+</style>
+    <div class="ora-kicker">&#128266; READ ALOUD &mdash; LISTEN TO THIS PAGE</div>
+    <div class="ora-controls">
+        <button id="ora-play" type="button" aria-label="Listen to this page">&#9654;&#65039; Listen</button>
+        <button id="ora-stop" type="button" aria-label="Stop reading" disabled>&#9632; Stop</button>
+        <label class="ora-speed">Speed
+            <select id="ora-rate" aria-label="Reading speed">
+                <option value="0.8">Slower</option>
+                <option value="1" selected>Normal</option>
+                <option value="1.25">Faster</option>
+            </select>
+        </label>
+        <span id="ora-status" role="status" aria-live="polite"></span>
+    </div>
+<script>
+(function () {
+    "use strict";
+    var playBtn  = document.getElementById("ora-play");
+    var stopBtn  = document.getElementById("ora-stop");
+    var rateSel  = document.getElementById("ora-rate");
+    var statusEl = document.getElementById("ora-status");
+
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        playBtn.disabled = true;
+        rateSel.disabled = true;
+        statusEl.textContent = "Read-aloud is not supported in this browser.";
+        return;
+    }
+
+    var LABEL_PLAY   = "▶️ Listen";
+    var LABEL_PAUSE  = "⏸️ Pause";
+    var LABEL_RESUME = "▶️ Resume";
+    var BLOCK_SEL = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, figcaption, div";
+    var SKIP_SEL  = "#optima-read-aloud, [data-ra-skip], button, script, style, select, noscript, iframe";
+
+    var queue = [];
+    var idx = 0;
+    var playing = false, paused = false, stopping = false;
+    var currentBlock = null;
+    var currentUtterance = null;
+
+    var voices = [];
+    function loadVoices() { voices = window.speechSynthesis.getVoices(); }
+    loadVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    function pickVoice() {
+        if (!voices.length) loadVoices();
+        var en = voices.filter(function (v) { return /^en/i.test(v.lang); });
+        return en.filter(function (v) { return /natural/i.test(v.name); })[0]
+            || en.filter(function (v) { return /google us english/i.test(v.name); })[0]
+            || en.filter(function (v) { return v.default; })[0]
+            || en[0] || null;
+    }
+
+    function isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    function collectQueue() {
+        var root = document.querySelector("[data-readaloud-root]")
+                || document.querySelector(".canvas-frame")
+                || document.body;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var items = [];
+        var node;
+        while ((node = walker.nextNode())) {
+            if (!/\S/.test(node.textContent)) continue;
+            var el = node.parentElement;
+            if (!el || el.closest(SKIP_SEL)) continue;
+            if (!isVisible(el)) continue;
+            var block = el.closest(BLOCK_SEL) || root;
+            var last = items[items.length - 1];
+            if (last && last.el === block) last.text += " " + node.textContent;
+            else items.push({ el: block, text: node.textContent });
+        }
+        var q = [];
+        items.forEach(function (item) {
+            var clean = item.text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{25A0}-\u{25FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{200D}\u{20E3}\u{E0020}-\u{E007F}]/gu, "").replace(/\s+/g, " ").trim();
+            if (!clean) return;
+            var sentences = clean.match(/[^.!?]+[.!?]+["”’')\]]*\s*|[^.!?]+$/g) || [clean];
+            sentences.forEach(function (s) {
+                s = s.trim();
+                if (s) q.push({ el: item.el, text: s });
+            });
+        });
+        return q;
+    }
+
+    function highlight(el) {
+        if (el === currentBlock) return;
+        clearHighlight();
+        currentBlock = el;
+        if (el && el !== document.body) {
+            el.classList.add("ora-highlight");
+            try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        }
+    }
+    function clearHighlight() {
+        if (currentBlock) currentBlock.classList.remove("ora-highlight");
+        currentBlock = null;
+    }
+
+    function speakNext() {
+        if (idx >= queue.length) { finish("Finished reading this page."); return; }
+        var item = queue[idx];
+        highlight(item.el);
+        var u = new SpeechSynthesisUtterance(item.text);
+        u.rate = parseFloat(rateSel.value) || 1;
+        var v = pickVoice();
+        if (v) u.voice = v;
+        u.onend = function () {
+            if (stopping) return;
+            idx++;
+            speakNext();
+        };
+        u.onerror = function (e) {
+            if (stopping || e.error === "canceled" || e.error === "interrupted") return;
+            idx++;
+            speakNext();
+        };
+        currentUtterance = u;
+        window.speechSynthesis.speak(u);
+        statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+    }
+
+    function finish(message) {
+        playing = false;
+        paused = false;
+        clearHighlight();
+        playBtn.textContent = LABEL_PLAY;
+        stopBtn.disabled = true;
+        statusEl.textContent = message || "";
+        currentUtterance = null;
+    }
+
+    playBtn.addEventListener("click", function () {
+        if (playing && !paused) {
+            window.speechSynthesis.pause();
+            paused = true;
+            playBtn.textContent = LABEL_RESUME;
+            statusEl.textContent = "Paused";
+            return;
+        }
+        if (playing && paused) {
+            window.speechSynthesis.resume();
+            paused = false;
+            playBtn.textContent = LABEL_PAUSE;
+            statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+            return;
+        }
+        queue = collectQueue();
+        if (!queue.length) { statusEl.textContent = "Nothing to read on this page."; return; }
+        idx = 0;
+        stopping = false;
+        playing = true;
+        paused = false;
+        window.speechSynthesis.cancel();
+        playBtn.textContent = LABEL_PAUSE;
+        stopBtn.disabled = false;
+        speakNext();
+    });
+
+    stopBtn.addEventListener("click", function () {
+        stopping = true;
+        window.speechSynthesis.cancel();
+        finish("");
+    });
+
+    rateSel.addEventListener("change", function () {
+        if (!playing || paused) return;
+        stopping = true;
+        window.speechSynthesis.cancel();
+        setTimeout(function () { stopping = false; speakNext(); }, 60);
+    });
+
+    window.addEventListener("pagehide", function () { window.speechSynthesis.cancel(); });
+})();
+</script>
+</div>
+<!-- ═══ END OPTIMA READ-ALOUD PLAYER ═══ -->
+
+
+<!-- ═══ OPTIMA ACADEMY ONLINE HEADER (above the hero banner) — STATIC ACROSS ALL LESSONS ═══ -->
+<div class="oao-header">
+  <div class="oao-header-brand">
+    <div class="oao-header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" /></div>
+    <div>
+      <div class="oao-header-org">Optima Academy Online</div>
+      <div class="oao-header-sub">An Education Experience Company</div>
+    </div>
+  </div>
+  <div class="oao-header-title">Social Studies · <em>Explorer Routes, Sponsors, and Accomplishments</em></div>
+  <div class="oao-header-badge">
+    <span class="oao-header-badge-icon">🗞️</span>
+    <span class="oao-header-badge-text">Lesson 5.06.03</span>
+  </div>
+</div>
+
+<div class="lesson-shell">
+
+<!-- ═══ PROGRESS BAR ═══ -->
+<div class="progress-wrap">
+  <span class="progress-label">📰 Edition Progress</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0%</span>
+</div>
+
+<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
+     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
+     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
+     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
+     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
+<div class="hero-newspaper">
+  <div class="masthead-overlay">
+    <div class="masthead-flags">
+      <span class="masthead-flag-left">★ Vol. 1 · Issue 25 ★</span>
+      <span class="masthead-flag-right">★ Before Colonization Special Edition ★</span>
+    </div>
+    <div class="masthead-title serif">The Republic Gazette</div>
+    <div class="masthead-tagline">Honest Reporting · Evidence First · For Every Citizen</div>
+  </div>
+
+  <div class="hero-illustration-wrap">
+    <!-- STANDARD G5 HERO — Historian's Desk scene. Same on every G5 lesson.
+         Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
+         magnifying glass, gazette pages, quill + inkwell) represents the
+         Republic Gazette editorial workspace year-round. -->
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#D4A574"/>
+          <stop offset="1" stop-color="#A67B45"/>
+        </linearGradient>
+        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
+          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#FAF0E0"/>
+          <stop offset="1" stop-color="#F0E0C0"/>
+        </linearGradient>
+        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
+          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
+        </linearGradient>
+        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#7B3A2A"/>
+          <stop offset="1" stop-color="#5C2818"/>
+        </linearGradient>
+        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#D4A574"/>
+          <stop offset="1" stop-color="#8B5A2E"/>
+        </linearGradient>
+        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
+          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
+          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
+        </pattern>
+      </defs>
+
+      <!-- Desk surface -->
+      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
+      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
+      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
+      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
+
+      <!-- Wall behind desk -->
+      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
+
+      <!-- Lamp glow -->
+      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
+
+      <!-- Floating Gazette newsprint pages -->
+      <g transform="translate(720, 30)">
+        <g style="animation: heroDrift1 7s ease-in-out infinite;">
+          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
+          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
+          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
+        </g>
+      </g>
+      <g transform="translate(800, 60)">
+        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
+          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
+          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
+          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
+        </g>
+      </g>
+
+      <!-- Quill + inkwell -->
+      <g transform="translate(50, 150)">
+        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
+        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
+        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
+        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
+        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
+        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
+      </g>
+
+      <!-- Source 1: Handwritten letter -->
+      <g transform="translate(180, 70) rotate(-4)">
+        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
+        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
+        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
+        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
+        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
+      </g>
+
+      <!-- Source 2: History textbook -->
+      <g transform="translate(360, 90) rotate(3)">
+        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
+        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
+        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
+        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
+        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
+        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
+        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
+        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
+        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
+      </g>
+
+      <!-- Source 3: Photograph in frame -->
+      <g transform="translate(520, 105) rotate(-2)">
+        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
+        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
+        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
+        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
+        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
+        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
+        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
+        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
+        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
+        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
+      </g>
+
+      <!-- Magnifying lens (floating animation) -->
+      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
+        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
+        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
+        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
+        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
+        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
+        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </g>
+
+      <!-- Ink sparkles (pulsing animation) -->
+      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
+        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
+        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
+      </g>
+      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
+        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
+        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
+      </g>
+
+      <style>
+        @keyframes heroLensFloat {
+          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
+          50% { transform: translate(445px, 55px) rotate(-3deg); }
+        }
+        @keyframes heroDrift1 {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-4px) rotate(2deg); }
+        }
+        @keyframes heroDrift2 {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(3px) rotate(-2deg); }
+        }
+        @keyframes heroSparkle {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.4); }
+        }
+      </style>
+    </svg>
+  </div>
+
+  <div class="hero-headline-strip serif">Explorer Routes, Sponsors, and Accomplishments</div>
+</div>
+
+<!-- ═══ INFO STRIP ═══ -->
+<div class="info-strip">
+  <div class="info-cell">
+    <div class="info-icon">📅</div>
+    <div>
+      <div class="info-label">Week</div>
+      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
+      <div class="info-value">Week 13 · Q2</div>
+    </div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon">🗞️</div>
+    <div>
+      <div class="info-label">Unit 6</div>
+      <div class="info-value">First Contact and European Exploration</div>
+    </div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon" style="background:#E8DCC0;">🌿</div>
+    <div>
+      <div class="info-label">Virtue Lens</div>
+      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
+      <div class="info-value">Courage</div>
+    </div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon" style="background:#F0E8FF;">📋</div>
+    <div>
+      <div class="info-label">Standards</div>
+      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
+      <div class="info-value" style="font-size:12px;">SS.5.A.3.1 · SS.5.A.3.2 · SS.5.A.3.3 · SS.5.E.2.1 · TEKS 1(A)–(B), 24(A)–(B)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
+     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
+     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
+     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
+     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
+     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
+       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
+     - Editor-in-Chief: Ms. Avery (consistent character all year).
+     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
+<div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
+  <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
+    <span class="story-block-icon">🗞️</span>
+    <span class="story-block-label">Newsroom Status</span>
+    <span class="story-block-summary">
+      Vol. 1 · Issue 25 · Circulation 1250 · <em>Reports from across the sea — the Atlantic routes come into focus</em>
+    </span>
+    <span class="story-block-toggle">▼</span>
+  </div>
+  <div class="story-block-body">
+    <div class="ns-row">
+      <span class="ns-row-label">Issue</span>
+      <span class="ns-row-value">
+        <strong>Vol. 1 · Issue 25</strong> — <em>Reports from across the sea: examine exploration, contact, trade, and consequences with care.</em>
+      </span>
+    </div>
+    <div class="ns-row">
+      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-value">
+        <span class="circulation-meter">
+          <span class="circulation-number">1250</span>
+          <span class="circulation-unit">readers</span>
+        </span>
+        — Readers are following the exploration series closely, and the mail is full of questions about who paid for the voyages.
+      </span>
+    </div>
+    <div class="ns-row">
+      <span class="ns-row-label">Open Desks</span>
+      <span class="ns-row-value">
+        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
+             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
+        <span class="desk-chip">🗞️ Front Page Desk</span>
+        <span class="desk-chip">🔍 Source Desk</span>
+        <span class="desk-chip">🗺️ Map Room</span>
+        <span class="desk-chip locked">⚖️ Editorial Board · opens 5.05.01</span>
+      </span>
+    </div>
+    <div class="ns-row">
+      <span class="ns-row-label">Editor-in-Chief</span>
+      <span class="ns-row-value">
+        <strong>Ms. Avery</strong> — careful, encouraging, asks questions before answering them.
+      </span>
+    </div>
+    <div class="ns-row">
+      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-value">
+        <span class="threat-meter">⚠️ The Hasty Herald · Active</span>
+        <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
+     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
+     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
+     Story callback to the prior lesson. Default collapsed. Quote the prior
+     lesson's Archive Line when possible to stitch lessons together. -->
+<div class="story-block last-edition collapsed" id="lastEditionBlock">
+  <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
+    <span class="story-block-icon">⏪</span>
+    <span class="story-block-label">Last Edition</span>
+    <span class="story-block-summary">
+      Last issue: the Source Desk examined <em>why</em> European kingdoms funded voyages at all. Tap to recap. ▼
+    </span>
+    <span class="story-block-toggle">▼</span>
+  </div>
+  <div class="story-block-body">
+    <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
+      The Gazette studied a funding document and sorted the motives behind exploration — God, Gold, and Glory. The Herald claimed explorers crossed oceans only because they were curious. Our editors showed that curiosity was real, but kings and queens signed the checks for wealth, religion, and rivalry with other kingdoms. That correction is filed. Today the question moves from <em>why</em> a voyage happened to <em>where</em> it went — and who decided.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ INTRO SECTION (auto-collapses on non-scene tabs) ═══ -->
+<div class="intro-section" id="introSection">
+  <div class="intro-collapsed-bar" onclick="toggleIntro()">
+    <div class="intro-collapsed-icon">🗞️</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-toggle">▼ Open</div>
+  </div>
+
+  <!-- The Dispatch (Tab 1 opener — every lesson) -->
+  <div class="dispatch-card">
+    <div class="dispatch-header">
+      <!-- ✏️ Dispatch label includes lesson code -->
+      <span class="dispatch-label">▶ Dispatch · 5.06.03</span>
+      <span class="dispatch-stamp">From the Editor's Desk</span>
+    </div>
+    <div class="dispatch-body">
+      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
+           Pattern: 2-3 short paragraphs.
+           Paragraph 1: callback to prior lesson (skip on 5.01.01).
+           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
+           has already rushed its own version into print.
+           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
+      <p>Last issue the Gazette reported <em>why</em> European kingdoms paid for ocean voyages. Today a new file lands on the <strong>Front Page Desk</strong>: <em>5.06.03 — Explorer Routes, Sponsors, and Accomplishments</em>. Four captains, four directions, four very different results. Columbus sailed west for Spain. Da Gama sailed south and east for Portugal. Cabot sailed northwest for England. Why did each one go the way they went?</p>
+      <p>The route a captain sailed was not a guess. It was a decision — shaped by who was paying, what that kingdom already controlled, and what rival kingdoms had claimed first. But <strong>The Hasty Herald</strong> has already printed its version, and it has the whole thing backwards.</p>
+    </div>
+  </div>
+
+  <!-- 2-column intro: Today's Beat (Wonder Question) + Today's Coverage (Objectives) -->
+  <div class="intro-2col">
+    <div class="intro-card">
+      <div class="intro-card-head">
+        <div class="intro-card-head-icon">📝</div>
+        <div>
+          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-title">Junior Editor's Question</div>
+        </div>
+      </div>
+      <div class="intro-card-body">
+        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
+             5th-grade reading level. Connected to the lesson's content AND to the
+             Hasty Herald's incomplete claim. -->
+        <p>If explorer routes were really random, why did Spain's captains sail west while Portugal's sailed east — year after year?</p>
+      </div>
+    </div>
+
+    <div class="intro-card">
+      <div class="intro-card-head">
+        <div class="intro-card-head-icon">🎯</div>
+        <div>
+          <div class="intro-card-head-label">Today's Coverage</div>
+          <div class="intro-card-head-title">What You'll Learn</div>
+        </div>
+      </div>
+      <div class="intro-card-body">
+        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
+             Aligned to standards in the info strip. -->
+        <div class="obj-line"><span class="obj-icon">▸</span> Match at least three explorers to their sponsoring kingdom, their route, and what the voyage reached.</div>
+        <div class="obj-line"><span class="obj-icon">▸</span> Explain how a sponsor’s goals and rivalries shaped the direction a captain sailed.</div>
+        <div class="obj-line"><span class="obj-icon">▸</span> Support a claim about explorer routes with specific evidence from the lesson.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- At Your Desk (need strip) -->
+  <div class="need-strip">
+    <span class="need-strip-label">At Your Desk</span>
+    <span class="need-chip">Pencil</span>
+    <span class="need-chip">📓 Editor's Notebook</span>
+    <span class="need-chip">🗞️ This Lesson Page</span>
+  </div>
+</div>
+
+
+<!-- ═══ TAB BAR (4 tabs) ═══ -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" onclick="switchTab('dispatch')" id="btn-dispatch">🗞️ The Dispatch <span class="tab-check">✓</span></button>
+  <button class="tab-btn" onclick="switchTab('desk')" id="btn-desk">🔍 The Desk <span class="tab-check">✓</span></button>
+  <button class="tab-btn" onclick="switchTab('factcheck')" id="btn-factcheck">Fact-Check <span class="tab-check">✓</span></button>
+  <button class="tab-btn" onclick="switchTab('press')" id="btn-press">📰 Go to Press <span class="tab-check">✓</span></button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TAB 1 — 🗞️ THE DISPATCH
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-dispatch">
+
+  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-06-03-welcome -->
+    <span class="video-placeholder-icon">🎬</span>
+    <div class="video-placeholder-label">Welcome Video</div>
+    <div class="video-placeholder-title">Welcome to Issue 25 — Explorer Routes, Sponsors, and Accomplishments</div>
+    <div class="video-placeholder-filename">5-06-03-welcome.mp4</div>
+    <div class="video-placeholder-notes">
+      <strong>Teacher recording notes:</strong> Welcome students back to the Front Page Desk for Issue 25. Remind them that last issue answered <em>why</em> kingdoms funded voyages; today answers <em>where</em> those voyages went and <em>who</em> decided. Preview the four captains by name — Columbus, da Gama, Cabot, Magellan — and the one pattern to watch for: Spain sailed west, Portugal sailed east and south, England and France looked north. Read the Herald’s claim that routes were “random lines across the ocean” and let it sit. Mention courage: naming the sponsor, and being honest that these lands were already home to millions. Under 90 seconds.
+    </div>
+  </div>
+</div>
+
+  <!-- TODAY'S PATH — 3 steps tied to today's routine type -->
+  <div class="todays-path">
+    <div class="todays-path-title">🗺️ Today's Path</div>
+    <div class="todays-path-steps">
+      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Meet four captains and their sponsors</span>
+      <span class="todays-path-arrow">→</span>
+      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Trace four routes on the Atlantic route map</span>
+      <span class="todays-path-arrow">→</span>
+      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Front Page Brief</span>
+    </div>
+  </div>
+
+  <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
+  <div class="virtue-lens">
+    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
+    <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
+    <div class="virtue-lens-text">
+      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
+           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
+      <strong>A courageous editor names who paid for a voyage, not just who sailed it.</strong> Today, courage means reporting that these routes were deliberate decisions made by kingdoms competing with each other — and being honest that the lands these captains “reached” were already home to millions of people.
+    </div>
+  </div>
+
+  <!-- HASTY HERALD CLIPPING — required on every lesson -->
+  <div class="herald-wrap">
+    <div class="herald-pin"></div>
+    <div class="herald-clipping">
+      <div class="herald-masthead">The Hasty Herald</div>
+      <div class="herald-tagline">First, Loud, Possibly Wrong</div>
+      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
+           Should sound exaggerated, certain, or oversimplified. -->
+      <div class="herald-headline">Explorers Just Sailed Anywhere!</div>
+      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
+           Will be wrapped in quotation marks automatically by CSS. -->
+      <p class="herald-claim">Explorer routes were random lines across the ocean.</p>
+      <div class="herald-byline">— Filed by The Herald, minutes ago</div>
+      <div class="herald-stamp">Rushed to Print!</div>
+    </div>
+    <div class="herald-task">
+      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
+           Keep it short. Reference "junior editor" and the day's investigation. -->
+      <strong>Your job, junior editor:</strong> Look at where each captain actually sailed and who paid for the trip. Were those routes random lines — or decisions?
+    </div>
+  </div>
+
+  <!-- JUNIOR EDITOR ROLE CALLOUT — slightly varies by desk-of-the-day -->
+  <div class="role-callout">
+    <div class="role-icon">✒️</div>
+    <div class="role-text">
+      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
+           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
+           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to sort out which captain sailed for which kingdom, where each route went, and what each voyage actually reached — then publish a <strong>Front Page Brief</strong> that corrects the record.
+    </div>
+  </div>
+
+  <!-- EDITOR'S DESK QUESTION — Socratic question framed by virtue -->
+  <div class="editors-desk">
+    <div class="editors-desk-header">
+      <span>★ At the Editor's Desk ★</span>
+      <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
+    </div>
+    <div class="editors-desk-body">
+      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
+      <span class="editors-desk-virtue-tag">Courage</span>
+      <div class="editors-desk-question">
+        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
+             specifically the "Socratic focus:" line embedded in it.
+             Examples: "Which event changed what came next — and how do we know?"
+                       "What does this source say, what can we infer, what must we still question?"
+                       "What does this map show, and what choice or pattern does it help us explain?" -->
+        "What do we notice about the direction each captain sailed, what does that pattern mean, and why does it matter who was paying?"
+      </div>
+      <div class="editors-desk-prompt">
+        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
+             should approach the question. Use phrases from planning table verbatim where helpful. -->
+        Keep this question on your desk as you investigate. A courageous editor follows the money and the map together — and says plainly what a voyage cost the people already living there.
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-next-btn-wrap">
+    <button class="tab-next-btn" onclick="switchTab('desk')">Continue to 🔍 The Desk →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TAB 2 — 🔍 THE DESK
+     ═══════════════════════════════════════════════════════════════════════
+     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
+       • Enter the Scene             → use `desk-header front-page`     (gold accent)
+       • Source Study                → use `desk-header source-desk`     (blue accent)
+       • Map Quest                   → use `desk-header map-room`        (green accent)
+       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
+     The desk identity in the header text changes accordingly. -->
+<div class="tab-panel" id="panel-desk">
+
+  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-06-03-explore-explainer -->
+    <span class="video-placeholder-icon">🎬</span>
+    <div class="video-placeholder-label">Explore Video</div>
+    <div class="video-placeholder-title">At the Front Page Desk: Four Captains, Four Directions</div>
+    <div class="video-placeholder-filename">5-06-03-explore-explainer.mp4</div>
+    <div class="video-placeholder-notes">
+      <strong>Teacher recording notes:</strong> Go captain by captain, naming sponsor → direction → result each time. <strong>(1) Christopher Columbus — Spain, 1492</strong> — sailed <em>west</em> hoping to reach Asia; reached islands in the Caribbean and never knew they weren’t Asia; four voyages total. <strong>(2) Vasco da Gama — Portugal, 1497–99</strong> — sailed <em>south</em> around the Cape of Good Hope and on to India; opened the first sea route from Europe to Asia. <strong>(3) John Cabot — England, 1497</strong> — sailed <em>northwest</em>; reached the coast of Newfoundland and gave England its first claim in North America. <strong>(4) Ferdinand Magellan — Spain, 1519–22</strong> — sailed <em>west and south</em> around South America; Magellan was killed in the Philippines and Juan Sebastián Elcano brought one ship home, completing the first voyage around the world. Then make the pattern explicit: Portugal already controlled the route down the African coast, so Spain gambled on going west; England and France arrived later and looked for a northern passage past Spanish claims. Routes followed sponsors, and sponsors followed rivalry. Close honestly: every place these captains “reached” was already home to people who had lived there for thousands of years, and the Gazette says so. 3–4 minutes.</div>
+  </div>
+</div>
+
+  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
+  <div class="desk-header front-page">
+    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
+    <div class="desk-icon-wrap">📰</div>
+    <div class="desk-meta">
+      <div class="desk-label">Today's Workstation</div>
+      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-title">Front Page Desk</div>
+      <!-- Subtitle reflects what the desk does:
+           Front Page Desk: "Where junior editors gather the facts and write the brief."
+           Source Desk:     "Where one source is examined for what it says — and leaves out."
+           Map Room:        "Where map evidence helps explain patterns and choices."
+           Editorial Board: "Where the team weighs perspectives before recommending." -->
+      <div class="desk-subtitle">Where junior editors gather the facts and write the brief.</div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTENT SECTIONS — vary by lesson type ═══
+       Patterns by routine:
+       • Enter the Scene → explainer + example cards (like primary/secondary comparison grid)
+       • Source Study   → source quote + observation/inference split
+       • Map Quest      → map + pattern callouts
+       • Socratic Seminar → two perspectives in a roundtable layout
+  -->
+  <div class="content-section">
+    <h2>📚 Four Captains, Four Directions</h2>
+    <p>Between 1492 and 1522, European ships crossed oceans in nearly every direction. Look at a map of those voyages and it can seem like chaos — lines going west, east, north, and south. The Hasty Herald looked at the same map and called the routes random.</p>
+    <p>They were not random. Every one of those voyages had a <strong>sponsor</strong>: a king, a queen, or a wealthy backer who paid for ships, crew, and supplies. Sponsors did not hand over that kind of money without a plan. The direction a captain sailed came straight from what his sponsor wanted — and from what rival kingdoms had already claimed.</p>
+    <p>Portugal had spent decades building forts and trading posts down the west coast of Africa. That southern route was theirs. So when <strong>Christopher Columbus</strong> went looking for someone to fund a <em>westward</em> crossing, Portugal turned him down — and Spain said yes in <strong>1492</strong>. Spain could not use Portugal’s route, so Spain bet on a different one.</p>
+    <p>Five years later, <strong>Vasco da Gama</strong> sailed for Portugal in the direction Portugal had been preparing for all along: <em>south</em> around the Cape of Good Hope, then <em>east</em> to India. He opened the first sea route from Europe to Asia — exactly the prize Columbus had been aiming at from the other direction.</p>
+    <p>England and France came late. The west was Spain’s, the south was Portugal’s, so they looked <em>north</em>. <strong>John Cabot</strong>, sailing for England in <strong>1497</strong>, reached the rocky coast of Newfoundland and gave England its first claim in North America. Decades later <strong>Jacques Cartier</strong> pushed up the St. Lawrence River for France.</p>
+
+    <!-- Sponsor comparison grid -->
+    <div class="source-comparison-grid">
+      <div class="source-type-card primary">
+        <div class="source-type-label">🇪🇸 Spain’s Bet</div>
+        <div class="source-type-name">Sail West</div>
+        <div class="source-type-defn">Locked out of the African coast route, Spain funded westward crossings in hopes of reaching Asia the other way around.</div>
+        <div class="source-type-examples">
+          <span class="source-type-examples-label">Voyages</span>
+          Columbus, 1492 — reached the Caribbean · Ponce de León, 1513 — reached Florida · Magellan’s expedition, 1519–22 — first to circle the globe
+        </div>
+      </div>
+      <div class="source-type-card secondary">
+        <div class="source-type-label">🇵🇹 Portugal’s Plan</div>
+        <div class="source-type-name">Sail South, Then East</div>
+        <div class="source-type-defn">Portugal had spent decades mapping the African coast. It stayed on the route it already controlled.</div>
+        <div class="source-type-examples">
+          <span class="source-type-examples-label">Voyages</span>
+          Dias, 1488 — rounded the Cape of Good Hope · da Gama, 1497–99 — reached India by sea · Cabral, 1500 — reached Brazil
+        </div>
+      </div>
+    </div>
+
+    <p><strong>What the voyages actually accomplished.</strong> Da Gama opened a sea route to Asia that changed world trade. Magellan’s expedition proved the Earth could be circled — though Magellan died in the Philippines and only one of five ships made it home, with Juan Sebastián Elcano in command. Columbus never did reach Asia and never accepted that he hadn’t.</p>
+    <p>And one accomplishment belongs in every honest account: none of these captains found empty land. The Caribbean islands Columbus reached were home to the <strong>Taíno</strong>. The coast Cabot mapped was home to the <strong>Beothuk</strong> and the <strong>Mi’kmaq</strong>. A route is only “new” to the person sailing it. The Gazette prints that too.</p>
+  </div>
+
+  <!-- ROUTE MAP DIAGRAM (Cat 2 — built in code, no image file needed) -->
+  <div class="content-section">
+    <h2>🗺️ The Atlantic Route Map</h2>
+    <p>Trace each arrow with your finger. Notice that the three routes leave from nearly the same corner of Europe — and then split hard in three different directions. Ask yourself what each sponsor was trying to get around.</p>
+
+    <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;border-radius:10px;background:#F2E4C4;border:2px solid #D9C9A3;">
+      <style>
+        .cap { fill: #1A2138; font: bold 12px Inter, sans-serif; }
+        .sub { fill: #5C3D24; font: 10.5px 'Crimson Text', Georgia, serif; }
+        .land { fill: #CBBE93; stroke: #A89766; stroke-width: 1.5; }
+        .sea  { fill: #D8E3E8; }
+        .ttl  { fill: #B8923E; font: bold 11px Inter, sans-serif; letter-spacing: 1px; }
+        .rt   { fill: none; stroke-width: 3.5; stroke-linecap: round; }
+        @keyframes dash { to { stroke-dashoffset: -28; } }
+        .flow { stroke-dasharray: 10 4; animation: dash 1.6s linear infinite; }
+      </style>
+      <rect x="0" y="0" width="680" height="400" class="sea"/>
+      <rect x="0" y="0" width="680" height="30" fill="#1A2138"/>
+      <text x="340" y="20" text-anchor="middle" class="ttl">THE ATLANTIC · THREE SPONSORS, THREE DIRECTIONS</text>
+
+      <!-- North America -->
+      <path class="land" d="M30 70 L150 60 L185 110 L165 165 L95 200 L40 170 Z"/>
+      <text x="100" y="125" text-anchor="middle" class="cap">North</text>
+      <text x="100" y="140" text-anchor="middle" class="cap">America</text>
+      <!-- Caribbean islands -->
+      <circle cx="150" cy="222" r="7" class="land"/>
+      <circle cx="172" cy="233" r="5" class="land"/>
+      <circle cx="191" cy="228" r="4" class="land"/>
+      <text x="168" y="256" text-anchor="middle" class="sub">Caribbean islands</text>
+      <!-- South America -->
+      <path class="land" d="M175 275 L235 268 L250 320 L220 375 L185 365 L168 315 Z"/>
+      <text x="208" y="320" text-anchor="middle" class="cap">South</text>
+      <text x="208" y="335" text-anchor="middle" class="cap">America</text>
+      <!-- Europe -->
+      <path class="land" d="M470 60 L580 55 L610 95 L560 125 L480 115 Z"/>
+      <text x="530" y="95" text-anchor="middle" class="cap">Europe</text>
+      <!-- Africa -->
+      <path class="land" d="M480 135 L585 130 L600 215 L560 300 L510 310 L482 230 Z"/>
+      <text x="538" y="215" text-anchor="middle" class="cap">Africa</text>
+      <!-- Cape of Good Hope marker -->
+      <circle cx="534" cy="305" r="4" fill="#8B2D26"/>
+      <text x="534" y="327" text-anchor="middle" class="sub">Cape of Good Hope</text>
+
+      <!-- Route 1: Columbus — west (gold) -->
+      <path class="rt flow" stroke="#B8923E" d="M478 108 Q340 150 196 220"/>
+      <polygon points="196,220 212,214 209,228" fill="#B8923E"/>
+      <text x="330" y="168" text-anchor="middle" class="cap">Columbus → WEST</text>
+      <text x="330" y="183" text-anchor="middle" class="sub">sponsored by Spain, 1492</text>
+
+      <!-- Route 2: da Gama — south then east (green) -->
+      <path class="rt flow" stroke="#5C7A4A" d="M492 124 C 430 170, 425 265, 470 300 Q 505 322 530 306"/>
+      <polygon points="532,305 517,299 521,313" fill="#5C7A4A"/>
+      <text x="372" y="262" text-anchor="middle" class="cap">da Gama → SOUTH</text>
+      <text x="372" y="277" text-anchor="middle" class="sub">sponsored by Portugal, 1497</text>
+
+      <!-- Route 3: Cabot — northwest (blue) -->
+      <path class="rt flow" stroke="#4A6FB5" d="M476 72 Q330 48 176 78"/>
+      <polygon points="176,78 192,71 191,85" fill="#4A6FB5"/>
+      <text x="326" y="100" text-anchor="middle" class="cap">Cabot → NORTHWEST</text>
+      <text x="326" y="115" text-anchor="middle" class="sub">sponsored by England, 1497</text>
+    </svg>
+    <div class="source-image-caption" style="margin-top:10px;">
+      <em>Three captains left from nearly the same place within five years of each other — and sailed in three different directions. What does that tell you about who was choosing the route?</em>
+    </div>
+  </div>
+
+    <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
+  <div class="reflection-block">
+    <h3>📓 Editor's Notebook</h3>
+    <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
+      Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
+    </p>
+
+    <!-- ✏️ Q1 — Concrete observation/example question -->
+    <div class="reflection-q">
+      <div class="reflection-q-label">
+        <span class="reflection-q-num">1</span>
+        Pick two captains from today’s lesson. For each one, name the kingdom that sponsored him and the direction he sailed.
+        <span class="reflection-save-dot" id="dot-q1"></span>
+      </div>
+      <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Captains, sponsors, directions" placeholder="One captain is ______. He sailed for ______ and went ______..." oninput="autoSave(this, 'dot-q1')"></textarea>
+    </div>
+
+    <!-- ✏️ Q2 — Application / comparison / explanation question -->
+    <div class="reflection-q">
+      <div class="reflection-q-label">
+        <span class="reflection-q-num">2</span>
+        Portugal already controlled the route south around Africa. How did that fact change the direction Spain chose to send Columbus?
+        <span class="reflection-save-dot" id="dot-q2"></span>
+      </div>
+      <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Why Spain sailed west" placeholder="Because Portugal already controlled ______, Spain decided to..." oninput="autoSave(this, 'dot-q2')"></textarea>
+    </div>
+
+    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
+    <div class="reflection-q">
+      <div class="reflection-q-label">
+        <span class="reflection-q-num">3</span>
+        The Hasty Herald said "Explorer routes were random lines across the ocean." What’s partly right about that? What’s missing?
+        <span class="reflection-save-dot" id="dot-q3"></span>
+      </div>
+      <textarea class="reflection-textarea" id="journal-q3" data-label="Q3 — What the Herald missed" placeholder="The Herald is partly right because... But it is missing..." oninput="autoSave(this, 'dot-q3')"></textarea>
+    </div>
+  </div>
+  <div style="background:#FFF8E7;border:2px solid #E8D5A0;border-radius:14px;padding:16px 20px;margin:16px 0;">
+    <p style="font-size:16px;color:#0E1C42;font-weight:800;margin:0 0 8px;">🗺️ Texas Connection — Reading Routes and Sponsors (TEKS 24)</p>
+    <p style="font-size:15px;color:#5A4D3E;line-height:1.65;margin:0;">Texas standards ask students to apply critical-thinking skills to organize and use information from a variety of sources, including maps. A route map is an argument, not just a picture: it shows where someone went, and if you add the sponsor, it starts to show <em>why</em>. Spanish expeditions later reached Texas for the same reason Columbus sailed west — a kingdom funding a search for wealth and a path to Asia. Álvar Núñez Cabeza de Vaca washed ashore near Galveston in 1528 on a Spanish expedition that had gone badly wrong, and spent eight years walking across what is now Texas and northern Mexico. Follow the sponsor, and the map starts to make sense.</p>
+  </div>
+
+
+  <div class="tab-next-btn-wrap">
+    <button class="tab-next-btn" onclick="switchTab('factcheck')">Continue to Fact-Check →</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TAB 3 — ✏️ FACT-CHECK
+     "Before the Gazette goes to print, fact-check the claims"
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-factcheck">
+
+  <div class="factcheck-intro">
+    <div class="factcheck-intro-label">★ Fact-Check Room ★</div>
+    <div class="factcheck-intro-title">Before the Gazette Goes to Print</div>
+    <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
+  </div>
+
+  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
+       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
+       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
+       Question types to vary:
+       Q1 — identification/categorization (apply definitions)
+       Q2 — application to a new example
+       Q3 — editor's-judgment question (often "what would an honest editor do?")
+  -->
+
+  <!-- QUESTION 1 -->
+  <div class="factcheck-q" id="fc-q1">
+    <div class="factcheck-q-header">
+      <span class="factcheck-q-num">1</span>
+      <span class="factcheck-q-text">Which kingdom sponsored Christopher Columbus’s 1492 voyage west across the Atlantic?</span>
+    </div>
+    <div class="factcheck-options">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
+        <span class="factcheck-option-letter">A</span>
+        <span>Portugal</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">B</span>
+        <span>Spain</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
+        <span class="factcheck-option-letter">C</span>
+        <span>England</span>
+      </div>
+    </div>
+    <div class="factcheck-feedback" id="fb-q1"></div>
+  </div>
+
+  <!-- QUESTION 2 -->
+  <div class="factcheck-q" id="fc-q2">
+    <div class="factcheck-q-header">
+      <span class="factcheck-q-num">2</span>
+      <span class="factcheck-q-text">What did Vasco da Gama’s voyage accomplish for Portugal?</span>
+    </div>
+    <div class="factcheck-options">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+        <span class="factcheck-option-letter">A</span>
+        <span>He completed the first voyage all the way around the world</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>He reached the coast of Newfoundland and claimed it for Portugal</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>He opened the first sea route from Europe to India, sailing south around Africa and then east</span>
+      </div>
+    </div>
+    <div class="factcheck-feedback" id="fb-q2"></div>
+  </div>
+
+  <!-- QUESTION 3 -->
+  <div class="factcheck-q" id="fc-q3">
+    <div class="factcheck-q-header">
+      <span class="factcheck-q-num">3</span>
+      <span class="factcheck-q-text">A courageous editor would describe explorer routes as:</span>
+    </div>
+    <div class="factcheck-options">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, false)">
+        <span class="factcheck-option-letter">A</span>
+        <span>Random lines across the ocean, chosen by captains on a whim</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, true)">
+        <span class="factcheck-option-letter">B</span>
+        <span>Deliberate choices shaped by who was paying and what rival kingdoms already controlled — reaching lands that were already home to millions of people</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q3', this, false)">
+        <span class="factcheck-option-letter">C</span>
+        <span>Unimportant, because the destination was all that ever mattered</span>
+      </div>
+    </div>
+    <div class="factcheck-feedback" id="fb-q3"></div>
+  </div>
+
+  <!-- SCORE -->
+  <div class="factcheck-score" id="factcheckScore">
+    <span id="factcheckScoreText"></span>
+    <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
+  </div>
+
+  <!-- ✏️ CONDITIONAL VIDEOS -->
+  <div id="quizPerfectVideo" style="display:none;">
+    <div class="video-placeholder">
+      <span class="video-placeholder-icon">🎉</span>
+      <div class="video-placeholder-title">You did it!</div>
+      <div class="video-placeholder-notes">Great work today — you're ready to move on.</div>
+    </div>
+  </div>
+
+  <div id="quizReviewVideo" style="display:none;">
+    <div class="video-placeholder">
+      <span class="video-placeholder-icon">📖</span>
+      <div class="video-placeholder-title">Review time</div>
+      <div class="video-placeholder-notes">Take a moment to go back over today's content before moving on.</div>
+    </div>
+  </div>
+
+  <div class="tab-next-btn-wrap">
+    <button class="tab-next-btn" onclick="switchTab('press')">Continue to 📰 Go to Press →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TAB 4 — 📰 GO TO PRESS
+     ═══════════════════════════════════════════════════════════════════════
+     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
+       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
+       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
+       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
+       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
+     The template below shows the Front Page Brief variant. Adapt the label and body
+     guidance per the routine. The structural shell (mini-masthead, headline input,
+     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
+     is identical across all four. -->
+<div class="tab-panel" id="panel-press">
+
+  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-06-03-assignment-explainer -->
+    <span class="video-placeholder-icon">🎬</span>
+    <div class="video-placeholder-label">Assignment Explainer Video</div>
+    <div class="video-placeholder-title">Writing Your Front Page Brief · Routes and Sponsors</div>
+    <div class="video-placeholder-filename">5-06-03-assignment-explainer.mp4</div>
+    <div class="video-placeholder-notes">
+      <strong>Teacher recording notes:</strong> Walk students through the Front Page Brief: (1) a clear claim about what actually decided an explorer’s route, (2) one piece of evidence — name a captain, his sponsor, and the direction he sailed, (3) why it matters that readers know who was paying. Model one headline out loud, something like “Routes Followed the Money, Not the Wind.” Remind them the Archive Line is one careful sentence, not a paragraph. About 2 minutes.
+    </div>
+  </div>
+</div>
+
+  <!-- THE GAZETTE [ASSIGNMENT TYPE] ARTIFACT -->
+  <div class="gazette-assignment-wrap">
+    <div class="gazette-assignment">
+      <!-- Mini masthead at the top of the published artifact -->
+      <div class="gazette-masthead-mini">
+        <div class="gazette-masthead-mini-flags">
+          <span>Vol. 1 · Issue 25</span>
+          <!-- Label varies by assignment type:
+               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
+          <span>Front Page Brief</span>
+        </div>
+        <div class="gazette-masthead-mini-title">The Republic Gazette</div>
+        <div class="gazette-masthead-mini-tag">Honest Reporting · Evidence First</div>
+      </div>
+
+      <div class="gazette-article-area">
+        <!-- ✏️ Article label — match the artifact type -->
+        <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
+
+        <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
+        <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
+
+        <div class="gazette-body-guidance">
+          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
+               "Gazette Assignment Prompt" column for the exact wording.
+               General pattern: 3-part structure with numbered items. -->
+          <strong>What goes in a Front Page Brief:</strong>
+          <span>(1) A clear claim about what really decided where an explorer sailed. (2) One piece of evidence — name a captain, the kingdom that sponsored him, and the direction he went. (3) Why this matters — what should readers understand about who was choosing these routes?</span>
+        </div>
+
+        <textarea class="gazette-body-input" id="brief-body" data-label="Front Page Brief" placeholder="Explorer routes were not random. They were decided by..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHIVE LINE — required on every G5 lesson -->
+  <div class="archive-line-card">
+    <div class="archive-line-stamp">📜</div>
+    <div class="archive-line-label">★ For the Archive ★</div>
+    <div class="archive-line-title">Today's Archive Line</div>
+    <div class="archive-line-desc">
+      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
+           "Some sentences are too important to lose. In one careful sentence,
+           write what future citizens should remember about [today's topic]." -->
+      Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about explorer routes, sponsors, and accomplishments.
+    </div>
+    <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
+  </div>
+
+  <!-- GATHERED ANSWERS — auto-pulls all student writing for turn-in -->
+  <div class="gathered-card">
+    <div class="gathered-header">
+      <div class="gathered-header-icon">📋</div>
+      <div>
+        <div class="gathered-header-label">Editor's Submission Packet</div>
+        <div class="gathered-header-title">Gathered Answers</div>
+      </div>
+    </div>
+    <div class="gathered-body">
+      <div class="gathered-intro">All of your editor's notes, front page brief, and archive line — gathered in one place for turn-in.</div>
+      <textarea class="gathered-output" id="gatheredOutput" readonly></textarea>
+      <div class="gathered-actions">
+        <button class="gathered-btn gathered-btn-copy" onclick="copyGathered()">📋 Copy to Clipboard</button>
+        <button class="gathered-btn gathered-btn-pdf" onclick="downloadJournal()">⬇ Download as Text</button>
+      </div>
+      <div class="gathered-copied" id="copiedMsg">Copied! Now paste into your turn-in document.</div>
+    </div>
+  </div>
+
+  <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
+  <div class="checklist-card">
+    <h3>✓ Before You Submit</h3>
+    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
+         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and front page brief</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Added your name to the byline</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote one careful Archive Line sentence</span></div>
+    <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Copied or downloaded the Gathered Answers</span></div>
+    <div class="checklist-hint" id="checklistHint">
+      <strong>Almost there:</strong> Check every box above to publish Issue 25 and certify the edition.
+    </div>
+  </div>
+
+  <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
+  <div class="cert-card locked" id="certCard">
+    <div class="cert-label">★ The Republic Gazette Certifies ★</div>
+    <!-- ✏️ Certificate headline can vary per lesson:
+         General: "Issue ✏️ Published"
+         Synthesis lessons: "Special Edition Published"
+         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
+    <div class="cert-headline">Issue 25 Published</div>
+    <div class="cert-message">
+      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
+      <strong>Well done, Junior Editor.</strong> You matched each captain to his sponsor and his route, and you showed readers that those lines on the map were decisions — not accidents. The Herald called them random. You proved otherwise.
+    </div>
+  </div>
+
+  <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
+  <div class="next-issue-teaser">
+    <!-- ✏️ Label includes the next lesson code. -->
+    <div class="next-issue-label">★ In the Next Issue (5.06.04) ★</div>
+    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
+    <div class="next-issue-title">Interactions Among Native Americans, Africans, and Europeans</div>
+    <div class="next-issue-tease">
+      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
+           Pattern: name the desk where the dispatch will arrive, mention the Herald has
+           already rushed to print a related claim. -->
+      A new dispatch arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that contact between Native Americans, Africans, and Europeans was simple and friendly. This is a careful one, editors. Bring your best evidence.
+    </div>
+  </div>
+
+  <!-- ✏️ CLOSING VIDEO -->
+  <div class="video-ratio">
+<div class="video-placeholder video-placeholder-id">
+<!-- slot: 5-06-03-closing -->
+    <span class="video-placeholder-icon">🎬</span>
+    <div class="video-placeholder-label">Closing Video</div>
+    <div class="video-placeholder-title">Going to Press · Issue 25 Filed</div>
+    <div class="video-placeholder-filename">5-06-03-closing.mp4</div>
+    <div class="video-placeholder-notes">
+      <strong>Teacher recording notes:</strong> Congratulate students on publishing Issue 25. Restate the big idea in one line: routes followed sponsors, and sponsors followed rivalry — Spain west, Portugal south and east, England and France north. Name one accomplishment out loud (da Gama’s sea route to India, or Elcano finishing Magellan’s circle of the globe). Then set the tone for next time: the Gazette turns to what happened when these voyages met the people already living there, and that story needs care. About 1 minute, warm but steady.
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+</div><!-- end lesson-shell -->
+
+<!-- ═══ OPTIMA ACADEMY ONLINE FOOTER ═══ -->
+<div class="oao-footer">
+  <div class="oao-footer-main">🏫 <span>Optima Academy Online</span></div>
+  <div class="oao-footer-sub">Social Studies · Grade 5 · Lesson 5.06.03 · The Republic Gazette</div>
+  <div class="oao-footer-copy">© 2025 Optima Academy Online</div>
+</div>
+
+<!-- ═══ CONFETTI CANVAS (fires when all checklist items complete) ═══ -->
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   G5 LESSON JS — Republic Gazette
+   Same backbone as G4 (tabs, intro collapse, story-block, gather, save)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+const TAB_ORDER = ['dispatch','desk','factcheck','press'];
+const visited = new Set(['dispatch']);
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('btn-' + name).classList.add('active');
+  visited.add(name);
+  visited.forEach(v => {
+    const btn = document.getElementById('btn-' + v);
+    if (btn && !btn.classList.contains('active')) btn.classList.add('visited');
+  });
+
+  // Auto-collapse intro on non-Dispatch tabs (mirrors G4 behavior)
+  const intro = document.getElementById('introSection');
+  if (name === 'dispatch') intro.classList.remove('collapsed');
+  else intro.classList.add('collapsed');
+
+  // Refresh gathered answers when entering press tab
+  if (name === 'press') refreshGathered();
+
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleIntro() {
+  document.getElementById('introSection').classList.toggle('collapsed');
+}
+
+function toggleStoryBlock(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+/* ─── Fact-Check ─── */
+const fcAnswered = {};
+function checkAnswer(qId, optionEl, isCorrect) {
+  if (fcAnswered[qId]) return;
+  fcAnswered[qId] = isCorrect;
+  const parent = optionEl.parentElement;
+  parent.querySelectorAll('.factcheck-option').forEach(o => {
+    o.classList.add('disabled');
+    o.onclick = null;
+  });
+  optionEl.classList.add(isCorrect ? 'correct' : 'incorrect');
+  const fb = document.getElementById('fb-' + qId.replace('fc-',''));
+  fb.classList.add('show');
+  if (isCorrect) {
+    fb.classList.add('correct');
+    fb.innerHTML = '<strong>✓ Confirmed.</strong> Honest editors verify the source before they print.';
+  } else {
+    fb.classList.add('incorrect');
+    fb.innerHTML = '<strong>✗ Not quite.</strong> Take another look — a careful editor reads the question one more time before printing.';
+  }
+  // If all 3 answered, show score
+  if (Object.keys(fcAnswered).length === 3) showScore();
+  updateProgress();
+}
+
+function showScore() {
+  const total = Object.values(fcAnswered).filter(v => v).length;
+  const scoreEl = document.getElementById('factcheckScore');
+  const scoreText = document.getElementById('factcheckScoreText');
+  const scoreMeta = document.getElementById('factcheckScoreMeta');
+  scoreEl.classList.add('show');
+  scoreText.textContent = total + ' / 3 verified for print';
+  if (total === 3) {
+    scoreMeta.textContent = 'Perfect record. The Gazette is proud to publish.';
+    document.getElementById('quizPerfectVideo').style.display = 'block';
+  } else {
+    scoreMeta.textContent = "Let's review the source comparison before going to press.";
+    document.getElementById('quizReviewVideo').style.display = 'block';
+  }
+  updateProgress();
+}
+
+/* ─── Auto-save indicator ─── */
+/* ───── AUTO-SAVE ───── */
+var _lessonKey = (document.title || 'ss-lesson').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase();
+
+function autoSave(el,dotId){
+  var dot=document.getElementById(dotId);
+  if(dot&&el.value.trim().length>0){dot.classList.add('saved');}
+  else if(dot){dot.classList.remove('saved');}
+  try{ localStorage.setItem(_lessonKey+'-'+el.id, el.value); }catch(e){}
+}
+
+function restoreJournals(){
+  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea').forEach(function(t){
+    if(!t.id) return;
+    try{
+      var v = localStorage.getItem(_lessonKey+'-'+t.id);
+      if(v){ t.value = v; }
+    }catch(e){}
+    var oi = t.getAttribute('oninput');
+    if(oi){
+      var m = oi.match(/'(dot-[^']+)'/);
+      if(m){
+        var dot = document.getElementById(m[1]);
+        if(dot && t.value.trim().length>0){ dot.classList.add('saved'); }
+      }
+    }
+  });
+}
+restoreJournals();
+
+/* restore gazette & archive inputs */
+(function(){
+  var els = document.querySelectorAll('.gazette-headline-input, .gazette-byline-name-input, .gazette-body-input, .archive-line-input');
+  els.forEach(function(el){
+    if(!el.id) return;
+    try{
+      var v = localStorage.getItem(_lessonKey+'-'+el.id);
+      if(v){ el.value = v; }
+    }catch(e){}
+  });
+})();
+
+window.addEventListener('beforeunload', function(e){
+  var hasWork = false;
+  document.querySelectorAll('textarea.journal-box,textarea.reflection-textarea,.gazette-headline-input,.gazette-byline-name-input,.gazette-body-input,.archive-line-input').forEach(function(t){
+    if(t.value && t.value.trim().length > 0){ hasWork = true; }
+  });
+  if(hasWork){ e.preventDefault(); e.returnValue = ''; }
+});
+
+/* ─── Gathered Answers ─── */
+function refreshGathered() {
+  const out = document.getElementById('gatheredOutput');
+  const lines = [];
+
+  // Byline name appears at top of the submission packet
+  const byname = (document.getElementById('brief-byline-name').value || '').trim();
+  lines.push('═══════════════════════════════════════════');
+  lines.push('  THE REPUBLIC GAZETTE — EDITOR\'S PACKET');
+  lines.push('  Lesson 5.06.03 · Explorer Routes, Sponsors, and Accomplishments');
+  lines.push('  Vol. 1 · Issue 25 · Front Page Desk');
+  lines.push('  Junior Editor: ' + (byname || '(blank — add your name on the front page brief)'));
+  lines.push('═══════════════════════════════════════════');
+  lines.push('');
+
+  // Editor's Notebook entries (Tab 2)
+  lines.push('--- EDITOR\'S NOTEBOOK ---');
+  document.querySelectorAll('.reflection-textarea').forEach(t => {
+    const label = t.dataset.label || 'Note';
+    lines.push(label + ':');
+    lines.push((t.value || '(blank)').trim());
+    lines.push('');
+  });
+
+  // Fact-Check results
+  lines.push('--- FACT-CHECK ---');
+  if (Object.keys(fcAnswered).length > 0) {
+    const total = Object.values(fcAnswered).filter(v => v).length;
+    lines.push('Verified: ' + total + ' / 3');
+  } else {
+    lines.push('(not yet completed)');
+  }
+  lines.push('');
+
+  // Front Page Brief
+  const headline = document.getElementById('brief-headline').value.trim();
+  const briefBody = document.getElementById('brief-body').value.trim();
+  lines.push('--- FRONT PAGE BRIEF ---');
+  lines.push('Headline: ' + (headline || '(blank)'));
+  lines.push('Byline: ' + (byname || '(blank)'));
+  lines.push('');
+  lines.push(briefBody || '(blank)');
+  lines.push('');
+
+  // Archive Line (always included)
+  const archive = document.getElementById('archive-line').value.trim();
+  lines.push('--- ARCHIVE LINE ---');
+  lines.push(archive || '(blank)');
+  lines.push('');
+
+  out.value = lines.join('\n');
+}
+
+/* Watch all textareas/inputs for refresh */
+document.addEventListener('input', (e) => {
+  if (e.target.matches('.reflection-textarea, .gazette-headline-input, .gazette-byline-name-input, .gazette-body-input, .archive-line-input')) {
+    try{ localStorage.setItem(_lessonKey+'-'+e.target.id, e.target.value); }catch(ex){}
+    if (document.getElementById('panel-press').classList.contains('active')) refreshGathered();
+    updateProgress();
+  }
+});
+
+function copyGathered() {
+  refreshGathered();
+  const out = document.getElementById('gatheredOutput');
+  out.select();
+  document.execCommand('copy');
+  const msg = document.getElementById('copiedMsg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 2200);
+}
+
+function downloadJournal() {
+  refreshGathered();
+  const text = document.getElementById('gatheredOutput').value;
+  const blob = new Blob([text], {type: 'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gazette-issue-23-editor-packet.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+/* ─── Checklist tracking → reveal certificate + fire confetti when complete ─── */
+let confettiFired = false;
+function toggleCheck(rowEl) {
+  rowEl.classList.toggle('checked');
+  checklistCheck();
+}
+function checklistCheck() {
+  const rows = document.querySelectorAll('.checklist-card .checklist-row');
+  let checked = 0;
+  rows.forEach(r => { if (r.classList.contains('checked')) checked++; });
+  const allDone = checked === rows.length;
+
+  const cert = document.getElementById('certCard');
+  const hint = document.getElementById('checklistHint');
+
+  if (allDone) {
+    if (cert.classList.contains('locked')) {
+      cert.classList.remove('locked');
+      cert.classList.add('unlocked');
+      hint.innerHTML = '<strong>🎉 Issue 1 certified!</strong> Your Front Page Brief is filed. The Gazette grows by one issue.';
+      hint.style.borderLeftColor = 'var(--editor-stamp)';
+      hint.style.background = 'rgba(92, 122, 74, 0.12)';
+      if (!confettiFired) {
+        confettiFired = true;
+        fireConfetti();
+      }
+    }
+  } else {
+    cert.classList.add('locked');
+    cert.classList.remove('unlocked');
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.style.borderLeftColor = 'var(--gazette-gold)';
+    hint.style.background = 'var(--paper-cream)';
+    confettiFired = false; // allow re-fire if user unchecks and re-completes
+  }
+}
+
+/* ─── Confetti (patriotic emoji set + Gazette colors) ─── */
+function fireConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.opacity = 1;
+
+  const colors = ['#BF0A30','#FFFFFF','#002868','#BF0A30','#002868','#FFFFFF'];
+  const emojis = ['🗽','📰','🖊️','🌎','🦅'];
+  const particles = [];
+
+  // Confetti rectangles in Gazette palette
+  for (let i = 0; i < 140; i++) {
+    particles.push({
+      type: 'rect',
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 3,
+      c: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 3 + 2,
+      rot: Math.random() * 360,
+      rv: (Math.random() - 0.5) * 8
+    });
+  }
+  // Patriotic emoji particles
+  for (let j = 0; j < 30; j++) {
+    particles.push({
+      type: 'emoji',
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      emoji: emojis[Math.floor(Math.random() * emojis.length)],
+      size: Math.random() * 16 + 28,
+      vx: (Math.random() - 0.5) * 3,
+      vy: Math.random() * 2.5 + 1.5,
+      rot: Math.random() * 360,
+      rv: (Math.random() - 0.5) * 5
+    });
+  }
+
+  let frames = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      if (p.type === 'emoji') {
+        ctx.font = p.size + 'px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.emoji, 0, 0);
+      } else {
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r);
+      }
+      ctx.restore();
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rv;
+      p.vy += 0.04;
+    });
+    frames++;
+    if (frames < 320) {
+      if (frames > 240) {
+        canvas.style.opacity = 1 - ((frames - 240) / 80);
+      }
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.style.opacity = 1;
+    }
+  }
+  animate();
+}
+
+/* ─── Progress meter ─── */
+function updateProgress() {
+  const tabOrder = ['dispatch', 'desk', 'factcheck', 'press'];
+  const activeBtn = document.querySelector('.tab-btn.active');
+  const activeTab = activeBtn ? activeBtn.id.replace('btn-', '') : 'dispatch';
+  const pct = (tabOrder.indexOf(activeTab) + 1) * 25;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+/* ─── Source Image Autoloader (G5 repo) ─────────────────────────────────
+   Tries .jpg → .png → .jpeg → .webp from the G5 GitHub images folder.
+   Placeholders with a data-image attribute are replaced when an image
+   loads successfully. Otherwise the placeholder remains visible.
+   IMPORTANT: this loop must inject before the LAST </body> only. */
+(function() {
+  var B = 'https://raw.githubusercontent.com/bbirchum1/optima-5th-social-studies/main/images/';
+  var E = ['.jpg','.png','.jpeg','.webp'];
+  document.querySelectorAll('.source-image-placeholder[data-image]').forEach(function(p) {
+    var fn = p.dataset.image;
+    var idx = 0;
+    function tryNext() {
+      if (idx >= E.length) return;
+      var img = new Image();
+      img.onload = function() {
+        p.innerHTML = '';
+        p.style.background = 'none';
+        p.style.padding = '0';
+        p.style.aspectRatio = 'auto';
+        var i2 = document.createElement('img');
+        i2.src = img.src;
+        i2.style.width = '100%';
+        i2.style.height = 'auto';
+        i2.style.display = 'block';
+        p.appendChild(i2);
+      };
+      img.onerror = function() { idx++; tryNext(); };
+      img.src = B + fn + E[idx];
+    }
+    tryNext();
+  });
+})();
+
+/* Initial state */
+updateProgress();
+</script>
+
+
+<!-- Video Manifest Loader -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://raw.githubusercontent.com/optimaondemand/optima-5th-social-studies/main/video-manifest.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(manifest) {
+      document.querySelectorAll('.video-placeholder-id').forEach(function(placeholder) {
+        var m = placeholder.innerHTML.match(/<!--\s*slot:\s*([\w-]+)\s*-->/);
+        if (!m) return;
+        var entry = manifest[m[1]];
+        if (!entry || entry.status !== 'ready' || !entry.embed) return;
+
+        var temp = document.createElement('div');
+        temp.innerHTML = entry.embed;
+        var iframe = temp.querySelector('iframe');
+        if (!iframe) return;
+
+        var wrapper = placeholder.closest('.video-ratio');
+        if (wrapper) {
+          wrapper.style.position = 'relative';
+          wrapper.style.aspectRatio = '16 / 9';
+        }
+
+        iframe.removeAttribute('width');
+        iframe.removeAttribute('height');
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+
+        placeholder.innerHTML = '';
+        placeholder.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;padding:0;background:#000;';
+        placeholder.appendChild(iframe);
+      });
+    })
+    .catch(function(err) { console.warn('Video manifest load failed:', err); });
+});
+</script>
+
+<!-- OAO-GATHERED-FIX v1 -->
+<script>
+(function(){
+  if (window.__oaoGatheredFix) return; window.__oaoGatheredFix = true;
+
+  /* ---------- storage that actually works in the Canvas iframe ---------- */
+  function probe(s){ try{ s.setItem('__oao_t','1'); s.removeItem('__oao_t'); return true; }catch(e){ return false; } }
+  function safe(fn){ try{ return fn(); }catch(e){ return null; } }
+  var ls = safe(function(){ return window.localStorage; });
+  var ss = safe(function(){ return window.sessionStorage; });
+  var mem = {}, backend, store;
+  if (ls && probe(ls)) { store = ls; backend = 'local'; }
+  else if (ss && probe(ss)) { store = ss; backend = 'session'; }
+  else {
+    backend = 'memory';
+    store = { getItem:function(k){ return (k in mem) ? mem[k] : null; },
+              setItem:function(k,v){ mem[k] = String(v); },
+              removeItem:function(k){ delete mem[k]; } };
+  }
+  var keyBase = (typeof _lessonKey !== 'undefined' && _lessonKey)
+    ? _lessonKey
+    : (document.title || 'ss-lesson').replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase();
+  function K(id){ return keyBase + '-' + id; }
+
+  function boxes(){
+    var out = [];
+    var all = document.querySelectorAll('textarea[id]');
+    for (var i = 0; i < all.length; i++){
+      var el = all[i];
+      if (el.id === 'gatheredOutput' || el.disabled) continue;
+      out.push(el);
+    }
+    return out;
+  }
+
+  function refreshGatheredSafe(){
+    try {
+      if (typeof window.gatherAnswers === 'function') window.gatherAnswers();
+      else if (typeof window.refreshGathered === 'function') window.refreshGathered();
+    } catch(e){}
+  }
+
+  /* ---------- save on every keystroke, to whichever store works ---------- */
+  var saveTimer = null;
+  document.addEventListener('input', function(e){
+    var el = e.target;
+    if (!el || el.tagName !== 'TEXTAREA' || !el.id || el.id === 'gatheredOutput') return;
+    try { store.setItem(K(el.id), el.value); } catch(err){}
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(refreshGatheredSafe, 200);
+  }, true);
+
+  setInterval(function(){
+    boxes().forEach(function(el){ try { store.setItem(K(el.id), el.value); } catch(e){} });
+  }, 5000);
+
+  /* ---------- restore anything the page's own restore missed ---------- */
+  function restore(){
+    boxes().forEach(function(el){
+      if (el.value && el.value.trim()) return;
+      var v = null;
+      try { v = store.getItem(K(el.id)); } catch(e){}
+      if (!v) return;
+      el.value = v;
+      var oi = el.getAttribute('oninput') || '';
+      var m = oi.match(/['"](dot-[^'"]+)['"]/);
+      if (m){ var d = document.getElementById(m[1]); if (d) d.classList.add('saved'); }
+    });
+    refreshGatheredSafe();
+  }
+
+  /* ---------- tell students when their browser is not saving ---------- */
+  function banner(){
+    if (backend === 'local') return;
+    if (document.getElementById('oaoStorageWarn')) return;
+    var host = document.querySelector('.gathered-card') || document.getElementById('gatheredOutput');
+    if (!host || !host.parentNode) return;
+    var d = document.createElement('div');
+    d.id = 'oaoStorageWarn';
+    d.style.cssText = 'margin:14px 0;padding:12px 16px;border-radius:10px;background:#FFF4D6;'
+      + 'border:1px solid #E8C97A;color:#6B4E00;font-family:system-ui,-apple-system,Segoe UI,sans-serif;'
+      + 'font-size:14px;font-weight:600;line-height:1.5;';
+    d.textContent = (backend === 'session')
+      ? '⚠️ Your browser will not let this page save your work between visits. Your answers stay while this tab is open, but they will be gone once you close it. Copy or download your answers before you leave.'
+      : '⚠️ Your browser is blocking saving on this page. Your answers are only kept while you stay here. Copy or download your answers before you leave.';
+    host.parentNode.insertBefore(d, host);
+  }
+
+  /* ---------- copy that reports failure instead of silently doing nothing ---------- */
+  function note(){ return document.getElementById('gatheredCopied') || document.getElementById('copiedMsg'); }
+  function flash(msg, ok){
+    var n = note();
+    if (!n){ if (!ok && msg) alert(msg); return; }
+    if (n.getAttribute('data-oao-orig') === null) n.setAttribute('data-oao-orig', n.textContent);
+    n.textContent = msg || n.getAttribute('data-oao-orig');
+    n.style.color = ok ? '' : '#A3312B';
+    n.classList.add('show');
+    n.style.display = 'block';
+    clearTimeout(n.__oaoT);
+    n.__oaoT = setTimeout(function(){
+      n.classList.remove('show');
+      n.style.display = '';
+      n.textContent = n.getAttribute('data-oao-orig');
+      n.style.color = '';
+    }, ok ? 2500 : 8000);
+  }
+  var MANUAL = 'Your browser blocked the copy. Click inside the box above, press Ctrl+A (⌘A on Mac), then Ctrl+C (⌘C).';
+
+  window.copyGathered = function(){
+    refreshGatheredSafe();
+    var out = document.getElementById('gatheredOutput');
+    if (!out) return;
+    var text = out.value || '';
+    if (!text.trim()){ flash('Nothing to copy yet — answer a question first.', false); return; }
+    var ok = false;
+    try {
+      var ro = out.readOnly;
+      out.readOnly = false;
+      out.focus();
+      out.select();
+      if (out.setSelectionRange) out.setSelectionRange(0, text.length);
+      ok = document.execCommand('copy');
+      out.readOnly = ro;
+    } catch(e){ ok = false; }
+    if (ok){ flash(null, true); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(
+        function(){ flash(null, true); },
+        function(){ flash(MANUAL, false); }
+      );
+    } else {
+      flash(MANUAL, false);
+    }
+  };
+
+  function init(){ restore(); banner(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+  window.addEventListener('load', function(){ setTimeout(init, 300); });
+})();
+</script>
+
+</body>
+</html>
