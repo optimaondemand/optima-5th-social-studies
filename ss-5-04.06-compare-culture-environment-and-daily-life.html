@@ -3872,7 +3872,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var temp = document.createElement('div');
         temp.innerHTML = entry.embed;
-        var iframe = temp.querySelector('iframe');
+        var iframe = temp.querySelector('iframe, video');
         if (!iframe) return;
 
         var wrapper = placeholder.closest('.video-ratio');
