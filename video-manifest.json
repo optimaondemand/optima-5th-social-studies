@@ -356,48 +356,64 @@
     "status": "pending"
   },
   "5-06-01-closing": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/kZcfWz7a8cw?si=nbkfcivzJYHQCS0b\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-01-explore-explainer": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/bNZSurLLD0s?si=MITid9v5GnC5G-LL\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-01-welcome": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/jgD3GrnEjYU?si=jbUt2WO2DwpeWvit\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-02-assignment-explainer": {
     "embed": "",
     "status": "pending"
   },
   "5-06-02-closing": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/HCDP82hKswQ?si=XId8tCcLtSNj8PdF\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-02-explore-explainer": {
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/C7Yj1H7YNI0?si=qhlI_SAAQaMrRBVD\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
+  },
+  "5-06-02-welcome": {
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QFCmmFN-0TU?si=cM71MxxcjYS9k8zp\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
+  },
+  "5-06-03-assignment-explainer": {
     "embed": "",
     "status": "pending"
   },
-  "5-06-02-welcome": {
-    "embed": "",
-    "status": "pending"
+  "5-06-03-closing": {
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6D380iWXynI?si=UglwynFH28YKOfYj\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
+  },
+  "5-06-03-explore-explainer": {
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/a4E76cgt1a8?si=0ZnzOjCrUko394fe\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
+  },
+  "5-06-03-welcome": {
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0H_y2DtTLXo?si=CthL2v0Zi2Bt9UmU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-04-assignment-explainer": {
     "embed": "",
     "status": "pending"
   },
   "5-06-04-closing": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/EDwRKAh4--k?si=qcUi9pywiIS89zz0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-04-explore-explainer": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/QScNZqRDqQo?si=Owjw2eADoSvbxoOW\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-04-welcome": {
-    "embed": "",
-    "status": "pending"
+    "embed": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/vbzqGDLtoCY?si=RT78AvcIYx18ZRj-\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "status": "ready"
   },
   "5-06-05-assignment-explainer": {
     "embed": "",
