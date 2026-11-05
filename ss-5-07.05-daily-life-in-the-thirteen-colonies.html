@@ -2258,6 +2258,2264 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<!-- ═══ REPUBLIC GAZETTE SPARKLE (G5) — this lesson's data. The shared layer is assets/sparkle/rg-sparkle.js ═══ -->
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.05",
+ "title": "Daily Life in the Thirteen Colonies",
+ "issue": 33,
+ "quiet": false,
+ "minWords": 25,
+ "connector": "Last issue, we covered the Southern Colonies and their plantations.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Check the picture",
+   "why": "The Herald printed a picture with its story. Before we trust it, guess when it was made."
+  },
+  {
+   "tab": "desk",
+   "t": "Follow one day",
+   "why": "Follow six people from sunrise to evening. Then mark up the Herald’s picture."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check three claims",
+   "why": "Check each claim before the paper prints it."
+  },
+  {
+   "tab": "press",
+   "t": "Go to press",
+   "why": "Plan your page, write your brief, and correct the Herald."
+  }
+ ],
+ "lens": "Self-governance means being in charge of your own choices. Today, an editor practicing it chooses to report more than one person’s day, not just the easy one.",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Open the wire when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story: what was an ordinary day like in the colonies? The Hasty Herald already printed its answer: “Daily life in the colonies was the same for everyone.”"
+   },
+   {
+    "t": "They printed a picture with it, too. Before we trust a picture, we ask one question: when was it made? Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Why does it matter when a picture was made?",
+      "reply": "Good question. A picture made long after something happened shows what the artist imagined. It can still teach us, but we have to check it first."
+     },
+     {
+      "t": "The same for everyone? That can’t be right.",
+      "reply": "Maybe not. But a good editor doesn’t guess. We find the evidence first."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Then let’s get to work. The picture is waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the picture is wrong?",
+      "reply": "Not wrong, just limited. It shows one free family’s kitchen. The question is who it leaves out."
+     },
+     {
+      "t": "How did you know to check?",
+      "reply": "Habit. Every good editor asks who made a source and when, before using it."
+     },
+     {
+      "t": "Who’s missing from it?",
+      "end": true,
+      "reply": "That’s your next job. Look below the picture."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "dateLocked": [
+    {
+     "t": "Your guess is sealed. Now go to the Desk tab (tab 2). You’ll follow six people through one day, and then we’ll open your envelope.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Did you see it? Same sunrise, same sunset, very different days. Now mark up the picture under the columns.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "1876! The picture was made about 100 years after the colonial days it shows. The artist imagined the past. That’s exactly why we check.",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): three claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your correction is on the record, and Issue 33 is in the Morgue. Next issue: the triangular trade.",
+     "scene": "press"
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "dateit",
+  "why": {
+   "icon": "🖼️",
+   "q": "Why check a picture?",
+   "t": "Newspapers use pictures as evidence. But a picture is only good evidence if you know who made it and when. That’s why editors check a picture before they print it."
+  },
+  "todo": "1. Look closely at the picture. 2. Drag the slider to the year you think it was made. 3. Tap what made you think so. 4. Lock in your guess.",
+  "title": "When was this picture made?",
+  "img": "source-5-07-05-colonial-daily-life",
+  "cap": "The Herald printed this picture with its story. The editor covered the caption.",
+  "q": "When do you think this picture was made?",
+  "min": 1600,
+  "max": 1900,
+  "step": 10,
+  "answer": 1876,
+  "clues": [
+   "The clothes",
+   "Cooking over a fire",
+   "The spinning wheel",
+   "The style of the drawing",
+   "No electric lights"
+  ],
+  "sealed": "We’ll open it on the Desk tab (tab 2), after you look closely at the picture."
+ },
+ "explore": {
+  "reading": {
+   "type": "suncolumns",
+   "title": "Follow one day in the colonies",
+   "why": {
+    "icon": "☀️",
+    "q": "Why follow the sun?",
+    "t": "Clocks cost a lot, so many colonists worked by the sun, from sunup to sundown. The fairest way to compare their days is to follow one sunrise to one sunset."
+   },
+   "todo": "Drag the sun across the sky, or tap the button. At each stop, read all six columns. When the Hasty Herald pops up, fact-check it.",
+   "times": [
+    "Sunrise",
+    "Midday",
+    "Evening"
+   ],
+   "cols": [
+    {
+     "id": "planter",
+     "icon": "🏛️",
+     "who": "A wealthy planter",
+     "where": "Virginia · Southern Colonies",
+     "lines": [
+      "A planter owns a plantation, a very large farm. He rides out to check his tobacco fields. Overseers (bosses who watch the workers) tell enslaved people what to do.",
+      "He eats a big dinner, then writes letters about selling his tobacco in England. Planters like him often helped make the colony’s laws in the House of Burgesses.",
+      "He reads, plays cards, or visits other planters. Enslaved people do the cooking and cleaning in his house."
+     ]
+    },
+    {
+     "id": "enslaved",
+     "calm": true,
+     "icon": "⛓️",
+     "who": "An enslaved person",
+     "where": "the same plantation",
+     "lines": [
+      "Work in the tobacco fields starts at first light. Enslaved people were forced to work, and they got no pay.",
+      "Work goes on in the heat while an overseer watches. Stopping to rest without permission could bring punishment.",
+      "After dark, people tend their own small gardens, cook, and care for their families. A family could be split up and sold at any time."
+     ]
+    },
+    {
+     "id": "farmer",
+     "icon": "🌾",
+     "who": "A farm family",
+     "where": "Massachusetts · New England",
+     "lines": [
+      "The family feeds the animals and milks the cow before breakfast.",
+      "They plow and plant a small, rocky field. In winter, they cut firewood and fix tools.",
+      "Some evenings, the men go to a town meeting to vote on town rules, like who fixes the roads."
+     ]
+    },
+    {
+     "id": "apprentice",
+     "icon": "🖨️",
+     "who": "A printer’s apprentice",
+     "where": "Philadelphia · Middle Colonies",
+     "lines": [
+      "An apprentice is a young worker learning a trade. This boy, about 14, lives with the printer and works for him for years. He gets food and a bed, but no pay.",
+      "He sets type, one metal letter at a time, and inks the press. Benjamin Franklin started out as a printer’s apprentice at age 12.",
+      "He cleans the shop. His master decides when he can go out. He can’t quit until his years of training are done."
+     ]
+    },
+    {
+     "id": "woman",
+     "icon": "🧺",
+     "who": "A farm wife and mother",
+     "where": "any colony",
+     "lines": [
+      "She lights the fire, cooks breakfast, and milks the cow.",
+      "She spins thread, weaves cloth, makes soap and candles, and preserves food so it lasts all winter.",
+      "She sews by firelight. She can’t vote. If she is married, the law says most of what she owns belongs to her husband."
+     ]
+    },
+    {
+     "id": "child",
+     "icon": "🧒",
+     "who": "A child",
+     "where": "New England",
+     "lines": [
+      "Children carry water, gather eggs, and feed the chickens.",
+      "Some children go to a one-room school to learn to read. Many others work all day.",
+      "Girls help with sewing, and boys help in the barn. Bedtime comes soon after dark, because candles cost money."
+     ]
+    }
+   ],
+   "myths": [
+    {
+     "after": 0,
+     "claim": "Everyone in the colonies was a farmer, just like the Pilgrims.",
+     "fact": "Most colonists did farm. But the colonies also had merchants, sailors, printers, blacksmiths, shopkeepers, and servants. Port cities like Philadelphia, New York, and Boston were busy with trade."
+    },
+    {
+     "after": 1,
+     "claim": "Women just helped out at home.",
+     "fact": "Women did hard, skilled work: they made cloth, soap, candles, and food that would last all winter. Some ran farms, shops, and even newspapers. Elizabeth Timothy took over the South Carolina Gazette in 1739. She was the first woman in America to edit and publish a newspaper.",
+     "img": "rg-sc-gazette-1739.jpg",
+     "cap": "The South Carolina Gazette, January 4, 1739: the first issue Elizabeth Timothy put out. Charleston County Public Library, public domain."
+    },
+    {
+     "after": 2,
+     "calm": true,
+     "claim": "Slavery only happened in the Southern Colonies.",
+     "fact": "Slavery was legal in all thirteen colonies. Most enslaved people lived in the South, but enslaved people also worked on Northern farms and in Northern cities like New York and Boston."
+    }
+   ],
+   "close": "Same sun, same day, six very different lives. Where you lived, how much money you had, your race, and whether you were a man or a woman changed everything."
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the Herald’s picture",
+   "why": {
+    "icon": "🖍️",
+    "q": "Why mark it up?",
+    "t": "Editors and proofreaders write on pages with colored pencils and pens, so their notes stand out from the black ink. Now it’s your turn to mark up a source."
+   },
+   "todo": "1. Tap each red number to circle that part and read the margin note. 2. Tap 📅 to read the caption. 3. Sort the cards: who is in the picture, and who is missing?",
+   "img": "source-5-07-05-colonial-daily-life",
+   "alt": "A busy kitchen with a big fireplace, a woman spinning, a woman churning butter, a woman rolling dough, an old man, and two small children.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 17,
+     "y": 47,
+     "rx": 7,
+     "ry": 9,
+     "label": "The fireplace",
+     "t": "All cooking happened over an open fire, in iron pots that hung from hooks. Keeping the fire going was a job every day."
+    },
+    {
+     "x": 44,
+     "y": 43,
+     "rx": 7,
+     "ry": 9,
+     "label": "The spinning wheel",
+     "t": "Women spun wool or flax into thread here. Thread became cloth, and cloth became every piece of clothing the family wore."
+    },
+    {
+     "x": 63,
+     "y": 38,
+     "rx": 5,
+     "ry": 10,
+     "label": "The butter churn",
+     "t": "In the doorway, a woman churns cream into butter by hand. It took a long time."
+    },
+    {
+     "x": 74,
+     "y": 49,
+     "rx": 7,
+     "ry": 8,
+     "label": "Rolling dough",
+     "t": "Bread was made at home, almost every day."
+    },
+    {
+     "x": 52,
+     "y": 64,
+     "rx": 9,
+     "ry": 10,
+     "label": "Two small children",
+     "t": "Young children stayed home. No one in this picture is at school or at a job outside the house."
+    },
+    {
+     "x": 35,
+     "y": 8,
+     "rx": 10,
+     "ry": 5,
+     "label": "Food hanging to dry",
+     "t": "Onions and squash hang from the beams. Drying food made it last through the winter."
+    }
+   ],
+   "date": {
+    "x": 50,
+    "y": 94,
+    "w": 46,
+    "h": 10,
+    "year": 1876,
+    "text": "The caption says “A New England Kitchen. A Hundred Years Ago.” H. W. Pierce printed it in 1876, the year the United States turned 100. So the artist was imagining a kitchen from about 1776. (Library of Congress)"
+   },
+   "missing": {
+    "q": "Who is NOT in this picture?",
+    "todo": "Tap a card, then tap the frame it belongs in.",
+    "cards": [
+     {
+      "t": "A woman spinning thread",
+      "out": false,
+      "hint": "Look again at label 2.",
+      "say": "Yes. She’s at the spinning wheel."
+     },
+     {
+      "t": "An enslaved worker",
+      "out": true,
+      "calm": true,
+      "hint": "Look again. Is anyone in this kitchen enslaved?",
+      "say": "Not shown. Many colonial homes, in the North and the South, had enslaved cooks and servants. This picture leaves them out."
+     },
+     {
+      "t": "Young children",
+      "out": false,
+      "hint": "Look again at label 5.",
+      "say": "Right. Two of them, in the middle of the floor."
+     },
+     {
+      "t": "A wealthy planter",
+      "out": true,
+      "hint": "Look again. Is this a big Southern plantation house?",
+      "say": "Not here. This is a plain New England farm kitchen."
+     },
+     {
+      "t": "An apprentice at work in a shop",
+      "out": true,
+      "hint": "Look again. Is anyone working in a shop?",
+      "say": "Not here. Everything in this picture happens inside one home."
+     },
+     {
+      "t": "A woman churning butter",
+      "out": false,
+      "hint": "Look again at label 3.",
+      "say": "Yes. She’s in the doorway."
+     }
+    ]
+   },
+   "close": "One free family’s kitchen, drawn 100 years later. It’s good evidence about chores at home, but it leaves out most of the people you followed today."
+  }
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: vers means “turn”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "todo": "Tap the part of each word that means “turn.” Then use the lesson’s word in a claim.",
+  "root": "vers",
+  "meaning": "turn",
+  "words": [
+   {
+    "parts": [
+     "di",
+     "vers",
+     "e"
+    ],
+    "root": 1,
+    "m": "diverse: turned in different directions, so many different kinds"
+   },
+   {
+    "parts": [
+     "re",
+     "vers",
+     "e"
+    ],
+    "root": 1,
+    "m": "reverse: to turn back"
+   },
+   {
+    "parts": [
+     "vers",
+     "us"
+    ],
+    "root": 0,
+    "m": "versus: turned against, like Team A versus Team B"
+   },
+   {
+    "parts": [
+     "anni",
+     "vers",
+     "ary"
+    ],
+    "root": 1,
+    "m": "anniversary: the day the year turns around again"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "The kitchen picture was printed in 1876, the 100th anniversary year of the Declaration of Independence. The year had turned around one hundred times since 1776.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Colonial daily life was diverse because...",
+   "min": 8,
+   "must": "divers",
+   "word": "diverse"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Lay out your front page",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan the page first?",
+   "t": "Before anything was printed, editors drew a plan of the page called a dummy. It showed where the headline and each story would go."
+  },
+  "todo": "Your own notes from the Editor’s Notebook are on the left. Drag a note into each box, or tap a note and then tap a box. Tap a filled box to empty it.",
+  "slots": [
+   {
+    "id": "head",
+    "kind": "wide",
+    "t": "Headline: your claim",
+    "hint": "Which note says daily life was NOT the same?"
+   },
+   {
+    "id": "c1",
+    "t": "Column 1: one person’s day",
+    "hint": "A note about one person"
+   },
+   {
+    "id": "c2",
+    "t": "Column 2: a very different day",
+    "hint": "A note about someone else"
+   },
+   {
+    "id": "why",
+    "kind": "wide",
+    "t": "Why it matters",
+    "hint": "Why should readers know this?"
+   }
+  ],
+  "extra": [
+   "A planter’s day",
+   "An enslaved person’s day",
+   "A farm family’s day",
+   "A printer’s apprentice’s day",
+   "A farm wife’s day",
+   "A child’s day"
+  ]
+ },
+ "almanac": {
+  "saying": "Early to bed and early to rise, makes a man healthy wealthy and wise.",
+  "cite": "Poor Richard’s Almanack, 1735. Printed by Benjamin Franklin in Philadelphia.",
+  "what": "An almanac was a yearly book with weather guesses, calendars, and short sayings. Many colonial families owned one.",
+  "tie": "Poor Richard told readers to run their own days well. That’s self-governance. But in the colonies, not everyone got to choose when to go to bed or when to get up.",
+  "q": "As you follow six people today, ask: who chose their own hours, and who didn’t?"
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why a correction?",
+   "t": "When a newspaper gets something wrong, an honest paper prints a correction. Today you strike the Herald’s claim and print yours in its place."
+  },
+  "win": "Printed. Your correction is on the record, and Issue 33 is filed in the Morgue."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the Herald’s claim you will fact-check",
+   "Snap one column at sunset",
+   "Snap a part of the kitchen picture that shows work",
+   "Snap your headline before you print"
+  ]
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Green is for evidence.",
+    "Use green for a fact you could use in your Front Page Brief."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "An enslaved person on that same plantation worked from sunrise to sunset with no pay.",
+   "key": [
+    "enslaved",
+    "person",
+    "plantation",
+    "worked",
+    "sunrise",
+    "sunset",
+    "no",
+    "pay"
+   ],
+   "small": [
+    "an",
+    "on",
+    "that",
+    "same",
+    "from",
+    "to",
+    "with"
+   ],
+   "model": "Key words: enslaved, plantation, sunrise, sunset, no pay."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "notes": {
+  "learned": [
+   "Daily life in the colonies depended on where people lived, how much money they had, their race, and whether they were men or women.",
+   "Enslaved people were forced to work with no pay and no freedom. Slavery was legal in all thirteen colonies.",
+   "Women did hard, skilled work, but they could not vote.",
+   "A picture is only good evidence if you know who made it and when. The kitchen picture was made in 1876."
+  ],
+  "vocab": [
+   [
+    "planter",
+    "the owner of a plantation, a very large farm"
+   ],
+   [
+    "enslaved",
+    "forced to work for no pay and with no freedom"
+   ],
+   [
+    "overseer",
+    "a boss who watched enslaved workers"
+   ],
+   [
+    "apprentice",
+    "a young worker who lives with a master to learn a trade"
+   ],
+   [
+    "legal rights",
+    "rights that the law protects"
+   ],
+   [
+    "self-governance",
+    "being in charge of your own choices"
+   ],
+   [
+    "diverse",
+    "many different kinds (vers = turn)"
+   ]
+  ]
+ },
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Two different people",
+    "rx": "planter|farmer|enslaved|slave|craftsm|apprentice|printer|blacksmith|woman|women|wife|mother|child|kid|girl|boy|merchant|servant|rich|wealthy|poor",
+    "n": 2
+   },
+   {
+    "t": "What their day was like",
+    "rx": "work|field|farm|cook|spin|school|meeting|tobacco|house|pay|free|chore|milk|plant|sew|clean|money|sunrise|sunset|rest|letter|shop|type|press|vote|garden|bread|butter|cloth",
+    "n": 1
+   },
+   {
+    "t": "How they were different",
+    "rx": "but|while|different|differ|unlike|instead|however|not the same|harder|easier|more|less|whereas|than|other",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A reason it’s misleading",
+    "rx": "not the same|different|depend|varied|vary|wrong|misleading|untrue|false|left out|leaves out|forgot|ignore|not true|not everyone|wasn.?t|isn.?t|weren.?t|couldn.?t|no freedom|no rights",
+    "n": 1
+   },
+   {
+    "t": "At least two factors",
+    "rx": "region|where|place|north|south|new england|wealth|money|rich|poor|race|slave|enslaved|black|white|gender|woman|women|men|man|girl|boy|free|freedom|job|work",
+    "n": 2
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|same|everyone|all|most|both|sun|work|farm|hard|chore",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|enslaved|slave|woman|women|differen|planter|rich|poor",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Pick two people from the six columns you followed on this tab.",
+   "Look at the same time of day for both, like sunrise. What was each one doing?",
+   "Try: “A ___’s day was ___. But a ___’s day was ___.”"
+  ],
+  "journal-q2": [
+   "What did the Herald’s claim leave out?",
+   "Think about the four things that changed a person’s day: where they lived, money, race, and being a man or a woman.",
+   "Try: “It’s misleading because ___ and ___ made people’s days very different.”"
+  ],
+  "journal-q3": [
+   "Is there anything every colonist shared? Think about the sun, or hard work.",
+   "Now think about who the Herald forgot.",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "Weather mattered, but it was the same for everyone in one place. It doesn’t explain why a planter and an enslaved person on the same farm had such different days.",
+   "C": "Rivers helped trade, but two people by the same river could still live very differently. Look back at the six columns."
+  },
+  {
+   "A": "That’s the Herald’s kind of answer. The columns showed that enslaved people were forced to work with no pay.",
+   "B": "Enslaved people could not choose. An overseer told them when and how to work."
+  },
+  {
+   "A": "That’s the Herald’s claim. The whole lesson showed it isn’t true.",
+   "C": "There are records: letters, almanacs, newspapers, and pictures, like the ones you used today."
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "How I check a picture",
+   "script": "Here’s a habit from my own desk. Someone once sent me a photo of our town square, labeled eighteen fifty. But I spotted electric street lamps in it, and those came much later. So the label was wrong. Your turn. Look at the Herald’s picture below. Find two clues before you move the slider."
+  },
+  {
+   "at": "s1done",
+   "slot": "v2",
+   "label": "Before you leave this tab",
+   "script": "Your guess is sealed. Before you go, read the Almanac Corner below. Poor Richard said early to bed and early to rise. Pause me and think: who in the colonies got to choose when they went to bed? Hold on to your answer. You’ll check it on the Desk tab."
+  },
+  {
+   "at": "desk",
+   "slot": "v3",
+   "label": "How to read the columns",
+   "script": "This page is set like a real newspaper, in columns. Six people, one day. When you move the sun, read across, not just down. Compare the planter and the enslaved person at the same hour. They lived on the same land, but their days were nothing alike. And watch the button that moves the sun. The Herald will try to sneak in a claim. Don’t print it until you check it."
+  },
+  {
+   "at": "source",
+   "slot": "v4",
+   "label": "Marking up a source",
+   "script": "Now you’re the editor with the red pen. Tap each number, and I’ll write a note in the margin. Don’t open the caption until you’ve circled at least four parts. When you do, check the year against your sealed guess. Then ask the most important question an editor asks: who’s missing?"
+  },
+  {
+   "at": "plan",
+   "slot": "v5",
+   "label": "From notes to a front page",
+   "script": "Every front page starts as a plan. On the left are your own notes. Drag your strongest claim into the headline box. Then pick two people whose days were very different, one for each column. Last, tell readers why it matters. Then write it in your own words. Use the plan, but don’t copy it."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^photo$",
+    "sel": "#panel-dispatch .rg-dt-pic",
+    "fx": "glow"
+   },
+   {
+    "at": "^Herald",
+    "sel": "#panel-dispatch .rg-dt-pic",
+    "fx": "pop",
+    "scroll": true
+   },
+   {
+    "at": "^clues$",
+    "sel": "#panel-dispatch .rg-dt-clues",
+    "fx": "glow"
+   },
+   {
+    "at": "^slider$",
+    "sel": "#panel-dispatch .rg-dt-range",
+    "fx": "point"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^sealed$",
+    "sel": "#panel-dispatch .rg-envelope",
+    "fx": "pop"
+   },
+   {
+    "at": "^Almanac$",
+    "sel": "#panel-dispatch .rg-almanac",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^Poor$",
+    "sel": "#panel-dispatch .rg-almanac blockquote",
+    "fx": "trace"
+   },
+   {
+    "at": "^Desk$",
+    "sel": "#btn-desk",
+    "fx": "pop"
+   }
+  ],
+  "v3": [
+   {
+    "at": "^columns$",
+    "sel": "#panel-desk .rg-cols",
+    "fx": "glow"
+   },
+   {
+    "at": "^sun$",
+    "sel": "#panel-desk .rg-sky",
+    "fx": "pop"
+   },
+   {
+    "at": "^planter$",
+    "sel": "#panel-desk .rg-col[data-id=planter]",
+    "fx": "point"
+   },
+   {
+    "at": "^enslaved$",
+    "sel": "#panel-desk .rg-col[data-id=enslaved]",
+    "fx": "glow"
+   },
+   {
+    "at": "^button$",
+    "sel": "#panel-desk .rg-sun-next",
+    "fx": "pop"
+   }
+  ],
+  "v4": [
+   {
+    "at": "^number$",
+    "sel": "#panel-desk .rg-rp-n",
+    "fx": "pop",
+    "i": 0
+   },
+   {
+    "at": "^margin$",
+    "sel": "#panel-desk .rg-rp-notes",
+    "fx": "glow"
+   },
+   {
+    "at": "^caption$",
+    "sel": "#panel-desk .rg-rp-n.date",
+    "fx": "point"
+   },
+   {
+    "at": "^missing$",
+    "sel": "#panel-desk .rg-rp-count",
+    "fx": "glow"
+   }
+  ],
+  "v5": [
+   {
+    "at": "^notes$",
+    "sel": "#panel-press .rg-lo-chips",
+    "fx": "glow"
+   },
+   {
+    "at": "^headline$",
+    "sel": "#panel-press .rg-lo-slot[data-id=head]",
+    "fx": "pop"
+   },
+   {
+    "at": "^column$",
+    "sel": "#panel-press .rg-lo-slot[data-id=c1]",
+    "fx": "point"
+   },
+   {
+    "at": "^matters$",
+    "sel": "#panel-press .rg-lo-slot[data-id=why]",
+    "fx": "glow"
+   },
+   {
+    "at": "^own$",
+    "sel": "#panel-press .gazette-assignment",
+    "fx": "glow",
+    "scroll": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0,
+    0.24,
+    "Here’s"
+   ],
+   [
+    0.28,
+    0.32,
+    "a"
+   ],
+   [
+    0.4,
+    0.64,
+    "habit"
+   ],
+   [
+    0.72,
+    0.8,
+    "from"
+   ],
+   [
+    0.88,
+    0.96,
+    "my"
+   ],
+   [
+    1.04,
+    1.2,
+    "own"
+   ],
+   [
+    1.28,
+    1.96,
+    "desk."
+   ],
+   [
+    2.24,
+    2.56,
+    "Someone"
+   ],
+   [
+    2.68,
+    2.8,
+    "once"
+   ],
+   [
+    2.88,
+    2.96,
+    "sent"
+   ],
+   [
+    3,
+    3.04,
+    "me"
+   ],
+   [
+    3.12,
+    3.2,
+    "a"
+   ],
+   [
+    3.28,
+    3.52,
+    "photo"
+   ],
+   [
+    3.56,
+    3.6,
+    "of"
+   ],
+   [
+    3.68,
+    3.76,
+    "our"
+   ],
+   [
+    3.84,
+    4.08,
+    "town"
+   ],
+   [
+    4.16,
+    4.72,
+    "square,"
+   ],
+   [
+    4.76,
+    5.12,
+    "labeled"
+   ],
+   [
+    5.28,
+    5.68,
+    "eighteen"
+   ],
+   [
+    5.92,
+    6.88,
+    "fifty."
+   ],
+   [
+    6.96,
+    7.12,
+    "But"
+   ],
+   [
+    7.2,
+    7.36,
+    "I"
+   ],
+   [
+    7.44,
+    7.68,
+    "spotted"
+   ],
+   [
+    7.76,
+    8.16,
+    "electric"
+   ],
+   [
+    8.24,
+    8.48,
+    "street"
+   ],
+   [
+    8.56,
+    8.8,
+    "lamps"
+   ],
+   [
+    8.84,
+    8.88,
+    "in"
+   ],
+   [
+    8.96,
+    9.28,
+    "it,"
+   ],
+   [
+    9.44,
+    9.6,
+    "and"
+   ],
+   [
+    9.72,
+    9.84,
+    "those"
+   ],
+   [
+    9.96,
+    10.08,
+    "came"
+   ],
+   [
+    10.16,
+    10.4,
+    "much"
+   ],
+   [
+    10.48,
+    11.04,
+    "later."
+   ],
+   [
+    11.28,
+    11.44,
+    "So"
+   ],
+   [
+    11.6,
+    11.68,
+    "the"
+   ],
+   [
+    11.76,
+    12,
+    "label"
+   ],
+   [
+    12.08,
+    12.16,
+    "was"
+   ],
+   [
+    12.24,
+    12.92,
+    "wrong."
+   ],
+   [
+    13.28,
+    13.44,
+    "Your"
+   ],
+   [
+    13.6,
+    13.84,
+    "turn."
+   ],
+   [
+    14.32,
+    14.4,
+    "Look"
+   ],
+   [
+    14.48,
+    14.52,
+    "at"
+   ],
+   [
+    14.56,
+    14.64,
+    "the"
+   ],
+   [
+    14.68,
+    15.04,
+    "Herald’s"
+   ],
+   [
+    15.16,
+    15.28,
+    "picture"
+   ],
+   [
+    15.36,
+    15.96,
+    "below."
+   ],
+   [
+    16.16,
+    16.48,
+    "Find"
+   ],
+   [
+    16.56,
+    16.72,
+    "two"
+   ],
+   [
+    16.8,
+    17.2,
+    "clues"
+   ],
+   [
+    17.28,
+    17.6,
+    "before"
+   ],
+   [
+    17.68,
+    17.76,
+    "you"
+   ],
+   [
+    17.84,
+    18,
+    "move"
+   ],
+   [
+    18.04,
+    18.08,
+    "the"
+   ],
+   [
+    18.32,
+    18.88,
+    "slider."
+   ]
+  ],
+  "v2": [
+   [
+    0,
+    0.24,
+    "Your"
+   ],
+   [
+    0.32,
+    0.56,
+    "guess"
+   ],
+   [
+    0.64,
+    0.72,
+    "is"
+   ],
+   [
+    0.8,
+    1.68,
+    "sealed."
+   ],
+   [
+    1.84,
+    2,
+    "Before"
+   ],
+   [
+    2.04,
+    2.08,
+    "you"
+   ],
+   [
+    2.16,
+    2.72,
+    "go,"
+   ],
+   [
+    2.8,
+    2.96,
+    "read"
+   ],
+   [
+    3,
+    3.04,
+    "the"
+   ],
+   [
+    3.12,
+    3.52,
+    "Almanac"
+   ],
+   [
+    3.6,
+    3.84,
+    "Corner"
+   ],
+   [
+    3.92,
+    4.56,
+    "below."
+   ],
+   [
+    4.88,
+    5.04,
+    "Poor"
+   ],
+   [
+    5.12,
+    5.52,
+    "Richard"
+   ],
+   [
+    5.68,
+    5.84,
+    "said"
+   ],
+   [
+    6.24,
+    6.56,
+    "early"
+   ],
+   [
+    6.6,
+    6.64,
+    "to"
+   ],
+   [
+    6.72,
+    7.12,
+    "bed"
+   ],
+   [
+    7.24,
+    7.36,
+    "and"
+   ],
+   [
+    7.52,
+    7.68,
+    "early"
+   ],
+   [
+    7.72,
+    7.76,
+    "to"
+   ],
+   [
+    7.84,
+    8.8,
+    "rise."
+   ],
+   [
+    8.88,
+    9.12,
+    "Pause"
+   ],
+   [
+    9.2,
+    9.28,
+    "me"
+   ],
+   [
+    9.36,
+    9.44,
+    "and"
+   ],
+   [
+    9.52,
+    10.32,
+    "think:"
+   ],
+   [
+    10.4,
+    10.48,
+    "who"
+   ],
+   [
+    10.56,
+    10.64,
+    "in"
+   ],
+   [
+    10.68,
+    10.72,
+    "the"
+   ],
+   [
+    10.8,
+    11.28,
+    "colonies"
+   ],
+   [
+    11.36,
+    11.44,
+    "got"
+   ],
+   [
+    11.52,
+    11.6,
+    "to"
+   ],
+   [
+    11.68,
+    11.92,
+    "choose"
+   ],
+   [
+    12.08,
+    12.24,
+    "when"
+   ],
+   [
+    12.32,
+    12.4,
+    "they"
+   ],
+   [
+    12.48,
+    12.56,
+    "went"
+   ],
+   [
+    12.6,
+    12.64,
+    "to"
+   ],
+   [
+    12.72,
+    13.44,
+    "bed?"
+   ],
+   [
+    13.52,
+    13.68,
+    "Hold"
+   ],
+   [
+    13.76,
+    13.84,
+    "on"
+   ],
+   [
+    13.88,
+    13.92,
+    "to"
+   ],
+   [
+    14,
+    14.08,
+    "your"
+   ],
+   [
+    14.28,
+    14.8,
+    "answer."
+   ],
+   [
+    14.84,
+    15.04,
+    "You’ll"
+   ],
+   [
+    15.12,
+    15.2,
+    "check"
+   ],
+   [
+    15.28,
+    15.36,
+    "it"
+   ],
+   [
+    15.44,
+    15.52,
+    "on"
+   ],
+   [
+    15.6,
+    15.68,
+    "the"
+   ],
+   [
+    15.8,
+    15.92,
+    "Desk"
+   ],
+   [
+    16,
+    16.56,
+    "tab."
+   ]
+  ],
+  "v3": [
+   [
+    0,
+    0.24,
+    "This"
+   ],
+   [
+    0.32,
+    0.48,
+    "page"
+   ],
+   [
+    0.56,
+    0.64,
+    "is"
+   ],
+   [
+    0.72,
+    0.88,
+    "set"
+   ],
+   [
+    0.96,
+    1.04,
+    "like"
+   ],
+   [
+    1.08,
+    1.12,
+    "a"
+   ],
+   [
+    1.28,
+    1.44,
+    "real"
+   ],
+   [
+    1.52,
+    2.4,
+    "newspaper,"
+   ],
+   [
+    2.48,
+    2.56,
+    "in"
+   ],
+   [
+    2.64,
+    3.2,
+    "columns."
+   ],
+   [
+    3.68,
+    3.84,
+    "Six"
+   ],
+   [
+    3.92,
+    4.64,
+    "people,"
+   ],
+   [
+    4.72,
+    4.88,
+    "one"
+   ],
+   [
+    4.96,
+    5.52,
+    "day."
+   ],
+   [
+    5.84,
+    5.92,
+    "When"
+   ],
+   [
+    6,
+    6.04,
+    "you"
+   ],
+   [
+    6.08,
+    6.24,
+    "move"
+   ],
+   [
+    6.28,
+    6.32,
+    "the"
+   ],
+   [
+    6.48,
+    7.04,
+    "sun,"
+   ],
+   [
+    7.12,
+    7.2,
+    "read"
+   ],
+   [
+    7.28,
+    8.08,
+    "across,"
+   ],
+   [
+    8.16,
+    8.24,
+    "not"
+   ],
+   [
+    8.32,
+    8.48,
+    "just"
+   ],
+   [
+    8.68,
+    9.16,
+    "down."
+   ],
+   [
+    9.44,
+    9.76,
+    "Compare"
+   ],
+   [
+    9.8,
+    9.84,
+    "the"
+   ],
+   [
+    9.92,
+    10.4,
+    "planter"
+   ],
+   [
+    10.44,
+    10.48,
+    "and"
+   ],
+   [
+    10.56,
+    10.6,
+    "the"
+   ],
+   [
+    10.64,
+    11.12,
+    "enslaved"
+   ],
+   [
+    11.2,
+    11.52,
+    "person"
+   ],
+   [
+    11.56,
+    11.6,
+    "at"
+   ],
+   [
+    11.68,
+    11.76,
+    "the"
+   ],
+   [
+    11.84,
+    12.08,
+    "same"
+   ],
+   [
+    12.16,
+    12.56,
+    "hour."
+   ],
+   [
+    13.04,
+    13.12,
+    "They"
+   ],
+   [
+    13.2,
+    13.36,
+    "lived"
+   ],
+   [
+    13.4,
+    13.44,
+    "on"
+   ],
+   [
+    13.52,
+    13.6,
+    "the"
+   ],
+   [
+    13.68,
+    13.92,
+    "same"
+   ],
+   [
+    14,
+    14.56,
+    "land,"
+   ],
+   [
+    14.6,
+    14.64,
+    "but"
+   ],
+   [
+    14.72,
+    14.8,
+    "their"
+   ],
+   [
+    14.88,
+    15.12,
+    "days"
+   ],
+   [
+    15.2,
+    15.44,
+    "were"
+   ],
+   [
+    15.6,
+    15.76,
+    "nothing"
+   ],
+   [
+    15.84,
+    16.44,
+    "alike."
+   ],
+   [
+    16.72,
+    16.88,
+    "And"
+   ],
+   [
+    17,
+    17.12,
+    "watch"
+   ],
+   [
+    17.2,
+    17.28,
+    "the"
+   ],
+   [
+    17.36,
+    17.6,
+    "button"
+   ],
+   [
+    17.68,
+    17.76,
+    "that"
+   ],
+   [
+    17.84,
+    18,
+    "moves"
+   ],
+   [
+    18.08,
+    18.16,
+    "the"
+   ],
+   [
+    18.24,
+    18.56,
+    "sun."
+   ],
+   [
+    18.96,
+    19.04,
+    "The"
+   ],
+   [
+    19.12,
+    19.44,
+    "Herald"
+   ],
+   [
+    19.52,
+    19.6,
+    "will"
+   ],
+   [
+    19.68,
+    19.84,
+    "try"
+   ],
+   [
+    19.92,
+    20,
+    "to"
+   ],
+   [
+    20.04,
+    20.24,
+    "sneak"
+   ],
+   [
+    20.28,
+    20.32,
+    "in"
+   ],
+   [
+    20.36,
+    20.4,
+    "a"
+   ],
+   [
+    20.48,
+    21.2,
+    "claim."
+   ],
+   [
+    21.28,
+    21.44,
+    "Don’t"
+   ],
+   [
+    21.52,
+    21.76,
+    "print"
+   ],
+   [
+    21.84,
+    21.92,
+    "it"
+   ],
+   [
+    22.04,
+    22.16,
+    "until"
+   ],
+   [
+    22.24,
+    22.32,
+    "you"
+   ],
+   [
+    22.4,
+    22.56,
+    "check"
+   ],
+   [
+    22.64,
+    23.04,
+    "it."
+   ]
+  ],
+  "v4": [
+   [
+    0,
+    0.24,
+    "Now"
+   ],
+   [
+    0.48,
+    0.64,
+    "you’re"
+   ],
+   [
+    0.72,
+    0.8,
+    "the"
+   ],
+   [
+    0.88,
+    1.12,
+    "editor"
+   ],
+   [
+    1.2,
+    1.28,
+    "with"
+   ],
+   [
+    1.36,
+    1.4,
+    "the"
+   ],
+   [
+    1.44,
+    1.6,
+    "red"
+   ],
+   [
+    1.68,
+    2.24,
+    "pen."
+   ],
+   [
+    2.48,
+    2.72,
+    "Tap"
+   ],
+   [
+    2.8,
+    2.96,
+    "each"
+   ],
+   [
+    3.04,
+    3.44,
+    "number,"
+   ],
+   [
+    3.52,
+    3.68,
+    "and"
+   ],
+   [
+    3.76,
+    3.92,
+    "I’ll"
+   ],
+   [
+    4,
+    4.08,
+    "write"
+   ],
+   [
+    4.12,
+    4.16,
+    "a"
+   ],
+   [
+    4.24,
+    4.4,
+    "note"
+   ],
+   [
+    4.44,
+    4.48,
+    "in"
+   ],
+   [
+    4.56,
+    4.6,
+    "the"
+   ],
+   [
+    4.64,
+    5.32,
+    "margin."
+   ],
+   [
+    5.6,
+    5.76,
+    "Don’t"
+   ],
+   [
+    5.84,
+    6,
+    "open"
+   ],
+   [
+    6.04,
+    6.08,
+    "the"
+   ],
+   [
+    6.16,
+    6.56,
+    "caption"
+   ],
+   [
+    6.68,
+    6.8,
+    "until"
+   ],
+   [
+    6.88,
+    7.04,
+    "you’ve"
+   ],
+   [
+    7.16,
+    7.36,
+    "circled"
+   ],
+   [
+    7.44,
+    7.6,
+    "at"
+   ],
+   [
+    7.76,
+    8,
+    "least"
+   ],
+   [
+    8.16,
+    8.32,
+    "four"
+   ],
+   [
+    8.4,
+    9.04,
+    "parts."
+   ],
+   [
+    9.28,
+    9.36,
+    "When"
+   ],
+   [
+    9.44,
+    9.52,
+    "you"
+   ],
+   [
+    9.64,
+    10.16,
+    "do,"
+   ],
+   [
+    10.24,
+    10.4,
+    "check"
+   ],
+   [
+    10.48,
+    10.56,
+    "the"
+   ],
+   [
+    10.64,
+    10.8,
+    "year"
+   ],
+   [
+    10.88,
+    11.12,
+    "against"
+   ],
+   [
+    11.2,
+    11.28,
+    "your"
+   ],
+   [
+    11.36,
+    11.6,
+    "sealed"
+   ],
+   [
+    11.68,
+    12.32,
+    "guess."
+   ],
+   [
+    12.56,
+    12.88,
+    "Then"
+   ],
+   [
+    13.04,
+    13.28,
+    "ask"
+   ],
+   [
+    13.32,
+    13.36,
+    "the"
+   ],
+   [
+    13.6,
+    13.76,
+    "most"
+   ],
+   [
+    13.84,
+    14.24,
+    "important"
+   ],
+   [
+    14.32,
+    14.64,
+    "question"
+   ],
+   [
+    14.72,
+    14.8,
+    "an"
+   ],
+   [
+    14.88,
+    15.2,
+    "editor"
+   ],
+   [
+    15.28,
+    16.16,
+    "asks:"
+   ],
+   [
+    16.24,
+    16.48,
+    "who’s"
+   ],
+   [
+    16.56,
+    17.28,
+    "missing?"
+   ]
+  ],
+  "v5": [
+   [
+    0,
+    0.32,
+    "Every"
+   ],
+   [
+    0.4,
+    0.56,
+    "front"
+   ],
+   [
+    0.64,
+    1.04,
+    "page"
+   ],
+   [
+    1.24,
+    1.44,
+    "starts"
+   ],
+   [
+    1.48,
+    1.52,
+    "as"
+   ],
+   [
+    1.6,
+    1.68,
+    "a"
+   ],
+   [
+    1.76,
+    2.64,
+    "plan."
+   ],
+   [
+    2.68,
+    2.72,
+    "On"
+   ],
+   [
+    2.8,
+    2.88,
+    "the"
+   ],
+   [
+    2.96,
+    3.28,
+    "left"
+   ],
+   [
+    3.36,
+    3.44,
+    "are"
+   ],
+   [
+    3.52,
+    3.6,
+    "your"
+   ],
+   [
+    3.68,
+    3.84,
+    "own"
+   ],
+   [
+    4.04,
+    4.72,
+    "notes."
+   ],
+   [
+    4.8,
+    5.04,
+    "Drag"
+   ],
+   [
+    5.12,
+    5.28,
+    "your"
+   ],
+   [
+    5.36,
+    5.84,
+    "strongest"
+   ],
+   [
+    6.04,
+    6.24,
+    "claim"
+   ],
+   [
+    6.36,
+    6.48,
+    "into"
+   ],
+   [
+    6.52,
+    6.56,
+    "the"
+   ],
+   [
+    6.76,
+    6.96,
+    "headline"
+   ],
+   [
+    7.04,
+    7.84,
+    "box."
+   ],
+   [
+    7.92,
+    8.32,
+    "Then"
+   ],
+   [
+    8.44,
+    8.56,
+    "pick"
+   ],
+   [
+    8.64,
+    8.72,
+    "two"
+   ],
+   [
+    8.8,
+    9.12,
+    "people"
+   ],
+   [
+    9.24,
+    9.36,
+    "whose"
+   ],
+   [
+    9.48,
+    9.6,
+    "days"
+   ],
+   [
+    9.76,
+    9.92,
+    "were"
+   ],
+   [
+    10.08,
+    10.24,
+    "very"
+   ],
+   [
+    10.44,
+    10.96,
+    "different,"
+   ],
+   [
+    11.04,
+    11.2,
+    "one"
+   ],
+   [
+    11.28,
+    11.36,
+    "for"
+   ],
+   [
+    11.44,
+    11.6,
+    "each"
+   ],
+   [
+    11.76,
+    12.56,
+    "column."
+   ],
+   [
+    12.64,
+    13.36,
+    "Last,"
+   ],
+   [
+    13.48,
+    13.6,
+    "tell"
+   ],
+   [
+    13.68,
+    14.08,
+    "readers"
+   ],
+   [
+    14.16,
+    14.32,
+    "why"
+   ],
+   [
+    14.4,
+    14.48,
+    "it"
+   ],
+   [
+    14.56,
+    15.52,
+    "matters."
+   ],
+   [
+    15.72,
+    15.92,
+    "Then"
+   ],
+   [
+    16.08,
+    16.24,
+    "write"
+   ],
+   [
+    16.28,
+    16.32,
+    "it"
+   ],
+   [
+    16.4,
+    16.48,
+    "in"
+   ],
+   [
+    16.56,
+    16.64,
+    "your"
+   ],
+   [
+    16.72,
+    16.88,
+    "own"
+   ],
+   [
+    17.08,
+    17.68,
+    "words."
+   ],
+   [
+    17.76,
+    17.92,
+    "Use"
+   ],
+   [
+    17.96,
+    18,
+    "the"
+   ],
+   [
+    18.08,
+    18.64,
+    "plan,"
+   ],
+   [
+    18.76,
+    18.88,
+    "but"
+   ],
+   [
+    18.92,
+    19.12,
+    "don’t"
+   ],
+   [
+    19.28,
+    19.44,
+    "copy"
+   ],
+   [
+    19.52,
+    19.92,
+    "it."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2505,166 +4763,92 @@ html, body {
   </div>
 
   <div class="hero-illustration-wrap">
-    <!-- STANDARD G5 HERO — Historian's Desk scene. Same on every G5 lesson.
-         Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
-         magnifying glass, gazette pages, quill + inkwell) represents the
-         Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <!-- Sparkled lesson: this lesson has its own banner (Nov 2026). Unsparkled lessons keep the standard Historian's Desk hero. -->
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="One sun crossing the sky over four very different colonial homes: a farmhouse, a workshop, a large plantation house, and small cabins">
+      <!-- 5.07.05 banner (sparkle): one day, many lives. One sun arcs over four very different homes:
+           a New England farmhouse, a city workshop, a planter's big house, and the small cabins where
+           enslaved people were made to live. No words, no people. Subtle motion; off under reduced motion. -->
       <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
+        <linearGradient id="b0705Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E3BC"/><stop offset=".7" stop-color="#FAF3E0"/><stop offset="1" stop-color="#F5EBD3"/></linearGradient>
+        <radialGradient id="b0705Sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F4C860"/><stop offset=".6" stop-color="#E9B44C"/><stop offset="1" stop-color="#E9B44C" stop-opacity="0"/></radialGradient>
+        <pattern id="b0705Hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1A2138" stroke-width="1" opacity=".22"/></pattern>
+        <pattern id="b0705Rows" width="16" height="8" patternUnits="userSpaceOnUse"><path d="M0,6 q8,-4 16,0" fill="none" stroke="#8B6F2E" stroke-width="1.2" opacity=".55"/></pattern>
+        <style>
+          .b0705-sunmove{ transform-box:view-box; transform-origin:460px 440px; animation:b0705arc 50s ease-in-out infinite alternate; }
+          @keyframes b0705arc{ from{ transform:rotate(-38deg); } to{ transform:rotate(38deg); } }
+          .b0705-smoke{ animation:b0705smoke 6s ease-in-out infinite; transform-box:fill-box; transform-origin:bottom; }
+          .b0705-smoke.b{ animation-delay:-3s; }
+          @keyframes b0705smoke{ 0%{ opacity:.0; transform:translateY(6px) scale(.8); } 30%{ opacity:.55; } 100%{ opacity:0; transform:translateY(-22px) scale(1.25); } }
+          .b0705-glow{ animation:b0705glow 5s ease-in-out infinite alternate; }
+          @keyframes b0705glow{ to{ opacity:.55; } }
+          @media (prefers-reduced-motion:reduce){ .b0705-sunmove,.b0705-smoke,.b0705-glow{ animation:none; } .b0705-sunmove{ transform:none; } }
+        </style>
       </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
+      <rect width="920" height="260" fill="url(#b0705Sky)"/>
+      <!-- the sun's path: one day for everyone -->
+      <path d="M190,170 Q460,-110 730,170" fill="none" stroke="#B8923E" stroke-width="1.5" stroke-dasharray="3 7" opacity=".7"/>
+      <g class="b0705-sunmove">
+        <g transform="translate(460,44)">
+          <circle r="46" fill="url(#b0705Sun)" class="b0705-glow" opacity=".9"/>
+          <circle r="22" fill="#E9B44C"/>
+          <g stroke="#C9952E" stroke-width="2.5" stroke-linecap="round">
+            <line x1="0" y1="-32" x2="0" y2="-40"/><line x1="0" y1="32" x2="0" y2="40"/><line x1="-32" y1="0" x2="-40" y2="0"/><line x1="32" y1="0" x2="40" y2="0"/>
+            <line x1="23" y1="23" x2="29" y2="29"/><line x1="-23" y1="-23" x2="-29" y2="-29"/><line x1="23" y1="-23" x2="29" y2="-29"/><line x1="-23" y1="23" x2="-29" y2="29"/>
+          </g>
         </g>
       </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
+      <!-- distant hills -->
+      <path d="M0,190 C120,170 220,182 330,174 S560,160 680,172 S860,166 920,176 L920,260 L0,260 Z" fill="#E4D5B0"/>
+      <!-- 1 · New England farmhouse (saltbox), stone wall, smoke -->
+      <g transform="translate(70,0)">
+        <g fill="#CFC3A3" stroke="#8B6F2E" stroke-width="1"><ellipse cx="176" cy="196" rx="8" ry="5"/><ellipse cx="192" cy="196" rx="8" ry="5"/><ellipse cx="208" cy="196" rx="8" ry="5"/><ellipse cx="184" cy="189" rx="8" ry="5"/><ellipse cx="200" cy="189" rx="8" ry="5"/></g>
+        <rect x="128" y="104" width="12" height="28" fill="#1A2138"/>
+        <path class="b0705-smoke" d="M134,100 c-8,-8 6,-14 -2,-24 c-6,-8 8,-12 2,-20" fill="none" stroke="#8C8C8C" stroke-width="4" stroke-linecap="round"/>
+        <path d="M30,200 L30,140 L95,108 L160,140 L160,200 Z" fill="#FAF3E0" stroke="#1A2138" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M30,140 L95,108 L160,140" fill="url(#b0705Hatch)"/>
+        <path d="M22,144 L95,104 L168,144" fill="none" stroke="#1A2138" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="48" y="152" width="18" height="18" fill="#1A2138" opacity=".85"/><rect x="110" y="152" width="18" height="18" fill="#1A2138" opacity=".85"/>
+        <rect x="80" y="160" width="20" height="40" fill="#8B5A2E"/>
+      </g>
+      <!-- 2 · city workshop: a printer's shop with a hanging sign shaped like a book -->
+      <g transform="translate(270,0)">
+        <rect x="20" y="128" width="96" height="72" fill="#F2E8D8" stroke="#1A2138" stroke-width="2.5"/>
+        <path d="M14,130 L68,100 L122,130 Z" fill="#8B2D26" stroke="#1A2138" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect x="30" y="146" width="36" height="28" fill="#FFF7DA" stroke="#1A2138" stroke-width="2"/><line x1="48" y1="146" x2="48" y2="174" stroke="#1A2138" stroke-width="1.5"/><line x1="30" y1="160" x2="66" y2="160" stroke="#1A2138" stroke-width="1.5"/>
+        <rect x="78" y="156" width="24" height="44" fill="#5C3D24"/>
+        <line x1="116" y1="138" x2="140" y2="138" stroke="#1A2138" stroke-width="3"/><line x1="134" y1="138" x2="134" y2="146" stroke="#1A2138" stroke-width="1.5"/>
+        <path d="M124,146 h20 v16 h-20 z M134,146 v16" fill="#FAF3E0" stroke="#1A2138" stroke-width="2"/>
+        <rect x="62" y="104" width="10" height="16" fill="#1A2138"/>
+        <path class="b0705-smoke b" d="M67,100 c-6,-8 6,-12 -2,-22 c-5,-6 7,-10 2,-18" fill="none" stroke="#8C8C8C" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <!-- fields between -->
+      <rect x="430" y="196" width="490" height="64" fill="url(#b0705Rows)"/>
+      <!-- 3 · the planter's big house: columns, wide steps -->
+      <g transform="translate(470,0)">
+        <rect x="18" y="112" width="190" height="88" fill="#FFFDF5" stroke="#1A2138" stroke-width="2.5"/>
+        <path d="M6,114 L113,72 L220,114 Z" fill="#FAF3E0" stroke="#1A2138" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M60,114 L113,92 L166,114 Z" fill="url(#b0705Hatch)" stroke="#1A2138" stroke-width="1.5"/>
+        <g fill="#FFFDF5" stroke="#1A2138" stroke-width="2">
+          <rect x="44" y="114" width="9" height="80"/><rect x="74" y="114" width="9" height="80"/><rect x="143" y="114" width="9" height="80"/><rect x="173" y="114" width="9" height="80"/>
         </g>
+        <rect x="100" y="150" width="26" height="44" fill="#5C3D24"/>
+        <g fill="#1A2138" opacity=".8"><rect x="26" y="126" width="12" height="16"/><rect x="58" y="126" width="12" height="16"/><rect x="156" y="126" width="12" height="16"/><rect x="188" y="126" width="12" height="16"/></g>
+        <path d="M70,194 h86 l8,6 h-102 z" fill="#E8DCC0" stroke="#1A2138" stroke-width="1.5"/>
+        <rect x="30" y="86" width="12" height="28" fill="#1A2138"/><rect x="184" y="86" width="12" height="28" fill="#1A2138"/>
       </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
+      <!-- 4 · the quarters: small cabins set apart, drawn plain and quiet -->
+      <g transform="translate(720,0)" opacity=".92">
+        <g fill="#E3DDD0" stroke="#4A5568" stroke-width="2" stroke-linejoin="round">
+          <path d="M20,200 v-34 l26,-18 l26,18 v34 z"/><path d="M86,200 v-34 l26,-18 l26,18 v34 z"/><path d="M152,200 v-34 l26,-18 l26,18 v34 z"/>
+        </g>
+        <g fill="#4A5568"><rect x="40" y="178" width="12" height="22"/><rect x="106" y="178" width="12" height="22"/><rect x="172" y="178" width="12" height="22"/></g>
+        <rect x="58" y="146" width="7" height="14" fill="#4A5568"/>
       </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
+      <!-- ground line, like a printed rule -->
+      <line x1="0" y1="200" x2="920" y2="200" stroke="#1A2138" stroke-width="3"/>
+      <line x1="0" y1="206" x2="920" y2="206" stroke="#1A2138" stroke-width="1"/>
+      <rect y="206" width="920" height="54" fill="#EADFC4"/>
+      <rect x="430" y="210" width="490" height="50" fill="url(#b0705Rows)"/>
     </svg>
   </div>
 
@@ -3982,5 +6166,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>
