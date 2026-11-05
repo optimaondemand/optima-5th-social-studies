@@ -132,7 +132,7 @@
     var full=t.textContent, i=0; t.textContent=''; t.classList.add('typing'); clearInterval(typing);
     typing=setInterval(function(){ i+=2; t.textContent=full.slice(0,i); if(i%6===0) SFX.clack(); if(i>=full.length){ clearInterval(typing); t.classList.remove('typing'); } },22); }
   function render(){
-    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— on the wire today —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll send a note when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); w.scrollTop=w.scrollHeight; }
+    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— notes from the editor’s desk —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll send a note when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); w.scrollTop=w.scrollHeight; }
     if(wireBtn){ wireBtn.classList.toggle('unread',unread>0); $('.n',wireBtn).textContent=unread; }
     var open=wireEl&&wireEl.classList.contains('open');
     ['open','dispatch','desk','factcheck','press'].forEach(function(sc){ var n=$('.rg-note[data-scene="'+sc+'"]'); if(!n) return; var ms=thread.filter(function(m){return m.scene===sc;});
@@ -141,7 +141,7 @@
       n.classList.toggle('rg-hide',!ms.length); n.classList.toggle('new',isNew);
       $('.rg-tape',n).innerHTML=(sc==='open'?ms:ms.slice(-4)).map(msgHTML).join(''); $('.rg-ch',n).innerHTML=(pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc)?choicesHTML():'';
       if(isNew&&!open) typeOut($('.rg-tape',n));
-      var tc=thread.filter(function(m){return m.f==='t';}).length; var lastAsk=pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc; $('.mini .pv',n).innerHTML=isNew&&lt?'<b>New note:</b> '+esc(lt.t):lastAsk?'<b>Ms. Avery is waiting for your reply</b>':'<b>Notes from Ms. Avery</b> · '+tc+' on the wire'; n.classList.toggle('ask',!!lastAsk); });
+      var tc=thread.filter(function(m){return m.f==='t';}).length; var lastAsk=pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc; $('.mini .pv',n).innerHTML=isNew&&lt?'<b>New note:</b> '+esc(lt.t):lastAsk?'<b>Ms. Avery is waiting for your reply</b>':'<b>Notes from Ms. Avery</b> · '+tc+' so far'; n.classList.toggle('ask',!!lastAsk); });
     if(open) save(); }
   function openWire(o){ if(!wireEl) return; wireEl.classList.toggle('open',o); wireBtn&&wireBtn.setAttribute('aria-expanded',!!o); if(o){ unread=0; hideTicker(); SFX.paper(); } render(); }
   function ticker(text){ if(!tickEl||(wireEl&&wireEl.classList.contains('open'))) return; $('.tx',tickEl).textContent=(nm()&&text.indexOf(nm())===-1?nm()+', '+text.charAt(0).toLowerCase()+text.slice(1):text); tickEl.classList.remove('show'); void tickEl.offsetWidth; tickEl.classList.add('show'); SFX.ding(); clearTimeout(tickTimer); tickTimer=setTimeout(hideTicker,8000); }
@@ -153,14 +153,25 @@
   function beat(k){ if(S.seen[k]) return; S.seen[k]=true; save(); var b=(T.beats||{})[k]; if(!b) return; [].concat(b).forEach(function(m){ if(typeof m==='string') m={t:m}; avery(m.t,m.choice||null,{scene:m.scene||BEAT_SCENE[k]||currentScene(),quiet:!!m.quiet}); }); }
   function buildWire(){
     wireEl=el('div','rg rg-wire'); wireEl.setAttribute('role','dialog'); wireEl.setAttribute('aria-label','Notes from Ms. Avery');
-    wireEl.innerHTML='<div class="rg-tt"><div class="rg-tt-body"><div class="rg-wire-id">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st"><i class="lamp"></i> Editor-in-Chief · on the wire</div></div></div><button type="button" class="x" aria-label="Close the wire">✕</button></div><div class="rg-tt-keys" aria-hidden="true">'+Array(14).join('<i></i>')+'</div><div class="rg-tt-slot" aria-hidden="true"></div></div><div class="rg-wire-paper"><div class="rg-wire-roll"></div></div><div class="rg-wire-reply"></div>';
+    var TW='<svg class="rg-tw-svg" viewBox="0 0 400 168" aria-hidden="true"><defs><linearGradient id="rgTwB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A3E"/><stop offset="1" stop-color="#1C2620"/></linearGradient><linearGradient id="rgTwP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A4A4A"/><stop offset=".45" stop-color="#151515"/><stop offset="1" stop-color="#2C2C2C"/></linearGradient><radialGradient id="rgTwK" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#FFFBEA"/><stop offset="1" stop-color="#C9BE9C"/></radialGradient></defs>'+
+      '<rect x="30" y="2" width="340" height="22" rx="11" fill="url(#rgTwP)"/><rect x="40" y="6" width="320" height="3" rx="1.5" fill="#fff" opacity=".18"/>'+
+      '<circle cx="18" cy="13" r="13" fill="#222"/><circle cx="18" cy="13" r="8" fill="#C9A66B"/><circle cx="382" cy="13" r="13" fill="#222"/><circle cx="382" cy="13" r="8" fill="#C9A66B"/>'+
+      '<path d="M4,10 h-0 q-2,-12 14,-14" fill="none" stroke="#C9A66B" stroke-width="3" stroke-linecap="round"/>'+
+      '<line x1="44" y1="30" x2="356" y2="30" stroke="#C9A66B" stroke-width="2.5"/>'+
+      '<path d="M44,36 Q200,22 356,36 L392,150 Q392,162 380,162 L20,162 Q8,162 8,150 Z" fill="url(#rgTwB)" stroke="#C9A66B" stroke-width="2"/>'+
+      '<path d="M140,38 Q200,24 260,38 L246,62 Q200,52 154,62 Z" fill="#111813"/>'+[0,1,2,3,4,5,6,7,8,9,10].map(function(k){ var a=-60+k*12, r=Math.PI*a/180; return '<line x1="'+(200+Math.sin(r)*10)+'" y1="'+(62-Math.cos(r)*6)+'" x2="'+(200+Math.sin(r)*40)+'" y2="'+(62-Math.cos(r)*26)+'" stroke="#8C8C7A" stroke-width="1.5"/>'; }).join('')+
+      '<rect x="176" y="64" width="48" height="13" rx="2" fill="#C9A66B"/><text x="200" y="74" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#1C2620" letter-spacing="1.5">AVERY</text>'+
+      [[86,11,40],[106,10,52],[126,9,64]].map(function(row){ var out='', y=row[0], n=row[1], x0=row[2]; for(var k=0;k<n;k++){ var x=x0+k*((400-2*x0)/(n-1)); out+='<circle cx="'+x+'" cy="'+(y+2)+'" r="9" fill="#0B0F0C"/><circle cx="'+x+'" cy="'+y+'" r="8.5" fill="url(#rgTwK)" stroke="#5C5A4A" stroke-width="1"/>'; } return out; }).join('')+
+      '<rect x="120" y="140" width="160" height="10" rx="5" fill="url(#rgTwK)" stroke="#5C5A4A"/></svg>';
+    wireEl.innerHTML='<div class="rg-wire-paper"><div class="rg-wire-head">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st">Editor-in-Chief · The Republic Gazette</div></div><button type="button" class="x" aria-label="Close Ms. Avery’s notes">✕</button></div><div class="rg-wire-roll"></div></div><div class="rg-tw">'+TW+'</div><div class="rg-wire-reply"></div>';
+
     wireEl.addEventListener('click',onChoice); $('.x',wireEl).addEventListener('click',function(){ openWire(false); });
-    tickEl=el('div','rg rg-ticker','<span class="ic">📠</span><span class="bd"><b>Ms. Avery · on the wire <small>now</small></b><span class="tx"></span></span>'); tickEl.setAttribute('role','status');
+    tickEl=el('div','rg rg-ticker','<span class="ic">'+AVERY+'</span><span class="bd"><b>Ms. Avery · new note <small>now</small></b><span class="tx"></span></span>'); tickEl.setAttribute('role','status');
     tickEl.addEventListener('click',function(){ openWire(true); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&wireEl&&wireEl.classList.contains('open')) openWire(false); });
     if(!window.__rgSay){ window.__rgSay=true; document.addEventListener('click',onSay,true); } }
   function buildOpening(){ var intro=document.getElementById('introSection'); if(!intro) return;
-    var note=el('div','rg rg-note opening rg-hide'); note.dataset.scene='open'; note.innerHTML=noteHTML('On the wire from Ms. Avery'); note.addEventListener('click',onNote); before(intro,note);
+    var note=el('div','rg rg-note opening rg-hide'); note.dataset.scene='open'; note.innerHTML=noteHTML('Notes from Ms. Avery'); note.addEventListener('click',onNote); before(intro,note);
     if(!thread.length){ if(!nm()&&storageWorks()) openingWaiting=true; else startOpening(); } }
   function startOpening(){ if(thread.length) return;
     var op=[].concat(T.opening||[]);
@@ -185,7 +196,7 @@
     var bar=document.getElementById('tabBar'); if(!bar||!STAGES.length) return;
     var unit=(($$('.info-strip .info-cell')[1]||{}).querySelector?($$('.info-strip .info-cell')[1].querySelector('.info-value')||{}).textContent:'')||'';
     pressEl=el('div','rg rg-press');
-    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">📠</span> Wire <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
+    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
     var hero=$('.hero-newspaper'); if(hero) after(hero,pressEl); else before(bar,pressEl);
     move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
     STAGES.forEach(function(s,i){ var b=document.getElementById('btn-'+s.tab); if(!b) return; var lab=b.textContent.replace(/[✓]/g,'').trim(); setText(b,'<span class="rg-tn">'+(i+1)+'</span><span class="rg-tabt"><b>'+esc(lab)+'</b><small>'+esc(s.t)+'</small></span><span class="tab-check"></span>'); });
@@ -209,7 +220,7 @@
   function buildScenes(){ STAGES.forEach(function(s,i){ var panel=document.getElementById('panel-'+s.tab); if(!panel) return;
       var sc=el('div','rg rg-scene','<div class="rg-scene-n">'+(i+1)+'</div><div><div class="rg-scene-k">'+esc(['Masthead','Headline','Columns','Photo'][i]||'')+'</div><div class="rg-scene-t">'+esc(s.t)+'</div><p class="rg-scene-why">'+esc(s.why)+'</p></div>');
       var vr=panel.firstElementChild&&panel.firstElementChild.classList.contains('video-ratio')?panel.firstElementChild:null; if(vr) after(vr,sc); else panel.insertBefore(sc,panel.firstChild);
-      var tw=panel.querySelector('.tab-next-btn-wrap')||null; var note=el('div','rg rg-note rg-hide'); note.dataset.scene=s.tab; note.innerHTML=noteHTML('New note on the wire'); note.addEventListener('click',onNote); if(tw) before(tw,note); else panel.appendChild(note); }); }
+      var tw=panel.querySelector('.tab-next-btn-wrap')||null; var note=el('div','rg rg-note rg-hide'); note.dataset.scene=s.tab; note.innerHTML=noteHTML('New note from Ms. Avery'); note.addEventListener('click',onNote); if(tw) before(tw,note); else panel.appendChild(note); }); }
 
   /* ================================================================ the top: Read aloud + Lesson details pills, one Editor's Lens line */
   function buildTop(){ var hd=$('.oao-header'), shell=$('.lesson-shell'); if(!hd) return;
@@ -375,9 +386,29 @@
     return {el:g,done:done,journal:function(e,NA){ return st.line?'<p class="a"><b>'+e(c.root)+'</b> = '+e(c.meaning)+'. '+e(st.line)+'</p>':NA; }}; };
 
   /* ---------------------------------------------------------------- almanac: one real saying, verified word for word, tied to the virtue */
-  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!ed) return;
-    var a=el('div','rg rg-almanac','<div class="rg-al-head"><span>☼</span> The Almanac Corner <span>☾</span></div><blockquote>“'+esc(A.saying)+'”</blockquote><cite>'+esc(A.cite)+'</cite><button type="button" class="rg-btn alt rg-al-turn">Turn the page ▸</button><div class="rg-al-back">'+(A.what?'<p><b>What’s an almanac?</b> '+esc(A.what)+'</p>':'')+'<p>'+esc(A.tie)+'</p>'+(A.q?'<p class="q">'+esc(A.q)+'</p>':'')+'</div>');
-    after(ed,a); $('.rg-al-turn',a).addEventListener('click',function(){ a.classList.toggle('turned'); SFX.paper(); S.m.almanac=true; save(); }); if(S.m.almanac) a.classList.add('turned'); }
+  /* ---------------------------------------------------------------- almanac: a real almanac to open — tap its title page, turn the page, sort who chose their hours */
+  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!ed) return; var st=mstate('almanac',{seen:{},sort:{}});
+    var spots=A.spots||[], sort=A.sort||{};
+    var a=el('section','rg rg-almanac2','<div class="rg-al2-head"><span class="sun">☀</span><b>The Almanac Corner</b><span class="moon">☾</span></div>'+whyCard(A.why)+todo(A.todo)+
+      '<div class="rg-al2-book"><div class="rg-al2-cover"><img alt="Title page of Poor Richard, 1743, an Almanack, printed by B. Franklin in Philadelphia" src="'+esc(LOCAL+A.img)+'">'+spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%">'+(i+1)+'</button>'; }).join('')+'<div class="cap">'+esc(A.imgCap||'')+'</div></div>'+
+      '<div class="rg-al2-side"><ol class="rg-al2-notes">'+spots.map(function(s,i){ return '<li data-i="'+i+'"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span></li>'; }).join('')+'</ol>'+
+      '<button type="button" class="rg-btn rg-al2-open">📖 Open the almanac</button><div class="rg-al2-page"><div class="pg"><div class="orn">❦ ❦ ❦</div><blockquote>“'+esc(A.saying)+'”</blockquote><cite>'+esc(A.cite)+'</cite><div class="orn">❦</div></div></div></div></div>'+
+      '<div class="rg-al2-sort"></div>');
+    after(ed,a);
+    function paint(){ var n=Object.keys(st.seen).length, need=spots.length;
+      $$('.rg-al2-n',a).forEach(function(b){ b.classList.toggle('on',!!st.seen[b.dataset.i]); }); $$('.rg-al2-notes li',a).forEach(function(li){ li.classList.toggle('on',!!st.seen[li.dataset.i]); });
+      var ob=$('.rg-al2-open',a); ob.disabled=n<need; ob.textContent=n<need?'📖 Tap all '+need+' numbers to open it ('+n+' of '+need+')':'📖 Turn the page'; ob.classList.toggle('rg-hide',!!st.open);
+      a.classList.toggle('open',!!st.open);
+      var cards=sort.cards||[], box=$('.rg-al2-sort',a);
+      box.innerHTML=st.open&&cards.length?'<div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<div class="rg-al2-bin" data-k="'+k+'"><div class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</div>'+cards.map(function(c,i){ return st.sort[i]===k?'<div class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</div>':''; }).join('')+'</div>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
+      a.classList.toggle('finished',done()); }
+    a.addEventListener('click',function(e){ var b=e.target.closest('.rg-al2-n'); if(b){ st.seen[b.dataset.i]=true; save(); SFX.scratch(); paint(); return; }
+      if(e.target.closest('.rg-al2-open')){ st.open=true; save(); SFX.paper(); paint(); refreshPress(); } });
+    dragTap(a,'.rg-al2-cards .rg-card','.rg-al2-bin',function(card,bin){ var i=+card.dataset.i, c=sort.cards[i];
+      if(bin.dataset.k!==c.k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); $('.say',a).textContent=c.hint||'Look back at that person’s column.'; return; }
+      st.sort[i]=c.k; save(); c.calm?SFX.soft():SFX.chime(); paint(); });
+    function done(){ return !!st.open&&(sort.cards||[]).every(function(c,i){ return !!st.sort[i]; }); }
+    paint(); R.almanac={el:a,done:done}; }
 
   function buildModules(){
     var p1=document.getElementById('panel-dispatch'), p2=document.getElementById('panel-desk'), p4=document.getElementById('panel-press');

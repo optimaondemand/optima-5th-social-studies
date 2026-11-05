@@ -372,3 +372,57 @@ html.rg-on .hero-illustration-wrap svg{ width:100%!important; height:auto!import
 .rg-game[data-tab]::before{ content:attr(data-tab); position:absolute; left:-4px; top:-27px; background:#E6D7B2; border:1px solid #CDB98A; border-bottom:0; border-radius:6px 6px 0 0; padding:5px 14px 4px; font:700 11px var(--rg-type); letter-spacing:.12em; text-transform:uppercase; color:#5C3D24; }
 .rg-game::after{ content:''; position:absolute; right:18px; top:-10px; width:16px; height:38px; border:3px solid #9AA3B8; border-bottom:0; border-radius:8px 8px 0 0; transform:rotate(8deg); pointer-events:none; }
 .rg-morgue.rg-game, .rg-morgue{ border-left:0; } .rg-morgue::after{ display:none; }
+/* v3 · Ms. Avery's typewriter: the paper rises out of the machine (replaces the teletype look) */
+.rg-wire{ display:none; flex-direction:column; align-items:stretch; width:min(420px,calc(100vw - 24px)); }
+.rg-wire.open{ display:flex; }
+.rg-tt{ display:none!important; }
+.rg-wire-paper{ order:1; margin:0 34px -14px; background:#FFFDF4!important; background-image:none!important; border:1px solid #E2D8BE; border-bottom:0; border-radius:3px 3px 0 0; max-height:min(48vh,400px); overflow:auto; box-shadow:0 -2px 10px rgba(0,0,0,.08); position:relative; z-index:1; display:flex; flex-direction:column; }
+.rg-wire-paper::before{ content:''; position:sticky; top:0; }
+.rg-wire-head{ position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:10px; padding:12px 16px 10px; background:#FFFDF4; border-bottom:2px solid #1A2138; }
+.rg-wire-head .nm{ font:800 17px var(--rg-head); color:#1A2138; } .rg-wire-head .st{ font:12px var(--rg-type); color:#7A6A45; } .rg-wire-head .rg-avery{ width:40px; height:40px; }
+.rg-wire-head .x{ margin-left:auto; background:none; border:0; font-size:18px; color:#7A6A45; cursor:pointer; }
+.rg-wire-roll{ padding:4px 20px 26px; }
+.rg-wire .rg-msg.t{ border-bottom:0!important; padding:8px 30px 4px 0!important; font:15.5px/1.55 var(--rg-type)!important; color:#22252B!important; }
+.rg-wire .rg-msg.t .tx{ text-shadow:0 0 .4px rgba(0,0,0,.6); }
+.rg-wire .rg-msg.sys{ margin-top:10px; }
+.rg-tw{ order:2; position:relative; z-index:2; line-height:0; }
+.rg-tw-svg{ width:100%; height:auto; display:block; filter:drop-shadow(0 8px 10px rgba(0,0,0,.35)); }
+.rg-wire-reply{ order:3; margin:6px 8px 0!important; background:#F3EAD3!important; border:1px solid #D9CBA6!important; border-radius:10px!important; }
+.rg-wire-reply::after{ display:none!important; }
+.rg-wire.typing-on .rg-tw-svg{ animation:rg-tw-shake .09s linear infinite; } @keyframes rg-tw-shake{ 50%{ transform:translateY(.6px); } }
+.rg-ticker .ic{ background:none; border:0; width:40px; height:40px; } .rg-ticker .ic .rg-avery{ width:40px; height:40px; }
+/* almanac v2: a real 1743 almanac to open */
+.rg-almanac2{ position:relative; margin:26px 0; padding:16px 18px 18px; border-radius:6px; color:var(--rg-ink); background:radial-gradient(ellipse at 30% 0,#F8EBC6,#EBD8A8 70%,#DFC68F); border:1px solid #B9995A; box-shadow:inset 0 0 40px rgba(139,111,46,.25), 0 6px 14px rgba(60,45,25,.15); }
+.rg-almanac2::before{ content:''; position:absolute; inset:6px; border:1px dashed rgba(92,61,36,.35); border-radius:4px; pointer-events:none; }
+.rg-al2-head{ display:flex; align-items:center; justify-content:center; gap:14px; font:900 20px var(--rg-head); color:#5C3D24; letter-spacing:.04em; margin-bottom:10px; }
+.rg-al2-head .sun{ color:#D9822B; font-size:26px; } .rg-al2-head .moon{ color:#3D4A6B; font-size:24px; }
+html:not(.rg-quiet) .rg-al2-head .sun{ animation:rg-spin 24s linear infinite; display:inline-block; } @keyframes rg-spin{ to{ transform:rotate(360deg); } }
+.rg-al2-book{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:18px; align-items:start; perspective:1400px; }
+.rg-al2-cover{ position:relative; background:#fff; padding:6px; box-shadow:-6px 0 0 #8B5A2E, 0 8px 18px rgba(60,45,25,.3); transform:rotate(-1.5deg); }
+.rg-al2-cover::before{ content:''; position:absolute; left:-6px; top:0; bottom:0; width:6px; background:repeating-linear-gradient(#5C3D24 0 8px,#C9A66B 8px 10px); }
+.rg-al2-cover img{ display:block; width:100%; height:auto; filter:sepia(.35) contrast(1.05); }
+.rg-al2-cover .cap{ font:11px/1.3 var(--rg-sans); color:var(--rg-soft); margin-top:4px; }
+.rg-al2-n{ position:absolute; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:50%; border:2px solid #fff; background:#B8923E; color:#fff; font:800 13px var(--rg-sans); cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.35); }
+.rg-al2-n.on{ background:#fff; color:#8B6F2E; border-color:#B8923E; } html:not(.rg-quiet) .rg-al2-n:not(.on){ animation:rg-pulse 2s infinite; }
+.rg-al2-notes{ margin:0 0 12px; padding-left:20px; font:14px/1.4 var(--rg-serif); } .rg-al2-notes li{ margin:5px 0; color:#9A8A60; } .rg-al2-notes li span{ display:none; } .rg-al2-notes li.on{ color:var(--rg-ink); } .rg-al2-notes li.on span{ display:block; font-family:var(--rg-type); font-size:13px; color:#5C3D24; }
+.rg-al2-notes li b{ font:700 14px var(--rg-sans); }
+.rg-al2-page{ display:none; transform-origin:left center; } .rg-almanac2.open .rg-al2-page{ display:block; }
+html:not(.rg-quiet) .rg-almanac2.open .rg-al2-page{ animation:rg-turn .9s cubic-bezier(.3,.7,.3,1); } @keyframes rg-turn{ from{ transform:rotateY(-95deg); opacity:.2; } }
+.rg-al2-page .pg{ background:#FFFBEA; border:1px solid #CDB98A; padding:16px 18px; box-shadow:4px 6px 0 #E8DCB8, 0 8px 18px rgba(60,45,25,.18); text-align:center; }
+.rg-al2-page blockquote{ margin:6px 0; font:italic 700 22px/1.35 'Crimson Text',Georgia,serif; color:#2B2620; }
+.rg-al2-page cite{ font:12px var(--rg-sans); color:var(--rg-soft); } .rg-al2-page .orn{ color:#B8923E; letter-spacing:.4em; }
+.rg-al2-sort .q{ margin:16px 0 8px; font:15px var(--rg-sans); } .rg-al2-cards{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.rg-al2-bins{ display:grid; grid-template-columns:1fr 1fr; gap:12px; } .rg-al2-bin{ min-height:80px; border:3px solid #8B5A2E; border-radius:6px 6px 14px 14px; background:repeating-linear-gradient(90deg,#E6C98F 0 10px,#D8B676 10px 12px); padding:8px; }
+.rg-al2-bin[data-k="no"]{ border-color:#4A5568; background:repeating-linear-gradient(90deg,#DCD8CE 0 10px,#CFCAC0 10px 12px); }
+.rg-al2-bin .lab{ font:800 13px var(--rg-sans); color:#2B2620; margin-bottom:6px; } .rg-al2-bin .chip{ background:#FFFDF4; border-radius:6px; padding:6px 8px; margin:5px 0; font:13.5px/1.35 var(--rg-serif); box-shadow:0 1px 2px rgba(0,0,0,.15); } .rg-al2-bin .chip.calm{ background:#F2F0EC; }
+.rg-al2-sort .say{ font:italic 14px var(--rg-serif); color:#8B2D26; margin-top:8px; min-height:1em; }
+@media (max-width:760px){ .rg-al2-book, .rg-al2-bins{ grid-template-columns:1fr; } }
+.rg-wire-paper{ max-height:min(36vh,300px); }
+.rg-tw{ margin:0 6px; } .rg-tw-svg{ max-height:130px; }
+.rg-wire{ max-height:calc(100vh - 140px); }
+/* red pencil fix: the strike line stays hidden until the student strikes the claim
+   (dash tricks don't work with a stretched SVG, so the line is revealed with a clip instead) */
+.rg-rpc-clip .strike{ opacity:0; clip-path:inset(0 100% 0 0); transition:clip-path .9s ease-in, opacity .05s; }
+.rg-rpc-clip .strike path{ stroke-dasharray:none!important; stroke-dashoffset:0!important; }
+.rg-redpencil.struck .rg-rpc-clip .strike{ opacity:1; clip-path:inset(0 0 0 0); }
+@media (max-width:760px){ .rg-tb:not(.cam) span{ display:none!important; } .rg-tray{ gap:10px; } }

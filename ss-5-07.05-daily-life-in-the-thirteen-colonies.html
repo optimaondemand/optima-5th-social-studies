@@ -2730,11 +2730,78 @@ html, body {
   ]
  },
  "almanac": {
+  "img": "rg-poor-richard-1743.jpg",
+  "imgCap": "Title page of Poor Richard, 1743, an Almanack. Printed by Benjamin Franklin. Library of Congress, public domain.",
+  "why": {
+   "icon": "📅",
+   "q": "What’s an almanac?",
+   "t": "An almanac was a yearly book with calendars, weather guesses, the times the sun and moon rose and set, and short sayings. Many colonial families owned one and used it to plan their days. Benjamin Franklin printed one every year, called Poor Richard."
+  },
+  "todo": "1. Tap each gold number on the real title page. 2. Turn the page to read a famous saying. 3. Sort who got to choose their own hours.",
+  "spots": [
+   {
+    "x": 6,
+    "y": 4,
+    "label": "Poor Richard, 1743",
+    "t": "Franklin printed a new Poor Richard every year, for the years 1733 through 1758."
+   },
+   {
+    "x": 5,
+    "y": 66,
+    "label": "Sun and Moon’s Rising and Setting",
+    "t": "The almanac told readers when the sun would rise and set each day. Families planned their work around it."
+   },
+   {
+    "x": 5,
+    "y": 87,
+    "label": "By Richard Saunders",
+    "t": "Richard Saunders was a made-up name. The real writer was Benjamin Franklin."
+   },
+   {
+    "x": 5,
+    "y": 93,
+    "label": "Printed and sold by B. Franklin",
+    "t": "Franklin started out as a printer’s apprentice. Later he owned his own print shop in Philadelphia."
+   }
+  ],
   "saying": "Early to bed and early to rise, makes a man healthy wealthy and wise.",
   "cite": "Poor Richard’s Almanack, 1735. Printed by Benjamin Franklin in Philadelphia.",
-  "what": "An almanac was a yearly book with weather guesses, calendars, and short sayings. Many colonial families owned one.",
-  "tie": "Poor Richard told readers to run their own days well. That’s self-governance. But in the colonies, not everyone got to choose when to go to bed or when to get up.",
-  "q": "As you follow six people today, ask: who chose their own hours, and who didn’t?"
+  "sort": {
+   "q": "Poor Richard says to choose good hours. But who got to choose?",
+   "todo": "Tap a person, then tap a basket.",
+   "cards": [
+    {
+     "t": "A wealthy planter",
+     "icon": "🏛️",
+     "k": "yes",
+     "why": "He decided when to ride out and when to rest.",
+     "hint": "Look again. Who told the planter when to work?"
+    },
+    {
+     "t": "A printer who owns his shop",
+     "icon": "🖨️",
+     "k": "yes",
+     "why": "He ran his own shop, like Franklin did.",
+     "hint": "Look again. He owns the shop. Who could tell him what to do?"
+    },
+    {
+     "t": "A printer’s apprentice",
+     "icon": "🧑‍🔧",
+     "k": "no",
+     "why": "His master decided when he worked and when he could go out.",
+     "hint": "Look again at the apprentice’s evening in the columns."
+    },
+    {
+     "t": "An enslaved person",
+     "icon": "⛓️",
+     "k": "no",
+     "calm": true,
+     "why": "An overseer forced them to work from first light, with no pay.",
+     "hint": "Look again at the enslaved person’s column."
+    }
+   ]
+  },
+  "tie": "Poor Richard’s advice only works if you get to run your own day. Self-governance means being in charge of your own choices, and in the colonies, many people were not allowed to be."
  },
  "redpencil": {
   "why": {
@@ -3003,13 +3070,13 @@ html, body {
    },
    {
     "at": "^Almanac$",
-    "sel": "#panel-dispatch .rg-almanac",
+    "sel": "#panel-dispatch .rg-almanac2",
     "fx": "glow",
     "scroll": true
    },
    {
     "at": "^Poor$",
-    "sel": "#panel-dispatch .rg-almanac blockquote",
+    "sel": "#panel-dispatch .rg-al2-cover",
     "fx": "trace"
    },
    {
