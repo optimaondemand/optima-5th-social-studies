@@ -271,3 +271,104 @@ html.rg-on .rg-tabslot .tab-btn{ min-width:0; white-space:normal; }
 @media (max-width:560px){ html.rg-on .rg-tabslot .tab-bar{ grid-template-columns:repeat(2,minmax(0,1fr)); } .rg-press-r{ flex-wrap:wrap; justify-content:flex-start; } .rg-press-row{ align-items:flex-start; } .rg-proof{ width:34px; height:44px; } }
 .rg-press-sub{ flex-wrap:wrap; } .rg-press-r{ flex-wrap:wrap; min-width:0; } .rg-press-main{ min-width:0; }
 @media (max-width:560px){ .rg-press-sub .ttl{ flex-basis:100%; } .rg-tb, .rg-who, .rg-wire-btn{ padding:3px 7px; } }
+
+/* ═════════ v2 · objects on the page (Nov 2026): the lesson is a newspaper page lying on the editor's desk ═════════ */
+html.rg-on body{ background:#E9E3D6 radial-gradient(ellipse at 50% 0,#F3EEE3,#E2DACA 70%); }
+html.rg-on .lesson-shell{ background:#FFFDF7; max-width:980px; padding:0 22px 60px; box-shadow:0 0 0 1px #E2D8C2, 0 18px 40px rgba(60,45,25,.18); position:relative; }
+html.rg-on .lesson-shell::before{ content:''; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(120,100,60,.025) 3px 4px); }
+/* header: one row, like G4 */
+html.rg-on .oao-header{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 -22px; padding:12px 18px; border-bottom:4px solid var(--rg-gold); }
+html.rg-on .oao-header-brand .oao-header-org, html.rg-on .oao-header-brand .oao-header-sub{ display:none; }
+html.rg-on .oao-header-brand, html.rg-on .oao-header-logo{ margin:0; }
+html.rg-on .oao-header-logo img{ width:40px; height:40px; }
+html.rg-on .oao-header-title{ flex:1; min-width:220px; margin:0; font-size:24px; }
+html.rg-on .oao-header-title>*:not(em):not(.rg-hd-meta){ }
+.rg-hd-meta{ font:600 13px var(--rg-sans); color:#C9D3E6; margin-top:3px; } .rg-hd-meta b{ color:#E9B44C; font-weight:700; }
+html.rg-on .oao-header-badge{ padding:5px 12px; font-size:13px; }
+.rg-hd-tools{ display:flex; gap:6px; margin:0; padding:0; max-width:none; }
+.rg-pill{ background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.3); }
+.rg-pill[aria-expanded="true"]{ background:#E9B44C; color:var(--rg-navy); }
+.rg-hd-panel{ margin:10px 0; padding:0; }
+/* the front page: full-width banner, slim masthead */
+html.rg-on .hero-newspaper{ margin:0 -22px; border-radius:0; border:0; box-shadow:none; background:#FBF7EC; }
+html.rg-on .masthead-overlay{ padding:8px 18px 6px; } html.rg-on .masthead-title{ font-size:clamp(24px,4vw,36px); } html.rg-on .masthead-tagline{ font-size:12px; }
+html.rg-on .hero-illustration-wrap{ padding:0; } html.rg-on .hero-illustration-wrap svg{ display:block; width:100%; height:auto; border-radius:0; border:0; }
+html.rg-on .hero-headline-strip{ display:none; }
+html.rg-on #newsroomStatusBlock, html.rg-on #lastEditionBlock, html.rg-on .dispatch-card, html.rg-on .intro-collapsed-bar{ display:none!important; }
+html.rg-on:not([data-rg-tab="dispatch"]) #introSection{ display:none; }
+/* press bar = G4 file bar: newsprint, attached under the banner, sticky */
+.rg-press{ background:linear-gradient(#F6EEDB,#EFE4C8); color:var(--rg-ink); border-radius:0; margin:0 -22px 14px; padding:8px 18px 0; border-top:3px double var(--rg-navy); border-bottom:2px solid #CDB98A; box-shadow:0 6px 14px rgba(60,45,25,.12); }
+.rg-press-top{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-left:76px; min-height:30px; }
+.rg-press-top .kick{ font:700 11px var(--rg-sans); letter-spacing:.14em; text-transform:uppercase; color:var(--rg-gold2); } .rg-press-top .kick b{ color:var(--rg-navy); }
+.rg-press-r{ display:flex; gap:8px; align-items:center; }
+.rg-who{ background:none; border:0; color:var(--rg-navy); font:italic 700 16px var(--rg-head); padding:0 4px; } .rg-who b{ font-weight:700; }
+.rg-wire-btn{ display:inline-flex; align-items:center; gap:6px; background:var(--rg-navy); color:#fff; border:0; border-radius:999px; padding:7px 14px; font:800 13px var(--rg-sans); box-shadow:0 2px 6px rgba(14,20,38,.3); }
+.rg-wire-btn .n{ display:inline-block; min-width:20px; text-align:center; background:#8B2D26; border-radius:999px; padding:1px 6px; margin:0; } .rg-wire-btn:not(.unread) .n{ background:rgba(255,255,255,.18); }
+.rg-press-row{ display:flex; gap:12px; align-items:flex-end; }
+.rg-proof{ width:60px; height:78px; margin-top:-34px; transform:rotate(-4deg); filter:drop-shadow(0 4px 5px rgba(60,45,25,.3)); flex:0 0 auto; }
+.rg-tabslot{ flex:1; min-width:0; }
+html.rg-on .rg-tabslot .tab-bar{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; background:transparent; padding:0; margin:0; box-shadow:none; position:static; overflow:visible; }
+html.rg-on .rg-tabslot .tab-btn{ display:flex; align-items:center; gap:8px; text-align:left; white-space:normal; background:#E6D7B2; color:var(--rg-ink); border:1px solid #CDB98A; border-bottom:0; border-radius:8px 8px 0 0; padding:7px 10px 8px; font-family:var(--rg-sans); box-shadow:none; }
+html.rg-on .rg-tabslot .tab-btn.active{ background:#FFFDF7; border-color:#B9A57A; transform:translateY(1px); padding-bottom:10px; box-shadow:0 -2px 6px rgba(60,45,25,.08); }
+.rg-tn{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:#B8923E; color:#fff; font:800 12px var(--rg-sans); display:flex; align-items:center; justify-content:center; }
+.tab-btn.active .rg-tn{ background:var(--rg-navy); } .tab-btn.rg-done .rg-tn{ background:#5C7A4A; font-size:0; } .tab-btn.rg-done .rg-tn::after{ content:'✓'; font-size:12px; }
+.rg-tt{ display:flex; flex-direction:column; line-height:1.2; min-width:0; } .rg-tt b{ font:800 14px var(--rg-head); } .rg-tt small{ font:600 11.5px var(--rg-sans); color:#7A6A45; overflow:hidden; text-overflow:ellipsis; }
+html.rg-on .rg-tabslot .tab-btn.rg-done::after{ display:none; }
+/* story line sits right under the tabs */
+.rg-story{ margin:0 0 12px; border-radius:6px; } .rg-story .last{ display:block; margin-top:4px; font-style:italic; color:var(--rg-soft); }
+/* in-page notes: one line, like G4's "New text" pill */
+.rg-note{ border:0; background:none; padding:0; margin:12px 0; }
+.rg-note .rg-tape,.rg-note .rg-ch,.rg-note .hd{ display:none!important; }
+.rg-note .mini{ display:flex!important; align-items:center; gap:10px; background:#FBF7EC; border:1.5px solid #CDB98A; border-radius:999px; padding:6px 14px 6px 8px; box-shadow:0 2px 6px rgba(60,45,25,.08); font:14px var(--rg-sans); }
+.rg-note .mini .rg-avery{ width:30px; height:30px; } .rg-note .mini .pv{ flex:1; }
+.rg-note.new .mini, .rg-note.ask .mini{ border-color:#8B2D26; box-shadow:0 0 0 4px rgba(139,45,38,.12); } .rg-note.new .mini::before{ content:''; width:8px; height:8px; border-radius:50%; background:#8B2D26; margin-left:4px; }
+/* the wire: a teletype machine printing onto a paper roll */
+.rg-wire{ top:calc(100% + 6px); right:10px; width:min(400px,calc(100vw - 28px)); border:0; border-radius:14px; background:transparent; box-shadow:0 20px 50px rgba(14,20,38,.4); overflow:visible; }
+.rg-tt{ position:relative; background:linear-gradient(#3E4A3C,#26302A); border-radius:14px 14px 6px 6px; padding:10px 12px 18px; border:2px solid #C9A66B; box-shadow:inset 0 2px 0 rgba(255,255,255,.12); }
+.rg-tt-body{ display:flex; justify-content:space-between; align-items:center; } .rg-tt .rg-wire-id .nm{ color:#F5ECD8; } .rg-tt .rg-wire-id .st{ color:#C9B98E; font:12px var(--rg-sans); }
+.rg-tt .lamp{ display:inline-block; width:7px; height:7px; border-radius:50%; background:#7CFC8A; box-shadow:0 0 6px #7CFC8A; margin-right:3px; }
+.rg-tt-keys{ display:flex; gap:4px; justify-content:center; margin-top:8px; } .rg-tt-keys i{ width:14px; height:10px; border-radius:50%; background:radial-gradient(circle at 40% 35%,#FAF3E0,#B9AD8F); box-shadow:0 2px 0 #11160F; }
+.rg-tt-slot{ position:absolute; left:18px; right:18px; bottom:5px; height:6px; background:#0B0F0C; border-radius:3px; }
+.rg-tt .x{ color:#F5ECD8; }
+.rg-wire-paper{ margin:-4px 26px 0; background:#FFFBEA; border-left:1px solid #E5D9AE; border-right:1px solid #E5D9AE; max-height:min(52vh,420px); overflow:auto; position:relative;
+  background-image:radial-gradient(circle,#E8DFC4 3px,transparent 3.5px),radial-gradient(circle,#E8DFC4 3px,transparent 3.5px); background-size:14px 18px; background-position:-7px 4px, calc(100% + 7px) 4px; background-repeat:repeat-y; }
+.rg-wire-roll{ padding:6px 18px 14px; overflow:visible; max-height:none; background:none; }
+.rg-wire .rg-msg.t{ background:none; border:0; border-bottom:1.5px dashed #D9CFA8; clip-path:none; box-shadow:none; padding:10px 32px 10px 0; font:15px/1.5 var(--rg-type); color:#1A2138; }
+.rg-wire .rg-msg.sys{ font:11px var(--rg-type); letter-spacing:.15em; color:#9A917C; text-transform:uppercase; }
+.rg-wire .rg-msg.s span{ background:none; color:#1F4E9C; font:italic 16px var(--rg-head); border:0; padding:4px 0; border-radius:0; transform:rotate(-1deg); }
+.rg-wire .rg-msg.s span::before{ content:'✎ '; }
+.rg-wire-reply{ margin:0 26px; background:#FFFBEA; border:1px solid #E5D9AE; border-top:0; border-radius:0 0 10px 10px; padding:8px 14px 12px; position:relative; }
+.rg-wire-reply::after{ content:''; position:absolute; left:-1px; right:-1px; bottom:-8px; height:8px; background:linear-gradient(135deg,#FFFBEA 4px,transparent 0) 0 0/10px 8px repeat-x, linear-gradient(-135deg,#FFFBEA 4px,transparent 0) 0 0/10px 8px repeat-x; }
+.rg-choice{ background:#fff; border-color:#1F4E9C; color:#1F4E9C; } .rg-choice:hover{ background:#1F4E9C; color:#fff; }
+/* ticker = a notification card, like G4's phone banner */
+.rg-ticker{ left:auto; right:120px; width:min(380px,calc(100vw - 40px)); top:calc(100% + 8px); background:#1E2433; color:#fff; border:0; border-radius:16px; padding:10px 14px; gap:12px; box-shadow:0 12px 30px rgba(0,0,0,.35); font:14px/1.35 var(--rg-sans); align-items:flex-start; }
+.rg-ticker .ic{ flex:0 0 auto; width:38px; height:38px; border-radius:10px; background:linear-gradient(#3E4A3C,#26302A); border:1.5px solid #C9A66B; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.rg-ticker .bd{ display:flex; flex-direction:column; min-width:0; flex:1; } .rg-ticker .bd b{ display:flex; justify-content:space-between; font:700 13px var(--rg-sans); } .rg-ticker .bd small{ color:#9AA3B8; font-weight:600; }
+.rg-ticker .tx{ white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; color:#E6E9F0; }
+/* desk tools = objects on the page (like the G4 science camera) */
+.rg-tray{ position:fixed; right:14px; bottom:18px; z-index:70; display:flex; flex-direction:column; gap:8px; align-items:center; }
+.rg-tb{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; width:58px; height:58px; padding:0; border-radius:50%; border:3px solid #fff; background:radial-gradient(circle at 35% 30%,#FBF7EC,#E6D7B2); color:var(--rg-navy); box-shadow:0 6px 14px rgba(14,20,38,.28); cursor:pointer; transition:transform .15s; }
+.rg-tb:hover{ transform:scale(1.07); } .rg-tb svg{ width:32px; height:28px; }
+.rg-tb span{ display:block!important; position:absolute; bottom:-4px; font:800 9px var(--rg-sans); letter-spacing:.06em; text-transform:uppercase; background:var(--rg-navy); color:#E9B44C; padding:1px 6px; border-radius:6px; white-space:nowrap; }
+.rg-tb.cam{ width:70px; height:70px; background:radial-gradient(circle at 35% 30%,#3A4568,#1A2138); } .rg-tb.cam svg{ width:44px; height:36px; }
+.rg-tb .cnt{ position:absolute; top:-4px; right:-4px; min-width:20px; height:20px; display:flex; align-items:center; justify-content:center; font:800 11px var(--rg-sans); background:#8B2D26; color:#fff; border:2px solid #fff; border-radius:10px; padding:0 4px; }
+html.rg-hlmode .rg-tb.hl, .rg-tb.on{ background:radial-gradient(circle at 35% 30%,#FFF2A8,#F4C430); }
+html:not(.rg-quiet) .rg-tb.cam.nudge{ animation:rg-pulse 1.8s ease-in-out 3; }
+@media (max-width:760px){
+  html.rg-on .lesson-shell{ padding:0 14px 90px; } html.rg-on .oao-header, html.rg-on .hero-newspaper, .rg-press{ margin-left:-14px; margin-right:-14px; }
+  .rg-press-top{ margin-left:62px; flex-wrap:wrap; } .rg-proof{ width:46px; height:60px; margin-top:-30px; }
+  html.rg-on .rg-tabslot .tab-bar{ grid-template-columns:repeat(2,minmax(0,1fr)); } .rg-tt small{ display:none; }
+  .rg-tray{ flex-direction:row; right:10px; bottom:10px; } .rg-tb{ width:48px; height:48px; } .rg-tb.cam{ width:56px; height:56px; } .rg-tb svg{ width:26px; height:22px; } .rg-tb.cam svg{ width:34px; height:28px; }
+  .rg-ticker{ right:10px; } .rg-hd-tools{ width:100%; }
+}
+/* v2 fixes */
+.rg-tabt{ display:flex; flex-direction:column; line-height:1.2; min-width:0; } .rg-tabt b{ font:800 14px var(--rg-head); } .rg-tabt small{ font:600 11.5px var(--rg-sans); color:#7A6A45; }
+.rg-tabslot .rg-tt{ background:none; border:0; padding:0; box-shadow:none; }
+html.rg-on .hero-illustration-wrap svg{ width:100%!important; height:auto!important; max-height:none!important; border:0!important; border-radius:0!important; }
+.rg-wire{ box-shadow:none!important; }
+@media (max-width:760px){ .rg-tabt small{ display:none; } }
+/* every activity is a sheet on the desk with a file tab, like G4's Florida File card */
+.rg-game{ position:relative; margin-top:34px; background:#FBF8EF; border:1px solid #D9CBA6; border-left:4px solid var(--rg-navy); border-radius:0 8px 8px 8px; box-shadow:0 3px 0 #EFE6CF, 0 6px 14px rgba(60,45,25,.10); }
+.rg-game[data-tab]::before{ content:attr(data-tab); position:absolute; left:-4px; top:-27px; background:#E6D7B2; border:1px solid #CDB98A; border-bottom:0; border-radius:6px 6px 0 0; padding:5px 14px 4px; font:700 11px var(--rg-type); letter-spacing:.12em; text-transform:uppercase; color:#5C3D24; }
+.rg-game::after{ content:''; position:absolute; right:18px; top:-10px; width:16px; height:38px; border:3px solid #9AA3B8; border-bottom:0; border-radius:8px 8px 0 0; transform:rotate(8deg); pointer-events:none; }
+.rg-morgue.rg-game, .rg-morgue{ border-left:0; } .rg-morgue::after{ display:none; }

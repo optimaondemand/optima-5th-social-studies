@@ -123,7 +123,7 @@
   function paintSay(){ $$('.rg-say').forEach(function(b){ var on=b.dataset.k===SAYNOW; b.classList.toggle('playing',on); b.textContent=on?'❚❚':'▶'; }); }
   function onSay(e){ var b=e.target.closest&&e.target.closest('.rg-say'); if(!b) return; e.stopPropagation(); var k=b.dataset.k, a=SAY[k]; if(!a) return; if(SAYNOW===k){ a.pause(); SAYNOW=null; paintSay(); return; } if(SAYNOW&&SAY[SAYNOW]) SAY[SAYNOW].pause(); $$('audio').forEach(function(o){ o.pause(); }); a.currentTime=0; a.play(); SAYNOW=k; paintSay(); }
   function ack(sc){ var n=thread.filter(function(m){return m.scene===sc;}).length; if((S.ack[sc]||0)!==n){ S.ack[sc]=n; save(); render(); } }
-  function noteHTML(label){ return '<div class="hd"><div class="k">'+AVERY+'<span>'+label+'</span></div><button type="button" class="fold">Fold up ▴</button></div><div class="rg-tape"></div><div class="rg-ch"></div><button type="button" class="mini">'+AVERY+'<span class="pv"></span><span class="go">Open the wire ▸</span></button>'; }
+  function noteHTML(label){ return '<div class="hd"><div class="k">'+AVERY+'<span>'+label+'</span></div><button type="button" class="fold">Fold up ▴</button></div><div class="rg-tape"></div><div class="rg-ch"></div><button type="button" class="mini">'+AVERY+'<span class="pv"></span><span class="go">Open ▸</span></button>'; }
   function onNote(e){ var n=e.currentTarget; if(e.target.closest('.mini')){ openWire(true); return; } if(e.target.closest('.fold')){ ack(n.dataset.scene); return; } onChoice(e); }
   function onChoice(e){ var b=e.target.closest('.rg-choice'); if(!b) return; var cs=CHOICES[b.dataset.key]; if(!cs||b.dataset.key!==pendingKey) return; var key=b.dataset.key, i=+b.dataset.i, c=cs[i], a=asked(key); if(a.indexOf(i)===-1) a.push(i); SFX.clack(); student(c.t); if(c.reply) avery(c.reply,c.next||null,{scene:cs.scene,quiet:true});
     if(!c.next&&!c.end&&a.length<cs.length){ pendingKey=key; S.pendingKey=key; } save(); render(); }
@@ -141,10 +141,10 @@
       n.classList.toggle('rg-hide',!ms.length); n.classList.toggle('new',isNew);
       $('.rg-tape',n).innerHTML=(sc==='open'?ms:ms.slice(-4)).map(msgHTML).join(''); $('.rg-ch',n).innerHTML=(pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc)?choicesHTML():'';
       if(isNew&&!open) typeOut($('.rg-tape',n));
-      var tc=thread.filter(function(m){return m.f==='t';}).length; $('.mini .pv',n).innerHTML=isNew&&lt?'<b>New note:</b> '+esc(lt.t):'<b>Notes from Ms. Avery</b> · '+tc+' on the wire'; });
+      var tc=thread.filter(function(m){return m.f==='t';}).length; var lastAsk=pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc; $('.mini .pv',n).innerHTML=isNew&&lt?'<b>New note:</b> '+esc(lt.t):lastAsk?'<b>Ms. Avery is waiting for your reply</b>':'<b>Notes from Ms. Avery</b> · '+tc+' on the wire'; n.classList.toggle('ask',!!lastAsk); });
     if(open) save(); }
   function openWire(o){ if(!wireEl) return; wireEl.classList.toggle('open',o); wireBtn&&wireBtn.setAttribute('aria-expanded',!!o); if(o){ unread=0; hideTicker(); SFX.paper(); } render(); }
-  function ticker(text){ if(!tickEl||(wireEl&&wireEl.classList.contains('open'))) return; $('.tx',tickEl).textContent=text; tickEl.classList.remove('show'); void tickEl.offsetWidth; tickEl.classList.add('show'); SFX.ding(); clearTimeout(tickTimer); tickTimer=setTimeout(hideTicker,8000); }
+  function ticker(text){ if(!tickEl||(wireEl&&wireEl.classList.contains('open'))) return; $('.tx',tickEl).textContent=(nm()&&text.indexOf(nm())===-1?nm()+', '+text.charAt(0).toLowerCase()+text.slice(1):text); tickEl.classList.remove('show'); void tickEl.offsetWidth; tickEl.classList.add('show'); SFX.ding(); clearTimeout(tickTimer); tickTimer=setTimeout(hideTicker,8000); }
   function hideTicker(){ if(tickEl) tickEl.classList.remove('show'); }
   function currentScene(){ var a=$('.tab-panel.active'); return a?a.id.replace('panel-',''):'dispatch'; }
   Object.keys(T.choices||{}).forEach(function(k){ var c=T.choices[k], list=(c.list||[]).slice(); list.scene=c.scene||'dispatch'; CHOICES[k]=list; });
@@ -153,9 +153,9 @@
   function beat(k){ if(S.seen[k]) return; S.seen[k]=true; save(); var b=(T.beats||{})[k]; if(!b) return; [].concat(b).forEach(function(m){ if(typeof m==='string') m={t:m}; avery(m.t,m.choice||null,{scene:m.scene||BEAT_SCENE[k]||currentScene(),quiet:!!m.quiet}); }); }
   function buildWire(){
     wireEl=el('div','rg rg-wire'); wireEl.setAttribute('role','dialog'); wireEl.setAttribute('aria-label','Notes from Ms. Avery');
-    wireEl.innerHTML='<div class="rg-wire-top"><div class="rg-wire-id">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st">Editor-in-Chief · on the wire</div></div></div><button type="button" class="x" aria-label="Close the wire">✕</button></div><div class="rg-wire-mach" aria-hidden="true"><i></i><i></i><i></i></div><div class="rg-wire-roll"></div><div class="rg-wire-reply"></div>';
+    wireEl.innerHTML='<div class="rg-tt"><div class="rg-tt-body"><div class="rg-wire-id">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st"><i class="lamp"></i> Editor-in-Chief · on the wire</div></div></div><button type="button" class="x" aria-label="Close the wire">✕</button></div><div class="rg-tt-keys" aria-hidden="true">'+Array(14).join('<i></i>')+'</div><div class="rg-tt-slot" aria-hidden="true"></div></div><div class="rg-wire-paper"><div class="rg-wire-roll"></div></div><div class="rg-wire-reply"></div>';
     wireEl.addEventListener('click',onChoice); $('.x',wireEl).addEventListener('click',function(){ openWire(false); });
-    tickEl=el('div','rg rg-ticker','<span class="ic">📠</span><b>Ms. Avery:</b> <span class="tx"></span>'); tickEl.setAttribute('role','status');
+    tickEl=el('div','rg rg-ticker','<span class="ic">📠</span><span class="bd"><b>Ms. Avery · on the wire <small>now</small></b><span class="tx"></span></span>'); tickEl.setAttribute('role','status');
     tickEl.addEventListener('click',function(){ openWire(true); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&wireEl&&wireEl.classList.contains('open')) openWire(false); });
     if(!window.__rgSay){ window.__rgSay=true; document.addEventListener('click',onSay,true); } }
@@ -169,7 +169,9 @@
     unread=op.length+1; render(); setTimeout(function(){ ticker(T.toast||'A new story just came in. Open the wire when you’re ready.'); },900); }
   function buildStory(){ var anchor=$('.rg-note.opening')||document.getElementById('introSection'); if(!anchor) return;
     var t=DATA.storySoFar||'You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.';
-    before(anchor,el('div','rg rg-story','<span class="k">🗞️ The story so far</span><span class="t">'+esc(t)+'</span>')); }
+    var le=$('#lastEditionBlock .story-block-summary'), last=le?le.textContent.replace(/Tap to recap\.?|▼/g,'').trim():'';
+    var bx=el('div','rg rg-story','<span class="k">🗞️ The story so far</span><span class="t">'+esc(t)+(last?' <span class="last">'+esc(last)+'</span>':'')+'</span>');
+    var pr=pressEl; if(pr) after(pr,bx); else before(anchor,bx); }
 
   /* ================================================================ THE PRESS BAR — tabs + a front page that inks in as you work */
   var pressEl, STAGES=DATA.stages||[];
@@ -181,15 +183,18 @@
     '<g class="rg-proof-ok"><circle cx="50" cy="66" r="8" fill="#8B2D26"/><path d="M46,66 l3,3 l5,-6" stroke="#fff" stroke-width="2" fill="none"/></g></svg>'; }
   function buildPress(){
     var bar=document.getElementById('tabBar'); if(!bar||!STAGES.length) return;
+    var unit=(($$('.info-strip .info-cell')[1]||{}).querySelector?($$('.info-strip .info-cell')[1].querySelector('.info-value')||{}).textContent:'')||'';
     pressEl=el('div','rg rg-press');
-    pressEl.innerHTML='<div class="rg-press-row">'+proofSVG()+'<div class="rg-press-main"><div class="rg-press-sub"><span class="ttl">The Republic Gazette · Issue '+esc(ISSUE)+' · <span class="pg"></span></span><span class="rg-press-r"><span class="rg-trayslot"></span><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline">✎ <b></b></button><button type="button" class="rg-wire-btn" aria-expanded="false">📠 Wire <span class="n">0</span></button></span></div><div class="rg-tabslot"></div><div class="rg-press-cap"></div></div></div>';
-    before(bar,pressEl); move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
+    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">📠</span> Wire <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
+    var hero=$('.hero-newspaper'); if(hero) after(hero,pressEl); else before(bar,pressEl);
+    move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
+    STAGES.forEach(function(s,i){ var b=document.getElementById('btn-'+s.tab); if(!b) return; var lab=b.textContent.replace(/[✓]/g,'').trim(); setText(b,'<span class="rg-tn">'+(i+1)+'</span><span class="rg-tabt"><b>'+esc(lab)+'</b><small>'+esc(s.t)+'</small></span><span class="tab-check"></span>'); });
     $('.rg-who',pressEl).addEventListener('click',function(){ showNameCard(true); }); paintWho();
     wireBtn=$('.rg-wire-btn',pressEl); wireBtn.addEventListener('click',function(){ openWire(!wireEl.classList.contains('open')); });
     pressEl.appendChild(wireEl); pressEl.appendChild(tickEl);
     if(window.switchTab&&!window.__rgWrapped){ var orig=window.switchTab; window.switchTab=function(tab){ var prev=currentScene(); var r=orig.apply(this,arguments); if(html.classList.contains('rg-on')){ if(prev!==tab){ ack(prev); if(prev==='dispatch') ack('open'); } html.dataset.rgTab=tab; markNow(tab); render(); refreshPress(); } return r; }; window.__rgWrapped=true; }
     html.dataset.rgTab=currentScene(); markNow(currentScene()); }
-  function markNow(tab){ if(!pressEl) return; var i=STAGES.map(function(s){return s.tab;}).indexOf(tab); $('.pg',pressEl).textContent='tab '+(i+1)+' of '+STAGES.length; var st=STAGES[i]; $('.rg-press-cap',pressEl).textContent=st?['The proof inks in as you finish each tab.','Masthead ✓ → headline, columns and photo still to go.','Headline set. Fact-check, then go to press.','Last step: write, check, and print.'][i]||'':''; }
+  function markNow(tab){ if(!pressEl) return; var i=STAGES.map(function(s){return s.tab;}).indexOf(tab); $('.pg',pressEl).textContent='Tab '+(i+1)+' of '+STAGES.length; }
   var R={};
   function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
   function fcDone(){ var qs=$$('#panel-factcheck .factcheck-q'); return qs.length>0&&qs.every(function(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); }); }
@@ -207,13 +212,16 @@
       var tw=panel.querySelector('.tab-next-btn-wrap')||null; var note=el('div','rg rg-note rg-hide'); note.dataset.scene=s.tab; note.innerHTML=noteHTML('New note on the wire'); note.addEventListener('click',onNote); if(tw) before(tw,note); else panel.appendChild(note); }); }
 
   /* ================================================================ the top: Read aloud + Lesson details pills, one Editor's Lens line */
-  function buildTop(){ var hd=$('.oao-header'); if(!hd) return;
+  function buildTop(){ var hd=$('.oao-header'), shell=$('.lesson-shell'); if(!hd) return;
+    if(shell) move(hd,function(n){ shell.insertBefore(n,shell.firstChild); });
+    var vals=$$('.info-strip .info-cell').map(function(cell){ var v=$('.info-value',cell), l=$('.info-label',cell); return [l?l.textContent.trim():'',v?v.textContent.trim():'']; });
+    var t=$('.oao-header-title',hd); if(t&&vals.length>=3) t.appendChild(el('div','rg rg-hd-meta','<b>'+esc(vals[1][0])+':</b> '+esc(vals[1][1])+' · '+esc(vals[0][1])+' · <b>Virtue:</b> '+esc(vals[2][1])));
     var tools=el('div','rg rg-hd-tools'), panels=[];
     function pill(label,panel){ var b=el('button','rg-pill',label); b.type='button'; b.setAttribute('aria-expanded','false'); b.addEventListener('click',function(){ var o=!panel.classList.contains('open'); panels.forEach(function(p){ p[1].classList.remove('open'); p[0].setAttribute('aria-expanded','false'); }); panel.classList.toggle('open',o); b.setAttribute('aria-expanded',o); }); panels.push([b,panel]); tools.appendChild(b); }
     var anchor=hd, ra=document.getElementById('optima-read-aloud');
     if(ra){ var rp=el('div','rg rg-hd-panel'); after(anchor,rp); anchor=rp; move(ra,function(n){ rp.appendChild(n); }); pill('🔊 Read aloud',rp); }
     var strip=$('.info-strip'); if(strip){ var dp=el('div','rg rg-hd-panel'); after(anchor,dp); move(strip,function(n){ dp.appendChild(n); }); pill('ⓘ Lesson details',dp); }
-    after(hd,tools); }
+    hd.appendChild(tools); }
   function buildLens(){ var two=$('#introSection .intro-2col'); if(!two||!DATA.lens) return;
     var v=$('.virtue-lens-label'), virtue=v?(v.textContent.split('·').pop()||'').replace(/★/g,'').trim():'';
     after(two,el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>')); }
@@ -227,7 +235,7 @@
      Every module returns {done(), journal(e,NA)} and keeps its state in S.m[<name>]. Add a type by adding a MOD entry. */
   var MOD={};
   function mstate(k,d){ if(!S.m[k]) S.m[k]=d; return S.m[k]; }
-  function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+whyCard(c&&c.why)+todo(c&&c.todo); return g; }
+  function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.dataset.tab='Issue '+ISSUE+' · '+kicker.split('·')[0].trim(); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+whyCard(c&&c.why)+todo(c&&c.todo); return g; }
   /* drag OR tap: tap a card, then tap where it goes. dropTargets get .rg-drop; cb(card,target) */
   function dragTap(root,cardSel,targetSel,cb){ var picked=null;
     root.addEventListener('click',function(e){ var c=e.target.closest(cardSel); if(c&&root.contains(c)&&!c.classList.contains('placed')){ if(picked) picked.classList.remove('picked'); picked=c===picked?null:c; if(picked) picked.classList.add('picked'); SFX.clack(); return; }
@@ -551,8 +559,9 @@
   function whereAmI(b){ var p=b.closest('.tab-panel'); var i=STAGES.map(function(s){ return 'panel-'+s.tab; }).indexOf(p&&p.id); return i>-1?'Tab '+(i+1)+' · '+STAGES[i].t:'Dispatch'; }
   function modal(){ var m=$('#rgModal'); if(!m){ m=el('div','rg rg-modal'); m.id='rgModal'; m.addEventListener('click',function(e){ if(e.target===m) m.classList.remove('open'); }); document.body.appendChild(m); } m.classList.add('open'); return m; }
   var trayEl=null;
-  function buildTray(){ trayEl=el('span','rg rg-tray','<button type="button" class="rg-tb hl" title="Highlighter: mark the words that matter">🖍<span>Highlight</span><b class="cnt"></b></button><button type="button" class="rg-tb cam" title="Press camera: snap anything on the page">📷<span>Camera</span><b class="cnt"></b></button><button type="button" class="rg-tb roll" title="My clippings">🗂<span>Clippings</span><b class="cnt"></b></button><button type="button" class="rg-tb props" title="How real newspapers worked">📐<span>Newsroom</span></button>');
-    var slot=pressEl&&$('.rg-trayslot',pressEl); if(slot) slot.appendChild(trayEl); else document.body.appendChild(trayEl);
+  var TOOL_ICON={"hl": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M7 33h18\" stroke=\"#FFE14D\" stroke-width=\"5\" stroke-linecap=\"round\"/><g transform=\"rotate(40 22 17)\"><rect x=\"17\" y=\"3\" width=\"10\" height=\"19\" rx=\"2.5\" fill=\"#F4C430\" stroke=\"#8B6F2E\" stroke-width=\"1.2\"/><rect x=\"17\" y=\"3\" width=\"10\" height=\"5\" rx=\"2\" fill=\"#1A2138\"/><path d=\"M17 22h10l-2 5h-6z\" fill=\"#FAF3E0\" stroke=\"#8B6F2E\" stroke-width=\"1\"/><path d=\"M19.5 27h5l-1.2 4h-2.6z\" fill=\"#FFE14D\"/><rect x=\"19\" y=\"9\" width=\"2.2\" height=\"11\" rx=\"1\" fill=\"#fff\" opacity=\".45\"/></g></svg>", "cam": "<svg viewBox=\"0 0 48 40\" aria-hidden=\"true\"><rect x=\"9\" y=\"4\" width=\"9\" height=\"6\" rx=\"1\" fill=\"#C9A66B\" stroke=\"#5C3D24\"/><path d=\"M13.5 4V1.5\" stroke=\"#5C3D24\" stroke-width=\"1.5\"/><circle cx=\"13.5\" cy=\"1.5\" r=\"1.6\" fill=\"#FFF7DA\"/><rect x=\"4\" y=\"10\" width=\"40\" height=\"24\" rx=\"3\" fill=\"#2B2620\" stroke=\"#C9A66B\" stroke-width=\"1.5\"/><rect x=\"4\" y=\"15\" width=\"40\" height=\"3\" fill=\"#5C3D24\"/><circle cx=\"25\" cy=\"23\" r=\"9\" fill=\"#C9A66B\"/><circle cx=\"25\" cy=\"23\" r=\"6.5\" fill=\"#1A2138\"/><circle cx=\"25\" cy=\"23\" r=\"4\" fill=\"#3D5B8A\"/><circle cx=\"23.5\" cy=\"21.5\" r=\"1.4\" fill=\"#fff\" opacity=\".85\"/><rect x=\"36\" y=\"12\" width=\"5\" height=\"3\" rx=\"1\" fill=\"#E9B44C\"/></svg>", "roll": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M5 11h11l3 3h16v19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#C9A66B\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/><rect x=\"9\" y=\"8\" width=\"20\" height=\"16\" fill=\"#FBF7EC\" stroke=\"#B9AD8F\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"11\" width=\"13\" height=\"2\" fill=\"#1A2138\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"15\" width=\"10\" height=\"1.4\" fill=\"#9A917C\" transform=\"rotate(-6 19 16)\"/><path d=\"M5 17h30v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#E0C48A\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/></svg>", "props": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><rect x=\"4\" y=\"30\" width=\"32\" height=\"5\" rx=\"1.5\" fill=\"#5C3D24\"/><path d=\"M20 30V5\" stroke=\"#9AA3B8\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><g fill=\"#FBF7EC\" stroke=\"#9A917C\"><rect x=\"11\" y=\"18\" width=\"18\" height=\"10\" transform=\"rotate(-8 20 23)\"/><rect x=\"12\" y=\"12\" width=\"16\" height=\"9\" transform=\"rotate(6 20 16)\"/></g><rect x=\"13\" y=\"14.5\" width=\"9\" height=\"1.5\" fill=\"#8B2D26\" transform=\"rotate(6 20 16)\"/></svg>"};
+  function buildTray(){ trayEl=el('div','rg rg-tray','<button type="button" class="rg-tb cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<span>Snap</span><b class="cnt"></b></button><button type="button" class="rg-tb hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<span>Highlight</span><b class="cnt"></b></button><button type="button" class="rg-tb roll" title="My clippings: photos and highlights">'+TOOL_ICON.roll+'<span>Clippings</span><b class="cnt"></b></button><button type="button" class="rg-tb props" title="How real newspapers worked">'+TOOL_ICON.props+'<span>Newsroom</span></button>');
+    document.body.appendChild(trayEl);
     $('.hl',trayEl).addEventListener('click',function(){ if(html.classList.contains('rg-hlmode')){ setHL(false); return; } if(!store('hl-coached')) openCoach(); else setHL(true); });
     $('.cam',trayEl).addEventListener('click',startSnap); $('.roll',trayEl).addEventListener('click',openRoll); $('.props',trayEl).addEventListener('click',openProps);
     buildHighlighter(); buildHunt(); paintTray(); }
@@ -595,7 +604,7 @@
   function ensureH2C(cb){ if(window.html2canvas) return cb(); var s=document.createElement('script'); s.src=DATA.h2c||'assets/sparkle/vendor/html2canvas.min.js'; s.onload=cb; s.onerror=function(){ ticker('The camera file is missing. Tell your teacher.'); }; document.head.appendChild(s); }
   var huntEl=null;
   function buildHunt(){ var CAM=DATA.camera||{}, MS=CAM.missions||[]; if(!MS.length) return; var anchor=$('#panel-dispatch .rg-scene'); if(!anchor) return;
-    huntEl=el('div','rg rg-hunt','<div class="cam">📷</div><div><div class="rg-game-k">Bonus · Photo assignment <span class="opt">optional</span></div><div class="t">'+esc(CAM.title||'Every newspaper needs pictures. Can you snap all '+MS.length+'?')+'</div><ol></ol><div class="row"><button type="button" class="rg-btn alt">📷 Try the camera</button><span>'+esc(CAM.how||'Tap 📷 Camera in the desk tray, then drag a box around anything on the page. Your photos print in your Reporter’s Notebook.')+'</span></div></div>');
+    huntEl=el('div','rg rg-hunt','<div class="cam">📷</div><div><div class="rg-game-k">Bonus · Photo assignment <span class="opt">optional</span></div><div class="t">'+esc(CAM.title||'Every newspaper needs pictures. Can you snap all '+MS.length+'?')+'</div><ol></ol><div class="row"><button type="button" class="rg-btn alt">📷 Try the camera</button><span>'+esc(CAM.how||'Tap the 📷 Snap camera at the bottom right of the page, then drag a box around anything on the page. Your photos print in your Reporter’s Notebook.')+'</span></div></div>');
     after(anchor,huntEl); $('button',huntEl).addEventListener('click',startSnap); paintHunt(); }
   function paintHunt(){ if(!huntEl) return; var MS=(DATA.camera||{}).missions||[], a=photos(), n=0; $('ol',huntEl).innerHTML=MS.map(function(ms,i){ var d=a.some(function(p){ return p.mission===i; }); if(d) n++; return '<li class="'+(d?'on':'')+'"><span>'+(d?'✅':'🎯')+'</span>'+esc(ms)+'</li>'; }).join(''); huntEl.classList.toggle('done',n===MS.length); }
   var ov=null;
@@ -626,7 +635,7 @@
     setTimeout(function(){ var c=$('.cap',m); c&&c.focus(); },50); }
   function openRoll(){ var m=modal(), a=photos(), H=highlights();
     function grp(c){ var x=H.filter(function(h){ return h.c===c; }); return x.length?'<h4><i style="background:'+HL_COLORS[c].c+'"></i>'+HL_COLORS[c].n+'</h4>'+x.map(function(h){ return '<div class="rg-note-l">“'+esc(h.t)+'” <small>'+esc(h.where)+'</small></div>'; }).join(''):''; }
-    m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>🗂 My clippings</h3><h4>📷 Photos ('+a.length+')</h4><div class="rg-roll">'+(a.length?a.map(function(p,i){ return '<div class="rg-pola"><img alt="" src="'+p.src+'"><div class="c">'+esc(p.cap||'(no caption)')+'</div><button type="button" class="del" data-i="'+i+'" title="Delete">🗑</button></div>'; }).join(''):'<p class="rg-empty">No photos yet. Tap 📷 Camera, then drag a box around anything on the page.</p>')+'</div><h4>🖍 Highlights</h4>'+(H.length?grp('y')+grp('g')+grp('p'):'<p class="rg-empty">No highlights yet.</p>')+'<div class="row"><button type="button" class="rg-btn nb">📓 Download my Reporter’s Notebook</button></div></div>';
+    m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>🗂 My clippings</h3><h4>📷 Photos ('+a.length+')</h4><div class="rg-roll">'+(a.length?a.map(function(p,i){ return '<div class="rg-pola"><img alt="" src="'+p.src+'"><div class="c">'+esc(p.cap||'(no caption)')+'</div><button type="button" class="del" data-i="'+i+'" title="Delete">🗑</button></div>'; }).join(''):'<p class="rg-empty">No photos yet. Tap the 📷 Snap camera, then drag a box around anything on the page.</p>')+'</div><h4>🖍 Highlights</h4>'+(H.length?grp('y')+grp('g')+grp('p'):'<p class="rg-empty">No highlights yet.</p>')+'<div class="row"><button type="button" class="rg-btn nb">📓 Download my Reporter’s Notebook</button></div></div>';
     $('.x',m).addEventListener('click',function(){ m.classList.remove('open'); });
     $$('.del',m).forEach(function(b){ b.addEventListener('click',function(){ var x=photos().slice(); x.splice(+b.dataset.i,1); savePhotos(x); openRoll(); }); });
     $('.nb',m).addEventListener('click',notebook); }
