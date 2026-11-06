@@ -781,3 +781,4 @@ html.rg-hlmode .rg-dock-main{ box-shadow:0 0 0 4px #F4C430, 0 6px 14px rgba(20,2
 .rg-dock{ gap:0; } .rg-dock .rg-tray{ padding:10px 6px 12px; }
 .rg-dock.open{ pointer-events:auto; }
 @media (max-width:560px){ .rg-evtoast{ flex-wrap:wrap; } .rg-evtoast > span:nth-child(2){ flex:1 1 calc(100% - 44px); font-size:14px; } .rg-evtoast button{ margin-left:auto; } .rg-evtoast button + button{ margin-left:0; } }
+.rg-readyl li small{ display:block; font-size:12.5px; color:var(--rg-soft); font-weight:600; }

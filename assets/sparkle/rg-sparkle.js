@@ -862,11 +862,16 @@
     ck.addEventListener('click',function(e){ if(html.classList.contains('rg-on')&&e.target.closest('.checklist-row')){ e.stopPropagation(); e.preventDefault(); } },true);
     var rows=$$('.checklist-row',ck), hint=document.getElementById('checklistHint'); rows.forEach(hide); if(hint) hide(hint); var h3=$('h3',ck); if(h3) setText(h3,'✓ Before you print');
     readyEl=el('div','rg rg-ready','<fieldset class="rg-selfck"><legend>Check your own work</legend><p class="sub">'+esc((DATA.selfIntro)||'Read your page once more. Tick each one only when it’s true.')+'</p>'+SELF.map(function(t,i){ return '<label class="rg-check"><input type="checkbox" data-self="'+i+'"'+(D().self[i]?' checked':'')+'> '+esc(t)+'</label>'; }).join('')+'</fieldset>'+
-      '<div class="rg-readyl"><div class="hd">Still to do before you print <small>This list only checks that each part is filled in. It can’t tell if your history is right. You check that, and so does your teacher.</small></div><ul></ul></div>');
+      '<div class="rg-readyl"><div class="hd"><small>This only checks that each part is filled in, not that it’s right.</small></div><ul></ul></div>');
     ck.appendChild(readyEl);
     readyEl.addEventListener('change',function(e){ var t=e.target; if(t.dataset.self==null) return; D().self[t.dataset.self]=t.checked; save(); paintReady(); });
     readyEl.addEventListener('click',function(e){ var b=e.target.closest('button[data-go]'); if(!b) return; var it=readiness().items.filter(function(x){ return x.k===b.dataset.go; })[0]; if(it) goSrc(it.go); }); }
-  function paintReady(){ var R0=readiness(); if(readyEl) $('ul',readyEl).innerHTML=R0.items.map(function(x){ return '<li class="'+(x.ok?'ok':'')+'"><span class="ic" aria-hidden="true">'+(x.ok?'✓':'○')+'</span><span>'+esc(x.t)+'</span>'+(x.ok?'<span class="rg-sr">done</span>':'<button type="button" data-go="'+x.k+'">Go there</button>')+'</li>'; }).join('');
+  function paintReady(){ var R0=readiness(); if(readyEl){ var G=DATA.readyGroups||R0.items.map(function(x){ return {t:x.t,k:[x.k]}; }), by={}; R0.items.forEach(function(x){ by[x.k]=x; });
+      var shown={}; G=G.map(function(g){ var its=g.k.map(function(k){ shown[k]=1; return by[k]; }).filter(Boolean); return {t:g.t,its:its}; }); R0.items.forEach(function(x){ if(!shown[x.k]) G.push({t:x.t,its:[x]}); });
+      var pre=R0.items.filter(function(x){ return x.k!=='self'&&x.k!=='arch'; }).every(function(x){ return x.ok; }), lock=!pre&&!selfOK();
+      $('ul',readyEl).innerHTML=G.map(function(g){ var left=g.its.filter(function(x){ return !x.ok; }), ok=!left.length, sl=lock&&!ok&&left[0].k==='self';
+        return '<li class="'+(ok?'ok':'')+'"><span class="ic" aria-hidden="true">'+(ok?'✓':'○')+'</span><span>'+esc(g.t)+(sl?' <small>This opens when everything above is done.</small>':ok||g.its.length<2?'':' <small>'+left.length+' of '+g.its.length+' left · next: '+esc(left[0].t)+'</small>')+'</span>'+(ok?'<span class="rg-sr">done</span>':sl?'':'<button type="button" data-go="'+left[0].k+'">Go there</button>')+'</li>'; }).join('');
+      $('.rg-selfck',readyEl).hidden=lock; }
     var cert=document.getElementById('certCard'); if(cert){ cert.classList.toggle('locked',!S.published); cert.classList.toggle('unlocked',!!S.published); }
     if(deskEl){ $('.ed .st',deskEl).textContent=S.published?(stale()?'Printed · changed since':'Printed edition'):'Draft (not printed yet)'; }
     updateStepper(); if(typeof paintRedPencil==='function') paintRedPencil(); return R0; }
