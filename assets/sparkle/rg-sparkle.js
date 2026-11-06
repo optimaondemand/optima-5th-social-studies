@@ -204,7 +204,7 @@
     var bar=document.getElementById('tabBar'); if(!bar||!STAGES.length) return;
     var unit=(($$('.info-strip .info-cell')[1]||{}).querySelector?($$('.info-strip .info-cell')[1].querySelector('.info-value')||{}).textContent:'')||'';
     pressEl=el('div','rg rg-press');
-    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><span class="rg-pt-grp" aria-label="Desk tools"><button type="button" class="rg-pt" data-t="cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<b>Camera</b></button><button type="button" class="rg-pt" data-t="hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<b>Highlighter</b></button></span><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
+    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
     var hero=$('.hero-newspaper'); if(hero) after(hero,pressEl); else before(bar,pressEl);
     pressEl.addEventListener('click',function(e){ var t=e.target.closest('.rg-pt'); if(!t) return; var tb=$('.rg-tb.'+t.dataset.t); if(tb) tb.click(); });
     move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
@@ -216,7 +216,7 @@
     html.dataset.rgTab=currentScene(); markNow(currentScene()); }
   function markNow(tab){ if(!pressEl) return; var i=STAGES.map(function(s){return s.tab;}).indexOf(tab); $('.pg',pressEl).textContent='Tab '+(i+1)+' of '+STAGES.length; }
   var R={};
-  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.pair) ok=ok&&R.pair.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
+  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.pair) ok=ok&&R.pair.done(); if(R.almanac&&R.almanac.el.closest('#panel-desk')) ok=ok&&R.almanac.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
   function fcDone(){ var qs=$$('#panel-factcheck .factcheck-q'); return qs.length>0&&qs.every(function(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); })&&(typeof ccDone!=='function'||ccDone()); }
   /* the one stage rule: the tabs' ✓, the proof, the progress bar and the stepper all read this */
   function stageState(){ return [R.scene1?R.scene1.done():true, deskDone(), fcDone(), !!S.published]; }
@@ -257,7 +257,9 @@
      Every module returns {done(), journal(e,NA)} and keeps its state in S.m[<name>]. Add a type by adding a MOD entry. */
   var MOD={};
   function mstate(k,d){ if(!S.m[k]) S.m[k]=d; return S.m[k]; }
-  function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.dataset.tab='Issue '+ISSUE+' · '+kicker.split('·')[0].trim(); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+whyCard(c&&c.why)+todo(c&&c.todo); return g; }
+  /* every activity says three things plainly: why it is here, what to do, and what it is for (DATA.<module>.job) */
+  function jobHTML(j){ if(!j) return ''; return '<div class="rg-job">'+(j.why?'<div class="r why"><b>Why this is here</b><p>'+esc(j.why)+'</p></div>':'')+(j.do?'<div class="r do"><b>Your job</b><p>'+esc(j.do)+'</p></div>':'')+(j.use?'<div class="r use"><b>What it’s for</b><p>'+esc(j.use)+'</p></div>':'')+(j.words?'<div class="r words"><b>Words to know</b><ul>'+j.words.map(function(w){ return '<li><b>'+esc(w[0])+'</b>: '+esc(w[1])+'</li>'; }).join('')+'</ul></div>':'')+'</div>'; }
+  function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.dataset.tab='Issue '+ISSUE+' · '+kicker.split('·')[0].trim(); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+(c&&c.job?jobHTML(c.job):whyCard(c&&c.why)+todo(c&&c.todo)); return g; }
   /* drag OR tap: tap a card, then tap where it goes. dropTargets get .rg-drop; cb(card,target) */
   /* keyboard: cards and targets are real buttons (Tab, then Enter/Space); after a repaint, focus lands on the next card */
   function dragTap(root,cardSel,targetSel,cb){ var picked=null;
@@ -468,25 +470,25 @@
   /* ---------------------------------------------------------------- almanac v3: why it's here, said up front.
      1 · the real 1748 cover (it promises sunrise and sunset times)  2 · a calendar page: read the sun, count the workday
      3 · same sunrise for everyone, but who got to stop at sunset? */
-  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!ed) return; var st=mstate('almanac3',{seen:{},q:{},sort:{},step:1,mo:0});
+  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!(ed||R.reading)) return; var st=mstate('almanac3',{seen:{},q:{},sort:{},step:1,mo:0});
     var spots=A.spots||[], sort=A.sort||{}, MO=A.months||[], P=A.point||{};
     var a=el('section','rg rg-almanac2 rg-al3','<div class="rg-al2-head"><span class="sun">☀</span><b>The Almanac Corner</b><span class="moon">☾</span></div>'+
-      '<div class="rg-al3-point"><span class="ic">🕰️</span><div><b>'+esc(P.q||'Why is an almanac here?')+'</b> '+esc(P.t||'')+'</div></div>'+
+      (A.job?jobHTML(A.job):'<div class="rg-al3-point"><span class="ic">🕰️</span><div><b>'+esc(P.q||'Why is an almanac here?')+'</b> '+esc(P.t||'')+'</div></div>')+
       '<ol class="rg-al3-steps">'+['Read the real cover','Read the sun times','Who got to stop?'].map(function(t,i){ return '<li data-s="'+(i+1)+'"><span class="n">'+(i+1)+'</span>'+t+'</li>'; }).join('')+'</ol>'+
       '<div class="rg-al3-stage"><div class="rg-al3-s1"><div class="rg-al2-cover"><img alt="Title page of Poor Richard improved, an almanac for the year 1748, printed and sold by B. Franklin in Philadelphia" src="'+esc(LOCAL+A.img)+'">'+
-        spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="'+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button><div class="rg-al3-ann'+(s.x>50?' l':'')+'" data-i="'+i+'" style="top:'+s.y+'%;left:calc('+s.x+'% + 24px)"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span>'+evBtn({k:'source', t:'The 1748 almanac cover promises '+s.label+'.', who:'Poor Richard improved', when:'1748', where:'Philadelphia', from:'Historical source: title page of Poor Richard improved, 1748 (Library of Congress)', ctx:s.t, tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:1}},'xs')+'</div>'; }).join('')+
+        spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="'+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button><div class="rg-al3-ann'+(s.x>50?' l':'')+'" data-i="'+i+'" style="top:'+s.y+'%;left:calc('+s.x+'% + 24px)"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span>'+evBtn({k:'source', t:'The 1748 almanac cover promises '+s.label+'.', who:'Poor Richard improved', when:'1748', where:'Philadelphia', from:'Historical source: title page of Poor Richard improved, 1748 (Library of Congress)', ctx:s.t, tags:['almanac'], ret:{tab:'desk', sel:'.rg-al3', mod:'almanac', arg:1}},'xs')+'</div>'; }).join('')+
         '<div class="cap">'+esc(A.imgCap||'')+'</div></div><div class="rg-al3-go"></div></div>'+
       '<div class="rg-al3-s2"></div><div class="rg-al3-s3"></div></div>');
-    after(ed,a);
+    var rd=R.reading&&R.reading.el; if(rd&&A.onDesk!==false) after(rd,a); else after(ed,a);
     function hm(t){ var p=t.split(':'); return +p[0]+(+p[1])/60; }
     function page(){ var m=MO[st.mo]; if(!m) return '';
       var r0=m.rows[0], rise=hm(r0[1]), set=12+hm(r0[2]);
       return '<div class="rg-al3-tabs">'+MO.map(function(x,i){ return '<button type="button" data-mo="'+i+'" class="'+(i===st.mo?'on':'')+'"'+(i>0&&!st.q[MO[i-1].k]?' disabled':'')+'>'+esc(x.name)+(st.q[x.k]?' ✓':'')+'</button>'; }).join('')+'<button type="button" class="back" data-a="cover">◂ Cover</button></div>'+
         '<div class="rg-al3-page"><div class="hd">'+esc(m.head)+'</div><table><thead><tr><th>Day</th><th>☀ Sun rises</th><th>☀ Sun sets</th><th>Weather guess</th></tr></thead><tbody>'+
         m.rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="w">'+esc(r[3])+'</td></tr>'; }).join('')+'</tbody></table>'+
-        '<div class="say">“'+esc(A.saying)+'”<cite>'+esc(A.cite||'')+'</cite>'+evBtn({k:'source', quote:true, t:A.saying, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Historical source: '+(A.cite||'Poor Richard’s Almanack, 1735'), ctx:'A saying printed in Benjamin Franklin’s almanac.', tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:2}},'xs')+'</div><div class="re">'+esc(A.note||'')+'</div></div>'+
+        '<div class="say">“'+esc(A.saying)+'”<cite>'+esc(A.cite||'')+'</cite>'+evBtn({k:'source', quote:true, t:A.saying, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Historical source: '+(A.cite||'Poor Richard’s Almanack, 1735'), ctx:'A saying printed in Benjamin Franklin’s almanac.', tags:['almanac'], ret:{tab:'desk', sel:'.rg-al3', mod:'almanac', arg:2}},'xs')+'</div><div class="re">'+esc(A.note||'')+'</div></div>'+
         '<div class="rg-al3-day'+(st.q[m.k]?' shown':'')+'" aria-hidden="true"><div class="trk"><i class="lit" style="left:'+(rise/24*100)+'%;width:'+((set-rise)/24*100)+'%"></i>'+[0,6,12,18,24].map(function(h){ return '<span style="left:'+(h/24*100)+'%">'+(h===0||h===24?'12 am':h===12?'noon':h===6?'6 am':'6 pm')+'</span>'; }).join('')+'</div><div class="lb">'+(st.q[m.k]?esc(m.name)+': about '+Math.round(set-rise)+' hours of daylight':'')+'</div></div>'+
-        (st.q[m.k]?'<div class="rg-al3-sv">'+evBtn({k:'lesson', t:'In '+m.name+' near Philadelphia, the sun rose about '+r0[1]+' and set about '+r0[2]+', about '+Math.round(set-rise)+' hours of daylight.', who:'Almanac calendar page', when:m.name, where:'Philadelphia (latitude 40°)', from:'Lesson re-set of an almanac calendar page (sun times worked out for latitude 40°)', ctx:A.note||'', tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:2}},'')+'</div>':'')+'<div class="rg-al3-q"><b>'+esc(m.q)+'</b><div class="ch">'+m.choices.map(function(c,i){ return '<button type="button" class="rg-btn alt'+(st.q[m.k]&&i===m.ok?' right':'')+'" data-c="'+i+'"'+(st.q[m.k]?' disabled':'')+'>'+esc(c)+'</button>'; }).join('')+'</div><div class="fb">'+(st.q[m.k]?'✓ '+esc(m.yes):'')+'</div></div>'+
+        (st.q[m.k]?'<div class="rg-al3-sv">'+evBtn({k:'lesson', t:'In '+m.name+' near Philadelphia, the sun rose about '+r0[1]+' and set about '+r0[2]+', about '+Math.round(set-rise)+' hours of daylight.', who:'Almanac calendar page', when:m.name, where:'Philadelphia (latitude 40°)', from:'Lesson re-set of an almanac calendar page (sun times worked out for latitude 40°)', ctx:A.note||'', tags:['almanac'], ret:{tab:'desk', sel:'.rg-al3', mod:'almanac', arg:2}},'')+'</div>':'')+'<div class="rg-al3-q"><b>'+esc(m.q)+'</b><div class="ch">'+m.choices.map(function(c,i){ return '<button type="button" class="rg-btn alt'+(st.q[m.k]&&i===m.ok?' right':'')+'" data-c="'+i+'"'+(st.q[m.k]?' disabled':'')+'>'+esc(c)+'</button>'; }).join('')+'</div><div class="fb">'+(st.q[m.k]?'✓ '+esc(m.yes):'')+'</div></div>'+
         (MO.every(function(x){ return st.q[x.k]; })?'<div class="rg-al3-bridge">'+esc(A.bridge||'')+' <button type="button" class="rg-btn" data-a="s3">Who got to stop? ▸</button></div>':''); }
     function paint(){ var n=Object.keys(st.seen).length, need=spots.length;
       a.dataset.step=st.step; $$('.rg-al3-steps li',a).forEach(function(li){ var k=+li.dataset.s; li.classList.toggle('on',k===st.step); li.classList.toggle('ok',k<st.step||(k===3&&done())); });
@@ -520,7 +522,7 @@
     function opts(sel){ return '<option value="">Choose a person…</option>'+cols.map(function(x){ return '<option value="'+esc(x.id)+'"'+(sel===x.id?' selected':'')+'>'+esc(x.who)+'</option>'; }).join(''); }
     g.innerHTML+='<div class="rg-pair-pick"><label>Person 1 <select class="p1">'+opts(st.p1)+'</select></label><label>Person 2 <select class="p2">'+opts(st.p2)+'</select></label></div><div class="rg-pair-tbl" aria-live="polite"></div><div class="rg-pair-legal"></div>'+
       '<div class="rg-pair-note"><label for="rg-pair-note"><b>'+esc(PC.q||'At the same hour, what is the biggest difference between their days?')+'</b></label><textarea id="rg-pair-note" rows="3" placeholder="At sunrise, … but …">'+esc(st.pnote||'')+'</textarea><div class="sv"></div></div>';
-    after(rd,g); var s1=$('select.p1',g), s2=$('select.p2',g), ta=$('#rg-pair-note',g);
+    after(R.almanac&&R.almanac.el&&R.almanac.el.closest('#panel-desk')?R.almanac.el:rd,g); var s1=$('select.p1',g), s2=$('select.p2',g), ta=$('#rg-pair-note',g);
     function paint(){ var a=col(st.p1), b=col(st.p2), reached=((S.m.sun||{}).stop);
       $('.rg-pair-tbl',g).innerHTML=a&&b&&a!==b?'<table><caption class="rg-sr">'+esc(a.who)+' and '+esc(b.who)+', hour by hour</caption><thead><tr><th scope="col">Time</th><th scope="col">'+esc(a.icon+' '+a.who)+'</th><th scope="col">'+esc(b.icon+' '+b.who)+'</th></tr></thead><tbody>'+times.map(function(t,i){ var locked=reached==null||reached<i; return '<tr><th scope="row">'+esc(t)+'</th><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(a.lines[i]||'')+' '+evBtn({k:'routine', t:a.lines[i]||'', who:a.who, when:t, where:a.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[a.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+a.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(b.lines[i]||'')+' '+evBtn({k:'routine', t:b.lines[i]||'', who:b.who, when:t, where:b.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[b.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+b.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td></tr>'; }).join('')+'</tbody></table>':a&&b?'<p class="rg-todo">Choose two different people.</p>':'<p class="rg-todo">Choose two people to compare.</p>';
       var L=(PC.legal||[]).filter(function(x){ return a&&b&&x.ids.indexOf(a.id)>-1&&x.ids.indexOf(b.id)>-1; })[0];
@@ -540,7 +542,7 @@
     if(ex.evidence&&MOD[ex.evidence.type]&&p2){ var fr=$('.source-image-frame',p2), sec2=fr&&fr.closest('.content-section'); if(sec2){ hide(sec2); R.evidence=MOD[ex.evidence.type](ex.evidence,sec2); } }
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
-    buildPair(); buildAlmanac(); }
+    buildAlmanac(); buildPair(); }
 
   /* ================================================================ THE BROADSHEET — one tab laid out as a real front page
      DATA.broadsheet = { tab, head, deck, dateline, ears:[l,r], steps:[{key, t}] }
@@ -551,6 +553,7 @@
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
     picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.evidence&&R.evidence.el); },
+    almanac:function(){ return R.almanac&&R.almanac.el; },
     pair:function(){ return R.pair&&R.pair.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
     notebook:function(){ return $('#panel-desk .reflection-block'); } };
@@ -559,6 +562,7 @@
     sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length; return !!m&&m.stop>=N-1; },
     herald:function(){ var m=S.m.sun, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
     picture:function(){ return !!(R.evidence&&R.evidence.done()); },
+    almanac:function(){ return !!(R.almanac&&R.almanac.done()); },
     pair:function(){ return !!(R.pair&&R.pair.done()); },
     word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
     notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
@@ -572,6 +576,7 @@
       '<div class="lead"><div class="story"><div class="kick">'+esc(B.kicker||'Today’s front page')+'</div><h2 class="hl">'+esc(B.head||'')+'</h2><p class="deck">'+esc(B.deck||'')+'</p>'+(B.lede?'<p class="lede">'+(B.place?'<b>'+esc(B.place)+' —</b> ':'')+esc(B.lede)+'</p>':'')+'</div>'+
       '<nav class="idx" aria-label="How to read this page"><div class="ih">How to read this page</div><ol>'+steps.map(function(s,i){ return '<li data-k="'+s.key+'"><a href="#rg-bs-'+s.key+'"><span class="n">'+(i+1)+'</span><span class="t">'+esc(s.t)+'</span><span class="ok" aria-label="done">✓</span></a></li>'; }).join('')+'</ol><div class="prog"></div></nav></div>');
     before(first,bsEl);
+    if(B.evIntro) after(bsEl,el('div','rg rg-evintro','<span class="ic" aria-hidden="true">🗂</span><div><b>What you’re looking for today</b><p>'+esc(B.evIntro)+'</p></div>'));
     steps.forEach(function(s,i){ var t=BS_FIND[s.key](); if(!t) return;
       var j=el('div','rg rg-bs-jump','<span class="n">'+(i+1)+'</span><span class="t"><small>Step '+(i+1)+' of '+steps.length+'</small>'+esc(s.t)+'</span><span class="ok">✓ Done</span>'); j.id='rg-bs-'+s.key; j.dataset.k=s.key;
       if(s.fold) before(t,el('div','rg rg-bs-fold','<span>'+esc(B.fold||'Below the fold')+'</span>'));
@@ -591,10 +596,10 @@
      Nothing here writes the student's sentences. Selecting cards never completes the assignment. */
 
   /* ---- evidence kinds: say plainly what each clipping is ---- */
-  var EVK={ routine:{n:'Lesson reconstruction', s:'Recon.', d:'An illustrative routine written for this lesson. It is not a quotation from a real diary.'},
-    source:{n:'Historical source', s:'Source', d:'A detail from a real historical source.'},
-    lesson:{n:'Lesson explanation', s:'Lesson', d:'Background written by the lesson’s authors.'},
-    mine:{n:'My observation', s:'Mine', d:'Something I noticed or wrote myself.'},
+  var EVK={ routine:{n:'Example written for this lesson', s:'Example', d:'Based on real history, but written for this lesson. It is not a real person’s diary.'},
+    source:{n:'Real source from the past', s:'Source', d:'A detail from something people really made long ago, like an old print or almanac.'},
+    lesson:{n:'Fact from the lesson', s:'Lesson', d:'A fact the lesson’s authors checked and wrote for you.'},
+    mine:{n:'My own notes', s:'Mine', d:'Something I noticed or wrote myself.'},
     photo:{n:'My photo', s:'Photo', d:'A photo I took of part of the lesson page.'} };
   function EV(){ if(!S.ev) S.ev=[]; return S.ev; }
   function evGet(id){ return EV().filter(function(c){ return c.id===id; })[0]; }
@@ -627,7 +632,7 @@
     toastEl.onclick=function(e){ var b=e.target.closest('button'); if(!b) return; if(b.dataset.a==='open') openDrawer(c&&c.id); if(b.dataset.a==='undo'&&c){ S.ev=EV().filter(function(x){ return x.id!==c.id; }); save(); paintEvidence(); refreshEvBtns(); }
       if(b.dataset.a==='restore'&&undo){ EV().push(undo); (D().att||[]).forEach(function(a){ if(!a.ev&&a.was===undo.who+(undo.when?' · '+undo.when:'')) a.ev=undo.id; }); save(); paintEvidence(); paintDesk(); } toastEl.classList.remove('show'); };
     toastEl.classList.remove('show'); void toastEl.offsetWidth; toastEl.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ toastEl.classList.remove('show'); },5200);
-    var cnt=pressEl&&$('.rg-evcount',pressEl); if(cnt&&!RM){ cnt.classList.remove('bump'); void cnt.offsetWidth; cnt.classList.add('bump'); } }
+    var cnt=trayEl&&$('.rg-tb.roll',trayEl); if(cnt&&!RM){ cnt.classList.remove('bump'); void cnt.offsetWidth; cnt.classList.add('bump'); } }
   function refreshEvBtns(){ $$('.rg-evbtn').forEach(function(x){ var q=EVQ[x.dataset.evq]; var have=q&&evHas(q); x.classList.toggle('saved',!!have); x.setAttribute('aria-pressed',!!have); x.textContent=have?'✓ In your drawer':'＋ Save as evidence'; }); }
 
   /* ---- return to source: open the right tab, scroll, flash the spot ---- */
@@ -640,23 +645,23 @@
   /* ---- a card, the same in the drawer, the press tray and the attach picker ---- */
   function cardHTML(c,mode){ var K=EVK[c.k]||EVK.lesson, fit=angleFits(c), quote=!!c.quote;
     var h='<article class="rg-evc k-'+esc(c.k)+(c.use?' use':'')+(fit&&mode==='tray'?' fit':'')+'" data-id="'+esc(c.id)+'" aria-label="'+esc(K.n+': '+cardMeta(c))+'">'+
-      '<div class="top"><span class="badge" title="'+esc(K.d)+'">'+esc(K.n)+'</span>'+(fit&&mode==='tray'?'<span class="fitb">fits your angle</span>':'')+'</div>'+
+      '<div class="top"><span class="badge" title="'+esc(K.d)+'">'+esc(K.n)+'</span>'+(fit&&mode==='tray'?'<span class="fitb">fits your main idea</span>':'')+'</div>'+
       '<div class="who">'+esc(cardMeta(c)||'Clipping')+'</div>'+
       (c.img?'<img class="shot" alt="'+esc(c.t)+'" src="'+esc(c.img)+'">':'')+
       '<p class="det'+(quote?' q':'')+'">'+esc(c.t)+'</p><div class="from">'+esc(c.from||K.d)+'</div>';
     if(mode==='pick') return h+'</article>';
     h+=(c.ctx?'<details class="ctx"><summary>Context</summary><p>'+esc(c.ctx)+'</p></details>':'');
-    if(mode==='drawer') h+='<label class="note">What could this prove? <span>(optional)</span><textarea rows="2" data-note="'+esc(c.id)+'">'+esc(c.note||'')+'</textarea></label>';
-    h+='<div class="acts">'+(mode==='tray'?'<label class="use"><input type="checkbox" data-use="'+esc(c.id)+'"'+(c.use?' checked':'')+'> Use in my report</label>':'<button type="button" data-use="'+esc(c.id)+'" aria-pressed="'+!!c.use+'">'+(c.use?'✓ In my report':'Use in my report')+'</button>')+
-      (c.ret?'<button type="button" data-ret="'+esc(c.id)+'">↩ Return to source</button>':'')+'<button type="button" class="rm" data-rm="'+esc(c.id)+'" aria-label="Remove this clipping">Remove</button></div>';
+    if(mode==='drawer') h+='<label class="note">What could this help prove? <span>(optional)</span><textarea rows="2" data-note="'+esc(c.id)+'">'+esc(c.note||'')+'</textarea></label>';
+    h+='<div class="acts">'+(mode==='tray'?'<label class="use"><input type="checkbox" data-use="'+esc(c.id)+'"'+(c.use?' checked':'')+'> Use on my front page</label>':'<button type="button" data-use="'+esc(c.id)+'" aria-pressed="'+!!c.use+'">'+(c.use?'✓ On my front page':'Use on my front page')+'</button>')+
+      (c.ret?'<button type="button" data-ret="'+esc(c.id)+'">↩ Show where it came from</button>':'')+'<button type="button" class="rm" data-rm="'+esc(c.id)+'" aria-label="Remove this clipping">Remove</button></div>';
     return h+'</article>'; }
 
   /* ================================================================ THE DRAWER (every tab): all clippings, highlights and photos */
   var drawerEl=null, drawerOpener=null, drawerFilter='all';
   function buildDrawer(){ drawerEl=el('aside','rg rg-evdrawer'); drawerEl.setAttribute('role','dialog'); drawerEl.setAttribute('aria-modal','true'); drawerEl.setAttribute('aria-labelledby','rg-drawer-h'); drawerEl.hidden=true;
     drawerEl.innerHTML='<div class="hd"><h2 id="rg-drawer-h">🗂 Evidence drawer <span class="n"></span></h2><button type="button" class="x" aria-label="Close the evidence drawer">✕</button></div>'+
-      '<p class="sub">Save details as you work. On the Go to Press tab, choose the ones that support <i>your</i> report and say what each one proves.</p>'+
-      '<div class="flt" role="group" aria-label="Show">'+[['all','All'],['routine','Routines'],['source','Sources'],['lesson','Lesson notes'],['mine','My notes'],['photo','Photos']].map(function(f){ return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+f[1]+'</button>'; }).join('')+'</div>'+
+      '<p class="sub"><b>Evidence</b> is a detail that helps prove an idea. Today you are testing one idea: <i>was daily life in the colonies the same for everyone?</i> Save details that show how people’s days were the same or different. On the Go to Press tab, you’ll pick at least two and explain what each one proves.</p>'+
+      '<div class="flt" role="group" aria-label="Show">'+[['all','All'],['routine','Examples'],['source','Real sources'],['lesson','Lesson facts'],['mine','My notes'],['photo','Photos']].map(function(f){ return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+f[1]+'</button>'; }).join('')+'</div>'+
       '<div class="list"></div><div class="more"></div>';
     document.body.appendChild(drawerEl);
     $('.x',drawerEl).addEventListener('click',function(){ closeDrawer(); });
@@ -686,12 +691,12 @@
   function paintSave(){ var s=pressEl&&$('.rg-savest',pressEl); if(!s) return; var t=new Date(SAVE_ST.at||Date.now()), hh=t.getHours()%12||12, mm=('0'+t.getMinutes()).slice(-2);
     s.className='rg-savest '+(FROZEN?'frozen':SAVE_ST.ok?'ok':'bad'); s.textContent=FROZEN?'⚠ Not saving here (open in another tab)':SAVE_ST.ok?(SAVE_ST.at?'✓ Saved '+hh+':'+mm:'✓ Saved'):'⚠ Not saved on this device'; s.title=SAVE_ST.ok?'Your work is saved in this browser on this computer.':'This browser is not letting the lesson save. Your work stays only while this page is open. Copy your submission before you leave.'; }
   function quiet(){ return !!(P&&P.quiet); }
-  function setQuiet(on){ if(!P) P={name:''}; P.quiet=!!on; var p=get(PKEY,{})||{}; p.quiet=!!on; put(PKEY,p); var b=pressEl&&$('.rg-quietbtn',pressEl); if(b){ b.setAttribute('aria-pressed',!!on); b.innerHTML=on?'🔕 <span>Quiet newsroom</span>':'🔔 <span>Sounds on</span>'; } }
+  function setQuiet(on){ if(!P) P={name:''}; P.quiet=!!on; var p=get(PKEY,{})||{}; p.quiet=!!on; put(PKEY,p); var b=$('.rg-tb.quiet'); if(b){ b.setAttribute('aria-pressed',!!on); b.setAttribute('aria-label',on?'Sounds are off (quiet newsroom). Turn sounds on':'Sounds are on. Turn sounds off'); b.innerHTML=(on?'🔕':'🔔')+'<span>'+(on?'Quiet':'Sounds')+'</span>'; } }
   function buildNewsroomBar(){ if(!pressEl) return; var r=$('.rg-press-r',pressEl); if(!r) return;
     var ev=el('button','rg-evcount','🗂 <span class="l">Evidence</span> <b>0</b>'); ev.type='button'; ev.title='Open your evidence drawer'; ev.addEventListener('click',function(){ openDrawer(); });
     var q=el('button','rg-quietbtn',''); q.type='button'; q.title='Turn the newsroom’s small sound effects on or off. Ms. Avery’s voice still plays when you press play.'; q.addEventListener('click',function(){ setQuiet(!quiet()); });
     var sv=el('span','rg-savest'); sv.setAttribute('role','status');
-    r.insertBefore(ev,r.firstChild); r.appendChild(q); $('.rg-press-top',pressEl).appendChild(sv); setQuiet(quiet()); paintSave(); }
+    $('.rg-press-top',pressEl).appendChild(sv); if(trayEl){ q.className='rg-tb quiet'; trayEl.appendChild(q); } setQuiet(quiet()); paintSave(); }
   window.addEventListener('storage',function(e){ if(!html.classList.contains('rg-on')) return;
     if(e.key===CKEY){ var cur=get(CKEY,null); if(cur) C=mergeCourse(cur,C); try{ paintMorgue(false); }catch(x){} return; }
     if(e.key===KEY&&!FROZEN){ FROZEN=true; paintSave(); var b=el('div','rg rg-frozen','<b>This lesson is open in another tab or window.</b> To keep your work safe, this tab stopped saving. <button type="button">Reload this tab</button>'); b.setAttribute('role','alert'); $('button',b).addEventListener('click',function(){ location.reload(); }); document.body.appendChild(b); } });
@@ -741,18 +746,18 @@
   function syncBase(){ var d=D(); setBase('brief-headline',d.head||''); setBase('brief-byline-name',d.by||''); setBase('brief-body',[d.cmp,d.exp].filter(function(x){ return (x||'').trim(); }).join('\n\n')+((d.cap||'').trim()?'\n\nAbout our source: '+d.cap.trim():'')); }
   function migrate(){ var d=D(); if(d.migrated) return; d.migrated=1; d.head=d.head||baseVal('brief-headline'); d.by=d.by||baseVal('brief-byline-name')||nm(); if(!d.cmp&&baseVal('brief-body').trim()) d.cmp=baseVal('brief-body'); save(); }
   function secHTML(p,i){ return '<section class="rg-nd-sec" data-p="'+p.k+'"><div class="lab"><span class="n">'+(i+1)+'</span><label for="rg-f-'+p.k+'">'+esc(p.t)+'</label>'+(p.opt?'<i>optional</i>':'')+'</div><p class="ask" id="rg-ask-'+p.k+'">'+esc(p.ask)+'</p>'+
-    '<div class="aids"><details class="notes"><summary>📒 Your earlier notes</summary><div class="nl"></div></details>'+(p.starters?'<details class="starters"><summary>✏️ Optional starters</summary><p class="ex">These are example sentence openings, not answers. Tap one, then finish it in your own words.</p><div class="sl"></div></details>':'')+'</div>'+
+    '<div class="aids"><details class="notes"><summary>📒 Your notes from earlier</summary><div class="nl"></div></details>'+(p.starters?'<details class="starters"><summary>✏️ Need help starting? (optional)</summary><p class="ex">These are the first few words of a sentence, not answers. Tap one, then finish the sentence in your own words.</p><div class="sl"></div></details>':'')+'</div>'+
     '<textarea id="rg-f-'+p.k+'" rows="'+(p.rows||4)+'" aria-describedby="rg-ask-'+p.k+'" placeholder="'+esc(p.ph||'Write here in your own words.')+'"></textarea><div class="wcn" aria-live="polite"></div><div class="rev"></div>'+
-    (p.ev?'<div class="att"></div><button type="button" class="rg-nd-attach" data-p="'+p.k+'" aria-expanded="false">＋ Attach evidence to this part</button><div class="pick" hidden></div>':'')+'</section>'; }
+    (p.ev?'<div class="att"></div><button type="button" class="rg-nd-attach" data-p="'+p.k+'" aria-expanded="false">＋ Add evidence to this part</button><div class="pick" hidden></div>':'')+'</section>'; }
   function buildDesk(){ var p=document.getElementById('panel-press'), ga=p&&$('.gazette-assignment-wrap',p); if(!ga||!PARAS.length) return; migrate();
     hide(ga); deskEl=el('section','rg rg-nd'); deskEl.id='rg-nd';
     var herald=(DATA.redpencil||{}).claim||(($('.herald-claim')||{}).textContent||'').replace(/^[\s“"]+|[\s”"]+$/g,'');
-    deskEl.innerHTML='<div class="rg-nd-hd"><div class="rg-game-k">Go to Press · build your front page</div><h3 class="rg-game-t">'+esc(NW.title||'Your front page')+'</h3><p class="rg-todo">'+esc(NW.todo||'')+'</p></div>'+
+    deskEl.innerHTML='<div class="rg-nd-hd"><div class="rg-game-k">Go to Press · build your front page</div><h3 class="rg-game-t">'+esc(NW.title||'Your front page')+'</h3>'+(NW.job?jobHTML(NW.job):'<p class="rg-todo">'+esc(NW.todo||'')+'</p>')+'</div>'+
       '<div class="rg-nd-grid"><aside class="rg-nd-tray" aria-labelledby="rg-tray-h"><button type="button" class="rg-nd-trayt" aria-expanded="true" aria-controls="rg-tray-body"><span id="rg-tray-h">🗂 Evidence tray</span> <b class="cnt"></b></button><div id="rg-tray-body"><div class="fit"></div><div class="list"></div><p class="foot">'+esc(NW.trayFoot||'')+'</p><button type="button" class="rg-btn alt open">Open the full drawer</button></div></aside>'+
-      '<article class="rg-nd-paper" aria-label="Front page proof"><div class="mast">The Republic Gazette</div><div class="ed"><span>Vol. I · Issue '+esc(ISSUE)+' · Philadelphia</span><span class="st">Proof copy</span></div>'+
+      '<article class="rg-nd-paper" aria-label="Front page proof"><div class="mast">The Republic Gazette</div><div class="ed"><span>Vol. I · Issue '+esc(ISSUE)+' · Philadelphia</span><span class="st">Draft (not printed yet)</span></div>'+
       '<div class="mode" role="group" aria-label="Proof view"><button type="button" data-m="edit" aria-pressed="true">✏️ Write</button><button type="button" data-m="read" aria-pressed="false">👁 Read it like a reader</button></div>'+
       '<div class="edit"><div class="rg-nd-sec head"><label for="rg-f-head" class="lab">Headline <i>your own words</i></label><input id="rg-f-head" class="hl" maxlength="90" placeholder="Write your own headline"><div class="ideas"></div><div class="rev"></div></div>'+
-      '<div class="by"><label for="rg-f-by">By</label> <input id="rg-f-by" maxlength="40" placeholder="your name"> <span>· Junior Editor</span></div>'+
+      '<div class="by"><label for="rg-f-by">By</label> <input id="rg-f-by" maxlength="40" placeholder="your name"> <span>· Junior Editor</span><small>This line is called the <b>byline</b>. It tells readers who wrote the story.</small></div>'+
       PARAS.map(secHTML).join('')+
       '<section class="rg-nd-sec cor" data-p="cor"><div class="lab"><span class="n">'+(PARAS.length+1)+'</span><label for="rg-f-cor">Correction</label></div><div class="herald"><span class="h">The Hasty Herald printed:</span> “'+esc(herald)+'”</div><p class="ask" id="rg-ask-cor">'+esc(NW.corAsk||'Write the correction in one or two sentences. What is true instead?')+'</p><textarea id="rg-f-cor" rows="2" aria-describedby="rg-ask-cor" placeholder="Correction: …"></textarea><div class="wcn" aria-live="polite"></div></section></div>'+
       '<div class="read" hidden></div></article></div>';
@@ -762,7 +767,7 @@
     $('.rg-nd-tray',deskEl).addEventListener('click',onCardClick);
     $('.rg-nd-trayt',deskEl).addEventListener('click',function(){ var o=this.getAttribute('aria-expanded')!=='true'; this.setAttribute('aria-expanded',o); $('#rg-tray-body',deskEl).hidden=!o; });
     $('.open',deskEl).addEventListener('click',function(){ openDrawer(); });
-    if(window.matchMedia&&matchMedia('(max-width: 760px)').matches){ $('.rg-nd-trayt',deskEl).setAttribute('aria-expanded','false'); $('#rg-tray-body',deskEl).hidden=true; }
+
     paintDesk(); }
   function onDeskInput(e){ var t=e.target, d=D();
     if(t.id==='rg-f-head') d.head=t.value; else if(t.id==='rg-f-by') d.by=t.value; else if(t.id==='rg-f-cor') d.cor=t.value;
@@ -787,26 +792,26 @@
   function pickHTML(p,rep){ var all=EV(), use=all.filter(function(c){ return c.use; }), rest=all.filter(function(c){ return !c.use; });
     if(!all.length) return '<p class="rg-empty">Your drawer is empty. Go back through the lesson and tap <b>＋ Save as evidence</b> beside useful details.</p>';
     function row(c){ return '<li><button type="button" data-pick="'+esc(c.id)+'" data-p="'+esc(p)+'"'+(rep?' data-rep="'+esc(rep)+'"':'')+'>'+cardHTML(c,'pick')+'</button></li>'; }
-    return '<div class="ph">'+(rep?'Replace with…':'Attach which clipping?')+'</div>'+(use.length?'<div class="gl">In your report</div><ul>'+use.map(row).join('')+'</ul>':'')+(rest.length?'<div class="gl">More in your drawer</div><ul>'+rest.map(row).join('')+'</ul>':''); }
+    return '<div class="ph">'+(rep?'Swap it for…':'Which saved detail do you want to add?')+'</div>'+(use.length?'<div class="gl">In your report</div><ul>'+use.map(row).join('')+'</ul>':'')+(rest.length?'<div class="gl">More in your drawer</div><ul>'+rest.map(row).join('')+'</ul>':''); }
   /* light paint: counts, readiness, revision prompts — never rebuilds the text boxes, so typing never loses focus */
   function paintDeskLight(){ if(!deskEl) return; var d=D();
     PARAS.concat([{k:'cor',min:NW.corMin||8}]).forEach(function(q){ var w=$('.rg-nd-sec[data-p="'+q.k+'"] .wcn',deskEl); if(!w) return; var n=words(d[q.k]||''); w.className='wcn'+(n>=(q.min||0)?' ok':''); w.textContent=q.min?(n>=q.min?'✓ '+n+' words':'📝 '+n+' of '+q.min+' words'):n+' words'; });
     paintRev(); paintReady(); if(!$('.read',deskEl).hidden) $('.read',deskEl).innerHTML=editionHTML(record(),true); if(S.pub){ clearTimeout(paintDeskLight.t); paintDeskLight.t=setTimeout(paintEdition,400); } }
   function paintDesk(){ if(!deskEl) return; var d=D(), ev=EV(), use=ev.filter(function(c){ return c.use; });
     $('.rg-nd-tray .cnt',deskEl).textContent=ev.length+' saved · '+use.length+' in use';
-    var a=angle(); $('.rg-nd-tray .fit',deskEl).innerHTML=a?'<p><b>Your angle:</b> '+esc(a.t)+(a.fitTip?'<br><small>'+esc(a.fitTip)+'</small>':'')+'</p>':'<p><small>Choose an angle in step 1 to see which clippings fit it.</small></p>';
+    var a=angle(); $('.rg-nd-tray .fit',deskEl).innerHTML=a?'<p><b>Your main idea (angle):</b> '+esc(a.t)+(a.fitTip?'<br><small>'+esc(a.fitTip)+'</small>':'')+'</p>':'<p><small>Choose your main idea in step 1, and the tray will show which saved details fit it best.</small></p>';
     var fk=document.activeElement&&deskEl.contains(document.activeElement)&&document.activeElement.dataset.use;
-    $('.rg-nd-tray .list',deskEl).innerHTML=ev.length?ev.slice().sort(function(x,y){ return (angleFits(y)?1:0)-(angleFits(x)?1:0); }).map(function(c){ return cardHTML(c,'tray'); }).join(''):'<p class="rg-empty">No clippings yet. Look for <b>＋ Save as evidence</b> on the Dispatch and Desk tabs.</p>';
+    $('.rg-nd-tray .list',deskEl).innerHTML=ev.length?ev.slice().sort(function(x,y){ return (angleFits(y)?1:0)-(angleFits(x)?1:0); }).map(function(c){ return cardHTML(c,'tray'); }).join(''):'<p class="rg-empty">Nothing saved yet. Go to the Desk tab and tap <b>＋ Save as evidence</b> beside details that show how people’s days were different.</p>';
     if(fk){ var fe=$('input[data-use="'+fk+'"]',deskEl); if(fe) fe.focus(); }
-    var ideas=(a&&a.ideas)||NW.ideas||[]; $('.head .ideas',deskEl).innerHTML=ideas.length?'<span class="k">Headline ideas <i>(examples; make it yours)</i></span>'+ideas.map(function(t){ return '<button type="button" data-idea="'+esc(t)+'">'+esc(t)+'</button>'; }).join(''):'';
+    var ideas=(a&&a.ideas)||NW.ideas||[]; $('.head .ideas',deskEl).innerHTML=ideas.length?'<span class="k">Headline ideas <i>(examples: change them to make them yours)</i></span>'+ideas.map(function(t){ return '<button type="button" data-idea="'+esc(t)+'">'+esc(t)+'</button>'; }).join(''):'';
     var notes=earlierNotes();
     PARAS.forEach(function(q){ var sec=$('.rg-nd-sec[data-p="'+q.k+'"]',deskEl); var nl=$('.nl',sec), sl=$('.sl',sec), att=$('.att',sec);
       var mine=notes.filter(function(n){ return !q.notes||q.notes.indexOf(n.k)>-1; });
-      nl.innerHTML=mine.length?mine.map(function(n){ return '<div class="rg-pn"><b>'+esc(n.l)+'</b><p>'+esc(n.t)+'</p></div>'; }).join(''):'<p class="rg-empty">No notes for this part yet.</p>'; $('summary',$('.notes',sec)).textContent='📒 Your earlier notes ('+mine.length+')';
+      nl.innerHTML=mine.length?mine.map(function(n){ return '<div class="rg-pn"><b>'+esc(n.l)+'</b><p>'+esc(n.t)+'</p></div>'; }).join(''):'<p class="rg-empty">No notes for this part yet.</p>'; $('summary',$('.notes',sec)).textContent='📒 Your notes from earlier ('+mine.length+')';
       if(sl) sl.innerHTML=starters(q).map(function(t){ return '<button type="button" data-start="'+esc(t)+'" data-p="'+q.k+'">'+esc(t)+' …</button>'; }).join('');
       if(att){ var A=d.att.filter(function(x){ return x.p===q.k; }); att.innerHTML=A.map(function(x){ var c=evGet(x.ev), n=markerNo(x.id), K=c?(EVK[c.k]||EVK.lesson):null;
           return '<div class="rg-att'+(c?'':' gone')+'"><span class="mk" aria-hidden="true">'+n+'</span><div class="b">'+(c?'<div class="t"><b>'+esc(cardMeta(c))+'</b> <span class="badge">'+esc(K.n)+'</span></div><p class="det">'+esc(c.t)+'</p>':'<div class="t"><b>Clipping removed</b>'+(x.was?' ('+esc(x.was)+')':'')+'. Your explanation is kept below. Attach a replacement.</div>')+
-            '<label>What does this detail support? <i>(your words)</i><textarea rows="2" data-why="'+esc(x.id)+'">'+esc(x.why||'')+'</textarea></label><div class="acts">'+(c&&c.ret?'<button type="button" data-src="'+esc(c.id)+'">↩ Return to source</button>':'')+'<button type="button" data-replace="'+esc(x.id)+'">⇄ Replace</button><button type="button" data-unatt="'+esc(x.id)+'">Detach</button></div></div></div>'; }).join(''); } });
+            '<label>What does this detail help prove? <i>(your own words)</i><textarea rows="2" data-why="'+esc(x.id)+'">'+esc(x.why||'')+'</textarea></label><div class="acts">'+(c&&c.ret?'<button type="button" data-src="'+esc(c.id)+'">↩ Show where it came from</button>':'')+'<button type="button" data-replace="'+esc(x.id)+'">⇄ Replace</button><button type="button" data-unatt="'+esc(x.id)+'">Take it off</button></div></div></div>'; }).join(''); } });
     paintDeskLight(); }
   function markerNo(aid){ var d=D(), order=[]; PARAS.forEach(function(q){ d.att.forEach(function(a){ if(a.p===q.k) order.push(a.id); }); }); return order.indexOf(aid)+1; }
   function starters(q){ var a=angle(), pr=R.planner&&R.planner.pair?R.planner.pair():[], f=R.planner&&R.planner.factors?R.planner.factors():[];
@@ -826,21 +831,21 @@
         box.innerHTML=r.state==='revised'?'<p class="rg-revok">✓ Revised. Careful wording is a kind of honesty.</p>':''; return; }
       if(!r.w||r.w.toLowerCase()!==m[1].toLowerCase()){ r={w:m[1],state:'open'}; d.rev[k]=r; save(); beat('revisePrompt'); }
       if(r.state==='keep'){ var n=words(r.why||''); if(!$('input[data-keep="'+k+'"]',box)) box.innerHTML='<div class="rg-redmark keep"><b>✏ Keeping “'+esc(r.w)+'”.</b> <label>Why does your evidence support that word? <input data-keep="'+k+'" maxlength="160" value="'+esc(r.why||'')+'"></label><span class="kn"></span></div>'; $('.kn',box).textContent=n>=5?'✓ Reason noted.':'📝 '+n+' of 5 words.'; return; }
-      box.innerHTML='<div class="rg-redmark" role="note"><b>✏ Editor’s mark:</b> Your sentence says “<span class="w">'+esc(r.w)+'</span>.” Does your evidence support that word? <span class="acts"><button type="button" data-revise="'+k+'">Revise it</button><button type="button" data-keepit="'+k+'">Keep it, with a reason</button></span></div>'; }); }
+      box.innerHTML='<div class="rg-redmark" role="note"><b>✏ Editor’s mark:</b> Your sentence says “<span class="w">'+esc(r.w)+'</span>.” That word means <i>no exceptions</i>. Does your evidence really show that? <span class="acts"><button type="button" data-revise="'+k+'">Change the word</button><button type="button" data-keepit="'+k+'">Keep it, and explain why</button></span></div>'; }); }
   function revOK(){ var d=D(); return ['head'].concat(PARAS.map(function(q){ return q.k; })).every(function(k){ var v=d[k]||''; if(!ABS.test(v)) return true; var r=d.rev[k]||{}; return r.state==='keep'&&words(r.why||'')>=5; }); }
 
   /* ================================================================ ONE readiness rule for the stepper, checklist, print button and certificate */
   function attOK(){ var A=D().att.filter(function(a){ return a.ev&&evGet(a.ev)&&words(a.why||'')>=(NW.whyMin||6); }), ids={}; A.forEach(function(a){ ids[a.ev]=1; }); return Object.keys(ids).length>=(NW.evMin||2); }
   function readiness(){ var d=D(), W=function(k){ return words(d[k]||''); }, items=[
       {k:'notebook',t:'Editor’s Notebook: all three answers',ok:['journal-q1','journal-q2','journal-q3'].every(qDone),go:{tab:'desk',sel:'.reflection-block'}},
-      {k:'fact',t:'Fact-Check: the three claims and the editor’s calls',ok:fcDone(),go:{tab:'factcheck',sel:'#panel-factcheck .factcheck-q'}},
+      {k:'fact',t:'Fact-Check tab: all five claims',ok:fcDone(),go:{tab:'factcheck',sel:'#panel-factcheck .factcheck-q'}},
       {k:'head',t:'Your own headline',ok:W('head')>=3,go:{tab:'press',sel:'#rg-f-head'}},
       {k:'by',t:'Your byline',ok:!!(d.by||'').trim(),go:{tab:'press',sel:'#rg-f-by'}}].concat(PARAS.filter(function(q){ return q.min; }).map(function(q){ return {k:q.k,t:q.short||q.t,ok:W(q.k)>=q.min,go:{tab:'press',sel:'#rg-f-'+q.k}}; })).concat([
-      {k:'ev',t:'At least '+(NW.evMin||2)+' different clippings attached, each with your explanation',ok:attOK(),go:{tab:'press',sel:'.rg-nd-attach'}},
+      {k:'ev',t:'At least '+(NW.evMin||2)+' different pieces of evidence added, each with your own explanation',ok:attOK(),go:{tab:'press',sel:'.rg-nd-attach'}},
       {k:'cor',t:'The correction to the Herald',ok:W('cor')>=(NW.corMin||8),go:{tab:'press',sel:'#rg-f-cor'}},
-      {k:'rev',t:'The editor’s mark answered (revised, or kept with a reason)',ok:revOK(),go:{tab:'press',sel:'.rg-redmark'}},
+      {k:'rev',t:'The editor’s red mark answered (word changed, or kept with a reason)',ok:revOK(),go:{tab:'press',sel:'.rg-redmark'}},
       {k:'arch',t:'One careful Archive Line',ok:wn('archive-line')>=5,go:{tab:'press',sel:'#archive-line'}},
-      {k:'self',t:'Your editorial self-check',ok:selfOK(),go:{tab:'press',sel:'.rg-selfck'}}]);
+      {k:'self',t:'Check your own work (4 boxes)',ok:selfOK(),go:{tab:'press',sel:'.rg-selfck'}}]);
     return {items:items, ready:items.every(function(x){ return x.ok; }), missing:items.filter(function(x){ return !x.ok; })}; }
   var SELF=DATA.selfCheck||[];
   function selfOK(){ var s=D().self; return SELF.every(function(x,i){ return !!s[i]; }); }
@@ -848,14 +853,14 @@
   function buildReady(){ var p=document.getElementById('panel-press'), ck=p&&$('.checklist-card',p); if(!ck) return;
     ck.addEventListener('click',function(e){ if(html.classList.contains('rg-on')&&e.target.closest('.checklist-row')){ e.stopPropagation(); e.preventDefault(); } },true);
     var rows=$$('.checklist-row',ck), hint=document.getElementById('checklistHint'); rows.forEach(hide); if(hint) hide(hint); var h3=$('h3',ck); if(h3) setText(h3,'✓ Before you print');
-    readyEl=el('div','rg rg-ready','<fieldset class="rg-selfck"><legend>Your editorial self-check</legend><p class="sub">'+esc((DATA.selfIntro)||'Read your page once more. Tick each one only when it’s true.')+'</p>'+SELF.map(function(t,i){ return '<label class="rg-check"><input type="checkbox" data-self="'+i+'"'+(D().self[i]?' checked':'')+'> '+esc(t)+'</label>'; }).join('')+'</fieldset>'+
-      '<div class="rg-readyl"><div class="hd">What the page can check <small>It can see what’s missing. It can’t judge whether your history is right. That’s your job, and your teacher’s.</small></div><ul></ul></div>');
+    readyEl=el('div','rg rg-ready','<fieldset class="rg-selfck"><legend>Check your own work</legend><p class="sub">'+esc((DATA.selfIntro)||'Read your page once more. Tick each one only when it’s true.')+'</p>'+SELF.map(function(t,i){ return '<label class="rg-check"><input type="checkbox" data-self="'+i+'"'+(D().self[i]?' checked':'')+'> '+esc(t)+'</label>'; }).join('')+'</fieldset>'+
+      '<div class="rg-readyl"><div class="hd">Still to do before you print <small>This list only checks that each part is filled in. It can’t tell if your history is right. You check that, and so does your teacher.</small></div><ul></ul></div>');
     ck.appendChild(readyEl);
     readyEl.addEventListener('change',function(e){ var t=e.target; if(t.dataset.self==null) return; D().self[t.dataset.self]=t.checked; save(); paintReady(); });
     readyEl.addEventListener('click',function(e){ var b=e.target.closest('button[data-go]'); if(!b) return; var it=readiness().items.filter(function(x){ return x.k===b.dataset.go; })[0]; if(it) goSrc(it.go); }); }
   function paintReady(){ var R0=readiness(); if(readyEl) $('ul',readyEl).innerHTML=R0.items.map(function(x){ return '<li class="'+(x.ok?'ok':'')+'"><span class="ic" aria-hidden="true">'+(x.ok?'✓':'○')+'</span><span>'+esc(x.t)+'</span>'+(x.ok?'<span class="rg-sr">done</span>':'<button type="button" data-go="'+x.k+'">Go there</button>')+'</li>'; }).join('');
     var cert=document.getElementById('certCard'); if(cert){ cert.classList.toggle('locked',!S.published); cert.classList.toggle('unlocked',!!S.published); }
-    if(deskEl){ $('.ed .st',deskEl).textContent=S.published?(stale()?'Printed · edited since':'Printed edition'):'Proof copy'; }
+    if(deskEl){ $('.ed .st',deskEl).textContent=S.published?(stale()?'Printed · changed since':'Printed edition'):'Draft (not printed yet)'; }
     updateStepper(); if(typeof paintRedPencil==='function') paintRedPencil(); return R0; }
 
   /* ================================================================ THE RECORD: one object behind the proof, print, archive and every export */
@@ -933,7 +938,7 @@
     if(window.switchTab&&!window.__rgNdWrapped){ var o=window.switchTab; window.switchTab=function(t){ var r=o.apply(this,arguments); if(html.classList.contains('rg-on')&&t==='press'){ if(R.planner&&R.planner.paint) R.planner.paint(); paintDesk(); paintReady(); } return r; }; window.__rgNdWrapped=true; }
     if(window.updateProgress&&!window.__rgProgWrapped){ var up=window.updateProgress; window.updateProgress=function(){ var r=up.apply(this,arguments); if(html.classList.contains('rg-on')){ var st=stageState(), n=st.filter(Boolean).length, f=document.getElementById('progressFill'), t=document.getElementById('progressPct'); if(f) f.style.width=(n*25)+'%'; if(t) t.textContent=(n*25)+'%'; } return r; }; window.__rgProgWrapped=true; }
     var ch=document.getElementById('checklistHint'); if(ch&&/Issue 1\b/.test(ch.innerHTML)) setText(ch,ch.innerHTML.replace(/Issue 1\b/,'Issue '+ISSUE)); }
-  function paintEvidence(trayOnly){ var n=EV().length, cnt=pressEl&&$('.rg-evcount b',pressEl); if(cnt) cnt.textContent=n; if(!trayOnly) paintDrawer(); refreshEvBtns(); if(trayOnly&&deskEl){ $('.rg-nd-tray .cnt',deskEl).textContent=n+' saved · '+EV().filter(function(c){ return c.use; }).length+' in use'; $$('.rg-nd-tray .rg-evc',deskEl).forEach(function(a){ var c=evGet(a.dataset.id); if(c) a.classList.toggle('use',!!c.use); }); } }
+  function paintEvidence(trayOnly){ var n=EV().length; if(trayEl) paintTray(); if(!trayOnly) paintDrawer(); refreshEvBtns(); if(trayOnly&&deskEl){ $('.rg-nd-tray .cnt',deskEl).textContent=n+' saved · '+EV().filter(function(c){ return c.use; }).length+' in use'; $$('.rg-nd-tray .rg-evc',deskEl).forEach(function(a){ var c=evGet(a.dataset.id); if(c) a.classList.toggle('use',!!c.use); }); } }
 
   /* a closer look at a historical picture: full size, scrollable, closes with Escape */
   function zoomImage(src,alt,cap){ if(!src) return; var m=modal(); m.innerHTML='<div class="rg-sheet rg-zoom"><button class="x" type="button" aria-label="Close">✕</button><h3>🔍 Look closer</h3><div class="zw" tabindex="0" aria-label="Scrollable picture"><img alt="'+esc(alt||'')+'" src="'+esc(src)+'"></div><p class="cap">'+esc(cap||'')+'</p><div class="row"><button type="button" class="rg-btn alt zi">＋ Zoom in</button><button type="button" class="rg-btn alt zo">－ Zoom out</button></div></div>';

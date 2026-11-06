@@ -717,3 +717,14 @@ button.rg-al2-bin{ display:block; width:100%; text-align:left; font:inherit; cur
 .rg-evdrawer[hidden]{ display:none!important; } .rg-evtoast:not(.show){ visibility:hidden; }
 @media (max-width:760px){ .rg-press-r{ flex-wrap:wrap; max-width:100%; min-width:0; gap:4px; } .rg-press-top .kick{ flex-basis:100%; } }
 @media (max-width:560px){ .rg-press-top .kick{ display:none; } .rg-press-r{ flex-wrap:nowrap!important; overflow-x:auto; scrollbar-width:none; width:100%; } .rg-press-r::-webkit-scrollbar{ display:none; } .rg-press-r > *{ flex:0 0 auto; } .rg-savest{ flex-basis:auto; margin:0 0 0 auto; font-size:10.5px; } .rg-press-top{ gap:4px; } }
+
+/* v6.1 · plain-language job boxes, evidence intro, tools only on the side rail */
+.rg-job{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:8px 0 12px; font:15px/1.5 'Nunito',sans-serif; }
+.rg-job .r{ background:#FFFDF6; border:1px solid #D9CBA6; border-top:4px solid var(--rg-navy); border-radius:4px; padding:8px 10px; } .rg-job .r b{ display:block; font:900 12px 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--rg-navy); margin-bottom:2px; } .rg-job .r p{ margin:0; }
+.rg-job .why{ border-top-color:#8B2D26; } .rg-job .use{ border-top-color:var(--rg-green); } .rg-job .words{ grid-column:1/-1; border-top-color:#B8923E; background:#FBF6E8; } .rg-job .words ul{ margin:2px 0 0; padding-left:18px; columns:2 240px; } .rg-job .words li{ break-inside:avoid; }
+@media (max-width:760px){ .rg-job{ grid-template-columns:1fr; } }
+.rg-evintro{ display:flex; gap:12px; align-items:flex-start; background:#1A2138; color:#FBF3DC; border-radius:6px; padding:12px 14px; margin:0 0 16px; font:16px/1.5 'Nunito',sans-serif; } .rg-evintro .ic{ font-size:28px; } .rg-evintro b{ color:#E9B44C; font:900 16px 'Nunito',sans-serif; } .rg-evintro p{ margin:2px 0 0; }
+.rg-nd .by{ flex-wrap:wrap; } .rg-nd .by small{ flex-basis:100%; font:600 12.5px 'Nunito',sans-serif; text-transform:none; letter-spacing:0; color:#6B6455; }
+.rg-tb.quiet{ width:46px!important; height:46px!important; font-size:18px; } .rg-tb.quiet span{ font-size:8px!important; }
+.rg-pt-grp{ display:none!important; }
+.rg-job .words li b{ display:inline; text-transform:none; letter-spacing:0; font:800 15px 'Nunito',sans-serif; color:var(--rg-ink); margin:0; }
