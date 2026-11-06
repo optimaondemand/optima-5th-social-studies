@@ -2278,17 +2278,17 @@ html, body {
   {
    "tab": "desk",
    "t": "Follow one day",
-   "why": "Follow six people from sunrise to evening. Then mark up the Herald’s picture."
+   "why": "Follow six people from sunrise to evening, study two closely, and investigate the Herald’s picture. Save useful details as evidence."
   },
   {
    "tab": "factcheck",
-   "t": "Fact-check three claims",
-   "why": "Check each claim before the paper prints it."
+   "t": "Fact-check the claims",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
   },
   {
    "tab": "press",
    "t": "Go to press",
-   "why": "Plan your page, write your brief, and correct the Herald."
+   "why": "Pick your angle, build your own front page from your evidence, then correct the Herald and print."
   }
  ],
  "lens": "Self-governance means being in charge of your own choices. Today, an editor practicing it chooses to report more than one person’s day, not just the easy one.",
@@ -2328,7 +2328,7 @@ html, body {
     "list": [
      {
       "t": "So the picture is wrong?",
-      "reply": "Not wrong, just limited. It shows one free family’s kitchen. The question is who it leaves out."
+      "reply": "Not wrong, just limited. An artist in 1876 imagined a kitchen from about 1776. It can show chores, but it can’t tell us who in that room was free or enslaved."
      },
      {
       "t": "How did you know to check?",
@@ -2357,7 +2357,7 @@ html, body {
    ],
    "dateOpened": [
     {
-     "t": "1876! The picture was made about 100 years after the colonial days it shows. The artist imagined the past. That’s exactly why we check.",
+     "t": "About 1876! But the title says “A Hundred Years Ago,” so the artist was picturing about 1776. A picture can be made long after the time it shows. That’s exactly why we check.",
      "scene": "desk",
      "choice": "date"
     }
@@ -2376,8 +2376,35 @@ html, body {
    ],
    "published": [
     {
-     "t": "Printed! Your correction is on the record, and Issue 33 is in the Morgue. Next issue: the triangular trade.",
+     "t": "Printed! Your front page, your evidence, and your correction are on the record. Issue 33 is in the Morgue. Next issue: the triangular trade.",
      "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “everyone” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
     }
    ]
   }
@@ -2387,13 +2414,13 @@ html, body {
   "why": {
    "icon": "🖼️",
    "q": "Why check a picture?",
-   "t": "Newspapers use pictures as evidence. But a picture is only good evidence if you know who made it and when. That’s why editors check a picture before they print it."
+   "t": "Newspapers use pictures as evidence. But a picture is only good evidence if you know who made it, when they made it, and what time it is meant to show. Those aren’t always the same."
   },
-  "todo": "1. Look closely at the picture. 2. Drag the slider to the year you think it was made. 3. Tap what made you think so. 4. Lock in your guess.",
-  "title": "When was this picture made?",
+  "todo": "1. Look closely at the picture. 2. Drag the slider to the time the scene seems to show. 3. Decide if someone could have drawn it later. 4. Tap your clues, then lock it in.",
+  "title": "When does this picture take place?",
   "img": "source-5-07-05-colonial-daily-life",
   "cap": "The Herald printed this picture with its story. The editor covered the caption.",
-  "q": "When do you think this picture was made?",
+  "q": "What time does this scene seem to show?",
   "min": 1600,
   "max": 1900,
   "step": 10,
@@ -2405,7 +2432,16 @@ html, body {
    "The style of the drawing",
    "No electric lights"
   ],
-  "sealed": "We’ll open it on the Desk tab (tab 2), after you look closely at the picture."
+  "sealed": "We’ll open the caption on the Desk tab (tab 2), after you look closely at the picture.",
+  "later": {
+   "q": "Could someone have drawn it later than the time it shows?",
+   "opts": [
+    "Yes",
+    "Maybe",
+    "No"
+   ]
+  },
+  "shows": 1776
  },
  "explore": {
   "reading": {
@@ -2416,7 +2452,7 @@ html, body {
     "q": "Why follow the sun?",
     "t": "Clocks cost a lot, so many colonists worked by the sun, from sunup to sundown. The fairest way to compare their days is to follow one sunrise to one sunset."
    },
-   "todo": "Drag the sun across the sky, or tap the button. At each stop, read all six columns. When the Hasty Herald pops up, fact-check it.",
+   "todo": "Drag the sun across the sky, or tap the button. At each stop, read across all six columns. Save any detail you might use with ＋ Save as evidence. When the Hasty Herald pops up, fact-check it.",
    "times": [
     "Sunrise",
     "Midday",
@@ -2465,7 +2501,7 @@ html, body {
      "lines": [
       "An apprentice is a young worker learning a trade. This boy, about 14, lives with the printer and works for him for years. He gets food and a bed, but no pay.",
       "He sets type, one metal letter at a time, and inks the press. Benjamin Franklin started out as a printer’s apprentice at age 12.",
-      "He cleans the shop. His master decides when he can go out. He can’t quit until his years of training are done."
+      "He cleans the shop. His master decides when he can go out. He signed an indenture, a contract, so he can’t quit until his years of training are done. Then he will be free to work for pay."
      ]
     },
     {
@@ -2511,17 +2547,20 @@ html, body {
      "fact": "Slavery was legal in all thirteen colonies. Most enslaved people lived in the South, but enslaved people also worked on Northern farms and in Northern cities like New York and Boston."
     }
    ],
-   "close": "Same sun, same day, six very different lives. Where you lived, how much money you had, your race, and whether you were a man or a woman changed everything."
+   "close": "Same sun, same day, six very different lives. Where you lived, how much money you had, your race, and whether you were a man or a woman changed everything.",
+   "note": "These routines were written for this lesson from what historians know about life in the colonies in the mid-1700s. They are illustrative reconstructions, not quotations from real diaries. Real lives also overlapped: one woman could be a mother, a skilled worker, and enslaved, all at once.",
+   "period": "Illustrative routine written for this lesson, set in the mid-1700s, before the American Revolution.",
+   "srcLabel": "Lesson reconstruction (written for this lesson; not a diary quotation)"
   },
   "evidence": {
    "type": "redpen",
-   "title": "Mark up the Herald’s picture",
+   "title": "Investigate the Herald’s picture",
    "why": {
     "icon": "🖍️",
     "q": "Why mark it up?",
     "t": "Editors and proofreaders write on pages with colored pencils and pens, so their notes stand out from the black ink. Now it’s your turn to mark up a source."
    },
-   "todo": "1. Tap each red number. Your note appears right on the picture. 2. Tap 📅 to read the caption. 3. Sort the cards: who is in the picture, and who is missing?",
+   "todo": "1. Look first and write one thing you notice. 2. Tap each red number. 3. Tap 📅 and explain the two dates. 4. Sort what the picture shows, leaves out, and can’t tell us. 5. Write what this source can’t show.",
    "img": "source-5-07-05-colonial-daily-life",
    "alt": "A busy kitchen with a big fireplace, a woman spinning, a woman churning butter, a woman rolling dough, an old man, and two small children.",
    "need": 4,
@@ -2572,9 +2611,9 @@ html, body {
      "rx": 9,
      "ry": 10,
      "label": "Two small children",
-     "t": "Young children stayed home. No one in this picture is at school or at a job outside the house.",
-     "lx": 36,
-     "ly": 84
+     "t": "Two young children play on the floor. The picture can’t tell us who they are or whose children they are.",
+     "lx": 22,
+     "ly": 78
     },
     {
      "x": 35,
@@ -2593,52 +2632,124 @@ html, body {
     "w": 46,
     "h": 10,
     "year": 1876,
-    "text": "The caption says “A New England Kitchen. A Hundred Years Ago.” H. W. Pierce printed it in 1876, the year the United States turned 100. So the artist was imagining a kitchen from about 1776. (Library of Congress)"
+    "text": "The caption says “A New England Kitchen. A Hundred Years Ago.” H. W. Pierce printed it about 1876, the year the United States turned 100. So the scene is set about 1776, but the picture was made about 100 years later. (Library of Congress)",
+    "shows": 1776,
+    "madeBy": "Printed by H. W. Pierce",
+    "showsWhy": "The title says “A Hundred Years Ago.”",
+    "cmp": "Your guess was about the time the scene shows. That’s a fair thing to guess. Now explain it better than any guess could.",
+    "q": "In your own words: what is the difference between when this scene is set and when the print was made? Why does that matter when you use it as evidence?",
+    "check": [
+     "say when the print was made?",
+     "say what time the scene shows?",
+     "say why a picture made 100 years later might not show everything about the past?"
+    ],
+    "model": "The print was made about 1876, but it shows a kitchen from about 1776. The artist wasn’t there, so he imagined the scene. That means it can show chores people remembered, but it may leave things out or get things wrong.",
+    "card": "The kitchen print was made about 1876, but it shows a scene set about 1776 (“A Hundred Years Ago”)."
    },
    "missing": {
-    "q": "Who is NOT in this picture?",
-    "todo": "Tap a card, then tap the frame it belongs in.",
-    "cards": [
+    "q": "What can this picture tell us, and what can’t it?",
+    "todo": "Choose a card, then choose the box where it belongs. Use Tab and Enter, or tap.",
+    "cats": [
      {
-      "t": "A woman spinning thread",
-      "out": false,
-      "hint": "Look again at label 2.",
-      "say": "Yes. She’s at the spinning wheel."
+      "k": "shown",
+      "t": "Shown in the picture",
+      "icon": "🖼"
      },
      {
-      "t": "An enslaved worker",
-      "out": true,
-      "calm": true,
-      "hint": "Look again. Is anyone in this kitchen enslaved?",
-      "say": "Not shown. Many colonial homes, in the North and the South, had enslaved cooks and servants. This picture leaves them out."
+      "k": "not",
+      "t": "Not shown in this scene",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this image alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Someone spinning thread",
+      "k": "shown",
+      "say": "Yes. Look at mark 2, the spinning wheel.",
+      "hint": "Look again at mark 2."
+     },
+     {
+      "t": "Someone churning butter",
+      "k": "shown",
+      "say": "Yes. She’s in the doorway, at mark 3.",
+      "hint": "Look again at mark 3."
      },
      {
       "t": "Young children",
-      "out": false,
-      "hint": "Look again at label 5.",
-      "say": "Right. Two of them, in the middle of the floor."
+      "k": "shown",
+      "say": "Yes. Two of them, on the floor at mark 5.",
+      "hint": "Look again at mark 5."
      },
      {
-      "t": "A wealthy planter",
-      "out": true,
-      "hint": "Look again. Is this a big Southern plantation house?",
-      "say": "Not here. This is a plain New England farm kitchen."
+      "t": "Work in the fields",
+      "k": "not",
+      "say": "Right. Everything here happens inside one kitchen. Field work isn’t in this scene.",
+      "hint": "Is anyone outside, working a field?"
      },
      {
-      "t": "An apprentice at work in a shop",
-      "out": true,
-      "hint": "Look again. Is anyone working in a shop?",
-      "say": "Not here. Everything in this picture happens inside one home."
+      "t": "A printing shop",
+      "k": "not",
+      "say": "Right. This scene is a home, not a shop.",
+      "hint": "Is this a shop with a printing press?"
      },
      {
-      "t": "A woman churning butter",
-      "out": false,
-      "hint": "Look again at label 3.",
-      "say": "Yes. She’s in the doorway."
+      "t": "A town meeting",
+      "k": "not",
+      "say": "Right. No one here is at a meeting. It’s a kitchen.",
+      "hint": "Is this a meeting hall?"
+     },
+     {
+      "t": "Whether each person was free or enslaved",
+      "k": "cant",
+      "calm": true,
+      "say": "Right. Clothes and chores can’t prove a person’s legal status. Many homes, North and South, had enslaved workers, and a picture alone can’t show who they were.",
+      "hint": "Could you prove this just by looking at clothes or chores?"
+     },
+     {
+      "t": "How the people are related",
+      "k": "cant",
+      "say": "Right. They might be a family, but the picture can’t prove who is a parent, a child, a servant, or a visitor.",
+      "hint": "Can a picture prove who is whose mother or son?"
+     },
+     {
+      "t": "How wealthy the household was",
+      "k": "cant",
+      "say": "Right. One room can’t tell us how much a family owned. We’d need records.",
+      "hint": "Can one room show everything a family owned?"
      }
     ]
    },
-   "close": "One free family’s kitchen, drawn 100 years later. It’s good evidence about chores at home, but it leaves out most of the people you followed today."
+   "close": "One kitchen, imagined about 100 years later. It’s useful evidence about chores at home, but it can’t tell us who was free or enslaved, and it leaves out most of the people you followed today.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this picture.",
+   "from": "Historical source: “A New England Kitchen. A Hundred Years Ago,” print by H. W. Pierce, about 1876 (Library of Congress)",
+   "zoomCap": "“A New England Kitchen. A Hundred Years Ago.” H. W. Pierce, about 1876. Library of Congress, https://www.loc.gov/item/2006691541/",
+   "followup": {
+    "q": "You can’t tell from this picture who in the room was free or enslaved. Which other source could help you find out?",
+    "opts": [
+     {
+      "t": "A household record from the time, like a tax list or a will, that lists the people in a home",
+      "ok": true,
+      "say": "Yes. Records made at the time often listed enslaved people as property. Historians use them to find people pictures leave out."
+     },
+     {
+      "t": "Another kitchen picture, made in 1900",
+      "ok": false,
+      "say": "A picture made even later can’t tell us more about a home in 1776."
+     },
+     {
+      "t": "A second copy of this same print",
+      "ok": false,
+      "say": "A copy shows the same scene, so it can’t answer a new question."
+     }
+    ],
+    "limQ": "Write what this picture can’t show, in your own words.",
+    "limPh": "This picture can’t show…"
+   }
   }
  },
  "vocab": {
@@ -2707,23 +2818,70 @@ html, body {
    "q": "Why plan the page first?",
    "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. It showed where the headline and each story would go. Your plan works the same way."
   },
-  "todo": "Tap one choice in each box, from 1 to 4. Then write your brief in your own words below.",
+  "todo": "1. Pick the angle your page will argue, or write your own. 2. Pick two people. 3. Pick what made the difference. Then build your page below.",
   "head": {
-   "label": "Headline: which claim is true?",
+   "label": "Your angle: what will your front page argue?",
+   "own": "Or write your own angle:",
    "choices": [
     {
-     "t": "Colonial life was the same for everyone",
+     "t": "Same Sun, Unequal Choices",
+     "ok": true,
+     "tip": "Who got to choose how to spend the day?",
+     "fit": [
+      "planter",
+      "enslaved",
+      "apprentice",
+      "woman",
+      "almanac"
+     ],
+     "fitTip": "Good fits: the planter, the enslaved person, the apprentice, and the almanac.",
+     "ideas": [
+      "Same Sun, Unequal Choices",
+      "Who Chose the Hours?"
+     ]
+    },
+    {
+     "t": "The Work a Kitchen Picture Leaves Out",
+     "ok": true,
+     "tip": "What does the 1876 print show, and what can’t it show?",
+     "fit": [
+      "picture",
+      "limitation",
+      "enslaved",
+      "planter",
+      "apprentice"
+     ],
+     "fitTip": "Good fits: your picture notes and limitations, plus people the picture leaves out.",
+     "ideas": [
+      "The Work a Kitchen Picture Leaves Out",
+      "What the Picture Can’t Show"
+     ]
+    },
+    {
+     "t": "One Colony, Very Different Days",
+     "ok": true,
+     "tip": "Compare two lives hour by hour.",
+     "fit": [
+      "routine",
+      "planter",
+      "enslaved",
+      "farmer",
+      "apprentice",
+      "woman",
+      "child",
+      "almanac",
+      "compare"
+     ],
+     "fitTip": "Good fits: two routines at the same hour, and the almanac’s sun times.",
+     "ideas": [
+      "One Colony, Very Different Days",
+      "Same Sunrise, Different Lives"
+     ]
+    },
+    {
+     "t": "Colonial Life Was the Same for Everyone",
      "ok": false,
      "hint": "That’s the Hasty Herald’s headline. Look back at your six columns: were their days the same?"
-    },
-    {
-     "t": "Colonial life was not the same for everyone",
-     "ok": true
-    },
-    {
-     "t": "Colonists did not have daily routines",
-     "ok": false,
-     "hint": "Every person you followed had a routine from sunrise to evening. Try another headline."
     }
    ]
   },
@@ -2738,41 +2896,7 @@ html, body {
    "Whether they were a man or a woman",
    "Their age"
   ],
-  "close": "Your page is planned. Your starters are waiting right above the writing box. Use your plan, but write it in your own words.",
-  "draft": {
-   "tip": "Tap a starter to add it to your draft, then finish the sentence in your own words. You don’t have to use them all.",
-   "heads": [
-    "Same Sun, Different Days",
-    "Not the Same Day for Everyone",
-    "{P1} and {p2}: One Day, Two Lives"
-   ],
-   "starts": [
-    {
-     "k": "Start strong",
-     "t": "Daily life in the colonies was not the same for everyone."
-    },
-    {
-     "k": "Column 1",
-     "t": "At sunrise, {p1}"
-    },
-    {
-     "k": "Column 2",
-     "t": "At the same hour, {p2}"
-    },
-    {
-     "k": "Compare",
-     "t": "The biggest difference between their days was"
-    },
-    {
-     "k": "Why it matters",
-     "t": "Their days were different because of {f}. This shows that"
-    },
-    {
-     "k": "Correct the Herald",
-     "t": "The Hasty Herald said life was the same for everyone, but"
-    }
-   ]
-  }
+  "close": "Your angle is set. Now build your front page below: choose clippings, write each part in your own words, and attach your evidence."
  },
  "almanac": {
   "img": "rg-poor-richard-1748.jpg",
@@ -2941,9 +3065,10 @@ html, body {
   "why": {
    "icon": "✏️",
    "q": "Why a correction?",
-   "t": "When a newspaper gets something wrong, an honest paper prints a correction. Today you strike the Herald’s claim and print yours in its place."
+   "t": "When a newspaper gets something wrong, an honest paper prints a correction. Today you strike the Herald’s claim, and your own correction prints in its place."
   },
-  "win": "Printed. Your correction is on the record, and Issue 33 is filed in the Morgue."
+  "win": "Printed. Your front page and correction are on the record, and Issue 33 is filed in the Morgue.",
+  "claim": "Daily life in the colonies was the same for everyone."
  },
  "morgue": {
   "realImg": "rg-boston-news-letter-1704.jpg",
@@ -2955,7 +3080,8 @@ html, body {
    "Snap one column at sunset",
    "Snap a part of the kitchen picture that shows work",
    "Snap your headline before you print"
-  ]
+  ],
+  "how": "Tap the Camera button in the bar at the top, then drag a box around anything on the page. You can put your photo in your evidence drawer."
  },
  "hlCoach": {
   "title": "Highlight like an editor",
@@ -3163,7 +3289,7 @@ html, body {
    "at": "source",
    "slot": "v4",
    "label": "Marking up a source",
-   "script": "Now you’re the editor with the red pen. Tap each number, and I’ll write a note right on the picture. Don’t open the caption until you’ve circled at least four parts. When you do, check the year against your sealed guess. Then ask the most important question an editor asks: who’s missing?"
+   "script": "Now you’re the editor with the red pen. Look first, and write one thing you notice. Then tap each number, and I’ll write a note right on the picture. When you open the caption, look for two dates: when the print was made, and the time it shows. Then sort carefully. Some things a picture just can’t tell us, and saying so is honest work."
   },
   {
    "at": "factcheck",
@@ -3174,8 +3300,8 @@ html, body {
   {
    "at": "plan",
    "slot": "v5",
-   "label": "From notes to a front page",
-   "script": "Every front page starts as a plan, called a dummy. First, pick the headline that tells the truth. Then pick two people whose days were very different, one for each column, and compare them at the same hour. Last, pick what made the difference. When you finish, I’ll leave you some starters right above the writing box. Use them to begin, then finish every sentence in your own words."
+   "label": "From clippings to a front page",
+   "script": "Every front page starts with a plan. First, pick your angle: the big idea your page will argue. Then pick two people, and what made the difference. Below that is your front page. Choose clippings from your evidence tray, attach them, and say in your own words what each one proves. Picking cards isn’t the work. Explaining them is."
   }
  ],
  "cues": {
@@ -3254,42 +3380,37 @@ html, body {
   ],
   "v4": [
    {
-    "at": "^number$",
-    "sel": "#panel-desk .rg-rp-n",
-    "fx": "pop",
-    "i": 0
+    "at": "^notice",
+    "sel": "#rg-rp-notice",
+    "fx": "glow",
+    "scroll": true
    },
    {
-    "at": "^picture",
+    "at": "^number",
     "sel": "#panel-desk .rg-rp-pic",
-    "fx": "glow"
+    "fx": "pop"
    },
    {
-    "at": "^caption$",
+    "at": "^caption",
     "sel": "#panel-desk .rg-rp-n.date",
     "fx": "point"
    },
    {
-    "at": "^missing",
+    "at": "^sort$",
     "sel": "#panel-desk .rg-rp-count",
     "fx": "glow"
    }
   ],
   "v5": [
    {
-    "at": "^headline$",
+    "at": "^angle",
     "sel": "#panel-press .rg-lo2-box.head",
     "fx": "pop"
    },
    {
-    "at": "^column",
+    "at": "^people",
     "sel": "#panel-press .rg-lo2-two",
     "fx": "point"
-   },
-   {
-    "at": "^hour",
-    "sel": "#panel-press .rg-lo2-two",
-    "fx": "glow"
    },
    {
     "at": "^difference",
@@ -3297,10 +3418,21 @@ html, body {
     "fx": "glow"
    },
    {
-    "at": "^starters$",
-    "sel": "#panel-press .rg-draft-help",
+    "at": "^tray",
+    "sel": "#panel-press .rg-nd-tray",
     "fx": "glow",
     "scroll": true
+   },
+   {
+    "at": "^attach$",
+    "sel": "#panel-press .rg-nd-attach",
+    "fx": "pop",
+    "i": 0
+   },
+   {
+    "at": "^Explaining",
+    "sel": "#panel-press .rg-nd-paper",
+    "fx": "glow"
    }
   ],
   "v6": [
@@ -4208,7 +4340,7 @@ html, body {
   "v4": [
    [
     0,
-    0.32,
+    0.24,
     "Now"
    ],
    [
@@ -4228,243 +4360,308 @@ html, body {
    ],
    [
     1.2,
-    1.28,
+    1.36,
     "with"
    ],
    [
-    1.36,
     1.4,
+    1.44,
     "the"
    ],
    [
-    1.44,
-    1.6,
+    1.56,
+    1.68,
     "red"
    ],
    [
-    1.68,
-    2,
+    1.84,
+    2.08,
     "pen."
    ],
    [
-    2.48,
+    2.56,
     2.72,
-    "Tap"
+    "Look"
    ],
    [
     2.8,
-    2.96,
-    "each"
+    3.36,
+    "first,"
    ],
    [
-    3.04,
+    3.44,
     3.52,
-    "number,"
-   ],
-   [
-    3.56,
-    3.6,
     "and"
    ],
    [
     3.68,
-    3.76,
-    "I’ll"
-   ],
-   [
     3.84,
-    4,
     "write"
    ],
    [
-    4.027,
-    4.053,
-    "a"
-   ],
-   [
+    3.92,
     4.08,
+    "one"
+   ],
+   [
+    4.16,
     4.32,
-    "note"
+    "thing"
    ],
    [
+    4.4,
     4.48,
-    4.64,
-    "right"
+    "you"
    ],
    [
-    4.68,
-    4.72,
-    "on"
+    4.56,
+    5.24,
+    "notice."
    ],
    [
-    4.8,
-    4.84,
-    "the"
+    5.52,
+    5.68,
+    "Then"
    ],
    [
-    4.88,
-    5.28,
-    "picture."
-   ],
-   [
-    5.76,
-    6,
-    "Don’t"
-   ],
-   [
+    5.84,
     6.08,
-    6.24,
-    "open"
+    "tap"
    ],
    [
-    6.28,
+    6.16,
     6.32,
-    "the"
+    "each"
    ],
    [
     6.4,
-    6.8,
-    "caption"
+    6.96,
+    "number,"
    ],
    [
-    6.92,
+    7,
     7.04,
-    "until"
+    "and"
    ],
    [
     7.12,
+    7.2,
+    "I’ll"
+   ],
+   [
     7.28,
-    "you’ve"
+    7.44,
+    "write"
    ],
    [
-    7.36,
+    7.48,
+    7.52,
+    "a"
+   ],
+   [
     7.6,
-    "circled"
-   ],
-   [
-    7.68,
     7.84,
-    "at"
+    "note"
    ],
    [
-    7.92,
+    8,
+    8.16,
+    "right"
+   ],
+   [
+    8.2,
     8.24,
-    "least"
+    "on"
+   ],
+   [
+    8.28,
+    8.32,
+    "the"
    ],
    [
     8.4,
-    8.56,
-    "four"
+    9.04,
+    "picture."
    ],
    [
-    8.64,
-    9.28,
-    "parts."
+    9.36,
+    9.44,
+    "When"
    ],
    [
     9.52,
     9.6,
-    "When"
-   ],
-   [
-    9.68,
-    9.76,
     "you"
    ],
    [
+    9.72,
     9.84,
-    10.4,
-    "do,"
+    "open"
    ],
    [
-    10.48,
-    10.64,
-    "check"
-   ],
-   [
-    10.68,
-    10.72,
+    9.88,
+    9.92,
     "the"
+   ],
+   [
+    10.16,
+    10.64,
+    "caption,"
+   ],
+   [
+    10.72,
+    10.8,
+    "look"
    ],
    [
     10.88,
     11.04,
-    "year"
+    "for"
    ],
    [
-    11.12,
-    11.44,
-    "against"
+    11.16,
+    11.28,
+    "two"
    ],
    [
-    11.48,
-    11.52,
-    "your"
+    11.36,
+    12.16,
+    "dates:"
    ],
    [
-    11.68,
-    11.92,
-    "sealed"
+    12.24,
+    12.32,
+    "when"
    ],
    [
-    12,
+    12.36,
+    12.4,
+    "the"
+   ],
+   [
+    12.48,
+    12.64,
+    "print"
+   ],
+   [
+    12.72,
     12.8,
-    "guess."
+    "was"
    ],
    [
-    13,
-    13.2,
-    "Then"
+    12.88,
+    13.36,
+    "made,"
    ],
    [
-    13.28,
+    13.4,
+    13.44,
+    "and"
+   ],
+   [
     13.52,
-    "ask"
-   ],
-   [
-    13.56,
     13.6,
     "the"
    ],
    [
+    13.68,
     13.84,
+    "time"
+   ],
+   [
+    13.92,
     14,
-    "most"
+    "it"
    ],
    [
-    14.08,
-    14.48,
-    "important"
+    14.2,
+    14.68,
+    "shows."
    ],
    [
-    14.56,
-    14.88,
-    "question"
-   ],
-   [
-    14.92,
     14.96,
-    "an"
-   ],
-   [
-    15.04,
-    15.36,
-    "editor"
+    15.2,
+    "Then"
    ],
    [
     15.44,
-    16.32,
-    "asks:"
+    15.68,
+    "sort"
    ],
    [
-    16.4,
-    16.64,
-    "who’s"
+    15.76,
+    16.8,
+    "carefully."
    ],
    [
-    16.88,
+    16.92,
+    17.04,
+    "Some"
+   ],
+   [
+    17.16,
+    17.28,
+    "things"
+   ],
+   [
+    17.36,
     17.44,
-    "missing?"
+    "a"
+   ],
+   [
+    17.64,
+    17.84,
+    "picture"
+   ],
+   [
+    17.92,
+    18.16,
+    "just"
+   ],
+   [
+    18.24,
+    18.4,
+    "can’t"
+   ],
+   [
+    18.48,
+    18.64,
+    "tell"
+   ],
+   [
+    18.72,
+    19.28,
+    "us,"
+   ],
+   [
+    19.36,
+    19.44,
+    "and"
+   ],
+   [
+    19.48,
+    19.76,
+    "saying"
+   ],
+   [
+    19.84,
+    20.08,
+    "so"
+   ],
+   [
+    20.16,
+    20.32,
+    "is"
+   ],
+   [
+    20.4,
+    20.72,
+    "honest"
+   ],
+   [
+    20.8,
+    21.36,
+    "work."
    ]
   ],
   "v5": [
@@ -4480,338 +4677,288 @@ html, body {
    ],
    [
     0.64,
-    0.96,
+    1.04,
     "page"
    ],
    [
     1.12,
-    1.28,
-    "starts"
-   ],
-   [
-    1.32,
     1.36,
-    "as"
+    "starts"
    ],
    [
     1.44,
     1.52,
+    "with"
+   ],
+   [
+    1.56,
+    1.6,
     "a"
    ],
    [
-    1.72,
-    2.16,
-    "plan,"
+    1.68,
+    2.36,
+    "plan."
    ],
    [
-    2.24,
-    2.4,
-    "called"
-   ],
-   [
-    2.44,
-    2.48,
-    "a"
-   ],
-   [
-    2.56,
-    3.52,
-    "dummy."
-   ],
-   [
-    3.72,
-    4.24,
+    2.64,
+    3.28,
     "First,"
    ],
    [
-    4.32,
-    4.4,
+    3.4,
+    3.52,
     "pick"
    ],
    [
+    3.6,
+    3.68,
+    "your"
+   ],
+   [
+    3.84,
     4.48,
+    "angle:"
+   ],
+   [
     4.56,
+    4.64,
     "the"
    ],
    [
-    4.76,
+    4.72,
+    4.88,
+    "big"
+   ],
+   [
     4.96,
-    "headline"
-   ],
-   [
-    5.04,
-    5.12,
-    "that"
-   ],
-   [
-    5.2,
     5.36,
-    "tells"
+    "idea"
    ],
    [
     5.44,
     5.52,
-    "the"
+    "your"
    ],
    [
-    5.72,
-    6.48,
-    "truth."
+    5.6,
+    5.76,
+    "page"
    ],
    [
-    6.56,
+    5.84,
+    5.92,
+    "will"
+   ],
+   [
+    6,
+    6.88,
+    "argue."
+   ],
+   [
     6.96,
+    7.2,
     "Then"
    ],
    [
-    7.08,
-    7.2,
+    7.44,
+    7.6,
     "pick"
    ],
    [
-    7.28,
-    7.36,
+    7.68,
+    7.84,
     "two"
    ],
    [
-    7.52,
-    7.76,
-    "people"
-   ],
-   [
-    7.84,
-    8,
-    "whose"
-   ],
-   [
-    8.08,
-    8.32,
-    "days"
-   ],
-   [
-    8.44,
+    7.92,
     8.56,
-    "were"
+    "people,"
    ],
    [
     8.64,
+    8.72,
+    "and"
+   ],
+   [
+    8.8,
     8.88,
-    "very"
+    "what"
    ],
    [
     8.96,
-    9.6,
-    "different,"
+    9.04,
+    "made"
    ],
    [
-    9.68,
-    9.84,
-    "one"
+    9.12,
+    9.2,
+    "the"
    ],
    [
-    9.92,
-    10,
-    "for"
-   ],
-   [
-    10.08,
-    10.16,
-    "each"
-   ],
-   [
+    9.44,
     10.24,
+    "difference."
+   ],
+   [
+    10.32,
+    10.56,
+    "Below"
+   ],
+   [
+    10.64,
     10.88,
-    "column,"
+    "that"
    ],
    [
     10.96,
     11.04,
-    "and"
+    "is"
    ],
    [
-    11.24,
-    11.44,
-    "compare"
-   ],
-   [
-    11.52,
-    11.68,
-    "them"
-   ],
-   [
-    11.72,
-    11.76,
-    "at"
-   ],
-   [
-    11.84,
-    12,
-    "the"
-   ],
-   [
-    12.12,
-    12.24,
-    "same"
-   ],
-   [
-    12.32,
-    13.2,
-    "hour."
-   ],
-   [
-    13.28,
-    14,
-    "Last,"
-   ],
-   [
-    14.08,
-    14.24,
-    "pick"
-   ],
-   [
-    14.32,
-    14.4,
-    "what"
-   ],
-   [
-    14.48,
-    14.64,
-    "made"
-   ],
-   [
-    14.68,
-    14.72,
-    "the"
-   ],
-   [
-    14.8,
-    15.84,
-    "difference."
-   ],
-   [
-    15.92,
-    16,
-    "When"
-   ],
-   [
-    16.08,
-    16.16,
-    "you"
-   ],
-   [
-    16.36,
-    16.72,
-    "finish,"
-   ],
-   [
-    16.8,
-    16.88,
-    "I’ll"
-   ],
-   [
-    16.96,
-    17.04,
-    "leave"
-   ],
-   [
-    17.12,
-    17.2,
-    "you"
-   ],
-   [
-    17.24,
-    17.28,
-    "some"
-   ],
-   [
-    17.44,
-    17.92,
-    "starters"
-   ],
-   [
-    18,
-    18.08,
-    "right"
-   ],
-   [
-    18.16,
-    18.4,
-    "above"
-   ],
-   [
-    18.44,
-    18.48,
-    "the"
-   ],
-   [
-    18.6,
-    18.72,
-    "writing"
-   ],
-   [
-    18.8,
-    19.6,
-    "box."
-   ],
-   [
-    19.68,
-    19.84,
-    "Use"
-   ],
-   [
-    19.88,
-    19.92,
-    "them"
-   ],
-   [
-    20,
-    20.08,
-    "to"
-   ],
-   [
-    20.28,
-    20.72,
-    "begin,"
-   ],
-   [
-    20.8,
-    20.96,
-    "then"
-   ],
-   [
-    21.16,
-    21.36,
-    "finish"
-   ],
-   [
-    21.52,
-    21.68,
-    "every"
-   ],
-   [
-    21.76,
-    22.16,
-    "sentence"
-   ],
-   [
-    22.24,
-    22.32,
-    "in"
-   ],
-   [
-    22.4,
-    22.48,
+    11.12,
+    11.2,
     "your"
    ],
    [
-    22.6,
-    22.72,
+    11.32,
+    11.44,
+    "front"
+   ],
+   [
+    11.64,
+    12.24,
+    "page."
+   ],
+   [
+    12.32,
+    12.56,
+    "Choose"
+   ],
+   [
+    12.64,
+    12.96,
+    "clippings"
+   ],
+   [
+    13.04,
+    13.12,
+    "from"
+   ],
+   [
+    13.2,
+    13.28,
+    "your"
+   ],
+   [
+    13.32,
+    13.6,
+    "evidence"
+   ],
+   [
+    13.68,
+    14.24,
+    "tray,"
+   ],
+   [
+    14.44,
+    14.64,
+    "attach"
+   ],
+   [
+    14.76,
+    15.12,
+    "them,"
+   ],
+   [
+    15.2,
+    15.28,
+    "and"
+   ],
+   [
+    15.36,
+    15.52,
+    "say"
+   ],
+   [
+    15.6,
+    15.68,
+    "in"
+   ],
+   [
+    15.76,
+    15.84,
+    "your"
+   ],
+   [
+    15.92,
+    16.08,
     "own"
    ],
    [
-    22.92,
-    23.36,
-    "words."
+    16.16,
+    16.56,
+    "words"
+   ],
+   [
+    16.68,
+    16.8,
+    "what"
+   ],
+   [
+    16.88,
+    17.04,
+    "each"
+   ],
+   [
+    17.12,
+    17.28,
+    "one"
+   ],
+   [
+    17.36,
+    18.32,
+    "proves."
+   ],
+   [
+    18.4,
+    18.64,
+    "Picking"
+   ],
+   [
+    18.72,
+    19.12,
+    "cards"
+   ],
+   [
+    19.2,
+    19.36,
+    "isn’t"
+   ],
+   [
+    19.44,
+    19.52,
+    "the"
+   ],
+   [
+    19.68,
+    20.24,
+    "work."
+   ],
+   [
+    20.44,
+    20.88,
+    "Explaining"
+   ],
+   [
+    20.96,
+    21.12,
+    "them"
+   ],
+   [
+    21.2,
+    21.76,
+    "is."
    ]
   ],
   "v6": [
@@ -5106,7 +5253,7 @@ html, body {
   "steps": [
    {
     "key": "listen",
-    "t": "Listen to the editor"
+    "t": "Hear or read the editor’s tips"
    },
    {
     "key": "sun",
@@ -5117,8 +5264,12 @@ html, body {
     "t": "Fact-check the Herald"
    },
    {
+    "key": "pair",
+    "t": "Study two people closely"
+   },
+   {
     "key": "picture",
-    "t": "Mark up the picture",
+    "t": "Investigate the picture",
     "fold": true
    },
    {
@@ -5132,7 +5283,235 @@ html, body {
   ],
   "place": "PHILADELPHIA",
   "lede": "The Hasty Herald says every colonist lived the same kind of day. This paper went to find out. We followed six people from sunrise to evening: a planter, an enslaved worker, a farm family, a printer’s apprentice, a farm wife, and a child. Read across the columns, and decide for yourself."
- }
+ },
+ "pair": {
+  "title": "Study two people closely",
+  "why": {
+   "icon": "🔍",
+   "q": "Why look at just two?",
+   "t": "Comparing everyone at once is hard. Editors pick two people and compare them at the same hour. That’s how a difference becomes clear."
+  },
+  "todo": "Choose two people. Read their lines side by side, hour by hour. Then write the biggest difference you see.",
+  "q": "At the same hour, what is the biggest difference between their days?",
+  "legal": [
+   {
+    "ids": [
+     "apprentice",
+     "enslaved"
+    ],
+    "t": "Not the same thing.",
+    "d": "An apprentice signed an indenture, a contract, for a set number of years, and became free when it ended. An enslaved person was held as property for life, by law, and their children were born enslaved."
+   },
+   {
+    "ids": [
+     "planter",
+     "enslaved"
+    ],
+    "t": "Same place, different rights.",
+    "d": "They lived on the same plantation, but the law let the planter own people. Enslaved people had no say over their work, their pay, or their families."
+   }
+  ]
+ },
+ "newsroom": {
+  "title": "Your front page",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "Routines are illustrative reconstructions written for this lesson, not diary quotations. Sources are real historical documents or pictures.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Write your correction in one or two sentences. What is true instead?",
+  "ideas": [
+   "Same Sun, Different Days",
+   "Not the Same Day for Everyone"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "The comparison",
+    "short": "Your comparison (at least 25 words)",
+    "kick": "The comparison",
+    "ask": "Compare two people’s days at the same hour. Use details, not just names.",
+    "ph": "Write your comparison here, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "pair",
+     "journal1",
+     "cardnotes",
+     "notice"
+    ],
+    "starters": [
+     "At sunrise, {p1}",
+     "At the same hour, {p2}",
+     "The biggest difference between their days was"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why the difference?",
+    "short": "Your explanation (at least 15 words)",
+    "kick": "Why it happened",
+    "ask": "Explain what made their days so different, like where they lived, money, race and freedom, or being a man or a woman.",
+    "ph": "Write your explanation here.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal2",
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Their days were different because of {f}.",
+     "This shows that"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source caption or limitation (at least 8 words)",
+    "ask": "Write a caption for one of your sources, or a limit: what can it show, and what can’t it show?",
+    "ph": "For example, start with: This picture…  or  The almanac…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "date",
+     "limit",
+     "notice"
+    ],
+    "starters": [
+     "This picture was made about",
+     "This source can’t show"
+    ]
+   }
+  ]
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one, make your call, choose the detail that helps you decide, and explain the connection in your own words."
+ },
+ "claimChecks": [
+  {
+   "id": "same-plantation",
+   "claim": "The planter and the enslaved person lived on the same plantation, so their days were much alike.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported",
+     "ok": false,
+     "say": "They did live in the same place. But does the same place mean the same day? Check their columns."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading",
+     "ok": true,
+     "say": "Yes. The first part is true, but it leads to a false idea. Same place, very different days and rights."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence",
+     "ok": false,
+     "say": "You do have evidence: the two columns show both of their days. Use it."
+    }
+   ],
+   "details": [
+    {
+     "from": "Enslaved person, midday:",
+     "t": "Work goes on in the heat while an overseer watches.",
+     "ok": true,
+     "say": "This shows the enslaved person had no choice about the work."
+    },
+    {
+     "from": "Planter, evening:",
+     "t": "He reads, plays cards, or visits other planters. Enslaved people do the cooking and cleaning in his house.",
+     "ok": true,
+     "say": "This shows the planter chose how to spend his evening while others worked for him."
+    },
+    {
+     "from": "Farm family, sunrise:",
+     "t": "The family feeds the animals and milks the cow before breakfast.",
+     "ok": false,
+     "say": "This is about a different family. It can’t tell us about the plantation."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "fifteen-hours",
+   "claim": "The almanac shows fifteen hours of daylight, so every person worked exactly fifteen hours.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported",
+     "ok": false,
+     "say": "The almanac does show about 15 hours of daylight in June. But does daylight tell us how long each person worked?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading",
+     "ok": true,
+     "say": "Yes. It starts with a real fact, then claims something the almanac can’t show."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence",
+     "ok": true,
+     "say": "That’s a fair call too. The almanac shows daylight, not work hours. Explain which detail made you decide."
+    }
+   ],
+   "details": [
+    {
+     "from": "Almanac calendar, December:",
+     "t": "The sun rose about 7:20 and set about 4:40, about 9 hours of daylight.",
+     "ok": true,
+     "say": "So daylight changed with the seasons. It wasn’t always 15 hours."
+    },
+    {
+     "from": "Enslaved person, evening:",
+     "t": "After dark, people tend their own small gardens, cook, and care for their families.",
+     "ok": true,
+     "say": "Work didn’t stop at sunset for everyone."
+    },
+    {
+     "from": "Planter, evening:",
+     "t": "He reads, plays cards, or visits other planters.",
+     "ok": true,
+     "say": "Some people chose when to stop working."
+    },
+    {
+     "from": "Almanac cover, 1748:",
+     "t": "“Fitted to the Latitude of Forty Degrees.”",
+     "ok": false,
+     "say": "This tells where the times were worked out for, not how long people worked."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your page once more. Tick each one only when it’s true. These are your checks, not the computer’s.",
+ "selfCheck": [
+  "I compared two people’s experiences accurately, using details from the lesson.",
+  "Every piece of evidence I attached really supports what I said next to it.",
+  "I explained why their days were different, not just that they were different.",
+  "I was careful about my source: I said what it can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Build your front page"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ]
 }
 </script>
 </head>

@@ -36,11 +36,14 @@
   var RM=false; try{ RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
 
   function get(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
-  function put(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+  function put(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(e){ return false; } }
   function fresh(){ return {thread:[],seen:{},ack:{},hints:{},m:{}}; }
   var S=get(KEY,null)||fresh(); ['thread','seen','ack','hints','m'].forEach(function(k){ if(!S[k]) S[k]=k==='thread'?[]:{}; });
   var C=get(CKEY,{published:[],lines:{},photos:{}}); C.published=C.published||[]; C.lines=C.lines||{};
-  function save(){ put(KEY,S); put(CKEY,C); }
+  /* one save for everything (drafts, evidence, answers, published work). Honest status; never overwrite another tab's archive. */
+  var SAVE_ST={ok:true,at:0}, FROZEN=false, RESTORING=false;
+  function mergeCourse(stored,mine){ var out={published:[],lines:{},photos:(mine&&mine.photos)||(stored&&stored.photos)||{}}; [stored,mine].forEach(function(c){ if(!c) return; (c.published||[]).forEach(function(n){ if(out.published.indexOf(n)<0) out.published.push(n); }); Object.keys(c.lines||{}).forEach(function(k){ var a=out.lines[k], b=c.lines[k]; if(!a||((b&&b.at)||0)>=((a&&a.at)||0)) out.lines[k]=b; }); }); return out; }
+  function save(){ if(FROZEN){ if(typeof paintSave==='function') paintSave(); return false; } var a=put(KEY,S), cur=get(CKEY,null); if(cur) C=mergeCourse(cur,C); var b=put(CKEY,C); SAVE_ST.ok=a&&b; SAVE_ST.at=Date.now(); if(typeof paintSave==='function') paintSave(); return SAVE_ST.ok; }
   function el(t,c,h){ var d=document.createElement(t); if(c) d.className=c; if(h!=null) d.innerHTML=h; return d; }
   function $(s,r){ return (r||document).querySelector(s); } function $$(s,r){ return [].slice.call((r||document).querySelectorAll(s)); }
   function after(r,n){ r.parentNode.insertBefore(n,r.nextSibling); } function before(r,n){ r.parentNode.insertBefore(n,r); }
@@ -51,13 +54,16 @@
   function whyCard(w){ if(!w) return ''; if(typeof w==='string') w={t:w}; return '<div class="rg-why"><span class="ic" aria-hidden="true">'+esc(w.icon||'🔎')+'</span><div><b>'+esc(w.q||'Why this?')+'</b> '+w.t+'</div></div>'; }
   function todo(t){ return t?'<p class="rg-todo">'+t+'</p>':''; }
   /* source pictures: try the lesson's own image folder in the same order as the page's autoloader */
-  function srcImg(name,cls,alt){ var img=new Image(); img.className=cls||''; img.alt=alt||''; img.draggable=false; if(!name) return img; (function tryI(i){ if(i>=EXT.length) return; var t=new Image(); t.onload=function(){ img.src=t.src; img.dispatchEvent(new Event('rgload')); }; t.onerror=function(){ tryI(i+1); }; t.src=SRC+name+EXT[i]; })(0); return img; }
+  /* remembers which file type worked, so a picture is probed once per computer, not on every load */
+  var EXTOK=get('oao.rg.imgext',{})||{};
+  function srcImg(name,cls,alt){ var img=new Image(); img.className=cls||''; img.alt=alt||''; img.draggable=false; img.decoding='async'; if(!name) return img; var known=EXTOK[name], order=known?[known].concat(EXT.filter(function(x){ return x!==known; })):EXT;
+    (function tryI(i){ if(i>=order.length) return; var t=new Image(); t.onload=function(){ img.src=t.src; if(EXTOK[name]!==order[i]){ EXTOK[name]=order[i]; put('oao.rg.imgext',EXTOK); } img.dispatchEvent(new Event('rgload')); }; t.onerror=function(){ tryI(i+1); }; t.src=SRC+name+order[i]; })(0); return img; }
   function local(n){ return LOCAL+n; }
 
   /* ---- sound: tiny WebAudio cues, generated in code, quiet, never on page load ---- */
   var AC=null; function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return AC; }
-  function tone(f,d,type,v,slide){ var a=ac(); if(!a) return; var o=a.createOscillator(), g=a.createGain(); o.type=type||'sine'; o.frequency.value=f; if(slide) o.frequency.exponentialRampToValueAtTime(slide,a.currentTime+d); g.gain.setValueAtTime(0.0001,a.currentTime); g.gain.exponentialRampToValueAtTime(v||0.05,a.currentTime+0.01); g.gain.exponentialRampToValueAtTime(0.0001,a.currentTime+d); o.connect(g); g.connect(a.destination); o.start(); o.stop(a.currentTime+d+0.02); }
-  function noise(d,lo,hi,v){ var a=ac(); if(!a) return; var n=Math.floor(a.sampleRate*d), b=a.createBuffer(1,n,a.sampleRate), x=b.getChannelData(0); for(var i=0;i<n;i++) x[i]=(Math.random()*2-1)*(1-i/n); var s=a.createBufferSource(); s.buffer=b; var f=a.createBiquadFilter(); f.type='bandpass'; f.frequency.value=(lo+hi)/2; f.Q.value=1.2; var g=a.createGain(); g.gain.value=v||0.08; s.connect(f); f.connect(g); g.connect(a.destination); s.start(); }
+  function tone(f,d,type,v,slide){ if(P&&P.quiet) return; var a=ac(); if(!a) return; var o=a.createOscillator(), g=a.createGain(); o.type=type||'sine'; o.frequency.value=f; if(slide) o.frequency.exponentialRampToValueAtTime(slide,a.currentTime+d); g.gain.setValueAtTime(0.0001,a.currentTime); g.gain.exponentialRampToValueAtTime(v||0.05,a.currentTime+0.01); g.gain.exponentialRampToValueAtTime(0.0001,a.currentTime+d); o.connect(g); g.connect(a.destination); o.start(); o.stop(a.currentTime+d+0.02); }
+  function noise(d,lo,hi,v){ if(P&&P.quiet) return; var a=ac(); if(!a) return; var n=Math.floor(a.sampleRate*d), b=a.createBuffer(1,n,a.sampleRate), x=b.getChannelData(0); for(var i=0;i<n;i++) x[i]=(Math.random()*2-1)*(1-i/n); var s=a.createBufferSource(); s.buffer=b; var f=a.createBiquadFilter(); f.type='bandpass'; f.frequency.value=(lo+hi)/2; f.Q.value=1.2; var g=a.createGain(); g.gain.value=v||0.08; s.connect(f); f.connect(g); g.connect(a.destination); s.start(); }
   var SFX={ clack:function(){ noise(0.03,1800,4000,0.05); }, ding:function(){ if(QUIET) return; tone(1568,0.5,'sine',0.035); }, chime:function(){ tone(880,0.18,'sine',0.04); setTimeout(function(){ tone(1320,0.25,'sine',0.035); },90); },
     thud:function(){ tone(120,0.18,'sine',0.08,60); noise(0.06,200,600,0.06); }, stamp:function(){ if(QUIET){ tone(220,0.12,'sine',0.04); return; } tone(90,0.2,'square',0.05,50); noise(0.08,300,900,0.1); },
     scratch:function(){ noise(0.22,2500,6000,0.035); }, soft:function(){ tone(523,0.25,'sine',0.025); }, bounce:function(){ tone(300,0.12,'triangle',0.04,200); },
@@ -76,7 +82,7 @@
     for(i=0;i<WF.length;i++){ if(toks.indexOf(WF[i])!==-1||joined===WF[i]) return 'block'; }
     return ''; }
   function okName(n){ return !!n&&!nameProblem(n); }
-  function loadProfile(){ var keys=[PKEY,'oao.ff.profile','oao.profile']; for(var i=0;i<keys.length;i++){ var p=get(keys[i],null); if(p&&okName(p.name)) return {name:p.name}; } return null; }
+  function loadProfile(){ var q=(get(PKEY,{})||{}).quiet, keys=[PKEY,'oao.ff.profile','oao.profile']; for(var i=0;i<keys.length;i++){ var p=get(keys[i],null); if(p&&okName(p.name)) return {name:p.name,quiet:!!q}; } return q?{name:'',quiet:true}:null; }
   var P=null; function nm(){ return P&&P.name?P.name:''; }
   function storageWorks(){ try{ var k='oao.__probe'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } }
   var openingWaiting=false;
@@ -93,7 +99,7 @@
     var cx=$('.cancel',card); if(cx) cx.addEventListener('click',function(){ card.remove(); });
     go.addEventListener('click',function(){ var name=clean(input.value), pr=nameProblem(input.value)||nameProblem(name);
       if(pr){ warn.textContent=pr==='block'?'Let’s use your real first name. This is the name that goes on your work.':pr; input.focus(); return; }
-      P={name:name}; put(PKEY,{name:name,created:new Date().toISOString()});
+      P={name:name,quiet:!!(P&&P.quiet)}; put(PKEY,{name:name,quiet:P.quiet,created:new Date().toISOString()});
       card.remove(); paintWho(); var bl=document.getElementById('brief-byline-name'); if(bl&&!bl.value.trim()){ bl.value=name; bl.dispatchEvent(new Event('input',{bubbles:true})); }
       if(openingWaiting){ openingWaiting=false; startOpening(); } });
     if(!isEdit) setTimeout(function(){ try{ input.focus({preventScroll:true}); }catch(e){} },50); else input.focus(); }
@@ -210,13 +216,15 @@
     html.dataset.rgTab=currentScene(); markNow(currentScene()); }
   function markNow(tab){ if(!pressEl) return; var i=STAGES.map(function(s){return s.tab;}).indexOf(tab); $('.pg',pressEl).textContent='Tab '+(i+1)+' of '+STAGES.length; }
   var R={};
-  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
-  function fcDone(){ var qs=$$('#panel-factcheck .factcheck-q'); return qs.length>0&&qs.every(function(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); }); }
-  function refreshPress(){ var st=[R.scene1?R.scene1.done():true, deskDone(), fcDone(), !!S.published];
+  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.pair) ok=ok&&R.pair.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
+  function fcDone(){ var qs=$$('#panel-factcheck .factcheck-q'); return qs.length>0&&qs.every(function(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); })&&(typeof ccDone!=='function'||ccDone()); }
+  /* the one stage rule: the tabs' ✓, the proof, the progress bar and the stepper all read this */
+  function stageState(){ return [R.scene1?R.scene1.done():true, deskDone(), fcDone(), !!S.published]; }
+  function refreshPress(){ var st=stageState();
     if(st[2]&&!S.quizDone){ S.quizDone=true; save(); }
     STAGES.forEach(function(s,i){ var b=document.getElementById('btn-'+s.tab); if(b) b.classList.toggle('rg-done',st[i]); });
     if(pressEl){ $$('.pr',pressEl).forEach(function(g){ g.classList.toggle('on',st[+g.dataset.pr]); }); pressEl.classList.toggle('published',!!S.published); }
-    updateStepper(); refreshVoice();
+    updateStepper(); refreshVoice(); if(typeof paintReady==='function'&&readyEl) paintReady(); if(window.updateProgress) try{ window.updateProgress(); }catch(e){}
     if(st[0]) beat('s1Done'); if(st[1]) beat('s2Done'); if(S.quizDone) beat('quizDone'); if(S.published) beat('published'); }
 
   /* ================================================================ stage heads + a wire strip at the end of each tab */
@@ -251,9 +259,11 @@
   function mstate(k,d){ if(!S.m[k]) S.m[k]=d; return S.m[k]; }
   function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.dataset.tab='Issue '+ISSUE+' · '+kicker.split('·')[0].trim(); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+whyCard(c&&c.why)+todo(c&&c.todo); return g; }
   /* drag OR tap: tap a card, then tap where it goes. dropTargets get .rg-drop; cb(card,target) */
+  /* keyboard: cards and targets are real buttons (Tab, then Enter/Space); after a repaint, focus lands on the next card */
   function dragTap(root,cardSel,targetSel,cb){ var picked=null;
-    root.addEventListener('click',function(e){ var c=e.target.closest(cardSel); if(c&&root.contains(c)&&!c.classList.contains('placed')){ if(picked) picked.classList.remove('picked'); picked=c===picked?null:c; if(picked) picked.classList.add('picked'); SFX.clack(); return; }
-      var t=e.target.closest(targetSel); if(t&&picked){ var p=picked; picked.classList.remove('picked'); picked=null; cb(p,t); } });
+    function refocus(t){ setTimeout(function(){ if(document.activeElement&&document.activeElement!==document.body&&root.contains(document.activeElement)) return; var key=t.dataset.k?'[data-k="'+t.dataset.k+'"]':t.dataset.f?'[data-f="'+t.dataset.f+'"]':''; var nx=$(cardSel,root)||(key&&$(targetSel+key,root)); if(nx&&!/^(BUTTON|INPUT|SELECT|TEXTAREA)$/.test(nx.tagName)) nx=$('button',nx)||nx; if(nx) nx.focus({preventScroll:true}); },30); }
+    root.addEventListener('click',function(e){ var c=e.target.closest(cardSel); if(c&&root.contains(c)&&!c.classList.contains('placed')){ if(picked){ picked.classList.remove('picked'); picked.setAttribute('aria-pressed','false'); } picked=c===picked?null:c; if(picked){ picked.classList.add('picked'); picked.setAttribute('aria-pressed','true'); } SFX.clack(); return; }
+      var t=e.target.closest(targetSel); if(t&&picked&&!e.target.closest('.rg-evbtn')){ var p=picked; picked.classList.remove('picked'); picked=null; cb(p,t); refocus(t); } });
     root.addEventListener('dragstart',function(e){ var c=e.target.closest(cardSel); if(!c) return; picked=c; try{ e.dataTransfer.setData('text','x'); }catch(x){} });
     root.addEventListener('dragover',function(e){ if(e.target.closest(targetSel)) e.preventDefault(); });
     root.addEventListener('drop',function(e){ var t=e.target.closest(targetSel); if(!t||!picked) return; e.preventDefault(); var p=picked; picked=null; p.classList.remove('picked'); cb(p,t); }); }
@@ -265,21 +275,27 @@
       '<div class="rg-dt-ctl"><div class="rg-dt-q">'+esc(c.q||'Drag the slider to the year you think it was made.')+'</div><div class="rg-dt-year"><b>'+(st.guess||Math.round(((c.min||1600)+(c.max||1900))/2/10)*10)+'</b></div>'+
       '<input type="range" class="rg-dt-range" min="'+(c.min||1600)+'" max="'+(c.max||1900)+'" step="'+(c.step||10)+'" value="'+(st.guess||Math.round(((c.min||1600)+(c.max||1900))/2/10)*10)+'" aria-label="Year guess">'+
       '<div class="rg-dt-scale"><span>'+(c.min||1600)+'</span><span>'+(((c.min||1600)+(c.max||1900))/2)+'</span><span>'+(c.max||1900)+'</span></div>'+
+      (c.later?'<div class="rg-dt-later" role="group" aria-label="'+esc(c.later.q)+'"><div class="lab">'+esc(c.later.q)+'</div>'+c.later.opts.map(function(o,i){ return '<button type="button" data-i="'+i+'" aria-pressed="'+(st.later===i)+'" class="'+(st.later===i?'on':'')+'">'+esc(o)+'</button>'; }).join('')+'</div>':'')+
       '<div class="rg-dt-clues"><div class="lab">What makes you think so? <i>(tap any)</i></div>'+(c.clues||[]).map(function(x,i){ return '<button type="button" data-i="'+i+'" class="'+((st.clues||[]).indexOf(i)>-1?'on':'')+'">'+esc(x)+'</button>'; }).join('')+'</div>'+
       '<button type="button" class="rg-btn rg-dt-lock">🔒 Lock in my guess</button><div class="rg-dt-sealed"></div></div></div>';
     after(anchor,g); $('.rg-dt-img',g).appendChild(srcImg(c.img,'','A picture of a busy kitchen with a fireplace, a spinning wheel and a family at work'));
     var rng=$('.rg-dt-range',g), yr=$('.rg-dt-year b',g), lock=$('.rg-dt-lock',g), sealed=$('.rg-dt-sealed',g);
     rng.addEventListener('input',function(){ yr.textContent=rng.value; if(+rng.value%50===0) SFX.clack(); });
-    $$('.rg-dt-clues button',g).forEach(function(b){ b.addEventListener('click',function(){ b.classList.toggle('on'); st.clues=$$('.rg-dt-clues button.on',g).map(function(x){ return +x.dataset.i; }); save(); SFX.clack(); }); });
-    function paint(){ var L=!!st.locked; g.classList.toggle('locked',L); rng.disabled=L; lock.disabled=L; lock.textContent=L?'🔒 Guess locked':'🔒 Lock in my guess';
-      sealed.innerHTML=L?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: your guess, '+esc(st.guess)+'.</b> '+esc(c.sealed||'We’ll open it on the next tab, after you look closely at the picture.')+'</div></div>':''; }
+    $$('.rg-dt-later button',g).forEach(function(b){ b.addEventListener('click',function(){ if(st.locked) return; st.later=+b.dataset.i; save(); SFX.clack(); $$('.rg-dt-later button',g).forEach(function(x){ var on=x===b; x.classList.toggle('on',on); x.setAttribute('aria-pressed',on); }); paint(); }); });
+    $$('.rg-dt-clues button',g).forEach(function(b){ b.setAttribute('aria-pressed',(st.clues||[]).indexOf(+b.dataset.i)>-1); b.addEventListener('click',function(){ b.classList.toggle('on'); b.setAttribute('aria-pressed',b.classList.contains('on')); st.clues=$$('.rg-dt-clues button.on',g).map(function(x){ return +x.dataset.i; }); save(); SFX.clack(); }); });
+    function paint(){ var L=!!st.locked, needLater=!!c.later&&st.later==null; g.classList.toggle('locked',L); rng.disabled=L; lock.disabled=L||needLater; lock.textContent=L?'🔒 Guess locked':needLater?'🔒 Answer both questions to lock it':'🔒 Lock in my guess';
+      $$('.rg-dt-later button',g).forEach(function(x){ x.disabled=L; });
+      sealed.innerHTML=L?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: the scene seems to show about '+esc(st.guess)+'.'+(c.later&&st.later!=null?' Drawn later? '+esc(c.later.opts[st.later])+'.':'')+'</b> '+esc(c.sealed||'We’ll open it on the next tab, after you look closely at the picture.')+'</div></div>':''; }
     lock.addEventListener('click',function(){ st.guess=+rng.value; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateLocked'); });
     paint();
-    return {el:g,done:function(){ return !!st.locked; },journal:function(e,NA){ return st.locked?'<p class="a">I guessed the kitchen picture was made in <b>'+e(st.guess)+'</b>'+((st.clues||[]).length?' because of: '+e((st.clues||[]).map(function(i){ return (c.clues||[])[i]; }).join(', '))+'.':'.')+(S.m.redpen&&S.m.redpen.date?' It was really made in '+e(c.answer)+'.':'')+'</p>':NA; }}; };
+    return {el:g,done:function(){ return !!st.locked; },journal:function(e,NA){ return st.locked?'<p class="a">Before the reveal, I thought the scene showed about <b>'+e(st.guess)+'</b>'+((st.clues||[]).length?' because of: '+e((st.clues||[]).map(function(i){ return (c.clues||[])[i]; }).join(', '))+'.':'.')+(c.later&&st.later!=null?' Could it have been drawn later? I said: '+e(c.later.opts[st.later])+'.':'')+(S.m.redpen&&S.m.redpen.date?' The print was made about '+e(c.answer)+' and shows a scene set about '+e(c.shows||'')+'.':'')+'</p>':NA; },
+      state:function(){ return {guess:st.guess, later:c.later&&st.later!=null?c.later.opts[st.later]:'', clues:(st.clues||[]).map(function(i){ return (c.clues||[])[i]; }), locked:!!st.locked}; }}; };
 
   /* ---------------------------------------------------------------- suncolumns: drag the sun through one day; each person's column sets in type */
   MOD.suncolumns=function(c,anchor){ var st=mstate('sun',{stop:-1,myth:{}}); var N=(c.times||[]).length;
     var g=gameShell('rg-sun','The Front Page Desk · one day, many lives',c.title||'Follow one day in the colonies',c);
+    if(c.note) g.innerHTML+='<p class="rg-recon"><b>About these six routines.</b> '+esc(c.note)+'</p>';
+    function lineCard(col,i){ return {k:'routine', t:col.lines[i]||'', who:col.who, when:(c.times||[])[i]||'', where:col.where||'', from:c.srcLabel||'Lesson reconstruction', ctx:c.period||'', tags:[col.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+col.id+'"] .rg-col-line[data-i="'+i+'"]'}}; }
     var sky='<svg class="rg-sky" viewBox="0 0 600 120" aria-hidden="true"><defs><linearGradient id="rgSkyG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F6E7C1"/><stop offset="1" stop-color="#FBF7EC"/></linearGradient></defs><rect width="600" height="120" fill="url(#rgSkyG)"/><path d="M30,104 Q300,-44 570,104" fill="none" stroke="#C9B98E" stroke-dasharray="4 6"/>'+
       (c.times||[]).map(function(t,i){ var p=arc(i/(N-1)); return '<g class="rg-sky-stop" data-i="'+i+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="#FBF7EC" stroke="#8B6F2E" stroke-width="2"/></g>'; }).join('')+
       '<path d="M0,112 L600,112" stroke="#8B6F2E" stroke-width="2"/><g class="rg-sun"><circle r="16" fill="#E9B44C"/><g stroke="#E9B44C" stroke-width="3" stroke-linecap="round">'+[0,45,90,135,180,225,270,315].map(function(a){ var r=a*Math.PI/180; return '<line x1="'+(Math.cos(r)*21)+'" y1="'+(Math.sin(r)*21)+'" x2="'+(Math.cos(r)*27)+'" y2="'+(Math.sin(r)*27)+'"/>'; }).join('')+'</g></g></svg>';
@@ -295,12 +311,12 @@
       $$('.rg-sun-labels button',g).forEach(function(b){ var i=+b.dataset.i; b.classList.toggle('on',i<=s); b.classList.toggle('now',i===view); b.disabled=i>s+1; });
       $$('.rg-sky-stop',g).forEach(function(n){ n.classList.toggle('on',+n.dataset.i<=s); n.classList.toggle('now',+n.dataset.i===view); });
       $$('.rg-col',g).forEach(function(a){ var col=(c.cols||[]).filter(function(x){ return x.id===a.dataset.id; })[0], b=$('.rg-col-body',a), have=b.children.length;
-        for(var i=have;i<=s;i++){ var p=el('p','rg-col-line','<span class="tm">'+esc(c.times[i])+'</span> '+esc(col.lines[i]||'')); b.appendChild(p); if(type&&i===s&&!RM){ p.classList.add('set'); } } $$('.rg-col-line',b).forEach(function(p,i){ p.classList.toggle('dim',view>=0&&i!==view); p.classList.toggle('cur',i===view); }); });
+        for(var i=have;i<=s;i++){ var p=el('p','rg-col-line','<span class="who-m">'+esc(col.who)+' · </span><span class="tm">'+esc(c.times[i])+'</span> <span class="txt">'+esc(col.lines[i]||'')+'</span> '+evBtn(lineCard(col,i),'sm')); p.dataset.i=i; b.appendChild(p); if(type&&i===s&&!RM){ p.classList.add('set'); } } $$('.rg-col-line',b).forEach(function(p,i){ p.classList.toggle('dim',view>=0&&i!==view); p.classList.toggle('cur',i===view); }); });
       nextB.disabled=s>=N-1; nextB.textContent=s<0?'☀️ Start the day: sunrise ▸':s>=N-1?'The day is done':'Move the sun to '+(c.times[s+1]||'')+' ▸';
       now.textContent=s<0?'Drag the sun or tap the button.':view<s?'Looking back at '+c.times[view]+'. Tap '+c.times[s]+' to come back.':'Now: '+c.times[s]+'. Read every column.'+(s>0?' Tap an earlier time to look back.':'');
-      mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s; }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact">'+(m.img?'<figure><img alt="" src="'+esc(LOCAL+m.img)+'"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>':'')+'<div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s; }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact">'+(m.img?'<figure><img alt="" src="'+esc(LOCAL+m.img)+'"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>':'')+'<div><b>Fact-check:</b> '+esc(m.fact)+' '+evBtn({k:'lesson', t:m.fact, who:'Fact-check of the Herald', when:'', where:'', from:'Lesson explanation (a fact-check written for this lesson)', ctx:'The Herald claimed: “'+m.claim+'”', tags:['herald'], ret:{tab:'desk', sel:'.rg-myth[data-i="'+i+'"]'}},'sm')+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
       var all=done(); $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; g.classList.toggle('finished',all); }
-    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; st.stop=i; view=i; save(); SFX.paper(); paint(true); refreshPress(); if(i===N-1) beat('sunDone'); }
+    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; st.stop=i; view=i; save(); SFX.paper(); paint(true); if(R.pair) R.pair.paint(); refreshPress(); if(i===N-1) beat('sunDone'); }
     nextB.addEventListener('click',function(){ go(st.stop+1); });
     $('.rg-sun-labels',g).addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) go(+b.dataset.i); });
     /* drag the sun along the arc */
@@ -316,45 +332,83 @@
     return {el:g,done:done,journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">I followed '+e((c.cols||[]).length)+' people through one day. '+((c.myths||[]).filter(function(m,i){ return st.myth[i]; }).map(function(m){ return 'Herald: “'+e(m.claim)+'” Fact: '+e(m.fact); }).join('<br>'))+'</p>'; },
       people:function(){ return (c.cols||[]).map(function(x){ return x.who; }); }}; };
 
-  /* ---------------------------------------------------------------- redpen: circle what you see, open the date, find who's missing */
+  /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
+     sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}});
     var g=gameShell('rg-redpen','The Source Desk · mark it up like an editor',c.title||'Mark up the picture',c);
-    var spots=c.spots||[], need=c.need||Math.min(4,spots.length), last=null;
-    /* where each annotation sits: the lesson can place it (lx, ly); otherwise push it away from the centre */
+    var spots=c.spots||[], need=c.need||Math.min(4,spots.length), last=null, say={}, M=c.missing||{}, cats=M.cats||[{k:'in',t:'In the picture'},{k:'out',t:'Not in the picture'}], FU=c.followup||null, D=c.date||{};
+    var SRC_FROM=c.from||'Historical source: the kitchen print';
     function lpos(s){ if(s.lx!=null) return [s.lx,s.ly]; return [Math.max(14,Math.min(86,s.x+(s.x<50?-1:1)*-16)),Math.max(8,Math.min(86,s.y+(s.y<50?16:-16)))]; }
-    g.innerHTML+='<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'" pathLength="100"/>'; }).join('')+spots.map(function(s,i){ var L=lpos(s); return '<line class="lead" data-i="'+i+'" x1="'+s.x+'" y1="'+s.y+'" x2="'+L[0]+'" y2="'+L[1]+'"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(c.date.x-c.date.w/2)+'" y="'+(c.date.y-c.date.h/2)+'" width="'+c.date.w+'" height="'+c.date.h+'" rx="2" pathLength="100"/>':'')+'</svg>'+
-      spots.map(function(s,i){ return '<button type="button" class="rg-rp-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="Label '+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button>'; }).join('')+
-      spots.map(function(s,i){ var L=lpos(s); return '<div class="rg-rp-ann" data-i="'+i+'" style="left:'+L[0]+'%;top:'+L[1]+'%" aria-live="polite"><b><span class="no">'+(i+1)+'</span> '+esc(s.label)+'</b><span class="txt">'+esc(s.t)+'</span></div>'; }).join('')+
-      (c.date?'<button type="button" class="rg-rp-n date" style="left:'+c.date.x+'%;top:'+c.date.y+'%" aria-label="The caption and date">📅</button>':'')+'</figure>'+
+    function spotCard(s,i){ return {k:'source', t:'The print shows '+s.label.charAt(0).toLowerCase()+s.label.slice(1)+'.', who:'Kitchen print', when:'made about '+(D.year||''), where:'', from:SRC_FROM, ctx:s.t, tags:['picture'], ret:{tab:'desk', sel:'.rg-rp-n[data-i="'+i+'"]'}}; }
+    g.innerHTML+='<div class="rg-rp-look"><label for="rg-rp-notice"><b>Look first.</b> '+esc(c.lookQ||'Before the editor’s marks appear, look closely. Write one thing you notice in this picture.')+'</label><textarea id="rg-rp-notice" rows="2" placeholder="I notice…">'+esc(st.notice||'')+'</textarea><div class="row"><button type="button" class="rg-btn alt rg-rp-zoom">🔍 Look closer</button><button type="button" class="rg-btn rg-rp-go">Show the editor’s marks</button><span class="rg-rp-sv"></span></div></div>'+
+      '<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'"/>'; }).join('')+
+      spots.map(function(s,i){ var L=lpos(s); return '<line class="lead" data-i="'+i+'" x1="'+s.x+'" y1="'+s.y+'" x2="'+L[0]+'" y2="'+L[1]+'"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(D.x-D.w/2)+'" y="'+(D.y-D.h/2)+'" width="'+D.w+'" height="'+D.h+'" rx="2"/>':'')+'</svg>'+
+      spots.map(function(s,i){ return '<button type="button" class="rg-rp-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="Mark '+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button>'; }).join('')+
+      spots.map(function(s,i){ var L=lpos(s); return '<div class="rg-rp-ann" data-i="'+i+'" style="left:'+L[0]+'%;top:'+L[1]+'%"><b><span class="no">'+(i+1)+'</span> '+esc(s.label)+'</b><span class="txt">'+esc(s.t)+'</span></div>'; }).join('')+
+      (c.date?'<button type="button" class="rg-rp-n date" style="left:'+D.x+'%;top:'+D.y+'%" aria-label="Open the caption and date">📅</button>':'')+'</figure>'+
       '<div class="rg-rp-cur" aria-live="polite"></div><div class="rg-rp-date"></div></div>'+
-      '<div class="rg-rp-count"></div><div class="rg-rp-miss"></div>';
+      '<div class="rg-rp-count" aria-live="polite"></div><div class="rg-rp-miss"></div><div class="rg-rp-fu"></div><div class="rg-rp-close"></div>';
     after(anchor,g); var pic=$('.rg-rp-img',g); pic.appendChild(srcImg(c.img,'',c.alt||''));
-    function guess(){ return S.m.dateit&&S.m.dateit.locked?S.m.dateit.guess:null; }
+    var notice=$('#rg-rp-notice',g);
+    function guess(){ return S.m.dateit&&S.m.dateit.locked?S.m.dateit:null; }
+    function looked(){ return !!st.looked; }
+    function sortDone(){ var cards=M.cards||[]; return cards.length>0&&cards.every(function(x,i){ return !!st.miss[i]; }); }
     function paint(){ var n=Object.keys(st.seen).length;
+      g.classList.toggle('looking',!looked());
+      $('.rg-rp-go',g).disabled=words(notice.value)<4; $('.rg-rp-go',g).classList.toggle('rg-hide',looked());
+      $('.rg-rp-sv',g).innerHTML=words(notice.value)>=4?evBtn({k:'mine', t:notice.value.trim(), who:'My observation', when:'', where:'', from:'My own observation of the kitchen print', ctx:'What I noticed before reading the editor’s notes.', tags:['picture','mine'], ret:{tab:'desk', sel:'#rg-rp-notice'}},'sm'):'';
       $$('.ring',g).forEach(function(r){ var i=r.dataset.i; r.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
-      $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
-      $$('.rg-rp-ann',g).forEach(function(a){ var i=a.dataset.i; a.classList.toggle('on',!!st.seen[i]); a.classList.toggle('open',i===last); });
+      $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); b.disabled=!looked()||(i==null&&n<need); b.setAttribute('aria-pressed',i!=null?!!st.seen[i]:!!st.date); });
+      $$('.rg-rp-ann',g).forEach(function(a){ var i=a.dataset.i, open=i===last; a.classList.toggle('on',!!st.seen[i]); a.classList.toggle('open',open); var sv=$('.rg-evbtn',a); if(open&&!sv) a.insertAdjacentHTML('beforeend',evBtn(spotCard(spots[+i],+i),'sm')); if(!open&&sv) sv.remove(); });
       $$('.lead',g).forEach(function(l){ l.classList.toggle('on',!!st.seen[l.dataset.i]); });
-      var cs=last!=null&&spots[+last]; $('.rg-rp-cur',g).innerHTML=cs?'<b>'+(+last+1)+'. '+esc(cs.label)+'</b> '+esc(cs.t):'';
-      var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',n>=need&&!st.date); dbtn.disabled=n<need; }
-      $('.rg-rp-count',g).innerHTML=st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> parts circled. Tap a number on the picture.':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
-      var gs=guess(), d=c.date||{};
-      $('.rg-rp-date',g).innerHTML=st.date?'<div class="rg-reveal"><div class="big">'+esc(d.year)+'</div><div>'+esc(d.text)+'</div>'+(gs?'<div class="cmp">Your sealed guess: <b>'+gs+'</b>. '+(Math.abs(gs-d.year)<=20?'Very close!':gs<d.year?'You guessed '+(d.year-gs)+' years too early. That’s the trick: the picture shows the 1700s, but it was made later.':'You guessed '+(gs-d.year)+' years too late.')+'</div>':'')+'</div>':'';
-      var M=c.missing||{}, cards=M.cards||[];
-      $('.rg-rp-miss',g).innerHTML=st.date&&cards.length?'<div class="rg-rp-mhd"><b>'+esc(M.q||'Who is NOT in this picture?')+'</b> '+esc(M.todo||'Tap a card, then tap the frame it belongs in.')+'</div><div class="rg-rp-cards">'+cards.map(function(x,i){ var p=st.miss[i]; return p?'':'<button type="button" class="rg-card'+(x.calm?' calm':'')+'" draggable="true" data-i="'+i+'">'+esc(x.t)+'</button>'; }).join('')+'</div>'+
-        '<div class="rg-frames"><div class="rg-frame" data-f="in"><div class="lab">🖼 In the picture</div>'+cards.map(function(x,i){ return st.miss[i]==='in'?'<span class="chip">'+esc(x.t)+'</span>':''; }).join('')+'</div><div class="rg-frame empty" data-f="out"><div class="lab">⬜ Missing from the picture</div>'+cards.map(function(x,i){ return st.miss[i]==='out'?'<span class="chip'+(x.calm?' calm':'')+'">'+esc(x.t)+'</span>':''; }).join('')+'</div></div><div class="rg-rp-say"></div>'+(done()&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''):'';
-      g.classList.toggle('finished',done()); }
-    g.addEventListener('click',function(e){ var b=e.target.closest('.rg-rp-n'); if(!b) return;
-      if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); return; }
-      st.seen[b.dataset.i]=true; last=b.dataset.i; save(); SFX.scratch(); paint(); refreshPress(); });
-    /* tap an old label to open its note again */
-    g.addEventListener('click',function(e){ var a=e.target.closest('.rg-rp-ann.on'); if(!a) return; last=a.dataset.i===last?null:a.dataset.i; paint(); });
-    dragTap(g,'.rg-card','.rg-frame',function(card,frame){ var i=+card.dataset.i, x=c.missing.cards[i], want=x.out?'out':'in';
-      if(frame.dataset.f!==want){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); $('.rg-rp-say',g).textContent=x.hint||'Look again at the picture.'; return; }
-      st.miss[i]=want; save(); x.calm?SFX.soft():SFX.chime(); $('.rg-rp-say',g).textContent=x.say||''; paint(); refreshPress(); });
-    function done(){ var cards=(c.missing||{}).cards||[]; return !!st.date&&cards.every(function(x,i){ return !!st.miss[i]; }); }
+      var cs=last!=null&&spots[+last]; $('.rg-rp-cur',g).innerHTML=cs?'<b>'+(+last+1)+'. '+esc(cs.label)+'</b> '+esc(cs.t)+' '+evBtn(spotCard(cs,+last),'sm'):'';
+      var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',looked()&&n>=need&&!st.date); }
+      $('.rg-rp-count',g).innerHTML=!looked()?'':st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> marks opened. Tap a number on the picture.':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
+      paintDate(); paintMiss(); paintFU(); fin(); }
+    /* ---- the date: when it was MADE vs. the time it SHOWS; the student's explanation is the point, not the guess */
+    function paintDate(){ var box=$('.rg-rp-date',g); if(!st.date){ box.innerHTML=''; return; } var gs=guess();
+      if(!box.firstChild){ box.innerHTML='<div class="rg-reveal"><div class="rg-dates"><div><span class="k">Made</span><b>about '+esc(D.year)+'</b><small>'+esc(D.madeBy||'')+'</small></div><div class="gap" aria-hidden="true">← '+esc((D.year||0)-(D.shows||0))+' years →</div><div><span class="k">Shows</span><b>about '+esc(D.shows||'')+'</b><small>'+esc(D.showsWhy||'')+'</small></div></div>'+
+        '<p>'+esc(D.text)+'</p>'+(gs?'<p class="cmp">Your sealed note: the scene seems to show about <b>'+esc(gs.guess)+'</b>'+(gs.later!=null&&(DATA.scene1||{}).later?'; drawn later? <b>'+esc(DATA.scene1.later.opts[gs.later])+'</b>':'')+'. '+esc(D.cmp||'Now explain it better than any guess could.')+'</p>':'')+
+        '<label for="rg-rp-dexp"><b>'+esc(D.q||'In your own words: what is the difference between when this scene is set and when the print was made? Why does it matter when you use it as evidence?')+'</b></label><textarea id="rg-rp-dexp" rows="3">'+esc(st.dexp||'')+'</textarea><div class="rg-rp-dfb" aria-live="polite"></div></div>';
+        var ta=$('#rg-rp-dexp',box); ta.addEventListener('input',function(){ st.dexp=ta.value; save(); paintDexp(); paintMiss(); paintFU(); fin(); refreshPress(); }); }
+      paintDexp(); }
+    function paintDexp(){ var fb=$('.rg-rp-dfb',g); if(!fb) return; var v=st.dexp||'', n=words(v);
+      if(n<12){ fb.innerHTML='<p class="rg-todo">📝 '+n+' of 12 words. Mention both dates, and say why the gap matters.</p>'; return; }
+      var chk=(D.check||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
+      fb.innerHTML='<div class="rg-selfcheck"><b>Check your own explanation.</b> Did you…<ul>'+chk+'</ul></div><details class="rg-model"><summary>Compare with the editor’s note</summary><p>'+esc(D.model||'')+'</p></details>'+
+        evBtn({k:'source', t:D.card||('Made about '+D.year+'; shows a scene set about '+D.shows+'.'), who:'Kitchen print', when:'made about '+D.year, where:'', from:SRC_FROM, ctx:D.text, note:v, tags:['picture','date'], ret:{tab:'desk', sel:'#rg-rp-dexp'}},''); }
+    function sayFor(i){ return say[i]||''; }
+    function paintMiss(){ var cards=M.cards||[], box=$('.rg-rp-miss',g);
+      if(!(st.date&&words(st.dexp||'')>=12&&cards.length)){ box.innerHTML=''; return; }
+      var fk=document.activeElement&&g.contains(document.activeElement)?(document.activeElement.dataset.i!=null&&document.activeElement.classList.contains('rg-card')?'c':document.activeElement.dataset.f?'f'+document.activeElement.dataset.f:''):'';
+      box.innerHTML='<div class="rg-rp-mhd"><b>'+esc(M.q||'What can this picture tell us?')+'</b> '+esc(M.todo||'Choose a card, then choose where it belongs.')+'</div><div class="rg-rp-cards" role="group" aria-label="Cards to sort">'+cards.map(function(x,i){ return st.miss[i]?'':'<button type="button" class="rg-card'+(x.calm?' calm':'')+'" draggable="true" data-i="'+i+'" aria-pressed="false">'+esc(x.t)+'</button>'; }).join('')+'</div>'+
+        '<div class="rg-frames three">'+cats.map(function(ct){ return '<div class="rg-frame'+(ct.k==='cant'?' cant':'')+'" data-f="'+ct.k+'"><button type="button" class="drop" data-f="'+ct.k+'"><span class="lab">'+esc(ct.icon||'')+' '+esc(ct.t)+'</span><span class="rg-sr"> (put the chosen card here)</span></button>'+cards.map(function(x,i){ return st.miss[i]===ct.k?'<span class="chip'+(x.calm?' calm':'')+'">'+esc(x.t)+(ct.k==='cant'?' '+evBtn({k:'mine', t:'The 1876 kitchen print can’t show '+x.t.toLowerCase()+'.', who:'Limitation of the kitchen print', when:'', where:'', from:'My note about what the source can’t show', ctx:x.say||'', tags:['picture','limitation','mine'], ret:{tab:'desk', sel:'.rg-frame[data-f="cant"]'}},'xs'):'')+'</span>':''; }).join('')+'</div>'; }).join('')+'</div>'+
+        '<div class="rg-rp-say" aria-live="polite">'+(st.lastSay?esc(st.lastSay):'')+'</div>';
+      if(fk==='c'){ var nc=$('.rg-rp-cards .rg-card',box); if(nc) nc.focus(); } else if(fk){ var f=$('.rg-frame[data-f="'+fk.slice(1)+'"] .drop',box); if(f) f.focus(); } }
+    function paintFU(){ var box=$('.rg-rp-fu',g); if(!FU||!sortDone()){ box.innerHTML=''; return; }
+      if(!box.firstChild){ box.innerHTML='<fieldset class="rg-fu"><legend>'+esc(FU.q)+'</legend>'+FU.opts.map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-fu" value="'+i+'"'+(st.fu===i?' checked':'')+'> '+esc(o.t)+'</label>'; }).join('')+'<div class="rg-fu-fb" aria-live="polite"></div></fieldset>'+
+        '<div class="rg-lim"><label for="rg-rp-lim"><b>'+esc(FU.limQ||'Write the limitation in your own words.')+'</b></label><textarea id="rg-rp-lim" rows="2" placeholder="'+esc(FU.limPh||'This picture can’t show…')+'">'+esc(st.lim||'')+'</textarea><div class="rg-lim-sv"></div></div>';
+        $$('input[name="rg-fu"]',box).forEach(function(r){ r.addEventListener('change',function(){ st.fu=+r.value; save(); paintFUfb(); fin(); refreshPress(); }); });
+        var lt=$('#rg-rp-lim',box); lt.addEventListener('input',function(){ st.lim=lt.value; save(); paintFUfb(); fin(); refreshPress(); if(words(lt.value)>=8) beat('limitWritten'); }); }
+      paintFUfb(); }
+    function paintFUfb(){ var fb=$('.rg-fu-fb',g); if(!fb) return; var o=FU.opts[st.fu]; fb.innerHTML=o?'<p class="'+(o.ok?'ok':'no')+'">'+(o.ok?'✓ ':'Think again: ')+esc(o.say)+'</p>':'';
+      var sv=$('.rg-lim-sv',g); sv.innerHTML=words(st.lim||'')>=8?evBtn({k:'mine', t:(st.lim||'').trim(), who:'Limitation of the kitchen print', when:'', where:'', from:'My note about what the source can’t show', ctx:o&&o.ok?'Another source that could help: '+o.t:'', tags:['picture','limitation','mine'], ret:{tab:'desk', sel:'#rg-rp-lim'}},''):'<p class="rg-todo">📝 '+words(st.lim||'')+' of 8 words.</p>'; }
+    notice.addEventListener('input',function(){ st.notice=notice.value; save(); paint(); });
+    $('.rg-rp-go',g).addEventListener('click',function(){ st.looked=true; save(); SFX.paper(); paint(); var b=$('.rg-rp-n',g); if(b) b.focus(); });
+    $('.rg-rp-zoom',g).addEventListener('click',function(){ var im=$('.rg-rp-img img',g); zoomImage(im&&im.src,c.alt||'',c.zoomCap||''); });
+    g.addEventListener('click',function(e){ var b=e.target.closest('.rg-rp-n'); if(b&&!b.disabled){
+        if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); var t=$('#rg-rp-dexp',g); if(t) setTimeout(function(){ t.focus({preventScroll:true}); },400); return; }
+        st.seen[b.dataset.i]=true; last=b.dataset.i; save(); SFX.scratch(); paint(); refreshPress(); return; }
+      var a=e.target.closest('.rg-rp-ann.on'); if(a&&!e.target.closest('.rg-evbtn')){ last=a.dataset.i===last?null:a.dataset.i; paint(); } });
+    dragTap(g,'.rg-rp-cards .rg-card','.rg-frame',function(card,frame){ var i=+card.dataset.i, x=M.cards[i], want=x.k||(x.out?'out':'in');
+      if(frame.dataset.f!==want){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); st.lastSay=x.hint||'Look again at the picture.'; $('.rg-rp-say',g).textContent=st.lastSay; return; }
+      st.miss[i]=want; st.lastSay=x.say||''; save(); x.calm?SFX.soft():SFX.chime(); paintMiss(); paintFU(); fin(); refreshPress(); if(want==='cant') beat('cantTell'); });
+    function done(){ return !!st.date&&words(st.dexp||'')>=12&&sortDone()&&(!FU||(FU.opts[st.fu]&&FU.opts[st.fu].ok&&words(st.lim||'')>=8)); }
+    function fin(){ var d=done(); g.classList.toggle('finished',d); var cl=$('.rg-rp-close',g); if(cl) cl.innerHTML=d&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; }
     paint();
-    return {el:g,done:done,journal:function(e,NA){ if(!st.date) return NA; var cards=(c.missing||{}).cards||[]; return '<p class="a">The picture was made in '+e((c.date||{}).year)+'. Missing from it: '+e(cards.filter(function(x,i){ return st.miss[i]==='out'; }).map(function(x){ return x.t; }).join(', '))+'.</p>'; }}; };
+    return {el:g,done:done,state:function(){ var cards=M.cards||[]; var by={}; cats.forEach(function(ct){ by[ct.k]=cards.filter(function(x,i){ return st.miss[i]===ct.k; }).map(function(x){ return x.t; }); });
+        return {notice:st.notice||'', marks:Object.keys(st.seen).length, opened:!!st.date, dateExp:st.dexp||'', sort:by, cats:cats, followup:FU&&FU.opts[st.fu]?FU.opts[st.fu].t:'', followOk:!!(FU&&FU.opts[st.fu]&&FU.opts[st.fu].ok), limitation:st.lim||''}; },
+      journal:function(e,NA){ if(!st.date) return NA; var x=this.state(); return '<p class="a">The print was made about '+e(D.year)+' and shows a scene set about '+e(D.shows)+'. '+(x.dateExp?'My explanation: '+e(x.dateExp)+'<br>':'')+cats.map(function(ct){ return '<b>'+e(ct.t)+':</b> '+e((x.sort[ct.k]||[]).join(', ')||'—'); }).join('<br>')+(x.limitation?'<br><b>Limitation:</b> '+e(x.limitation):'')+'</p>'; }}; };
 
   /* ---------------------------------------------------------------- layout: drag your own notes onto a blank front page before you write */
   MOD.layout=function(c,anchor){ var st=mstate('layout2',{head:null,p1:null,p2:null,f:{}});
@@ -369,39 +423,27 @@
     after(anchor,g);
     function col(id){ return cols.filter(function(x){ return x.id===id; })[0]; }
     function paint(){
-      $('[data-slot="head"]',g).innerHTML=(H.choices||[]).map(function(h,i){ return '<button type="button" class="rg-lo2-opt'+(st.head===i?' on':'')+'" data-k="head" data-v="'+i+'">'+esc(h.t)+'</button>'; }).join('');
-      ['p1','p2'].forEach(function(k){ $('[data-slot="'+k+'"]',g).innerHTML=cols.map(function(x){ var other=k==='p1'?st.p2:st.p1; return '<button type="button" class="rg-lo2-opt person'+(st[k]===x.id?' on':'')+(x.calm?' calm':'')+'" data-k="'+k+'" data-v="'+esc(x.id)+'"'+(other===x.id?' disabled':'')+'><span class="ic">'+esc(x.icon||'')+'</span>'+esc(x.who)+'</button>'; }).join(''); });
-      $('[data-slot="f"]',g).innerHTML=F.map(function(f,i){ return '<button type="button" class="rg-lo2-opt'+(st.f[i]?' on':'')+'" data-k="f" data-v="'+i+'">'+esc(f)+'</button>'; }).join('');
+      var hs=$('[data-slot="head"]',g), had=hs.contains(document.activeElement)&&document.activeElement.dataset.v;
+      hs.innerHTML=(H.choices||[]).map(function(h,i){ return '<button type="button" class="rg-lo2-opt angle'+(st.head===i?' on':'')+'" data-k="head" data-v="'+i+'" aria-pressed="'+(st.head===i)+'"><b>'+esc(h.t)+'</b>'+(h.tip?'<small>'+esc(h.tip)+'</small>':'')+'</button>'; }).join('')+
+        (H.own?'<div class="own"><label for="rg-lo2-own">'+esc(H.own)+'</label><input id="rg-lo2-own" maxlength="90" value="'+esc(st.own||'')+'" placeholder="Write your own angle"></div>':'');
+      var oi=$('#rg-lo2-own',g); if(oi) oi.addEventListener('input',function(){ st.own=oi.value; if(oi.value.trim()) st.head=-1; else if(st.head===-1) st.head=null; save(); $$('.rg-lo2-opt.angle',g).forEach(function(x){ x.classList.toggle('on',+x.dataset.v===st.head); x.setAttribute('aria-pressed',+x.dataset.v===st.head); }); g.classList.toggle('finished',done()); $('.rg-lo2-say',g).innerHTML=done()?'<div class="rg-win">'+esc(c.close||'')+'</div>':''; refreshPress(); });
+      if(had!=null&&had!==false){ var fb=$('[data-v="'+had+'"]',hs); if(fb) fb.focus(); }
+      var fk=document.activeElement&&g.contains(document.activeElement)?document.activeElement.dataset.k+'|'+document.activeElement.dataset.v:'';
+      ['p1','p2'].forEach(function(k){ $('[data-slot="'+k+'"]',g).innerHTML=cols.map(function(x){ var other=k==='p1'?st.p2:st.p1; return '<button type="button" class="rg-lo2-opt person'+(st[k]===x.id?' on':'')+(x.calm?' calm':'')+'" aria-pressed="'+(st[k]===x.id)+'" data-k="'+k+'" data-v="'+esc(x.id)+'"'+(other===x.id?' disabled':'')+'><span class="ic">'+esc(x.icon||'')+'</span>'+esc(x.who)+'</button>'; }).join(''); });
+      $('[data-slot="f"]',g).innerHTML=F.map(function(f,i){ return '<button type="button" class="rg-lo2-opt'+(st.f[i]?' on':'')+'" aria-pressed="'+!!st.f[i]+'" data-k="f" data-v="'+i+'">'+esc(f)+'</button>'; }).join('');
+      if(fk&&fk.indexOf('head')!==0){ var p=fk.split('|'), fe=$('.rg-lo2-opt[data-k="'+p[0]+'"][data-v="'+p[1]+'"]',g); if(fe) fe.focus(); }
       var a=col(st.p1), b=col(st.p2), cmp=$('.rg-lo2-cmp',g);
       cmp.innerHTML=a&&b?'<div class="hd">Compare them hour by hour. These are your notes from the Desk tab.</div><div class="tbl"><div></div><b>'+esc(a.icon+' '+a.who)+'</b><b>'+esc(b.icon+' '+b.who)+'</b>'+times.map(function(t,i){ return '<span class="tm">'+esc(t)+'</span><p>'+esc(a.lines[i]||'')+'</p><p>'+esc(b.lines[i]||'')+'</p>'; }).join('')+'</div><div class="q">'+esc(c.cmpQ||'What is the biggest difference between their days?')+'</div>':'';
       g.classList.toggle('finished',done()); $('.rg-lo2-say',g).innerHTML=done()?'<div class="rg-win">'+esc(c.close||'Your page is planned. Now write it in your own words below.')+'</div>':''; }
     g.addEventListener('click',function(e){ var b=e.target.closest('.rg-lo2-opt'); if(!b||b.disabled) return; var k=b.dataset.k, v=b.dataset.v;
-      if(k==='head'){ var h=H.choices[+v]; if(!h.ok){ b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); SFX.bounce(); $('.rg-lo2-say',g).innerHTML='<p class="hint">'+esc(h.hint||'Look again.')+'</p>'; return; } st.head=+v; }
+      if(k==='head'){ var h=H.choices[+v]; if(!h.ok){ b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); SFX.bounce(); $('.rg-lo2-say',g).innerHTML='<p class="hint" role="status">'+esc(h.hint||'Look again.')+'</p>'; return; } st.head=+v; st.own=''; beat('angleChosen'); }
       else if(k==='f'){ st.f[v]=!st.f[v]; }
       else st[k]=st[k]===v?null:v;
       save(); SFX.paper(); paint(); refreshPress(); });
-    function done(){ var h=(H.choices||[])[st.head]; return !!(h&&h.ok&&st.p1&&st.p2&&st.p1!==st.p2&&Object.keys(st.f).some(function(k){ return st.f[k]; })); }
-    /* ---- the draft helper: sits right above the writing box and turns the plan into sentence starters (never whole sentences) */
-    var body=document.getElementById('brief-body'), hlIn=document.getElementById('brief-headline'), dh=null, D=c.draft||{};
-    function low(t){ return t.charAt(0).toLowerCase()+t.slice(1); }
-    function fill(t,a,b,fs){ return t.replace(/\{p1\}/g,a?low(a.who):'').replace(/\{P1\}/g,a?a.who:'').replace(/\{p2\}/g,b?low(b.who):'').replace(/\{P2\}/g,b?b.who:'').replace(/\{f\}/g,fs); }
-    function paintDraft(){ if(!dh) return; var a=col(st.p1), b=col(st.p2), fs=F.filter(function(f,i){ return st.f[i]; }).map(low);
-      var fj=fs.length>1?fs.slice(0,-1).join(', ')+' and '+fs[fs.length-1]:(fs[0]||'');
-      if(!done()){ dh.innerHTML='<div class="hd">✏️ Starters for your draft</div><p class="lock">Finish your plan above (boxes 1 to 4), and I’ll set some starters here to help you begin.</p>'; dh.classList.remove('ready'); return; }
-      dh.classList.add('ready');
-      var heads=(D.heads||[]).map(function(t){ return fill(t,a,b,fj); }), starts=(D.starts||[]).map(function(x){ return {k:x.k,t:fill(x.t,a,b,fj)}; });
-      dh.innerHTML='<div class="hd">✏️ Starters from your plan</div><p class="tip">'+esc(D.tip||'Tap a starter to add it to your draft. Then finish the sentence in your own words.')+'</p>'+
-        '<div class="row"><span class="k">Headline ideas</span>'+heads.map(function(t){ return '<button type="button" class="rg-dh-chip head" data-t="'+esc(t)+'">'+esc(t)+'</button>'; }).join('')+'</div>'+
-        '<ol class="starts">'+starts.map(function(x){ return '<li><span class="k">'+esc(x.k)+'</span><button type="button" class="rg-dh-chip" data-t="'+esc(x.t)+'">'+esc(x.t)+' …</button></li>'; }).join('')+'</ol>';
-    }
-    if(body){ dh=el('div','rg rg-draft-help'); var gd=body.previousElementSibling&&body.previousElementSibling.classList.contains('gazette-body-guidance')?body.previousElementSibling:null; before(gd||body,dh);
-      dh.addEventListener('click',function(e){ var b=e.target.closest('.rg-dh-chip'); if(!b) return; var t=b.dataset.t;
-        if(b.classList.contains('head')){ if(hlIn){ hlIn.value=t; hlIn.dispatchEvent(new Event('input',{bubbles:true})); hlIn.focus(); } }
-        else { var v=body.value, sp=v&&!/\s$/.test(v)?(/[.!?]$/.test(v.trim())?' ':' '):''; body.value=v+sp+t+' '; body.dispatchEvent(new Event('input',{bubbles:true})); body.focus(); try{ body.setSelectionRange(body.value.length,body.value.length); }catch(_){} }
-        b.classList.add('used'); SFX.paper(); }); }
-    var paint0=paint; paint=function(){ paint0(); paintDraft(); };
+    function angleOK(){ var h=(H.choices||[])[st.head]; return !!(h&&h.ok)||(st.head===-1&&words(st.own||'')>=2); }
+    function done(){ return !!(angleOK()&&st.p1&&st.p2&&st.p1!==st.p2&&Object.keys(st.f).some(function(k){ return st.f[k]; })); }
     paint();
-    return {el:g,done:done,lines:function(){ var h=(H.choices||[])[st.head], a=col(st.p1), b=col(st.p2); return [['Headline',h?h.t:''],['Column 1',a?a.who:''],['Column 2',b?b.who:''],['Why it matters',F.filter(function(f,i){ return st.f[i]; }).join(', ')]]; }}; };
+    return {el:g,done:done,paint:paint,angle:function(){ if(st.head===-1) return {t:st.own||'', own:true, fit:[]}; var h=(H.choices||[])[st.head]; return h&&h.ok?h:null; },pair:function(){ return [col(st.p1),col(st.p2)]; },factors:function(){ return F.filter(function(f,i){ return st.f[i]; }); },lines:function(){ var h=st.head===-1?{t:st.own}:(H.choices||[])[st.head], a=col(st.p1), b=col(st.p2); return [['Angle',h&&(h.ok||st.head===-1)?h.t:''],['Column 1',a?a.who:''],['Column 2',b?b.who:''],['Why it matters',F.filter(function(f,i){ return st.f[i]; }).join(', ')]]; }}; };
 
   /* ---------------------------------------------------------------- worddesk: crack the root in each word (set in backwards type), then use the word in a claim */
   MOD.worddesk=function(c,anchor){ var st=mstate('word',{cracked:{},line:''});
@@ -432,7 +474,7 @@
       '<div class="rg-al3-point"><span class="ic">🕰️</span><div><b>'+esc(P.q||'Why is an almanac here?')+'</b> '+esc(P.t||'')+'</div></div>'+
       '<ol class="rg-al3-steps">'+['Read the real cover','Read the sun times','Who got to stop?'].map(function(t,i){ return '<li data-s="'+(i+1)+'"><span class="n">'+(i+1)+'</span>'+t+'</li>'; }).join('')+'</ol>'+
       '<div class="rg-al3-stage"><div class="rg-al3-s1"><div class="rg-al2-cover"><img alt="Title page of Poor Richard improved, an almanac for the year 1748, printed and sold by B. Franklin in Philadelphia" src="'+esc(LOCAL+A.img)+'">'+
-        spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="'+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button><div class="rg-al3-ann'+(s.x>50?' l':'')+'" data-i="'+i+'" style="top:'+s.y+'%;left:calc('+s.x+'% + 24px)"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span></div>'; }).join('')+
+        spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="'+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button><div class="rg-al3-ann'+(s.x>50?' l':'')+'" data-i="'+i+'" style="top:'+s.y+'%;left:calc('+s.x+'% + 24px)"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span>'+evBtn({k:'source', t:'The 1748 almanac cover promises '+s.label+'.', who:'Poor Richard improved', when:'1748', where:'Philadelphia', from:'Historical source: title page of Poor Richard improved, 1748 (Library of Congress)', ctx:s.t, tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:1}},'xs')+'</div>'; }).join('')+
         '<div class="cap">'+esc(A.imgCap||'')+'</div></div><div class="rg-al3-go"></div></div>'+
       '<div class="rg-al3-s2"></div><div class="rg-al3-s3"></div></div>');
     after(ed,a);
@@ -442,9 +484,9 @@
       return '<div class="rg-al3-tabs">'+MO.map(function(x,i){ return '<button type="button" data-mo="'+i+'" class="'+(i===st.mo?'on':'')+'"'+(i>0&&!st.q[MO[i-1].k]?' disabled':'')+'>'+esc(x.name)+(st.q[x.k]?' ✓':'')+'</button>'; }).join('')+'<button type="button" class="back" data-a="cover">◂ Cover</button></div>'+
         '<div class="rg-al3-page"><div class="hd">'+esc(m.head)+'</div><table><thead><tr><th>Day</th><th>☀ Sun rises</th><th>☀ Sun sets</th><th>Weather guess</th></tr></thead><tbody>'+
         m.rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="w">'+esc(r[3])+'</td></tr>'; }).join('')+'</tbody></table>'+
-        '<div class="say">“'+esc(A.saying)+'”<cite>'+esc(A.cite||'')+'</cite></div><div class="re">'+esc(A.note||'')+'</div></div>'+
+        '<div class="say">“'+esc(A.saying)+'”<cite>'+esc(A.cite||'')+'</cite>'+evBtn({k:'source', quote:true, t:A.saying, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Historical source: '+(A.cite||'Poor Richard’s Almanack, 1735'), ctx:'A saying printed in Benjamin Franklin’s almanac.', tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:2}},'xs')+'</div><div class="re">'+esc(A.note||'')+'</div></div>'+
         '<div class="rg-al3-day'+(st.q[m.k]?' shown':'')+'" aria-hidden="true"><div class="trk"><i class="lit" style="left:'+(rise/24*100)+'%;width:'+((set-rise)/24*100)+'%"></i>'+[0,6,12,18,24].map(function(h){ return '<span style="left:'+(h/24*100)+'%">'+(h===0||h===24?'12 am':h===12?'noon':h===6?'6 am':'6 pm')+'</span>'; }).join('')+'</div><div class="lb">'+(st.q[m.k]?esc(m.name)+': about '+Math.round(set-rise)+' hours of daylight':'')+'</div></div>'+
-        '<div class="rg-al3-q"><b>'+esc(m.q)+'</b><div class="ch">'+m.choices.map(function(c,i){ return '<button type="button" class="rg-btn alt'+(st.q[m.k]&&i===m.ok?' right':'')+'" data-c="'+i+'"'+(st.q[m.k]?' disabled':'')+'>'+esc(c)+'</button>'; }).join('')+'</div><div class="fb">'+(st.q[m.k]?'✓ '+esc(m.yes):'')+'</div></div>'+
+        (st.q[m.k]?'<div class="rg-al3-sv">'+evBtn({k:'lesson', t:'In '+m.name+' near Philadelphia, the sun rose about '+r0[1]+' and set about '+r0[2]+', about '+Math.round(set-rise)+' hours of daylight.', who:'Almanac calendar page', when:m.name, where:'Philadelphia (latitude 40°)', from:'Lesson re-set of an almanac calendar page (sun times worked out for latitude 40°)', ctx:A.note||'', tags:['almanac'], ret:{tab:'dispatch', sel:'.rg-al3', mod:'almanac', arg:2}},'')+'</div>':'')+'<div class="rg-al3-q"><b>'+esc(m.q)+'</b><div class="ch">'+m.choices.map(function(c,i){ return '<button type="button" class="rg-btn alt'+(st.q[m.k]&&i===m.ok?' right':'')+'" data-c="'+i+'"'+(st.q[m.k]?' disabled':'')+'>'+esc(c)+'</button>'; }).join('')+'</div><div class="fb">'+(st.q[m.k]?'✓ '+esc(m.yes):'')+'</div></div>'+
         (MO.every(function(x){ return st.q[x.k]; })?'<div class="rg-al3-bridge">'+esc(A.bridge||'')+' <button type="button" class="rg-btn" data-a="s3">Who got to stop? ▸</button></div>':''); }
     function paint(){ var n=Object.keys(st.seen).length, need=spots.length;
       a.dataset.step=st.step; $$('.rg-al3-steps li',a).forEach(function(li){ var k=+li.dataset.s; li.classList.toggle('on',k===st.step); li.classList.toggle('ok',k<st.step||(k===3&&done())); });
@@ -452,9 +494,10 @@
       $('.rg-al3-go',a).innerHTML=n<need?'<p class="rg-todo">Tap the '+need+' gold numbers on the cover ('+n+' of '+need+').</p>':'<button type="button" class="rg-btn" data-a="open">📖 Open it to June</button>';
       $('.rg-al3-s2',a).innerHTML=st.step===2?page():'';
       var cards=sort.cards||[];
-      $('.rg-al3-s3',a).innerHTML=st.step===3&&cards.length?'<button type="button" class="back rg-al3-back" data-a="s2">◂ Back to the calendar</button><div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<div class="rg-al2-bin" data-k="'+k+'"><div class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</div>'+cards.map(function(c,i){ return st.sort[i]===k?'<div class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</div>':''; }).join('')+'</div>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
+      $('.rg-al3-s3',a).innerHTML=st.step===3&&cards.length?'<button type="button" class="back rg-al3-back" data-a="s2">◂ Back to the calendar</button><div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards" role="group" aria-label="People to sort">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true" aria-pressed="false">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<button type="button" class="rg-al2-bin" data-k="'+k+'"><span class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</span>'+cards.map(function(c,i){ return st.sort[i]===k?'<span class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</span>':''; }).join('')+'</button>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
       a.classList.toggle('finished',done()); }
     a.addEventListener('click',function(e){ var b=e.target.closest('.rg-al2-n'); if(b){ st.seen[b.dataset.i]=true; st.last=b.dataset.i; save(); SFX.scratch(); paint(); return; }
+      if(e.target.closest('.rg-evbtn')) return;
       var x=e.target.closest('.rg-al3-ann'); if(x){ st.last=null; paint(); return; }
       var t=e.target.closest('[data-mo]'); if(t&&!t.disabled){ st.mo=+t.dataset.mo; save(); SFX.paper(); paint(); return; }
       var c=e.target.closest('.rg-al3-q [data-c]'); if(c){ var m=MO[st.mo]; if(+c.dataset.c===m.ok){ st.q[m.k]=true; save(); SFX.chime(); paint(); var nx=MO.findIndex(function(y){ return !st.q[y.k]; }); if(nx>-1) setTimeout(function(){ st.mo=nx; save(); SFX.paper(); paint(); },1600); }
@@ -467,7 +510,27 @@
       if(bin.dataset.k!==c.k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); $('.say',a).textContent=c.hint||'Look back at that person’s column.'; return; }
       st.sort[i]=c.k; save(); c.calm?SFX.soft():SFX.chime(); paint(); refreshPress(); });
     function done(){ return MO.every(function(x){ return st.q[x.k]; })&&(sort.cards||[]).every(function(c,i){ return !!st.sort[i]; }); }
-    paint(); R.almanac={el:a,done:done}; }
+    paint(); R.almanac={el:a,done:done,go:function(k){ st.step=k||1; save(); paint(); },state:function(){ var cards=sort.cards||[]; return {cover:Object.keys(st.seen).length, months:MO.map(function(m){ return {name:m.name, ok:!!st.q[m.k], rise:m.rows[0][1], set:m.rows[0][2], q:m.q, a:st.q[m.k]?m.choices[m.ok]:''}; }), sort:{yes:cards.filter(function(c,i){ return st.sort[i]==='yes'; }).map(function(c){ return c.t; }), no:cards.filter(function(c,i){ return st.sort[i]==='no'; }).map(function(c){ return c.t; })}}; }}; }
+
+  /* ---------------------------------------------------------------- study a pair: two people, same hour, side by side (shared with the press planner) */
+  function buildPair(){ var PC=DATA.pair, rd=R.reading&&R.reading.el; if(!PC||!rd) return; var st=mstate('layout2',{head:null,p1:null,p2:null,f:{}});
+    var cols=((DATA.explore||{}).reading||{}).cols||[], times=((DATA.explore||{}).reading||{}).times||[];
+    function col(id){ return cols.filter(function(x){ return x.id===id; })[0]; }
+    var g=gameShell('rg-pair','The Front Page Desk · look closely',PC.title||'Study two people closely',PC);
+    function opts(sel){ return '<option value="">Choose a person…</option>'+cols.map(function(x){ return '<option value="'+esc(x.id)+'"'+(sel===x.id?' selected':'')+'>'+esc(x.who)+'</option>'; }).join(''); }
+    g.innerHTML+='<div class="rg-pair-pick"><label>Person 1 <select class="p1">'+opts(st.p1)+'</select></label><label>Person 2 <select class="p2">'+opts(st.p2)+'</select></label></div><div class="rg-pair-tbl" aria-live="polite"></div><div class="rg-pair-legal"></div>'+
+      '<div class="rg-pair-note"><label for="rg-pair-note"><b>'+esc(PC.q||'At the same hour, what is the biggest difference between their days?')+'</b></label><textarea id="rg-pair-note" rows="3" placeholder="At sunrise, … but …">'+esc(st.pnote||'')+'</textarea><div class="sv"></div></div>';
+    after(rd,g); var s1=$('select.p1',g), s2=$('select.p2',g), ta=$('#rg-pair-note',g);
+    function paint(){ var a=col(st.p1), b=col(st.p2), reached=((S.m.sun||{}).stop);
+      $('.rg-pair-tbl',g).innerHTML=a&&b&&a!==b?'<table><caption class="rg-sr">'+esc(a.who)+' and '+esc(b.who)+', hour by hour</caption><thead><tr><th scope="col">Time</th><th scope="col">'+esc(a.icon+' '+a.who)+'</th><th scope="col">'+esc(b.icon+' '+b.who)+'</th></tr></thead><tbody>'+times.map(function(t,i){ var locked=reached==null||reached<i; return '<tr><th scope="row">'+esc(t)+'</th><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(a.lines[i]||'')+' '+evBtn({k:'routine', t:a.lines[i]||'', who:a.who, when:t, where:a.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[a.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+a.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(b.lines[i]||'')+' '+evBtn({k:'routine', t:b.lines[i]||'', who:b.who, when:t, where:b.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[b.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+b.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td></tr>'; }).join('')+'</tbody></table>':a&&b?'<p class="rg-todo">Choose two different people.</p>':'<p class="rg-todo">Choose two people to compare.</p>';
+      var L=(PC.legal||[]).filter(function(x){ return a&&b&&x.ids.indexOf(a.id)>-1&&x.ids.indexOf(b.id)>-1; })[0];
+      $('.rg-pair-legal',g).innerHTML=L?'<div class="rg-legal"><b>'+esc(L.t)+'</b> '+esc(L.d)+'</div>':'';
+      var n=words(ta.value); $('.sv',g).innerHTML=n>=10&&a&&b?evBtn({k:'mine', t:ta.value.trim(), who:a.who+' and '+b.who, when:'same hour', where:'', from:'My comparison notes (Desk tab)', ctx:'Compared from the lesson’s illustrative routines.', tags:[a.id,b.id,'mine','compare'], ret:{tab:'desk', sel:'#rg-pair-note'}},''):'<p class="rg-todo">📝 '+n+' of 10 words.</p>';
+      g.classList.toggle('finished',done()); }
+    function done(){ return !!(st.p1&&st.p2&&st.p1!==st.p2&&words(st.pnote||'')>=10); }
+    [s1,s2].forEach(function(sel,k){ sel.addEventListener('change',function(){ st[k?'p2':'p1']=sel.value||null; save(); paint(); refreshPress(); SFX.paper(); }); });
+    ta.addEventListener('input',function(){ st.pnote=ta.value; save(); paint(); refreshPress(); });
+    paint(); R.pair={el:g,done:done,paint:paint,state:function(){ var a=col(st.p1), b=col(st.p2); return {p1:a?a.who:'', p2:b?b.who:'', note:st.pnote||''}; }}; }
 
   function buildModules(){
     var p1=document.getElementById('panel-dispatch'), p2=document.getElementById('panel-desk'), p4=document.getElementById('panel-press');
@@ -477,7 +540,7 @@
     if(ex.evidence&&MOD[ex.evidence.type]&&p2){ var fr=$('.source-image-frame',p2), sec2=fr&&fr.closest('.content-section'); if(sec2){ hide(sec2); R.evidence=MOD[ex.evidence.type](ex.evidence,sec2); } }
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
-    buildAlmanac(); }
+    buildPair(); buildAlmanac(); }
 
   /* ================================================================ THE BROADSHEET — one tab laid out as a real front page
      DATA.broadsheet = { tab, head, deck, dateline, ears:[l,r], steps:[{key, t}] }
@@ -488,6 +551,7 @@
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
     picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.evidence&&R.evidence.el); },
+    pair:function(){ return R.pair&&R.pair.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
     notebook:function(){ return $('#panel-desk .reflection-block'); } };
   var BS_DONE={
@@ -495,6 +559,7 @@
     sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length; return !!m&&m.stop>=N-1; },
     herald:function(){ var m=S.m.sun, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
     picture:function(){ return !!(R.evidence&&R.evidence.done()); },
+    pair:function(){ return !!(R.pair&&R.pair.done()); },
     word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
     notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
   var bsEl=null;
@@ -520,6 +585,361 @@
       if(k==='herald'&&j){ var my=j.nextElementSibling; j.classList.toggle('rg-hide',!(my&&my.children.length)); } });
     $('.prog',bsEl).innerHTML='<i style="width:'+Math.round(n/keys.length*100)+'%"></i><span>'+n+' of '+keys.length+' done</span>'; }
 
+  /* ================================================================ THE NEWSROOM DESK (5.07.05 v6)
+     One evidence drawer for the whole lesson → the student's own front page → one saved record that the proof,
+     the printed edition, the Morgue, the copy/print/download exports and the notebook all read from.
+     Nothing here writes the student's sentences. Selecting cards never completes the assignment. */
+
+  /* ---- evidence kinds: say plainly what each clipping is ---- */
+  var EVK={ routine:{n:'Lesson reconstruction', s:'Recon.', d:'An illustrative routine written for this lesson. It is not a quotation from a real diary.'},
+    source:{n:'Historical source', s:'Source', d:'A detail from a real historical source.'},
+    lesson:{n:'Lesson explanation', s:'Lesson', d:'Background written by the lesson’s authors.'},
+    mine:{n:'My observation', s:'Mine', d:'Something I noticed or wrote myself.'},
+    photo:{n:'My photo', s:'Photo', d:'A photo I took of part of the lesson page.'} };
+  function EV(){ if(!S.ev) S.ev=[]; return S.ev; }
+  function evGet(id){ return EV().filter(function(c){ return c.id===id; })[0]; }
+  function evSig(c){ return (c.k||'')+'|'+(c.who||'')+'|'+(c.t||'').trim().toLowerCase().slice(0,160); }
+  function evHas(c){ var s=evSig(c); return EV().filter(function(x){ return evSig(x)===s; })[0]; }
+  var EVQ={}, EVN=0;
+  /* the "＋ Save as evidence" button: works the same everywhere (routines, picture, almanac, highlights, photos) */
+  function evBtn(card,size){ if(!card||!(card.t||'').trim()) return ''; var k='q'+(++EVN); EVQ[k]=card; var have=evHas(card);
+    return '<button type="button" class="rg-evbtn'+(size?' '+size:'')+(have?' saved':'')+'" data-evq="'+k+'" aria-pressed="'+!!have+'">'+(have?'✓ In your drawer':'＋ Save as evidence')+'</button>'; }
+  function addEvidence(card,quiet){ var have=evHas(card); if(have) return have;
+    var c={}; for(var k in card) if(card.hasOwnProperty(k)) c[k]=card[k];
+    c.id='e'+Date.now().toString(36)+Math.random().toString(36).slice(2,5); c.at=Date.now(); c.note=c.note||''; c.use=false; EV().push(c); save();
+    paintEvidence(); if(!quiet){ evToast(c); SFX.paper(); beat('firstEv'); } return c; }
+  function removeEvidence(id){ var c=evGet(id); if(!c) return; S.ev=EV().filter(function(x){ return x.id!==id; });
+    /* the student's words stay: an attachment whose card is removed keeps its explanation and waits for a replacement */
+    (D().att||[]).forEach(function(a){ if(a.ev===id){ a.ev=null; a.was=c.who+(c.when?' · '+c.when:''); } });
+    save(); paintEvidence(); paintDesk(); evToast(null,'Removed from your drawer.',c); }
+  function cardMeta(c){ return [c.who,c.when,c.where].filter(Boolean).join(' · '); }
+
+  document.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.rg-evbtn'); if(!b||!html.classList.contains('rg-on')) return; e.preventDefault();
+    var card=EVQ[b.dataset.evq]; if(!card) return; var have=evHas(card);
+    if(have){ openDrawer(have.id); return; }
+    addEvidence(card); $$('.rg-evbtn').forEach(function(x){ var q=EVQ[x.dataset.evq]; if(q&&evHas(q)){ x.classList.add('saved'); x.setAttribute('aria-pressed','true'); x.textContent='✓ In your drawer'; } });
+    b.classList.add('pop'); setTimeout(function(){ b.classList.remove('pop'); },500); });
+
+  /* ---- a small, honest toast when a clipping goes in (with Undo) ---- */
+  var toastEl=null, toastT=null;
+  function evToast(c,msg,undo){ if(!toastEl){ toastEl=el('div','rg rg-evtoast'); toastEl.setAttribute('role','status'); document.body.appendChild(toastEl); }
+    toastEl.innerHTML=c?'<span class="ic">🗂</span><span><b>Saved to your evidence drawer.</b> '+esc((c.t||'').slice(0,90))+((c.t||'').length>90?'…':'')+'</span><button type="button" data-a="open">Open drawer</button><button type="button" data-a="undo">Undo</button>':'<span class="ic">🗂</span><span>'+esc(msg||'')+'</span>'+(undo?'<button type="button" data-a="restore">Undo</button>':'');
+    toastEl.onclick=function(e){ var b=e.target.closest('button'); if(!b) return; if(b.dataset.a==='open') openDrawer(c&&c.id); if(b.dataset.a==='undo'&&c){ S.ev=EV().filter(function(x){ return x.id!==c.id; }); save(); paintEvidence(); refreshEvBtns(); }
+      if(b.dataset.a==='restore'&&undo){ EV().push(undo); (D().att||[]).forEach(function(a){ if(!a.ev&&a.was===undo.who+(undo.when?' · '+undo.when:'')) a.ev=undo.id; }); save(); paintEvidence(); paintDesk(); } toastEl.classList.remove('show'); };
+    toastEl.classList.remove('show'); void toastEl.offsetWidth; toastEl.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ toastEl.classList.remove('show'); },5200);
+    var cnt=pressEl&&$('.rg-evcount',pressEl); if(cnt&&!RM){ cnt.classList.remove('bump'); void cnt.offsetWidth; cnt.classList.add('bump'); } }
+  function refreshEvBtns(){ $$('.rg-evbtn').forEach(function(x){ var q=EVQ[x.dataset.evq]; var have=q&&evHas(q); x.classList.toggle('saved',!!have); x.setAttribute('aria-pressed',!!have); x.textContent=have?'✓ In your drawer':'＋ Save as evidence'; }); }
+
+  /* ---- return to source: open the right tab, scroll, flash the spot ---- */
+  function goSrc(ret){ if(!ret) return; closeDrawer(true); if(ret.tab&&window.switchTab&&currentScene()!==ret.tab) window.switchTab(ret.tab);
+    if(ret.mod&&R[ret.mod]&&R[ret.mod].go) R[ret.mod].go(ret.arg);
+    setTimeout(function(){ var t=ret.sel&&$(ret.sel); if(!t){ ticker('That part of the page isn’t open yet. Keep going on that tab to reach it.'); return; }
+      t.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'}); t.classList.remove('rg-srcflash'); void t.offsetWidth; t.classList.add('rg-srcflash'); setTimeout(function(){ t.classList.remove('rg-srcflash'); },2200);
+      if(!t.hasAttribute('tabindex')&&!/^(BUTTON|INPUT|TEXTAREA|SELECT|A)$/.test(t.tagName)) t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(x){} },RM?60:420); }
+
+  /* ---- a card, the same in the drawer, the press tray and the attach picker ---- */
+  function cardHTML(c,mode){ var K=EVK[c.k]||EVK.lesson, fit=angleFits(c), quote=!!c.quote;
+    var h='<article class="rg-evc k-'+esc(c.k)+(c.use?' use':'')+(fit&&mode==='tray'?' fit':'')+'" data-id="'+esc(c.id)+'" aria-label="'+esc(K.n+': '+cardMeta(c))+'">'+
+      '<div class="top"><span class="badge" title="'+esc(K.d)+'">'+esc(K.n)+'</span>'+(fit&&mode==='tray'?'<span class="fitb">fits your angle</span>':'')+'</div>'+
+      '<div class="who">'+esc(cardMeta(c)||'Clipping')+'</div>'+
+      (c.img?'<img class="shot" alt="'+esc(c.t)+'" src="'+esc(c.img)+'">':'')+
+      '<p class="det'+(quote?' q':'')+'">'+esc(c.t)+'</p><div class="from">'+esc(c.from||K.d)+'</div>';
+    if(mode==='pick') return h+'</article>';
+    h+=(c.ctx?'<details class="ctx"><summary>Context</summary><p>'+esc(c.ctx)+'</p></details>':'');
+    if(mode==='drawer') h+='<label class="note">What could this prove? <span>(optional)</span><textarea rows="2" data-note="'+esc(c.id)+'">'+esc(c.note||'')+'</textarea></label>';
+    h+='<div class="acts">'+(mode==='tray'?'<label class="use"><input type="checkbox" data-use="'+esc(c.id)+'"'+(c.use?' checked':'')+'> Use in my report</label>':'<button type="button" data-use="'+esc(c.id)+'" aria-pressed="'+!!c.use+'">'+(c.use?'✓ In my report':'Use in my report')+'</button>')+
+      (c.ret?'<button type="button" data-ret="'+esc(c.id)+'">↩ Return to source</button>':'')+'<button type="button" class="rm" data-rm="'+esc(c.id)+'" aria-label="Remove this clipping">Remove</button></div>';
+    return h+'</article>'; }
+
+  /* ================================================================ THE DRAWER (every tab): all clippings, highlights and photos */
+  var drawerEl=null, drawerOpener=null, drawerFilter='all';
+  function buildDrawer(){ drawerEl=el('aside','rg rg-evdrawer'); drawerEl.setAttribute('role','dialog'); drawerEl.setAttribute('aria-modal','true'); drawerEl.setAttribute('aria-labelledby','rg-drawer-h'); drawerEl.hidden=true;
+    drawerEl.innerHTML='<div class="hd"><h2 id="rg-drawer-h">🗂 Evidence drawer <span class="n"></span></h2><button type="button" class="x" aria-label="Close the evidence drawer">✕</button></div>'+
+      '<p class="sub">Save details as you work. On the Go to Press tab, choose the ones that support <i>your</i> report and say what each one proves.</p>'+
+      '<div class="flt" role="group" aria-label="Show">'+[['all','All'],['routine','Routines'],['source','Sources'],['lesson','Lesson notes'],['mine','My notes'],['photo','Photos']].map(function(f){ return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+f[1]+'</button>'; }).join('')+'</div>'+
+      '<div class="list"></div><div class="more"></div>';
+    document.body.appendChild(drawerEl);
+    $('.x',drawerEl).addEventListener('click',function(){ closeDrawer(); });
+    drawerEl.addEventListener('keydown',function(e){ if(e.key==='Escape'){ e.stopPropagation(); closeDrawer(); } if(e.key==='Tab') trapTab(e,drawerEl); });
+    drawerEl.addEventListener('click',onCardClick); drawerEl.addEventListener('input',onCardInput); drawerEl.addEventListener('change',onCardInput);
+    $('.flt',drawerEl).addEventListener('click',function(e){ var b=e.target.closest('button[data-f]'); if(!b) return; drawerFilter=b.dataset.f; $$('.flt button',drawerEl).forEach(function(x){ x.setAttribute('aria-pressed',x===b); }); paintDrawer(); }); }
+  function openDrawer(focusId){ if(!drawerEl) return; drawerOpener=document.activeElement; drawerEl.hidden=false; html.classList.add('rg-evdrawer-open'); paintDrawer(); requestAnimationFrame(function(){ drawerEl.classList.add('open'); var t=focusId&&$('.rg-evc[data-id="'+focusId+'"]',drawerEl); if(t){ t.scrollIntoView({block:'center'}); t.classList.add('rg-srcflash'); var b=$('button',t); if(b) b.focus(); } else $('.x',drawerEl).focus(); }); }
+  function closeDrawer(noFocus){ if(!drawerEl||drawerEl.hidden) return; drawerEl.classList.remove('open'); html.classList.remove('rg-evdrawer-open'); setTimeout(function(){ drawerEl.hidden=true; },RM?0:220); if(!noFocus&&drawerOpener&&drawerOpener.focus) try{ drawerOpener.focus(); }catch(e){} }
+  function trapTab(e,box){ var f=$$('button:not([disabled]),input,textarea,select,summary,a[href],[tabindex="0"]',box).filter(function(x){ return x.offsetParent!==null; }); if(!f.length) return; var a=f[0], z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); } else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); } }
+  function paintDrawer(){ if(!drawerEl||drawerEl.hidden) return; var all=EV(), list=all.filter(function(c){ return drawerFilter==='all'||c.k===drawerFilter; });
+    $('.n',drawerEl).textContent='('+all.length+')';
+    $('.list',drawerEl).innerHTML=list.length?list.slice().reverse().map(function(c){ return cardHTML(c,'drawer'); }).join(''):'<p class="rg-empty">'+(all.length?'Nothing of this kind yet.':'Your drawer is empty. Look for <b>＋ Save as evidence</b> beside the routines, the picture and the almanac. You can also highlight words, or snap a photo, and save them here.')+'</p>';
+    var H=highlights(), ph=photos(), hs=H.filter(function(h){ return !evHas(hlCard(h)); }), ps=ph.filter(function(p){ return !evHas(photoCard(p)); });
+    $('.more',drawerEl).innerHTML=(hs.length||ps.length)?'<h3>Not in the drawer yet</h3>'+hs.map(function(h){ return '<div class="rg-loose"><span>🖍 “'+esc(h.t)+'” <small>'+esc(h.where||'')+'</small></span>'+evBtn(hlCard(h),'xs')+'</div>'; }).join('')+ps.map(function(p){ return '<div class="rg-loose"><img alt="" src="'+p.src+'"><span>'+esc(p.cap||'(no caption)')+'</span>'+evBtn(photoCard(p),'xs')+'</div>'; }).join(''):'';
+    var nb=$('.rg-nbbtn',drawerEl); if(!nb){ nb=el('button','rg-btn alt rg-nbbtn','📓 Open my Reporter’s Notebook (print or save as PDF)'); nb.type='button'; nb.addEventListener('click',notebook); drawerEl.appendChild(nb); } }
+  function hlCard(h){ var k=/Tab 2/.test(h.where||'')?'routine':'lesson'; return {k:k, t:h.t, who:'Highlighted words', when:'', where:'', from:'Highlighted from '+(h.where||'the lesson')+(k==='routine'?' (lesson reconstruction or explanation)':''), ctx:'', tags:['highlight'], ret:{tab:/Tab 2/.test(h.where||'')?'desk':/Tab 3/.test(h.where||'')?'factcheck':/Tab 4/.test(h.where||'')?'press':'dispatch', sel:'mark[data-hl="'+h.id+'"]'}}; }
+  function photoCard(p){ return {k:'photo', t:p.cap||'A photo from the lesson page', who:'My photo', when:'', where:'', from:'Photo I took of the lesson page'+(p.tab?' ('+p.tab+' tab)':''), ctx:'', img:p.src, pt:p.t, tags:['photo'], ret:p.tab?{tab:p.tab, sel:'.tab-panel.active'}:null}; }
+  function onCardClick(e){ var b=e.target.closest('button'); if(!b) return;
+    if(b.dataset.ret){ var c=evGet(b.dataset.ret); if(c) goSrc(c.ret); return; }
+    if(b.dataset.rm){ removeEvidence(b.dataset.rm); return; }
+    if(b.dataset.use){ var c2=evGet(b.dataset.use); if(c2){ c2.use=!c2.use; save(); paintEvidence(); paintDesk(); var nb=$('button[data-use="'+c2.id+'"]',drawerEl); if(nb) nb.focus(); } } }
+  function onCardInput(e){ var t=e.target; if(t.dataset.note){ var c=evGet(t.dataset.note); if(c){ c.note=t.value; save(); } return; }
+    if(t.dataset.use&&t.type==='checkbox'){ var c2=evGet(t.dataset.use); if(c2){ c2.use=t.checked; save(); paintEvidence(true); paintDesk(); } } }
+
+  /* ================================================================ save status, quiet newsroom, one-tab-at-a-time */
+  function paintSave(){ var s=pressEl&&$('.rg-savest',pressEl); if(!s) return; var t=new Date(SAVE_ST.at||Date.now()), hh=t.getHours()%12||12, mm=('0'+t.getMinutes()).slice(-2);
+    s.className='rg-savest '+(FROZEN?'frozen':SAVE_ST.ok?'ok':'bad'); s.textContent=FROZEN?'⚠ Not saving here (open in another tab)':SAVE_ST.ok?(SAVE_ST.at?'✓ Saved '+hh+':'+mm:'✓ Saved'):'⚠ Not saved on this device'; s.title=SAVE_ST.ok?'Your work is saved in this browser on this computer.':'This browser is not letting the lesson save. Your work stays only while this page is open. Copy your submission before you leave.'; }
+  function quiet(){ return !!(P&&P.quiet); }
+  function setQuiet(on){ if(!P) P={name:''}; P.quiet=!!on; var p=get(PKEY,{})||{}; p.quiet=!!on; put(PKEY,p); var b=pressEl&&$('.rg-quietbtn',pressEl); if(b){ b.setAttribute('aria-pressed',!!on); b.innerHTML=on?'🔕 <span>Quiet newsroom</span>':'🔔 <span>Sounds on</span>'; } }
+  function buildNewsroomBar(){ if(!pressEl) return; var r=$('.rg-press-r',pressEl); if(!r) return;
+    var ev=el('button','rg-evcount','🗂 <span class="l">Evidence</span> <b>0</b>'); ev.type='button'; ev.title='Open your evidence drawer'; ev.addEventListener('click',function(){ openDrawer(); });
+    var q=el('button','rg-quietbtn',''); q.type='button'; q.title='Turn the newsroom’s small sound effects on or off. Ms. Avery’s voice still plays when you press play.'; q.addEventListener('click',function(){ setQuiet(!quiet()); });
+    var sv=el('span','rg-savest'); sv.setAttribute('role','status');
+    r.insertBefore(ev,r.firstChild); r.appendChild(q); $('.rg-press-top',pressEl).appendChild(sv); setQuiet(quiet()); paintSave(); }
+  window.addEventListener('storage',function(e){ if(!html.classList.contains('rg-on')) return;
+    if(e.key===CKEY){ var cur=get(CKEY,null); if(cur) C=mergeCourse(cur,C); try{ paintMorgue(false); }catch(x){} return; }
+    if(e.key===KEY&&!FROZEN){ FROZEN=true; paintSave(); var b=el('div','rg rg-frozen','<b>This lesson is open in another tab or window.</b> To keep your work safe, this tab stopped saving. <button type="button">Reload this tab</button>'); b.setAttribute('role','alert'); $('button',b).addEventListener('click',function(){ location.reload(); }); document.body.appendChild(b); } });
+
+  /* ================================================================ ONE AUDIO AT A TIME (memos, note clips, the page's Read aloud) */
+  var AUDS=[];
+  function hush(keep){ AUDS.forEach(function(a){ if(a!==keep&&!a.paused) a.pause(); }); Object.keys(SAY).forEach(function(k){ var a=SAY[k]; if(a&&a!==keep&&!a.paused){ a.pause(); if(SAYNOW===k){ SAYNOW=null; paintSay(); } } });
+    $$('.rg-vn.playing').forEach(function(n){ if(n.__stop&&(!keep||n.__aud!==keep)) n.__stop(); }); try{ if(keep&&window.speechSynthesis) window.speechSynthesis.cancel(); }catch(e){} }
+  document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('#optima-read-aloud button')) hush(null); },true);
+  document.addEventListener('play',function(e){ if(e.target&&e.target.tagName==='AUDIO'||e.target instanceof Audio) hush(e.target); },true);
+
+  /* ================================================================ FACT-CHECK: saved answers + two harder claims */
+  function fcOpts(q){ return $$('.factcheck-option',q); }
+  function restoreQuiz(){ var F=S.fc||{}; Object.keys(F).forEach(function(id){ var q=document.getElementById(id); if(!q||q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect')) return; var o=fcOpts(q)[F[id].i]; if(!o) return; RESTORING=true; try{ window.checkAnswer(id,o,!!F[id].ok); }catch(e){} RESTORING=false; }); }
+  function kbdQuiz(){ $$('#panel-factcheck .factcheck-options').forEach(function(g){ g.setAttribute('role','group'); fcOpts(g).forEach(function(o){ if(!o.hasAttribute('tabindex')) o.setAttribute('tabindex','0'); o.setAttribute('role','button'); o.setAttribute('aria-pressed',o.classList.contains('correct')||o.classList.contains('incorrect')?'true':'false');
+      if(o.classList.contains('disabled')) o.setAttribute('aria-disabled','true'); if(!o.__kb){ o.__kb=1; o.addEventListener('keydown',function(e){ if((e.key==='Enter'||e.key===' ')&&!o.classList.contains('disabled')){ e.preventDefault(); o.click(); } }); } }); }); }
+  var CC=DATA.claimChecks||[];
+  function ccDone(){ var A=S.cc||{}; return CC.every(function(c){ var a=A[c.id]||{}; var v=(c.verdicts||[]).filter(function(x){ return x.k===a.v; })[0], d=(c.details||[])[a.d]; return v&&v.ok&&d&&d.ok&&words(a.why||'')>=8; }); }
+  function buildClaims(){ if(!CC.length) return; var p=document.getElementById('panel-factcheck'), sc=document.getElementById('factcheckScore'); if(!p||!sc) return; S.cc=S.cc||{};
+    var box=el('section','rg rg-game rg-claims'); box.dataset.tab='Issue '+ISSUE+' · Editor’s call';
+    box.innerHTML='<div class="rg-game-k">Fact-Check · the editor’s call</div><h3 class="rg-game-t">'+esc((DATA.claimIntro||{}).title||'Two harder claims')+'</h3><p class="rg-todo">'+esc((DATA.claimIntro||{}).todo||'For each claim: decide if it is supported, misleading, or if there is not enough evidence. Then choose the detail that helps you decide, and explain the connection in your own words.')+'</p>'+
+      CC.map(function(c,ci){ var A=S.cc[c.id]||{}; return '<div class="rg-cc" data-c="'+esc(c.id)+'"><div class="clip"><span class="h">'+esc(c.by||'The Hasty Herald')+'</span><p>“'+esc(c.claim)+'”</p></div>'+
+        '<fieldset><legend><span class="n">1</span> Your call</legend>'+(c.verdicts||[]).map(function(v){ return '<label class="rg-radio"><input type="radio" name="cc-'+esc(c.id)+'-v" value="'+esc(v.k)+'"'+(A.v===v.k?' checked':'')+'> '+esc(v.t)+'</label>'; }).join('')+'<div class="fb v" aria-live="polite"></div></fieldset>'+
+        '<fieldset class="det"><legend><span class="n">2</span> Which detail helps you decide?</legend>'+(c.details||[]).map(function(d,i){ return '<label class="rg-radio"><input type="radio" name="cc-'+esc(c.id)+'-d" value="'+i+'"'+(A.d===i?' checked':'')+'> <span><b>'+esc(d.from)+'</b> '+esc(d.t)+'</span></label>'; }).join('')+'<div class="fb d" aria-live="polite"></div></fieldset>'+
+        '<div class="why"><label for="cc-'+esc(c.id)+'-why"><span class="n">3</span> <b>Explain the connection.</b> '+esc(c.whyQ||'How does that detail show whether the claim is right?')+'</label><textarea id="cc-'+esc(c.id)+'-why" rows="3">'+esc(A.why||'')+'</textarea><div class="wcl"></div></div></div>'; }).join('');
+    after(sc,box);
+    function paintOne(c){ var A=S.cc[c.id]||{}, w=$('.rg-cc[data-c="'+c.id+'"]',box), v=(c.verdicts||[]).filter(function(x){ return x.k===A.v; })[0], d=(c.details||[])[A.d];
+      $('.fb.v',w).innerHTML=v?'<p class="'+(v.ok?'ok':'no')+'">'+(v.ok?'✓ ':'Not quite. ')+esc(v.say)+'</p>':''; $('.fb.d',w).innerHTML=d?'<p class="'+(d.ok?'ok':'no')+'">'+(d.ok?'✓ ':'Look again. ')+esc(d.say)+'</p>':'';
+      var n=words(A.why||''); $('.wcl',w).innerHTML=n>=8?'✓ '+n+' words. '+evBtn({k:'mine', t:A.why, who:'My fact-check', when:'', where:'', from:'My explanation on the Fact-Check tab', ctx:'Claim: “'+c.claim+'”'+(d?' · Detail: '+d.t:''), tags:['factcheck','mine'], ret:{tab:'factcheck', sel:'#cc-'+c.id+'-why'}},'xs'):'📝 '+n+' of 8 words.';
+      w.classList.toggle('done',!!(v&&v.ok&&d&&d.ok&&n>=8)); }
+    box.addEventListener('change',function(e){ var t=e.target, w=t.closest('.rg-cc'); if(!w) return; var c=CC.filter(function(x){ return x.id===w.dataset.c; })[0], A=S.cc[c.id]=S.cc[c.id]||{tries:0};
+      if(/-v$/.test(t.name)){ A.v=t.value; A.tries=(A.tries||0)+1; var v=(c.verdicts||[]).filter(function(x){ return x.k===A.v; })[0]; v&&v.ok?SFX.chime():SFX.bounce(); }
+      if(/-d$/.test(t.name)){ A.d=+t.value; }
+      save(); paintOne(c); refreshPress(); paintReady(); });
+    box.addEventListener('input',function(e){ var t=e.target; if(t.tagName!=='TEXTAREA') return; var w=t.closest('.rg-cc'), c=CC.filter(function(x){ return x.id===w.dataset.c; })[0], A=S.cc[c.id]=S.cc[c.id]||{}; A.why=t.value; save(); paintOne(c); refreshPress(); paintReady(); });
+    CC.forEach(paintOne); }
+
+  /* ================================================================ GO TO PRESS: the evidence tray + the student's own front page */
+  function D(){ if(!S.d) S.d={att:[],rev:{},self:{}}; S.d.att=S.d.att||[]; S.d.rev=S.d.rev||{}; S.d.self=S.d.self||{}; return S.d; }
+  var NW=DATA.newsroom||{}, PARAS=NW.paras||[];
+  var ABS=/\b(everyone|everybody|all|always|never|nobody|no one|every|only)\b/i;
+  var deskEl=null;
+  function angle(){ return R.planner&&R.planner.angle?R.planner.angle():null; }
+  function angleFits(c){ var a=angle(); if(!a||!a.fit||!c.tags) return false; return c.tags.some(function(t){ return a.fit.indexOf(t)>-1; }); }
+  function baseVal(id){ var t=document.getElementById(id); return t?t.value:''; }
+  function setBase(id,v){ var t=document.getElementById(id); if(!t||t.value===v) return; t.value=v; try{ localStorage.setItem((window._lessonKey||'')+'-'+id,v); }catch(e){} }
+  function syncBase(){ var d=D(); setBase('brief-headline',d.head||''); setBase('brief-byline-name',d.by||''); setBase('brief-body',[d.cmp,d.exp].filter(function(x){ return (x||'').trim(); }).join('\n\n')+((d.cap||'').trim()?'\n\nAbout our source: '+d.cap.trim():'')); }
+  function migrate(){ var d=D(); if(d.migrated) return; d.migrated=1; d.head=d.head||baseVal('brief-headline'); d.by=d.by||baseVal('brief-byline-name')||nm(); if(!d.cmp&&baseVal('brief-body').trim()) d.cmp=baseVal('brief-body'); save(); }
+  function secHTML(p,i){ return '<section class="rg-nd-sec" data-p="'+p.k+'"><div class="lab"><span class="n">'+(i+1)+'</span><label for="rg-f-'+p.k+'">'+esc(p.t)+'</label>'+(p.opt?'<i>optional</i>':'')+'</div><p class="ask" id="rg-ask-'+p.k+'">'+esc(p.ask)+'</p>'+
+    '<div class="aids"><details class="notes"><summary>📒 Your earlier notes</summary><div class="nl"></div></details>'+(p.starters?'<details class="starters"><summary>✏️ Optional starters</summary><p class="ex">These are example sentence openings, not answers. Tap one, then finish it in your own words.</p><div class="sl"></div></details>':'')+'</div>'+
+    '<textarea id="rg-f-'+p.k+'" rows="'+(p.rows||4)+'" aria-describedby="rg-ask-'+p.k+'" placeholder="'+esc(p.ph||'Write here in your own words.')+'"></textarea><div class="wcn" aria-live="polite"></div><div class="rev"></div>'+
+    (p.ev?'<div class="att"></div><button type="button" class="rg-nd-attach" data-p="'+p.k+'" aria-expanded="false">＋ Attach evidence to this part</button><div class="pick" hidden></div>':'')+'</section>'; }
+  function buildDesk(){ var p=document.getElementById('panel-press'), ga=p&&$('.gazette-assignment-wrap',p); if(!ga||!PARAS.length) return; migrate();
+    hide(ga); deskEl=el('section','rg rg-nd'); deskEl.id='rg-nd';
+    var herald=(DATA.redpencil||{}).claim||(($('.herald-claim')||{}).textContent||'').replace(/^[\s“"]+|[\s”"]+$/g,'');
+    deskEl.innerHTML='<div class="rg-nd-hd"><div class="rg-game-k">Go to Press · build your front page</div><h3 class="rg-game-t">'+esc(NW.title||'Your front page')+'</h3><p class="rg-todo">'+esc(NW.todo||'')+'</p></div>'+
+      '<div class="rg-nd-grid"><aside class="rg-nd-tray" aria-labelledby="rg-tray-h"><button type="button" class="rg-nd-trayt" aria-expanded="true" aria-controls="rg-tray-body"><span id="rg-tray-h">🗂 Evidence tray</span> <b class="cnt"></b></button><div id="rg-tray-body"><div class="fit"></div><div class="list"></div><p class="foot">'+esc(NW.trayFoot||'')+'</p><button type="button" class="rg-btn alt open">Open the full drawer</button></div></aside>'+
+      '<article class="rg-nd-paper" aria-label="Front page proof"><div class="mast">The Republic Gazette</div><div class="ed"><span>Vol. I · Issue '+esc(ISSUE)+' · Philadelphia</span><span class="st">Proof copy</span></div>'+
+      '<div class="mode" role="group" aria-label="Proof view"><button type="button" data-m="edit" aria-pressed="true">✏️ Write</button><button type="button" data-m="read" aria-pressed="false">👁 Read it like a reader</button></div>'+
+      '<div class="edit"><div class="rg-nd-sec head"><label for="rg-f-head" class="lab">Headline <i>your own words</i></label><input id="rg-f-head" class="hl" maxlength="90" placeholder="Write your own headline"><div class="ideas"></div><div class="rev"></div></div>'+
+      '<div class="by"><label for="rg-f-by">By</label> <input id="rg-f-by" maxlength="40" placeholder="your name"> <span>· Junior Editor</span></div>'+
+      PARAS.map(secHTML).join('')+
+      '<section class="rg-nd-sec cor" data-p="cor"><div class="lab"><span class="n">'+(PARAS.length+1)+'</span><label for="rg-f-cor">Correction</label></div><div class="herald"><span class="h">The Hasty Herald printed:</span> “'+esc(herald)+'”</div><p class="ask" id="rg-ask-cor">'+esc(NW.corAsk||'Write the correction in one or two sentences. What is true instead?')+'</p><textarea id="rg-f-cor" rows="2" aria-describedby="rg-ask-cor" placeholder="Correction: …"></textarea><div class="wcn" aria-live="polite"></div></section></div>'+
+      '<div class="read" hidden></div></article></div>';
+    after(ga,deskEl);
+    var d=D(); $('#rg-f-head',deskEl).value=d.head||''; $('#rg-f-by',deskEl).value=d.by||''; PARAS.forEach(function(q){ $('#rg-f-'+q.k,deskEl).value=d[q.k]||''; }); $('#rg-f-cor',deskEl).value=d.cor||'';
+    deskEl.addEventListener('input',onDeskInput); deskEl.addEventListener('click',onDeskClick); deskEl.addEventListener('change',onCardInput);
+    $('.rg-nd-tray',deskEl).addEventListener('click',onCardClick);
+    $('.rg-nd-trayt',deskEl).addEventListener('click',function(){ var o=this.getAttribute('aria-expanded')!=='true'; this.setAttribute('aria-expanded',o); $('#rg-tray-body',deskEl).hidden=!o; });
+    $('.open',deskEl).addEventListener('click',function(){ openDrawer(); });
+    if(window.matchMedia&&matchMedia('(max-width: 760px)').matches){ $('.rg-nd-trayt',deskEl).setAttribute('aria-expanded','false'); $('#rg-tray-body',deskEl).hidden=true; }
+    paintDesk(); }
+  function onDeskInput(e){ var t=e.target, d=D();
+    if(t.id==='rg-f-head') d.head=t.value; else if(t.id==='rg-f-by') d.by=t.value; else if(t.id==='rg-f-cor') d.cor=t.value;
+    else if(t.id&&t.id.indexOf('rg-f-')===0) d[t.id.slice(5)]=t.value;
+    else if(t.dataset.why){ var a=d.att.filter(function(x){ return x.id===t.dataset.why; })[0]; if(a) a.why=t.value; }
+    else if(t.dataset.keep){ d.rev[t.dataset.keep]=d.rev[t.dataset.keep]||{}; d.rev[t.dataset.keep].why=t.value; }
+    else return;
+    save(); syncBase(); paintDeskLight(); }
+  function onDeskClick(e){ var b=e.target.closest('button'); if(!b) return; var d=D();
+    if(b.dataset.m){ $$('.mode button',deskEl).forEach(function(x){ x.setAttribute('aria-pressed',x===b); }); var rd=b.dataset.m==='read'; $('.edit',deskEl).hidden=rd; $('.read',deskEl).hidden=!rd; if(rd) $('.read',deskEl).innerHTML=editionHTML(record(),true); return; }
+    if(b.classList.contains('rg-nd-attach')){ var pk=$('.pick',b.parentNode), o=pk.hidden; $$('.pick',deskEl).forEach(function(x){ x.hidden=true; }); $$('.rg-nd-attach',deskEl).forEach(function(x){ x.setAttribute('aria-expanded','false'); }); if(o){ pk.innerHTML=pickHTML(b.dataset.p); pk.hidden=false; b.setAttribute('aria-expanded','true'); var f=$('button',pk); if(f) f.focus(); } return; }
+    if(b.dataset.pick){ var p=b.dataset.p, c=evGet(b.dataset.pick); if(!c) return; c.use=true; var rep=b.dataset.rep, a;
+      if(rep){ a=d.att.filter(function(x){ return x.id===rep; })[0]; if(a){ a.ev=c.id; a.was=null; } } else { a={id:'a'+Date.now().toString(36), ev:c.id, p:p, why:''}; d.att.push(a); }
+      save(); SFX.paper(); var pk2=b.closest('.pick'); pk2.hidden=true; paintDesk(); paintEvidence(); var w=$('textarea[data-why="'+a.id+'"]',deskEl); if(w){ w.focus(); var ch=w.closest('.rg-att'); if(ch&&!RM){ ch.classList.add('new'); setTimeout(function(){ ch.classList.remove('new'); },900); } } return; }
+    if(b.dataset.unatt){ d.att=d.att.filter(function(x){ return x.id!==b.dataset.unatt; }); save(); paintDesk(); return; }
+    if(b.dataset.replace){ var a2=d.att.filter(function(x){ return x.id===b.dataset.replace; })[0]; if(!a2) return; var sec=b.closest('.rg-nd-sec'), pk3=$('.pick',sec); pk3.innerHTML=pickHTML(a2.p,a2.id); pk3.hidden=false; var f2=$('button',pk3); if(f2) f2.focus(); return; }
+    if(b.dataset.src){ var c3=evGet(b.dataset.src); if(c3) goSrc(c3.ret); return; }
+    if(b.dataset.start){ var p2=b.dataset.p, ta=$('#rg-f-'+p2,deskEl), txt=b.dataset.start; ta.value=(ta.value&&!/\s$/.test(ta.value)?ta.value+' ':ta.value)+txt+' '; d[p2]=ta.value; save(); syncBase(); ta.focus(); try{ ta.setSelectionRange(ta.value.length,ta.value.length); }catch(x){} b.classList.add('used'); paintDeskLight(); return; }
+    if(b.dataset.idea){ var hi=$('#rg-f-head',deskEl); if(!hi.value.trim()||b.dataset.force){ hi.value=b.dataset.idea; d.head=hi.value; save(); syncBase(); paintDeskLight(); } hi.focus(); hi.select(); return; }
+    if(b.dataset.revise){ var rp=b.dataset.revise, ta2=$('#rg-f-'+rp,deskEl), m=ta2&&ABS.exec(ta2.value); d.rev[rp]={w:m?m[1]:'',state:'revising'}; save(); paintRev(); if(ta2){ ta2.focus(); if(m) try{ ta2.setSelectionRange(m.index,m.index+m[1].length); }catch(x){} } return; }
+    if(b.dataset.keepit){ var kp=b.dataset.keepit; d.rev[kp]=d.rev[kp]||{}; d.rev[kp].state='keep'; save(); paintRev(); var kin=$('input[data-keep="'+kp+'"]',deskEl); if(kin) kin.focus(); return; } }
+  function pickHTML(p,rep){ var all=EV(), use=all.filter(function(c){ return c.use; }), rest=all.filter(function(c){ return !c.use; });
+    if(!all.length) return '<p class="rg-empty">Your drawer is empty. Go back through the lesson and tap <b>＋ Save as evidence</b> beside useful details.</p>';
+    function row(c){ return '<li><button type="button" data-pick="'+esc(c.id)+'" data-p="'+esc(p)+'"'+(rep?' data-rep="'+esc(rep)+'"':'')+'>'+cardHTML(c,'pick')+'</button></li>'; }
+    return '<div class="ph">'+(rep?'Replace with…':'Attach which clipping?')+'</div>'+(use.length?'<div class="gl">In your report</div><ul>'+use.map(row).join('')+'</ul>':'')+(rest.length?'<div class="gl">More in your drawer</div><ul>'+rest.map(row).join('')+'</ul>':''); }
+  /* light paint: counts, readiness, revision prompts — never rebuilds the text boxes, so typing never loses focus */
+  function paintDeskLight(){ if(!deskEl) return; var d=D();
+    PARAS.concat([{k:'cor',min:NW.corMin||8}]).forEach(function(q){ var w=$('.rg-nd-sec[data-p="'+q.k+'"] .wcn',deskEl); if(!w) return; var n=words(d[q.k]||''); w.className='wcn'+(n>=(q.min||0)?' ok':''); w.textContent=q.min?(n>=q.min?'✓ '+n+' words':'📝 '+n+' of '+q.min+' words'):n+' words'; });
+    paintRev(); paintReady(); if(!$('.read',deskEl).hidden) $('.read',deskEl).innerHTML=editionHTML(record(),true); if(S.pub){ clearTimeout(paintDeskLight.t); paintDeskLight.t=setTimeout(paintEdition,400); } }
+  function paintDesk(){ if(!deskEl) return; var d=D(), ev=EV(), use=ev.filter(function(c){ return c.use; });
+    $('.rg-nd-tray .cnt',deskEl).textContent=ev.length+' saved · '+use.length+' in use';
+    var a=angle(); $('.rg-nd-tray .fit',deskEl).innerHTML=a?'<p><b>Your angle:</b> '+esc(a.t)+(a.fitTip?'<br><small>'+esc(a.fitTip)+'</small>':'')+'</p>':'<p><small>Choose an angle in step 1 to see which clippings fit it.</small></p>';
+    var fk=document.activeElement&&deskEl.contains(document.activeElement)&&document.activeElement.dataset.use;
+    $('.rg-nd-tray .list',deskEl).innerHTML=ev.length?ev.slice().sort(function(x,y){ return (angleFits(y)?1:0)-(angleFits(x)?1:0); }).map(function(c){ return cardHTML(c,'tray'); }).join(''):'<p class="rg-empty">No clippings yet. Look for <b>＋ Save as evidence</b> on the Dispatch and Desk tabs.</p>';
+    if(fk){ var fe=$('input[data-use="'+fk+'"]',deskEl); if(fe) fe.focus(); }
+    var ideas=(a&&a.ideas)||NW.ideas||[]; $('.head .ideas',deskEl).innerHTML=ideas.length?'<span class="k">Headline ideas <i>(examples; make it yours)</i></span>'+ideas.map(function(t){ return '<button type="button" data-idea="'+esc(t)+'">'+esc(t)+'</button>'; }).join(''):'';
+    var notes=earlierNotes();
+    PARAS.forEach(function(q){ var sec=$('.rg-nd-sec[data-p="'+q.k+'"]',deskEl); var nl=$('.nl',sec), sl=$('.sl',sec), att=$('.att',sec);
+      var mine=notes.filter(function(n){ return !q.notes||q.notes.indexOf(n.k)>-1; });
+      nl.innerHTML=mine.length?mine.map(function(n){ return '<div class="rg-pn"><b>'+esc(n.l)+'</b><p>'+esc(n.t)+'</p></div>'; }).join(''):'<p class="rg-empty">No notes for this part yet.</p>'; $('summary',$('.notes',sec)).textContent='📒 Your earlier notes ('+mine.length+')';
+      if(sl) sl.innerHTML=starters(q).map(function(t){ return '<button type="button" data-start="'+esc(t)+'" data-p="'+q.k+'">'+esc(t)+' …</button>'; }).join('');
+      if(att){ var A=d.att.filter(function(x){ return x.p===q.k; }); att.innerHTML=A.map(function(x){ var c=evGet(x.ev), n=markerNo(x.id), K=c?(EVK[c.k]||EVK.lesson):null;
+          return '<div class="rg-att'+(c?'':' gone')+'"><span class="mk" aria-hidden="true">'+n+'</span><div class="b">'+(c?'<div class="t"><b>'+esc(cardMeta(c))+'</b> <span class="badge">'+esc(K.n)+'</span></div><p class="det">'+esc(c.t)+'</p>':'<div class="t"><b>Clipping removed</b>'+(x.was?' ('+esc(x.was)+')':'')+'. Your explanation is kept below. Attach a replacement.</div>')+
+            '<label>What does this detail support? <i>(your words)</i><textarea rows="2" data-why="'+esc(x.id)+'">'+esc(x.why||'')+'</textarea></label><div class="acts">'+(c&&c.ret?'<button type="button" data-src="'+esc(c.id)+'">↩ Return to source</button>':'')+'<button type="button" data-replace="'+esc(x.id)+'">⇄ Replace</button><button type="button" data-unatt="'+esc(x.id)+'">Detach</button></div></div></div>'; }).join(''); } });
+    paintDeskLight(); }
+  function markerNo(aid){ var d=D(), order=[]; PARAS.forEach(function(q){ d.att.forEach(function(a){ if(a.p===q.k) order.push(a.id); }); }); return order.indexOf(aid)+1; }
+  function starters(q){ var a=angle(), pr=R.planner&&R.planner.pair?R.planner.pair():[], f=R.planner&&R.planner.factors?R.planner.factors():[];
+    function low(t){ return t?t.charAt(0).toLowerCase()+t.slice(1):''; }
+    return (q.starters||[]).map(function(t){ return t.replace(/\{p1\}/g,pr[0]?low(pr[0].who):'one person').replace(/\{p2\}/g,pr[1]?low(pr[1].who):'another person').replace(/\{f\}/g,f.length?f.map(low).join(' and '):'…'); }); }
+  function earlierNotes(){ var out=[], push=function(k,l,t){ if((t||'').trim()) out.push({k:k,l:l,t:t.trim()}); };
+    var pz=R.pair&&R.pair.state?R.pair.state():null; if(pz) push('pair','Desk · comparing '+pz.p1+' and '+pz.p2,pz.note);
+    $$('.reflection-textarea').forEach(function(t,i){ push('journal'+(i+1),'Notebook · '+(t.dataset.label||('Question '+(i+1))),t.value); });
+    var rp=R.evidence&&R.evidence.state?R.evidence.state():null; if(rp){ push('notice','Source desk · what I noticed',rp.notice); push('date','Source desk · made vs. shown',rp.dateExp); push('limit','Source desk · what the picture can’t show',rp.limitation); }
+    (CC||[]).forEach(function(c){ var A=(S.cc||{})[c.id]; if(A&&A.why) push('claims','Fact-Check · '+c.claim.slice(0,50)+'…',A.why); });
+    EV().filter(function(c){ return (c.note||'').trim(); }).forEach(function(c){ push('cardnotes','Drawer note · '+cardMeta(c),c.note); });
+    return out; }
+  /* the one editorial revision prompt: a sweeping word, kept with a reason or revised. It never grades. */
+  function paintRev(){ if(!deskEl) return; var d=D(); ['head'].concat(PARAS.map(function(q){ return q.k; })).forEach(function(k){ var sec=k==='head'?$('.rg-nd-sec.head',deskEl):$('.rg-nd-sec[data-p="'+k+'"]',deskEl); if(!sec) return; var box=$('.rev',sec); if(!box) return;
+      var v=d[k]||'', m=ABS.exec(v), r=d.rev[k]||{};
+      if(!m){ if(r.w&&r.state!=='revised'){ r.state='revised'; d.rev[k]=r; save(); if(!RM){ box.classList.add('fixed'); setTimeout(function(){ box.classList.remove('fixed'); },1200); } }
+        box.innerHTML=r.state==='revised'?'<p class="rg-revok">✓ Revised. Careful wording is a kind of honesty.</p>':''; return; }
+      if(!r.w||r.w.toLowerCase()!==m[1].toLowerCase()){ r={w:m[1],state:'open'}; d.rev[k]=r; save(); beat('revisePrompt'); }
+      if(r.state==='keep'){ var n=words(r.why||''); if(!$('input[data-keep="'+k+'"]',box)) box.innerHTML='<div class="rg-redmark keep"><b>✏ Keeping “'+esc(r.w)+'”.</b> <label>Why does your evidence support that word? <input data-keep="'+k+'" maxlength="160" value="'+esc(r.why||'')+'"></label><span class="kn"></span></div>'; $('.kn',box).textContent=n>=5?'✓ Reason noted.':'📝 '+n+' of 5 words.'; return; }
+      box.innerHTML='<div class="rg-redmark" role="note"><b>✏ Editor’s mark:</b> Your sentence says “<span class="w">'+esc(r.w)+'</span>.” Does your evidence support that word? <span class="acts"><button type="button" data-revise="'+k+'">Revise it</button><button type="button" data-keepit="'+k+'">Keep it, with a reason</button></span></div>'; }); }
+  function revOK(){ var d=D(); return ['head'].concat(PARAS.map(function(q){ return q.k; })).every(function(k){ var v=d[k]||''; if(!ABS.test(v)) return true; var r=d.rev[k]||{}; return r.state==='keep'&&words(r.why||'')>=5; }); }
+
+  /* ================================================================ ONE readiness rule for the stepper, checklist, print button and certificate */
+  function attOK(){ var A=D().att.filter(function(a){ return a.ev&&evGet(a.ev)&&words(a.why||'')>=(NW.whyMin||6); }), ids={}; A.forEach(function(a){ ids[a.ev]=1; }); return Object.keys(ids).length>=(NW.evMin||2); }
+  function readiness(){ var d=D(), W=function(k){ return words(d[k]||''); }, items=[
+      {k:'notebook',t:'Editor’s Notebook: all three answers',ok:['journal-q1','journal-q2','journal-q3'].every(qDone),go:{tab:'desk',sel:'.reflection-block'}},
+      {k:'fact',t:'Fact-Check: the three claims and the editor’s calls',ok:fcDone(),go:{tab:'factcheck',sel:'#panel-factcheck .factcheck-q'}},
+      {k:'head',t:'Your own headline',ok:W('head')>=3,go:{tab:'press',sel:'#rg-f-head'}},
+      {k:'by',t:'Your byline',ok:!!(d.by||'').trim(),go:{tab:'press',sel:'#rg-f-by'}}].concat(PARAS.filter(function(q){ return q.min; }).map(function(q){ return {k:q.k,t:q.short||q.t,ok:W(q.k)>=q.min,go:{tab:'press',sel:'#rg-f-'+q.k}}; })).concat([
+      {k:'ev',t:'At least '+(NW.evMin||2)+' different clippings attached, each with your explanation',ok:attOK(),go:{tab:'press',sel:'.rg-nd-attach'}},
+      {k:'cor',t:'The correction to the Herald',ok:W('cor')>=(NW.corMin||8),go:{tab:'press',sel:'#rg-f-cor'}},
+      {k:'rev',t:'The editor’s mark answered (revised, or kept with a reason)',ok:revOK(),go:{tab:'press',sel:'.rg-redmark'}},
+      {k:'arch',t:'One careful Archive Line',ok:wn('archive-line')>=5,go:{tab:'press',sel:'#archive-line'}},
+      {k:'self',t:'Your editorial self-check',ok:selfOK(),go:{tab:'press',sel:'.rg-selfck'}}]);
+    return {items:items, ready:items.every(function(x){ return x.ok; }), missing:items.filter(function(x){ return !x.ok; })}; }
+  var SELF=DATA.selfCheck||[];
+  function selfOK(){ var s=D().self; return SELF.every(function(x,i){ return !!s[i]; }); }
+  var readyEl=null;
+  function buildReady(){ var p=document.getElementById('panel-press'), ck=p&&$('.checklist-card',p); if(!ck) return;
+    ck.addEventListener('click',function(e){ if(html.classList.contains('rg-on')&&e.target.closest('.checklist-row')){ e.stopPropagation(); e.preventDefault(); } },true);
+    var rows=$$('.checklist-row',ck), hint=document.getElementById('checklistHint'); rows.forEach(hide); if(hint) hide(hint); var h3=$('h3',ck); if(h3) setText(h3,'✓ Before you print');
+    readyEl=el('div','rg rg-ready','<fieldset class="rg-selfck"><legend>Your editorial self-check</legend><p class="sub">'+esc((DATA.selfIntro)||'Read your page once more. Tick each one only when it’s true.')+'</p>'+SELF.map(function(t,i){ return '<label class="rg-check"><input type="checkbox" data-self="'+i+'"'+(D().self[i]?' checked':'')+'> '+esc(t)+'</label>'; }).join('')+'</fieldset>'+
+      '<div class="rg-readyl"><div class="hd">What the page can check <small>It can see what’s missing. It can’t judge whether your history is right. That’s your job, and your teacher’s.</small></div><ul></ul></div>');
+    ck.appendChild(readyEl);
+    readyEl.addEventListener('change',function(e){ var t=e.target; if(t.dataset.self==null) return; D().self[t.dataset.self]=t.checked; save(); paintReady(); });
+    readyEl.addEventListener('click',function(e){ var b=e.target.closest('button[data-go]'); if(!b) return; var it=readiness().items.filter(function(x){ return x.k===b.dataset.go; })[0]; if(it) goSrc(it.go); }); }
+  function paintReady(){ var R0=readiness(); if(readyEl) $('ul',readyEl).innerHTML=R0.items.map(function(x){ return '<li class="'+(x.ok?'ok':'')+'"><span class="ic" aria-hidden="true">'+(x.ok?'✓':'○')+'</span><span>'+esc(x.t)+'</span>'+(x.ok?'<span class="rg-sr">done</span>':'<button type="button" data-go="'+x.k+'">Go there</button>')+'</li>'; }).join('');
+    var cert=document.getElementById('certCard'); if(cert){ cert.classList.toggle('locked',!S.published); cert.classList.toggle('unlocked',!!S.published); }
+    if(deskEl){ $('.ed .st',deskEl).textContent=S.published?(stale()?'Printed · edited since':'Printed edition'):'Proof copy'; }
+    updateStepper(); if(typeof paintRedPencil==='function') paintRedPencil(); return R0; }
+
+  /* ================================================================ THE RECORD: one object behind the proof, print, archive and every export */
+  function record(){ var d=D(), sc=R.scene1&&R.scene1.state?R.scene1.state():{}, rp=R.evidence&&R.evidence.state?R.evidence.state():null, al=R.almanac&&R.almanac.state?R.almanac.state():null, pz=R.pair&&R.pair.state?R.pair.state():null, a=angle();
+    var ev=[]; PARAS.forEach(function(q){ d.att.forEach(function(x){ if(x.p!==q.k) return; var c=evGet(x.ev); ev.push({n:ev.length+1, p:q.k, para:q.t, t:c?c.t:'(clipping removed)', kind:c?(EVK[c.k]||EVK.lesson).n:'', meta:c?cardMeta(c):'', from:c?c.from:'', why:(x.why||'').trim()}); }); });
+    var qs=$$('#panel-factcheck .factcheck-q');
+    return { lesson:DATA.lesson, issue:ISSUE, title:DATA.title, editor:(d.by||nm()||'').trim(), at:Date.now(), angle:a?a.t:'',
+      head:(d.head||'').trim(), cmp:(d.cmp||'').trim(), exp:(d.exp||'').trim(), cap:(d.cap||'').trim(), cor:(d.cor||'').trim(), herald:(DATA.redpencil||{}).claim||'', arch:baseVal('archive-line').trim(), ev:ev,
+      rev:Object.keys(d.rev).filter(function(k){ return d.rev[k].w; }).map(function(k){ var r=d.rev[k]; return {part:k, word:r.w, state:r.state, why:r.why||''}; }),
+      notebook:$$('.reflection-textarea').map(function(t,i){ return {q:t.dataset.label||('Question '+(i+1)), a:(t.value||'').trim()}; }),
+      pair:pz, scene:sc, source:rp, almanac:al,
+      quiz:qs.map(function(q,i){ var F=(S.fc||{})[q.id]||null, o=F?fcOpts(q)[F.i]:null; return {q:(($('.factcheck-q-text',q)||{}).textContent||'Claim '+(i+1)).trim(), a:o?o.textContent.replace(/\s+/g,' ').trim():'', ok:F?!!F.ok:null}; }),
+      claims:CC.map(function(c){ var A=(S.cc||{})[c.id]||{}, v=(c.verdicts||[]).filter(function(x){ return x.k===A.v; })[0], dd=(c.details||[])[A.d]; return {claim:c.claim, verdict:v?v.t:'', detail:dd?dd.from+' '+dd.t:'', why:(A.why||'').trim()}; }),
+      self:SELF.filter(function(t,i){ return D().self[i]; }) }; }
+  function stale(){ if(!S.pub) return false; var r=record(); return ['head','cmp','exp','cap','cor','editor'].some(function(k){ return r[k]!==S.pub[k]; })||JSON.stringify(r.ev)!==JSON.stringify(S.pub.ev); }
+  function paraHTML(txt,marks,live){ var h=esc(txt||'').replace(/\n+/g,'</p><p>'); return '<p>'+(h||'<span class="ph">This part is still blank.</span>')+marks.map(function(m){ return live?' <button type="button" class="mk" aria-expanded="false" aria-controls="rg-evn-'+m.n+'" data-mk="'+m.n+'" aria-label="Evidence '+m.n+'">['+m.n+']</button>':' <sup>['+m.n+']</sup>'; }).join('')+'</p>'+(live?marks.map(function(m){ return '<div class="evn" id="rg-evn-'+m.n+'" hidden><b>Evidence '+m.n+' · '+esc(m.kind)+'</b><p class="clip">'+esc(m.t)+'</p><p class="src">'+esc(m.meta)+(m.from?' — '+esc(m.from):'')+'</p><p class="why"><b>What it supports (the editor’s words):</b> '+esc(m.why||'(not explained yet)')+'</p></div>'; }).join(''):''); }
+  function editionHTML(r,live){ var by=function(k){ return r.ev.filter(function(m){ return m.p===k; }); };
+    var h='<div class="rg-ed"><div class="mast">The Republic Gazette</div><div class="ed"><span>Vol. I · Issue '+esc(r.issue)+'</span><span>'+esc(r.title||'')+'</span></div>'+
+      '<h2 class="hl">'+(r.head?esc(r.head):'<span class="ph">Your headline</span>')+'</h2><div class="by">By '+esc(r.editor||'Junior Editor')+', Junior Editor</div>';
+    PARAS.forEach(function(q){ if(q.k==='cap') return; h+=(q.kick?'<div class="kick">'+esc(q.kick)+'</div>':'')+paraHTML(r[q.k],by(q.k),live); });
+    var capM=by('cap'); h+='<figure class="cap"><figcaption><b>About our source.</b> '+(r.cap?esc(r.cap):'<span class="ph">Your source caption or limitation.</span>')+capM.map(function(m){ return live?' <button type="button" class="mk" aria-expanded="false" aria-controls="rg-evn-'+m.n+'" data-mk="'+m.n+'">['+m.n+']</button>':' <sup>['+m.n+']</sup>'; }).join('')+'</figcaption>'+(live?capM.map(function(m){ return '<div class="evn" id="rg-evn-'+m.n+'" hidden><b>Evidence '+m.n+' · '+esc(m.kind)+'</b><p class="clip">'+esc(m.t)+'</p><p class="src">'+esc(m.meta)+(m.from?' — '+esc(m.from):'')+'</p><p class="why"><b>What it supports:</b> '+esc(m.why||'')+'</p></div>'; }).join(''):'')+'</figure>';
+    h+='<div class="corr"><div class="k">Correction</div><p class="was">The Hasty Herald printed: <s>“'+esc(r.herald)+'”</s></p><p>'+(r.cor?esc(r.cor):'<span class="ph">Your correction.</span>')+'</p></div>';
+    if(!live&&r.ev.length) h+='<div class="notes"><div class="k">Evidence notes</div><ol>'+r.ev.map(function(m){ return '<li><b>'+esc(m.kind)+':</b> '+esc(m.t)+' <i>('+esc(m.meta)+(m.from?' — '+esc(m.from):'')+')</i><br><b>What it supports:</b> '+esc(m.why||'(not explained)')+'</li>'; }).join('')+'</ol></div>';
+    return h+'</div>'; }
+  document.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.rg-ed button.mk'); if(!b) return; var p=b.closest('.rg-ed'), n=$('#rg-evn-'+b.dataset.mk,p)||$('[id="rg-evn-'+b.dataset.mk+'"]',p); if(!n) return; var o=n.hidden; n.hidden=!o; b.setAttribute('aria-expanded',o); });
+  function recordText(r,status){ var L=[], hr='════════════════════════════════════════', P=function(s){ L.push(s==null?'':s); }, blank=function(v){ return (v||'').trim()||'(blank)'; };
+    P(hr); P('  THE REPUBLIC GAZETTE · EDITOR’S SUBMISSION'); P('  Lesson '+r.lesson+' · '+r.title); P('  Vol. I · Issue '+r.issue+' · '+(status||'Proof')); P('  Junior Editor: '+blank(r.editor)); P(hr); P('');
+    P('--- MY FRONT PAGE ---'); if(r.angle) P('Angle: '+r.angle); P('Headline: '+blank(r.head)); P('Byline: By '+blank(r.editor)); P('');
+    PARAS.forEach(function(q){ var ms=r.ev.filter(function(m){ return m.p===q.k; }).map(function(m){ return '['+m.n+']'; }).join(' '); P(q.t.toUpperCase()+':'); P(blank(r[q.k])+(ms?' '+ms:'')); P(''); });
+    P('CORRECTION:'); P('The Hasty Herald printed: “'+r.herald+'”'); P(blank(r.cor)); P('');
+    P('--- EVIDENCE NOTES ---'); if(!r.ev.length) P('(no evidence attached yet)'); r.ev.forEach(function(m){ P('['+m.n+'] '+m.kind+' · '+m.meta); P('    Detail: '+m.t); P('    Source: '+(m.from||'')); P('    What it supports (my words): '+blank(m.why)); }); P('');
+    if(r.rev.length){ P('--- REVISION ---'); r.rev.forEach(function(x){ P('Word: “'+x.word+'” → '+(x.state==='revised'?'revised':x.state==='keep'?'kept. Reason: '+blank(x.why):'not answered yet')); }); P(''); }
+    P('--- ARCHIVE LINE ---'); P(blank(r.arch)); P('');
+    P('--- EDITOR’S NOTEBOOK ---'); r.notebook.forEach(function(n){ P(n.q); P(blank(n.a)); P(''); });
+    if(r.pair){ P('--- COMPARING TWO PEOPLE (Desk) ---'); P((r.pair.p1||'?')+' and '+(r.pair.p2||'?')); P(blank(r.pair.note)); P(''); }
+    if(r.source){ var s=r.source; P('--- THE SOURCE DESK: THE KITCHEN PRINT ---'); if(r.scene&&r.scene.locked) P('Before the reveal: the scene seemed to show about '+r.scene.guess+'. Drawn later? '+(r.scene.later||'—')); P('What I noticed: '+blank(s.notice)); P('Made vs. shown (my explanation): '+blank(s.dateExp)); (s.cats||[]).forEach(function(ct){ P(ct.t+': '+((s.sort[ct.k]||[]).join(', ')||'—')); }); P('Another source that could help: '+(s.followup||'—')); P('What this picture can’t show (my words): '+blank(s.limitation)); P(''); }
+    if(r.almanac){ P('--- THE ALMANAC ---'); r.almanac.months.forEach(function(m){ P(m.name+': sun rose '+m.rise+', set '+m.set+'. '+(m.ok?'My answer: '+m.a:'(not answered)')); }); P('Chose their own hours: '+(r.almanac.sort.yes.join(', ')||'—')); P('Someone else chose: '+(r.almanac.sort.no.join(', ')||'—')); P(''); }
+    P('--- FACT-CHECK ---'); r.quiz.forEach(function(q,i){ P((i+1)+'. '+q.q); P('   My answer: '+(q.a||'(not answered)')+(q.ok==null?'':q.ok?' ✓':' ✗')); }); r.claims.forEach(function(c){ P('Claim: “'+c.claim+'”'); P('   My call: '+blank(c.verdict)); P('   Detail: '+blank(c.detail)); P('   My explanation: '+blank(c.why)); }); P('');
+    P('--- MY SELF-CHECK ---'); SELF.forEach(function(t){ P((r.self.indexOf(t)>-1?'[x] ':'[ ] ')+t); }); P('');
+    P('(The routines in this lesson are illustrative reconstructions written for the lesson, not diary quotations.)');
+    return L.join('\n'); }
+  function current(){ return S.pub&&!stale()?{r:S.pub,st:'Printed edition'}:S.pub?{r:record(),st:'Proof (edited since printing)'}:{r:record(),st:'Proof (not printed yet)'}; }
+  function printView(){ var cu=current(), r=cu.r, body=editionHTML(r,false)+'<hr><pre class="pk">'+esc(recordText(r,cu.st))+'</pre>';
+    var doc='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(r.lesson)+' · Issue '+esc(r.issue)+' · '+esc(r.editor||'Junior Editor')+'</title><style>body{font:16px/1.55 Georgia,serif;color:#1A1F2E;max-width:760px;margin:30px auto;padding:0 20px}.st{font:700 12px system-ui;letter-spacing:.1em;text-transform:uppercase;color:#8B2D26}.mast{font:700 38px/1 Georgia,serif;text-align:center;border-bottom:3px double #1A1F2E;padding-bottom:8px}.ed{display:flex;justify-content:space-between;font:12px system-ui;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #999;padding:5px 0;margin-bottom:12px}.hl{font:900 34px/1.08 Georgia,serif;margin:10px 0}.by{font:700 12px system-ui;text-transform:uppercase;letter-spacing:.08em;color:#555;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:10px}.kick{font:700 11px system-ui;letter-spacing:.12em;text-transform:uppercase;color:#8B2D26;margin-top:14px}sup{color:#8B2D26;font-weight:700}.cap{margin:14px 0;padding:8px 12px;border-left:3px solid #B8923E;background:#FAF6EA}.corr{border:2px solid #1A1F2E;padding:8px 12px;margin:16px 0}.corr .k,.notes .k{font:700 11px system-ui;letter-spacing:.12em;text-transform:uppercase}.notes{font-size:14px;border-top:1px solid #999;margin-top:16px}.ph{color:#999;font-style:italic}.pk{white-space:pre-wrap;font:12px/1.5 ui-monospace,Menlo,monospace;background:#F7F5EF;padding:12px}@media print{.noprint{display:none}}</style></head><body><div class="st">'+esc(cu.st)+'</div>'+body+'<p class="noprint"><button onclick="print()">Print or save as PDF</button></p></body></html>';
+    var w=null; try{ w=window.open('','_blank'); }catch(e){}
+    if(w){ w.document.write(doc); w.document.close(); setTimeout(function(){ try{ w.focus(); w.print(); }catch(e){} },350); return; }
+    download(doc,(r.lesson||'lesson')+'-issue-'+r.issue+'-front-page.html','text/html'); ticker('Your browser blocked the print window, so the page was downloaded instead. Open it and print it.'); }
+  function download(txt,name,type){ try{ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:type||'text/plain'})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); return true; }catch(e){ return false; } }
+  function buildExports(){ var gc=$('.gathered-card'); if(!gc) return; var out=document.getElementById('gatheredOutput');
+    window.refreshGathered=(function(orig){ var f=function(){ if(!html.classList.contains('rg-on')) return orig.apply(this,arguments); var cu=current(); if(out) out.value=recordText(cu.r,cu.st); }; f.__orig=orig; return f; })(window.refreshGathered.__orig||window.refreshGathered);
+    window.copyGathered=(function(orig){ var f=function(){ if(!html.classList.contains('rg-on')) return orig.apply(this,arguments); window.refreshGathered(); var t=out.value, msg=document.getElementById('copiedMsg');
+      function ok(){ if(msg){ msg.textContent='Copied! Now paste it into your turn-in document.'; msg.classList.add('show'); setTimeout(function(){ msg.classList.remove('show'); },2400); } }
+      function fail(){ out.focus(); out.select(); if(msg){ msg.textContent='Your browser blocked copying. The text is selected: press Ctrl+C (or ⌘C) to copy it.'; msg.classList.add('show'); } }
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok,function(){ try{ out.select(); document.execCommand('copy')?ok():fail(); }catch(e){ fail(); } }); else { try{ out.select(); document.execCommand('copy')?ok():fail(); }catch(e){ fail(); } } }; f.__orig=orig; return f; })(window.copyGathered.__orig||window.copyGathered);
+    window.downloadJournal=(function(orig){ var f=function(){ if(!html.classList.contains('rg-on')) return orig.apply(this,arguments); var cu=current(); download(recordText(cu.r,cu.st),(DATA.lesson||'lesson')+'-issue-'+ISSUE+'-submission.txt','text/plain'); }; f.__orig=orig; return f; })(window.downloadJournal.__orig||window.downloadJournal);
+    setText($('.gathered-header-title',gc),'Your submission'); setText($('.gathered-intro',gc),'Everything you made today, from one saved record: your front page, your evidence notes, your notebook, the source desk, the almanac and the fact-check. The printed edition, the Morgue and these exports all match.');
+    setText($('.gathered-btn-copy',gc),'📋 Copy my submission'); setText($('.gathered-btn-pdf',gc),'⬇ Download text file (.txt)');
+    var acts=$('.gathered-actions',gc), pb=el('button','rg gathered-btn rg-printbtn','🖨 Print or save as PDF'); pb.type='button'; pb.addEventListener('click',printView); acts.appendChild(pb);
+    var nb=el('button','rg gathered-btn rg-nbbtn2','📓 Reporter’s Notebook (print or save as PDF)'); nb.type='button'; nb.addEventListener('click',notebook); acts.appendChild(nb); }
+
+  /* ================================================================ PUBLISH: the red pencil ritual prints the student's record */
+  function publish(){ var R0=readiness(); if(!R0.ready) return false; var r=record(); S.pub=r; S.published=true; S.pubAt=Date.now();
+    if(ISSUE&&C.published.indexOf(ISSUE)<0) C.published.push(ISSUE); C.lines[ISSUE]={line:r.cor, head:r.head, lesson:DATA.lesson, at:Date.now(), rec:r};
+    save(); return true; }
+  var edEl=null;
+  function paintEdition(){ var p=document.getElementById('panel-press'); if(!p) return; if(!edEl){ edEl=el('section','rg rg-printed'); var rp=$('.rg-redpencil',p)||document.getElementById('certCard'); if(!rp) return; after(rp,edEl); }
+    if(!S.pub){ edEl.hidden=true; return; } edEl.hidden=false; var st=stale();
+    edEl.innerHTML='<div class="hd"><div class="rg-game-k">The printed edition</div>'+(st?'<p class="rg-stale" role="status">You changed your page after printing. The printed edition below is what’s in the Morgue. Print again to update it.</p>':'')+'</div>'+editionHTML(S.pub,true)+'<div class="row"><button type="button" class="rg-btn" data-a="print">🖨 Print or save as PDF</button><button type="button" class="rg-btn alt" data-a="txt">⬇ Download text file (.txt)</button><button type="button" class="rg-btn alt" data-a="copy">📋 Copy my submission</button><button type="button" class="rg-btn alt" data-a="revise">✏️ Revise and reprint</button></div>';
+    edEl.onclick=function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var a=b.dataset.a; if(a==='print') printView(); if(a==='txt') window.downloadJournal(); if(a==='copy'){ window.copyGathered(); ticker('Copied your submission.'); } if(a==='revise'){ var f=$('#rg-f-head'); if(f){ f.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'}); f.focus({preventScroll:true}); } } }; }
+
+  /* ================================================================ wiring + small fixes from the audit */
+  function fixModalAndKeys(){ document.addEventListener('keydown',function(e){ if(e.key!=='Escape'||!html.classList.contains('rg-on')) return; var m=$('#rgModal.open'); if(m){ closeModal(); return; } if(wireEl&&wireEl.classList.contains('open')){ openWire(false); if(wireBtn) wireBtn.focus(); } }); }
+  function buildNewsroom(){ if(!window.__rgKeysFixed){ fixModalAndKeys(); window.__rgKeysFixed=true; } buildNewsroomBar(); buildDrawer(); buildClaims(); restoreQuiz(); kbdQuiz(); buildDesk(); buildReady(); buildExports(); paintEdition(); paintReady(); paintEvidence();
+    var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(kbdQuiz,40); }); var fp=document.getElementById('panel-factcheck'); if(fp){ mo.observe(fp,{attributes:true,subtree:true,attributeFilter:['class']}); OBS.push(mo); }
+    if(window.switchTab&&!window.__rgNdWrapped){ var o=window.switchTab; window.switchTab=function(t){ var r=o.apply(this,arguments); if(html.classList.contains('rg-on')&&t==='press'){ if(R.planner&&R.planner.paint) R.planner.paint(); paintDesk(); paintReady(); } return r; }; window.__rgNdWrapped=true; }
+    if(window.updateProgress&&!window.__rgProgWrapped){ var up=window.updateProgress; window.updateProgress=function(){ var r=up.apply(this,arguments); if(html.classList.contains('rg-on')){ var st=stageState(), n=st.filter(Boolean).length, f=document.getElementById('progressFill'), t=document.getElementById('progressPct'); if(f) f.style.width=(n*25)+'%'; if(t) t.textContent=(n*25)+'%'; } return r; }; window.__rgProgWrapped=true; }
+    var ch=document.getElementById('checklistHint'); if(ch&&/Issue 1\b/.test(ch.innerHTML)) setText(ch,ch.innerHTML.replace(/Issue 1\b/,'Issue '+ISSUE)); }
+  function paintEvidence(trayOnly){ var n=EV().length, cnt=pressEl&&$('.rg-evcount b',pressEl); if(cnt) cnt.textContent=n; if(!trayOnly) paintDrawer(); refreshEvBtns(); if(trayOnly&&deskEl){ $('.rg-nd-tray .cnt',deskEl).textContent=n+' saved · '+EV().filter(function(c){ return c.use; }).length+' in use'; $$('.rg-nd-tray .rg-evc',deskEl).forEach(function(a){ var c=evGet(a.dataset.id); if(c) a.classList.toggle('use',!!c.use); }); } }
+
+  /* a closer look at a historical picture: full size, scrollable, closes with Escape */
+  function zoomImage(src,alt,cap){ if(!src) return; var m=modal(); m.innerHTML='<div class="rg-sheet rg-zoom"><button class="x" type="button" aria-label="Close">✕</button><h3>🔍 Look closer</h3><div class="zw" tabindex="0" aria-label="Scrollable picture"><img alt="'+esc(alt||'')+'" src="'+esc(src)+'"></div><p class="cap">'+esc(cap||'')+'</p><div class="row"><button type="button" class="rg-btn alt zi">＋ Zoom in</button><button type="button" class="rg-btn alt zo">－ Zoom out</button></div></div>';
+    var im=$('.zw img',m), z=1; function setZ(v){ z=Math.max(1,Math.min(3,v)); im.style.width=(z*100)+'%'; }
+    $('.x',m).addEventListener('click',closeModal); $('.zi',m).addEventListener('click',function(){ setZ(z+0.5); }); $('.zo',m).addEventListener('click',function(){ setZ(z-0.5); }); }
+
   /* ================================================================ Fact-Check one claim at a time + "why that one's tempting" */
   function buildFactSteps(){ var qs=$$('#panel-factcheck .factcheck-q'); if(qs.length<2) return;
     var cur=0, bar=el('div','rg rg-qprog'); before(qs[0],bar); var score=document.getElementById('factcheckScore');
@@ -531,13 +951,15 @@
       bar.innerHTML=cur<qs.length?qs.map(function(q,i){ return '<i class="'+(i<cur?'done':i===cur?'now':'')+'"></i>'; }).join('')+'<span>Claim '+(cur+1)+' of '+qs.length+'</span>':''; bar.classList.toggle('rg-hide',cur>=qs.length); refreshPress(); }
     var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paint,30); }); mo.observe(document.getElementById('panel-factcheck'),{attributes:true,subtree:true,attributeFilter:['class']}); OBS.push(mo);
     paint(); }
-  function buildQuizMiss(){ if(!DATA.quizMiss||typeof window.checkAnswer!=='function'||window.__rgQuizWrapped) return; window.__rgQuizWrapped=true;
+  function buildQuizMiss(){ if(typeof window.checkAnswer!=='function'||window.__rgQuizWrapped) return; window.__rgQuizWrapped=true; DATA.quizMiss=DATA.quizMiss||[];
     var orig=window.checkAnswer;
     window.checkAnswer=function(qId,opt,ok){ var q=document.getElementById(qId), was=q&&q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); var r=orig.apply(this,arguments);
       if(was||!q||!html.classList.contains('rg-on')) return r;
+      if(!RESTORING){ S.fc=S.fc||{}; var oi=$$('.factcheck-option',q).indexOf(opt); S.fc[qId]={i:oi,ok:!!ok,at:Date.now(),tries:((S.fc[qId]||{}).tries||0)+1}; save(); }
+      $$('.factcheck-option',q).forEach(function(o){ o.setAttribute('aria-disabled','true'); o.setAttribute('aria-pressed',o===opt?'true':'false'); });
       var idx=$$('#panel-factcheck .factcheck-q').indexOf(q), letter=((opt.querySelector('.factcheck-option-letter')||{}).textContent||'').trim(), line=(DATA.quizMiss[idx]||{})[letter];
       if(!ok&&line){ var fb=document.getElementById('fb-'+qId.replace('fc-',''))||q.lastElementChild; after(fb,el('div','rg rg-qmiss','<b>Why that one’s tempting:</b> '+esc(line))); }
-      ok?SFX.chime():SFX.bounce(); return r; }; }
+      if(!RESTORING){ ok?SFX.chime():SFX.bounce(); } refreshPress(); return r; }; }
 
   /* ================================================================ answer chips, hint ladders, live word counters — all from DATA */
   function flagCount(f,v){ if(f.groups) return f.groups.filter(function(g){ return new RegExp('\\b('+g+')','i').test(v); }).length;
@@ -559,7 +981,7 @@
         btn.addEventListener('click',function(){ S.hints[id]=Math.min((S.hints[id]||0)+1,hs.length); save(); show(); SFX.scratch(); }); show(); } }); }
   function wc(id,need,label){ var t=document.getElementById(id); if(!t) return; var c=document.getElementById('rg-wc-'+id); if(!c){ c=el('div','rg rg-wc'); c.id='rg-wc-'+id; var h=t.nextElementSibling&&t.nextElementSibling.classList.contains('rg-help')?t.nextElementSibling:t; after(h,c); }
     var n=words(t.value); c.classList.toggle('ok',n>=need); c.innerHTML=n>=need?'✓ '+n+' words.'+(label?' '+label:''):'📝 <b>'+n+' of '+need+' words.</b> '+(n?'Keep going.':'Write at least '+need+' words.'); }
-  function paintCounts(){ ['journal-q1','journal-q2','journal-q3'].forEach(function(id){ wc(id,8); }); wc('brief-headline',3); wc('brief-body',MIN_WORDS,'That’s enough for your brief.'); wc('archive-line',5); }
+  function paintCounts(){ ['journal-q1','journal-q2','journal-q3'].forEach(function(id){ wc(id,8); }); if(!deskEl){ wc('brief-headline',3); wc('brief-body',MIN_WORDS,'That’s enough for your brief.'); } wc('archive-line',5); }
 
   /* ================================================================ Go to Press — four steps */
   var STEP4=DATA.steps||[{t:'Plan your page'},{t:'Write your brief'},{t:'Write your Archive Line'},{t:'Check, then print'}], stepperEl=null;
@@ -568,12 +990,13 @@
     stepperEl=el('div','rg rg-stepper',STEP4.map(function(s,i){ return '<button type="button" data-i="'+(i+1)+'"><span class="n"><span>'+(i+1)+'</span></span>'+esc(s.t)+'</button>'; }).join(''));
     stepperEl.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; var h=document.getElementById('rg-step-'+b.dataset.i); if(h) h.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); });
     var sh=$('.rg-scene',p); if(sh) after(sh,stepperEl); else p.insertBefore(stepperEl,p.firstChild);
-    var plan=R.planner&&R.planner.el; before(plan||ga,stepHead(0)); before(ga,stepHead(1)); before(al,stepHead(2)); before(gc||ck,stepHead(3));
+    var plan=R.planner&&R.planner.el; before(plan||ga,stepHead(0)); before(ga,stepHead(1)); before(al,stepHead(2)); before(ck,stepHead(3));
     p.addEventListener('input',function(){ paintCounts(); updateStepper(); }); updateStepper(); }
   function wn(id){ var t=document.getElementById(id); return t?words(t.value):0; }
   function checklistDone(){ var r=$$('.checklist-card .checklist-row'); return r.length>0&&r.every(function(x){ return x.classList.contains('checked'); }); }
   function updateStepper(){ paintCounts(); if(!stepperEl) return;
-    var st=[R.planner?R.planner.done():true, wn('brief-headline')>=3&&wn('brief-body')>=MIN_WORDS, wn('archive-line')>=5, checklistDone()];
+    var rd=typeof readiness==='function'&&deskEl?readiness().items:null, ok=function(ks){ return !!rd&&ks.every(function(k){ return rd.filter(function(x){ return x.k===k; }).every(function(x){ return x.ok; }); }); };
+    var st=rd?[R.planner?R.planner.done():true, ok(['head','by','cmp','exp','cap','ev','cor','rev']), ok(['arch']), !!S.published]:[R.planner?R.planner.done():true, wn('brief-headline')>=3&&wn('brief-body')>=MIN_WORDS, wn('archive-line')>=5, checklistDone()];
     $$('button',stepperEl).forEach(function(b,i){ b.classList.toggle('done',st[i]); }); }
 
   /* ================================================================ VOICE NOTES — Ms. Avery's audio. Never reads the page, never gives an answer.
@@ -630,37 +1053,38 @@
       au.addEventListener('loadedmetadata',function(){ if(++ok===parts.length&&!bad){ n.classList.remove('rg-hide','rg-empty'); play.disabled=false; var m=$('.mock',n); if(m) m.remove(); } });
       au.addEventListener('error',function(){ bad=true; n.classList.remove('rg-hide'); n.classList.add('rg-empty'); play.disabled=true; if(!$('.mock',n)) $('.k',n).insertAdjacentHTML('beforeend','<span class="mock"> · empty slot: g5ss-'+LESSON+'-'+p.slot+'.mp3</span>'); });
       au.addEventListener('ended',function(){ if(idx<parts.length-1){ cur=idx+1; aus[cur].currentTime=0; aus[cur].play(); } else { cur=0; hangUp(); } });
-      return au; });
-    var H=S.heard=S.heard||{};
+      AUDS.push(au); return au; });
+    n.__aud=aus[0]; var H=S.heard=S.heard||{};
     function label(){ $('.i',play).textContent=n.classList.contains('playing')?'❚❚':H[key]?'▶':'📞'; $('.l',play).textContent=n.classList.contains('playing')?'Pause':H[key]?'Play again':'Answer'; $('.who',n).textContent=n.classList.contains('playing')?'Ms. Avery, on the line':H[key]?'Voice memo from Ms. Avery':'Ms. Avery is calling'; n.classList.toggle('heard',!!H[key]); }
     function hangUp(){ n.classList.remove('playing'); n.classList.add('hangup'); setTimeout(function(){ n.classList.remove('hangup'); },700); label(); }
     function stop(){ aus[cur].pause(); hangUp(); } n.__stop=stop;
     play.addEventListener('click',function(){ if(n.classList.contains('playing')){ stop(); return; } $$('.rg-vn.playing').forEach(function(o){ if(o!==n&&o.__stop) o.__stop(); });
-      n.classList.remove('ringing'); SFX.pickup(); n.classList.add('playing'); if(!H[key]){ H[key]=true; save(); } label(); setTimeout(function(){ if(n.classList.contains('playing')) aus[cur].play(); },RM?0:450); });
+      hush(aus[cur]); n.classList.remove('ringing'); SFX.pickup(); n.classList.add('playing'); if(!H[key]){ H[key]=true; save(); } label(); setTimeout(function(){ if(n.classList.contains('playing')){ hush(aus[cur]); aus[cur].play(); } },RM?0:450); });
     /* the phone rings (twice, then rests) when it scrolls into view, until the student has answered it once */
     if('IntersectionObserver' in window){ var rung=0, io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(!en.isIntersecting||H[key]||n.classList.contains('playing')||n.classList.contains('rg-hide')) return; if(rung>=3) return; rung++; n.classList.remove('ringing'); void n.offsetWidth; n.classList.add('ringing'); if(rung===1) SFX.ring(); setTimeout(function(){ n.classList.remove('ringing'); },2600); }); },{threshold:.8}); io.observe(n); OBS.push(io); }
     label();
-    $('.rd',n).addEventListener('click',function(){ n.classList.toggle('read'); this.textContent=n.classList.contains('read')?'Hide words':'📄 Read the words instead'; });
+    $('.rd',n).setAttribute('aria-expanded','false'); $('.rd',n).addEventListener('click',function(){ n.classList.toggle('read'); var o=n.classList.contains('read'); this.setAttribute('aria-expanded',o); this.textContent=o?'Hide words':'📄 Read the words instead'; if(o&&!H[key]){ H[key]=true; save(); label(); } });
     parts.forEach(function(p,idx){ aus[idx].src=AUD+'g5ss-'+LESSON+'-'+p.slot+'.mp3'; spotlight(p.slot,p.script,aus[idx]); }); }); refreshVoice(); }
   function refreshVoice(){ $$('.rg-vn').forEach(function(n){ if(n.__when) n.classList.toggle('rg-wait',!n.__when()); }); }
   function paintVideos(){ if(!html.classList.contains('rg-on')) return; $$('.video-ratio').forEach(function(v){ v.classList.toggle('rg-empty',!v.querySelector('iframe,video')); }); }
   function buildMedia(){ paintVideos(); var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paintVideos,100); }); mo.observe(document.body,{childList:true,subtree:true}); OBS.push(mo); }
 
   /* ================================================================ THE RED PENCIL — correct the Herald, then print */
+  var paintRedPencil=null;
   function buildRedPencil(){ var p=document.getElementById('panel-press'), cert=document.getElementById('certCard'); if(!p||!cert) return; var RP=DATA.redpencil||{};
     var claim=(RP.claim||(($('.herald-claim')||{}).textContent||'')).replace(/^[\s“"]+|[\s”"]+$/g,'');
-    var box=el('section','rg rg-game rg-redpencil','<div class="rg-game-k">Before it prints · the signature move</div><h3 class="rg-game-t">Correct the Herald</h3>'+whyCard(RP.why)+'<div class="rg-rpc-lock"></div><div class="rg-rpc-clip"><div class="h">The Hasty Herald</div><div class="hl">'+esc(RP.headline||(($('.herald-headline')||{}).textContent||''))+'</div><p class="claim"><span class="txt">“'+esc(claim)+'”</span><svg class="strike" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1,6 C20,3 40,8 60,4 S90,7 99,4" pathLength="100"/></svg></p><div class="caret" aria-hidden="true">‸</div><div class="fix"></div><div class="stamp">Corrected · The Republic Gazette</div></div><div class="rg-rpc-act"></div>');
-    before(cert,box);
-    function paint(){ var ready=checklistDone()&&wn('archive-line')>=5, line=(document.getElementById('archive-line')||{}).value||'';
-      box.classList.toggle('ready',ready); box.classList.toggle('struck',!!S.struck); box.classList.toggle('done',!!S.published);
-      $('.rg-rpc-lock',box).innerHTML=ready||S.published?'':'<p class="rg-todo">🔒 Finish your Archive Line and tick every box in the checklist. Then the red pencil is yours.</p>';
-      $('.fix',box).textContent=S.published?(S.m.correction||line):'';
+    var box=el('section','rg rg-game rg-redpencil','<div class="rg-game-k">Go to press · the signature move</div><h3 class="rg-game-t">Correct the Herald, then print</h3>'+whyCard(RP.why)+'<div class="rg-rpc-lock" aria-live="polite"></div><div class="rg-rpc-clip"><div class="h">The Hasty Herald</div><div class="hl">'+esc(RP.headline||(($('.herald-headline')||{}).textContent||''))+'</div><p class="claim"><span class="txt">“'+esc(claim)+'”</span><svg class="strike" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1,6 C20,3 40,8 60,4 S90,7 99,4"/></svg></p><div class="caret" aria-hidden="true">‸</div><div class="fix"></div><div class="stamp">Corrected · The Republic Gazette</div></div><div class="rg-rpc-act"></div>');
+    var ck=$('.checklist-card',p); after(ck||cert,box);
+    function paint(){ var R0=typeof readiness==='function'&&deskEl?readiness():{ready:wn('archive-line')>=5,missing:[]}, ready=R0.ready, st=typeof stale==='function'&&S.pub?stale():false;
+      box.classList.toggle('ready',ready); box.classList.toggle('struck',!!S.struck); box.classList.toggle('done',!!S.published&&!st);
+      $('.rg-rpc-lock',box).innerHTML=ready?'':'<p class="rg-todo">🔒 The red pencil unlocks when the list above is complete. '+(R0.missing.length?'Still to do: '+esc(R0.missing.map(function(x){ return x.t; }).slice(0,3).join('; '))+(R0.missing.length>3?'…':'')+'.':'')+'</p>';
+      $('.fix',box).textContent=S.pub?S.pub.cor:'';
       var act=$('.rg-rpc-act',box);
-      act.innerHTML=S.published?'<div class="rg-win">'+esc(RP.win||'Printed. Your correction is on the record, and Issue '+ISSUE+' is filed in the Morgue.')+'</div>':!ready?'':!S.struck?'<button type="button" class="rg-btn red" data-a="strike">✏️ Strike the Herald’s claim</button>':'<button type="button" class="rg-btn" data-a="print">‸ Print my Archive Line as the correction</button>'; }
+      act.innerHTML=S.published&&!st?'<div class="rg-win">'+esc(RP.win||'Printed. Your correction is on the record, and Issue '+ISSUE+' is filed in the Morgue.')+'</div>':!ready?'':!S.struck?'<button type="button" class="rg-btn red" data-a="strike">✏️ Strike the Herald’s claim</button>':'<button type="button" class="rg-btn" data-a="print">‸ '+(S.published?'Reprint my front page':'Print my front page and correction')+'</button>'; }
+    paintRedPencil=paint;
     box.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return;
-      if(b.dataset.a==='strike'){ S.struck=true; save(); SFX.scratch(); paint(); }
-      else { S.m.correction=(document.getElementById('archive-line')||{}).value||''; S.published=true; if(ISSUE&&C.published.indexOf(ISSUE)<0) C.published.push(ISSUE); C.lines[ISSUE]={line:S.m.correction,head:(document.getElementById('brief-headline')||{}).value||'',lesson:DATA.lesson}; save(); SFX.stamp(); paint(); refreshPress(); paintMorgue(true); var m=$('.rg-morgue'); if(m) setTimeout(function(){ m.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); },900); } });
-    var p4=document.getElementById('panel-press'); p4.addEventListener('input',paint); p4.addEventListener('click',function(e){ if(e.target.closest('.checklist-row')) setTimeout(paint,0); });
+      if(b.dataset.a==='strike'){ S.struck=true; save(); SFX.scratch(); paint(); var pb=$('button[data-a="print"]',box); if(pb) pb.focus(); }
+      else { if(!publish()){ paint(); return; } SFX.stamp(); paint(); refreshPress(); paintMorgue(true); paintEdition(); paintReady(); if(typeof fireConfetti==='function'&&!RM&&!(P&&P.quiet)) try{ fireConfetti(); }catch(x){} var ed=$('.rg-printed'); if(ed) setTimeout(function(){ ed.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); var h=$('.rg-ed .hl',ed); if(h){ h.setAttribute('tabindex','-1'); h.focus({preventScroll:true}); } },700); } });
     paint(); }
 
   /* ================================================================ THE MORGUE — every issue the student has published this year */
@@ -675,8 +1099,9 @@
     $('.rg-mg-drawers',m).innerHTML=Object.keys(units).map(function(u){ var list=units[u], filed=list.filter(function(x){ return C.published.indexOf(x[0])>-1; }).length;
       return '<details class="rg-drawer"'+(+u===curU?' open':'')+'><summary><span class="lbl">Unit '+u+'</span><span class="cnt">'+filed+' of '+list.length+' filed</span></summary><div class="rg-mg-grid">'+list.map(function(x){ var f=C.published.indexOf(x[0])>-1, me=x[0]===ISSUE;
         return '<button type="button" class="rg-issue'+(f?' filed':'')+(me&&justFiled?' new':'')+'" data-n="'+x[0]+'"'+(f?'':' disabled')+'><span class="no">No. '+x[0]+'</span><span class="pic"'+(f&&x[3]?' data-img="'+esc(x[3])+'"':'')+'></span><span class="tt">'+x[2]+'</span>'+(f?'':'<span class="lk">not filed yet</span>')+'</button>'; }).join('')+'</div></details>'; }).join('');
-    $$('.rg-issue .pic[data-img]',m).forEach(function(p){ if(!p.firstChild) p.appendChild(srcImg(p.dataset.img,'','')); });
-    m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML='<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'Archive Line: “'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
+    function pics(d){ $$('.rg-issue .pic[data-img]',d).forEach(function(p){ if(!p.firstChild) p.appendChild(srcImg(p.dataset.img,'','')); }); }
+    $$('.rg-drawer',m).forEach(function(d){ if(d.open) pics(d); d.addEventListener('toggle',function(){ if(d.open) pics(d); }); });
+    m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
   var HL_SEL='p, li, .rg-col-line, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div';
@@ -696,7 +1121,10 @@
   function highlights(){ try{ return JSON.parse(store('hl')||'[]'); }catch(e){ return []; } }
   function saveHL(a){ store('hl',JSON.stringify(a)); paintTray(); }
   function whereAmI(b){ var p=b.closest('.tab-panel'); var i=STAGES.map(function(s){ return 'panel-'+s.tab; }).indexOf(p&&p.id); return i>-1?'Tab '+(i+1)+' · '+STAGES[i].t:'Dispatch'; }
-  function modal(){ var m=$('#rgModal'); if(!m){ m=el('div','rg rg-modal'); m.id='rgModal'; m.addEventListener('click',function(e){ if(e.target===m) m.classList.remove('open'); }); document.body.appendChild(m); } m.classList.add('open'); return m; }
+  var modalOpener=null;
+  function modal(){ var m=$('#rgModal'); if(!m){ m=el('div','rg rg-modal'); m.id='rgModal'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.addEventListener('click',function(e){ if(e.target===m) closeModal(); }); m.addEventListener('keydown',function(e){ if(e.key==='Tab') trapTab(e,m); }); document.body.appendChild(m); }
+    if(!m.classList.contains('open')) modalOpener=document.activeElement; m.classList.add('open'); setTimeout(function(){ var h=$('h3',m); if(h) m.setAttribute('aria-label',h.textContent); if(!m.contains(document.activeElement)){ var f=$('.x',m)||$('button',m); if(f) f.focus(); } },30); return m; }
+  function closeModal(){ var m=$('#rgModal'); if(!m) return; m.classList.remove('open'); if(modalOpener&&modalOpener.focus&&document.contains(modalOpener)) try{ modalOpener.focus(); }catch(e){} modalOpener=null; }
   var trayEl=null;
   /* Ms. Avery's desk phone: a black rotary phone; the handset lifts when the student answers */
   var PHONE='<svg class="rg-ph" viewBox="0 0 120 104" aria-hidden="true"><g class="rg-ph-ring"><path d="M8,30 q-6,10 0,20 M2,24 q-9,16 0,32"/><path d="M112,30 q6,10 0,20 M118,24 q9,16 0,32"/></g>'+
@@ -706,15 +1134,15 @@
     '<circle cx="60" cy="76" r="16" fill="#E9DFC6" stroke="#B8923E" stroke-width="1.5"/>'+[0,1,2,3,4,5,6,7,8,9].map(function(k){ var r=(k*30-120)*Math.PI/180; return '<circle cx="'+(60+Math.cos(r)*11).toFixed(1)+'" cy="'+(76+Math.sin(r)*11).toFixed(1)+'" r="2.6" fill="#1A2138"/>'; }).join('')+'<circle cx="60" cy="76" r="5" fill="#B8923E"/></g>'+
     '<g class="rg-ph-hs"><path d="M24,40 q-8,-2 -8,-10 q0,-9 10,-9 l8,3 l52,0 l8,-3 q10,0 10,9 q0,8 -8,10 l-10,-3 l-52,0 Z" fill="#0E1426"/><rect x="30" y="24" width="60" height="7" rx="3.5" fill="#2E3A5C"/></g></svg>';
   var TOOL_ICON={"hl": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M7 33h18\" stroke=\"#FFE14D\" stroke-width=\"5\" stroke-linecap=\"round\"/><g transform=\"rotate(40 22 17)\"><rect x=\"17\" y=\"3\" width=\"10\" height=\"19\" rx=\"2.5\" fill=\"#F4C430\" stroke=\"#8B6F2E\" stroke-width=\"1.2\"/><rect x=\"17\" y=\"3\" width=\"10\" height=\"5\" rx=\"2\" fill=\"#1A2138\"/><path d=\"M17 22h10l-2 5h-6z\" fill=\"#FAF3E0\" stroke=\"#8B6F2E\" stroke-width=\"1\"/><path d=\"M19.5 27h5l-1.2 4h-2.6z\" fill=\"#FFE14D\"/><rect x=\"19\" y=\"9\" width=\"2.2\" height=\"11\" rx=\"1\" fill=\"#fff\" opacity=\".45\"/></g></svg>", "cam": "<svg viewBox=\"0 0 48 40\" aria-hidden=\"true\"><rect x=\"9\" y=\"4\" width=\"9\" height=\"6\" rx=\"1\" fill=\"#C9A66B\" stroke=\"#5C3D24\"/><path d=\"M13.5 4V1.5\" stroke=\"#5C3D24\" stroke-width=\"1.5\"/><circle cx=\"13.5\" cy=\"1.5\" r=\"1.6\" fill=\"#FFF7DA\"/><rect x=\"4\" y=\"10\" width=\"40\" height=\"24\" rx=\"3\" fill=\"#2B2620\" stroke=\"#C9A66B\" stroke-width=\"1.5\"/><rect x=\"4\" y=\"15\" width=\"40\" height=\"3\" fill=\"#5C3D24\"/><circle cx=\"25\" cy=\"23\" r=\"9\" fill=\"#C9A66B\"/><circle cx=\"25\" cy=\"23\" r=\"6.5\" fill=\"#1A2138\"/><circle cx=\"25\" cy=\"23\" r=\"4\" fill=\"#3D5B8A\"/><circle cx=\"23.5\" cy=\"21.5\" r=\"1.4\" fill=\"#fff\" opacity=\".85\"/><rect x=\"36\" y=\"12\" width=\"5\" height=\"3\" rx=\"1\" fill=\"#E9B44C\"/></svg>", "roll": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M5 11h11l3 3h16v19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#C9A66B\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/><rect x=\"9\" y=\"8\" width=\"20\" height=\"16\" fill=\"#FBF7EC\" stroke=\"#B9AD8F\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"11\" width=\"13\" height=\"2\" fill=\"#1A2138\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"15\" width=\"10\" height=\"1.4\" fill=\"#9A917C\" transform=\"rotate(-6 19 16)\"/><path d=\"M5 17h30v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#E0C48A\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/></svg>", "props": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><rect x=\"4\" y=\"30\" width=\"32\" height=\"5\" rx=\"1.5\" fill=\"#5C3D24\"/><path d=\"M20 30V5\" stroke=\"#9AA3B8\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><g fill=\"#FBF7EC\" stroke=\"#9A917C\"><rect x=\"11\" y=\"18\" width=\"18\" height=\"10\" transform=\"rotate(-8 20 23)\"/><rect x=\"12\" y=\"12\" width=\"16\" height=\"9\" transform=\"rotate(6 20 16)\"/></g><rect x=\"13\" y=\"14.5\" width=\"9\" height=\"1.5\" fill=\"#8B2D26\" transform=\"rotate(6 20 16)\"/></svg>"};
-  function buildTray(){ trayEl=el('div','rg rg-tray','<button type="button" class="rg-tb cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<span>Snap</span><b class="cnt"></b></button><button type="button" class="rg-tb hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<span>Highlight</span><b class="cnt"></b></button><button type="button" class="rg-tb roll" title="My clippings: photos and highlights">'+TOOL_ICON.roll+'<span>Clippings</span><b class="cnt"></b></button><button type="button" class="rg-tb props" title="How real newspapers worked">'+TOOL_ICON.props+'<span>Newsroom</span></button>');
+  function buildTray(){ trayEl=el('div','rg rg-tray','<button type="button" class="rg-tb cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<span>Snap</span><b class="cnt"></b></button><button type="button" class="rg-tb hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<span>Highlight</span><b class="cnt"></b></button><button type="button" class="rg-tb roll" title="Evidence drawer: every clipping, highlight and photo">'+TOOL_ICON.roll+'<span>Evidence</span><b class="cnt"></b></button><button type="button" class="rg-tb props" title="How real newspapers worked">'+TOOL_ICON.props+'<span>Newsroom</span></button>');
     document.body.appendChild(trayEl);
     $('.hl',trayEl).addEventListener('click',function(){ if(html.classList.contains('rg-hlmode')){ setHL(false); return; } if(!store('hl-coached')) openCoach(); else setHL(true); });
-    $('.cam',trayEl).addEventListener('click',startSnap); $('.roll',trayEl).addEventListener('click',openRoll); $('.props',trayEl).addEventListener('click',openProps);
+    $('.cam',trayEl).addEventListener('click',startSnap); $('.roll',trayEl).addEventListener('click',function(){ openDrawer(); }); $('.props',trayEl).addEventListener('click',openProps);
     buildHighlighter(); buildHunt(); paintTray(); }
   function paintTray(){ if(!trayEl) return; var h=highlights().length, ph=photos().length, ms=(DATA.camera||{}).missions||[], md=ms.filter(function(x,i){ return photos().some(function(p){ return p.mission===i; }); }).length;
-    $('.hl .cnt',trayEl).textContent=h||''; $('.cam .cnt',trayEl).textContent=ms.length?md+'/'+ms.length:''; $('.roll .cnt',trayEl).textContent=(h+ph)||''; paintHunt(); }
+    $('.hl .cnt',trayEl).textContent=h||''; $('.cam .cnt',trayEl).textContent=ms.length?md+'/'+ms.length:''; $('.roll .cnt',trayEl).textContent=EV().length||''; paintHunt(); }
   var hlbar=null, pend=null;
-  function buildHighlighter(){ hlbar=el('div','rg rg-hlbar','<span>🖍</span>'+Object.keys(HL_COLORS).map(function(k){ return '<button type="button" data-c="'+k+'"><i style="background:'+HL_COLORS[k].c+'"></i>'+HL_COLORS[k].n+'</button>'; }).join(''));
+  function buildHighlighter(){ hlbar=el('div','rg rg-hlbar','<span>🖍</span>'+Object.keys(HL_COLORS).map(function(k){ return '<button type="button" data-c="'+k+'"><i style="background:'+HL_COLORS[k].c+'"></i>'+HL_COLORS[k].n+'</button>'; }).join('')+'<button type="button" data-c="g" data-ev="1" class="ev">＋ Save as evidence</button>');
     document.body.appendChild(hlbar);
     var banner=el('div','rg rg-hlbanner','🖍 <b>Highlighter on.</b> Drag across a few key words, then pick a color. <button type="button" data-a="tips">Tips</button><button type="button" data-a="off">Turn off</button>'); document.body.appendChild(banner);
     $('[data-a="tips"]',banner).addEventListener('click',openCoach); $('[data-a="off"]',banner).addEventListener('click',function(){ setHL(false); });
@@ -728,7 +1156,8 @@
       hlbar.style.left=Math.max(8,Math.min(innerWidth-300,rr.left+rr.width/2-140))+'px'; hlbar.style.top=(rr.bottom+scrollY+10)+'px'; hlbar.classList.add('show'); }
     var tmr=null; document.addEventListener('selectionchange',function(){ clearTimeout(tmr); tmr=setTimeout(check,260); });
     $$('button',hlbar).forEach(function(b){ b.addEventListener('pointerdown',function(e){ e.preventDefault(); }); b.addEventListener('click',function(){ if(!pend) return; var id='h'+Date.now().toString(36), c=b.dataset.c, a=highlights();
-      a.push({id:id,b:pend.b,s:pend.s,e:pend.e,t:pend.t,c:c,where:whereAmI(pend.block)}); saveHL(a); wrapHL(pend.block,pend.s,pend.e,c,id); window.getSelection().removeAllRanges(); hideBar(); SFX.scratch(); }); });
+      var h={id:id,b:pend.b,s:pend.s,e:pend.e,t:pend.t,c:c,where:whereAmI(pend.block)}; a.push(h); saveHL(a); wrapHL(pend.block,pend.s,pend.e,c,id); var line=pend.block.closest('.rg-col'); window.getSelection().removeAllRanges(); hideBar(); SFX.scratch();
+        if(b.dataset.ev){ var card=hlCard(h); if(line){ var col=(((DATA.explore||{}).reading||{}).cols||[]).filter(function(x){ return x.id===line.dataset.id; })[0]; if(col){ card.k='routine'; card.who=col.who; card.where=col.where||''; card.from=((DATA.explore||{}).reading||{}).srcLabel||card.from; card.tags=[col.id,'routine','highlight']; } } addEvidence(card); } }); });
     document.addEventListener('click',function(e){ var m=e.target.closest&&e.target.closest('mark.rg-hl'); if(!m) return; if(!m.classList.contains('arm')){ $$('mark[data-hl="'+m.dataset.hl+'"]').forEach(function(x){ x.classList.add('arm'); }); setTimeout(function(){ $$('mark.arm').forEach(function(x){ x.classList.remove('arm'); }); },2500); return; } unwrapHL(m.dataset.hl); saveHL(highlights().filter(function(h){ return h.id!==m.dataset.hl; })); });
     var blocks=hlBlocks(); highlights().forEach(function(h){ var b=blocks[h.b]; if(!b||blockText(b).slice(h.s,h.e)!==h.t){ b=blocks.filter(function(x){ return blockText(x).indexOf(h.t)>-1; })[0]; if(!b) return; h.s=blockText(b).indexOf(h.t); h.e=h.s+h.t.length; } wrapHL(b,h.s,h.e,h.c,h.id); }); }
   function setHL(on){ html.classList.toggle('rg-hlmode',on); var b=trayEl&&$('.hl',trayEl); if(b) b.classList.toggle('on',on); SFX.clack(); if(!on&&hlbar) hlbar.classList.remove('show'); }
@@ -736,8 +1165,8 @@
     m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>🖍 '+esc(Co.title||'Highlight like an editor')+'</h3><div class="rg-tips">'+(Co.tips||[]).map(function(t){ return '<div class="rg-tip"><span>'+t[0]+'</span><div><b>'+esc(t[1])+'</b> '+esc(t[2])+'</div></div>'; }).join('')+'</div>'+
       (Pr.text?'<div class="rg-prac"><div class="q">'+esc(Pr.q)+'</div><div class="s">'+toks.map(function(w,i){ return '<button type="button" data-i="'+i+'">'+esc(w)+'</button>'; }).join(' ')+'</div><div class="fb"></div><button type="button" class="rg-btn alt ck">Check my key words</button></div>':'')+
       '<div class="row"><button type="button" class="rg-btn go">Start highlighting</button></div></div>';
-    $('.x',m).addEventListener('click',function(){ m.classList.remove('open'); });
-    $('.go',m).addEventListener('click',function(){ store('hl-coached','1'); m.classList.remove('open'); setHL(true); });
+    $('.x',m).addEventListener('click',function(){ closeModal(); });
+    $('.go',m).addEventListener('click',function(){ store('hl-coached','1'); closeModal(); setHL(true); });
     function clean(w){ return w.replace(/[^A-Za-z’']/g,'').toLowerCase(); }
     $$('.s button',m).forEach(function(b){ b.addEventListener('click',function(){ b.classList.toggle('on'); SFX.clack(); }); });
     var ck=$('.ck',m), tries=0; if(ck) ck.addEventListener('click',function(){ tries++; var on=$$('.s button.on',m).map(function(b){ return clean(b.textContent); }), key=(Pr.key||[]).map(function(w){ return w.toLowerCase(); }), small=(Pr.small||[]).map(function(w){ return w.toLowerCase(); });
@@ -774,44 +1203,38 @@
         var s=Math.min(1,700/cv.width), out=document.createElement('canvas'); out.width=Math.round(cv.width*s); out.height=Math.round(cv.height*s); out.getContext('2d').drawImage(cv,0,0,out.width,out.height); caption(out.toDataURL('image/jpeg',0.72)); })
       .catch(function(){ ticker('That snap didn’t work. Scroll a little and try again.'); }); }); }
   function caption(src){ var m=modal(), MS=(DATA.camera||{}).missions||[];
-    m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>📷 New photo for the paper</h3><div class="rg-pola big"><img alt="" src="'+src+'"><input class="cap" maxlength="80" placeholder="Write a caption: what does this show?"></div>'+(MS.length?'<div class="rg-ms"><b>Is it for a photo assignment? (optional)</b>'+MS.map(function(ms,i){ var d=photos().some(function(p){ return p.mission===i; }); return '<button type="button" class="opt'+(d?' done':'')+'" data-m="'+i+'">'+(d?'✓ ':'')+esc(ms)+'</button>'; }).join('')+'</div>':'')+'<div class="row"><button type="button" class="rg-btn sv">Add to my clippings</button><button type="button" class="rg-btn alt ts">Toss it</button></div></div>';
+    m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>📷 New photo for the paper</h3><div class="rg-pola big"><img alt="" src="'+src+'"><input class="cap" maxlength="80" placeholder="Write a caption: what does this show?"></div>'+(MS.length?'<div class="rg-ms"><b>Is it for a photo assignment? (optional)</b>'+MS.map(function(ms,i){ var d=photos().some(function(p){ return p.mission===i; }); return '<button type="button" class="opt'+(d?' done':'')+'" data-m="'+i+'">'+(d?'✓ ':'')+esc(ms)+'</button>'; }).join('')+'</div>':'')+'<label class="rg-check"><input type="checkbox" class="toev" checked> Also put it in my evidence drawer</label><div class="err" role="alert"></div><div class="row"><button type="button" class="rg-btn sv">Save photo</button><button type="button" class="rg-btn alt ts">Toss it</button></div></div>';
     var pick=null; $$('.opt',m).forEach(function(b){ b.addEventListener('click',function(){ $$('.opt',m).forEach(function(x){ if(x!==b) x.classList.remove('on'); }); b.classList.toggle('on'); pick=b.classList.contains('on')?+b.dataset.m:null; SFX.clack(); }); });
-    function close(){ m.classList.remove('open'); } $('.x',m).addEventListener('click',close); $('.ts',m).addEventListener('click',close);
-    $('.sv',m).addEventListener('click',function(){ var a=photos().slice(); a.push({src:src,cap:$('.cap',m).value.trim(),tab:currentScene(),mission:pick,t:Date.now()}); savePhotos(a); close(); SFX.chime(); ticker(pick!==null?'Photo assignment done: '+MS[pick]:'Saved to your clippings. It prints in your Reporter’s Notebook.'); });
+    function close(){ closeModal(); } $('.x',m).addEventListener('click',close); $('.ts',m).addEventListener('click',close);
+    $('.sv',m).addEventListener('click',function(){ var a=photos().slice(), ph={src:src,cap:$('.cap',m).value.trim(),tab:currentScene(),mission:pick,t:Date.now()}; a.push(ph);
+      if(!savePhotos(a)){ MEMPH=a.slice(0,-1); $('.err',m).textContent='This computer is out of room for photos, so this one was not saved. Delete an older photo in your evidence drawer, or toss this one.'; SFX.bounce(); return; }
+      if($('.toev',m).checked) addEvidence(photoCard(ph),true); close(); SFX.chime(); ticker(pick!==null?'Photo assignment done: '+MS[pick]:'Photo saved'+($('.toev',m).checked?' and added to your evidence drawer.':'.')); });
     setTimeout(function(){ var c=$('.cap',m); c&&c.focus(); },50); }
   function openRoll(){ var m=modal(), a=photos(), H=highlights();
     function grp(c){ var x=H.filter(function(h){ return h.c===c; }); return x.length?'<h4><i style="background:'+HL_COLORS[c].c+'"></i>'+HL_COLORS[c].n+'</h4>'+x.map(function(h){ return '<div class="rg-note-l">“'+esc(h.t)+'” <small>'+esc(h.where)+'</small></div>'; }).join(''):''; }
     m.innerHTML='<div class="rg-sheet"><button class="x" type="button" aria-label="Close">✕</button><h3>🗂 My clippings</h3><h4>📷 Photos ('+a.length+')</h4><div class="rg-roll">'+(a.length?a.map(function(p,i){ return '<div class="rg-pola"><img alt="" src="'+p.src+'"><div class="c">'+esc(p.cap||'(no caption)')+'</div><button type="button" class="del" data-i="'+i+'" title="Delete">🗑</button></div>'; }).join(''):'<p class="rg-empty">No photos yet. Tap the 📷 Snap camera, then drag a box around anything on the page.</p>')+'</div><h4>🖍 Highlights</h4>'+(H.length?grp('y')+grp('g')+grp('p'):'<p class="rg-empty">No highlights yet.</p>')+'<div class="row"><button type="button" class="rg-btn nb">📓 Download my Reporter’s Notebook</button></div></div>';
-    $('.x',m).addEventListener('click',function(){ m.classList.remove('open'); });
+    $('.x',m).addEventListener('click',function(){ closeModal(); });
     $$('.del',m).forEach(function(b){ b.addEventListener('click',function(){ var x=photos().slice(); x.splice(+b.dataset.i,1); savePhotos(x); openRoll(); }); });
     $('.nb',m).addEventListener('click',notebook); }
   var PROPS=DATA.props||[];
   function openProps(){ var m=modal();
     m.innerHTML='<div class="rg-sheet rg-props"><button class="x" type="button" aria-label="Close">✕</button><h3>📐 The newsroom desk</h3><p class="sub">Tap a tool on the editor’s desk to learn how real newspapers were made.</p><div class="rg-prop-row">'+PROPS.map(function(p,i){ return '<button type="button" class="rg-prop" data-i="'+i+'"><span>'+esc(p.icon)+'</span>'+esc(p.name)+'</button>'; }).join('')+'</div><div class="rg-prop-fact"></div></div>';
-    $('.x',m).addEventListener('click',function(){ m.classList.remove('open'); });
+    $('.x',m).addEventListener('click',function(){ closeModal(); });
     $$('.rg-prop',m).forEach(function(b){ b.addEventListener('click',function(){ var p=PROPS[+b.dataset.i]; $$('.rg-prop',m).forEach(function(x){ x.classList.toggle('on',x===b); }); $('.rg-prop-fact',m).innerHTML='<b>'+esc(p.name)+'.</b> '+esc(p.fact); SFX.paper(); S.m.props=S.m.props||{}; S.m.props[b.dataset.i]=1; save(); }); }); }
 
   /* ================================================================ the Reporter's Notebook: a page to keep */
-  function notebookHTML(){ var e=function(s){ return esc(s==null?'':s); }, NA='<p class="na">(not done yet)</p>', box=function(v){ v=(v||'').trim(); return v?'<p class="a">'+e(v).replace(/\n/g,'<br>')+'</p>':NA; }, val=function(id){ var t=document.getElementById(id); return t?t.value:''; };
-    var N=DATA.notes||{}, h='<h1>📓 My Reporter’s Notebook</h1><div class="sub">The Republic Gazette · Issue '+e(ISSUE)+' · '+e(DATA.lesson)+' · '+e(DATA.title)+(nm()?' · Junior Editor '+e(nm()):'')+'</div>';
-    var bq=$('#introSection .intro-card-body'); if(bq) h+='<div class="bq"><b>Today’s question</b>'+e(bq.textContent.trim())+'</div>';
-    h+='<h2>What I learned</h2><ul>'+(N.learned||[]).map(function(x){ return '<li>'+e(x)+'</li>'; }).join('')+(N.vocab||[]).map(function(v){ return '<li><b>'+e(v[0])+'</b>: '+e(v[1])+'</li>'; }).join('')+'</ul>';
-    h+='<h2>1 · The Dispatch</h2>'+(R.scene1&&R.scene1.journal?R.scene1.journal(e,NA):NA);
-    h+='<h2>2 · The Desk</h2>'+(R.reading&&R.reading.journal?R.reading.journal(e,NA):'')+(R.evidence&&R.evidence.journal?R.evidence.journal(e,NA):'');
-    $$('.reflection-textarea').forEach(function(t,i){ h+='<h3>'+e(t.dataset.label||('Question '+(i+1)))+'</h3>'+box(t.value); });
-    if(R.vocab) h+='<h3>The Word Desk</h3>'+R.vocab.journal(e,NA);
-    var fc=$$('#panel-factcheck .factcheck-q').filter(function(q){ return q.querySelector('.factcheck-option.correct'); }).length; h+='<h2>3 · Fact-Check</h2>'+(S.quizDone?'<p class="a">'+fc+' of '+$$('#panel-factcheck .factcheck-q').length+' claims verified.</p>':NA);
-    var plan=R.planner&&R.planner.lines?R.planner.lines():[]; h+='<h2>4 · Go to Press</h2><h3>My page plan</h3>'+(plan.some(function(x){ return x[1]; })?'<p class="a">'+plan.map(function(x){ return e(x[0])+': '+e(x[1]); }).join('<br>')+'</p>':NA);
-    h+='<h3>Headline</h3>'+box(val('brief-headline'))+'<h3>Front Page Brief</h3>'+box(val('brief-body'))+'<h3>Archive Line</h3>'+box(val('archive-line'));
-    var H=highlights(); if(H.length) h+='<h2>🖍 My highlights</h2><ul>'+H.map(function(x){ return '<li><b>'+e(HL_COLORS[x.c].n)+':</b> “'+e(x.t)+'”</li>'; }).join('')+'</ul>';
-    var ph=photos(); if(ph.length) h+='<h2>📷 My photos</h2><div class="ph">'+ph.map(function(p){ return '<figure><img src="'+p.src+'"><figcaption>'+e(p.cap||'')+'</figcaption></figure>'; }).join('')+'</div>';
-    return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+e(DATA.lesson)+' · My Reporter’s Notebook</title><style>body{font-family:Georgia,serif;max-width:700px;margin:36px auto;padding:0 20px;color:#1A1F2E;line-height:1.6}h1{font-size:24px;margin:0;border-bottom:3px double #1A2138;padding-bottom:8px}.sub{color:#4A5568;font:14px system-ui,sans-serif;margin:6px 0 18px}.bq{background:#FAF3E0;border-left:4px solid #B8923E;padding:10px 14px}.bq b{display:block;font:700 11px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8B6F2E}h2{font-size:17px;color:#1A2138;border-bottom:1px solid #D4C9A8;padding-bottom:4px;margin:26px 0 8px}h3{font:700 14px system-ui,sans-serif;color:#4A5568;margin:16px 0 4px}.a{background:#FAF8F2;border-left:3px solid #8B2D26;padding:6px 12px;margin:4px 0}.na{color:#9AA3B8;font-style:italic}.ph{display:flex;flex-wrap:wrap;gap:10px}.ph figure{margin:0;width:200px}.ph img{width:100%;border:1px solid #ccc}.ph figcaption{font-size:12px}.ft{margin-top:30px;color:#9AA3B8;font:12px system-ui,sans-serif}</style></head><body>'+h+'<div class="ft">Optima Academy Online · Social Studies · Grade 5 · The Republic Gazette</div></body></html>'; }
+  function notebookHTML(){ var e=function(s){ return esc(s==null?'':s); }, cu=current(), r=cu.r;
+    var h='<h1>📓 My Reporter’s Notebook</h1><div class="sub">The Republic Gazette · Issue '+e(ISSUE)+' · '+e(DATA.lesson)+' · '+e(DATA.title)+(r.editor?' · Junior Editor '+e(r.editor):'')+' · '+e(cu.st)+'</div>';
+    h+='<h2>My front page</h2>'+editionHTML(r,false)+'<h2>Everything I did today</h2><pre class="pk">'+e(recordText(r,cu.st))+'</pre>';
+    var H=highlights(); if(H.length) h+='<h2>🖍 My highlights</h2><ul>'+H.map(function(x){ return '<li><b>'+e(HL_COLORS[x.c].n)+':</b> “'+e(x.t)+'” <small>('+e(x.where||'')+')</small></li>'; }).join('')+'</ul>';
+    var ph=photos(); if(ph.length) h+='<h2>📷 My photos</h2><div class="ph">'+ph.map(function(p){ return '<figure><img alt="" src="'+p.src+'"><figcaption>'+e(p.cap||'')+'</figcaption></figure>'; }).join('')+'</div>';
+    return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+e(DATA.lesson)+' · My Reporter’s Notebook</title><style>body{font-family:Georgia,serif;max-width:760px;margin:36px auto;padding:0 20px;color:#1A1F2E;line-height:1.55}h1{font-size:24px;margin:0;border-bottom:3px double #1A2138;padding-bottom:8px}.sub{color:#4A5568;font:14px system-ui,sans-serif;margin:6px 0 18px}h2{font-size:17px;color:#1A2138;border-bottom:1px solid #D4C9A8;padding-bottom:4px;margin:26px 0 8px}.rg-ed .mast{font:700 30px Georgia,serif;text-align:center;border-bottom:3px double #1A1F2E}.rg-ed .ed{display:flex;justify-content:space-between;font:11px system-ui;text-transform:uppercase;border-bottom:1px solid #aaa;padding:4px 0}.rg-ed .hl{font:900 28px/1.1 Georgia,serif}.rg-ed .by{font:700 12px system-ui;text-transform:uppercase;color:#555}.rg-ed .kick,.rg-ed .k{font:700 11px system-ui;letter-spacing:.1em;text-transform:uppercase;color:#8B2D26}.rg-ed sup{color:#8B2D26}.rg-ed .cap{border-left:3px solid #B8923E;background:#FAF6EA;margin:10px 0;padding:6px 10px}.rg-ed .corr{border:2px solid #1A1F2E;padding:6px 10px}.rg-ed .notes{font-size:14px}.ph{color:#999}.pk{white-space:pre-wrap;font:12px/1.5 ui-monospace,Menlo,monospace;background:#F7F5EF;padding:12px}.ph figure{margin:0;width:200px;display:inline-block;vertical-align:top}.ph img{width:100%;border:1px solid #ccc}.ph figcaption{font-size:12px}</style></head><body>'+h+'<p style="font:12px system-ui;color:#888;margin-top:30px">Optima Academy Online · Social Studies · Grade 5 · The Republic Gazette</p></body></html>'; }
   function notebook(){ if(typeof window.refreshGathered==='function') try{ window.refreshGathered(); }catch(e){} var htmlS=notebookHTML(), win=null; try{ win=window.open('','_blank'); }catch(e){}
     if(win){ win.document.write(htmlS); win.document.close(); setTimeout(function(){ try{ win.print(); }catch(e){} },400); return; }
     try{ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([htmlS],{type:'text/html'})); a.download=(DATA.lesson||'lesson')+'-reporters-notebook.html'; document.body.appendChild(a); a.click(); a.remove(); }catch(e){} }
   function buildNotebook(){ window.__rgNotebookHTML=notebookHTML;
-    if(!window.__rgNbWrapped&&typeof window.downloadJournal==='function'){ var orig=window.downloadJournal; window.downloadJournal=function(){ if(html.classList.contains('rg-on')) notebook(); else orig(); }; window.__rgNbWrapped=true; }
-    setText($('.gathered-btn-pdf'),'📓 Download my Reporter’s Notebook'); }
+
+    }
 
   /* ================================================================ review bar (?review), teardown, build */
   var OBS=[];
@@ -826,10 +1249,10 @@
     TEXTS.reverse().forEach(function(x){ x[0].innerHTML=x[1]; }); TEXTS=[];
     $$('.rg').forEach(function(n){ n.remove(); });
     $$('[class*="rg-"]').forEach(function(n){ [].slice.call(n.classList).forEach(function(c){ if(c.indexOf('rg-')===0) n.classList.remove(c); }); });
-    pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=hlbar=huntEl=bsEl=null; R={}; unread=0; }
+    pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=hlbar=huntEl=bsEl=null; deskEl=readyEl=edEl=drawerEl=toastEl=null; html.classList.remove('rg-evdrawer-open'); R={}; unread=0; }
   function build(){ try{ P=loadProfile(); html.classList.add('rg-on'); if(QUIET) html.classList.add('rg-quiet');
       buildTop(); buildWire(); buildOpening(); buildPress(); buildStory(); if(openingWaiting) showNameCard(false); buildScenes(); buildLens(); buildModules();
-      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildBroadsheet(); buildMedia(); buildTray(); buildNotebook();
+      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildBroadsheet(); buildMedia(); buildTray(); buildNotebook(); buildNewsroom();
       var bl=document.getElementById('brief-byline-name'); if(bl&&!bl.value.trim()&&nm()) bl.value=nm();
       refreshPress(); render(); }catch(e){ console.warn('rg layer:',e); } }
   window.__rgSparkleAPI={teardown:teardown,build:build,data:DATA,sayKey:sayKey};
