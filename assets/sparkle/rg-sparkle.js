@@ -347,23 +347,32 @@
     return {el:g,done:done,journal:function(e,NA){ if(!st.date) return NA; var cards=(c.missing||{}).cards||[]; return '<p class="a">The picture was made in '+e((c.date||{}).year)+'. Missing from it: '+e(cards.filter(function(x,i){ return st.miss[i]==='out'; }).map(function(x){ return x.t; }).join(', '))+'.</p>'; }}; };
 
   /* ---------------------------------------------------------------- layout: drag your own notes onto a blank front page before you write */
-  MOD.layout=function(c,anchor){ var st=mstate('layout',{slot:{}});
-    var g=gameShell('rg-layout','Go to Press · lay out the page',c.title||'Plan your front page',c);
-    g.innerHTML+='<div class="rg-lo-wrap"><div class="rg-lo-chips"><div class="lab">Your notes <i>(from your Editor’s Notebook)</i></div><div class="rg-lo-list"></div></div>'+
-      '<div class="rg-lo-page"><div class="mast">The Republic Gazette</div>'+(c.slots||[]).map(function(s){ return '<div class="rg-lo-slot" data-id="'+esc(s.id)+'" data-kind="'+esc(s.kind||'')+'"><div class="lab">'+esc(s.t)+'</div><div class="val"></div><small>'+esc(s.hint||'')+'</small></div>'; }).join('')+'</div></div><div class="rg-lo-say"></div>';
+  MOD.layout=function(c,anchor){ var st=mstate('layout2',{head:null,p1:null,p2:null,f:{}});
+    /* the people come from the lesson's own reading module, so the plan points back at evidence the student read */
+    var cols=((DATA.explore||{}).reading||{}).cols||[], times=((DATA.explore||{}).reading||{}).times||[], H=c.head||{}, F=c.factors||[];
+    var g=gameShell('rg-layout2','Go to Press · plan the page',c.title||'Plan your front page',c);
+    g.innerHTML+='<div class="rg-lo2-page"><div class="mast">The Republic Gazette</div>'+
+      '<div class="rg-lo2-box head"><div class="lab"><span class="n">1</span>'+esc(H.label||'Headline: your claim')+'</div><div class="opts" data-slot="head"></div></div>'+
+      '<div class="rg-lo2-two"><div class="rg-lo2-box"><div class="lab"><span class="n">2</span>'+esc(c.p1Label||'Column 1: one person')+'</div><div class="opts" data-slot="p1"></div></div><div class="rg-lo2-box"><div class="lab"><span class="n">3</span>'+esc(c.p2Label||'Column 2: a very different day')+'</div><div class="opts" data-slot="p2"></div></div></div>'+
+      '<div class="rg-lo2-cmp"></div>'+
+      '<div class="rg-lo2-box why"><div class="lab"><span class="n">4</span>'+esc(c.whyLabel||'Why it matters: what made their days so different?')+' <i>(pick one or more)</i></div><div class="opts" data-slot="f"></div></div></div><div class="rg-lo2-say"></div>';
     after(anchor,g);
-    function chips(){ var out=[]; ['journal-q1','journal-q2','journal-q3'].forEach(function(id){ var t=document.getElementById(id); if(!t) return; (t.value||'').split(/(?<=[.!?])\s+/).forEach(function(s){ s=s.trim(); if(words(s)>=3) out.push(s); }); });
-      (c.extra||[]).forEach(function(x){ out.push(x); }); return out; }
-    function paint(){ var cs=chips(), used={}; Object.keys(st.slot).forEach(function(k){ used[st.slot[k]]=1; });
-      $('.rg-lo-list',g).innerHTML=cs.length?cs.map(function(s){ return '<button type="button" class="rg-card'+(used[s]?' placed':'')+'" draggable="true">'+esc(s)+'</button>'; }).join(''):'<p class="rg-empty">Your notes show up here after you answer the Editor’s Notebook on the Desk tab (tab 2).</p>';
-      $$('.rg-lo-slot',g).forEach(function(s){ var v=st.slot[s.dataset.id]; $('.val',s).textContent=v||''; s.classList.toggle('filled',!!v); });
-      g.classList.toggle('finished',done()); $('.rg-lo-say',g).innerHTML=done()?'<div class="rg-win">'+esc(c.close||'Your page is laid out. Now write it in your own words below. Use your plan, don’t copy it.')+'</div>':''; }
-    dragTap(g,'.rg-card','.rg-lo-slot',function(card,slot){ st.slot[slot.dataset.id]=card.textContent; save(); SFX.paper(); paint(); refreshPress(); });
-    g.addEventListener('click',function(e){ var s=e.target.closest('.rg-lo-slot'); if(s&&st.slot[s.dataset.id]&&!$('.rg-card.picked',g)){ delete st.slot[s.dataset.id]; save(); paint(); refreshPress(); } });
-    ['journal-q1','journal-q2','journal-q3'].forEach(function(id){ var t=document.getElementById(id); if(t) t.addEventListener('input',function(){ clearTimeout(g.__t); g.__t=setTimeout(paint,500); }); });
-    function done(){ return (c.slots||[]).every(function(s){ return !!st.slot[s.id]; }); }
+    function col(id){ return cols.filter(function(x){ return x.id===id; })[0]; }
+    function paint(){
+      $('[data-slot="head"]',g).innerHTML=(H.choices||[]).map(function(h,i){ return '<button type="button" class="rg-lo2-opt'+(st.head===i?' on':'')+'" data-k="head" data-v="'+i+'">'+esc(h.t)+'</button>'; }).join('');
+      ['p1','p2'].forEach(function(k){ $('[data-slot="'+k+'"]',g).innerHTML=cols.map(function(x){ var other=k==='p1'?st.p2:st.p1; return '<button type="button" class="rg-lo2-opt person'+(st[k]===x.id?' on':'')+(x.calm?' calm':'')+'" data-k="'+k+'" data-v="'+esc(x.id)+'"'+(other===x.id?' disabled':'')+'><span class="ic">'+esc(x.icon||'')+'</span>'+esc(x.who)+'</button>'; }).join(''); });
+      $('[data-slot="f"]',g).innerHTML=F.map(function(f,i){ return '<button type="button" class="rg-lo2-opt'+(st.f[i]?' on':'')+'" data-k="f" data-v="'+i+'">'+esc(f)+'</button>'; }).join('');
+      var a=col(st.p1), b=col(st.p2), cmp=$('.rg-lo2-cmp',g);
+      cmp.innerHTML=a&&b?'<div class="hd">Compare them hour by hour. These are your notes from the Desk tab.</div><div class="tbl"><div></div><b>'+esc(a.icon+' '+a.who)+'</b><b>'+esc(b.icon+' '+b.who)+'</b>'+times.map(function(t,i){ return '<span class="tm">'+esc(t)+'</span><p>'+esc(a.lines[i]||'')+'</p><p>'+esc(b.lines[i]||'')+'</p>'; }).join('')+'</div><div class="q">'+esc(c.cmpQ||'What is the biggest difference between their days?')+'</div>':'';
+      g.classList.toggle('finished',done()); $('.rg-lo2-say',g).innerHTML=done()?'<div class="rg-win">'+esc(c.close||'Your page is planned. Now write it in your own words below.')+'</div>':''; }
+    g.addEventListener('click',function(e){ var b=e.target.closest('.rg-lo2-opt'); if(!b||b.disabled) return; var k=b.dataset.k, v=b.dataset.v;
+      if(k==='head'){ var h=H.choices[+v]; if(!h.ok){ b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); SFX.bounce(); $('.rg-lo2-say',g).innerHTML='<p class="hint">'+esc(h.hint||'Look again.')+'</p>'; return; } st.head=+v; }
+      else if(k==='f'){ st.f[v]=!st.f[v]; }
+      else st[k]=st[k]===v?null:v;
+      save(); SFX.paper(); paint(); refreshPress(); });
+    function done(){ var h=(H.choices||[])[st.head]; return !!(h&&h.ok&&st.p1&&st.p2&&st.p1!==st.p2&&Object.keys(st.f).some(function(k){ return st.f[k]; })); }
     paint();
-    return {el:g,done:done,lines:function(){ return (c.slots||[]).map(function(s){ return [s.t,st.slot[s.id]||'']; }); }}; };
+    return {el:g,done:done,lines:function(){ var h=(H.choices||[])[st.head], a=col(st.p1), b=col(st.p2); return [['Headline',h?h.t:''],['Column 1',a?a.who:''],['Column 2',b?b.who:''],['Why it matters',F.filter(function(f,i){ return st.f[i]; }).join(', ')]]; }}; };
 
   /* ---------------------------------------------------------------- worddesk: crack the root in each word (set in backwards type), then use the word in a claim */
   MOD.worddesk=function(c,anchor){ var st=mstate('word',{cracked:{},line:''});
