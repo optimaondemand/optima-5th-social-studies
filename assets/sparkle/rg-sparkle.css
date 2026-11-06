@@ -768,3 +768,16 @@ html.rg-hlmode .rg-dock-main{ box-shadow:0 0 0 4px #F4C430, 0 6px 14px rgba(20,2
 .rg-dock{ pointer-events:none; } .rg-dock-main{ pointer-events:auto; } .rg-dock .rg-tray{ pointer-events:none; }
 .rg-dock.open .rg-tray{ pointer-events:auto; } @media (hover:hover){ .rg-dock:hover .rg-tray{ pointer-events:auto; } }
 @media (max-width:760px){ .rg-dock .rg-tb span{ display:block!important; position:absolute; right:calc(100% + 8px); left:auto; bottom:auto; top:50%; transform:translateY(-50%); font-size:11px!important; padding:3px 8px; box-shadow:0 2px 6px rgba(20,24,40,.3); } }
+
+/* v6.5 · evidence hints */
+.rg-evask{ margin:6px 0 0; padding:6px 8px; background:#FFF6DA; border-left:3px solid #C99A2E; border-radius:4px; font:600 13.5px/1.4 'Nunito',sans-serif; color:#5A4512; }
+.rg-evtoast .ask{ display:block; margin-top:4px; font-weight:700; color:#FFE6A3; }
+.rg-find{ margin:6px 0 0; font:14px/1.45 'Nunito',sans-serif; } .rg-find summary{ cursor:pointer; font-weight:800; color:var(--rg-navy); display:inline-block; padding:3px 0; }
+.rg-find p{ margin:6px 0; background:#F3F5FA; border-radius:6px; padding:8px 10px; } .rg-find .go{ display:flex; flex-wrap:wrap; gap:6px; }
+.rg-find .go button{ font:700 13px 'Nunito',sans-serif; background:#fff; border:1.5px solid var(--rg-navy); color:var(--rg-navy); border-radius:999px; padding:4px 12px; cursor:pointer; }
+
+/* v6.5 · dock: no hover-only CSS; JS keeps it open while the pointer travels; no dead gaps */
+@media (hover:hover){ .rg-dock:not(.open):hover .rg-tb{ opacity:0; visibility:hidden; pointer-events:none; transform:translateY(30px) scale(.5); } .rg-dock:not(.open):hover .rg-tray{ pointer-events:none; } }
+.rg-dock{ gap:0; } .rg-dock .rg-tray{ padding:10px 6px 12px; }
+.rg-dock.open{ pointer-events:auto; }
+@media (max-width:560px){ .rg-evtoast{ flex-wrap:wrap; } .rg-evtoast > span:nth-child(2){ flex:1 1 calc(100% - 44px); font-size:14px; } .rg-evtoast button{ margin-left:auto; } .rg-evtoast button + button{ margin-left:0; } }

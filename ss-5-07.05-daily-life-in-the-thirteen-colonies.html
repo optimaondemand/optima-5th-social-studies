@@ -2340,6 +2340,42 @@ html, body {
       "reply": "That’s your next job. Look below the picture."
      }
     ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the six columns. Move the sun to Evening, then read across the row. Which line surprises you most? Highlight it and tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the almanac.",
+      "reply": "Here it is. Find the sunrise and sunset times, then highlight the one that helps you answer the question.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-almanac"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
    }
   },
   "beats": {
@@ -5578,7 +5614,81 @@ html, body {
   {
    "t": "Check, then print"
   }
- ]
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is the six columns. Compare what two people were doing at the same hour.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the almanac. Compare sunrise in June with sunrise in December. Did the sun decide how long people worked, or did something else?",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(work|works|worked|working|day|days|hour|hours|sun|sunrise|sunset|daylight|morning|midday|noon|evening|night|dark|enslaved|slave|slavery|planter|plantation|apprentice|indenture|farm|farmer|merchant|servant|chore|chores|rest|free|freedom|rich|wealthy|poor|money|cook|cooking|field|fields|kitchen|candle|candles|school|church|wife|woman|women|girl|boy|child|children|man|men|family|tobacco|rice|law|laws|choose|chose|choice)\\b",
+   "off": "Does this detail show whether people’s days were the same or different? If it doesn’t, you can keep it, but also look for one in the six columns or the almanac.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about life in the colonies. Look for a detail about a person’s day instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs details that show two people at the same hour. Look in the six columns, or in the Study two people table.",
+    "go": [
+     {
+      "l": "The six columns",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Study two people",
+      "tab": "desk",
+      "sel": "#rg-bs-pair"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail that shows WHY their days were different: money, freedom, where they lived, or being a man or a woman. Try the notes under Study two people, the Herald fact-checks, or the almanac’s sun times.",
+    "go": [
+     {
+      "l": "Study two people",
+      "tab": "desk",
+      "sel": "#rg-bs-pair"
+     },
+     {
+      "l": "Herald fact-checks",
+      "tab": "desk",
+      "sel": "#rg-bs-herald"
+     },
+     {
+      "l": "The almanac",
+      "tab": "desk",
+      "sel": "#rg-bs-almanac"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about a source: when it was made, what it shows, or what it can’t show. Try the notes on the kitchen picture, or the almanac cover.",
+    "go": [
+     {
+      "l": "The kitchen picture",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     },
+     {
+      "l": "The almanac",
+      "tab": "desk",
+      "sel": "#rg-bs-almanac"
+     }
+    ]
+   }
+  }
+ }
 }
 </script>
 </head>
