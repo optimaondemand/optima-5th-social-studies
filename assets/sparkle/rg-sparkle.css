@@ -733,3 +733,19 @@ button.rg-al2-bin{ display:block; width:100%; text-align:left; font:inherit; cur
 .rg-evauto{ display:inline-block; font:700 12.5px 'Nunito',sans-serif; color:#2F5A26; margin:4px 0; }
 .rg-hlbar button.ev{ background:#EEF5E8; border-color:#5C7A4A; font-weight:800; color:#2F5A26; }
 .rg-evintro .rg-btn{ margin-top:8px; background:#E9B44C; color:var(--rg-navy); }
+
+/* v6.3 · Fact-Check: one claim at a time, editor's calls included */
+.rg-qprog button{ width:26px; height:8px; border-radius:4px; background:#D9D1BC; border:0; padding:0; cursor:pointer; }
+.rg-qprog button.done{ background:var(--rg-green); } .rg-qprog button.now{ background:var(--rg-navy); outline:2px solid var(--rg-navy); outline-offset:2px; }
+.rg-qprog button:disabled{ cursor:default; opacity:.6; }
+html.rg-on .rg-claims.rg-qhide, html.rg-on .rg-cc.rg-qhide{ display:none; }
+.rg-cc.rg-qready .rg-qnext{ display:inline-block; }
+
+/* v6.3 · Ms. Avery lives in the press bar: her face, no "Notes" label, no pills on the page */
+html.rg-on .rg-note{ display:none!important; }
+.rg-wire-btn{ gap:6px; padding:3px 12px 3px 3px; position:relative; }
+.rg-wire-btn .rg-avery{ width:28px; height:28px; border-radius:50%; object-fit:cover; border:2px solid #fff; }
+.rg-wire-btn .n{ position:absolute; top:-4px; left:22px; min-width:18px; font-size:11px; line-height:16px; padding:0 5px; }
+.rg-wire-btn:not(.unread) .n{ display:none; }
+@media (max-width:560px){ .rg-wire-btn .lb{ display:none; } .rg-wire-btn{ padding:3px; } }
+.rg-ticker{ cursor:pointer; }

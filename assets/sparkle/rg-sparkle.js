@@ -140,7 +140,7 @@
   /* the paper is the scroller: always land on the newest note (again after the rise animation and while typing) */
   function pinWire(){ if(!wireEl) return; var pp=$('.rg-wire-paper',wireEl); if(!pp) return; pp.scrollTop=pp.scrollHeight; requestAnimationFrame(function(){ pp.scrollTop=pp.scrollHeight; }); [350,800].forEach(function(ms){ setTimeout(function(){ pp.scrollTop=pp.scrollHeight; },ms); }); }
   function render(){
-    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— notes from the editor’s desk —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll send a note when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); pinWire(); }
+    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— from the editor’s desk —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll write again when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); pinWire(); }
     if(wireBtn){ wireBtn.classList.toggle('unread',unread>0); $('.n',wireBtn).textContent=unread; }
     var open=wireEl&&wireEl.classList.contains('open');
     ['open','dispatch','desk','factcheck','press'].forEach(function(sc){ var n=$('.rg-note[data-scene="'+sc+'"]'); if(!n) return; var ms=thread.filter(function(m){return m.scene===sc;});
@@ -152,7 +152,7 @@
       var tc=thread.filter(function(m){return m.f==='t';}).length; var lastAsk=pendingKey&&CHOICES[pendingKey]&&CHOICES[pendingKey].scene===sc; $('.mini .pv',n).innerHTML=isNew&&lt?'<b>New note:</b> '+esc(lt.t):lastAsk?'<b>Ms. Avery is waiting for your reply</b>':'<b>Notes from Ms. Avery</b> · '+tc+' so far'; n.classList.toggle('ask',!!lastAsk); });
     if(open) save(); }
   function openWire(o){ if(!wireEl) return; wireEl.classList.toggle('open',o); wireBtn&&wireBtn.setAttribute('aria-expanded',!!o); if(o){ unread=0; hideTicker(); SFX.paper(); } render(); }
-  function ticker(text){ if(!tickEl||(wireEl&&wireEl.classList.contains('open'))) return; $('.tx',tickEl).textContent=(nm()&&text.indexOf(nm())===-1?nm()+', '+text.charAt(0).toLowerCase()+text.slice(1):text); tickEl.classList.remove('show'); void tickEl.offsetWidth; tickEl.classList.add('show'); SFX.ding(); clearTimeout(tickTimer); tickTimer=setTimeout(hideTicker,8000); }
+  function ticker(text){ if(!tickEl||(wireEl&&wireEl.classList.contains('open'))) return; $('.tx',tickEl).textContent=(nm()&&text.indexOf(nm())===-1?nm()+', '+text.charAt(0).toLowerCase()+text.slice(1):text); tickEl.classList.remove('show'); void tickEl.offsetWidth; tickEl.classList.add('show'); SFX.ding(); clearTimeout(tickTimer); tickTimer=setTimeout(function(){ if(!(pendingKey&&CHOICES[pendingKey])) hideTicker(); },8000); }
   function hideTicker(){ if(tickEl) tickEl.classList.remove('show'); }
   function currentScene(){ var a=$('.tab-panel.active'); return a?a.id.replace('panel-',''):'dispatch'; }
   Object.keys(T.choices||{}).forEach(function(k){ var c=T.choices[k], list=(c.list||[]).slice(); list.scene=c.scene||'dispatch'; CHOICES[k]=list; });
@@ -160,7 +160,7 @@
   var BEAT_SCENE={s1Done:'dispatch',s2Done:'desk',quizDone:'factcheck',published:'press'};
   function beat(k){ if(S.seen[k]) return; S.seen[k]=true; save(); var b=(T.beats||{})[k]; if(!b) return; [].concat(b).forEach(function(m){ if(typeof m==='string') m={t:m}; avery(m.t,m.choice||null,{scene:m.scene||BEAT_SCENE[k]||currentScene(),quiet:!!m.quiet}); }); }
   function buildWire(){
-    wireEl=el('div','rg rg-wire'); wireEl.setAttribute('role','dialog'); wireEl.setAttribute('aria-label','Notes from Ms. Avery');
+    wireEl=el('div','rg rg-wire'); wireEl.setAttribute('role','dialog'); wireEl.setAttribute('aria-label','Ms. Avery, your editor');
     var TW='<svg class="rg-tw-svg" viewBox="0 0 400 168" aria-hidden="true"><defs><linearGradient id="rgTwB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A3E"/><stop offset="1" stop-color="#1C2620"/></linearGradient><linearGradient id="rgTwP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A4A4A"/><stop offset=".45" stop-color="#151515"/><stop offset="1" stop-color="#2C2C2C"/></linearGradient><radialGradient id="rgTwK" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#FFFBEA"/><stop offset="1" stop-color="#C9BE9C"/></radialGradient></defs>'+
       '<rect x="30" y="2" width="340" height="22" rx="11" fill="url(#rgTwP)"/><rect x="40" y="6" width="320" height="3" rx="1.5" fill="#fff" opacity=".18"/>'+
       '<circle cx="18" cy="13" r="13" fill="#222"/><circle cx="18" cy="13" r="8" fill="#C9A66B"/><circle cx="382" cy="13" r="13" fill="#222"/><circle cx="382" cy="13" r="8" fill="#C9A66B"/>'+
@@ -171,21 +171,20 @@
       '<rect x="176" y="64" width="48" height="13" rx="2" fill="#C9A66B"/><text x="200" y="74" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#1C2620" letter-spacing="1.5">AVERY</text>'+
       [[86,11,40],[106,10,52],[126,9,64]].map(function(row){ var out='', y=row[0], n=row[1], x0=row[2]; for(var k=0;k<n;k++){ var x=x0+k*((400-2*x0)/(n-1)); out+='<circle cx="'+x+'" cy="'+(y+2)+'" r="9" fill="#0B0F0C"/><circle cx="'+x+'" cy="'+y+'" r="8.5" fill="url(#rgTwK)" stroke="#5C5A4A" stroke-width="1"/>'; } return out; }).join('')+
       '<rect x="120" y="140" width="160" height="10" rx="5" fill="url(#rgTwK)" stroke="#5C5A4A"/></svg>';
-    wireEl.innerHTML='<div class="rg-wire-paper"><div class="rg-wire-head">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st">Editor-in-Chief · The Republic Gazette</div></div><button type="button" class="x" aria-label="Close Ms. Avery’s notes">✕</button></div><div class="rg-wire-roll"></div></div><div class="rg-tw">'+TW+'</div><div class="rg-wire-reply"></div>';
+    wireEl.innerHTML='<div class="rg-wire-paper"><div class="rg-wire-head">'+AVERY+'<div><div class="nm">Ms. Avery</div><div class="st">Editor-in-Chief · The Republic Gazette</div></div><button type="button" class="x" aria-label="Close">✕</button></div><div class="rg-wire-roll"></div></div><div class="rg-tw">'+TW+'</div><div class="rg-wire-reply"></div>';
 
     wireEl.addEventListener('click',onChoice); $('.x',wireEl).addEventListener('click',function(){ openWire(false); });
-    tickEl=el('div','rg rg-ticker','<span class="ic">'+AVERY+'</span><span class="bd"><b>Ms. Avery · new note <small>now</small></b><span class="tx"></span></span>'); tickEl.setAttribute('role','status');
+    tickEl=el('div','rg rg-ticker','<span class="ic">'+AVERY+'</span><span class="bd"><b>Ms. Avery <small>now</small></b><span class="tx"></span></span>'); tickEl.setAttribute('role','status');
     tickEl.addEventListener('click',function(){ openWire(true); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&wireEl&&wireEl.classList.contains('open')) openWire(false); });
     if(!window.__rgSay){ window.__rgSay=true; document.addEventListener('click',onSay,true); } }
   function buildOpening(){ var intro=document.getElementById('introSection'); if(!intro) return;
-    var note=el('div','rg rg-note opening rg-hide'); note.dataset.scene='open'; note.innerHTML=noteHTML('Notes from Ms. Avery'); note.addEventListener('click',onNote); before(intro,note);
     if(!thread.length){ if(!nm()&&storageWorks()) openingWaiting=true; else startOpening(); } }
   function startOpening(){ if(thread.length) return;
     var op=[].concat(T.opening||[]);
     avery('{name,}'+(T.hello||'Good morning, Junior Editor. It’s Ms. Avery.')+(DATA.connector?' '+DATA.connector:''),null,{scene:'open',quiet:true});
     op.forEach(function(m){ if(typeof m==='string') m={t:m}; avery(m.t,m.choice||null,{scene:'open',quiet:true}); });
-    unread=op.length+1; render(); setTimeout(function(){ ticker(T.toast||'A new story just came in. Open the wire when you’re ready.'); },900); }
+    unread=op.length+1; render(); setTimeout(function(){ openWire(true); },900); }
   function buildStory(){ var anchor=$('.rg-note.opening')||document.getElementById('introSection'); if(!anchor) return;
     var t=DATA.storySoFar||'You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.';
     var le=$('#lastEditionBlock .story-block-summary'), last=le?le.textContent.replace(/Tap to recap\.?|▼/g,'').trim():'';
@@ -204,7 +203,7 @@
     var bar=document.getElementById('tabBar'); if(!bar||!STAGES.length) return;
     var unit=(($$('.info-strip .info-cell')[1]||{}).querySelector?($$('.info-strip .info-cell')[1].querySelector('.info-value')||{}).textContent:'')||'';
     pressEl=el('div','rg rg-press');
-    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
+    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false" aria-label="Ms. Avery, your editor" title="Ms. Avery, your editor">'+AVERY+'<span class="lb">Ms. Avery</span><span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
     var hero=$('.hero-newspaper'); if(hero) after(hero,pressEl); else before(bar,pressEl);
     pressEl.addEventListener('click',function(e){ var t=e.target.closest('.rg-pt'); if(!t) return; var tb=$('.rg-tb.'+t.dataset.t); if(tb) tb.click(); });
     move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
@@ -231,7 +230,7 @@
   function buildScenes(){ STAGES.forEach(function(s,i){ var panel=document.getElementById('panel-'+s.tab); if(!panel) return;
       var sc=el('div','rg rg-scene','<div class="rg-scene-n">'+(i+1)+'</div><div><div class="rg-scene-k">'+esc(['Masthead','Headline','Columns','Photo'][i]||'')+'</div><div class="rg-scene-t">'+esc(s.t)+'</div><p class="rg-scene-why">'+esc(s.why)+'</p></div>');
       var vr=panel.firstElementChild&&panel.firstElementChild.classList.contains('video-ratio')?panel.firstElementChild:null; if(vr) after(vr,sc); else panel.insertBefore(sc,panel.firstChild);
-      var tw=panel.querySelector('.tab-next-btn-wrap')||null; var note=el('div','rg rg-note rg-hide'); note.dataset.scene=s.tab; note.innerHTML=noteHTML('New note from Ms. Avery'); note.addEventListener('click',onNote); if(tw) before(tw,note); else panel.appendChild(note); }); }
+    }); }
 
   /* ================================================================ the top: Read aloud + Lesson details pills, one Editor's Lens line */
   function buildTop(){ var hd=$('.oao-header'), shell=$('.lesson-shell'); if(!hd) return;
@@ -645,6 +644,7 @@
   /* ---- return to source: open the right tab, scroll, flash the spot ---- */
   function goSrc(ret){ if(!ret) return; closeDrawer(true); if(ret.tab&&window.switchTab&&currentScene()!==ret.tab) window.switchTab(ret.tab);
     if(ret.mod&&R[ret.mod]&&R[ret.mod].go) R[ret.mod].go(ret.arg);
+    if(ret.tab==='factcheck'&&FSTEP) FSTEP(true,ret.sel&&$(ret.sel));
     setTimeout(function(){ var t=ret.sel&&$(ret.sel); if(!t){ ticker('That part of the page isn’t open yet. Keep going on that tab to reach it.'); return; }
       t.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'}); t.classList.remove('rg-srcflash'); void t.offsetWidth; t.classList.add('rg-srcflash'); setTimeout(function(){ t.classList.remove('rg-srcflash'); },2200);
       if(!t.hasAttribute('tabindex')&&!/^(BUTTON|INPUT|TEXTAREA|SELECT|A)$/.test(t.tagName)) t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(x){} },RM?60:420); }
@@ -845,7 +845,7 @@
   function attOK(){ var A=D().att.filter(function(a){ return a.ev&&evGet(a.ev)&&words(a.why||'')>=(NW.whyMin||6); }), ids={}; A.forEach(function(a){ ids[a.ev]=1; }); return Object.keys(ids).length>=(NW.evMin||2); }
   function readiness(){ var d=D(), W=function(k){ return words(d[k]||''); }, items=[
       {k:'notebook',t:'Editor’s Notebook: all three answers',ok:['journal-q1','journal-q2','journal-q3'].every(qDone),go:{tab:'desk',sel:'.reflection-block'}},
-      {k:'fact',t:'Fact-Check tab: all five claims',ok:fcDone(),go:{tab:'factcheck',sel:'#panel-factcheck .factcheck-q'}},
+      {k:'fact',t:'Fact-Check tab: all five claims',ok:fcDone(),go:{tab:'factcheck',sel:'#panel-factcheck .rg-qprog'}},
       {k:'head',t:'Your own headline',ok:W('head')>=3,go:{tab:'press',sel:'#rg-f-head'}},
       {k:'by',t:'Your byline',ok:!!(d.by||'').trim(),go:{tab:'press',sel:'#rg-f-by'}}].concat(PARAS.filter(function(q){ return q.min; }).map(function(q){ return {k:q.k,t:q.short||q.t,ok:W(q.k)>=q.min,go:{tab:'press',sel:'#rg-f-'+q.k}}; })).concat([
       {k:'ev',t:'At least '+(NW.evMin||2)+' different pieces of evidence added, each with your own explanation',ok:attOK(),go:{tab:'press',sel:'.rg-nd-attach'}},
@@ -940,7 +940,7 @@
 
   /* ================================================================ wiring + small fixes from the audit */
   function fixModalAndKeys(){ document.addEventListener('keydown',function(e){ if(e.key!=='Escape'||!html.classList.contains('rg-on')) return; var m=$('#rgModal.open'); if(m){ closeModal(); return; } if(wireEl&&wireEl.classList.contains('open')){ openWire(false); if(wireBtn) wireBtn.focus(); } }); }
-  function buildNewsroom(){ if(!window.__rgKeysFixed){ fixModalAndKeys(); window.__rgKeysFixed=true; } buildNewsroomBar(); buildDrawer(); buildClaims(); restoreQuiz(); kbdQuiz(); buildDesk(); buildReady(); buildExports(); paintEdition(); paintReady(); paintEvidence();
+  function buildNewsroom(){ if(!window.__rgKeysFixed){ fixModalAndKeys(); window.__rgKeysFixed=true; } buildNewsroomBar(); buildDrawer(); buildClaims(); restoreQuiz(); kbdQuiz(); if(FSTEP) FSTEP(true); buildDesk(); buildReady(); buildExports(); paintEdition(); paintReady(); paintEvidence();
     var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(kbdQuiz,40); }); var fp=document.getElementById('panel-factcheck'); if(fp){ mo.observe(fp,{attributes:true,subtree:true,attributeFilter:['class']}); OBS.push(mo); }
     if(window.switchTab&&!window.__rgNdWrapped){ var o=window.switchTab; window.switchTab=function(t){ var r=o.apply(this,arguments); if(html.classList.contains('rg-on')&&t==='press'){ if(R.planner&&R.planner.paint) R.planner.paint(); paintDesk(); paintReady(); } return r; }; window.__rgNdWrapped=true; }
     if(window.updateProgress&&!window.__rgProgWrapped){ var up=window.updateProgress; window.updateProgress=function(){ var r=up.apply(this,arguments); if(html.classList.contains('rg-on')){ var st=stageState(), n=st.filter(Boolean).length, f=document.getElementById('progressFill'), t=document.getElementById('progressPct'); if(f) f.style.width=(n*25)+'%'; if(t) t.textContent=(n*25)+'%'; } return r; }; window.__rgProgWrapped=true; }
@@ -967,15 +967,24 @@
     return m({k:'lesson', who:'Highlighted from the lesson', from:'Fact from the lesson ('+whereAmI(block)+')'}); }
 
   /* ================================================================ Fact-Check one claim at a time + "why that one's tempting" */
+  var FSTEP=null;
   function buildFactSteps(){ var qs=$$('#panel-factcheck .factcheck-q'); if(qs.length<2) return;
-    var cur=0, bar=el('div','rg rg-qprog'); before(qs[0],bar); var score=document.getElementById('factcheckScore');
-    qs.forEach(function(q,i){ var nx=el('button','rg rg-qnext',i<qs.length-1?'Next claim →':'See my record →'); nx.type='button'; q.appendChild(nx);
-      nx.addEventListener('click',function(){ cur=i+1; paint(); var t=qs[cur]||score; if(t) t.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'}); }); });
-    function answered(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); }
-    function paint(){ if(!html.classList.contains('rg-on')) return; qs.forEach(function(q,i){ q.classList.toggle('rg-qhide',i!==cur); q.classList.toggle('rg-qready',answered(q)); });
-      if(score) score.classList.toggle('rg-qhide',cur<qs.length);
-      bar.innerHTML=cur<qs.length?qs.map(function(q,i){ return '<i class="'+(i<cur?'done':i===cur?'now':'')+'"></i>'; }).join('')+'<span>Claim '+(cur+1)+' of '+qs.length+'</span>':''; bar.classList.toggle('rg-hide',cur>=qs.length); refreshPress(); }
+    var cur=0, bar=el('nav','rg rg-qprog'); bar.setAttribute('aria-label','Fact-Check claims'); before(qs[0],bar); var score=document.getElementById('factcheckScore');
+    function items(){ return qs.concat($$('#panel-factcheck .rg-cc')); }
+    function answered(it){ return it.classList.contains('rg-cc')?it.classList.contains('done'):!!it.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); }
+    function firstOpen(){ var L=items(); for(var i=0;i<L.length;i++){ if(!answered(L[i])) return i; } return L.length; }
+    function go(i){ var L=items(); cur=Math.max(0,Math.min(i,L.length)); paint(); var t=cur<L.length?L[cur]:score; if(t) setTimeout(function(){ t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); },30); }
+    function nextBtn(it,i,N){ if($(':scope > .rg-qnext',it)) return; var nx=el('button','rg rg-qnext',i<N-1?'Next claim →':'See my record →'); nx.type='button'; it.appendChild(nx); nx.addEventListener('click',function(){ go(i+1); }); }
+    function paint(){ if(!html.classList.contains('rg-on')) return; var L=items(), N=L.length, open=firstOpen(), cl=$('#panel-factcheck .rg-claims');
+      L.forEach(function(it,i){ nextBtn(it,i,N); it.classList.toggle('rg-qhide',i!==cur); it.classList.toggle('rg-qready',answered(it)); });
+      if(score) score.classList.toggle('rg-qhide',cur<N);
+      if(cl) cl.classList.toggle('rg-qhide',cur<qs.length||cur>=N);
+      var lbl=cur<N?'Claim '+(cur+1)+' of '+N+(cur>=qs.length?' · the editor’s call':''):'All '+N+' claims checked';
+      bar.innerHTML=L.map(function(it,i){ var can=i<=open; return '<button type="button" data-i="'+i+'" class="'+(answered(it)?'done':'')+(i===cur?' now':'')+'"'+(can?'':' disabled')+' aria-label="Claim '+(i+1)+(answered(it)?', done':'')+'"'+(i===cur?' aria-current="step"':'')+'></button>'; }).join('')+'<span>'+lbl+'</span>';
+      refreshPress(); }
+    bar.addEventListener('click',function(e){ var t=e.target.closest('button[data-i]'); if(t&&!t.disabled) go(+t.dataset.i); });
     var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paint,30); }); mo.observe(document.getElementById('panel-factcheck'),{attributes:true,subtree:true,attributeFilter:['class']}); OBS.push(mo);
+    FSTEP=function(reset,el){ var it=el&&el.closest&&el.closest('.factcheck-q, .rg-cc'), i=it?items().indexOf(it):-1; if(i>-1&&i<=firstOpen()) cur=i; else if(reset) cur=firstOpen(); paint(); };
     paint(); }
   function buildQuizMiss(){ if(typeof window.checkAnswer!=='function'||window.__rgQuizWrapped) return; window.__rgQuizWrapped=true; DATA.quizMiss=DATA.quizMiss||[];
     var orig=window.checkAnswer;
@@ -1268,7 +1277,7 @@
     var bar=el('div','rg-mockbar','<b>✦ REVIEW · '+esc(DATA.lesson)+'</b><label><input type="checkbox" id="rgOn" checked> layer on</label><label><input type="checkbox" id="rgEmpty"> show empty media slots</label><button type="button" id="rgReset">reset progress</button>'); document.body.appendChild(bar);
     $('#rgOn',bar).addEventListener('change',function(e){ e.target.checked?build():teardown(); }); $('#rgEmpty',bar).addEventListener('change',function(e){ html.classList.toggle('rg-showempty',e.target.checked); });
     $('#rgReset',bar).addEventListener('click',function(){ try{ Object.keys(localStorage).forEach(function(k){ if(k.indexOf(KEY)===0) localStorage.removeItem(k); }); }catch(e){} S=fresh(); thread=S.thread; pendingKey=null; MEMPH=null; teardown(); build(); }); }
-  function teardown(){ html.classList.remove('rg-on','rg-quiet','rg-hlmode','rg-cueing'); delete html.dataset.rgTab;
+  function teardown(){ FSTEP=null; html.classList.remove('rg-on','rg-quiet','rg-hlmode','rg-cueing'); delete html.dataset.rgTab;
     OBS.forEach(function(o){ o.disconnect(); }); OBS=[];
     $$('mark.rg-hl').forEach(function(m){ var p=m.parentNode; while(m.firstChild) p.insertBefore(m.firstChild,m); p.removeChild(m); p.normalize(); });
     MOVES.reverse().forEach(function(x){ x[1].parentNode.insertBefore(x[0],x[1]); x[1].remove(); }); MOVES=[];
