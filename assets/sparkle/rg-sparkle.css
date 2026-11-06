@@ -728,3 +728,8 @@ button.rg-al2-bin{ display:block; width:100%; text-align:left; font:inherit; cur
 .rg-tb.quiet{ width:46px!important; height:46px!important; font-size:18px; } .rg-tb.quiet span{ font-size:8px!important; }
 .rg-pt-grp{ display:none!important; }
 .rg-job .words li b{ display:inline; text-transform:none; letter-spacing:0; font:800 15px 'Nunito',sans-serif; color:var(--rg-ink); margin:0; }
+
+/* v6.2 · evidence comes from the highlighter */
+.rg-evauto{ display:inline-block; font:700 12.5px 'Nunito',sans-serif; color:#2F5A26; margin:4px 0; }
+.rg-hlbar button.ev{ background:#EEF5E8; border-color:#5C7A4A; font-weight:800; color:#2F5A26; }
+.rg-evintro .rg-btn{ margin-top:8px; background:#E9B44C; color:var(--rg-navy); }

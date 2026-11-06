@@ -358,7 +358,7 @@
     function paint(){ var n=Object.keys(st.seen).length;
       g.classList.toggle('looking',!looked());
       $('.rg-rp-go',g).disabled=words(notice.value)<4; $('.rg-rp-go',g).classList.toggle('rg-hide',looked());
-      $('.rg-rp-sv',g).innerHTML=words(notice.value)>=4?evBtn({k:'mine', t:notice.value.trim(), who:'My observation', when:'', where:'', from:'My own observation of the kitchen print', ctx:'What I noticed before reading the editor’s notes.', tags:['picture','mine'], ret:{tab:'desk', sel:'#rg-rp-notice'}},'sm'):'';
+      $('.rg-rp-sv',g).innerHTML=words(notice.value)>=4?evBtn({k:'mine', auto:'notice', t:notice.value.trim(), who:'What I noticed in the kitchen print', when:'', where:'', from:'My own observation of the kitchen print', ctx:'What I noticed before reading the editor’s notes.', tags:['picture','mine'], ret:{tab:'desk', sel:'#rg-rp-notice'}},'sm'):'';
       $$('.ring',g).forEach(function(r){ var i=r.dataset.i; r.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
       $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); b.disabled=!looked()||(i==null&&n<need); b.setAttribute('aria-pressed',i!=null?!!st.seen[i]:!!st.date); });
       $$('.rg-rp-ann',g).forEach(function(a){ var i=a.dataset.i, open=i===last; a.classList.toggle('on',!!st.seen[i]); a.classList.toggle('open',open); var sv=$('.rg-evbtn',a); if(open&&!sv) a.insertAdjacentHTML('beforeend',evBtn(spotCard(spots[+i],+i),'sm')); if(!open&&sv) sv.remove(); });
@@ -378,7 +378,7 @@
       if(n<12){ fb.innerHTML='<p class="rg-todo">📝 '+n+' of 12 words. Mention both dates, and say why the gap matters.</p>'; return; }
       var chk=(D.check||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('');
       fb.innerHTML='<div class="rg-selfcheck"><b>Check your own explanation.</b> Did you…<ul>'+chk+'</ul></div><details class="rg-model"><summary>Compare with the editor’s note</summary><p>'+esc(D.model||'')+'</p></details>'+
-        evBtn({k:'source', t:D.card||('Made about '+D.year+'; shows a scene set about '+D.shows+'.'), who:'Kitchen print', when:'made about '+D.year, where:'', from:SRC_FROM, ctx:D.text, note:v, tags:['picture','date'], ret:{tab:'desk', sel:'#rg-rp-dexp'}},''); }
+        evBtn({k:'mine', auto:'date', t:v, who:'Made vs. shown: my explanation', when:'', where:'', from:'My own notes about the kitchen print', ctx:D.card||'', tags:['picture','date'], ret:{tab:'desk', sel:'#rg-rp-dexp'}},''); }
     function sayFor(i){ return say[i]||''; }
     function paintMiss(){ var cards=M.cards||[], box=$('.rg-rp-miss',g);
       if(!(st.date&&words(st.dexp||'')>=12&&cards.length)){ box.innerHTML=''; return; }
@@ -394,14 +394,14 @@
         var lt=$('#rg-rp-lim',box); lt.addEventListener('input',function(){ st.lim=lt.value; save(); paintFUfb(); fin(); refreshPress(); if(words(lt.value)>=8) beat('limitWritten'); }); }
       paintFUfb(); }
     function paintFUfb(){ var fb=$('.rg-fu-fb',g); if(!fb) return; var o=FU.opts[st.fu]; fb.innerHTML=o?'<p class="'+(o.ok?'ok':'no')+'">'+(o.ok?'✓ ':'Think again: ')+esc(o.say)+'</p>':'';
-      var sv=$('.rg-lim-sv',g); sv.innerHTML=words(st.lim||'')>=8?evBtn({k:'mine', t:(st.lim||'').trim(), who:'Limitation of the kitchen print', when:'', where:'', from:'My note about what the source can’t show', ctx:o&&o.ok?'Another source that could help: '+o.t:'', tags:['picture','limitation','mine'], ret:{tab:'desk', sel:'#rg-rp-lim'}},''):'<p class="rg-todo">📝 '+words(st.lim||'')+' of 8 words.</p>'; }
+      var sv=$('.rg-lim-sv',g); sv.innerHTML=words(st.lim||'')>=8?evBtn({k:'mine', auto:'limit', t:(st.lim||'').trim(), who:'What the kitchen print can’t show', when:'', where:'', from:'My note about what the source can’t show', ctx:o&&o.ok?'Another source that could help: '+o.t:'', tags:['picture','limitation','mine'], ret:{tab:'desk', sel:'#rg-rp-lim'}},''):'<p class="rg-todo">📝 '+words(st.lim||'')+' of 8 words.</p>'; }
     notice.addEventListener('input',function(){ st.notice=notice.value; save(); paint(); });
     $('.rg-rp-go',g).addEventListener('click',function(){ st.looked=true; save(); SFX.paper(); paint(); var b=$('.rg-rp-n',g); if(b) b.focus(); });
     $('.rg-rp-zoom',g).addEventListener('click',function(){ var im=$('.rg-rp-img img',g); zoomImage(im&&im.src,c.alt||'',c.zoomCap||''); });
     g.addEventListener('click',function(e){ var b=e.target.closest('.rg-rp-n'); if(b&&!b.disabled){
         if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); var t=$('#rg-rp-dexp',g); if(t) setTimeout(function(){ t.focus({preventScroll:true}); },400); return; }
         st.seen[b.dataset.i]=true; last=b.dataset.i; save(); SFX.scratch(); paint(); refreshPress(); return; }
-      var a=e.target.closest('.rg-rp-ann.on'); if(a&&!e.target.closest('.rg-evbtn')){ last=a.dataset.i===last?null:a.dataset.i; paint(); } });
+      var a=e.target.closest('.rg-rp-ann.on'); var sl=window.getSelection&&window.getSelection(); if(a&&!e.target.closest('.rg-evbtn')&&!(sl&&!sl.isCollapsed)){ last=a.dataset.i===last?null:a.dataset.i; paint(); } });
     dragTap(g,'.rg-rp-cards .rg-card','.rg-frame',function(card,frame){ var i=+card.dataset.i, x=M.cards[i], want=x.k||(x.out?'out':'in');
       if(frame.dataset.f!==want){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); st.lastSay=x.hint||'Look again at the picture.'; $('.rg-rp-say',g).textContent=st.lastSay; return; }
       st.miss[i]=want; st.lastSay=x.say||''; save(); x.calm?SFX.soft():SFX.chime(); paintMiss(); paintFU(); fin(); refreshPress(); if(want==='cant') beat('cantTell'); });
@@ -499,7 +499,7 @@
       $('.rg-al3-s3',a).innerHTML=st.step===3&&cards.length?'<button type="button" class="back rg-al3-back" data-a="s2">◂ Back to the calendar</button><div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards" role="group" aria-label="People to sort">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true" aria-pressed="false">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<button type="button" class="rg-al2-bin" data-k="'+k+'"><span class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</span>'+cards.map(function(c,i){ return st.sort[i]===k?'<span class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</span>':''; }).join('')+'</button>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
       a.classList.toggle('finished',done()); }
     a.addEventListener('click',function(e){ var b=e.target.closest('.rg-al2-n'); if(b){ st.seen[b.dataset.i]=true; st.last=b.dataset.i; save(); SFX.scratch(); paint(); return; }
-      if(e.target.closest('.rg-evbtn')) return;
+      if(e.target.closest('.rg-evbtn')) return; var sel0=window.getSelection&&window.getSelection(); if(sel0&&!sel0.isCollapsed) return;
       var x=e.target.closest('.rg-al3-ann'); if(x){ st.last=null; paint(); return; }
       var t=e.target.closest('[data-mo]'); if(t&&!t.disabled){ st.mo=+t.dataset.mo; save(); SFX.paper(); paint(); return; }
       var c=e.target.closest('.rg-al3-q [data-c]'); if(c){ var m=MO[st.mo]; if(+c.dataset.c===m.ok){ st.q[m.k]=true; save(); SFX.chime(); paint(); var nx=MO.findIndex(function(y){ return !st.q[y.k]; }); if(nx>-1) setTimeout(function(){ st.mo=nx; save(); SFX.paper(); paint(); },1600); }
@@ -527,7 +527,7 @@
       $('.rg-pair-tbl',g).innerHTML=a&&b&&a!==b?'<table><caption class="rg-sr">'+esc(a.who)+' and '+esc(b.who)+', hour by hour</caption><thead><tr><th scope="col">Time</th><th scope="col">'+esc(a.icon+' '+a.who)+'</th><th scope="col">'+esc(b.icon+' '+b.who)+'</th></tr></thead><tbody>'+times.map(function(t,i){ var locked=reached==null||reached<i; return '<tr><th scope="row">'+esc(t)+'</th><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(a.lines[i]||'')+' '+evBtn({k:'routine', t:a.lines[i]||'', who:a.who, when:t, where:a.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[a.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+a.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(b.lines[i]||'')+' '+evBtn({k:'routine', t:b.lines[i]||'', who:b.who, when:t, where:b.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[b.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+b.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td></tr>'; }).join('')+'</tbody></table>':a&&b?'<p class="rg-todo">Choose two different people.</p>':'<p class="rg-todo">Choose two people to compare.</p>';
       var L=(PC.legal||[]).filter(function(x){ return a&&b&&x.ids.indexOf(a.id)>-1&&x.ids.indexOf(b.id)>-1; })[0];
       $('.rg-pair-legal',g).innerHTML=L?'<div class="rg-legal"><b>'+esc(L.t)+'</b> '+esc(L.d)+'</div>':'';
-      var n=words(ta.value); $('.sv',g).innerHTML=n>=10&&a&&b?evBtn({k:'mine', t:ta.value.trim(), who:a.who+' and '+b.who, when:'same hour', where:'', from:'My comparison notes (Desk tab)', ctx:'Compared from the lesson’s illustrative routines.', tags:[a.id,b.id,'mine','compare'], ret:{tab:'desk', sel:'#rg-pair-note'}},''):'<p class="rg-todo">📝 '+n+' of 10 words.</p>';
+      var n=words(ta.value); $('.sv',g).innerHTML=n>=10&&a&&b?evBtn({k:'mine', auto:'pair', t:ta.value.trim(), who:a.who+' and '+b.who, when:'same hour', where:'', from:'My comparison notes (Desk tab)', ctx:'Compared from the lesson’s illustrative routines.', tags:[a.id,b.id,'mine','compare'], ret:{tab:'desk', sel:'#rg-pair-note'}},''):'<p class="rg-todo">📝 '+n+' of 10 words.</p>';
       g.classList.toggle('finished',done()); }
     function done(){ return !!(st.p1&&st.p2&&st.p1!==st.p2&&words(st.pnote||'')>=10); }
     [s1,s2].forEach(function(sel,k){ sel.addEventListener('change',function(){ st[k?'p2':'p1']=sel.value||null; save(); paint(); refreshPress(); SFX.paper(); }); });
@@ -576,7 +576,7 @@
       '<div class="lead"><div class="story"><div class="kick">'+esc(B.kicker||'Today’s front page')+'</div><h2 class="hl">'+esc(B.head||'')+'</h2><p class="deck">'+esc(B.deck||'')+'</p>'+(B.lede?'<p class="lede">'+(B.place?'<b>'+esc(B.place)+' —</b> ':'')+esc(B.lede)+'</p>':'')+'</div>'+
       '<nav class="idx" aria-label="How to read this page"><div class="ih">How to read this page</div><ol>'+steps.map(function(s,i){ return '<li data-k="'+s.key+'"><a href="#rg-bs-'+s.key+'"><span class="n">'+(i+1)+'</span><span class="t">'+esc(s.t)+'</span><span class="ok" aria-label="done">✓</span></a></li>'; }).join('')+'</ol><div class="prog"></div></nav></div>');
     before(first,bsEl);
-    if(B.evIntro) after(bsEl,el('div','rg rg-evintro','<span class="ic" aria-hidden="true">🗂</span><div><b>What you’re looking for today</b><p>'+esc(B.evIntro)+'</p></div>'));
+    if(B.evIntro){ var ei=el('div','rg rg-evintro','<span class="ic" aria-hidden="true">🖍</span><div><b>What you’re looking for today</b><p>'+esc(B.evIntro)+'</p><button type="button" class="rg-btn">🖍 Turn on the highlighter</button></div>'); after(bsEl,ei); $('button',ei).addEventListener('click',function(){ if(!html.classList.contains('rg-hlmode')){ var t=$('.rg-tb.hl'); if(t) t.click(); } }); }
     steps.forEach(function(s,i){ var t=BS_FIND[s.key](); if(!t) return;
       var j=el('div','rg rg-bs-jump','<span class="n">'+(i+1)+'</span><span class="t"><small>Step '+(i+1)+' of '+steps.length+'</small>'+esc(s.t)+'</span><span class="ok">✓ Done</span>'); j.id='rg-bs-'+s.key; j.dataset.k=s.key;
       if(s.fold) before(t,el('div','rg rg-bs-fold','<span>'+esc(B.fold||'Below the fold')+'</span>'));
@@ -607,7 +607,14 @@
   function evHas(c){ var s=evSig(c); return EV().filter(function(x){ return evSig(x)===s; })[0]; }
   var EVQ={}, EVN=0;
   /* the "＋ Save as evidence" button: works the same everywhere (routines, picture, almanac, highlights, photos) */
-  function evBtn(card,size){ if(!card||!(card.t||'').trim()) return ''; var k='q'+(++EVN); EVQ[k]=card; var have=evHas(card);
+  /* Evidence is collected with the highlighter (＋ Save as evidence on its bar). The student's own written notes go into the
+     drawer by themselves (card.auto). Buttons only appear where something can't be highlighted (force). */
+  function autoEv(card){ var x=EV().filter(function(c){ return c.auto===card.auto; })[0];
+    if(x){ if(x.t!==card.t){ x.t=card.t; x.ctx=card.ctx||x.ctx; x.who=card.who||x.who; save(); paintEvidence(); } return x; }
+    var c=addEvidence(card,true); evToast(c); return c; }
+  function evBtn(card,size,force){ if(!card||!(card.t||'').trim()) return '';
+    if(card.auto){ autoEv(card); return '<span class="rg-evauto">✓ This note is saved in your evidence drawer</span>'; }
+    if(!force) return ''; var k='q'+(++EVN); EVQ[k]=card; var have=evHas(card);
     return '<button type="button" class="rg-evbtn'+(size?' '+size:'')+(have?' saved':'')+'" data-evq="'+k+'" aria-pressed="'+!!have+'">'+(have?'✓ In your drawer':'＋ Save as evidence')+'</button>'; }
   function addEvidence(card,quiet){ var have=evHas(card); if(have) return have;
     var c={}; for(var k in card) if(card.hasOwnProperty(k)) c[k]=card[k];
@@ -660,7 +667,7 @@
   var drawerEl=null, drawerOpener=null, drawerFilter='all';
   function buildDrawer(){ drawerEl=el('aside','rg rg-evdrawer'); drawerEl.setAttribute('role','dialog'); drawerEl.setAttribute('aria-modal','true'); drawerEl.setAttribute('aria-labelledby','rg-drawer-h'); drawerEl.hidden=true;
     drawerEl.innerHTML='<div class="hd"><h2 id="rg-drawer-h">🗂 Evidence drawer <span class="n"></span></h2><button type="button" class="x" aria-label="Close the evidence drawer">✕</button></div>'+
-      '<p class="sub"><b>Evidence</b> is a detail that helps prove an idea. Today you are testing one idea: <i>was daily life in the colonies the same for everyone?</i> Save details that show how people’s days were the same or different. On the Go to Press tab, you’ll pick at least two and explain what each one proves.</p>'+
+      '<p class="sub"><b>Evidence</b> is a detail that helps prove an idea. Today you are testing one idea: <i>was daily life in the colonies the same for everyone?</i> Use the 🖍 highlighter to save details that show how people’s days were the same or different. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.</p>'+
       '<div class="flt" role="group" aria-label="Show">'+[['all','All'],['routine','Examples'],['source','Real sources'],['lesson','Lesson facts'],['mine','My notes'],['photo','Photos']].map(function(f){ return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+f[1]+'</button>'; }).join('')+'</div>'+
       '<div class="list"></div><div class="more"></div>';
     document.body.appendChild(drawerEl);
@@ -674,11 +681,11 @@
     if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); } else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); } }
   function paintDrawer(){ if(!drawerEl||drawerEl.hidden) return; var all=EV(), list=all.filter(function(c){ return drawerFilter==='all'||c.k===drawerFilter; });
     $('.n',drawerEl).textContent='('+all.length+')';
-    $('.list',drawerEl).innerHTML=list.length?list.slice().reverse().map(function(c){ return cardHTML(c,'drawer'); }).join(''):'<p class="rg-empty">'+(all.length?'Nothing of this kind yet.':'Your drawer is empty. Look for <b>＋ Save as evidence</b> beside the routines, the picture and the almanac. You can also highlight words, or snap a photo, and save them here.')+'</p>';
+    $('.list',drawerEl).innerHTML=list.length?list.slice().reverse().map(function(c){ return cardHTML(c,'drawer'); }).join(''):'<p class="rg-empty">'+(all.length?'Nothing of this kind yet.':'Your drawer is empty. To save evidence, tap 🖍 Highlight on the right side of the page, drag across a detail, and tap <b>＋ Save as evidence</b>. Notes you write yourself are saved here too.')+'</p>';
     var H=highlights(), ph=photos(), hs=H.filter(function(h){ return !evHas(hlCard(h)); }), ps=ph.filter(function(p){ return !evHas(photoCard(p)); });
     $('.more',drawerEl).innerHTML=(hs.length||ps.length)?'<h3>Not in the drawer yet</h3>'+hs.map(function(h){ return '<div class="rg-loose"><span>🖍 “'+esc(h.t)+'” <small>'+esc(h.where||'')+'</small></span>'+evBtn(hlCard(h),'xs')+'</div>'; }).join('')+ps.map(function(p){ return '<div class="rg-loose"><img alt="" src="'+p.src+'"><span>'+esc(p.cap||'(no caption)')+'</span>'+evBtn(photoCard(p),'xs')+'</div>'; }).join(''):'';
     var nb=$('.rg-nbbtn',drawerEl); if(!nb){ nb=el('button','rg-btn alt rg-nbbtn','📓 Open my Reporter’s Notebook (print or save as PDF)'); nb.type='button'; nb.addEventListener('click',notebook); drawerEl.appendChild(nb); } }
-  function hlCard(h){ var k=/Tab 2/.test(h.where||'')?'routine':'lesson'; return {k:k, t:h.t, who:'Highlighted words', when:'', where:'', from:'Highlighted from '+(h.where||'the lesson')+(k==='routine'?' (lesson reconstruction or explanation)':''), ctx:'', tags:['highlight'], ret:{tab:/Tab 2/.test(h.where||'')?'desk':/Tab 3/.test(h.where||'')?'factcheck':/Tab 4/.test(h.where||'')?'press':'dispatch', sel:'mark[data-hl="'+h.id+'"]'}}; }
+  function hlCard(h){ if(h.meta){ var m={}; for(var q in h.meta) m[q]=h.meta[q]; m.t=h.t; m.ret={tab:h.meta.tab, sel:'mark[data-hl="'+h.id+'"]'}; m.hl=h.id; return m; } var k=/Tab 2/.test(h.where||'')?'routine':'lesson'; return {k:k, t:h.t, who:'Highlighted words', when:'', where:'', from:'Highlighted from '+(h.where||'the lesson')+(k==='routine'?' (lesson reconstruction or explanation)':''), ctx:'', tags:['highlight'], ret:{tab:/Tab 2/.test(h.where||'')?'desk':/Tab 3/.test(h.where||'')?'factcheck':/Tab 4/.test(h.where||'')?'press':'dispatch', sel:'mark[data-hl="'+h.id+'"]'}}; }
   function photoCard(p){ return {k:'photo', t:p.cap||'A photo from the lesson page', who:'My photo', when:'', where:'', from:'Photo I took of the lesson page'+(p.tab?' ('+p.tab+' tab)':''), ctx:'', img:p.src, pt:p.t, tags:['photo'], ret:p.tab?{tab:p.tab, sel:'.tab-panel.active'}:null}; }
   function onCardClick(e){ var b=e.target.closest('button'); if(!b) return;
     if(b.dataset.ret){ var c=evGet(b.dataset.ret); if(c) goSrc(c.ret); return; }
@@ -725,7 +732,7 @@
     after(sc,box);
     function paintOne(c){ var A=S.cc[c.id]||{}, w=$('.rg-cc[data-c="'+c.id+'"]',box), v=(c.verdicts||[]).filter(function(x){ return x.k===A.v; })[0], d=(c.details||[])[A.d];
       $('.fb.v',w).innerHTML=v?'<p class="'+(v.ok?'ok':'no')+'">'+(v.ok?'✓ ':'Not quite. ')+esc(v.say)+'</p>':''; $('.fb.d',w).innerHTML=d?'<p class="'+(d.ok?'ok':'no')+'">'+(d.ok?'✓ ':'Look again. ')+esc(d.say)+'</p>':'';
-      var n=words(A.why||''); $('.wcl',w).innerHTML=n>=8?'✓ '+n+' words. '+evBtn({k:'mine', t:A.why, who:'My fact-check', when:'', where:'', from:'My explanation on the Fact-Check tab', ctx:'Claim: “'+c.claim+'”'+(d?' · Detail: '+d.t:''), tags:['factcheck','mine'], ret:{tab:'factcheck', sel:'#cc-'+c.id+'-why'}},'xs'):'📝 '+n+' of 8 words.';
+      var n=words(A.why||''); $('.wcl',w).innerHTML=n>=8?'✓ '+n+' words. '+evBtn({k:'mine', auto:'claim-'+c.id, t:A.why, who:'My fact-check', when:'', where:'', from:'My explanation on the Fact-Check tab', ctx:'Claim: “'+c.claim+'”'+(d?' · Detail: '+d.t:''), tags:['factcheck','mine'], ret:{tab:'factcheck', sel:'#cc-'+c.id+'-why'}},'xs'):'📝 '+n+' of 8 words.';
       w.classList.toggle('done',!!(v&&v.ok&&d&&d.ok&&n>=8)); }
     box.addEventListener('change',function(e){ var t=e.target, w=t.closest('.rg-cc'); if(!w) return; var c=CC.filter(function(x){ return x.id===w.dataset.c; })[0], A=S.cc[c.id]=S.cc[c.id]||{tries:0};
       if(/-v$/.test(t.name)){ A.v=t.value; A.tries=(A.tries||0)+1; var v=(c.verdicts||[]).filter(function(x){ return x.k===A.v; })[0]; v&&v.ok?SFX.chime():SFX.bounce(); }
@@ -790,7 +797,7 @@
     if(b.dataset.revise){ var rp=b.dataset.revise, ta2=$('#rg-f-'+rp,deskEl), m=ta2&&ABS.exec(ta2.value); d.rev[rp]={w:m?m[1]:'',state:'revising'}; save(); paintRev(); if(ta2){ ta2.focus(); if(m) try{ ta2.setSelectionRange(m.index,m.index+m[1].length); }catch(x){} } return; }
     if(b.dataset.keepit){ var kp=b.dataset.keepit; d.rev[kp]=d.rev[kp]||{}; d.rev[kp].state='keep'; save(); paintRev(); var kin=$('input[data-keep="'+kp+'"]',deskEl); if(kin) kin.focus(); return; } }
   function pickHTML(p,rep){ var all=EV(), use=all.filter(function(c){ return c.use; }), rest=all.filter(function(c){ return !c.use; });
-    if(!all.length) return '<p class="rg-empty">Your drawer is empty. Go back through the lesson and tap <b>＋ Save as evidence</b> beside useful details.</p>';
+    if(!all.length) return '<p class="rg-empty">Your drawer is empty. Go back to the Desk tab, highlight useful details, and tap <b>＋ Save as evidence</b>.</p>';
     function row(c){ return '<li><button type="button" data-pick="'+esc(c.id)+'" data-p="'+esc(p)+'"'+(rep?' data-rep="'+esc(rep)+'"':'')+'>'+cardHTML(c,'pick')+'</button></li>'; }
     return '<div class="ph">'+(rep?'Swap it for…':'Which saved detail do you want to add?')+'</div>'+(use.length?'<div class="gl">In your report</div><ul>'+use.map(row).join('')+'</ul>':'')+(rest.length?'<div class="gl">More in your drawer</div><ul>'+rest.map(row).join('')+'</ul>':''); }
   /* light paint: counts, readiness, revision prompts — never rebuilds the text boxes, so typing never loses focus */
@@ -801,7 +808,7 @@
     $('.rg-nd-tray .cnt',deskEl).textContent=ev.length+' saved · '+use.length+' in use';
     var a=angle(); $('.rg-nd-tray .fit',deskEl).innerHTML=a?'<p><b>Your main idea (angle):</b> '+esc(a.t)+(a.fitTip?'<br><small>'+esc(a.fitTip)+'</small>':'')+'</p>':'<p><small>Choose your main idea in step 1, and the tray will show which saved details fit it best.</small></p>';
     var fk=document.activeElement&&deskEl.contains(document.activeElement)&&document.activeElement.dataset.use;
-    $('.rg-nd-tray .list',deskEl).innerHTML=ev.length?ev.slice().sort(function(x,y){ return (angleFits(y)?1:0)-(angleFits(x)?1:0); }).map(function(c){ return cardHTML(c,'tray'); }).join(''):'<p class="rg-empty">Nothing saved yet. Go to the Desk tab and tap <b>＋ Save as evidence</b> beside details that show how people’s days were different.</p>';
+    $('.rg-nd-tray .list',deskEl).innerHTML=ev.length?ev.slice().sort(function(x,y){ return (angleFits(y)?1:0)-(angleFits(x)?1:0); }).map(function(c){ return cardHTML(c,'tray'); }).join(''):'<p class="rg-empty">Nothing saved yet. On the Desk tab, tap 🖍 Highlight on the right side, drag across a detail that shows how people’s days were different, then tap <b>＋ Save as evidence</b>.</p>';
     if(fk){ var fe=$('input[data-use="'+fk+'"]',deskEl); if(fe) fe.focus(); }
     var ideas=(a&&a.ideas)||NW.ideas||[]; $('.head .ideas',deskEl).innerHTML=ideas.length?'<span class="k">Headline ideas <i>(examples: change them to make them yours)</i></span>'+ideas.map(function(t){ return '<button type="button" data-idea="'+esc(t)+'">'+esc(t)+'</button>'; }).join(''):'';
     var notes=earlierNotes();
@@ -944,6 +951,20 @@
   function zoomImage(src,alt,cap){ if(!src) return; var m=modal(); m.innerHTML='<div class="rg-sheet rg-zoom"><button class="x" type="button" aria-label="Close">✕</button><h3>🔍 Look closer</h3><div class="zw" tabindex="0" aria-label="Scrollable picture"><img alt="'+esc(alt||'')+'" src="'+esc(src)+'"></div><p class="cap">'+esc(cap||'')+'</p><div class="row"><button type="button" class="rg-btn alt zi">＋ Zoom in</button><button type="button" class="rg-btn alt zo">－ Zoom out</button></div></div>';
     var im=$('.zw img',m), z=1; function setZ(v){ z=Math.max(1,Math.min(3,v)); im.style.width=(z*100)+'%'; }
     $('.x',m).addEventListener('click',closeModal); $('.zi',m).addEventListener('click',function(){ setZ(z+0.5); }); $('.zo',m).addEventListener('click',function(){ setZ(z-0.5); }); }
+
+  function hlMetaFor(block){ var rd=(DATA.explore||{}).reading||{}, tab=(block.closest('.tab-panel')||{id:'panel-dispatch'}).id.replace('panel-',''), base={tab:tab, where:'', when:'', tags:['highlight']};
+    function m(o){ for(var k in o) base[k]=o[k]; return base; }
+    var line=block.closest('.rg-col-line'), col=block.closest('.rg-col');
+    if(line&&col){ var c=(rd.cols||[]).filter(function(x){ return x.id===col.dataset.id; })[0]; return m({k:'routine', who:c?c.who:'', when:(rd.times||[])[+line.dataset.i]||'', where:c?c.where||'':'', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:[c?c.id:'','routine','highlight']}); }
+    if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
+    var al=block.closest('.rg-al3');
+    if(al){ var A=DATA.almanac||{}; if(block.closest('.say')) return m({k:'source', quote:true, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Real source from the past: '+(A.cite||'Poor Richard’s Almanack, 1735'), tags:['almanac','highlight']});
+      if(block.closest('.rg-al3-ann')) return m({k:'source', who:'Poor Richard improved (cover)', when:'1748', where:'Philadelphia', from:'Real source from the past: the 1748 almanac cover (Library of Congress)', tags:['almanac','highlight']});
+      return m({k:'lesson', who:'Almanac calendar page', where:'Philadelphia', from:'Fact from the lesson: a calendar page re-set for this lesson (sun times worked out for Philadelphia)', ctx:A.note||'', tags:['almanac','highlight']}); }
+    if(block.closest('.rg-redpen')){ var ev=(DATA.explore||{}).evidence||{}; return m({k:'source', who:'Kitchen print', when:'made about '+((ev.date||{}).year||''), from:ev.from||'Real source from the past: the kitchen print', tags:['picture','highlight']}); }
+    if(block.closest('.rg-myth')) return m({k:'lesson', who:'Fact-check of the Herald', from:'Fact from the lesson (a fact-check written for this lesson)', tags:['herald','highlight']});
+    if(block.closest('.herald-wrap, .herald-claim')) return m({k:'lesson', who:'The Hasty Herald', from:'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','highlight']});
+    return m({k:'lesson', who:'Highlighted from the lesson', from:'Fact from the lesson ('+whereAmI(block)+')'}); }
 
   /* ================================================================ Fact-Check one claim at a time + "why that one's tempting" */
   function buildFactSteps(){ var qs=$$('#panel-factcheck .factcheck-q'); if(qs.length<2) return;
@@ -1109,7 +1130,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-col-line, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div';
+  var HL_SEL='p, li, .rg-col-line, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -1147,9 +1168,9 @@
   function paintTray(){ if(!trayEl) return; var h=highlights().length, ph=photos().length, ms=(DATA.camera||{}).missions||[], md=ms.filter(function(x,i){ return photos().some(function(p){ return p.mission===i; }); }).length;
     $('.hl .cnt',trayEl).textContent=h||''; $('.cam .cnt',trayEl).textContent=ms.length?md+'/'+ms.length:''; $('.roll .cnt',trayEl).textContent=EV().length||''; paintHunt(); }
   var hlbar=null, pend=null;
-  function buildHighlighter(){ hlbar=el('div','rg rg-hlbar','<span>🖍</span>'+Object.keys(HL_COLORS).map(function(k){ return '<button type="button" data-c="'+k+'"><i style="background:'+HL_COLORS[k].c+'"></i>'+HL_COLORS[k].n+'</button>'; }).join('')+'<button type="button" data-c="g" data-ev="1" class="ev">＋ Save as evidence</button>');
+  function buildHighlighter(){ hlbar=el('div','rg rg-hlbar','<span>🖍</span><button type="button" data-c="g" data-ev="1" class="ev"><i style="background:'+HL_COLORS.g.c+'"></i>＋ Save as evidence</button>'+['y','p'].map(function(k){ return '<button type="button" data-c="'+k+'"><i style="background:'+HL_COLORS[k].c+'"></i>'+HL_COLORS[k].n+'</button>'; }).join(''));
     document.body.appendChild(hlbar);
-    var banner=el('div','rg rg-hlbanner','🖍 <b>Highlighter on.</b> Drag across a few key words, then pick a color. <button type="button" data-a="tips">Tips</button><button type="button" data-a="off">Turn off</button>'); document.body.appendChild(banner);
+    var banner=el('div','rg rg-hlbanner','🖍 <b>Highlighter on.</b> Drag across a detail, then tap <b>＋ Save as evidence</b> (or Key word, or I wonder). <button type="button" data-a="tips">Tips</button><button type="button" data-a="off">Turn off</button>'); document.body.appendChild(banner);
     $('[data-a="tips"]',banner).addEventListener('click',openCoach); $('[data-a="off"]',banner).addEventListener('click',function(){ setHL(false); });
     function hideBar(){ hlbar.classList.remove('show'); pend=null; }
     function check(){ if(!html.classList.contains('rg-on')||!html.classList.contains('rg-hlmode')) return hideBar(); var sel=window.getSelection(); if(!sel||sel.isCollapsed||!sel.rangeCount) return hideBar();
@@ -1161,9 +1182,9 @@
       hlbar.style.left=Math.max(8,Math.min(innerWidth-300,rr.left+rr.width/2-140))+'px'; hlbar.style.top=(rr.bottom+scrollY+10)+'px'; hlbar.classList.add('show'); }
     var tmr=null; document.addEventListener('selectionchange',function(){ clearTimeout(tmr); tmr=setTimeout(check,260); });
     $$('button',hlbar).forEach(function(b){ b.addEventListener('pointerdown',function(e){ e.preventDefault(); }); b.addEventListener('click',function(){ if(!pend) return; var id='h'+Date.now().toString(36), c=b.dataset.c, a=highlights();
-      var h={id:id,b:pend.b,s:pend.s,e:pend.e,t:pend.t,c:c,where:whereAmI(pend.block)}; a.push(h); saveHL(a); wrapHL(pend.block,pend.s,pend.e,c,id); var line=pend.block.closest('.rg-col'); window.getSelection().removeAllRanges(); hideBar(); SFX.scratch();
-        if(b.dataset.ev){ var card=hlCard(h); if(line){ var col=(((DATA.explore||{}).reading||{}).cols||[]).filter(function(x){ return x.id===line.dataset.id; })[0]; if(col){ card.k='routine'; card.who=col.who; card.where=col.where||''; card.from=((DATA.explore||{}).reading||{}).srcLabel||card.from; card.tags=[col.id,'routine','highlight']; } } addEvidence(card); } }); });
-    document.addEventListener('click',function(e){ var m=e.target.closest&&e.target.closest('mark.rg-hl'); if(!m) return; if(!m.classList.contains('arm')){ $$('mark[data-hl="'+m.dataset.hl+'"]').forEach(function(x){ x.classList.add('arm'); }); setTimeout(function(){ $$('mark.arm').forEach(function(x){ x.classList.remove('arm'); }); },2500); return; } unwrapHL(m.dataset.hl); saveHL(highlights().filter(function(h){ return h.id!==m.dataset.hl; })); });
+      var h={id:id,b:pend.b,s:pend.s,e:pend.e,t:pend.t,c:c,where:whereAmI(pend.block),meta:hlMetaFor(pend.block)}; a.push(h); saveHL(a); wrapHL(pend.block,pend.s,pend.e,c,id); window.getSelection().removeAllRanges(); hideBar(); SFX.scratch();
+        if(b.dataset.ev||c==='g') addEvidence(hlCard(h)); }); });
+    document.addEventListener('click',function(e){ var m=e.target.closest&&e.target.closest('mark.rg-hl'); if(!m) return; if(!m.classList.contains('arm')){ $$('mark[data-hl="'+m.dataset.hl+'"]').forEach(function(x){ x.classList.add('arm'); }); setTimeout(function(){ $$('mark.arm').forEach(function(x){ x.classList.remove('arm'); }); },2500); return; } var hid=m.dataset.hl; unwrapHL(hid); saveHL(highlights().filter(function(h){ return h.id!==hid; })); if(EV().some(function(c){ return c.hl===hid; })){ S.ev=EV().filter(function(c){ return c.hl!==hid; }); save(); paintEvidence(); evToast(null,'Highlight removed, and taken out of your evidence drawer.'); } });
     var blocks=hlBlocks(); highlights().forEach(function(h){ var b=blocks[h.b]; if(!b||blockText(b).slice(h.s,h.e)!==h.t){ b=blocks.filter(function(x){ return blockText(x).indexOf(h.t)>-1; })[0]; if(!b) return; h.s=blockText(b).indexOf(h.t); h.e=h.s+h.t.length; } wrapHL(b,h.s,h.e,h.c,h.id); }); }
   function setHL(on){ html.classList.toggle('rg-hlmode',on); var b=trayEl&&$('.hl',trayEl); if(b) b.classList.toggle('on',on); SFX.clack(); if(!on&&hlbar) hlbar.classList.remove('show'); }
   function openCoach(){ var Co=DATA.hlCoach||{}, Pr=Co.practice||{}, m=modal(), toks=(Pr.text||'').split(' ');
