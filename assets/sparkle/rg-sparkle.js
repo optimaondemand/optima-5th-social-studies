@@ -61,7 +61,7 @@
   var SFX={ clack:function(){ noise(0.03,1800,4000,0.05); }, ding:function(){ if(QUIET) return; tone(1568,0.5,'sine',0.035); }, chime:function(){ tone(880,0.18,'sine',0.04); setTimeout(function(){ tone(1320,0.25,'sine',0.035); },90); },
     thud:function(){ tone(120,0.18,'sine',0.08,60); noise(0.06,200,600,0.06); }, stamp:function(){ if(QUIET){ tone(220,0.12,'sine',0.04); return; } tone(90,0.2,'square',0.05,50); noise(0.08,300,900,0.1); },
     scratch:function(){ noise(0.22,2500,6000,0.035); }, soft:function(){ tone(523,0.25,'sine',0.025); }, bounce:function(){ tone(300,0.12,'triangle',0.04,200); },
-    paper:function(){ noise(0.12,900,2400,0.05); }, snap:function(){ noise(0.09,1800,4200,0.09); setTimeout(function(){ noise(0.05,900,2400,0.05); },40); } };
+    paper:function(){ noise(0.12,900,2400,0.05); }, ring:function(){ if(QUIET) return; for(var k=0;k<10;k++) (function(k){ setTimeout(function(){ tone(k%2?1180:1420,0.05,'square',0.012); },k*55); })(k); }, pickup:function(){ noise(0.05,600,1800,0.07); setTimeout(function(){ tone(420,0.06,'sine',0.02); },70); }, snap:function(){ noise(0.09,1800,4200,0.09); setTimeout(function(){ noise(0.05,900,2400,0.05); },40); } };
 
   /* ================================================================ YOUR NAME — asked once (same filter as G4/ELA). Kept on this computer only. */
   var NAME_STRONG=['fuck','shit','bitch','cunt','whore','slut','wank','bollock','bastard','penis','vagina','boob','anus','turd','scrotum','testicle','nigg','fagg','retard','kike','chink','tranny','porn','rape','nazi','hitler'];
@@ -130,9 +130,11 @@
   /* the newest note types out letter by letter (instant under reduced motion) */
   function typeOut(box){ var t=box&&box.querySelector('.rg-msg.t:last-of-type .tx'); if(!t||RM) return; var last=thread.filter(function(m){return m.f==='t';}).slice(-1)[0]; if(!last||!last.fresh) return; last.fresh=0; save();
     var full=t.textContent, i=0; t.textContent=''; t.classList.add('typing'); clearInterval(typing);
-    typing=setInterval(function(){ i+=2; t.textContent=full.slice(0,i); if(i%6===0) SFX.clack(); if(i>=full.length){ clearInterval(typing); t.classList.remove('typing'); } },22); }
+    typing=setInterval(function(){ i+=2; t.textContent=full.slice(0,i); if(i%6===0) SFX.clack(); var pp=box.closest&&box.closest('.rg-wire-paper'); if(pp) pp.scrollTop=pp.scrollHeight; if(i>=full.length){ clearInterval(typing); t.classList.remove('typing'); } },22); }
+  /* the paper is the scroller: always land on the newest note (again after the rise animation and while typing) */
+  function pinWire(){ if(!wireEl) return; var pp=$('.rg-wire-paper',wireEl); if(!pp) return; pp.scrollTop=pp.scrollHeight; requestAnimationFrame(function(){ pp.scrollTop=pp.scrollHeight; }); [350,800].forEach(function(ms){ setTimeout(function(){ pp.scrollTop=pp.scrollHeight; },ms); }); }
   function render(){
-    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— notes from the editor’s desk —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll send a note when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); w.scrollTop=w.scrollHeight; }
+    if(wireEl){ var w=$('.rg-wire-roll',wireEl); w.innerHTML='<div class="rg-msg sys">— notes from the editor’s desk —</div>'+thread.map(msgHTML).join(''); var comp=$('.rg-wire-reply',wireEl); comp.innerHTML=pendingKey&&CHOICES[pendingKey]?'<div class="lab">Tap a reply</div>'+choicesHTML():'<div class="none">No reply needed. Keep working. I’ll send a note when there’s news.</div>'; if(wireEl.classList.contains('open')) typeOut(w); pinWire(); }
     if(wireBtn){ wireBtn.classList.toggle('unread',unread>0); $('.n',wireBtn).textContent=unread; }
     var open=wireEl&&wireEl.classList.contains('open');
     ['open','dispatch','desk','factcheck','press'].forEach(function(sc){ var n=$('.rg-note[data-scene="'+sc+'"]'); if(!n) return; var ms=thread.filter(function(m){return m.scene===sc;});
@@ -196,8 +198,9 @@
     var bar=document.getElementById('tabBar'); if(!bar||!STAGES.length) return;
     var unit=(($$('.info-strip .info-cell')[1]||{}).querySelector?($$('.info-strip .info-cell')[1].querySelector('.info-value')||{}).textContent:'')||'';
     pressEl=el('div','rg rg-press');
-    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
+    pressEl.innerHTML='<div class="rg-press-top"><span class="kick">The Republic Gazette · '+esc(unit)+' · <b class="pg"></b></span><span class="rg-press-r"><span class="rg-pt-grp" aria-label="Desk tools"><button type="button" class="rg-pt" data-t="cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<b>Camera</b></button><button type="button" class="rg-pt" data-t="hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<b>Highlighter</b></button></span><button type="button" class="rg-who rg-hide" title="Fix the spelling of my byline"><b></b> ✎</button><button type="button" class="rg-wire-btn" aria-expanded="false"><span class="ic">✉️</span> Notes <span class="n">0</span></button></span></div><div class="rg-press-row">'+proofSVG()+'<div class="rg-tabslot"></div></div>';
     var hero=$('.hero-newspaper'); if(hero) after(hero,pressEl); else before(bar,pressEl);
+    pressEl.addEventListener('click',function(e){ var t=e.target.closest('.rg-pt'); if(!t) return; var tb=$('.rg-tb.'+t.dataset.t); if(tb) tb.click(); });
     move(bar,function(n){ $('.rg-tabslot',pressEl).appendChild(n); });
     STAGES.forEach(function(s,i){ var b=document.getElementById('btn-'+s.tab); if(!b) return; var lab=b.textContent.replace(/[✓]/g,'').trim(); setText(b,'<span class="rg-tn">'+(i+1)+'</span><span class="rg-tabt"><b>'+esc(lab)+'</b><small>'+esc(s.t)+'</small></span><span class="tab-check"></span>'); });
     $('.rg-who',pressEl).addEventListener('click',function(){ showNameCard(true); }); paintWho();
@@ -277,34 +280,34 @@
   /* ---------------------------------------------------------------- suncolumns: drag the sun through one day; each person's column sets in type */
   MOD.suncolumns=function(c,anchor){ var st=mstate('sun',{stop:-1,myth:{}}); var N=(c.times||[]).length;
     var g=gameShell('rg-sun','The Front Page Desk · one day, many lives',c.title||'Follow one day in the colonies',c);
-    var sky='<svg class="rg-sky" viewBox="0 0 600 120" aria-hidden="true"><defs><linearGradient id="rgSkyG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F6E7C1"/><stop offset="1" stop-color="#FBF7EC"/></linearGradient></defs><rect width="600" height="120" fill="url(#rgSkyG)"/><path d="M30,110 Q300,-50 570,110" fill="none" stroke="#C9B98E" stroke-dasharray="4 6"/>'+
+    var sky='<svg class="rg-sky" viewBox="0 0 600 120" aria-hidden="true"><defs><linearGradient id="rgSkyG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#F6E7C1"/><stop offset="1" stop-color="#FBF7EC"/></linearGradient></defs><rect width="600" height="120" fill="url(#rgSkyG)"/><path d="M30,104 Q300,-44 570,104" fill="none" stroke="#C9B98E" stroke-dasharray="4 6"/>'+
       (c.times||[]).map(function(t,i){ var p=arc(i/(N-1)); return '<g class="rg-sky-stop" data-i="'+i+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="#FBF7EC" stroke="#8B6F2E" stroke-width="2"/></g>'; }).join('')+
       '<path d="M0,112 L600,112" stroke="#8B6F2E" stroke-width="2"/><g class="rg-sun"><circle r="16" fill="#E9B44C"/><g stroke="#E9B44C" stroke-width="3" stroke-linecap="round">'+[0,45,90,135,180,225,270,315].map(function(a){ var r=a*Math.PI/180; return '<line x1="'+(Math.cos(r)*21)+'" y1="'+(Math.sin(r)*21)+'" x2="'+(Math.cos(r)*27)+'" y2="'+(Math.sin(r)*27)+'"/>'; }).join('')+'</g></g></svg>';
-    function arc(t){ var x=30+540*t, y=110-4*160*t*(1-t)*0.98; return [x,y]; }
+    function arc(t){ var x=30+540*t, y=104-4*74*t*(1-t); return [x,y]; } /* peak stays inside the sky window */
     g.innerHTML+='<div class="rg-sun-sky">'+sky+'<div class="rg-sun-labels">'+(c.times||[]).map(function(t,i){ return '<button type="button" data-i="'+i+'">'+esc(t)+'</button>'; }).join('')+'</div></div>'+
       '<div class="rg-sun-ctl"><button type="button" class="rg-btn rg-sun-next">Move the sun ▸</button><span class="rg-sun-now"></span></div>'+
       '<div class="rg-cols">'+(c.cols||[]).map(function(col){ return '<article class="rg-col'+(col.calm?' calm':'')+'" data-id="'+esc(col.id)+'"><header><span class="ic">'+esc(col.icon||'')+'</span><div><b>'+esc(col.who)+'</b><small>'+esc(col.where||'')+'</small></div></header><div class="rg-col-body"></div></article>'; }).join('')+'</div>'+
       '<div class="rg-myths"></div><div class="rg-sun-close"></div>';
     after(anchor,g);
     var sun=$('.rg-sun',g), nextB=$('.rg-sun-next',g), now=$('.rg-sun-now',g), mythBox=$('.rg-myths',g);
-    function placeSun(t){ var p=arc(Math.max(0,Math.min(1,t))); sun.setAttribute('transform','translate('+p[0]+','+p[1]+')'); }
-    function paint(type){ var s=st.stop; placeSun(s<0?0:s/(N-1)); g.classList.toggle('dawn',s<0);
-      $$('.rg-sun-labels button',g).forEach(function(b){ var i=+b.dataset.i; b.classList.toggle('on',i<=s); b.classList.toggle('now',i===s); b.disabled=i>s+1; });
-      $$('.rg-sky-stop',g).forEach(function(n){ n.classList.toggle('on',+n.dataset.i<=s); });
+    var view=-1; function placeSun(t){ var p=arc(Math.max(0,Math.min(1,t))); sun.setAttribute('transform','translate('+p[0]+','+p[1]+')'); }
+    function paint(type){ var s=st.stop; if(view<0||view>s) view=s; placeSun(view<0?0:view/(N-1)); g.classList.toggle('dawn',s<0); g.classList.toggle('looking-back',view>=0&&view<s);
+      $$('.rg-sun-labels button',g).forEach(function(b){ var i=+b.dataset.i; b.classList.toggle('on',i<=s); b.classList.toggle('now',i===view); b.disabled=i>s+1; });
+      $$('.rg-sky-stop',g).forEach(function(n){ n.classList.toggle('on',+n.dataset.i<=s); n.classList.toggle('now',+n.dataset.i===view); });
       $$('.rg-col',g).forEach(function(a){ var col=(c.cols||[]).filter(function(x){ return x.id===a.dataset.id; })[0], b=$('.rg-col-body',a), have=b.children.length;
-        for(var i=have;i<=s;i++){ var p=el('p','rg-col-line','<span class="tm">'+esc(c.times[i])+'</span> '+esc(col.lines[i]||'')); b.appendChild(p); if(type&&i===s&&!RM){ p.classList.add('set'); } } });
+        for(var i=have;i<=s;i++){ var p=el('p','rg-col-line','<span class="tm">'+esc(c.times[i])+'</span> '+esc(col.lines[i]||'')); b.appendChild(p); if(type&&i===s&&!RM){ p.classList.add('set'); } } $$('.rg-col-line',b).forEach(function(p,i){ p.classList.toggle('dim',view>=0&&i!==view); p.classList.toggle('cur',i===view); }); });
       nextB.disabled=s>=N-1; nextB.textContent=s<0?'☀️ Start the day: sunrise ▸':s>=N-1?'The day is done':'Move the sun to '+(c.times[s+1]||'')+' ▸';
-      now.textContent=s<0?'Drag the sun or tap the button.':'Now: '+c.times[s]+'. Read every column.';
+      now.textContent=s<0?'Drag the sun or tap the button.':view<s?'Looking back at '+c.times[view]+'. Tap '+c.times[s]+' to come back.':'Now: '+c.times[s]+'. Read every column.'+(s>0?' Tap an earlier time to look back.':'');
       mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s; }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact">'+(m.img?'<figure><img alt="" src="'+esc(LOCAL+m.img)+'"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>':'')+'<div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
       var all=done(); $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; g.classList.toggle('finished',all); }
-    function go(i){ if(i>st.stop+1||i<=st.stop) return; st.stop=i; save(); SFX.paper(); paint(true); refreshPress(); if(i===N-1) beat('sunDone'); }
+    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; st.stop=i; view=i; save(); SFX.paper(); paint(true); refreshPress(); if(i===N-1) beat('sunDone'); }
     nextB.addEventListener('click',function(){ go(st.stop+1); });
     $('.rg-sun-labels',g).addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) go(+b.dataset.i); });
     /* drag the sun along the arc */
     var svg=$('.rg-sky',g), dragging=false;
     sun.addEventListener('pointerdown',function(e){ dragging=true; sun.setPointerCapture&&sun.setPointerCapture(e.pointerId); e.preventDefault(); });
-    sun.addEventListener('pointermove',function(e){ if(!dragging) return; var r=svg.getBoundingClientRect(), t=(e.clientX-r.left)/r.width*600; t=(t-30)/540; var lim=(st.stop+1)/(N-1); placeSun(Math.max(0,Math.min(lim,t))); var k=Math.round(t*(N-1)); if(k===st.stop+1&&Math.abs(t*(N-1)-k)<0.18) { dragging=false; go(k); } });
-    sun.addEventListener('pointerup',function(){ dragging=false; paint(); });
+    sun.addEventListener('pointermove',function(e){ if(!dragging) return; var r=svg.getBoundingClientRect(), t=(e.clientX-r.left)/r.width*600; t=(t-30)/540; var lim=Math.min(1,(st.stop+1)/(N-1)); t=Math.max(0,Math.min(lim,t)); placeSun(t); var k=Math.round(t*(N-1)); if(Math.abs(t*(N-1)-k)<0.18&&k!==view&&k<=st.stop+1){ go(k); } });
+    sun.addEventListener('pointerup',function(){ dragging=false; paint(); }); svg.addEventListener('click',function(e){ var n=e.target.closest('.rg-sky-stop'); if(n) go(+n.dataset.i); });
     mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
       if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
       st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); });
@@ -316,18 +319,23 @@
   /* ---------------------------------------------------------------- redpen: circle what you see, open the date, find who's missing */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}});
     var g=gameShell('rg-redpen','The Source Desk · mark it up like an editor',c.title||'Mark up the picture',c);
-    var spots=c.spots||[], need=c.need||Math.min(4,spots.length);
-    g.innerHTML+='<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'" pathLength="100"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(c.date.x-c.date.w/2)+'" y="'+(c.date.y-c.date.h/2)+'" width="'+c.date.w+'" height="'+c.date.h+'" rx="2" pathLength="100"/>':'')+'</svg>'+
+    var spots=c.spots||[], need=c.need||Math.min(4,spots.length), last=null;
+    /* where each annotation sits: the lesson can place it (lx, ly); otherwise push it away from the centre */
+    function lpos(s){ if(s.lx!=null) return [s.lx,s.ly]; return [Math.max(14,Math.min(86,s.x+(s.x<50?-1:1)*-16)),Math.max(8,Math.min(86,s.y+(s.y<50?16:-16)))]; }
+    g.innerHTML+='<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'" pathLength="100"/>'; }).join('')+spots.map(function(s,i){ var L=lpos(s); return '<line class="lead" data-i="'+i+'" x1="'+s.x+'" y1="'+s.y+'" x2="'+L[0]+'" y2="'+L[1]+'"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(c.date.x-c.date.w/2)+'" y="'+(c.date.y-c.date.h/2)+'" width="'+c.date.w+'" height="'+c.date.h+'" rx="2" pathLength="100"/>':'')+'</svg>'+
       spots.map(function(s,i){ return '<button type="button" class="rg-rp-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="Label '+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button>'; }).join('')+
+      spots.map(function(s,i){ var L=lpos(s); return '<div class="rg-rp-ann" data-i="'+i+'" style="left:'+L[0]+'%;top:'+L[1]+'%" aria-live="polite"><b><span class="no">'+(i+1)+'</span> '+esc(s.label)+'</b><span class="txt">'+esc(s.t)+'</span></div>'; }).join('')+
       (c.date?'<button type="button" class="rg-rp-n date" style="left:'+c.date.x+'%;top:'+c.date.y+'%" aria-label="The caption and date">📅</button>':'')+'</figure>'+
-      '<aside class="rg-rp-notes"><div class="lab">Editor’s margin notes</div><ol>'+spots.map(function(s,i){ return '<li data-i="'+i+'"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span></li>'; }).join('')+'</ol><div class="rg-rp-date"></div></aside></div>'+
+      '<div class="rg-rp-cur" aria-live="polite"></div><div class="rg-rp-date"></div></div>'+
       '<div class="rg-rp-count"></div><div class="rg-rp-miss"></div>';
     after(anchor,g); var pic=$('.rg-rp-img',g); pic.appendChild(srcImg(c.img,'',c.alt||''));
     function guess(){ return S.m.dateit&&S.m.dateit.locked?S.m.dateit.guess:null; }
     function paint(){ var n=Object.keys(st.seen).length;
       $$('.ring',g).forEach(function(r){ var i=r.dataset.i; r.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
       $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
-      $$('.rg-rp-notes li',g).forEach(function(li){ li.classList.toggle('on',!!st.seen[li.dataset.i]); });
+      $$('.rg-rp-ann',g).forEach(function(a){ var i=a.dataset.i; a.classList.toggle('on',!!st.seen[i]); a.classList.toggle('open',i===last); });
+      $$('.lead',g).forEach(function(l){ l.classList.toggle('on',!!st.seen[l.dataset.i]); });
+      var cs=last!=null&&spots[+last]; $('.rg-rp-cur',g).innerHTML=cs?'<b>'+(+last+1)+'. '+esc(cs.label)+'</b> '+esc(cs.t):'';
       var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',n>=need&&!st.date); dbtn.disabled=n<need; }
       $('.rg-rp-count',g).innerHTML=st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> parts circled. Tap a number on the picture.':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
       var gs=guess(), d=c.date||{};
@@ -338,7 +346,9 @@
       g.classList.toggle('finished',done()); }
     g.addEventListener('click',function(e){ var b=e.target.closest('.rg-rp-n'); if(!b) return;
       if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); return; }
-      st.seen[b.dataset.i]=true; save(); SFX.scratch(); paint(); var li=$('.rg-rp-notes li[data-i="'+b.dataset.i+'"]',g); if(li){ li.classList.add('flash'); setTimeout(function(){ li.classList.remove('flash'); },900); } refreshPress(); });
+      st.seen[b.dataset.i]=true; last=b.dataset.i; save(); SFX.scratch(); paint(); refreshPress(); });
+    /* tap an old label to open its note again */
+    g.addEventListener('click',function(e){ var a=e.target.closest('.rg-rp-ann.on'); if(!a) return; last=a.dataset.i===last?null:a.dataset.i; paint(); });
     dragTap(g,'.rg-card','.rg-frame',function(card,frame){ var i=+card.dataset.i, x=c.missing.cards[i], want=x.out?'out':'in';
       if(frame.dataset.f!==want){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); $('.rg-rp-say',g).textContent=x.hint||'Look again at the picture.'; return; }
       st.miss[i]=want; save(); x.calm?SFX.soft():SFX.chime(); $('.rg-rp-say',g).textContent=x.say||''; paint(); refreshPress(); });
@@ -371,6 +381,25 @@
       else st[k]=st[k]===v?null:v;
       save(); SFX.paper(); paint(); refreshPress(); });
     function done(){ var h=(H.choices||[])[st.head]; return !!(h&&h.ok&&st.p1&&st.p2&&st.p1!==st.p2&&Object.keys(st.f).some(function(k){ return st.f[k]; })); }
+    /* ---- the draft helper: sits right above the writing box and turns the plan into sentence starters (never whole sentences) */
+    var body=document.getElementById('brief-body'), hlIn=document.getElementById('brief-headline'), dh=null, D=c.draft||{};
+    function low(t){ return t.charAt(0).toLowerCase()+t.slice(1); }
+    function fill(t,a,b,fs){ return t.replace(/\{p1\}/g,a?low(a.who):'').replace(/\{P1\}/g,a?a.who:'').replace(/\{p2\}/g,b?low(b.who):'').replace(/\{P2\}/g,b?b.who:'').replace(/\{f\}/g,fs); }
+    function paintDraft(){ if(!dh) return; var a=col(st.p1), b=col(st.p2), fs=F.filter(function(f,i){ return st.f[i]; }).map(low);
+      var fj=fs.length>1?fs.slice(0,-1).join(', ')+' and '+fs[fs.length-1]:(fs[0]||'');
+      if(!done()){ dh.innerHTML='<div class="hd">✏️ Starters for your draft</div><p class="lock">Finish your plan above (boxes 1 to 4), and I’ll set some starters here to help you begin.</p>'; dh.classList.remove('ready'); return; }
+      dh.classList.add('ready');
+      var heads=(D.heads||[]).map(function(t){ return fill(t,a,b,fj); }), starts=(D.starts||[]).map(function(x){ return {k:x.k,t:fill(x.t,a,b,fj)}; });
+      dh.innerHTML='<div class="hd">✏️ Starters from your plan</div><p class="tip">'+esc(D.tip||'Tap a starter to add it to your draft. Then finish the sentence in your own words.')+'</p>'+
+        '<div class="row"><span class="k">Headline ideas</span>'+heads.map(function(t){ return '<button type="button" class="rg-dh-chip head" data-t="'+esc(t)+'">'+esc(t)+'</button>'; }).join('')+'</div>'+
+        '<ol class="starts">'+starts.map(function(x){ return '<li><span class="k">'+esc(x.k)+'</span><button type="button" class="rg-dh-chip" data-t="'+esc(x.t)+'">'+esc(x.t)+' …</button></li>'; }).join('')+'</ol>';
+    }
+    if(body){ dh=el('div','rg rg-draft-help'); var gd=body.previousElementSibling&&body.previousElementSibling.classList.contains('gazette-body-guidance')?body.previousElementSibling:null; before(gd||body,dh);
+      dh.addEventListener('click',function(e){ var b=e.target.closest('.rg-dh-chip'); if(!b) return; var t=b.dataset.t;
+        if(b.classList.contains('head')){ if(hlIn){ hlIn.value=t; hlIn.dispatchEvent(new Event('input',{bubbles:true})); hlIn.focus(); } }
+        else { var v=body.value, sp=v&&!/\s$/.test(v)?(/[.!?]$/.test(v.trim())?' ':' '):''; body.value=v+sp+t+' '; body.dispatchEvent(new Event('input',{bubbles:true})); body.focus(); try{ body.setSelectionRange(body.value.length,body.value.length); }catch(_){} }
+        b.classList.add('used'); SFX.paper(); }); }
+    var paint0=paint; paint=function(){ paint0(); paintDraft(); };
     paint();
     return {el:g,done:done,lines:function(){ var h=(H.choices||[])[st.head], a=col(st.p1), b=col(st.p2); return [['Headline',h?h.t:''],['Column 1',a?a.who:''],['Column 2',b?b.who:''],['Why it matters',F.filter(function(f,i){ return st.f[i]; }).join(', ')]]; }}; };
 
@@ -394,29 +423,50 @@
     paint();
     return {el:g,done:done,journal:function(e,NA){ return st.line?'<p class="a"><b>'+e(c.root)+'</b> = '+e(c.meaning)+'. '+e(st.line)+'</p>':NA; }}; };
 
-  /* ---------------------------------------------------------------- almanac: one real saying, verified word for word, tied to the virtue */
-  /* ---------------------------------------------------------------- almanac: a real almanac to open — tap its title page, turn the page, sort who chose their hours */
-  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!ed) return; var st=mstate('almanac',{seen:{},sort:{}});
-    var spots=A.spots||[], sort=A.sort||{};
-    var a=el('section','rg rg-almanac2','<div class="rg-al2-head"><span class="sun">☀</span><b>The Almanac Corner</b><span class="moon">☾</span></div>'+whyCard(A.why)+todo(A.todo)+
-      '<div class="rg-al2-book"><div class="rg-al2-cover"><img alt="Title page of Poor Richard, 1743, an Almanack, printed by B. Franklin in Philadelphia" src="'+esc(LOCAL+A.img)+'">'+spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%">'+(i+1)+'</button>'; }).join('')+'<div class="cap">'+esc(A.imgCap||'')+'</div></div>'+
-      '<div class="rg-al2-side"><ol class="rg-al2-notes">'+spots.map(function(s,i){ return '<li data-i="'+i+'"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span></li>'; }).join('')+'</ol>'+
-      '<button type="button" class="rg-btn rg-al2-open">📖 Open the almanac</button><div class="rg-al2-page"><div class="pg"><div class="orn">❦ ❦ ❦</div><blockquote>“'+esc(A.saying)+'”</blockquote><cite>'+esc(A.cite)+'</cite><div class="orn">❦</div></div></div></div></div>'+
-      '<div class="rg-al2-sort"></div>');
+  /* ---------------------------------------------------------------- almanac v3: why it's here, said up front.
+     1 · the real 1748 cover (it promises sunrise and sunset times)  2 · a calendar page: read the sun, count the workday
+     3 · same sunrise for everyone, but who got to stop at sunset? */
+  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!ed) return; var st=mstate('almanac3',{seen:{},q:{},sort:{},step:1,mo:0});
+    var spots=A.spots||[], sort=A.sort||{}, MO=A.months||[], P=A.point||{};
+    var a=el('section','rg rg-almanac2 rg-al3','<div class="rg-al2-head"><span class="sun">☀</span><b>The Almanac Corner</b><span class="moon">☾</span></div>'+
+      '<div class="rg-al3-point"><span class="ic">🕰️</span><div><b>'+esc(P.q||'Why is an almanac here?')+'</b> '+esc(P.t||'')+'</div></div>'+
+      '<ol class="rg-al3-steps">'+['Read the real cover','Read the sun times','Who got to stop?'].map(function(t,i){ return '<li data-s="'+(i+1)+'"><span class="n">'+(i+1)+'</span>'+t+'</li>'; }).join('')+'</ol>'+
+      '<div class="rg-al3-stage"><div class="rg-al3-s1"><div class="rg-al2-cover"><img alt="Title page of Poor Richard improved, an almanac for the year 1748, printed and sold by B. Franklin in Philadelphia" src="'+esc(LOCAL+A.img)+'">'+
+        spots.map(function(s,i){ return '<button type="button" class="rg-al2-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="'+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button><div class="rg-al3-ann'+(s.x>50?' l':'')+'" data-i="'+i+'" style="top:'+s.y+'%;left:calc('+s.x+'% + 24px)"><b>'+esc(s.label)+'</b><span>'+esc(s.t)+'</span></div>'; }).join('')+
+        '<div class="cap">'+esc(A.imgCap||'')+'</div></div><div class="rg-al3-go"></div></div>'+
+      '<div class="rg-al3-s2"></div><div class="rg-al3-s3"></div></div>');
     after(ed,a);
+    function hm(t){ var p=t.split(':'); return +p[0]+(+p[1])/60; }
+    function page(){ var m=MO[st.mo]; if(!m) return '';
+      var r0=m.rows[0], rise=hm(r0[1]), set=12+hm(r0[2]);
+      return '<div class="rg-al3-tabs">'+MO.map(function(x,i){ return '<button type="button" data-mo="'+i+'" class="'+(i===st.mo?'on':'')+'"'+(i>0&&!st.q[MO[i-1].k]?' disabled':'')+'>'+esc(x.name)+(st.q[x.k]?' ✓':'')+'</button>'; }).join('')+'<button type="button" class="back" data-a="cover">◂ Cover</button></div>'+
+        '<div class="rg-al3-page"><div class="hd">'+esc(m.head)+'</div><table><thead><tr><th>Day</th><th>☀ Sun rises</th><th>☀ Sun sets</th><th>Weather guess</th></tr></thead><tbody>'+
+        m.rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="w">'+esc(r[3])+'</td></tr>'; }).join('')+'</tbody></table>'+
+        '<div class="say">“'+esc(A.saying)+'”<cite>'+esc(A.cite||'')+'</cite></div><div class="re">'+esc(A.note||'')+'</div></div>'+
+        '<div class="rg-al3-day'+(st.q[m.k]?' shown':'')+'" aria-hidden="true"><div class="trk"><i class="lit" style="left:'+(rise/24*100)+'%;width:'+((set-rise)/24*100)+'%"></i>'+[0,6,12,18,24].map(function(h){ return '<span style="left:'+(h/24*100)+'%">'+(h===0||h===24?'12 am':h===12?'noon':h===6?'6 am':'6 pm')+'</span>'; }).join('')+'</div><div class="lb">'+(st.q[m.k]?esc(m.name)+': about '+Math.round(set-rise)+' hours of daylight':'')+'</div></div>'+
+        '<div class="rg-al3-q"><b>'+esc(m.q)+'</b><div class="ch">'+m.choices.map(function(c,i){ return '<button type="button" class="rg-btn alt'+(st.q[m.k]&&i===m.ok?' right':'')+'" data-c="'+i+'"'+(st.q[m.k]?' disabled':'')+'>'+esc(c)+'</button>'; }).join('')+'</div><div class="fb">'+(st.q[m.k]?'✓ '+esc(m.yes):'')+'</div></div>'+
+        (MO.every(function(x){ return st.q[x.k]; })?'<div class="rg-al3-bridge">'+esc(A.bridge||'')+' <button type="button" class="rg-btn" data-a="s3">Who got to stop? ▸</button></div>':''); }
     function paint(){ var n=Object.keys(st.seen).length, need=spots.length;
-      $$('.rg-al2-n',a).forEach(function(b){ b.classList.toggle('on',!!st.seen[b.dataset.i]); }); $$('.rg-al2-notes li',a).forEach(function(li){ li.classList.toggle('on',!!st.seen[li.dataset.i]); });
-      var ob=$('.rg-al2-open',a); ob.disabled=n<need; ob.textContent=n<need?'📖 Tap all '+need+' numbers to open it ('+n+' of '+need+')':'📖 Turn the page'; ob.classList.toggle('rg-hide',!!st.open);
-      a.classList.toggle('open',!!st.open);
-      var cards=sort.cards||[], box=$('.rg-al2-sort',a);
-      box.innerHTML=st.open&&cards.length?'<div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<div class="rg-al2-bin" data-k="'+k+'"><div class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</div>'+cards.map(function(c,i){ return st.sort[i]===k?'<div class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</div>':''; }).join('')+'</div>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
+      a.dataset.step=st.step; $$('.rg-al3-steps li',a).forEach(function(li){ var k=+li.dataset.s; li.classList.toggle('on',k===st.step); li.classList.toggle('ok',k<st.step||(k===3&&done())); });
+      $$('.rg-al2-n',a).forEach(function(b){ b.classList.toggle('on',!!st.seen[b.dataset.i]); }); $$('.rg-al3-ann',a).forEach(function(x){ x.classList.toggle('on',x.dataset.i===String(st.last)); });
+      $('.rg-al3-go',a).innerHTML=n<need?'<p class="rg-todo">Tap the '+need+' gold numbers on the cover ('+n+' of '+need+').</p>':'<button type="button" class="rg-btn" data-a="open">📖 Open it to June</button>';
+      $('.rg-al3-s2',a).innerHTML=st.step===2?page():'';
+      var cards=sort.cards||[];
+      $('.rg-al3-s3',a).innerHTML=st.step===3&&cards.length?'<button type="button" class="back rg-al3-back" data-a="s2">◂ Back to the calendar</button><div class="q"><b>'+esc(sort.q)+'</b> '+esc(sort.todo||'Tap a person, then tap a basket.')+'</div><div class="rg-al2-cards">'+cards.map(function(c,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(c.calm?' calm':'')+'" data-i="'+i+'" draggable="true">'+esc(c.icon||'')+' '+esc(c.t)+'</button>'; }).join('')+'</div><div class="rg-al2-bins">'+['yes','no'].map(function(k){ return '<div class="rg-al2-bin" data-k="'+k+'"><div class="lab">'+(k==='yes'?'☀ Chose their own hours':'⛓ Someone else chose')+'</div>'+cards.map(function(c,i){ return st.sort[i]===k?'<div class="chip'+(c.calm?' calm':'')+'"><b>'+esc(c.t)+'</b> '+esc(c.why)+'</div>':''; }).join('')+'</div>'; }).join('')+'</div><div class="say"></div>'+(done()?'<div class="rg-win">'+esc(A.tie)+'</div>':''):'';
       a.classList.toggle('finished',done()); }
-    a.addEventListener('click',function(e){ var b=e.target.closest('.rg-al2-n'); if(b){ st.seen[b.dataset.i]=true; save(); SFX.scratch(); paint(); return; }
-      if(e.target.closest('.rg-al2-open')){ st.open=true; save(); SFX.paper(); paint(); refreshPress(); } });
+    a.addEventListener('click',function(e){ var b=e.target.closest('.rg-al2-n'); if(b){ st.seen[b.dataset.i]=true; st.last=b.dataset.i; save(); SFX.scratch(); paint(); return; }
+      var x=e.target.closest('.rg-al3-ann'); if(x){ st.last=null; paint(); return; }
+      var t=e.target.closest('[data-mo]'); if(t&&!t.disabled){ st.mo=+t.dataset.mo; save(); SFX.paper(); paint(); return; }
+      var c=e.target.closest('.rg-al3-q [data-c]'); if(c){ var m=MO[st.mo]; if(+c.dataset.c===m.ok){ st.q[m.k]=true; save(); SFX.chime(); paint(); var nx=MO.findIndex(function(y){ return !st.q[y.k]; }); if(nx>-1) setTimeout(function(){ st.mo=nx; save(); SFX.paper(); paint(); },1600); }
+        else { c.classList.add('bounce'); setTimeout(function(){ c.classList.remove('bounce'); },450); SFX.bounce(); $('.rg-al3-q .fb',a).textContent=m.no||'Look at the sun times again.'; } return; }
+      var g=e.target.closest('[data-a]'); if(!g) return; var k=g.dataset.a;
+      if(k==='open'){ st.step=2; st.mo=0; } else if(k==='cover'){ st.step=1; } else if(k==='s3'){ st.step=3; } else if(k==='s2'){ st.step=2; }
+      save(); SFX.paper(); paint(); refreshPress(); var tp=a.getBoundingClientRect().top; if(tp<0) a.scrollIntoView({block:'start',behavior:RM?'auto':'smooth'}); });
+    $('.rg-al3-steps',a).addEventListener('click',function(e){ var li=e.target.closest('li'); if(!li) return; var k=+li.dataset.s; if(k===1||(k===2&&Object.keys(st.seen).length>=spots.length)||(k===3&&MO.every(function(x){ return st.q[x.k]; }))){ st.step=k; save(); paint(); } });
     dragTap(a,'.rg-al2-cards .rg-card','.rg-al2-bin',function(card,bin){ var i=+card.dataset.i, c=sort.cards[i];
       if(bin.dataset.k!==c.k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); $('.say',a).textContent=c.hint||'Look back at that person’s column.'; return; }
-      st.sort[i]=c.k; save(); c.calm?SFX.soft():SFX.chime(); paint(); });
-    function done(){ return !!st.open&&(sort.cards||[]).every(function(c,i){ return !!st.sort[i]; }); }
+      st.sort[i]=c.k; save(); c.calm?SFX.soft():SFX.chime(); paint(); refreshPress(); });
+    function done(){ return MO.every(function(x){ return st.q[x.k]; })&&(sort.cards||[]).every(function(c,i){ return !!st.sort[i]; }); }
     paint(); R.almanac={el:a,done:done}; }
 
   function buildModules(){
@@ -428,6 +478,47 @@
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
     buildAlmanac(); }
+
+  /* ================================================================ THE BROADSHEET — one tab laid out as a real front page
+     DATA.broadsheet = { tab, head, deck, dateline, ears:[l,r], steps:[{key, t}] }
+     Masthead + lead headline + "How to read this page" index; each activity gets a numbered jump head,
+     and a fold line splits the page. Nothing moves: the numbers are inserted beside what is already there. */
+  var BS_FIND={
+    listen:function(){ return $('#panel-desk .rg-vn[data-slot="v3"]')||(R.reading&&R.reading.el); },
+    sun:function(){ return R.reading&&R.reading.el; },
+    herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
+    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.evidence&&R.evidence.el); },
+    word:function(){ return R.vocab&&R.vocab.el; },
+    notebook:function(){ return $('#panel-desk .reflection-block'); } };
+  var BS_DONE={
+    listen:function(){ return !!(S.heard&&S.heard.v3); },
+    sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length; return !!m&&m.stop>=N-1; },
+    herald:function(){ var m=S.m.sun, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
+    picture:function(){ return !!(R.evidence&&R.evidence.done()); },
+    word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
+    notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
+  var bsEl=null;
+  function buildBroadsheet(){ var B=DATA.broadsheet; if(!B) return; var panel=document.getElementById('panel-'+(B.tab||'desk')); if(!panel) return;
+    var steps=(B.steps||[]).filter(function(s){ return BS_FIND[s.key]&&BS_FIND[s.key](); }); if(!steps.length) return;
+    panel.classList.add('rg-bs');
+    var first=BS_FIND[steps[0].key]();
+    bsEl=el('header','rg rg-bs-mast','<div class="ears"><div class="ear">'+esc((B.ears||[])[0]||'')+'</div><div class="name">The Republic Gazette</div><div class="ear r">'+esc((B.ears||[])[1]||'')+'</div></div>'+
+      '<div class="line">'+esc(B.dateline||'')+'</div>'+
+      '<div class="lead"><div class="story"><div class="kick">'+esc(B.kicker||'Today’s front page')+'</div><h2 class="hl">'+esc(B.head||'')+'</h2><p class="deck">'+esc(B.deck||'')+'</p>'+(B.lede?'<p class="lede">'+(B.place?'<b>'+esc(B.place)+' —</b> ':'')+esc(B.lede)+'</p>':'')+'</div>'+
+      '<nav class="idx" aria-label="How to read this page"><div class="ih">How to read this page</div><ol>'+steps.map(function(s,i){ return '<li data-k="'+s.key+'"><a href="#rg-bs-'+s.key+'"><span class="n">'+(i+1)+'</span><span class="t">'+esc(s.t)+'</span><span class="ok" aria-label="done">✓</span></a></li>'; }).join('')+'</ol><div class="prog"></div></nav></div>');
+    before(first,bsEl);
+    steps.forEach(function(s,i){ var t=BS_FIND[s.key](); if(!t) return;
+      var j=el('div','rg rg-bs-jump','<span class="n">'+(i+1)+'</span><span class="t"><small>Step '+(i+1)+' of '+steps.length+'</small>'+esc(s.t)+'</span><span class="ok">✓ Done</span>'); j.id='rg-bs-'+s.key; j.dataset.k=s.key;
+      if(s.fold) before(t,el('div','rg rg-bs-fold','<span>'+esc(B.fold||'Below the fold')+'</span>'));
+      if(s.key==='herald'){ t.parentNode.insertBefore(j,t); } else before(t,j); });
+    bsEl.addEventListener('click',function(e){ var a=e.target.closest('a[href^="#rg-bs-"]'); if(!a) return; e.preventDefault(); var t=document.getElementById(a.getAttribute('href').slice(1)); if(t) t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); });
+    paintBroadsheet();
+    var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paintBroadsheet,120); }); mo.observe(panel,{subtree:true,attributes:true,attributeFilter:['class']}); OBS.push(mo);
+    panel.addEventListener('input',function(){ clearTimeout(mo.t); mo.t=setTimeout(paintBroadsheet,200); }); }
+  function paintBroadsheet(){ if(!bsEl) return; var keys=$$('.idx li',bsEl).map(function(li){ return li.dataset.k; }), n=0, nextSet=false;
+    keys.forEach(function(k){ var d=BS_DONE[k]?BS_DONE[k]():false; if(d) n++; var li=$('.idx li[data-k="'+k+'"]',bsEl); li.classList.toggle('done',d); li.classList.toggle('next',!d&&!nextSet); var j=document.getElementById('rg-bs-'+k); if(j){ j.classList.toggle('done',d); j.classList.toggle('next',!d&&!nextSet); } if(!d) nextSet=true;
+      if(k==='herald'&&j){ var my=j.nextElementSibling; j.classList.toggle('rg-hide',!(my&&my.children.length)); } });
+    $('.prog',bsEl).innerHTML='<i style="width:'+Math.round(n/keys.length*100)+'%"></i><span>'+n+' of '+keys.length+' done</span>'; }
 
   /* ================================================================ Fact-Check one claim at a time + "why that one's tempting" */
   function buildFactSteps(){ var qs=$$('#panel-factcheck .factcheck-q'); if(qs.length<2) return;
@@ -498,7 +589,8 @@
     plan:function(){ var g=R.planner&&R.planner.el; return g&&[g,'before']; },
     write:function(){ var h=document.getElementById('rg-step-2'); return h&&[h,'after']; },
     score:function(){ var q=document.getElementById('factcheckScore'); return q&&[q,'after']; },
-    redpencil:function(){ var r=$('.rg-redpencil'); return r&&[r,'before']; }
+    redpencil:function(){ var r=$('.rg-redpencil'); return r&&[r,'before']; },
+    factcheck:function(){ var f=$('#panel-factcheck .factcheck-intro'); return f&&[f,'after']; }
   };
   var WHEN={ quizDone:function(){ return !!S.quizDone; } };
   /* ═══ Spotlight (ported from the G4 layers): page parts light up, pop, point and reveal exactly when the voice names them.
@@ -531,16 +623,23 @@
     var parts=v.parts||[{slot:v.slot,script:v.script}], key=v.slot||parts.map(function(p){ return p.slot; }).join('+'), bars='';
     for(var i=0;i<34;i++) bars+='<i style="height:'+(4+Math.round(12*Math.abs(Math.sin(i*1.7+key.length))))+'px"></i>';
     var tx=parts.map(function(p){ return (p.who?'<b>'+esc(p.who)+':</b> ':'')+esc(p.script); }).join('<br><br>');
-    var n=el('div','rg rg-vn rg-hide',AVERY+'<div class="mid"><div class="k">Voice memo from Ms. Avery</div><div class="t">'+esc(v.label)+'</div><div class="wave">'+bars+'</div></div><button type="button" class="play" aria-label="Play voice memo">▶</button><button type="button" class="rd">📄 Read the words instead</button><div class="tx">'+tx+'</div>');
+    var n=el('div','rg rg-vn rg-hide',PHONE+'<div class="mid"><div class="k">'+AVERY+'<span class="who">Ms. Avery is calling</span></div><div class="t">'+esc(v.label)+'</div><div class="wave">'+bars+'</div></div><button type="button" class="play" aria-label="Answer Ms. Avery’s call"><span class="i">📞</span><span class="l">Answer</span></button><button type="button" class="rd">📄 Read the words instead</button><div class="tx">'+tx+'</div>');
     n.dataset.slot=key; n.__when=WHEN[v.when]; w[1]==='after'?after(w[0],n):before(w[0],n);
     var play=$('.play',n), cur=0, ok=0, bad=false;
     var aus=parts.map(function(p,idx){ var au=new Audio(); au.preload='metadata';
       au.addEventListener('loadedmetadata',function(){ if(++ok===parts.length&&!bad){ n.classList.remove('rg-hide','rg-empty'); play.disabled=false; var m=$('.mock',n); if(m) m.remove(); } });
       au.addEventListener('error',function(){ bad=true; n.classList.remove('rg-hide'); n.classList.add('rg-empty'); play.disabled=true; if(!$('.mock',n)) $('.k',n).insertAdjacentHTML('beforeend','<span class="mock"> · empty slot: g5ss-'+LESSON+'-'+p.slot+'.mp3</span>'); });
-      au.addEventListener('ended',function(){ if(idx<parts.length-1){ cur=idx+1; aus[cur].currentTime=0; aus[cur].play(); } else { cur=0; n.classList.remove('playing'); play.textContent='▶'; } });
+      au.addEventListener('ended',function(){ if(idx<parts.length-1){ cur=idx+1; aus[cur].currentTime=0; aus[cur].play(); } else { cur=0; hangUp(); } });
       return au; });
-    function stop(){ aus[cur].pause(); n.classList.remove('playing'); play.textContent='▶'; } n.__stop=stop;
-    play.addEventListener('click',function(){ if(n.classList.contains('playing')){ stop(); return; } $$('.rg-vn.playing').forEach(function(o){ if(o!==n&&o.__stop) o.__stop(); }); aus[cur].play(); n.classList.add('playing'); play.textContent='❚❚'; });
+    var H=S.heard=S.heard||{};
+    function label(){ $('.i',play).textContent=n.classList.contains('playing')?'❚❚':H[key]?'▶':'📞'; $('.l',play).textContent=n.classList.contains('playing')?'Pause':H[key]?'Play again':'Answer'; $('.who',n).textContent=n.classList.contains('playing')?'Ms. Avery, on the line':H[key]?'Voice memo from Ms. Avery':'Ms. Avery is calling'; n.classList.toggle('heard',!!H[key]); }
+    function hangUp(){ n.classList.remove('playing'); n.classList.add('hangup'); setTimeout(function(){ n.classList.remove('hangup'); },700); label(); }
+    function stop(){ aus[cur].pause(); hangUp(); } n.__stop=stop;
+    play.addEventListener('click',function(){ if(n.classList.contains('playing')){ stop(); return; } $$('.rg-vn.playing').forEach(function(o){ if(o!==n&&o.__stop) o.__stop(); });
+      n.classList.remove('ringing'); SFX.pickup(); n.classList.add('playing'); if(!H[key]){ H[key]=true; save(); } label(); setTimeout(function(){ if(n.classList.contains('playing')) aus[cur].play(); },RM?0:450); });
+    /* the phone rings (twice, then rests) when it scrolls into view, until the student has answered it once */
+    if('IntersectionObserver' in window){ var rung=0, io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(!en.isIntersecting||H[key]||n.classList.contains('playing')||n.classList.contains('rg-hide')) return; if(rung>=3) return; rung++; n.classList.remove('ringing'); void n.offsetWidth; n.classList.add('ringing'); if(rung===1) SFX.ring(); setTimeout(function(){ n.classList.remove('ringing'); },2600); }); },{threshold:.8}); io.observe(n); OBS.push(io); }
+    label();
     $('.rd',n).addEventListener('click',function(){ n.classList.toggle('read'); this.textContent=n.classList.contains('read')?'Hide words':'📄 Read the words instead'; });
     parts.forEach(function(p,idx){ aus[idx].src=AUD+'g5ss-'+LESSON+'-'+p.slot+'.mp3'; spotlight(p.slot,p.script,aus[idx]); }); }); refreshVoice(); }
   function refreshVoice(){ $$('.rg-vn').forEach(function(n){ if(n.__when) n.classList.toggle('rg-wait',!n.__when()); }); }
@@ -599,6 +698,13 @@
   function whereAmI(b){ var p=b.closest('.tab-panel'); var i=STAGES.map(function(s){ return 'panel-'+s.tab; }).indexOf(p&&p.id); return i>-1?'Tab '+(i+1)+' · '+STAGES[i].t:'Dispatch'; }
   function modal(){ var m=$('#rgModal'); if(!m){ m=el('div','rg rg-modal'); m.id='rgModal'; m.addEventListener('click',function(e){ if(e.target===m) m.classList.remove('open'); }); document.body.appendChild(m); } m.classList.add('open'); return m; }
   var trayEl=null;
+  /* Ms. Avery's desk phone: a black rotary phone; the handset lifts when the student answers */
+  var PHONE='<svg class="rg-ph" viewBox="0 0 120 104" aria-hidden="true"><g class="rg-ph-ring"><path d="M8,30 q-6,10 0,20 M2,24 q-9,16 0,32"/><path d="M112,30 q6,10 0,20 M118,24 q9,16 0,32"/></g>'+
+    '<path class="cord" d="M22,62 c-8,4 -4,10 -10,14 c-6,4 -2,10 -8,14 c-4,3 0,8 6,8 L30,96"/>'+
+    '<g class="rg-ph-body"><path d="M18,96 L30,52 Q60,42 90,52 L102,96 Q60,104 18,96 Z" fill="#1A2138"/><path d="M30,52 Q60,42 90,52 L92,58 Q60,49 28,58 Z" fill="#2E3A5C"/>'+
+    '<rect x="32" y="40" width="6" height="14" rx="2" fill="#0E1426"/><rect x="82" y="40" width="6" height="14" rx="2" fill="#0E1426"/>'+
+    '<circle cx="60" cy="76" r="16" fill="#E9DFC6" stroke="#B8923E" stroke-width="1.5"/>'+[0,1,2,3,4,5,6,7,8,9].map(function(k){ var r=(k*30-120)*Math.PI/180; return '<circle cx="'+(60+Math.cos(r)*11).toFixed(1)+'" cy="'+(76+Math.sin(r)*11).toFixed(1)+'" r="2.6" fill="#1A2138"/>'; }).join('')+'<circle cx="60" cy="76" r="5" fill="#B8923E"/></g>'+
+    '<g class="rg-ph-hs"><path d="M24,40 q-8,-2 -8,-10 q0,-9 10,-9 l8,3 l52,0 l8,-3 q10,0 10,9 q0,8 -8,10 l-10,-3 l-52,0 Z" fill="#0E1426"/><rect x="30" y="24" width="60" height="7" rx="3.5" fill="#2E3A5C"/></g></svg>';
   var TOOL_ICON={"hl": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M7 33h18\" stroke=\"#FFE14D\" stroke-width=\"5\" stroke-linecap=\"round\"/><g transform=\"rotate(40 22 17)\"><rect x=\"17\" y=\"3\" width=\"10\" height=\"19\" rx=\"2.5\" fill=\"#F4C430\" stroke=\"#8B6F2E\" stroke-width=\"1.2\"/><rect x=\"17\" y=\"3\" width=\"10\" height=\"5\" rx=\"2\" fill=\"#1A2138\"/><path d=\"M17 22h10l-2 5h-6z\" fill=\"#FAF3E0\" stroke=\"#8B6F2E\" stroke-width=\"1\"/><path d=\"M19.5 27h5l-1.2 4h-2.6z\" fill=\"#FFE14D\"/><rect x=\"19\" y=\"9\" width=\"2.2\" height=\"11\" rx=\"1\" fill=\"#fff\" opacity=\".45\"/></g></svg>", "cam": "<svg viewBox=\"0 0 48 40\" aria-hidden=\"true\"><rect x=\"9\" y=\"4\" width=\"9\" height=\"6\" rx=\"1\" fill=\"#C9A66B\" stroke=\"#5C3D24\"/><path d=\"M13.5 4V1.5\" stroke=\"#5C3D24\" stroke-width=\"1.5\"/><circle cx=\"13.5\" cy=\"1.5\" r=\"1.6\" fill=\"#FFF7DA\"/><rect x=\"4\" y=\"10\" width=\"40\" height=\"24\" rx=\"3\" fill=\"#2B2620\" stroke=\"#C9A66B\" stroke-width=\"1.5\"/><rect x=\"4\" y=\"15\" width=\"40\" height=\"3\" fill=\"#5C3D24\"/><circle cx=\"25\" cy=\"23\" r=\"9\" fill=\"#C9A66B\"/><circle cx=\"25\" cy=\"23\" r=\"6.5\" fill=\"#1A2138\"/><circle cx=\"25\" cy=\"23\" r=\"4\" fill=\"#3D5B8A\"/><circle cx=\"23.5\" cy=\"21.5\" r=\"1.4\" fill=\"#fff\" opacity=\".85\"/><rect x=\"36\" y=\"12\" width=\"5\" height=\"3\" rx=\"1\" fill=\"#E9B44C\"/></svg>", "roll": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><path d=\"M5 11h11l3 3h16v19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#C9A66B\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/><rect x=\"9\" y=\"8\" width=\"20\" height=\"16\" fill=\"#FBF7EC\" stroke=\"#B9AD8F\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"11\" width=\"13\" height=\"2\" fill=\"#1A2138\" transform=\"rotate(-6 19 16)\"/><rect x=\"12\" y=\"15\" width=\"10\" height=\"1.4\" fill=\"#9A917C\" transform=\"rotate(-6 19 16)\"/><path d=\"M5 17h30v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z\" fill=\"#E0C48A\" stroke=\"#5C3D24\" stroke-width=\"1.2\"/></svg>", "props": "<svg viewBox=\"0 0 40 40\" aria-hidden=\"true\"><rect x=\"4\" y=\"30\" width=\"32\" height=\"5\" rx=\"1.5\" fill=\"#5C3D24\"/><path d=\"M20 30V5\" stroke=\"#9AA3B8\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><g fill=\"#FBF7EC\" stroke=\"#9A917C\"><rect x=\"11\" y=\"18\" width=\"18\" height=\"10\" transform=\"rotate(-8 20 23)\"/><rect x=\"12\" y=\"12\" width=\"16\" height=\"9\" transform=\"rotate(6 20 16)\"/></g><rect x=\"13\" y=\"14.5\" width=\"9\" height=\"1.5\" fill=\"#8B2D26\" transform=\"rotate(6 20 16)\"/></svg>"};
   function buildTray(){ trayEl=el('div','rg rg-tray','<button type="button" class="rg-tb cam" title="Press camera: snap anything on the page">'+TOOL_ICON.cam+'<span>Snap</span><b class="cnt"></b></button><button type="button" class="rg-tb hl" title="Highlighter: mark the key words">'+TOOL_ICON.hl+'<span>Highlight</span><b class="cnt"></b></button><button type="button" class="rg-tb roll" title="My clippings: photos and highlights">'+TOOL_ICON.roll+'<span>Clippings</span><b class="cnt"></b></button><button type="button" class="rg-tb props" title="How real newspapers worked">'+TOOL_ICON.props+'<span>Newsroom</span></button>');
     document.body.appendChild(trayEl);
@@ -720,10 +826,10 @@
     TEXTS.reverse().forEach(function(x){ x[0].innerHTML=x[1]; }); TEXTS=[];
     $$('.rg').forEach(function(n){ n.remove(); });
     $$('[class*="rg-"]').forEach(function(n){ [].slice.call(n.classList).forEach(function(c){ if(c.indexOf('rg-')===0) n.classList.remove(c); }); });
-    pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=hlbar=huntEl=null; R={}; unread=0; }
+    pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=hlbar=huntEl=bsEl=null; R={}; unread=0; }
   function build(){ try{ P=loadProfile(); html.classList.add('rg-on'); if(QUIET) html.classList.add('rg-quiet');
       buildTop(); buildWire(); buildOpening(); buildPress(); buildStory(); if(openingWaiting) showNameCard(false); buildScenes(); buildLens(); buildModules();
-      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildMedia(); buildTray(); buildNotebook();
+      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildBroadsheet(); buildMedia(); buildTray(); buildNotebook();
       var bl=document.getElementById('brief-byline-name'); if(bl&&!bl.value.trim()&&nm()) bl.value=nm();
       refreshPress(); render(); }catch(e){ console.warn('rg layer:',e); } }
   window.__rgSparkleAPI={teardown:teardown,build:build,data:DATA,sayKey:sayKey};
