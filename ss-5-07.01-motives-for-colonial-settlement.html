@@ -2258,6 +2258,1813 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.01",
+ "title": "Motives for Colonial Settlement",
+ "issue": 29,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": true,
+ "pWho": "colony",
+ "place": "The Atlantic Coast",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>did colonists settle for the same reasons everywhere?<\/i> Use the 🖍 highlighter to save details that show why people came, or who didn’t get to choose. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue closed Unit 6: the explorers and what their voyages changed. Today a new unit begins: Colonial America.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Read the ads",
+   "why": "Colonies had to find people, so they printed ads. Read two real ones, then seal your answer."
+  },
+  {
+   "tab": "desk",
+   "t": "Bring in the ships",
+   "why": "Test the Herald’s claim: seven real ships, one at a time. Then check the oldest picture of St. Augustine. Save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Go to press",
+   "why": "Pick your angle, build your own front page from your evidence, then correct the Herald and print."
+  }
+ ],
+ "lens": "Courtesy means treating every person with respect. Today, a courteous editor reports every group’s reason for coming, including people who didn’t get to choose and people who were already here.",
+ "recordFoot": "(The ships, dates and numbers in this lesson come from historians’ records. The plain-English versions of the two ads were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story: why did people come to the colonies? The Hasty Herald already printed its answer: “Colonists settled for the same reasons in every colony.”"
+   },
+   {
+    "t": "Colonies had to find people somehow, so they printed ads. Start on the Dispatch tab (tab 1) and read two real ones.",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Ads? Like on TV?",
+      "reply": "Sort of. Printed pages, sold in shops in London. Each one tried to talk people into something."
+     },
+     {
+      "t": "One reason for every colony? That sounds too simple.",
+      "reply": "Maybe. But a good editor doesn’t guess. We find the evidence first."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Then let’s get to work. The ads are waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the picture takes a side?",
+      "reply": "It was made for an English book about Drake’s voyage. That doesn’t make it useless. It means we know whose eyes we’re looking through."
+     },
+     {
+      "t": "Why is the oldest picture one of an attack?",
+      "reply": "Because the English printed it to tell the story of Drake’s voyage. Spain’s own records tell another side. That’s why we use more than one source."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the picture. Some things a picture just can’t tell us."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the ships. Pick one, read why its people came, and highlight the line that answers today’s question. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the picture.",
+      "reply": "Here it is. Tap the red numbers, read the notes, and highlight one that shows why Spain built this town.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "adsLocked": [
+    {
+     "t": "Your answer is sealed. Now go to the Desk tab (tab 2). Seven real ships are waiting to come in, and then we’ll open your envelope.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Every ship is in. Look at your columns: did one reason fit every colony? Next, mark up the oldest picture of St. Augustine.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "Printed in London in 1589, three years after the attack it shows, for an English book. So we’re seeing St. Augustine through the attackers’ eyes. That’s exactly why we check who made a source.",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your front page, your evidence, and your correction are on the record. Issue 29 is in the Morgue. Next issue: the New England Colonies.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "ads",
+  "title": "What is each ad selling?",
+  "job": {
+   "why": "The Hasty Herald says every colony started for the same reason. Before we test that, look at how colonies found people: their leaders printed ads to talk people into coming, or into paying.",
+   "do": "1. Read both ads and their plain-English lines. 2. Tap what each ad is selling. 3. Answer the editor’s question. 4. Seal your answer.",
+   "use": "Your sealed answer opens on the Desk tab, after the ships come in.",
+   "words": [
+    [
+     "recruit",
+     "to get people to join"
+    ],
+    [
+     "colony",
+     "a settlement ruled by a faraway country"
+    ]
+   ]
+  },
+  "q": "What is this ad selling? Tap every one that fits.",
+  "ads": [
+   {
+    "name": "Nova Britannia (1609)",
+    "year": "1609",
+    "where": "London",
+    "kind": "Real source from the past · a recruiting pamphlet",
+    "img": "rg-nova-britannia-1609.jpg",
+    "alt": "The title page of Nova Britannia, printed in London in 1609, with a printer’s decoration of a woman holding a dove",
+    "cite": "Robert Johnson, Nova Britannia, London, 1609. Title page. New York Public Library, public domain.",
+    "zoomCap": "Nova Britannia, by Robert Johnson, printed in London in 1609. New York Public Library, public domain.",
+    "quote": "“Nova Britannia. Offring most excellent fruites by planting in Virginia. Exciting all such as be well affected to further the same.” (old spelling, from the title page)",
+    "plain": "“A New Britain: the great rewards of starting a colony in Virginia. Calling on everyone who likes the idea to help make it happen.” It was written to get people to put money into the Virginia Company, or to go.",
+    "words": [
+     [
+      "planting",
+      "in 1609, this also meant starting a colony"
+     ],
+     [
+      "fruites",
+      "here, rewards or profits"
+     ],
+     [
+      "further",
+      "to help move forward"
+     ]
+    ],
+    "chips": [
+     {
+      "t": "Rewards and profit from a new colony",
+      "ok": true,
+      "say": "Yes. “Fruites” here means rewards, like profit."
+     },
+     {
+      "t": "Asking people to help pay for it, or join it",
+      "ok": true,
+      "say": "Yes. “Exciting all such as be well affected to further the same” means urging supporters to help."
+     },
+     {
+      "t": "Freedom to worship",
+      "ok": false,
+      "say": "This page doesn’t say anything about worship. Read the words again."
+     },
+     {
+      "t": "Free land for poor families",
+      "ok": false,
+      "say": "That’s not on this title page. Who is it speaking to?"
+     }
+    ]
+   },
+   {
+    "name": "Some Account of the Province of Pennsilvania (1681)",
+    "year": "1681",
+    "where": "London",
+    "kind": "Real source from the past · a recruiting pamphlet",
+    "img": "rg-penn-some-account-1681.jpg",
+    "alt": "The title page of Some Account of the Province of Pennsilvania in America, printed in London in 1681",
+    "cite": "William Penn, Some Account of the Province of Pennsilvania in America, London: Benjamin Clark, 1681. Title page. Early English Books scan via Internet Archive and Wikimedia Commons, public domain.",
+    "zoomCap": "William Penn, Some Account of the Province of Pennsilvania in America, London, 1681. Public domain.",
+    "quote": "“Some Account of the Province of Pennsilvania in America; Lately Granted under the Great Seal of England to William Penn… Together with Priviledges and Powers necessary to the well-governing thereof. Made publick for the Information of such as are or may be disposed to Transport themselves or Servants into those Parts.” (old spelling, from the title page)",
+    "plain": "Facts about Pennsylvania, a colony the king had just given to William Penn, and the rules for running it well. Printed for people who might move there, or send servants there.",
+    "words": [
+     [
+      "province",
+      "a colony"
+     ],
+     [
+      "servants",
+      "here, workers who signed a contract to work for years in return for the trip"
+     ],
+     [
+      "transport",
+      "to carry across the ocean"
+     ]
+    ],
+    "chips": [
+     {
+      "t": "A new colony people can move to",
+      "ok": true,
+      "say": "Yes. Inside, Penn even listed prices to buy or rent land."
+     },
+     {
+      "t": "Rights and good rules for the colony",
+      "ok": true,
+      "say": "Yes. “Priviledges and Powers… well-governing” means rights and good rules."
+     },
+     {
+      "t": "Gold and silver",
+      "ok": false,
+      "say": "Look again. This page never mentions gold."
+     },
+     {
+      "t": "A fort to fight Spain",
+      "ok": false,
+      "say": "Not on this page. Read what it says it is “made publick” for."
+     }
+    ]
+   }
+  ],
+  "seal": {
+   "q": "After reading the two ads: do you think every colony was started for the same reason?",
+   "opts": [
+    "Yes, one reason for all of them",
+    "Maybe. The ads sold different things",
+    "No. Different colonies had different reasons"
+   ],
+   "reveal": [
+    "The ships showed many reasons, not one. Changing your mind when the evidence changes is what careful editors do.",
+    "Good instinct. The ships showed even more reasons than the ads did, and some people had no choice at all.",
+    "You were right, and now you have the evidence: seven ships, many reasons, and some people who had no choice at all."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after the ships come in."
+ },
+ "explore": {
+  "reading": {
+   "type": "ships",
+   "title": "Seven ships, seven colonies",
+   "times": [
+    "Who came",
+    "Why they came",
+    "Who already lived there"
+   ],
+   "motives": [
+    {
+     "k": "wealth",
+     "icon": "💰",
+     "t": "Money and profit",
+     "d": "hoping to get rich"
+    },
+    {
+     "k": "faith",
+     "icon": "⛪",
+     "t": "Faith",
+     "d": "to worship their own way, or spread a religion"
+    },
+    {
+     "k": "trade",
+     "icon": "🦫",
+     "t": "Trade",
+     "d": "buying and selling goods, like furs"
+    },
+    {
+     "k": "defense",
+     "icon": "🛡️",
+     "t": "Guard the land",
+     "d": "to protect a country’s claim"
+    },
+    {
+     "k": "fresh",
+     "icon": "🌱",
+     "t": "A fresh start",
+     "d": "land, work, a new life"
+    },
+    {
+     "k": "forced",
+     "icon": "⛓️",
+     "t": "Forced to come",
+     "d": "did not choose",
+     "calm": true
+    }
+   ],
+   "cols": [
+    {
+     "id": "sta",
+     "short": "St. Augustine",
+     "who": "St. Augustine, Florida",
+     "ship": "San Pelayo",
+     "year": 1565,
+     "from": "Spain",
+     "color": "#C9A227",
+     "icon": "⛵",
+     "lines": [
+      "About 800 soldiers, sailors, settlers and priests, led by Pedro Menéndez de Avilés.",
+      "Spain wanted to guard its treasure ships sailing past Florida, and to push out the French, who had just built a fort nearby. Priests came to spread the Catholic faith.",
+      "The Timucua people. The Spanish made their first camp at a Timucua town called Seloy."
+     ],
+     "groups": [
+      {
+       "t": "Soldiers sent to guard Spain’s treasure ships and its claim to Florida",
+       "k": [
+        "defense"
+       ],
+       "say": "Yes. St. Augustine began as a fort to guard Spain’s claim.",
+       "hint": "Were these soldiers here to farm, to pray, or to guard something?"
+      },
+      {
+       "t": "Priests who came to spread the Catholic faith",
+       "k": [
+        "faith"
+       ],
+       "say": "Yes. Spreading their faith was one of Spain’s reasons, too.",
+       "hint": "What did the priests come to do?"
+      }
+     ]
+    },
+    {
+     "id": "jam",
+     "short": "Jamestown",
+     "who": "Jamestown, Virginia",
+     "ship": "Susan Constant (with the Godspeed and the Discovery)",
+     "year": 1607,
+     "from": "England",
+     "color": "#B5302A",
+     "icon": "⛵",
+     "lines": [
+      "About 104 men and boys, sent by the Virginia Company of London.",
+      "The Virginia Company was a joint-stock company: many people paid in and hoped to split the profits. They hoped the colony would find gold, silver, or other riches to sell.",
+      "The Powhatan people: thousands of people in about 30 tribes, led by a chief named Wahunsenacah (often called Powhatan)."
+     ],
+     "groups": [
+      {
+       "t": "Men sent by a company that wanted to make a profit",
+       "k": [
+        "wealth"
+       ],
+       "say": "Yes. Jamestown was a business. The investors wanted their money back, and more.",
+       "hint": "Who paid for this trip, and what did they want back?"
+      }
+     ]
+    },
+    {
+     "id": "wl",
+     "short": "Point Comfort",
+     "who": "Point Comfort, Virginia",
+     "ship": "White Lion, an English raiding ship",
+     "year": 1619,
+     "from": "Angola, in Africa (by force)",
+     "color": "#6B7280",
+     "icon": "⛓️",
+     "calm": true,
+     "lines": [
+      "About 20 Africans. They had been captured in Angola and forced onto a Portuguese slave ship. English raiders took them from that ship.",
+      "They did not choose to come. The crew traded them in Virginia for food. In all, about 400,000 Africans were brought by force to the land that became the United States.",
+      "Powhatan lands, now claimed by the Virginia colony."
+     ],
+     "groups": [
+      {
+       "t": "About 20 Africans, captured in Angola and forced aboard",
+       "k": [
+        "forced"
+       ],
+       "say": "Yes. They were brought by force. No one asked them.",
+       "hint": "Did these people choose to make this trip?"
+      }
+     ]
+    },
+    {
+     "id": "may",
+     "short": "Plymouth",
+     "who": "Plymouth, Massachusetts",
+     "ship": "Mayflower",
+     "year": 1620,
+     "from": "England",
+     "color": "#B5302A",
+     "icon": "⛵",
+     "lines": [
+      "102 passengers. Fewer than half were Separatists, people who wanted to leave the Church of England. The rest included workers and families the Separatists called “Strangers.”",
+      "The Separatists wanted to worship in their own way. Others came for land, work, and a new start. Merchants in London paid for the trip and hoped for a profit.",
+      "The Wampanoag people. The village of Patuxet had stood where Plymouth was built, but most of its people had died of a sickness brought by European sailors a few years before."
+     ],
+     "groups": [
+      {
+       "t": "Separatists who wanted to worship in their own way",
+       "k": [
+        "faith"
+       ],
+       "say": "Yes. Faith was the reason for some on this ship, but not for everyone.",
+       "hint": "What did the Separatists want to do differently?"
+      },
+      {
+       "t": "“Strangers” looking for land, work, and a new start",
+       "k": [
+        "fresh"
+       ],
+       "say": "Yes. Same ship, different reason.",
+       "hint": "These passengers weren’t Separatists. What were they looking for?"
+      },
+      {
+       "t": "London merchants who paid for the trip, hoping for a profit",
+       "k": [
+        "wealth"
+       ],
+       "say": "Right. Even a religious trip needed money behind it.",
+       "hint": "What did the people who paid for the trip hope to get back?"
+      }
+     ]
+    },
+    {
+     "id": "nn",
+     "short": "New Netherland",
+     "who": "New Netherland (later New York)",
+     "ship": "Nieu Nederlandt",
+     "year": 1624,
+     "from": "the Netherlands",
+     "color": "#D9771E",
+     "icon": "⛵",
+     "lines": [
+      "About 30 families. Many were Walloons: French-speaking Protestants who had fled wars over religion in Europe.",
+      "The Dutch West India Company sent them to run fur trading posts. Beaver furs sold for high prices in Europe. Soon the Dutch built the town of New Amsterdam, which later became New York City.",
+      "The Lenape people on Manhattan, and the Mohican and Mohawk peoples up the river, who traded furs with the Dutch."
+     ],
+     "groups": [
+      {
+       "t": "Families sent by a company to trade for beaver furs",
+       "k": [
+        "trade"
+       ],
+       "say": "Yes. New Netherland began as a trading business.",
+       "hint": "What did the company want them to buy and sell?"
+      },
+      {
+       "t": "Walloons, Protestants who had fled wars over religion",
+       "k": [
+        "faith",
+        "fresh"
+       ],
+       "say": "Yes. They had faith reasons and needed a new home, so either column works.",
+       "hint": "Why had the Walloons left their homes in Europe?"
+      }
+     ]
+    },
+    {
+     "id": "wel",
+     "short": "Pennsylvania",
+     "who": "Pennsylvania",
+     "ship": "Welcome",
+     "year": 1682,
+     "from": "England",
+     "color": "#B5302A",
+     "icon": "⛵",
+     "lines": [
+      "About 100 passengers sailing with William Penn. Most were Quakers.",
+      "In England, Quakers were jailed and fined for how they worshipped. Penn promised freedom of worship in his colony. His ads also offered land to buy or rent.",
+      "The Lenape people. Penn made treaties with Lenape leaders and paid them for land."
+     ],
+     "groups": [
+      {
+       "t": "Quakers who wanted to worship without being jailed",
+       "k": [
+        "faith"
+       ],
+       "say": "Yes. Pennsylvania promised freedom of worship.",
+       "hint": "What happened to Quakers in England?"
+      },
+      {
+       "t": "Buyers who wanted land of their own",
+       "k": [
+        "fresh",
+        "wealth"
+       ],
+       "say": "Yes. Penn’s ad sold land, and people bought it.",
+       "hint": "What did Penn’s ad offer to sell?"
+      }
+     ]
+    },
+    {
+     "id": "ann",
+     "short": "Georgia",
+     "who": "Savannah, Georgia",
+     "ship": "Anne",
+     "year": 1733,
+     "from": "England",
+     "color": "#B5302A",
+     "icon": "⛵",
+     "lines": [
+      "About 114 people, led by James Oglethorpe.",
+      "Georgia’s leaders wanted to give poor English families a fresh start. (They talked about helping debtors, people who owed money, but few debtors actually came.) Britain also wanted settlers between South Carolina and Spanish Florida.",
+      "The Yamacraw people, led by Tomochichi, who agreed to let the colonists settle at Savannah."
+     ],
+     "groups": [
+      {
+       "t": "Poor English families given land and a fresh start",
+       "k": [
+        "fresh"
+       ],
+       "say": "Yes. Georgia promised land to people who had little.",
+       "hint": "What did Georgia’s leaders want to give poor families?"
+      },
+      {
+       "t": "Settlers placed to guard Britain’s colonies from Spanish Florida",
+       "k": [
+        "defense"
+       ],
+       "say": "Yes. Georgia was also a wall of settlers between South Carolina and Spanish Florida.",
+       "hint": "Look at a map: what was just south of Georgia?"
+      }
+     ]
+    }
+   ],
+   "sortQ": "Tap a reason, then tap its column above. Some fit two columns.",
+   "miniAfter": 2,
+   "dockEmpty": "The harbor is empty. Tap the button to bring in the first ship.",
+   "srcLabel": "Fact from the lesson",
+   "myths": [
+    {
+     "after": 1,
+     "claim": "Jamestown was the first European town in what is now the United States.",
+     "fact": "Not quite. Spain started St. Augustine, Florida, in 1565. That’s 42 years before Jamestown (1607) and 55 years before Plymouth (1620). People have lived in St. Augustine ever since, which makes it the oldest European-founded town in the United States."
+    },
+    {
+     "after": 3,
+     "claim": "Everyone on the Mayflower came for religious freedom.",
+     "fact": "Fewer than half of the 102 passengers were Separatists. Others came for land and work, and the London merchants who paid for the trip wanted a profit. Even one ship carried many reasons."
+    },
+    {
+     "after": 4,
+     "calm": true,
+     "claim": "The colonists settled on empty land.",
+     "fact": "Every colony was built on land where Native nations already lived: the Timucua in Florida, the Powhatan in Virginia, the Wampanoag in Massachusetts, the Lenape in New York and Pennsylvania, and many more. The colonists’ reasons changed these nations’ lives, too."
+    }
+   ],
+   "close": "Seven ships, many reasons. Some people came for money, faith, trade, or a fresh start. Some were sent to guard land. And some did not choose to come at all.",
+   "job": {
+    "why": "The Herald says one reason fit every colony. Seven real ships will test that.",
+    "do": "1. Bring in a ship. 2. Read who came and why. 3. Sort each reason into a column. 4. Fact-check the Herald when it pops up.",
+    "use": "Your highlights become evidence for your front page.",
+    "words": [
+     [
+      "motive",
+      "a reason that moves someone to act"
+     ],
+     [
+      "claim",
+      "here, land a country says belongs to it"
+     ],
+     [
+      "joint-stock company",
+      "a company where many people paid in and hoped to split the profits"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Investigate the St. Augustine picture",
+   "srcName": "the St. Augustine picture",
+   "srcWho": "Boazio’s St. Augustine picture",
+   "srcCant": "Boazio’s 1589 picture",
+   "img": "source-5-07-01-colonial-settlement",
+   "alt": "A colored bird’s-eye picture of St. Augustine in 1586: a town with garden plots at top left, a wooden fort at top center, English soldiers marching along the shore, and many English ships at the bottom.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 7,
+     "y": 19,
+     "rx": 7,
+     "ry": 9,
+     "label": "The town",
+     "t": "Rows of houses with fenced gardens: the Spanish town of St. Augustine.",
+     "lx": 9,
+     "ly": 4
+    },
+    {
+     "x": 51,
+     "y": 17,
+     "rx": 5,
+     "ry": 7,
+     "label": "The fort",
+     "t": "A wooden fort. Spain built it to guard the harbor and its claim to Florida.",
+     "lx": 66,
+     "ly": 5
+    },
+    {
+     "x": 24,
+     "y": 26,
+     "rx": 7,
+     "ry": 5,
+     "label": "Boats coming ashore",
+     "t": "Small boats carry English soldiers toward the town.",
+     "lx": 36,
+     "ly": 34
+    },
+    {
+     "x": 56,
+     "y": 45,
+     "rx": 5,
+     "ry": 12,
+     "label": "Soldiers on the march",
+     "t": "English soldiers march with red-cross flags, the flag of England.",
+     "lx": 80,
+     "ly": 64
+    },
+    {
+     "x": 61,
+     "y": 87,
+     "rx": 14,
+     "ry": 7,
+     "label": "Drake’s fleet",
+     "t": "English ships flying red-cross flags. Sir Francis Drake led this fleet.",
+     "lx": 40,
+     "ly": 74
+    },
+    {
+     "x": 16,
+     "y": 85,
+     "rx": 10,
+     "ry": 7,
+     "label": "A sea creature",
+     "t": "A big fish, drawn by the artist. Mapmakers often filled empty sea with animals, so don’t treat it as a record.",
+     "lx": 26,
+     "ly": 70
+    }
+   ],
+   "date": {
+    "x": 91,
+    "y": 43,
+    "w": 14,
+    "h": 22,
+    "year": 1589,
+    "shows": 1586,
+    "text": "The Latin label says: “St. Augustine is part of the land of Florida, at 30 degrees. The coast is low, cut up, and full of islands.” Baptista Boazio, a mapmaker in London, made this picture for a book about Sir Francis Drake’s voyage. It was printed in 1589, three years after the English attacked and burned the town in 1586. (Library of Congress)",
+    "madeBy": "Printed in London, for an English book about Drake’s voyage",
+    "showsWhy": "Drake’s attack on the town",
+    "q": "In your own words: when was this picture made, what event does it show, and who made it? Why does that matter when you use it as evidence?",
+    "check": [
+     "say when it was printed?",
+     "say what event it shows?",
+     "say whose side the maker was on, and why that matters?"
+    ],
+    "model": "It was printed in 1589 and shows the English attack on St. Augustine in 1586. It was made for an English book about Drake, so it shows the town from the attackers’ side. It can show the fort and the town, but not how the Spanish saw the attack.",
+    "card": "Boazio’s picture was printed in London in 1589. It shows the English attack on St. Augustine in 1586."
+   },
+   "missing": {
+    "q": "What can this picture tell us, and what can’t it?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in the picture",
+      "icon": "🖼"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this scene",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this image alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "A fort guarding the harbor",
+      "k": "shown",
+      "say": "Yes. Look at mark 2.",
+      "hint": "Look again at mark 2."
+     },
+     {
+      "t": "Ships flying red-cross flags",
+      "k": "shown",
+      "say": "Yes. Drake’s fleet, at mark 5.",
+      "hint": "Look again at mark 5."
+     },
+     {
+      "t": "Houses with gardens",
+      "k": "shown",
+      "say": "Yes. The town, at mark 1.",
+      "hint": "Look again at mark 1."
+     },
+     {
+      "t": "The ships that brought the first Spanish settlers in 1565",
+      "k": "not",
+      "say": "Right. These ships are Drake’s English fleet, from 1586.",
+      "hint": "Whose ships are these, and from what year?"
+     },
+     {
+      "t": "Jamestown or Plymouth",
+      "k": "not",
+      "say": "Right. This picture shows only St. Augustine, in Florida.",
+      "hint": "Which town is this picture of?"
+     },
+     {
+      "t": "Why each Spanish settler came",
+      "k": "cant",
+      "say": "Right. A picture can’t show what people were thinking. For reasons, we need letters, orders and records.",
+      "hint": "Can you see what a person is thinking?"
+     },
+     {
+      "t": "How the Spanish felt about the attack",
+      "k": "cant",
+      "say": "Right. It was made for an English book, so it shows the attackers’ side.",
+      "hint": "Who made this picture, and for whom?"
+     },
+     {
+      "t": "How many people lived in the town",
+      "k": "cant",
+      "say": "Right. We’d need a count made at the time.",
+      "hint": "Could you count the people from this picture?"
+     }
+    ]
+   },
+   "close": "One town, one fort, one attack, drawn for an English book. It shows Spain guarding its claim, but it can’t tell us why each settler came, or how the Spanish saw the attack.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this picture.",
+   "from": "Real source from the past: Baptista Boazio, view of St. Augustine, printed in London, 1589 (Library of Congress)",
+   "zoomCap": "Baptista Boazio, St. Augustine, Florida, during Drake’s attack of 1586. Printed in London, 1589. Library of Congress, https://www.loc.gov/item/2007626708/",
+   "followup": {
+    "q": "This picture can’t show why Spain settled here. Which other source could help you find out?",
+    "opts": [
+     {
+      "t": "The king of Spain’s written orders to Pedro Menéndez, the town’s founder",
+      "ok": true,
+      "say": "Yes. Menéndez’s 1565 agreement with the king lists what Spain wanted: to settle Florida, defend it, push out the French, and spread the Catholic faith."
+     },
+     {
+      "t": "Another picture of the attack, made by the English",
+      "ok": false,
+      "say": "Another English picture would show the same side of the story."
+     },
+     {
+      "t": "A painting of St. Augustine made in 1900",
+      "ok": false,
+      "say": "A picture made 300 years later can’t tell us what settlers wanted in 1565."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this picture can’t show? (This is called a limitation.)",
+    "limPh": "This picture can’t show…"
+   },
+   "job": {
+    "why": "This is the oldest known printed picture of any town in what is now the United States. Before using it as evidence, check who made it, and when.",
+    "do": "1. Write one thing you notice. 2. Tap each red number. 3. Tap 📅 and explain who made it and when. 4. Sort the cards. 5. Write what the picture can’t show.",
+    "use": "Your notes save themselves and help you write about your source.",
+    "words": [
+     [
+      "bird’s-eye view",
+      "a picture drawn as if from high above"
+     ],
+     [
+      "source",
+      "anything that tells us about the past, like a picture, a letter, or a book"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: mot and mov mean “move”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "todo": "Tap the part of each word that means “move.” Then use the lesson’s word in a claim.",
+  "root": "mot / mov",
+  "meaning": "move",
+  "words": [
+   {
+    "parts": [
+     "mot",
+     "ive"
+    ],
+    "root": 0,
+    "m": "motive: a reason that moves a person to act"
+   },
+   {
+    "parts": [
+     "re",
+     "mov",
+     "e"
+    ],
+    "root": 1,
+    "m": "remove: to move something away"
+   },
+   {
+    "parts": [
+     "mot",
+     "ion"
+    ],
+    "root": 0,
+    "m": "motion: moving"
+   },
+   {
+    "parts": [
+     "e",
+     "mot",
+     "ion"
+    ],
+    "root": 1,
+    "m": "emotion: a feeling that moves you"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Every ship you followed moved people across an ocean. Most were moved by their own motives. The Africans on the White Lion were moved by force: the motive belonged to someone else.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Colonists came with different motives, such as...",
+   "min": 8,
+   "must": "motive",
+   "word": "motive"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your front page",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan the page first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. It showed where the headline and each story would go. Your plan works the same way."
+  },
+  "todo": "1. Pick the angle your page will argue, or write your own. 2. Pick two colonies. 3. Pick what shaped them. Then build your page below.",
+  "head": {
+   "label": "Your main idea (angle): what will your front page argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "Many Ships, Many Reasons",
+     "ok": true,
+     "tip": "Compare two colonies and why each began.",
+     "fit": [
+      "ship",
+      "motive",
+      "ad",
+      "compare"
+     ],
+     "fitTip": "Good fits: why-they-came lines from two ships, and the two ads.",
+     "ideas": [
+      "Many Ships, Many Reasons",
+      "One Coast, Many Reasons"
+     ]
+    },
+    {
+     "t": "Some People Had No Choice",
+     "ok": true,
+     "tip": "Who chose, who signed a contract, and who was forced?",
+     "fit": [
+      "wl",
+      "forced",
+      "servant",
+      "ad",
+      "compare"
+     ],
+     "fitTip": "Good fits: the White Lion, Did you know? (servants), and Penn’s ad.",
+     "ideas": [
+      "Some People Had No Choice",
+      "Who Chose the Voyage?"
+     ]
+    },
+    {
+     "t": "Someone Already Lived Here",
+     "ok": true,
+     "tip": "Every colony was built on Native land.",
+     "fit": [
+      "native",
+      "herald",
+      "picture",
+      "limitation"
+     ],
+     "fitTip": "Good fits: the “Who already lived there” lines, and the Herald fact-check about empty land.",
+     "ideas": [
+      "Someone Already Lived Here",
+      "Not Empty Land"
+     ]
+    },
+    {
+     "t": "Colonists Came for the Same Reason",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your motive columns: did one reason fit every ship?"
+    }
+   ]
+  },
+  "p1Label": "Colony 1: pick one",
+  "p2Label": "Colony 2: pick one that began for a different reason",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "What is the biggest difference between why these two colonies began?",
+  "whyLabel": "Why it matters: what shaped each colony?",
+  "factors": [
+   "Who paid for the trip",
+   "What the settlers believed",
+   "Which country sent them",
+   "Whether people chose to come",
+   "Who already lived on the land"
+  ],
+  "close": "Your angle is set. Now build your front page below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every front page argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two colonies. 3. Pick what shaped them.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "img": false,
+   "title": "Did you know?",
+   "who": "Indentured servants",
+   "from": "Fact from the lesson",
+   "tags": [
+    "servant",
+    "fresh",
+    "forced"
+   ],
+   "t": "Many poor English people couldn’t pay for the trip. So they signed an indenture: a contract to work 4 to 7 years for whoever paid their way. In the 1600s, most English people who moved to Virginia came this way. When their years ended, they were free. Under laws Virginia passed in the 1660s, enslaved Africans had no end date, and their children were born enslaved.",
+   "q": "Did an indentured servant choose to come? Did they choose their work once they got here?",
+   "cap": ""
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why a correction?",
+   "t": "Honest papers fix their mistakes. Strike the Herald’s claim, and your correction prints in its place."
+  },
+  "win": "Printed. Your front page and correction are on the record, and Issue 29 is filed in the Morgue.",
+  "claim": "Colonists settled for the same reasons in every colony."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the words in an ad that show what it’s selling",
+   "Snap your motive columns when every ship is in",
+   "Snap the fort in the St. Augustine picture",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "In 1620, fewer than half of the Mayflower’s passengers were Separatists.",
+   "key": [
+    "1620",
+    "fewer",
+    "half",
+    "Mayflower’s",
+    "passengers",
+    "Separatists"
+   ],
+   "small": [
+    "in",
+    "than",
+    "of",
+    "the",
+    "were"
+   ],
+   "model": "Key words: 1620, fewer than half, Mayflower’s passengers, Separatists."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "notes": {
+  "learned": [
+   "People came to the colonies for many reasons: money, faith, trade, guarding land, and a fresh start.",
+   "Some people did not choose to come. Enslaved Africans were brought by force. Indentured servants worked for years to pay for the trip.",
+   "Every colony was built on land where Native nations already lived.",
+   "Spain started St. Augustine, Florida, in 1565, 42 years before Jamestown.",
+   "A picture is only good evidence if you know who made it, when, and for whom."
+  ],
+  "vocab": [
+   [
+    "motive",
+    "a reason that moves someone to act (mot = move)"
+   ],
+   [
+    "colony",
+    "a settlement ruled by a faraway country"
+   ],
+   [
+    "joint-stock company",
+    "a company where many people paid in and hoped to split the profits"
+   ],
+   [
+    "Separatist",
+    "a person who wanted to leave the Church of England"
+   ],
+   [
+    "Quaker",
+    "a member of the Society of Friends, a Christian group jailed in England for how it worshipped"
+   ],
+   [
+    "indentured servant",
+    "a worker who signed a contract to work for years in return for the trip"
+   ],
+   [
+    "enslaved",
+    "forced to work for no pay and with no freedom"
+   ],
+   [
+    "forced migration",
+    "being moved to a new place against your will"
+   ],
+   [
+    "recruit",
+    "to get people to join"
+   ]
+  ]
+ },
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Two colonies",
+    "rx": "jamestown|virginia|plymouth|massachusetts|st\\.? ?augustine|florida|new amsterdam|new netherland|new york|pennsylvania|georgia|savannah|point comfort|mayflower|quaker|pilgrim",
+    "n": 2
+   },
+   {
+    "t": "A reason for each",
+    "rx": "money|profit|rich|gold|wealth|faith|relig|worship|church|god|catholic|trade|fur|beaver|guard|defen|protect|fort|claim|fresh start|new start|land|poor|debt|forced|slave|enslaved|work|freedom",
+    "n": 2
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "Who was forced",
+    "rx": "enslav|slave|africa|forced|captur|against their will|no choice|didn.?t choose|did not choose|servant|white lion",
+    "n": 1
+   },
+   {
+    "t": "Why it matters",
+    "rx": "because|so that|otherwise|truth|true|honest|full|whole|leave out|left out|missing|fair|complete|matter|important|respect|courte",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|some|many|most|same|money|profit|land|both",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|differen|forced|enslav|faith|relig|trade|native|spain|spanish|guard",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Pick two colonies from the ships you brought in on this tab.",
+   "Look at the “Why they came” row for each one.",
+   "Try: “___ began because ___. But ___ began because ___.”"
+  ],
+  "journal-q2": [
+   "Who on the ships did not choose to come?",
+   "What would readers get wrong if the Gazette left those people out?",
+   "Try: “It matters because ___. If we leave them out, readers might think ___.”"
+  ],
+  "journal-q3": [
+   "Did any colonies share a reason? Look at your columns.",
+   "Now think about the reasons, and the people, the Herald forgot.",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "That was Plymouth, where the Pilgrims came in 1620. Jamestown was started by a company.",
+   "C": "That was St. Augustine, Spain’s fort in Florida. Look back at the Susan Constant."
+  },
+  {
+   "A": "The Pilgrims chose to come, to worship their own way. Look back at the White Lion.",
+   "C": "The Quakers chose to follow William Penn. Look back at the White Lion."
+  },
+  {
+   "A": "That’s the Herald’s claim. The seven ships showed many reasons.",
+   "C": "The colonies did not turn out the same way. Look back at your motive columns."
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "How to read an ad",
+   "script": "Here’s something I learned early in this job. An ad is never just information. Somebody paid to print it, and they wanted something from you. Your money, your help, or you, on a ship. So read these two ads like a skeptic. Ask yourself: who made this, and what do they want me to do?"
+  },
+  {
+   "at": "desk",
+   "slot": "v3",
+   "label": "Seven ships",
+   "script": "Seven ships are about to come in, one at a time. Read who came, and why. Then sort each reason into a column. Watch the last row on every ship, too: who already lived there. And one ship is different. The people on the White Lion did not choose to come. Take that one slowly."
+  },
+  {
+   "at": "factcheck",
+   "slot": "v6",
+   "label": "How I fact-check",
+   "script": "Fact-checking is my favorite part of the job. Here’s how I do it. Read the claim slowly. Then ask yourself: where did I see proof? If you’re not sure, flip back to the ships on the Desk tab. Don’t pick an answer because it sounds nice. Pick it because you can point to the evidence."
+  },
+  {
+   "at": "plan",
+   "slot": "v5",
+   "label": "From clippings to a front page",
+   "script": "Every front page starts with a plan. First, pick your angle: the big idea your page will argue. Then pick two colonies, and what shaped them. Below that is your front page. Choose clippings from your evidence tray, attach them, and say in your own words what each one proves. Picking cards isn’t the work. Explaining them is."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^ad$",
+    "sel": "#panel-dispatch .rg-ads-row",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^skeptic",
+    "sel": "#panel-dispatch .rg-ad-sell",
+    "fx": "pop",
+    "i": 0
+   },
+   {
+    "at": "^want$",
+    "sel": "#panel-dispatch .rg-ad-quote",
+    "fx": "glow",
+    "i": 0
+   }
+  ],
+  "v3": [
+   {
+    "at": "^Seven$",
+    "sel": "#panel-desk .rg-ship-ctl",
+    "fx": "pop"
+   },
+   {
+    "at": "^column",
+    "sel": "#panel-desk .rg-mcols",
+    "fx": "glow"
+   },
+   {
+    "at": "^row$",
+    "sel": "#panel-desk .rg-harbor",
+    "fx": "point"
+   },
+   {
+    "at": "^White$",
+    "sel": "#panel-desk .rg-ship-log",
+    "fx": "glow"
+   }
+  ],
+  "v6": [
+   {
+    "at": "^claim$",
+    "sel": "#panel-factcheck .factcheck-q",
+    "fx": "glow",
+    "i": 0
+   },
+   {
+    "at": "^ships$",
+    "sel": "#btn-desk",
+    "fx": "pop"
+   },
+   {
+    "at": "^evidence",
+    "sel": "#panel-factcheck .factcheck-options",
+    "fx": "glow",
+    "i": 0
+   }
+  ],
+  "v5": [
+   {
+    "at": "^angle",
+    "sel": "#panel-press .rg-lo2-box.head",
+    "fx": "pop"
+   },
+   {
+    "at": "^colonies",
+    "sel": "#panel-press .rg-lo2-two",
+    "fx": "point"
+   },
+   {
+    "at": "^shaped",
+    "sel": "#panel-press .rg-lo2-box.why",
+    "fx": "glow"
+   },
+   {
+    "at": "^tray",
+    "sel": "#panel-press .rg-nd-tray",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^attach$",
+    "sel": "#panel-press .rg-nd-attach",
+    "fx": "pop",
+    "i": 0
+   },
+   {
+    "at": "^Explaining",
+    "sel": "#panel-press .rg-nd-paper",
+    "fx": "glow"
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    2.72,
+    3.04,
+    "ad"
+   ],
+   [
+    14.08,
+    15.12,
+    "skeptic."
+   ],
+   [
+    18,
+    18.08,
+    "want"
+   ]
+  ],
+  "v3": [
+   [
+    0,
+    0.4,
+    "Seven"
+   ],
+   [
+    7.28,
+    8.24,
+    "column."
+   ],
+   [
+    9.12,
+    9.28,
+    "row"
+   ],
+   [
+    15.44,
+    15.68,
+    "White"
+   ]
+  ],
+  "v6": [
+   [
+    4.64,
+    4.96,
+    "claim"
+   ],
+   [
+    11.12,
+    11.36,
+    "ships"
+   ],
+   [
+    16.88,
+    17.76,
+    "evidence."
+   ]
+  ],
+  "v5": [
+   [
+    3.8,
+    4.4,
+    "angle:"
+   ],
+   [
+    7.68,
+    8.453,
+    "colonies,"
+   ],
+   [
+    8.8,
+    9.04,
+    "shaped"
+   ],
+   [
+    13.2,
+    13.76,
+    "tray,"
+   ],
+   [
+    13.96,
+    14.16,
+    "attach"
+   ],
+   [
+    19.96,
+    20.4,
+    "Explaining"
+   ]
+  ]
+ },
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · Why they came",
+  "head": "Seven Ships, Many Reasons",
+  "deck": "One coast, seven ships, many reasons to cross an ocean.",
+  "dateline": "Vol. I · No. 29 · Price: One Penny",
+  "ears": [
+   "Issue 29 · Colonial America Edition",
+   "⛵ Fair winds · Ships sighted"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Bring in seven ships"
+   },
+   {
+    "key": "picture",
+    "t": "Investigate the St. Augustine picture",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "THE ATLANTIC COAST",
+  "lede": "The Hasty Herald says every colony began for the same reason. Seven real ships, 1565 to 1733, will test that. You decide.",
+  "evIntro": "Today’s question: Did colonists settle for the same reasons everywhere? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "pair": {
+  "title": "Now pick two colonies",
+  "todo": "Choose two colonies that began for different reasons. Read them side by side.",
+  "next": "Look for the biggest difference. You’ll write about it in your notebook (step 4).",
+  "rowHd": "",
+  "cap": "side by side",
+  "l1": "Colony 1",
+  "l2": "Colony 2",
+  "choose": "Choose a colony…",
+  "recTitle": "COMPARING TWO COLONIES (Desk)",
+  "legal": [
+   {
+    "ids": [
+     "wl",
+     "jam"
+    ],
+    "t": "Same colony, different choices.",
+    "d": "Both groups landed in Virginia. The Jamestown men signed up to go. The Africans on the White Lion were captured and forced to come. Virginia laws in the 1660s made slavery last for life and passed it on to children."
+   },
+   {
+    "ids": [
+     "may",
+     "wel"
+    ],
+    "t": "Faith, but not only faith.",
+    "d": "Many on both ships wanted to worship their own way. Both ships also carried people who came for land and work."
+   }
+  ]
+ },
+ "newsroom": {
+  "title": "Your front page",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means words or pictures made back then.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail that shows why people came to a colony, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Write your correction in one or two sentences. What is true instead?",
+  "ideas": [
+   "Many Ships, Many Reasons",
+   "Some People Had No Choice"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "The comparison",
+    "short": "Your comparison (at least 25 words)",
+    "kick": "Two colonies",
+    "ask": "Compare why two colonies began. Use details, not just names.",
+    "ph": "Write your comparison here, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "pair",
+     "journal1",
+     "cardnotes",
+     "notice"
+    ],
+    "starters": [
+     "{p1} began because",
+     "But {p2} began because",
+     "The biggest difference was"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Your explanation (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Why does it matter that people came for different reasons, and that some didn’t choose? Think about who chose, who was forced, and who already lived there.",
+    "ph": "Write your explanation here.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal2",
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "This matters because",
+     "Not everyone chose:"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source caption or limitation (at least 8 words)",
+    "ask": "Write about one source: what it can show, and what it can’t.",
+    "ph": "For example, start with: This picture…  or  This ad…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "date",
+     "limit",
+     "notice"
+    ],
+    "starters": [
+     "This picture was printed in",
+     "This ad can show"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Did colonists settle for the same reasons everywhere?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll correct the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "spanish-town",
+   "claim": "St. Augustine was a Spanish town, so it doesn’t count as part of colonial America’s story.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "It was Spanish. But does Spanish mean it doesn’t count? Check where it is, and when it began."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. The first part is true, but it leads to a wrong idea. St. Augustine is in Florida, and it is the oldest European-founded town in the U.S."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: the first ship you brought in, and the picture."
+    }
+   ],
+   "details": [
+    {
+     "from": "Herald fact-check:",
+     "t": "Spain started St. Augustine, Florida, in 1565. That’s 42 years before Jamestown.",
+     "ok": true,
+     "say": "This shows St. Augustine came first, in a place that is now part of the U.S."
+    },
+    {
+     "from": "Boazio’s picture, 1589:",
+     "t": "A wooden fort. Spain built it to guard the harbor and its claim to Florida.",
+     "ok": true,
+     "say": "This shows Spain built a real, lasting town and fort here."
+    },
+    {
+     "from": "Penn’s ad, 1681:",
+     "t": "Made publick for the Information of such as are or may be disposed to Transport themselves or Servants.",
+     "ok": false,
+     "say": "This is about Pennsylvania. It can’t tell us about St. Augustine."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "penn-land",
+   "claim": "Penn’s ad was about land, so everyone who came to Pennsylvania came only for land.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "The ad did sell land. But does an ad tell us why every person came?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. It starts with a real fact about the ad, then claims something the ad can’t show."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": true,
+     "say": "That’s a fair call too. An ad shows what was sold, not why each person came. Explain which detail made you decide."
+    }
+   ],
+   "details": [
+    {
+     "from": "The Welcome, 1682:",
+     "t": "In England, Quakers were jailed and fined for how they worshipped. Penn promised freedom of worship in his colony.",
+     "ok": true,
+     "say": "So many came for faith, not only for land."
+    },
+    {
+     "from": "Penn’s ad, 1681:",
+     "t": "Made publick for the Information of such as are or may be disposed to Transport themselves or Servants into those Parts.",
+     "ok": true,
+     "say": "Servants worked for someone else. Their reasons might be very different from the buyer’s."
+    },
+    {
+     "from": "The White Lion, 1619:",
+     "t": "About 20 Africans, captured in Angola and forced aboard.",
+     "ok": false,
+     "say": "This is about Virginia in 1619, not Pennsylvania."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My comparison uses real details about two colonies.",
+  "Each piece of evidence supports what I wrote beside it.",
+  "I explained who chose to come and who didn’t.",
+  "I said what my source can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Build your front page"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is the ships. Find one line that shows why people came.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the St. Augustine picture. Read the red notes, and highlight one that shows why Spain built the town.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(came|come|reason|reasons|why|money|profit|profits|rich|riches|gold|silver|company|invest\\w*|faith|worship\\w*|church|religion|religious|catholic|separatists?|quakers?|protestants?|priests?|trade|fur|furs|beaver|guard|defend|fort|claim|fresh|start|land|poor|debtors?|forced|captured|enslaved|slavery|slave|servants?|indenture\\w*|africans?|native|nations?|timucua|powhatan|wampanoag|lenape|mohican|mohawk|yamacraw|tomochichi|spain|spanish|england|english|dutch|french|colony|colonies|colonists?|settlers?|families|ship|ships|sailed|voyage|jamestown|plymouth|augustine|pennsylvania|georgia|virginia|florida|attack\\w*|drake)\\b",
+   "off": "Does this detail show why people came to a colony, or who already lived there? If it doesn’t, you can keep it, but also look for one on the ships.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about the colonies. Look for a detail about why people came instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs details that show why two colonies began. Look at the “Why they came” row on the ships, or the side-by-side table.",
+    "go": [
+     {
+      "l": "The ships",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Two colonies side by side",
+      "tab": "desk",
+      "sel": ".rg-pair2"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail about who chose and who didn’t, or who already lived there. Try the White Lion ship, Did you know?, or the Herald fact-checks.",
+    "go": [
+     {
+      "l": "The ships",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Did you know?",
+      "tab": "desk",
+      "sel": ".rg-almini"
+     },
+     {
+      "l": "Herald fact-checks",
+      "tab": "desk",
+      "sel": ".rg-myths"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about a source: who made it, when, and what it can’t show. Try the St. Augustine picture or the two ads.",
+    "go": [
+     {
+      "l": "The St. Augustine picture",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     },
+     {
+      "l": "The two ads",
+      "tab": "dispatch",
+      "sel": ".rg-ads"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4296,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4311,30 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sailing ships with different flags approach a wooded coast at dawn" class="b0701">
+<defs>
+<linearGradient id="b0701Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F4166"/><stop offset=".45" stop-color="#C98B6B"/><stop offset=".72" stop-color="#F3CF95"/><stop offset="1" stop-color="#F7E3B8"/></linearGradient>
+<linearGradient id="b0701Sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E7F8F"/><stop offset="1" stop-color="#2B4253"/></linearGradient>
+<radialGradient id="b0701Sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF4D2"/><stop offset=".55" stop-color="#F6CF7E" stop-opacity=".9"/><stop offset="1" stop-color="#F6CF7E" stop-opacity="0"/></radialGradient>
+<style>
+.b0701 .b0701-ship{ animation:b0701bob 6s ease-in-out infinite; transform-box:fill-box; }
+.b0701 .s2{ animation-delay:-1.5s } .b0701 .s3{ animation-delay:-3s } .b0701 .s4{ animation-delay:-4.2s } .b0701 .s5{ animation-delay:-2.2s }
+.b0701 .b0701-wave{ animation:b0701wave 9s linear infinite; }
+.b0701 .b0701-gull{ animation:b0701gull 14s ease-in-out infinite; }
+.b0701 .b0701-sunglow{ animation:b0701glow 7s ease-in-out infinite; transform-origin:770px 132px; }
+@keyframes b0701bob{ 0%,100%{ translate:0 0 } 50%{ translate:0 2.5px } }
+@keyframes b0701wave{ from{ transform:translateX(0) } to{ transform:translateX(-80px) } }
+@keyframes b0701gull{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(26px,-6px) } }
+@keyframes b0701glow{ 0%,100%{ opacity:.85 } 50%{ opacity:1 } }
+@media (prefers-reduced-motion:reduce){ .b0701 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0701Sky)"/>
+<circle class="b0701-sunglow" cx="770" cy="132" r="70" fill="url(#b0701Sun)"/>
+<circle cx="770" cy="132" r="22" fill="#FFF1C9"/>
+<g fill="#F8E9CC" opacity=".55"><ellipse cx="180" cy="62" rx="70" ry="9"/><ellipse cx="240" cy="74" rx="46" ry="6"/><ellipse cx="560" cy="48" rx="80" ry="8"/><ellipse cx="640" cy="60" rx="40" ry="5"/></g>
+<path d="M600,150 C640,138 690,132 740,136 C790,128 840,124 920,128 L920,170 L600,170 Z" fill="#4E5E3E"/>
+<g fill="#33432B"><path d="M613,149 l-7,0 l7,-18 l7,18 z"/><path d="M626,148 l-7,0 l7,-15 l7,15 z"/><path d="M633,148 l-7,0 l7,-17 l7,17 z"/><path d="M649,147 l-7,0 l7,-15 l7,15 z"/><path d="M664,146 l-7,0 l7,-20 l7,20 z"/><path d="M668,145 l-7,0 l7,-16 l7,16 z"/><path d="M686,144 l-7,0 l7,-27 l7,27 z"/><path d="M693,143 l-7,0 l7,-21 l7,21 z"/><path d="M705,143 l-7,0 l7,-27 l7,27 z"/><path d="M716,142 l-7,0 l7,-17 l7,17 z"/><path d="M731,141 l-7,0 l7,-15 l7,15 z"/><path d="M746,138 l-7,0 l7,-15 l7,15 z"/><path d="M755,137 l-7,0 l7,-15 l7,15 z"/><path d="M772,137 l-7,0 l7,-18 l7,18 z"/><path d="M780,136 l-7,0 l7,-27 l7,27 z"/><path d="M790,136 l-7,0 l7,-17 l7,17 z"/><path d="M804,135 l-7,0 l7,-19 l7,19 z"/><path d="M813,135 l-7,0 l7,-20 l7,20 z"/><path d="M829,134 l-7,0 l7,-17 l7,17 z"/><path d="M844,134 l-7,0 l7,-16 l7,16 z"/><path d="M848,134 l-7,0 l7,-20 l7,20 z"/><path d="M867,133 l-7,0 l7,-27 l7,27 z"/><path d="M877,133 l-7,0 l7,-28 l7,28 z"/><path d="M891,132 l-7,0 l7,-25 l7,25 z"/><path d="M900,132 l-7,0 l7,-21 l7,21 z"/><path d="M910,131 l-7,0 l7,-21 l7,21 z"/></g><path d="M590,170 C650,160 760,158 920,164 L920,176 L590,176 Z" fill="#D9C79E"/><rect y="168" width="920" height="92" fill="url(#b0701Sea)"/><g class="b0701-wave" stroke="#9FB7C1" stroke-width="1.6" fill="none" opacity=".55"><path d="M-40,184 q10,-4 20,0 t20,0"/><path d="M50,184 q10,-4 20,0 t20,0"/><path d="M140,184 q10,-4 20,0 t20,0"/><path d="M230,184 q10,-4 20,0 t20,0"/><path d="M320,184 q10,-4 20,0 t20,0"/><path d="M410,184 q10,-4 20,0 t20,0"/><path d="M500,184 q10,-4 20,0 t20,0"/><path d="M590,184 q10,-4 20,0 t20,0"/><path d="M680,184 q10,-4 20,0 t20,0"/><path d="M770,184 q10,-4 20,0 t20,0"/><path d="M860,184 q10,-4 20,0 t20,0"/><path d="M950,184 q10,-4 20,0 t20,0"/><path d="M-40,200 q10,-4 20,0 t20,0"/><path d="M60,200 q10,-4 20,0 t20,0"/><path d="M160,200 q10,-4 20,0 t20,0"/><path d="M260,200 q10,-4 20,0 t20,0"/><path d="M360,200 q10,-4 20,0 t20,0"/><path d="M460,200 q10,-4 20,0 t20,0"/><path d="M560,200 q10,-4 20,0 t20,0"/><path d="M660,200 q10,-4 20,0 t20,0"/><path d="M760,200 q10,-4 20,0 t20,0"/><path d="M860,200 q10,-4 20,0 t20,0"/><path d="M960,200 q10,-4 20,0 t20,0"/><path d="M-40,218 q10,-4 20,0 t20,0"/><path d="M60,218 q10,-4 20,0 t20,0"/><path d="M160,218 q10,-4 20,0 t20,0"/><path d="M260,218 q10,-4 20,0 t20,0"/><path d="M360,218 q10,-4 20,0 t20,0"/><path d="M460,218 q10,-4 20,0 t20,0"/><path d="M560,218 q10,-4 20,0 t20,0"/><path d="M660,218 q10,-4 20,0 t20,0"/><path d="M760,218 q10,-4 20,0 t20,0"/><path d="M860,218 q10,-4 20,0 t20,0"/><path d="M960,218 q10,-4 20,0 t20,0"/><path d="M-40,236 q10,-4 20,0 t20,0"/><path d="M60,236 q10,-4 20,0 t20,0"/><path d="M160,236 q10,-4 20,0 t20,0"/><path d="M260,236 q10,-4 20,0 t20,0"/><path d="M360,236 q10,-4 20,0 t20,0"/><path d="M460,236 q10,-4 20,0 t20,0"/><path d="M560,236 q10,-4 20,0 t20,0"/><path d="M660,236 q10,-4 20,0 t20,0"/><path d="M760,236 q10,-4 20,0 t20,0"/><path d="M860,236 q10,-4 20,0 t20,0"/><path d="M960,236 q10,-4 20,0 t20,0"/><path d="M-40,250 q10,-4 20,0 t20,0"/><path d="M50,250 q10,-4 20,0 t20,0"/><path d="M140,250 q10,-4 20,0 t20,0"/><path d="M230,250 q10,-4 20,0 t20,0"/><path d="M320,250 q10,-4 20,0 t20,0"/><path d="M410,250 q10,-4 20,0 t20,0"/><path d="M500,250 q10,-4 20,0 t20,0"/><path d="M590,250 q10,-4 20,0 t20,0"/><path d="M680,250 q10,-4 20,0 t20,0"/><path d="M770,250 q10,-4 20,0 t20,0"/><path d="M860,250 q10,-4 20,0 t20,0"/><path d="M950,250 q10,-4 20,0 t20,0"/></g><g fill="#1F2A33" opacity=".7" class="b0701-gull"><path d="M420,70 q6,-6 12,0 q6,-6 12,0" stroke="#2A2A2A" stroke-width="1.6" fill="none"/><path d="M462,86 q5,-5 10,0 q5,-5 10,0" stroke="#2A2A2A" stroke-width="1.4" fill="none"/></g><g class="b0701-ship s5" transform="translate(560,176) scale(0.36)"><path d="M-62,0 L62,0 L50,20 L-46,20 Z" fill="#3E4247"/><path d="M-62,0 L62,0 L60,5 L-60,5 Z" fill="#3a3530"/><line x1="-28" y1="0" x2="-28" y2="-62" stroke="#2b2b2b" stroke-width="2.4"/><path d="M-44,-52 Q-28,-58 -12,-52 L-14,-28 Q-28,-32 -42,-28 Z" fill="#9FA4AA" opacity=".96"/><path d="M-42,-24 Q-28,-29 -14,-24 L-16,-4 Q-28,-7 -40,-4 Z" fill="#9FA4AA" opacity=".9"/><line x1="4" y1="0" x2="4" y2="-82" stroke="#2b2b2b" stroke-width="2.4"/><path d="M-12,-72 Q4,-78 20,-72 L18,-48 Q4,-52 -10,-48 Z" fill="#9FA4AA" opacity=".96"/><path d="M-10,-44 Q4,-49 18,-44 L16,-24 Q4,-27 -8,-24 Z" fill="#9FA4AA" opacity=".9"/><line x1="34" y1="0" x2="34" y2="-56" stroke="#2b2b2b" stroke-width="2.4"/><path d="M18,-46 Q34,-52 50,-46 L48,-22 Q34,-26 20,-22 Z" fill="#9FA4AA" opacity=".96"/></g><g class="b0701-ship s4" transform="translate(452,190) scale(0.5)"><path d="M-62,0 L62,0 L50,20 L-46,20 Z" fill="#6B4426"/><path d="M-62,0 L62,0 L60,5 L-60,5 Z" fill="#7A4B28"/><rect x="-48" y="-30" width="96" height="6" rx="2" fill="#6B4426"/><line x1="-28" y1="0" x2="-28" y2="-62" stroke="#4A3424" stroke-width="2.4"/><path d="M-44,-52 Q-28,-58 -12,-52 L-14,-28 Q-28,-32 -42,-28 Z" fill="#F2E8D2" opacity=".96"/><path d="M-42,-24 Q-28,-29 -14,-24 L-16,-4 Q-28,-7 -40,-4 Z" fill="#F2E8D2" opacity=".9"/><line x1="4" y1="0" x2="4" y2="-82" stroke="#4A3424" stroke-width="2.4"/><path d="M-12,-72 Q4,-78 20,-72 L18,-48 Q4,-52 -10,-48 Z" fill="#F2E8D2" opacity=".96"/><path d="M-10,-44 Q4,-49 18,-44 L16,-24 Q4,-27 -8,-24 Z" fill="#F2E8D2" opacity=".9"/><line x1="34" y1="0" x2="34" y2="-56" stroke="#4A3424" stroke-width="2.4"/><path d="M18,-46 Q34,-52 50,-46 L48,-22 Q34,-26 20,-22 Z" fill="#F2E8D2" opacity=".96"/><g class="b0701-flag" transform="translate(4,-82)"><line x1="0" y1="0" x2="0" y2="-14" stroke="#4A3424" stroke-width="2"/><rect x="0" y="-14" width="22" height="5" fill="#D9771E"/><rect x="0" y="-9" width="22" height="4" fill="#F7F2E6"/><rect x="0" y="-5" width="22" height="5" fill="#2B4C8C"/></g></g><g class="b0701-ship s3" transform="translate(320,204) scale(0.66)"><path d="M-62,0 L62,0 L50,20 L-46,20 Z" fill="#6B4426"/><path d="M-62,0 L62,0 L60,5 L-60,5 Z" fill="#7A4B28"/><rect x="-48" y="-30" width="96" height="6" rx="2" fill="#6B4426"/><line x1="-28" y1="0" x2="-28" y2="-62" stroke="#4A3424" stroke-width="2.4"/><path d="M-44,-52 Q-28,-58 -12,-52 L-14,-28 Q-28,-32 -42,-28 Z" fill="#F5EEDC" opacity=".96"/><path d="M-42,-24 Q-28,-29 -14,-24 L-16,-4 Q-28,-7 -40,-4 Z" fill="#F5EEDC" opacity=".9"/><line x1="4" y1="0" x2="4" y2="-82" stroke="#4A3424" stroke-width="2.4"/><path d="M-12,-72 Q4,-78 20,-72 L18,-48 Q4,-52 -10,-48 Z" fill="#F5EEDC" opacity=".96"/><path d="M-10,-44 Q4,-49 18,-44 L16,-24 Q4,-27 -8,-24 Z" fill="#F5EEDC" opacity=".9"/><line x1="34" y1="0" x2="34" y2="-56" stroke="#4A3424" stroke-width="2.4"/><path d="M18,-46 Q34,-52 50,-46 L48,-22 Q34,-26 20,-22 Z" fill="#F5EEDC" opacity=".96"/><g class="b0701-flag" transform="translate(4,-82)"><line x1="0" y1="0" x2="0" y2="-14" stroke="#4A3424" stroke-width="2"/><rect x="0" y="-14" width="22" height="14" fill="#F7F2E6"/><rect x="9" y="-14" width="4" height="14" fill="#B5302A"/><rect x="0" y="-9" width="22" height="4" fill="#B5302A"/></g></g><g class="b0701-ship s2" transform="translate(170,214) scale(0.84)"><path d="M-62,0 L62,0 L50,20 L-46,20 Z" fill="#5C3A20"/><path d="M-62,0 L62,0 L60,5 L-60,5 Z" fill="#7A4B28"/><rect x="-48" y="-30" width="96" height="6" rx="2" fill="#5C3A20"/><line x1="-28" y1="0" x2="-28" y2="-62" stroke="#4A3424" stroke-width="2.4"/><path d="M-44,-52 Q-28,-58 -12,-52 L-14,-28 Q-28,-32 -42,-28 Z" fill="#F7F1E2" opacity=".96"/><path d="M-42,-24 Q-28,-29 -14,-24 L-16,-4 Q-28,-7 -40,-4 Z" fill="#F7F1E2" opacity=".9"/><line x1="4" y1="0" x2="4" y2="-82" stroke="#4A3424" stroke-width="2.4"/><path d="M-12,-72 Q4,-78 20,-72 L18,-48 Q4,-52 -10,-48 Z" fill="#F7F1E2" opacity=".96"/><path d="M-10,-44 Q4,-49 18,-44 L16,-24 Q4,-27 -8,-24 Z" fill="#F7F1E2" opacity=".9"/><line x1="34" y1="0" x2="34" y2="-56" stroke="#4A3424" stroke-width="2.4"/><path d="M18,-46 Q34,-52 50,-46 L48,-22 Q34,-26 20,-22 Z" fill="#F7F1E2" opacity=".96"/><g class="b0701-flag" transform="translate(4,-82)"><line x1="0" y1="0" x2="0" y2="-14" stroke="#4A3424" stroke-width="2"/><rect x="0" y="-14" width="22" height="14" fill="#F7F2E6"/><rect x="9" y="-14" width="4" height="14" fill="#B5302A"/><rect x="0" y="-9" width="22" height="4" fill="#B5302A"/></g></g><g class="b0701-ship s1" transform="translate(70,232) scale(1.0)"><path d="M-62,0 L62,0 L50,20 L-46,20 Z" fill="#5A3A22"/><path d="M-62,0 L62,0 L60,5 L-60,5 Z" fill="#7A4B28"/><rect x="-48" y="-30" width="96" height="6" rx="2" fill="#5A3A22"/><line x1="-28" y1="0" x2="-28" y2="-62" stroke="#4A3424" stroke-width="2.4"/><path d="M-44,-52 Q-28,-58 -12,-52 L-14,-28 Q-28,-32 -42,-28 Z" fill="#F4ECD8" opacity=".96"/><path d="M-42,-24 Q-28,-29 -14,-24 L-16,-4 Q-28,-7 -40,-4 Z" fill="#F4ECD8" opacity=".9"/><line x1="4" y1="0" x2="4" y2="-82" stroke="#4A3424" stroke-width="2.4"/><path d="M-12,-72 Q4,-78 20,-72 L18,-48 Q4,-52 -10,-48 Z" fill="#F4ECD8" opacity=".96"/><path d="M-10,-44 Q4,-49 18,-44 L16,-24 Q4,-27 -8,-24 Z" fill="#F4ECD8" opacity=".9"/><line x1="34" y1="0" x2="34" y2="-56" stroke="#4A3424" stroke-width="2.4"/><path d="M18,-46 Q34,-52 50,-46 L48,-22 Q34,-26 20,-22 Z" fill="#F4ECD8" opacity=".96"/><g class="b0701-flag" transform="translate(4,-82)"><line x1="0" y1="0" x2="0" y2="-14" stroke="#4A3424" stroke-width="2"/><rect x="0" y="-14" width="22" height="14" fill="#F7F2E6"/><path d="M0,-14 L22,0 M0,0 L22,-14" stroke="#B5302A" stroke-width="2.6"/></g></g><rect y="252" width="920" height="8" fill="#22333F" opacity=".5"/></svg>
   </div>
 
   <div class="hero-headline-strip serif">Motives for Colonial Settlement</div>
@@ -2677,7 +4346,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 15 · Q3</div>
     </div>
   </div>
@@ -2692,7 +4360,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courtesy</div>
     </div>
   </div>
@@ -2700,27 +4367,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.2 · SS.5.A.4.3 · SS.5.E.1.1 · TEKS 1(A)–(C), 9(A)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 29 · Circulation 1350 · <em>Unit 7 begins — Colonial America</em>
+      Vol. 1 · Issue 29 · Readers: 1,350 · <em>Unit 7 begins — Colonial America</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,7 +4389,7 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1350</span>
@@ -2744,8 +4401,6 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4423,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2800,17 +4450,10 @@ html, body {
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.01</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
       <p>Unit 6 is complete — the Gazette has covered exploration from technology to impact. Now a new chapter: <em>5.07.01 — Motives for Colonial Settlement</em>. This dispatch arrives at the <strong>Front Page Desk</strong>. Exploration led to permanent colonies — but colonists didn’t all come for the same reasons. Some sought wealth, some sought religious freedom, some were sent by trading companies, and some had no choice at all. The Gazette must report the full range of motives. But <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
     </div>
   </div>
@@ -2821,14 +4464,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Did colonists really settle for the same reasons in every colony — or does the evidence show a range of different motives?</p>
       </div>
     </div>
@@ -2842,8 +4482,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify at least three different motives that led people to settle in the American colonies.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how different motives led to different kinds of colonies.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Support a claim that settlement motives varied, using evidence from the lesson.</div>
@@ -2874,7 +4512,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-01-welcome -->
@@ -2892,24 +4529,18 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore colonial settlement motives & spotlight courtesy</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Read two real ads and bring in seven ships</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a painting of an early colonial settlement</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study the oldest picture of St. Augustine</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courtesy ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
       <strong>A courteous editor reports every group’s reason for being there — not just the most familiar story.</strong> Today, courtesy means recognizing that settlers came for many different reasons, and that some people didn’t come by choice at all.
     </div>
   </div>
@@ -2920,18 +4551,12 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Colonies: Same Reason Every Time!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Colonists settled for the same reasons in every colony.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
       <strong>Your job, junior editor:</strong> Study the evidence and decide: was there really one reason for all colonies — or did wealth, religion, trade, and forced migration create very different communities?
     </div>
   </div>
@@ -2940,9 +4565,6 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
       <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to gather the facts about colonial motives — and publish a <strong>Front Page Brief</strong> that shows readers the full range.
     </div>
   </div>
@@ -2954,19 +4576,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courtesy</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What do we notice about the different motives for settlement, what does each motive tell us about the colony it created, and why does it matter that we report the full range?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. A courteous editor doesn’t assume everyone came for the same reason — or that everyone came by choice.
       </div>
     </div>
@@ -2977,18 +4591,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-01-explore-explainer -->
@@ -3002,13 +4606,10 @@ html, body {
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
       <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
       <div class="desk-title">Front Page Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3027,56 +4628,66 @@ html, body {
        • Socratic Seminar → two perspectives in a roundtable layout
   -->
   <div class="content-section">
-    <h2>📚 Many Motives, Many Colonies</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>The American colonies were not founded for a single reason. <strong>Jamestown, Virginia</strong> (1607) was established by the Virginia Company, a joint-stock company seeking gold and profit. <strong>Plymouth, Massachusetts</strong> (1620) was settled by Pilgrims — Separatists who wanted to worship freely outside the Church of England. <strong>Massachusetts Bay</strong> (1630) was founded by Puritans who wanted to create a model religious community. <strong>St. Augustine, Florida</strong> (1565) was a Spanish military outpost protecting trade routes and territorial claims.</p>
-    <p>The Dutch founded <strong>New Amsterdam</strong> (later New York) as a fur trading center. <strong>Pennsylvania</strong> (1681) was established by William Penn as a Quaker colony promising religious tolerance. <strong>Georgia</strong> (1733) was created partly as a buffer against Spanish Florida and as a fresh start for English debtors. And throughout all of these colonies, <strong>enslaved Africans</strong> were brought against their will to provide labor — a motive that wasn’t theirs but shaped colonial life profoundly. Different motives created different economies, governments, and daily experiences.</p>
+    <h2>📚 Many Reasons, Many Colonies</h2>
+    <p>The colonies did not all begin for one reason. A <strong>motive</strong> is a reason that moves someone to act, and the colonists had many.</p>
+    <p><strong>St. Augustine, Florida</strong> (1565) was a Spanish fort built to guard Spain’s treasure ships and its claim to Florida. Priests came to spread the Catholic faith. <strong>Jamestown, Virginia</strong> (1607) was started by the Virginia Company, a <strong>joint-stock company</strong> (a company where many people paid in and hoped to split the profits). Its investors wanted gold and profit. <strong>Plymouth, Massachusetts</strong> (1620) was settled by Pilgrims. The Separatists among them wanted to leave the Church of England and worship in their own way. <strong>Massachusetts Bay</strong> (1630) was started by Puritans who wanted to build a model religious community.</p>
+    <p>The Dutch started <strong>New Amsterdam</strong> (later New York) as a fur trading center. <strong>Pennsylvania</strong> (1681) was William Penn’s colony for Quakers, where people were free to worship in different ways. <strong>Georgia</strong> (1733) was meant to guard South Carolina from Spanish Florida, and to give poor English families a fresh start. Its founders talked about helping debtors (people who owed money), but few debtors actually came.</p>
+    <p>Not everyone chose to come. Many poor English people came as <strong>indentured servants</strong>: they signed a contract to work for 4 to 7 years to pay for the trip. <strong>Enslaved Africans</strong> were brought against their will. The Atlantic slave trade carried millions of people to the Americas, and about 400,000 of them to the land that became the United States. And every colony was built on land where Native nations already lived. Different motives built different colonies, with different work, governments and daily lives.</p>
 
     <!-- Voluntary vs Forced settlement grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">🚢 Voluntary Settlement</div>
         <div class="source-type-name">Came by Choice</div>
-        <div class="source-type-defn">Colonists who chose to come — for wealth, religion, trade, or a fresh start — though their choices still affected Indigenous peoples.</div>
+        <div class="source-type-defn">Colonists who chose to come: for wealth, faith, trade, or a fresh start. Their choices still changed the lives of the Native nations already living there.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Examples</span>
-          Jamestown → profit · Plymouth → religious freedom · New Amsterdam → fur trade · Pennsylvania → religious tolerance · Georgia → debtor relief
+          Jamestown → profit · Plymouth → faith · New Amsterdam → fur trade · Pennsylvania → freedom of worship · Georgia → a fresh start, and guarding the border
         </div>
       </div>
       <div class="source-type-card secondary">
         <div class="source-type-label">⛓️ Forced Migration</div>
         <div class="source-type-name">Brought Against Their Will</div>
-        <div class="source-type-defn">Enslaved Africans were forcibly brought to the colonies to provide labor — their presence shaped colonial economies and daily life.</div>
+        <div class="source-type-defn">Enslaved Africans were forced to come and forced to work. Their work shaped the colonies’ farms, towns and daily life.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Key facts</span>
-          Atlantic slave trade brought millions · Forced labor on plantations · No choice in migration · Shaped Southern and all colonial economies
+          Millions brought to the Americas; about 400,000 to the land that became the U.S. · Forced work on plantations, on farms and in towns · No choice in coming · Shaped the economy of every region
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald claimed one reason fit all colonies. But the evidence shows wealth, religious freedom, trade, military strategy, and forced migration all played roles — and created very different communities. A courteous editor reports the full range.</p>
+    <p>The Hasty Herald said one reason fit every colony. But the evidence shows money, faith, trade, guarding land, and force all played a part, and they built very different communities. A courteous editor reports the full range.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
   <div class="content-section">
-    <h2>🔎 Why Did Colonists Come?</h2>
-    <p>Look at this painting carefully. Notice the people, the setting, and the activity. Think about what motivated these particular settlers — and whether everyone in the scene came for the same reason.</p>
+    <h2>🔎 The Oldest Picture of St. Augustine</h2>
+    <p>Look at this picture carefully. Baptista Boazio made it for an English book about Sir Francis Drake’s voyage. It was printed in London in 1589, and it shows the English attack on St. Augustine in 1586. Notice the fort, the town, and the ships. What does it show about why Spain built this town, and what can’t it show?</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
       <div class="source-image-placeholder" data-image="source-5-07-01-colonial-settlement">
-        🖼️ <strong>Image placeholder:</strong> Painting or illustration of an early colonial settlement (Jamestown, Plymouth, or St. Augustine) showing colonists and landscape.<br><br>
+        🖼️ <strong>Source:</strong> Baptista Boazio, view of St. Augustine, Florida, during Drake’s attack of 1586. Printed in London, 1589. Library of Congress, no known restrictions (loc.gov/item/2007626708).<br><br>
         <strong>Save your image as:</strong>
         <code>source-5-07-01-colonial-settlement.jpg</code>
       </div>
       <div class="source-image-caption">
-        <em>What does this scene suggest about why these people came here — and what challenges might they face?</em>
+        <em>What does this picture show about why Spain built St. Augustine, and what can’t it show?</em><br><small style="font-style:normal;opacity:.85">Baptista Boazio, St. Augustine, printed in London in 1589. It shows the English attack of 1586. Library of Congress.</small>
       </div>
     </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>mot</em> and <em>mov</em> mean “move”</h2>
+    <p>Many English words come from the Latin root <strong>mot</strong> (or <strong>mov</strong>), which means <strong>move</strong>.</p>
+    <ul>
+      <li><strong>motive</strong> (mot + ive): a reason that moves a person to act</li>
+      <li><strong>remove</strong> (re + mov + e): to move something away</li>
+      <li><strong>motion</strong> (mot + ion): moving</li>
+      <li><strong>emotion</strong> (e + mot + ion): a feeling that moves you</li>
+    </ul>
+    <p><strong>Discovery:</strong> Every ship in this lesson moved people across an ocean. Most were moved by their own motives. Enslaved Africans were moved by force: the motive belonged to someone else.</p>
+    <p><em>Try it: use the word <strong>motive</strong> in a sentence about why people came to the colonies.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
@@ -3086,7 +4697,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3096,7 +4706,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Different motives" placeholder="One colony is... founded because... Another is... founded because..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3106,7 +4715,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Including all perspectives" placeholder="It’s important because..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3123,10 +4731,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3135,14 +4739,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3178,11 +4774,11 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>Pilgrims seeking religious freedom</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
         <span class="factcheck-option-letter">B</span>
         <span>Enslaved Africans brought through the Atlantic slave trade</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
         <span>Quakers following William Penn to Pennsylvania</span>
       </div>
@@ -3219,7 +4815,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3241,21 +4836,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-01-assignment-explainer -->
@@ -3285,16 +4867,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
           <span>(1) A clear claim about colonial settlement motives. (2) At least two examples of different motives. (3) Why this matters — what should readers understand?</span>
         </div>
@@ -3310,9 +4888,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about motives for colonial settlement.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3341,8 +4916,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and front page brief</span></div>
@@ -3357,32 +4930,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 29 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
       <strong>Well done, Junior Editor.</strong> You reported the full range of colonial motives with evidence and courtesy — the Gazette’s readers now see that the colonies were shaped by many different purposes and experiences.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.02) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">New England Colonies</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that New England colonies grew the way they did because colonists simply preferred it. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-01-closing -->
@@ -3657,7 +5219,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 29 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -3968,5 +5530,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

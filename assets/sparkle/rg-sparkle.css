@@ -833,3 +833,74 @@ html.rg-on .rg-job.slim .words{ background:none; border:0; padding:0; border-rad
 .rg-almini .k{ font:900 13px 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:#8B6F2E; } .rg-almini p{ margin:4px 0; } .rg-almini small{ color:#6B6455; font-size:12.5px; }
 .rg-pair2{ background:#FFFDF8; border:1px solid #E5DBC3; border-radius:10px; padding:14px 16px; margin:16px 0; } .rg-pair2 h4{ margin:0 0 4px; font:800 19px 'Playfair Display',Georgia,serif; color:var(--rg-navy); } .rg-pair2 .sub{ margin:0 0 8px; font:15px 'Nunito',sans-serif; } .rg-pair2 .next{ margin:8px 0 0; font:700 14.5px 'Nunito',sans-serif; color:#2F5A26; }
 @media (max-width:520px){ .rg-almini img{ width:70px; } }
+
+/* ================================================================ v7 (5.07.01): ads + ships modules */
+.rg-ads-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0; }
+.rg-ad{ background:#FFFDF8; border:1px solid #E5DBC3; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:8px; }
+.rg-ad.done{ border-color:#9DB58A; }
+.rg-ad .kind{ font:800 11px/1 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:#8B2D26; }
+.rg-ad-img{ position:relative; display:block; padding:0; border:1px solid #CEC3AD; border-radius:4px; background:#F4EEDD; cursor:zoom-in; overflow:hidden; max-height:300px; }
+.rg-ad-img img{ display:block; width:100%; height:auto; }
+.rg-ad-img span{ position:absolute; right:6px; bottom:6px; background:rgba(26,31,46,.82); color:#fff; font:700 12px 'Nunito',sans-serif; padding:3px 8px; border-radius:12px; }
+.rg-ad .meta b{ display:block; font:700 15px/1.3 'Playfair Display',Georgia,serif; }
+.rg-ad .meta small{ font:12.5px/1.35 'Nunito',sans-serif; color:#5A5446; }
+.rg-ad-quote{ font:italic 15.5px/1.45 Georgia,serif; margin:0; padding:6px 10px; border-left:3px solid #B8923E; background:#FAF4E4; }
+.rg-ad-plainbox .k{ display:block; font:700 11.5px 'Nunito',sans-serif; color:#5A5446; text-transform:uppercase; letter-spacing:.05em; }
+.rg-ad-plain{ margin:2px 0 0; font:15.5px/1.5 'Nunito',sans-serif; }
+.rg-ad-sell{ border:0; padding:0; margin:0; }
+.rg-ad-sell legend{ font:700 14.5px 'Nunito',sans-serif; margin-bottom:6px; }
+.rg-ad-sell .ch{ display:flex; flex-wrap:wrap; gap:6px; }
+.rg-ad-sell button{ font:600 14px/1.3 'Nunito',sans-serif; background:#fff; border:1.5px solid #CEC3AD; border-radius:16px; padding:6px 12px; cursor:pointer; color:#1A1F2E; min-height:36px; }
+.rg-ad-sell button.on.ok{ background:#E7F0DF; border-color:#6E9257; }
+.rg-ad-sell button.on.ok::before{ content:'✓ '; }
+.rg-ad-sell .say{ min-height:1.2em; margin:6px 0 0; font:14.5px/1.4 'Nunito',sans-serif; color:#3D4A2F; }
+.rg-ads-seal{ margin-top:10px; }
+.rg-ad-q{ border:1px solid #E5DBC3; border-radius:10px; padding:10px 12px; background:#FFFDF8; }
+.rg-ad-q legend{ font:700 15px 'Nunito',sans-serif; padding:0 4px; }
+.rg-ads-lock{ margin-top:10px; }
+
+.rg-mcols{ display:grid; grid-template-columns:repeat(6,1fr); gap:0; border-top:4px double #16130E; border-bottom:4px double #16130E; margin:12px 0; }
+.rg-mcol{ border-right:1px solid #CEC3AD; padding:6px; min-height:120px; }
+.rg-mcol:last-child{ border-right:0; }
+.rg-mcol .drop{ display:block; width:100%; text-align:left; background:rgba(255,255,255,.75); border:1px solid #CEC3AD; border-radius:6px; padding:6px 7px; cursor:pointer; min-height:72px; color:#1A1F2E; }
+.rg-mcol .drop .ic{ font-size:18px; display:block; }
+.rg-mcol .drop b{ display:block; font:800 13.5px/1.2 'Nunito',sans-serif; }
+.rg-mcol .drop small{ display:block; font:12px/1.3 'Nunito',sans-serif; color:#5A5446; margin-top:2px; }
+.rg-mcol.calm .drop{ background:#F1F2F4; }
+.rg-mcol .chips .chip{ display:block; font:700 12.5px/1.3 'Nunito',sans-serif; background:#fff; border:1px solid #D9CBA6; border-radius:6px; padding:4px 6px; margin:5px 0 0; box-shadow:none; }
+.rg-mcol .chips .chip.calm{ background:#F1F2F4; border-color:#B9BEC8; }
+.rg-ships.picking .rg-mcol .drop{ outline:2px dashed #8B6F2E; outline-offset:-3px; }
+.rg-ship-log{ display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 8px; }
+.rg-ship-log button{ display:inline-flex; align-items:center; gap:6px; font:700 13px 'Nunito',sans-serif; background:#fff; border:1px solid #D9CBA6; border-radius:14px; padding:4px 10px; cursor:pointer; color:#1A1F2E; }
+.rg-ship-log button.on{ border-color:#1A2138; box-shadow:0 0 0 2px rgba(26,33,56,.2); }
+.rg-ship-log button.ok::after{ content:' ✓'; color:#4E7A3A; }
+.rg-ship-log .flag, .rg-ship .flag{ display:inline-block; width:14px; height:10px; border-radius:2px; border:1px solid rgba(0,0,0,.25); }
+.rg-harbor-empty{ font:15px 'Nunito',sans-serif; color:#5A5446; padding:14px; border:1px dashed #CEC3AD; border-radius:10px; text-align:center; background:linear-gradient(#FBF8EF,#EAF0F2); }
+.rg-ship{ background:#FFFDF8; border:1px solid #E5DBC3; border-radius:10px; padding:12px 14px; }
+.rg-ship.sail{ animation:rg-sail .6s ease-out; }
+@keyframes rg-sail{ from{ transform:translateX(-24px); opacity:.2; } to{ transform:none; opacity:1; } }
+.rg-ship header{ display:flex; gap:10px; align-items:center; border-bottom:1px solid #E5DBC3; padding-bottom:6px; margin-bottom:6px; }
+.rg-ship header .flag{ width:22px; height:16px; }
+.rg-ship header small{ display:block; font:700 12px 'Nunito',sans-serif; letter-spacing:.05em; text-transform:uppercase; color:#8B2D26; }
+.rg-ship header b{ font:700 19px/1.2 'Playfair Display',Georgia,serif; }
+.rg-ship header .to{ font:700 15px 'Nunito',sans-serif; color:#3B4255; margin-left:6px; }
+.rg-ship dl{ margin:0; }
+.rg-ship-row{ display:grid; grid-template-columns:150px 1fr; gap:10px; padding:5px 0; border-bottom:1px dotted #E5DBC3; }
+.rg-ship-row dt{ font:800 13px 'Nunito',sans-serif; color:#5A5446; }
+.rg-ship-line{ margin:0; font:15.5px/1.5 'Nunito',sans-serif; }
+.rg-ship-line.native{ color:#2F3B2A; }
+.rg-ship-sort{ margin-top:10px; }
+.rg-ship-sort .hd{ font:700 14.5px 'Nunito',sans-serif; margin-bottom:6px; }
+.rg-ship-groups{ display:flex; flex-direction:column; gap:6px; }
+.rg-ship-groups .placed-note{ font:14px/1.4 'Nunito',sans-serif; color:#3D4A2F; }
+.rg-ship-groups .placed-note i{ color:#5A5446; }
+.rg-ship .say{ min-height:1.2em; font:14.5px/1.45 'Nunito',sans-serif; margin:6px 0 0; color:#3D4A2F; }
+.rg-ship.calm{ background:#F6F7F9; border-color:#C9CED8; }
+.rg-ship-ctl{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:10px 0; }
+.rg-ship-now{ font:14px 'Nunito',sans-serif; color:#5A5446; }
+.rg-sun-close .env{ display:block; margin-top:8px; padding-top:8px; border-top:1px solid rgba(0,0,0,.12); }
+.rg-almini.noimg{ display:block; }
+@media (max-width:860px){ .rg-mcols{ grid-template-columns:repeat(3,1fr); } .rg-mcol:nth-child(3n){ border-right:0; } .rg-mcol{ border-bottom:1px solid #CEC3AD; } }
+@media (max-width:640px){ .rg-ads-row{ grid-template-columns:1fr; } .rg-ship-row{ grid-template-columns:1fr; gap:2px; } }
+@media (max-width:460px){ .rg-mcols{ grid-template-columns:repeat(2,1fr); } .rg-mcol:nth-child(3n){ border-right:1px solid #CEC3AD; } .rg-mcol:nth-child(2n){ border-right:0; } .rg-mcol{ min-height:0; } }
+@media (prefers-reduced-motion:reduce){ .rg-ship.sail{ animation:none; } }
