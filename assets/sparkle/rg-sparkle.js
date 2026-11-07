@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads
-     explore.reading.type   suncolumns | ships
+     scene1.type            dateit | ads | plot
+     explore.reading.type   suncolumns | ships | chains
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -421,42 +421,129 @@
       journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">'+SH.slice(0,st.stop+1).map(function(x,si){ return '<b>'+e(x.year+' '+(x.short||x.who))+':</b> '+e((x.groups||[]).map(function(y,gi){ var p=st.placed[key(si,gi)]; return p?y.t+' → '+(mv(p).t||''):''; }).filter(Boolean).join('; ')); }).join('<br>')+'</p>'; },
       people:function(){ return SH.map(function(x){ return x.who; }); }}; };
 
+  /* ---------------------------------------------------------------- plot: build a town on a drawn plot of land; the land answers each pick; then seal a guess
+     DATA.scene1 = {type:'plot', title, job, zones:[{k,icon,t,d,cls}], builds:[{t,icon,fits:[zone k],ok,no,hint}], need, q, seal:{q,opts,reveal}, sealed} */
+  MOD.plot=function(c,anchor){ var st=mstate('plot',{placed:{},veto:{}}); if(!st.placed) st.placed={}; if(!st.veto) st.veto={};
+    var Z=c.zones||[], B=c.builds||[], need=c.need||Math.min(4,B.length);
+    var g=gameShell('rg-plot','Dispatch · build a town',c.title||'Build a town here',c);
+    g.innerHTML+='<div class="rg-plot-wrap"><div class="rg-plot-cards" role="group" aria-label="Things to build"></div>'+
+      '<div class="rg-plot-map" role="group" aria-label="The plot of land">'+Z.map(function(z){ return '<div class="rg-plot-zone '+esc(z.cls||z.k)+'" data-k="'+esc(z.k)+'"><button type="button" class="drop" data-k="'+esc(z.k)+'"><span class="ic" aria-hidden="true">'+esc(z.icon||'')+'</span><b>'+esc(z.t)+'</b><small>'+esc(z.d||'')+'</small><span class="rg-sr"> (build the chosen thing here)</span></button><div class="built"></div></div>'; }).join('')+'</div></div>'+
+      '<p class="rg-plot-say" aria-live="polite"></p><div class="rg-plot-count" aria-live="polite"></div><div class="rg-ads-seal rg-plot-seal"></div>';
+    after(anchor,g);
+    function nOK(){ return Object.keys(st.placed).length; }
+    function paint(){
+      $('.rg-plot-cards',g).innerHTML='<div class="hd">'+esc(c.q||'Tap something to build. Then tap the spot where you would build it.')+'</div>'+B.map(function(b,i){ var p=st.placed[i]; return p?'<span class="placed-note">'+esc(b.icon||'')+' '+esc(b.t)+' ✓</span>':'<button type="button" class="rg-card'+(st.veto[i]?' vetoed':'')+'" data-i="'+i+'" aria-pressed="false" draggable="true"'+(st.locked?' disabled':'')+'>'+esc(b.icon||'')+' '+esc(b.t)+(st.veto[i]?' <small>(the land said no)</small>':'')+'</button>'; }).join('');
+      $$('.rg-plot-zone',g).forEach(function(zn){ var k=zn.dataset.k; $('.built',zn).innerHTML=B.map(function(b,i){ return st.placed[i]===k?'<span class="chip">'+esc(b.icon||'')+' '+esc(b.t)+'</span>':''; }).join(''); });
+      $('.rg-plot-say',g).innerHTML=st.say?esc(st.say):'';
+      var n=nOK(); $('.rg-plot-count',g).innerHTML=n<need?'<p class="rg-todo">🏗 <b>'+n+' of '+need+'</b> things built. Try the tobacco plantation too: see what the land says.</p>':'';
+      var box=$('.rg-plot-seal',g), S1=c.seal||{};
+      if(n<need){ box.innerHTML=''; delete box.dataset.on; g.classList.remove('finished'); return; }
+      if(!box.dataset.on){ box.dataset.on='1'; box.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-plot-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        $$('input[name="rg-plot-q"]',box).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',box).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('plotLocked'); }); }
+      $$('input[name="rg-plot-q"]',box).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',box); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',box).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    dragTap(g,'.rg-plot-cards .rg-card','.rg-plot-zone',function(card,zone){ if(st.locked) return; var i=+card.dataset.i, b=B[i], k=zone.dataset.k;
+      if((b.fits||[]).indexOf(k)<0){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); st.veto[i]=true; st.say=(b.fits||[]).length?(b.hint||'Not here. Try another spot.'):(b.no||'The land says no.'); save(); paint(); return; }
+      st.placed[i]=k; st.say=b.ok||''; save(); SFX.chime(); paint(); refreshPress(); });
+    g.addEventListener('click',function(e){ var cd=e.target.closest('.rg-plot-cards .rg-card'); if(!cd||e.detail!==0) return; setTimeout(function(){ if(cd.classList.contains('picked')){ var f=$('.rg-plot-zone .drop',g); if(f) f.focus(); } },0); });
+    paint();
+    function built(){ return B.filter(function(b,i){ return st.placed[i]; }).map(function(b){ return b.t; }); }
+    function vetoed(){ return B.filter(function(b,i){ return st.veto[i]&&!st.placed[i]; }).map(function(b){ return b.t; }); }
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ if(!st.locked) return NA; return '<p class="a"><b>I built:</b> '+e(built().join(', ')||'—')+(vetoed().length?'<br><b>The land said no to:</b> '+e(vetoed().join(', ')):'')+'<br>'+e(line())+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:built(), vetoed:vetoed()}; }}; };
+
+  /* ---------------------------------------------------------------- chains: read one link at a time, then put it in its chain (cause → effect)
+     DATA.explore.reading = {type:'chains', chains:[{k,t,icon,d,list,calm}], times:[2 row labels], cols:[{id,short,who,icon,chain,order,lines:[says, ledTo],calm,pref}],
+       myths:[{after,claim,fact,calm}], close, srcLabel, job}. cols/times match the other reading modules, so the press planner works unchanged. */
+  MOD.chains=function(c,anchor){ var st=mstate('sun',{stop:-1,myth:{},placed:{}}); if(!st.placed) st.placed={}; if(!st.myth) st.myth={}; var L=c.cols||[], N=L.length, CH=c.chains||[], TM=c.times||[];
+    var g=gameShell('rg-chains','The Source Desk · link by link',c.title||'Build the chains',c);
+    if(c.note) g.innerHTML+='<p class="rg-recon"><b>About these links.</b> '+esc(c.note)+'</p>';
+    g.innerHTML+='<div class="rg-chrows" role="group" aria-label="The chains">'+CH.map(function(h){ return '<div class="rg-chrow'+(h.list?' list':'')+(h.calm?' calm':'')+'" data-k="'+esc(h.k)+'"><button type="button" class="drop" data-k="'+esc(h.k)+'"><span class="ic" aria-hidden="true">'+esc(h.icon||'')+'</span><b>'+esc(h.t)+'</b><small>'+esc(h.d||'')+'</small><span class="rg-sr"> (put the chosen link here)</span></button><div class="links"></div></div>'; }).join('')+'</div>'+
+      '<div class="rg-link-log" role="group" aria-label="Links you have read"></div><div class="rg-link-desk"></div><div class="rg-ship-ctl rg-link-ctl"><button type="button" class="rg-btn rg-link-next"></button><span class="rg-link-now"></span></div>'+
+      '<div class="rg-myths"></div><div class="rg-sun-close"></div>';
+    after(anchor,g);
+    var view=-1, nextB=$('.rg-link-next',g), now=$('.rg-link-now',g), mythBox=$('.rg-myths',g), desk=$('.rg-link-desk',g);
+    function ch(k){ return CH.filter(function(h){ return h.k===k; })[0]||{}; }
+    function placed(i){ return !!st.placed[L[i].id]; }
+    function linkHTML(i){ var x=L[i], p=placed(i), H=ch(x.chain); return '<article class="rg-link'+(x.calm?' calm':'')+'" data-id="'+esc(x.id)+'"><header><span class="ic" aria-hidden="true">'+esc(x.icon||'🔗')+'</span><div><small>Link '+(i+1)+' of '+N+'</small><b>'+esc(x.who)+'</b></div></header>'+
+      '<dl>'+TM.map(function(t,r){ return '<div class="rg-link-row'+(r===1&&!p?' rg-hide':'')+'"><dt>'+esc(t)+'</dt><dd class="rg-link-line" data-i="'+r+'">'+esc(x.lines[r]||'')+'</dd></div>'; }).join('')+'</dl>'+
+      (x.pref?'<p class="rg-link-pref">🗳 '+esc(c.prefNote||'This link is a choice people made. The Herald is right about this part.')+'</p>':'')+
+      '<div class="rg-link-sort">'+(p?'<span class="placed-note">✓ In the chain: <i>'+esc(H.t||'')+'</i></span>':'<div class="hd">'+esc(c.sortQ||'Which chain does this link belong in? Tap the link, then tap its chain above.')+'</div><button type="button" class="rg-card'+(x.calm?' calm':'')+'" data-i="'+i+'" aria-pressed="false" draggable="true">🔗 '+esc(x.short||x.who)+'</button>')+'<p class="say" aria-live="polite">'+(st.say&&st.say[0]===i?esc(st.say[1]):'')+'</p></div></article>'; }
+    function paint(){ var s=st.stop; if(view<0||view>s) view=s;
+      desk.innerHTML=view<0?'<div class="rg-harbor-empty">'+esc(c.deskEmpty||'Tap the button to read the first link.')+'</div>':linkHTML(view);
+      $('.rg-link-log',g).innerHTML=s<0?'':L.slice(0,s+1).map(function(x,i){ return '<button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(placed(i)?'ok':'')+'" aria-pressed="'+(i===view)+'">'+esc(x.icon||'🔗')+' '+esc(x.short||x.who)+'</button>'; }).join('');
+      $$('.rg-chrow',g).forEach(function(row){ var k=row.dataset.k, H=ch(k), mine=L.filter(function(x){ return x.chain===k; }).sort(function(a,b){ return (a.order||0)-(b.order||0); });
+        $('.links',row).innerHTML=mine.map(function(x,j){ var on=!!st.placed[x.id]; return (j&&!H.list?'<span class="arr" aria-hidden="true">→</span>':'')+'<span class="lk'+(on?' on':'')+(x.calm?' calm':'')+(x.pref?' pref':'')+'">'+(on?esc(x.short||x.who):'<i aria-label="empty link">?</i>')+'</span>'; }).join(''); });
+      var cur=s<0||placed(s);
+      nextB.disabled=!cur||s>=N-1; nextB.textContent=s<0?'🔗 Read the first link ▸':s>=N-1?(cur?'Every link is in':'Put this link in its chain first'):!cur?'Put this link in its chain first':'Read the next link ▸';
+      now.textContent=s<0?'':'Link '+(view+1)+' of '+N+'.'+(view<s?' Tap “'+(L[s].short||L[s].who)+'” to come back.':'');
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s&&(m.after<s||placed(m.after)); }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+(m.calm?' calm':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact"><div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      var all=done(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':''; g.classList.toggle('finished',all); }
+    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; if(st.stop>=0&&!placed(st.stop)) return; st.stop=i; view=i; save(); SFX.paper(); paint(); refreshPress(); }
+    nextB.addEventListener('click',function(){ go(st.stop+1); var f=$('.rg-link-desk .rg-card',g); if(f) f.focus({preventScroll:true}); });
+    $('.rg-link-log',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(b) go(+b.dataset.v); });
+    dragTap(g,'.rg-link-desk .rg-card','.rg-chrow',function(card,row){ var i=+card.dataset.i, x=L[i], k=row.dataset.k;
+      if(x.chain!==k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); st.say=[i,x.hint||'Read the link again. Is it about the land, about beliefs, or about who had a say?']; var sy=$('.rg-link-desk .say',g); if(sy) sy.textContent=st.say[1]; return; }
+      st.placed[x.id]=k; st.say=[i,x.say||'']; save(); (x.calm||ch(k).calm)?SFX.soft():SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); });
+    desk.addEventListener('click',function(e){ var cd=e.target.closest('.rg-card'); if(!cd||e.detail!==0) return; setTimeout(function(){ if(cd.classList.contains('picked')){ var f=$('.rg-chrow .drop',g); if(f) f.focus(); } },0); });
+    mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
+      if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
+      st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); });
+    function open(){ return st.stop>=N-1&&placed(N-1); }
+    function done(){ return open()&&L.every(function(x,i){ return placed(i); })&&(c.myths||[]).every(function(m,i){ return st.myth[i]; }); }
+    paint();
+    return {el:g,done:done,open:open,paint:paint,go:function(id){ var i=L.map(function(x){ return x.id; }).indexOf(id); if(i>-1&&i<=st.stop){ view=i; paint(); } },
+      journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">'+CH.map(function(h){ var mine=L.filter(function(x){ return x.chain===h.k&&st.placed[x.id]; }).sort(function(a,b){ return (a.order||0)-(b.order||0); }); return '<b>'+e(h.t)+':</b> '+e(mine.map(function(x){ return x.short||x.who; }).join(h.list?', ':' → ')||'—'); }).join('<br>')+'</p>'; },
+      people:function(){ return L.map(function(x){ return x.who; }); }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
-  MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}});
+  MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
     var g=gameShell('rg-redpen','The Source Desk · mark it up like an editor',c.title||'Mark up the picture',c);
     var spots=c.spots||[], need=c.need||Math.min(4,spots.length), last=null, say={}, M=c.missing||{}, cats=M.cats||[{k:'in',t:'In the picture'},{k:'out',t:'Not in the picture'}], FU=c.followup||null, D=c.date||{};
     var SRC_FROM=c.from||'Historical source: the kitchen print', SW=c.srcWho||'Kitchen print', SN=c.srcName||'the kitchen print', SCANT=c.srcCant||('The '+(D.year||'')+' kitchen print');
     function lpos(s){ if(s.lx!=null) return [s.lx,s.ly]; return [Math.max(14,Math.min(86,s.x+(s.x<50?-1:1)*-16)),Math.max(8,Math.min(86,s.y+(s.y<50?16:-16)))]; }
-    function spotCard(s,i){ return {k:'source', t:'The print shows '+s.label.charAt(0).toLowerCase()+s.label.slice(1)+'.', who:SW, when:'made about '+(D.year||''), where:'', from:SRC_FROM, ctx:s.t, tags:['picture'], ret:{tab:'desk', sel:'.rg-rp-n[data-i="'+i+'"]'}}; }
+    function spotCard(s,i){ return {k:'source', t:(c.showsWord||'The print shows ')+s.label.charAt(0).toLowerCase()+s.label.slice(1)+'.', who:SW, when:D.madeT||('made about '+(D.year||'')), where:'', from:SRC_FROM, ctx:s.t, tags:['picture'], ret:{tab:'desk', sel:'.rg-rp-n[data-i="'+i+'"]'}}; }
     g.innerHTML+='<div class="rg-rp-look"><label for="rg-rp-notice"><b>Look first.</b> '+esc(c.lookQ||'Before the editor’s marks appear, look closely. Write one thing you notice in this picture.')+'</label><textarea id="rg-rp-notice" rows="2" placeholder="I notice…">'+esc(st.notice||'')+'</textarea><div class="row"><button type="button" class="rg-btn alt rg-rp-zoom">🔍 Look closer</button><button type="button" class="rg-btn rg-rp-go">Show the editor’s marks</button><span class="rg-rp-sv"></span></div></div>'+
       '<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'"/>'; }).join('')+
       spots.map(function(s,i){ var L=lpos(s); return '<line class="lead" data-i="'+i+'" x1="'+s.x+'" y1="'+s.y+'" x2="'+L[0]+'" y2="'+L[1]+'"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(D.x-D.w/2)+'" y="'+(D.y-D.h/2)+'" width="'+D.w+'" height="'+D.h+'" rx="2"/>':'')+'</svg>'+
       spots.map(function(s,i){ return '<button type="button" class="rg-rp-n" data-i="'+i+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="Mark '+(i+1)+': '+esc(s.label)+'">'+(i+1)+'</button>'; }).join('')+
       spots.map(function(s,i){ var L=lpos(s); return '<div class="rg-rp-ann" data-i="'+i+'" style="left:'+L[0]+'%;top:'+L[1]+'%"><b><span class="no">'+(i+1)+'</span> '+esc(s.label)+'</b><span class="txt">'+esc(s.t)+'</span></div>'; }).join('')+
       (c.date?'<button type="button" class="rg-rp-n date" style="left:'+D.x+'%;top:'+D.y+'%" aria-label="Open the caption and date">📅</button>':'')+'</figure>'+
-      '<div class="rg-rp-cur" aria-live="polite"></div><div class="rg-rp-date"></div></div>'+
+      '<div class="rg-rp-cur" aria-live="polite"></div><div class="rg-rp-oi"></div><div class="rg-rp-date"></div></div>'+
       '<div class="rg-rp-count" aria-live="polite"></div><div class="rg-rp-miss"></div><div class="rg-rp-fu"></div><div class="rg-rp-close"></div>';
     after(anchor,g); var pic=$('.rg-rp-img',g); pic.appendChild(srcImg(c.img,'',c.alt||''));
     var notice=$('#rg-rp-notice',g);
     function guess(){ return S.m.dateit&&S.m.dateit.locked?S.m.dateit:null; }
     function looked(){ return !!st.looked; }
     function sortDone(){ var cards=M.cards||[]; return cards.length>0&&cards.every(function(x,i){ return !!st.miss[i]; }); }
+    function oiDone(){ if(!OI) return true; return (OI.cards||[]).every(function(x,i){ return !!st.oi[i]; }); }
+    function paintOI(){ var box=$('.rg-rp-oi',g); if(!OI||!looked()||Object.keys(st.seen).length<need){ box.innerHTML=''; return; } var cards=OI.cards||[], cats=OI.cats||[{k:'see',t:'I can see it'},{k:'guess',t:'I’m guessing'}];
+      var fk=document.activeElement&&box.contains(document.activeElement)?(document.activeElement.classList.contains('rg-card')?'c':document.activeElement.dataset.f?'f'+document.activeElement.dataset.f:''):'';
+      box.innerHTML='<div class="rg-rp-mhd"><b>'+esc(OI.q||'What can you see, and what are you guessing?')+'</b> '+esc(OI.todo||'Tap a card, then tap the box where it belongs.')+'</div><div class="rg-oi-cards" role="group" aria-label="Cards to sort">'+cards.map(function(x,i){ return st.oi[i]?'':'<button type="button" class="rg-card" draggable="true" data-i="'+i+'" aria-pressed="false">'+esc(x.t)+'</button>'; }).join('')+'</div>'+
+        '<div class="rg-frames two">'+cats.map(function(ct){ return '<div class="rg-frame rg-oi-frame" data-f="'+ct.k+'"><button type="button" class="drop" data-f="'+ct.k+'"><span class="lab">'+esc(ct.icon||'')+' '+esc(ct.t)+'</span>'+(ct.d?'<small>'+esc(ct.d)+'</small>':'')+'<span class="rg-sr"> (put the chosen card here)</span></button>'+cards.map(function(x,i){ return st.oi[i]===ct.k?'<span class="chip">'+esc(x.t)+'</span>':''; }).join('')+'</div>'; }).join('')+'</div><div class="rg-oi-say" aria-live="polite">'+(st.oiSay?esc(st.oiSay):'')+'</div>'+(oiDone()&&OI.close?'<p class="rg-oi-done">'+esc(OI.close)+'</p>':'');
+      if(fk==='c'){ var nc=$('.rg-oi-cards .rg-card',box); if(nc) nc.focus(); } else if(fk){ var f=$('.rg-oi-frame[data-f="'+fk.slice(1)+'"] .drop',box); if(f) f.focus(); } }
     function paint(){ var n=Object.keys(st.seen).length;
       g.classList.toggle('looking',!looked());
       $('.rg-rp-go',g).disabled=words(notice.value)<4; $('.rg-rp-go',g).classList.toggle('rg-hide',looked());
       $('.rg-rp-sv',g).innerHTML=words(notice.value)>=4?evBtn({k:'mine', auto:'notice', t:notice.value.trim(), who:'What I noticed in '+SN, when:'', where:'', from:'My own observation of '+SN, ctx:'What I noticed before reading the editor’s notes.', tags:['picture','mine'], ret:{tab:'desk', sel:'#rg-rp-notice'}},'sm'):'';
       $$('.ring',g).forEach(function(r){ var i=r.dataset.i; r.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); });
-      $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); b.disabled=!looked()||(i==null&&n<need); b.setAttribute('aria-pressed',i!=null?!!st.seen[i]:!!st.date); });
+      $$('.rg-rp-n',g).forEach(function(b){ var i=b.dataset.i; b.classList.toggle('on',i!=null?!!st.seen[i]:!!st.date); b.disabled=!looked()||(i==null&&(n<need||!oiDone())); b.setAttribute('aria-pressed',i!=null?!!st.seen[i]:!!st.date); });
       $$('.rg-rp-ann',g).forEach(function(a){ var i=a.dataset.i, open=i===last; a.classList.toggle('on',!!st.seen[i]); a.classList.toggle('open',open); var sv=$('.rg-evbtn',a); if(open&&!sv) a.insertAdjacentHTML('beforeend',evBtn(spotCard(spots[+i],+i),'sm')); if(!open&&sv) sv.remove(); });
       $$('.lead',g).forEach(function(l){ l.classList.toggle('on',!!st.seen[l.dataset.i]); });
       var cs=last!=null&&spots[+last]; $('.rg-rp-cur',g).innerHTML=cs?'<b>'+(+last+1)+'. '+esc(cs.label)+'</b> '+esc(cs.t)+' '+evBtn(spotCard(cs,+last),'sm'):'';
-      var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',looked()&&n>=need&&!st.date); }
-      $('.rg-rp-count',g).innerHTML=!looked()?'':st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> marks opened. Tap a number on the picture.':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
-      paintDate(); paintMiss(); paintFU(); fin(); }
+      var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',looked()&&n>=need&&oiDone()&&!st.date); }
+      $('.rg-rp-count',g).innerHTML=!looked()?'':st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> marks opened. Tap a number on the picture.':!oiDone()?'👀 Now sort the cards just under the photo: what can you see, and what are you guessing?':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
+      paintOI(); paintDate(); paintMiss(); paintFU(); fin(); }
     /* ---- the date: when it was MADE vs. the time it SHOWS; the student's explanation is the point, not the guess */
     function paintDate(){ var box=$('.rg-rp-date',g); if(!st.date){ box.innerHTML=''; return; } var gs=guess();
-      if(!box.firstChild){ box.innerHTML='<div class="rg-reveal"><div class="rg-dates"><div><span class="k">Made</span><b>about '+esc(D.year)+'</b><small>'+esc(D.madeBy||'')+'</small></div><div class="gap" aria-hidden="true">← '+esc((D.year||0)-(D.shows||0))+' years →</div><div><span class="k">Shows</span><b>about '+esc(D.shows||'')+'</b><small>'+esc(D.showsWhy||'')+'</small></div></div>'+
+      if(!box.firstChild){ box.innerHTML='<div class="rg-reveal"><div class="rg-dates"><div><span class="k">Made</span><b>'+esc(D.yearT||('about '+D.year))+'</b><small>'+esc(D.madeBy||'')+'</small></div><div class="gap" aria-hidden="true">← '+esc(D.gapT||(((D.year||0)-(D.shows||0))+' years'))+' →</div><div><span class="k">Shows</span><b>'+esc(D.showsT||('about '+(D.shows||'')))+'</b><small>'+esc(D.showsWhy||'')+'</small></div></div>'+
         '<p>'+esc(D.text)+'</p>'+(gs?'<p class="cmp">Your sealed note: the scene seems to show about <b>'+esc(gs.guess)+'</b>'+(gs.later!=null&&(DATA.scene1||{}).later?'; drawn later? <b>'+esc(DATA.scene1.later.opts[gs.later])+'</b>':'')+'. '+esc(D.cmp||'Now explain it better than any guess could.')+'</p>':'')+
         '<label for="rg-rp-dexp"><b>'+esc(D.q||'In your own words: what is the difference between when this scene is set and when the print was made? Why does it matter when you use it as evidence?')+'</b></label><textarea id="rg-rp-dexp" rows="3">'+esc(st.dexp||'')+'</textarea><div class="rg-rp-dfb" aria-live="polite"></div></div>';
         var ta=$('#rg-rp-dexp',box); ta.addEventListener('input',function(){ st.dexp=ta.value; save(); paintDexp(); paintMiss(); paintFU(); fin(); refreshPress(); }); }
@@ -486,18 +573,21 @@
     $('.rg-rp-go',g).addEventListener('click',function(){ st.looked=true; save(); SFX.paper(); paint(); var b=$('.rg-rp-n',g); if(b) b.focus(); });
     $('.rg-rp-zoom',g).addEventListener('click',function(){ var im=$('.rg-rp-img img',g); zoomImage(im&&im.src,c.alt||'',c.zoomCap||''); });
     g.addEventListener('click',function(e){ var b=e.target.closest('.rg-rp-n'); if(b&&!b.disabled){
-        if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); var t=$('#rg-rp-dexp',g); if(t) setTimeout(function(){ t.focus({preventScroll:true}); },400); return; }
+        if(b.classList.contains('date')){ if(Object.keys(st.seen).length<need||!oiDone()) return; st.date=true; save(); SFX.stamp(); paint(); refreshPress(); beat('dateOpened'); var t=$('#rg-rp-dexp',g); if(t) setTimeout(function(){ t.focus({preventScroll:true}); },400); return; }
         st.seen[b.dataset.i]=true; last=b.dataset.i; save(); SFX.scratch(); paint(); refreshPress(); return; }
       var a=e.target.closest('.rg-rp-ann.on'); var sl=window.getSelection&&window.getSelection(); if(a&&!e.target.closest('.rg-evbtn')&&!(sl&&!sl.isCollapsed)){ last=a.dataset.i===last?null:a.dataset.i; paint(); } });
-    dragTap(g,'.rg-rp-cards .rg-card','.rg-frame',function(card,frame){ var i=+card.dataset.i, x=M.cards[i], want=x.k||(x.out?'out':'in');
+    if(OI) dragTap(g,'.rg-oi-cards .rg-card','.rg-oi-frame',function(card,frame){ var i=+card.dataset.i, x=OI.cards[i];
+      if(frame.dataset.f!==x.k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); st.oiSay=x.hint||'Look at the photo again.'; $('.rg-oi-say',g).textContent=st.oiSay; return; }
+      st.oi[i]=x.k; st.oiSay=x.say||''; save(); SFX.chime(); paint(); refreshPress(); });
+    dragTap(g,'.rg-rp-cards .rg-card','.rg-frame:not(.rg-oi-frame)',function(card,frame){ var i=+card.dataset.i, x=M.cards[i], want=x.k||(x.out?'out':'in');
       if(frame.dataset.f!==want){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },500); SFX.bounce(); st.lastSay=x.hint||'Look again at the picture.'; $('.rg-rp-say',g).textContent=st.lastSay; return; }
       st.miss[i]=want; st.lastSay=x.say||''; save(); x.calm?SFX.soft():SFX.chime(); paintMiss(); paintFU(); fin(); refreshPress(); if(want==='cant') beat('cantTell'); });
-    function done(){ return !!st.date&&words(st.dexp||'')>=12&&sortDone()&&(!FU||(FU.opts[st.fu]&&FU.opts[st.fu].ok&&words(st.lim||'')>=8)); }
+    function done(){ return oiDone()&&!!st.date&&words(st.dexp||'')>=12&&sortDone()&&(!FU||(FU.opts[st.fu]&&FU.opts[st.fu].ok&&words(st.lim||'')>=8)); }
     function fin(){ var d=done(); g.classList.toggle('finished',d); var cl=$('.rg-rp-close',g); if(cl) cl.innerHTML=d&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; }
     paint();
     return {el:g,done:done,state:function(){ var cards=M.cards||[]; var by={}; cats.forEach(function(ct){ by[ct.k]=cards.filter(function(x,i){ return st.miss[i]===ct.k; }).map(function(x){ return x.t; }); });
-        return {notice:st.notice||'', marks:Object.keys(st.seen).length, opened:!!st.date, dateExp:st.dexp||'', sort:by, cats:cats, followup:FU&&FU.opts[st.fu]?FU.opts[st.fu].t:'', followOk:!!(FU&&FU.opts[st.fu]&&FU.opts[st.fu].ok), limitation:st.lim||''}; },
-      journal:function(e,NA){ if(!st.date) return NA; var x=this.state(); return '<p class="a">The print was made about '+e(D.year)+' and shows a scene set about '+e(D.shows)+'. '+(x.dateExp?'My explanation: '+e(x.dateExp)+'<br>':'')+cats.map(function(ct){ return '<b>'+e(ct.t)+':</b> '+e((x.sort[ct.k]||[]).join(', ')||'—'); }).join('<br>')+(x.limitation?'<br><b>Limitation:</b> '+e(x.limitation):'')+'</p>'; }}; };
+        return {oi:OI?(OI.cats||[]).map(function(ct){ return ct.t+': '+(OI.cards||[]).filter(function(x,i){ return st.oi[i]===ct.k; }).map(function(x){ return x.t; }).join(', '); }):[], notice:st.notice||'', marks:Object.keys(st.seen).length, opened:!!st.date, dateExp:st.dexp||'', sort:by, cats:cats, followup:FU&&FU.opts[st.fu]?FU.opts[st.fu].t:'', followOk:!!(FU&&FU.opts[st.fu]&&FU.opts[st.fu].ok), limitation:st.lim||''}; },
+      journal:function(e,NA){ if(!st.date) return NA; var x=this.state(); return '<p class="a">'+(D.journalT?e(D.journalT)+' ':'The print was made about '+e(D.year)+' and shows a scene set about '+e(D.shows)+'. ')+(x.oi.length?x.oi.map(e).join('<br>')+'<br>':'')+(x.dateExp?'My explanation: '+e(x.dateExp)+'<br>':'')+cats.map(function(ct){ return '<b>'+e(ct.t)+':</b> '+e((x.sort[ct.k]||[]).join(', ')||'—'); }).join('<br>')+(x.limitation?'<br><b>Limitation:</b> '+e(x.limitation):'')+'</p>'; }}; };
 
   /* ---------------------------------------------------------------- layout: drag your own notes onto a blank front page before you write */
   MOD.layout=function(c,anchor){ var st=mstate('layout2',{head:null,p1:null,p2:null,f:{}});
@@ -1084,13 +1174,15 @@
     if(line&&col){ var c=(rd.cols||[]).filter(function(x){ return x.id===col.dataset.id; })[0]; return m({k:'routine', who:c?c.who:'', when:(rd.times||[])[+line.dataset.i]||'', where:c?c.where||'':'', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:[c?c.id:'','routine','highlight']}); }
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
+    var lk=block.closest('.rg-link'); if(lk){ var l0=(rd.cols||[]).filter(function(x){ return x.id===lk.dataset.id; })[0]||{}, ln2=block.closest('.rg-link-line'), li2=ln2?+ln2.dataset.i:-1; return m({k:'lesson', who:l0.who||'', when:li2>-1?(rd.times||[])[li2]||'':'', from:rd.srcLabel||'Fact from the lesson', tags:[l0.id||'',l0.chain||'','link','highlight']}); }
+    if(block.closest('.rg-plot')) return m({k:'lesson', who:'Building a town on the coast', from:'Fact from the lesson (the build-a-town activity)', tags:['land','plot','highlight']});
     var ad=block.closest('.rg-ad'); if(ad){ var A0=((DATA.scene1||{}).ads||[])[+ad.dataset.a]||{}; if(block.closest('.rg-ad-plain')) return m({k:'lesson', who:A0.name||'', when:A0.year||'', from:'Example written for this lesson: a plain-English version of the ad', tags:['ad','highlight']}); return m({k:'source', quote:true, who:A0.name||'', when:A0.year||'', where:A0.where||'', from:'Real source from the past: '+(A0.cite||''), tags:['ad','highlight']}); }
     var mini=block.closest('.rg-almini'); if(mini){ var MI=(DATA.almanac||{}).mini||{}; return m({k:'lesson', who:MI.who||'Did you know?', from:MI.from||'Fact from the lesson', tags:(MI.tags||[]).concat(['highlight'])}); }
     var al=block.closest('.rg-al3');
     if(al){ var A=DATA.almanac||{}; if(block.closest('.say')) return m({k:'source', quote:true, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Real source from the past: '+(A.cite||'Poor Richard’s Almanack, 1735'), tags:['almanac','highlight']});
       if(block.closest('.rg-al3-ann')) return m({k:'source', who:'Poor Richard improved (cover)', when:'1748', where:'Philadelphia', from:'Real source from the past: the 1748 almanac cover (Library of Congress)', tags:['almanac','highlight']});
       return m({k:'lesson', who:'Almanac calendar page', where:'Philadelphia', from:'Fact from the lesson: a calendar page re-set for this lesson (sun times worked out for Philadelphia)', ctx:A.note||'', tags:['almanac','highlight']}); }
-    if(block.closest('.rg-redpen')){ var ev=(DATA.explore||{}).evidence||{}; return m({k:'source', who:ev.srcWho||'Kitchen print', when:'made about '+((ev.date||{}).year||''), from:ev.from||'Real source from the past: the kitchen print', tags:['picture','highlight']}); }
+    if(block.closest('.rg-redpen')){ var ev=(DATA.explore||{}).evidence||{}; return m({k:'source', who:ev.srcWho||'Kitchen print', when:(ev.date||{}).madeT||('made about '+((ev.date||{}).year||'')), from:ev.from||'Real source from the past: the kitchen print', tags:['picture','highlight']}); }
     if(block.closest('.rg-myth')) return m({k:'lesson', who:'Fact-check of the Herald', from:'Fact from the lesson (a fact-check written for this lesson)', tags:['herald','highlight']});
     if(block.closest('.herald-wrap, .herald-claim')) return m({k:'lesson', who:'The Hasty Herald', from:'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','highlight']});
     return m({k:'lesson', who:'Highlighted from the lesson', from:'Fact from the lesson ('+whereAmI(block)+')'}); }
@@ -1283,7 +1375,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-col-line, .rg-ship-line, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;

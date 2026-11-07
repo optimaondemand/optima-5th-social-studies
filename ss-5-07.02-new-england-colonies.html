@@ -2258,6 +2258,1652 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.02",
+ "title": "New England Colonies",
+ "issue": 30,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "link",
+ "place": "Massachusetts Bay",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>did New England grow this way just because people preferred it?<\/i> Use the 🖍 highlighter to save details about the land, about what people believed, or about who had a say. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: the many reasons people came to the colonies. Today we zoom in on one region: New England.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Build a town",
+   "why": "Before you read anything, try building a town on New England land. See what the land lets you build. Then seal your answer."
+  },
+  {
+   "tab": "desk",
+   "t": "Build the chains",
+   "why": "Test the Herald’s claim one link at a time: the land, what people believed, and who had a say. Then study a photo of a real 1681 meetinghouse. Save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the correction",
+   "why": "Pick your angle, write your Gazette Correction from your evidence, then strike the Herald’s claim and print."
+  }
+ ],
+ "lens": "Courage means telling the whole truth, even when a simple answer would be easier. Today, a courageous editor shows what really shaped New England, and who didn’t get a say.",
+ "recordFoot": "(The facts in this lesson come from historians’ records. The town-building cards and the plain explanations were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story is New England. The Hasty Herald already printed its answer: “New England colonies grew the way they did because colonists simply preferred it.”"
+   },
+   {
+    "t": "Before we read a word, I want you to try building a town there. Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Build a town? Me?",
+      "reply": "You. Pick what to build and where. The land will tell you if it works."
+     },
+     {
+      "t": "Maybe they did just like it that way.",
+      "reply": "Maybe some of it. A good editor checks before deciding."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Then let’s get to work. The town plot is waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the photo is wrong?",
+      "reply": "No. The photo is real. It just shows the room after more than 250 years of changes. We have to know that before we use it."
+     },
+     {
+      "t": "Why does it matter when the pews were added?",
+      "reply": "Because if you wrote “Puritans in 1681 sat in box pews,” you’d be wrong. Checking the dates keeps you from printing a mistake."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the photo. Some things a photo just can’t tell us."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the links. Open one, read it, and highlight the sentence that shows what shaped New England. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the photo.",
+      "reply": "Here it is. Tap the red numbers, read the notes, and highlight one that shows what mattered to the people who built this room.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "plotLocked": [
+    {
+     "t": "Your answer is sealed. Now go to the Desk tab (tab 2). You’ll build three chains, one link at a time, and then we’ll open your envelope.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Every link is in. Look at your chains: was it only what people preferred? Next, study a photo of a real meetinghouse.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "The building is from 1681, but the box pews came in 1755, and the photo was taken in the 1900s. One picture, three different dates. That’s exactly why we check.",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your correction first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your correction and your evidence are on the record. Issue 30 is in the Morgue. Next issue: the Middle Colonies.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "plot",
+  "title": "Build a town on this land",
+  "job": {
+   "why": "The Hasty Herald says New England grew this way because people simply preferred it. Before reading, test that: try building a town on New England land and see what the land allows.",
+   "do": "1. Tap something to build. 2. Tap a spot on the land. 3. Build at least 4 things. 4. Answer the editor’s question and seal it.",
+   "use": "Your sealed answer opens on the Desk tab, after you build the chains.",
+   "words": [
+    [
+     "colony",
+     "a settlement ruled by a faraway country"
+    ],
+    [
+     "growing season",
+     "the warm months when crops can grow"
+    ]
+   ]
+  },
+  "q": "Tap something to build. Then tap the spot where you would build it.",
+  "need": 4,
+  "zones": [
+   {
+    "k": "field",
+    "cls": "field",
+    "icon": "🪨",
+    "t": "Thin, rocky field",
+    "d": "Stones in the dirt. A short summer, then a long, cold winter."
+   },
+   {
+    "k": "forest",
+    "cls": "forest",
+    "icon": "🌲",
+    "t": "Forest by a river",
+    "d": "Tall trees. A fast river runs down to the sea."
+   },
+   {
+    "k": "harbor",
+    "cls": "harbor",
+    "icon": "⚓",
+    "t": "Deep harbor",
+    "d": "Calm, deep water. The ocean is full of cod fish."
+   },
+   {
+    "k": "hill",
+    "cls": "hill",
+    "icon": "⛰️",
+    "t": "Hill in the middle",
+    "d": "The center of town. Everyone can walk here."
+   }
+  ],
+  "builds": [
+   {
+    "t": "Big tobacco plantation",
+    "icon": "🌿",
+    "fits": [],
+    "no": "The land says no. Tobacco needs a long, hot summer and rich soil. This land has a short summer and rocky dirt. That’s why New England had no big plantations."
+   },
+   {
+    "t": "Small family farm",
+    "icon": "🌽",
+    "fits": [
+     "field"
+    ],
+    "ok": "Yes, but small. Families grew corn, beans and squash and kept cows and pigs, mostly to feed themselves.",
+    "hint": "Farms need open ground. Try the field."
+   },
+   {
+    "t": "Wharf for fishing boats",
+    "icon": "🐟",
+    "fits": [
+     "harbor"
+    ],
+    "ok": "Yes. Cod fishing became one of New England’s biggest jobs. Dried cod was sold far away.",
+    "hint": "Boats need deep water. Where is it?"
+   },
+   {
+    "t": "Sawmill",
+    "icon": "🪚",
+    "fits": [
+     "forest"
+    ],
+    "ok": "Yes. The river turned the saw, and the trees became boards for houses, barrels and ships.",
+    "hint": "A sawmill needs trees, and a river to turn its wheel."
+   },
+   {
+    "t": "Shipyard",
+    "icon": "⛵",
+    "fits": [
+     "harbor"
+    ],
+    "ok": "Yes. Wood from the forest plus a deep harbor meant New Englanders could build ships.",
+    "hint": "Where would a finished ship go into the water?"
+   },
+   {
+    "t": "Meetinghouse",
+    "icon": "🏛️",
+    "fits": [
+     "hill"
+    ],
+    "ok": "Yes. Puritan towns built the meetinghouse in the center. It was the church on Sunday and the place for town meetings during the week.",
+    "hint": "This building was for the whole town. Where could everyone reach it?"
+   }
+  ],
+  "seal": {
+   "q": "After building your town: did the colonists simply choose what to build?",
+   "opts": [
+    "Yes. They built whatever they liked",
+    "Partly. They chose, but the land limited them",
+    "No. The land decided everything"
+   ],
+   "reveal": [
+    "The chains showed more than choice: the land and people’s beliefs pushed New England in certain directions. Changing your mind when the evidence changes is what careful editors do.",
+    "That’s what the chains showed too. People made choices, but the land and their beliefs shaped those choices.",
+    "The land mattered a lot. But the chains showed people’s beliefs mattered too, and some people did make choices."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after you build the chains."
+ },
+ "explore": {
+  "reading": {
+   "type": "chains",
+   "title": "Build the chains, one link at a time",
+   "times": [
+    "What the reading says",
+    "What it led to"
+   ],
+   "chains": [
+    {
+     "k": "land",
+     "icon": "🪨",
+     "t": "The land → the work",
+     "d": "What the land allowed"
+    },
+    {
+     "k": "faith",
+     "icon": "⛪",
+     "t": "Beliefs → town life",
+     "d": "What people believed"
+    },
+    {
+     "k": "left",
+     "icon": "🗳️",
+     "t": "Some people had no say",
+     "d": "Who was left out",
+     "list": true
+    }
+   ],
+   "cols": [
+    {
+     "id": "soil",
+     "short": "Rocky soil",
+     "who": "Thin, rocky soil",
+     "icon": "🪨",
+     "chain": "land",
+     "order": 1,
+     "lines": [
+      "New England’s soil was thin and full of rocks. Winters were long and cold, so the growing season was short. Big crops like tobacco could not grow here.",
+      "Small family farms. Families grew food for themselves. There were no big plantations like the ones in Virginia."
+     ],
+     "say": "Yes. The land came first: it decided what could grow.",
+     "hint": "Is this about the land, about what people believed, or about who had a say?"
+    },
+    {
+     "id": "faith",
+     "short": "Puritans came",
+     "who": "The Puritans chose to come",
+     "icon": "⛪",
+     "chain": "faith",
+     "order": 1,
+     "pref": true,
+     "lines": [
+      "In 1630, about 1,000 Puritans sailed to Massachusetts Bay. Puritans were English Protestants who wanted a stricter, plainer church. Their leader, John Winthrop, said: “We shall be as a city upon a hill.” He meant everyone would be watching them.",
+      "A colony built around their beliefs, where church and town life were closely tied together."
+     ],
+     "say": "Yes. This link is a choice: the Puritans chose to come for their beliefs.",
+     "hint": "Is this about the land, or about what people believed?"
+    },
+    {
+     "id": "sea",
+     "short": "Forest and sea",
+     "who": "Forests and the sea",
+     "icon": "🌲",
+     "chain": "land",
+     "order": 2,
+     "lines": [
+      "Thick forests grew near the coast, and the ocean was full of cod fish. Fast rivers could turn mill wheels.",
+      "Jobs from the forest and the sea: cutting lumber, fishing for cod, and building ships."
+     ],
+     "say": "Yes. When farming is hard, people turn to what the land does have.",
+     "hint": "Forests and fish: are those about the land or about beliefs?"
+    },
+    {
+     "id": "bible",
+     "short": "Read the Bible",
+     "who": "Everyone should read the Bible",
+     "icon": "📖",
+     "chain": "faith",
+     "order": 2,
+     "lines": [
+      "Puritans believed every person should be able to read the Bible for themselves, not just the minister.",
+      "Children had to learn to read."
+     ],
+     "say": "Yes. A belief that led straight to something new.",
+     "hint": "Is this about the land, or about what people believed?"
+    },
+    {
+     "id": "school",
+     "short": "Schools",
+     "who": "Schools and a college",
+     "icon": "🏫",
+     "chain": "faith",
+     "order": 3,
+     "lines": [
+      "Boston opened a school in 1635. Harvard College began in 1636, partly to train ministers. In 1647, a Massachusetts law said every town with 50 families had to hire a teacher.",
+      "New England became one of the first places in the colonies where towns had to pay for schools."
+     ],
+     "say": "Yes. Beliefs → reading → schools. That’s a chain.",
+     "hint": "Why did Puritans want children to read? Which chain is that?"
+    },
+    {
+     "id": "port",
+     "short": "Trading ports",
+     "who": "Busy trading ports",
+     "icon": "⚓",
+     "chain": "land",
+     "order": 3,
+     "lines": [
+      "Ships carried dried fish, lumber and barrels from New England to England, Africa and the Caribbean islands, and brought goods back. Boston grew into a busy port.",
+      "Trade, not big farms, became the way many New Englanders made money."
+     ],
+     "say": "Yes. Rocky soil → forest and sea → trade. Your land chain is done.",
+     "hint": "This one comes from the harbor and the sea. Which chain is that?"
+    },
+    {
+     "id": "meeting",
+     "short": "Town meetings",
+     "who": "The meetinghouse and town meetings",
+     "icon": "🏛️",
+     "chain": "faith",
+     "order": 4,
+     "lines": [
+      "Each Puritan town built a meetinghouse in its center. It was the church on Sunday. On other days the men of the town met there to vote on roads, schools, taxes, and who would be the minister.",
+      "Town meetings: one of the first ways colonists made their own local rules, called self-government."
+     ],
+     "say": "Yes. Your beliefs chain is done. But who got to vote at those meetings?",
+     "hint": "The meetinghouse was built because of beliefs. Which chain is that?"
+    },
+    {
+     "id": "vote",
+     "short": "Who could vote",
+     "who": "Who could vote",
+     "icon": "🗳️",
+     "chain": "left",
+     "order": 1,
+     "lines": [
+      "Only men voted at town meetings. For many years, only men who were church members could vote for the colony’s leaders. Women, servants, enslaved people and Native people could not vote.",
+      "Most people in New England had no vote, even though town meetings were held for the whole town."
+     ],
+     "say": "Right. A town meeting was not a meeting of everyone.",
+     "hint": "This is about who had a say. Which box is that?"
+    },
+    {
+     "id": "williams",
+     "short": "Roger Williams",
+     "who": "Roger Williams and Anne Hutchinson",
+     "icon": "🧭",
+     "chain": "left",
+     "order": 2,
+     "lines": [
+      "Puritans wanted freedom to worship their own way, not freedom for everyone. In 1635, Massachusetts leaders expelled (forced out) Roger Williams for saying the government should not make rules about religion. In 1637, Anne Hutchinson was expelled too.",
+      "Williams started Providence, in Rhode Island, in 1636. There, people could worship in different ways. This is called religious tolerance."
+     ],
+     "say": "Right. People who disagreed with Puritan leaders didn’t get a say. They got pushed out.",
+     "hint": "Did these two get a say in Massachusetts? Which box fits?"
+    },
+    {
+     "id": "native",
+     "short": "Native nations",
+     "who": "Native nations",
+     "icon": "🪶",
+     "chain": "left",
+     "order": 3,
+     "calm": true,
+     "lines": [
+      "The Wampanoag, Massachusett, Narragansett, Pequot, Nipmuc, Abenaki and other nations already lived here. As colonists took more land, wars broke out: the Pequot War in 1637, and King Philip’s War in 1675 and 1676.",
+      "Thousands of Native people were killed, forced off their land, or sold into slavery. Colonists made the choices about this land, not the people who lived on it first."
+     ],
+     "say": "Right. The land wasn’t empty, and its first people had no say in the colonists’ plans.",
+     "hint": "Did the people who already lived here get a say? Which box fits?"
+    },
+    {
+     "id": "enslaved",
+     "short": "Enslaved people",
+     "who": "Enslaved people",
+     "icon": "⛓️",
+     "chain": "left",
+     "order": 4,
+     "calm": true,
+     "lines": [
+      "Slavery was legal in New England. A 1641 Massachusetts law allowed it. Enslaved Africans and Native people worked in homes, on farms, on docks and on ships.",
+      "Some of New England’s trade sold fish and lumber to sugar plantations in the Caribbean, where enslaved Africans did the work."
+     ],
+     "say": "Right. Slavery was part of New England too, not only the South.",
+     "hint": "Did enslaved people get a say? Which box fits?"
+    }
+   ],
+   "srcLabel": "Fact from the lesson",
+   "prefNote": "This link is a choice people made. The Herald is right about this part. But watch what the choice led to.",
+   "sortQ": "Which chain does this link belong in? Tap the link, then tap its chain above.",
+   "deskEmpty": "Tap the button to read the first link.",
+   "myths": [
+    {
+     "after": 2,
+     "claim": "New Englanders fished because they just liked fishing better than farming.",
+     "fact": "The soil was thin and rocky, and the summer was short. Big farms couldn’t work, so people turned to the sea and the forest."
+    },
+    {
+     "after": 6,
+     "claim": "The Puritans came to give everyone religious freedom.",
+     "fact": "They wanted freedom to worship their own way. People who disagreed, like Roger Williams and Anne Hutchinson, were forced out."
+    },
+    {
+     "after": 10,
+     "claim": "There was no slavery in New England.",
+     "fact": "Slavery was legal in all thirteen colonies. A 1641 Massachusetts law allowed it.",
+     "calm": true
+    }
+   ],
+   "close": "Two chains and one hard list. The land pushed the work, beliefs shaped town life, and many people had no say at all. Preference was one link, not the whole story.",
+   "job": {
+    "why": "This tests the Herald’s claim. If New England grew only because people preferred it, every link would be a choice. Let’s see.",
+    "do": "1. Tap the button to read a link. 2. Put it in its chain. 3. Fact-check the Herald when it shows up. 4. Do all 11 links.",
+    "use": "Your chains give you evidence for the notebook and your correction.",
+    "words": [
+     [
+      "Puritan",
+      "an English Protestant who wanted a stricter, plainer church"
+     ],
+     [
+      "expelled",
+      "forced to leave"
+     ],
+     [
+      "self-government",
+      "people making their own rules"
+     ],
+     [
+      "tolerance",
+      "letting people believe and worship in different ways"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Investigate a real 1681 meetinghouse",
+   "srcName": "the meetinghouse photo",
+   "srcWho": "Old Ship Meetinghouse photo",
+   "srcCant": "This photo of the Old Ship Meetinghouse",
+   "showsWord": "The photo shows ",
+   "img": "source-5-07-02-new-england-colonial",
+   "alt": "Black-and-white photo inside a plain wooden meetinghouse. A center aisle leads between rows of wooden box pews with little doors and spindles to a tall pulpit under a wooden canopy. Plain plaster walls, wooden roof beams, and a rope hanging from the ceiling.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 50,
+     "y": 47,
+     "rx": 9,
+     "ry": 10,
+     "label": "The pulpit",
+     "t": "A tall box where the minister stood to preach. It is raised up so everyone could see and hear him.",
+     "lx": 26,
+     "ly": 42
+    },
+    {
+     "x": 50,
+     "y": 17,
+     "rx": 13,
+     "ry": 6,
+     "label": "The sounding board",
+     "t": "A wooden cover over the pulpit. It bounced the minister’s voice out into the room. There were no microphones.",
+     "lx": 76,
+     "ly": 12
+    },
+    {
+     "x": 20,
+     "y": 80,
+     "rx": 11,
+     "ry": 10,
+     "label": "Box pews",
+     "t": "Wooden boxes with doors. A family sat together inside one.",
+     "lx": 30,
+     "ly": 62
+    },
+    {
+     "x": 76,
+     "y": 81,
+     "rx": 4,
+     "ry": 4,
+     "label": "A number on a pew",
+     "t": "Many pews had numbers. Families bought or rented their own pew, and where you sat could show how important your family was.",
+     "lx": 66,
+     "ly": 64
+    },
+    {
+     "x": 12,
+     "y": 30,
+     "rx": 9,
+     "ry": 10,
+     "label": "Plain walls",
+     "t": "No statues, no paintings, no colored glass windows. Puritans wanted worship to be plain and simple.",
+     "lx": 24,
+     "ly": 22
+    },
+    {
+     "x": 55,
+     "y": 34,
+     "rx": 3,
+     "ry": 11,
+     "label": "A hanging rope",
+     "t": "A rope hangs from the roof. It may ring the bell in the little tower on the roof, but this photo alone can’t tell us.",
+     "lx": 74,
+     "ly": 36
+    }
+   ],
+   "obsinf": {
+    "q": "What can you see, and what are you guessing?",
+    "todo": "An observation is something you can see in the photo. An inference is a smart guess about what it means. Tap a card, then tap its box.",
+    "cats": [
+     {
+      "k": "see",
+      "icon": "👀",
+      "t": "I can see it",
+      "d": "an observation"
+     },
+     {
+      "k": "guess",
+      "icon": "💭",
+      "t": "I’m guessing",
+      "d": "an inference"
+     }
+    ],
+    "cards": [
+     {
+      "t": "A tall pulpit stands at the front.",
+      "k": "see",
+      "say": "Yes. You can point to it.",
+      "hint": "Can you point to this in the photo?"
+     },
+     {
+      "t": "The walls have no pictures or statues.",
+      "k": "see",
+      "say": "Yes. That’s right there in the photo.",
+      "hint": "Look at the walls. Can you see this?"
+     },
+     {
+      "t": "Some pews have numbers on them.",
+      "k": "see",
+      "say": "Yes. Look closely at the pew doors.",
+      "hint": "Zoom in on the pew doors."
+     },
+     {
+      "t": "The minister was the most important person in the room.",
+      "k": "guess",
+      "say": "Right. The tall pulpit is a clue, but this is a guess about what it means.",
+      "hint": "Can you see “important” in a photo? Or are you guessing from a clue?"
+     },
+     {
+      "t": "Families sat together.",
+      "k": "guess",
+      "say": "Right. The box pews are a clue, but the photo shows no people at all.",
+      "hint": "Are there any people in this photo?"
+     },
+     {
+      "t": "Simple worship mattered to the people who built it.",
+      "k": "guess",
+      "say": "Right. Plain walls are the clue. What people cared about is the guess.",
+      "hint": "Can you see what people cared about? Or is that a guess from a clue?"
+     }
+    ],
+    "close": "Good sorting. Clues you can see, plus careful guesses about what they mean. That’s how historians read a source."
+   },
+   "date": {
+    "x": 93,
+    "y": 94,
+    "w": 10,
+    "h": 8,
+    "year": 1681,
+    "shows": 1681,
+    "yearT": "in the 1900s",
+    "showsT": "a building from 1681",
+    "gapT": "more than 250 years",
+    "text": "Puritans built the Old Ship Meetinghouse in Hingham, Massachusetts, in 1681. It is the oldest church building in North America that is still used for worship. But the room has changed. In 1681 people sat on backless wooden benches. The box pews came in 1755. This photo was taken for the Historic American Buildings Survey, a government project that began in 1933. (Library of Congress, HABS MA-595)",
+    "madeBy": "A photo taken for the Historic American Buildings Survey",
+    "showsWhy": "Built by Puritans; the box pews were added in 1755",
+    "q": "In your own words: when was this building made, when was the photo taken, and what changed in between? Why does that matter when you use it as evidence?",
+    "check": [
+     "say when the building was made?",
+     "say the photo was taken much later?",
+     "name something that changed, like the pews?"
+    ],
+    "model": "The meetinghouse was built in 1681, but the photo was taken in the 1900s. The box pews were added in 1755, so in 1681 people sat on benches. The photo can show the building, but not exactly how it looked to the first Puritans.",
+    "card": "The Old Ship Meetinghouse was built in 1681. The box pews were added in 1755, and the photo was taken in the 1900s.",
+    "madeT": "photo taken in the 1900s",
+    "journalT": "The meetinghouse was built in 1681; the box pews came in 1755; the photo was taken in the 1900s."
+   },
+   "missing": {
+    "q": "What can this photo tell us, and what can’t it?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in the photo",
+      "icon": "🖼"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this photo",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this photo alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "A raised pulpit",
+      "k": "shown",
+      "say": "Yes. Look at mark 1.",
+      "hint": "Look again at mark 1."
+     },
+     {
+      "t": "Plain walls with no pictures",
+      "k": "shown",
+      "say": "Yes. Mark 5.",
+      "hint": "Look again at mark 5."
+     },
+     {
+      "t": "Box pews with doors",
+      "k": "shown",
+      "say": "Yes. Mark 3.",
+      "hint": "Look again at mark 3."
+     },
+     {
+      "t": "The backless benches people sat on in 1681",
+      "k": "not",
+      "say": "Right. Those were replaced by box pews starting in 1755.",
+      "hint": "When were the box pews added? What was here before?"
+     },
+     {
+      "t": "A town meeting going on",
+      "k": "not",
+      "say": "Right. The room is empty. No meeting is happening.",
+      "hint": "Are there any people in the photo?"
+     },
+     {
+      "t": "Who was allowed to vote at town meetings",
+      "k": "cant",
+      "say": "Right. A photo of a room can’t show the rules about voting. We’d need the town’s laws and records.",
+      "hint": "Can you see voting rules in a room?"
+     },
+     {
+      "t": "What the people who sat here believed",
+      "k": "cant",
+      "say": "Right. We can make guesses from clues, but beliefs need words: sermons, letters, diaries.",
+      "hint": "Can a photo show what someone believed?"
+     },
+     {
+      "t": "Whether the rope rings the bell",
+      "k": "cant",
+      "say": "Right. It might. We’d need to see the bell tower, or read about the building.",
+      "hint": "Can you see where the rope goes?"
+     }
+    ]
+   },
+   "close": "A real Puritan meetinghouse, photographed more than 250 years after it was built. It shows a plain room built for preaching and meeting. It can’t show who could vote, or exactly how it looked in 1681.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this photo.",
+   "from": "Real source from the past: the Old Ship Meetinghouse, Hingham, Massachusetts (built 1681), photographed for the Historic American Buildings Survey (Library of Congress)",
+   "zoomCap": "Old Ship Meetinghouse, Hingham, Massachusetts, built 1681: the center aisle and pulpit. Historic American Buildings Survey, HABS MA-595. Library of Congress, https://www.loc.gov/item/ma0440/",
+   "followup": {
+    "q": "This photo can’t show who was allowed to vote at town meetings. Which other source could help you find out?",
+    "opts": [
+     {
+      "t": "The Massachusetts colony’s laws about who could vote",
+      "ok": true,
+      "say": "Yes. A 1631 Massachusetts law said only men who were church members could vote for the colony’s leaders. Written laws can show rules a photo can’t."
+     },
+     {
+      "t": "A photo of the same room taken today",
+      "ok": false,
+      "say": "A newer photo would still show an empty room, not the voting rules."
+     },
+     {
+      "t": "A painting of a church in England",
+      "ok": false,
+      "say": "That’s a different building, in a different country."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this photo can’t show? (This is called a limitation.)",
+    "limPh": "This photo can’t show…"
+   },
+   "job": {
+    "why": "This is a real building the Puritans built. It can show us what mattered to them. Before using it as evidence, check what you see, what you’re guessing, and when the photo was taken.",
+    "do": "1. Write one thing you notice. 2. Open at least 4 red marks. 3. Sort what you see from what you guess. 4. Open the 📅 date, then finish the cards.",
+    "use": "Your notes about this photo go into your evidence drawer for your correction.",
+    "words": [
+     [
+      "meetinghouse",
+      "a building used for church and for town meetings"
+     ],
+     [
+      "observation",
+      "something you can see"
+     ],
+     [
+      "inference",
+      "a smart guess about what something means"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "New England’s rocky soil and short summers made big farms impossible, so people turned to fishing, lumber, shipbuilding and trade.",
+   "The Puritans came by choice, for their beliefs. Their belief that everyone should read the Bible led to schools and town meetings.",
+   "Not everyone had a say. Only men voted at town meetings, people who disagreed were expelled, and Native nations lost their land.",
+   "Slavery was legal in New England too.",
+   "A source can be made long after the time it shows. The Old Ship Meetinghouse was built in 1681, but its pews came later, and the photo is from the 1900s."
+  ],
+  "vocab": [
+   [
+    "Puritan",
+    "an English Protestant who wanted a stricter, plainer church"
+   ],
+   [
+    "meetinghouse",
+    "a building used for church and for town meetings"
+   ],
+   [
+    "town meeting",
+    "a meeting where the men of a town voted on local rules"
+   ],
+   [
+    "self-government",
+    "people making their own rules"
+   ],
+   [
+    "expelled",
+    "forced to leave"
+   ],
+   [
+    "tolerance",
+    "letting people believe and worship in different ways"
+   ],
+   [
+    "economy",
+    "the way people make, buy and sell things"
+   ],
+   [
+    "observation",
+    "something you can see"
+   ],
+   [
+    "inference",
+    "a smart guess about what something means"
+   ]
+  ]
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "todo": "1. Pick the angle your correction will argue. 2. Pick two links. 3. Pick what shaped New England.",
+  "head": {
+   "label": "Your main idea (angle): what will your correction argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "The Land Said No",
+     "ok": true,
+     "tip": "The soil and the sea pushed the work people did.",
+     "fit": [
+      "land",
+      "soil",
+      "sea",
+      "port",
+      "plot"
+     ],
+     "fitTip": "Good fits: the land chain, and what the land said in your town.",
+     "ideas": [
+      "The Land Said No",
+      "Rocky Soil, Busy Harbors"
+     ]
+    },
+    {
+     "t": "Beliefs Built the Town",
+     "ok": true,
+     "tip": "Faith led to reading, schools and town meetings.",
+     "fit": [
+      "faith",
+      "bible",
+      "school",
+      "meeting",
+      "picture"
+     ],
+     "fitTip": "Good fits: the beliefs chain, and the meetinghouse photo.",
+     "ideas": [
+      "Beliefs Built the Town",
+      "Faith, Schools and Meetings"
+     ]
+    },
+    {
+     "t": "Some People Had No Say",
+     "ok": true,
+     "tip": "Who chose, and who didn’t get to.",
+     "fit": [
+      "left",
+      "vote",
+      "williams",
+      "native",
+      "enslaved",
+      "herald"
+     ],
+     "fitTip": "Good fits: the “Some people had no say” links, and the Herald fact-checks.",
+     "ideas": [
+      "Some People Had No Say",
+      "Who Got to Choose?"
+     ]
+    },
+    {
+     "t": "Colonists Just Liked It That Way",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your chains: was every link a choice?"
+    }
+   ]
+  },
+  "p1Label": "Link 1: pick one from the land chain",
+  "p2Label": "Link 2: pick one from the beliefs chain, or from who had a say",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "How did each of these push New England to grow the way it did?",
+  "whyLabel": "Why it matters: what shaped New England?",
+  "factors": [
+   "The rocky soil and short summers",
+   "The forests and the sea",
+   "What the Puritans believed",
+   "Who was allowed to vote",
+   "Who was pushed out or left out"
+  ],
+  "close": "Your angle is set. Now write your correction below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every correction argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two links. 3. Pick what shaped New England.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why a correction?",
+   "t": "Honest papers fix their mistakes. Strike the Herald’s claim, and your correction prints in its place."
+  },
+  "win": "Printed. Your correction is on the record, and Issue 30 is filed in the Morgue.",
+  "claim": "New England colonies grew the way they did because colonists simply preferred it."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap your town when 4 things are built",
+   "Snap your chains when every link is in",
+   "Snap the pulpit in the meetinghouse photo",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "In 1647, a Massachusetts law said every town with 50 families had to hire a teacher.",
+   "key": [
+    "1647",
+    "Massachusetts",
+    "law",
+    "50",
+    "families",
+    "teacher"
+   ],
+   "small": [
+    "in",
+    "a",
+    "said",
+    "every",
+    "with",
+    "had",
+    "to"
+   ],
+   "model": "Key words: 1647, Massachusetts law, 50 families, hire a teacher."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Something about the land",
+    "rx": "soil|rock|stony|cold|winter|summer|season|land|forest|tree|wood|harbor|sea|ocean|coast|river|geograph",
+    "n": 1
+   },
+   {
+    "t": "A job or way to make money",
+    "rx": "fish|cod|lumber|wood|ship|trade|port|sell|farm|mill|sawmill|money|job|work|economy",
+    "n": 1
+   },
+   {
+    "t": "How one led to the other",
+    "rx": "because|so |so,|led to|that.?s why|which meant|caus|made|forced",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A belief",
+    "rx": "bible|read|god|faith|belie|relig|puritan|church|worship",
+    "n": 1
+   },
+   {
+    "t": "Something beyond church",
+    "rx": "school|harvard|college|teacher|town meeting|meeting|vote|law|rule|govern|teach|learn",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|chose|choice|some|puritans? (came|chose|wanted)|wanted|belie",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|soil|land|rock|sea|vote|native|enslav|slave|williams|hutchinson|say",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at your land chain on this tab.",
+   "What couldn’t grow, and what did people do instead?",
+   "Try: “Because the soil was ___, New Englanders ___.”"
+  ],
+  "journal-q2": [
+   "Look at your beliefs chain.",
+   "What did Puritans want everyone to be able to do? What did that lead to?",
+   "Try: “Puritans believed ___, so they started ___.”"
+  ],
+  "journal-q3": [
+   "Which link in your chains was a real choice?",
+   "Now look at the land chain, and the list of people who had no say.",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "New Englanders did farm, on small family farms. The problem was the land, not their feelings. Look back at the rocky soil link.",
+   "C": "England didn’t ban farming there. Look back at the rocky soil link."
+  },
+  {
+   "B": "The reading says nothing about him skipping church. Look back at the Roger Williams link.",
+   "C": "That never happened. He was expelled for his ideas about religion and government. Look back at the Roger Williams link."
+  },
+  {
+   "A": "That’s the Herald’s claim. Your chains showed the land and beliefs mattered too.",
+   "C": "New England was very different from the South: no big plantations, and lots of fishing and trade."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · New England",
+  "head": "Rocky Soil, Strong Beliefs",
+  "deck": "Did New England grow this way just because people liked it? Build the chains and see.",
+  "dateline": "Vol. I · No. 30 · Price: One Penny",
+  "ears": [
+   "Issue 30 · Colonial America Edition",
+   "⚓ Cold wind · Cod running"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Build the chains"
+   },
+   {
+    "key": "picture",
+    "t": "Investigate a real meetinghouse",
+    "fold": true
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "MASSACHUSETTS BAY",
+  "lede": "The Hasty Herald says colonists simply preferred it. Eleven links, three chains, and one 1681 meetinghouse will test that. You decide.",
+  "evIntro": "Today’s question: Did New England grow this way just because people preferred it? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means something made back then, like the 1681 meetinghouse.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail about the land, beliefs, or who had a say, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "The Land Said No",
+   "Some People Had No Say"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "What the evidence shows",
+    "short": "What the evidence shows (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Show how the land AND people’s beliefs shaped New England. Use details from two links, not just names.",
+    "ph": "Write what the evidence shows, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said colonists simply preferred it. But",
+     "{p1} led to",
+     "{p2} led to"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Who had a say",
+    "short": "Who had a say (at least 15 words)",
+    "kick": "Who chose?",
+    "ask": "Did everyone in New England get to choose? Name at least one group who didn’t, and say why that matters.",
+    "ph": "Write about who had a say, and who didn’t.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Some people had no say:",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "Write about the meetinghouse photo: what it can show, and what it can’t.",
+    "ph": "For example, start with: This photo…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "This photo shows a meetinghouse built in 1681, but",
+     "This photo can’t show"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Did New England grow this way just because people preferred it?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll correct the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "meeting-say",
+   "claim": "New England had town meetings, so everyone in New England had a say.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "There were town meetings. But who was allowed to vote at them?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Town meetings were real, but most people couldn’t vote at them."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: look at the “Who could vote” link."
+    }
+   ],
+   "details": [
+    {
+     "from": "Who could vote:",
+     "t": "Only men voted at town meetings. Women, servants, enslaved people and Native people could not vote.",
+     "ok": true,
+     "say": "This shows many people had no vote at all."
+    },
+    {
+     "from": "Roger Williams and Anne Hutchinson:",
+     "t": "Massachusetts leaders expelled Roger Williams for saying the government should not make rules about religion.",
+     "ok": true,
+     "say": "This shows people who disagreed were pushed out, not heard."
+    },
+    {
+     "from": "Thin, rocky soil:",
+     "t": "Small family farms. Families grew food for themselves.",
+     "ok": false,
+     "say": "This is about farming. It can’t tell us who voted."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "no-farms",
+   "claim": "New England’s soil was rocky, so nobody there farmed.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "The soil was rocky. But did that stop all farming?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. The soil really was rocky, but families still ran small farms."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence. Look at the rocky soil link, and your town."
+    }
+   ],
+   "details": [
+    {
+     "from": "Thin, rocky soil:",
+     "t": "Small family farms. Families grew food for themselves.",
+     "ok": true,
+     "say": "This shows people did farm, just on a small scale."
+    },
+    {
+     "from": "Your town:",
+     "t": "Small family farm: families grew corn, beans and squash and kept cows and pigs.",
+     "ok": true,
+     "say": "This shows what those small farms grew."
+    },
+    {
+     "from": "The meetinghouse photo:",
+     "t": "Plain walls. No statues, no paintings, no colored glass windows.",
+     "ok": false,
+     "say": "This is about worship, not farming."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My correction uses real details about the land and about beliefs.",
+  "Each piece of evidence supports what I wrote beside it.",
+  "I explained who had a say and who didn’t.",
+  "I said what my source can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is the chains. Find one sentence that shows what shaped New England.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the meetinghouse photo. Read the red notes, and highlight one that shows what mattered to the people who built it.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(soil|rock\\w*|stony|thin|cold|winters?|summers?|season|grow\\w*|crops?|tobacco|plantations?|farms?|farming|families|forests?|trees?|lumber|wood|rivers?|mills?|sea|ocean|fish\\w*|cod|ships?|shipbuilding|harbors?|ports?|trade|boston|puritans?|faith|belie\\w*|bible|church|worship\\w*|relig\\w*|minister|read\\w*|schools?|harvard|college|teacher|laws?|town|meetings?|meetinghouse|vote\\w*|voting|men|women|servants?|members?|williams|hutchinson|expelled|providence|rhode|tolerance|native|nations?|wampanoag|massachusett|narragansett|pequot|nipmuc|abenaki|war|enslaved|slavery|slaves?|caribbean|sugar|pulpit|pews?|benches|walls?|plain|1630|1635|1636|1637|1641|1647|1681|1755|winthrop|chose|choice|preferred)\\b",
+   "off": "Does this detail show what shaped New England, or who had a say? If it doesn’t, you can keep it, but also look for one in the chains.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about New England. Look for a detail about the land, beliefs, or who had a say instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs details about the land and about beliefs. Look at your land chain and your beliefs chain.",
+    "go": [
+     {
+      "l": "The chains",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Your town",
+      "tab": "dispatch",
+      "sel": ".rg-plot"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail about who had a say, and who didn’t. Try the “Some people had no say” links, or the Herald fact-checks.",
+    "go": [
+     {
+      "l": "The chains",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Herald fact-checks",
+      "tab": "desk",
+      "sel": ".rg-myths"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about the photo: when it was made, and what it can’t show.",
+    "go": [
+     {
+      "l": "The meetinghouse photo",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Let the land talk back",
+   "script": "Here’s a trick I use when a story sounds too simple. Try it yourself. The Herald says New Englanders built their towns the way they liked. So you build one. Pick something, put it on the land, and listen to what the land says back. Then decide: was it all just what people liked?"
+  },
+  {
+   "at": "desk",
+   "slot": "v3",
+   "label": "One link at a time",
+   "script": "A chain is only as strong as its links, so read each one before you place it. Some links are about the land. Some are about what people believed. And the last few are about people who didn’t get a say at all. Take those slowly. Watch for the one link that really was a choice."
+  },
+  {
+   "at": "factcheck",
+   "slot": "v6",
+   "label": "How I fact-check",
+   "script": "Fact-checking is my favorite part of the job. Here’s how I do it. Read the claim slowly. Then ask yourself: where did I see proof? If you’re not sure, flip back to your chains on the Desk tab. Don’t pick an answer because it sounds nice. Pick it because you can point to the evidence."
+  },
+  {
+   "at": "plan",
+   "slot": "v5",
+   "label": "Writing a correction",
+   "script": "A correction takes courage. You’re saying, out loud, that something printed was wrong. So do it carefully. First, pick your angle. Then pick two links that prove it. Below that, write each part in your own words and attach your evidence. Last, rewrite the Herald’s claim so it’s fair and true."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^build$",
+    "sel": "#panel-dispatch .rg-plot-cards",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^land",
+    "sel": "#panel-dispatch .rg-plot-map",
+    "fx": "glow"
+   },
+   {
+    "at": "^decide",
+    "sel": "#panel-dispatch .rg-plot-seal",
+    "fx": "point"
+   }
+  ],
+  "v3": [
+   {
+    "at": "^links?",
+    "sel": "#panel-desk .rg-link-ctl",
+    "fx": "pop"
+   },
+   {
+    "at": "^land",
+    "sel": "#panel-desk .rg-chrow[data-k=\"land\"]",
+    "fx": "glow"
+   },
+   {
+    "at": "^believed",
+    "sel": "#panel-desk .rg-chrow[data-k=\"faith\"]",
+    "fx": "glow"
+   },
+   {
+    "at": "^slowly",
+    "sel": "#panel-desk .rg-chrow[data-k=\"left\"]",
+    "fx": "glow",
+    "calm": true
+   }
+  ],
+  "v6": [
+   {
+    "at": "^claim$",
+    "sel": "#panel-factcheck .factcheck-q",
+    "fx": "glow",
+    "i": 0
+   },
+   {
+    "at": "^chains$",
+    "sel": "#btn-desk",
+    "fx": "pop"
+   },
+   {
+    "at": "^evidence",
+    "sel": "#panel-factcheck .factcheck-options",
+    "fx": "glow",
+    "i": 0
+   }
+  ],
+  "v5": [
+   {
+    "at": "^angle",
+    "sel": "#panel-press .rg-lo2-box.head",
+    "fx": "pop"
+   },
+   {
+    "at": "^links$",
+    "sel": "#panel-press .rg-lo2-two",
+    "fx": "point"
+   },
+   {
+    "at": "^attach$",
+    "sel": "#panel-press .rg-nd-paper",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^rewrite$",
+    "sel": "#panel-press #rg-f-cor",
+    "fx": "glow"
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    9.12,
+    9.28,
+    "build"
+   ],
+   [
+    11.52,
+    12.08,
+    "land,"
+   ],
+   [
+    14.72,
+    15.6,
+    "decide:"
+   ]
+  ],
+  "v3": [
+   [
+    1.92,
+    2.56,
+    "links,"
+   ],
+   [
+    6.4,
+    7.04,
+    "land."
+   ],
+   [
+    8.48,
+    9.28,
+    "believed."
+   ],
+   [
+    13.76,
+    14.32,
+    "slowly."
+   ]
+  ],
+  "v6": [
+   [
+    4.72,
+    4.88,
+    "claim"
+   ],
+   [
+    11.2,
+    11.36,
+    "chains"
+   ],
+   [
+    16.88,
+    17.68,
+    "evidence."
+   ]
+  ],
+  "v5": [
+   [
+    9.12,
+    9.76,
+    "angle."
+   ],
+   [
+    10.88,
+    11.12,
+    "links"
+   ],
+   [
+    15.32,
+    15.52,
+    "attach"
+   ],
+   [
+    17.52,
+    17.92,
+    "rewrite"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4135,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4150,32 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A small New England harbor town: a white meetinghouse on a hill, stone walls across rocky fields, a sawmill by the woods, and fishing boats in the harbor" class="b0702">
+<defs>
+<clipPath id="b0702WL" clipPathUnits="userSpaceOnUse"><rect x="-200" y="-300" width="400" height="311"/></clipPath>
+<linearGradient id="b0702Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7E97AE"/><stop offset=".55" stop-color="#C9D3D6"/><stop offset="1" stop-color="#EDE6D2"/></linearGradient>
+<linearGradient id="b0702Sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E8E9C"/><stop offset="1" stop-color="#32505F"/></linearGradient>
+<linearGradient id="b0702Hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9DA77A"/><stop offset="1" stop-color="#7E8A5E"/></linearGradient>
+<style>
+.b0702 .b0702-boat{ animation:b0702bob 6s ease-in-out infinite; }
+.b0702 .bt2{ animation-delay:-2s } .b0702 .bt3{ animation-delay:-4s }
+.b0702 .b0702-wave{ animation:b0702wave 10s linear infinite; }
+.b0702 .b0702-gull{ animation:b0702gull 15s ease-in-out infinite; }
+.b0702 .b0702-wheel{ animation:b0702spin 9s linear infinite; transform-origin:206px 170px; }
+.b0702 .b0702-smoke{ animation:b0702smoke 7s ease-in-out infinite; }
+.b0702 .b0702-cloud{ animation:b0702cloud 40s linear infinite alternate; }
+@keyframes b0702bob{ 0%,100%{ translate:0 0 } 50%{ translate:0 2.2px } }
+@keyframes b0702wave{ from{ transform:translateX(0) } to{ transform:translateX(-80px) } }
+@keyframes b0702gull{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(-30px,-8px) } }
+@keyframes b0702spin{ to{ transform:rotate(360deg) } }
+@keyframes b0702smoke{ 0%,100%{ opacity:.35; transform:translateY(0) } 50%{ opacity:.6; transform:translateY(-4px) } }
+@keyframes b0702cloud{ from{ transform:translateX(0) } to{ transform:translateX(40px) } }
+@media (prefers-reduced-motion:reduce){ .b0702 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0702Sky)"/>
+<g class="b0702-cloud" fill="#F4F1E6" opacity=".6"><ellipse cx="160" cy="46" rx="80" ry="12"/><ellipse cx="220" cy="38" rx="50" ry="9"/><ellipse cx="640" cy="34" rx="90" ry="11"/><ellipse cx="720" cy="44" rx="46" ry="7"/></g>
+<path d="M0,128 C80,110 160,104 250,114 C330,100 420,104 520,118 L520,202 L0,202 Z" fill="#8C9A72"/><g fill="#3F5236"><path d="M6,129 l-7,0 l7,-32 l7,32 z"/><path d="M18,131 l-7,0 l7,-24 l7,24 z"/><path d="M25,127 l-7,0 l7,-33 l7,33 z"/><path d="M36,132 l-7,0 l7,-23 l7,23 z"/><path d="M41,132 l-7,0 l7,-22 l7,22 z"/><path d="M54,128 l-7,0 l7,-19 l7,19 z"/><path d="M60,127 l-7,0 l7,-32 l7,32 z"/><path d="M70,128 l-7,0 l7,-23 l7,23 z"/><path d="M81,132 l-7,0 l7,-34 l7,34 z"/><path d="M84,125 l-7,0 l7,-24 l7,24 z"/><path d="M97,126 l-7,0 l7,-18 l7,18 z"/><path d="M104,128 l-7,0 l7,-32 l7,32 z"/><path d="M112,131 l-7,0 l7,-34 l7,34 z"/><path d="M122,132 l-7,0 l7,-33 l7,33 z"/><path d="M129,127 l-7,0 l7,-32 l7,32 z"/><path d="M141,127 l-7,0 l7,-20 l7,20 z"/><path d="M149,128 l-7,0 l7,-25 l7,25 z"/><path d="M156,128 l-7,0 l7,-20 l7,20 z"/><path d="M165,132 l-7,0 l7,-30 l7,30 z"/><path d="M176,132 l-7,0 l7,-30 l7,30 z"/><path d="M183,131 l-7,0 l7,-18 l7,18 z"/><path d="M192,129 l-7,0 l7,-33 l7,33 z"/><path d="M206,129 l-7,0 l7,-30 l7,30 z"/><path d="M214,126 l-7,0 l7,-24 l7,24 z"/><path d="M221,132 l-7,0 l7,-28 l7,28 z"/><path d="M230,125 l-7,0 l7,-18 l7,18 z"/><path d="M243,131 l-7,0 l7,-21 l7,21 z"/><path d="M251,132 l-7,0 l7,-21 l7,21 z"/><path d="M258,131 l-7,0 l7,-33 l7,33 z"/><path d="M268,129 l-7,0 l7,-24 l7,24 z"/><path d="M274,129 l-7,0 l7,-22 l7,22 z"/><path d="M285,129 l-7,0 l7,-21 l7,21 z"/><path d="M292,130 l-7,0 l7,-18 l7,18 z"/><path d="M306,125 l-7,0 l7,-27 l7,27 z"/></g><path d="M140,190 C240,150 330,118 450,112 C560,108 660,132 760,166 C820,178 870,182 920,180 L920,200 L140,200 Z" fill="url(#b0702Hill)"/><path d="M250,170 C320,150 380,140 440,138" fill="none" stroke="#77736A" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 6"/><path d="M470,140 C540,142 610,152 690,176" fill="none" stroke="#77736A" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 6"/><path d="M330,186 C380,168 430,160 500,160" fill="none" stroke="#77736A" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 6"/><path d="M520,162 C580,166 630,176 700,192" fill="none" stroke="#77736A" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 6"/><g stroke="#6F7A50" stroke-width="1.2" opacity=".7"><line x1="560" y1="172" x2="600" y2="166"/><line x1="568" y1="180" x2="608" y2="174"/><line x1="576" y1="188" x2="616" y2="182"/><line x1="300" y1="182" x2="340" y2="176"/><line x1="308" y1="190" x2="348" y2="184"/></g><g transform="translate(410,74)"><rect x="0" y="22" width="78" height="40" fill="#F4F0E4" stroke="#B9B2A0" stroke-width="1"/><path d="M-6,24 L39,4 L84,24 Z" fill="#5E5A52"/><rect x="31" y="-10" width="16" height="16" fill="#F4F0E4" stroke="#B9B2A0" stroke-width="1"/><path d="M28,-10 L39,-22 L50,-10 Z" fill="#5E5A52"/><line x1="39" y1="-22" x2="39" y2="-32" stroke="#5E5A52" stroke-width="1.6"/><circle cx="39" cy="-2" r="3" fill="#B8913A"/><rect x="8" y="32" width="8" height="14" rx="3" fill="#7E8B95"/><rect x="24" y="32" width="8" height="14" rx="3" fill="#7E8B95"/><rect x="46" y="32" width="8" height="14" rx="3" fill="#7E8B95"/><rect x="62" y="32" width="8" height="14" rx="3" fill="#7E8B95"/><rect x="34" y="44" width="10" height="18" fill="#6B5A44"/></g><g transform="translate(300,150) scale(0.8)"><rect x="0" y="10" width="34" height="20" fill="#8A5A3C"/><path d="M-3,11 L14,-4 L37,14 L37,11 Z" fill="#4E4038"/><rect x="18" y="-6" width="5" height="10" fill="#6B5A44"/><rect x="6" y="16" width="6" height="7" fill="#E9DFC4"/><rect x="22" y="16" width="6" height="7" fill="#E9DFC4"/></g><path class="b0702-smoke" d="M313.6,143.6 q6,-8 0,-16 q-6,-8 2,-16" stroke="#E6E2D6" stroke-width="3" fill="none" stroke-linecap="round"/><g transform="translate(590,148) scale(0.75)"><rect x="0" y="10" width="34" height="20" fill="#8A5A3C"/><path d="M-3,11 L14,-4 L37,14 L37,11 Z" fill="#4E4038"/><rect x="18" y="-6" width="5" height="10" fill="#6B5A44"/><rect x="6" y="16" width="6" height="7" fill="#E9DFC4"/><rect x="22" y="16" width="6" height="7" fill="#E9DFC4"/></g><path class="b0702-smoke" d="M602.75,142.0 q6,-8 0,-16 q-6,-8 2,-16" stroke="#E6E2D6" stroke-width="3" fill="none" stroke-linecap="round"/><g transform="translate(650,162) scale(0.7)"><rect x="0" y="10" width="34" height="20" fill="#8A5A3C"/><path d="M-3,11 L14,-4 L37,14 L37,11 Z" fill="#4E4038"/><rect x="18" y="-6" width="5" height="10" fill="#6B5A44"/><rect x="6" y="16" width="6" height="7" fill="#E9DFC4"/><rect x="22" y="16" width="6" height="7" fill="#E9DFC4"/></g><path class="b0702-smoke" d="M661.9,156.4 q6,-8 0,-16 q-6,-8 2,-16" stroke="#E6E2D6" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M120,140 C150,158 180,168 210,178 C240,188 270,196 300,204" stroke="#7FA0AE" stroke-width="9" fill="none" stroke-linecap="round"/><g><rect x="168" y="150" width="34" height="22" fill="#7A5232"/><path d="M164,151 L185,138 L206,151 Z" fill="#4E4038"/><g class="b0702-wheel"><circle cx="206" cy="170" r="12" fill="none" stroke="#5A3A22" stroke-width="3"/><line x1="206" y1="170" x2="218.0" y2="170.0" stroke="#5A3A22" stroke-width="2"/><line x1="206" y1="170" x2="212.0" y2="180.4" stroke="#5A3A22" stroke-width="2"/><line x1="206" y1="170" x2="200.0" y2="180.4" stroke="#5A3A22" stroke-width="2"/><line x1="206" y1="170" x2="194.0" y2="170.0" stroke="#5A3A22" stroke-width="2"/><line x1="206" y1="170" x2="200.0" y2="159.6" stroke="#5A3A22" stroke-width="2"/><line x1="206" y1="170" x2="212.0" y2="159.6" stroke="#5A3A22" stroke-width="2"/></g><rect x="140" y="174" width="18" height="3" fill="#B08A5C"/><rect x="144" y="174" width="18" height="3" fill="#B08A5C"/><rect x="142" y="168" width="18" height="3" fill="#B08A5C"/></g><path d="M0,196 C120,190 260,196 380,200 C520,192 660,196 760,186 L920,180 L920,204 L0,206 Z" fill="#B7A982"/><g fill="#8E887B"><ellipse cx="40" cy="200" rx="10" ry="6"/><ellipse cx="64" cy="203" rx="7" ry="4"/><ellipse cx="250" cy="202" rx="9" ry="5"/><ellipse cx="372" cy="204" rx="12" ry="6"/><ellipse cx="398" cy="206" rx="7" ry="4"/><ellipse cx="720" cy="192" rx="10" ry="6"/><ellipse cx="744" cy="195" rx="6" ry="4"/><ellipse cx="860" cy="184" rx="11" ry="6"/></g><g><rect x="600" y="196" width="120" height="7" fill="#7A5232"/><rect x="606" y="196" width="4" height="22" fill="#5A3A22"/><rect x="636" y="196" width="4" height="22" fill="#5A3A22"/><rect x="666" y="196" width="4" height="22" fill="#5A3A22"/><rect x="696" y="196" width="4" height="22" fill="#5A3A22"/><rect x="716" y="196" width="4" height="22" fill="#5A3A22"/></g><g stroke="#5A3A22" stroke-width="2"><line x1="640" y1="196" x2="640" y2="182"/><line x1="680" y1="196" x2="680" y2="182"/><line x1="636" y1="182" x2="684" y2="182"/></g><g fill="#C9B994"><path d="M645,183 l3,0 l-1.5,9 z"/><path d="M652,183 l3,0 l-1.5,9 z"/><path d="M659,183 l3,0 l-1.5,9 z"/><path d="M666,183 l3,0 l-1.5,9 z"/><path d="M673,183 l3,0 l-1.5,9 z"/></g><rect y="204" width="920" height="56" fill="url(#b0702Sea)"/><g class="b0702-wave" stroke="#A9C1CA" stroke-width="1.5" fill="none" opacity=".55"><path d="M-40,214 q10,-4 20,0 t20,0"/><path d="M60,214 q10,-4 20,0 t20,0"/><path d="M160,214 q10,-4 20,0 t20,0"/><path d="M260,214 q10,-4 20,0 t20,0"/><path d="M360,214 q10,-4 20,0 t20,0"/><path d="M460,214 q10,-4 20,0 t20,0"/><path d="M560,214 q10,-4 20,0 t20,0"/><path d="M660,214 q10,-4 20,0 t20,0"/><path d="M760,214 q10,-4 20,0 t20,0"/><path d="M860,214 q10,-4 20,0 t20,0"/><path d="M960,214 q10,-4 20,0 t20,0"/><path d="M-40,228 q10,-4 20,0 t20,0"/><path d="M50,228 q10,-4 20,0 t20,0"/><path d="M140,228 q10,-4 20,0 t20,0"/><path d="M230,228 q10,-4 20,0 t20,0"/><path d="M320,228 q10,-4 20,0 t20,0"/><path d="M410,228 q10,-4 20,0 t20,0"/><path d="M500,228 q10,-4 20,0 t20,0"/><path d="M590,228 q10,-4 20,0 t20,0"/><path d="M680,228 q10,-4 20,0 t20,0"/><path d="M770,228 q10,-4 20,0 t20,0"/><path d="M860,228 q10,-4 20,0 t20,0"/><path d="M950,228 q10,-4 20,0 t20,0"/><path d="M-40,242 q10,-4 20,0 t20,0"/><path d="M70,242 q10,-4 20,0 t20,0"/><path d="M180,242 q10,-4 20,0 t20,0"/><path d="M290,242 q10,-4 20,0 t20,0"/><path d="M400,242 q10,-4 20,0 t20,0"/><path d="M510,242 q10,-4 20,0 t20,0"/><path d="M620,242 q10,-4 20,0 t20,0"/><path d="M730,242 q10,-4 20,0 t20,0"/><path d="M840,242 q10,-4 20,0 t20,0"/><path d="M950,242 q10,-4 20,0 t20,0"/><path d="M-40,254 q10,-4 20,0 t20,0"/><path d="M70,254 q10,-4 20,0 t20,0"/><path d="M180,254 q10,-4 20,0 t20,0"/><path d="M290,254 q10,-4 20,0 t20,0"/><path d="M400,254 q10,-4 20,0 t20,0"/><path d="M510,254 q10,-4 20,0 t20,0"/><path d="M620,254 q10,-4 20,0 t20,0"/><path d="M730,254 q10,-4 20,0 t20,0"/><path d="M840,254 q10,-4 20,0 t20,0"/><path d="M950,254 q10,-4 20,0 t20,0"/></g><g class="b0702-gull"><path d="M520,62 q6,-6 12,0 q6,-6 12,0" stroke="#2A2A2A" stroke-width="1.6" fill="none"/><path d="M560,80 q5,-5 10,0 q5,-5 10,0" stroke="#2A2A2A" stroke-width="1.4" fill="none"/></g><g class="b0702-boat bt3" transform="translate(810,222) scale(0.6)"><g clip-path="url(#b0702WL)"><path d="M-40,0 L44,0 Q40,14 30,18 L-30,18 Q-38,12 -40,0 Z" fill="#5C3A20"/><path d="M-40,0 L44,0 L43,4 L-39,4 Z" fill="#7A4B28"/></g><line x1="0" y1="0" x2="0" y2="-52" stroke="#4A3424" stroke-width="2.2"/><path d="M2,-48 L2,-6 L36,-6 Z" fill="#EFE6D0" opacity=".96"/><path d="M-2,-44 L-2,-6 L-26,-6 Z" fill="#EFE6D0" opacity=".9"/><ellipse cx="2" cy="15" rx="46" ry="3.6" fill="#22333F" opacity=".26"/><path d="M-44,11.5 q5.5,-2.5 11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0" fill="none" stroke="#D6E4E8" stroke-width="1.5" opacity=".75"/></g><g class="b0702-boat bt2" transform="translate(470,232) scale(0.8)"><g clip-path="url(#b0702WL)"><path d="M-40,0 L44,0 Q40,14 30,18 L-30,18 Q-38,12 -40,0 Z" fill="#6B4426"/><path d="M-40,0 L44,0 L43,4 L-39,4 Z" fill="#7A4B28"/></g><line x1="0" y1="0" x2="0" y2="-58" stroke="#4A3424" stroke-width="2.2"/><path d="M2,-54 L2,-6 L36,-6 Z" fill="#F2EADA" opacity=".96"/><path d="M-2,-50 L-2,-6 L-26,-6 Z" fill="#F2EADA" opacity=".9"/><ellipse cx="2" cy="15" rx="46" ry="3.6" fill="#22333F" opacity=".26"/><path d="M-44,11.5 q5.5,-2.5 11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0" fill="none" stroke="#D6E4E8" stroke-width="1.5" opacity=".75"/></g><g class="b0702-boat bt1" transform="translate(150,244) scale(1.0)"><g clip-path="url(#b0702WL)"><path d="M-40,0 L44,0 Q40,14 30,18 L-30,18 Q-38,12 -40,0 Z" fill="#5A3A22"/><path d="M-40,0 L44,0 L43,4 L-39,4 Z" fill="#7A4B28"/></g><line x1="0" y1="0" x2="0" y2="-62" stroke="#4A3424" stroke-width="2.2"/><path d="M2,-58 L2,-6 L36,-6 Z" fill="#F5EEDF" opacity=".96"/><path d="M-2,-54 L-2,-6 L-26,-6 Z" fill="#F5EEDF" opacity=".9"/><ellipse cx="2" cy="15" rx="46" ry="3.6" fill="#22333F" opacity=".26"/><path d="M-44,11.5 q5.5,-2.5 11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0 t11,0" fill="none" stroke="#D6E4E8" stroke-width="1.5" opacity=".75"/></g><rect y="254" width="920" height="6" fill="#22333F" opacity=".45"/></svg>
   </div>
 
   <div class="hero-headline-strip serif">New England Colonies</div>
@@ -2677,7 +4187,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 15 · Q3</div>
     </div>
   </div>
@@ -2692,7 +4201,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +4208,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.2 · SS.5.A.4.3 · SS.5.E.1.1 · TEKS 1(A)–(C), 6(A), 9(A), 13(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 30 · Circulation 1350 · <em>Colonial regional coverage — New England</em>
+      Vol. 1 · Issue 30 · Readers: 1,350 · <em>Colonial regional coverage — New England</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,7 +4230,7 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1350</span>
@@ -2744,8 +4242,6 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4264,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2784,7 +4275,7 @@ html, body {
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that colonies were founded for very different reasons: Jamestown for profit, Plymouth for religious freedom, New Amsterdam for trade, and Georgia for debtor relief — while enslaved Africans were brought by force. The Herald claimed one motive fit all; our editors proved otherwise. Last issue’s Archive Line asked what future citizens should remember about colonial motives.
+      The Gazette showed that colonies were founded for very different reasons: Jamestown for profit, Plymouth partly for religious freedom, New Amsterdam for trade, and Georgia as a fresh start for poor families and a guard against Spanish Florida, while enslaved Africans were brought by force. The Herald claimed one motive fit all; our editors proved otherwise. Last issue’s Archive Line asked what future citizens should remember about colonial motives.
     </div>
   </div>
 </div>
@@ -2800,18 +4291,11 @@ html, body {
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.02</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette showed the range of motives behind colonial settlement. Now we zoom in on one region: <em>5.07.02 — New England Colonies</em>. This dispatch lands on the <strong>Source Desk</strong>. In the rocky northeast, colonies like Massachusetts, Connecticut, and Rhode Island grew into communities shaped by religion, geography, and hard New England winters. But was it really just “preference” that shaped them? <strong>The Hasty Herald</strong> has already rushed its claim to print.</p>
+      <p>Last issue, the Gazette showed the range of motives behind colonial settlement. Now we zoom in on one region: <em>5.07.02 — New England Colonies</em>. This dispatch lands on the <strong>Source Desk</strong>, where we study one source closely. In the rocky northeast, colonies like Massachusetts, Connecticut, and Rhode Island grew into communities shaped by religion, geography, and hard New England winters. But was it really just “preference” that shaped them? <strong>The Hasty Herald</strong> has already rushed its claim to print.</p>
     </div>
   </div>
 
@@ -2821,14 +4305,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Did New England colonies grow the way they did simply because colonists preferred it — or did geography, religion, and economics all play a role?</p>
       </div>
     </div>
@@ -2842,8 +4323,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Examine a source showing New England colonial life and separate observation from inference.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how geography, religion, and economy shaped New England communities.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Correct the Herald’s claim by showing that multiple forces — not just preference — shaped the region.</div>
@@ -2874,7 +4353,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-02-welcome -->
@@ -2892,24 +4370,18 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore the New England colonies & spotlight courage</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Build a town, then build the chains</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a source from New England colonial life</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a real 1681 meetinghouse</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
       <strong>A courageous editor looks past simple explanations to find the real forces that shaped a community.</strong> Today, courage means showing that geography, religion, and economics — not just “preference” — built the New England colonies.
     </div>
   </div>
@@ -2920,18 +4392,12 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">New England: Colonists Just Liked It That Way!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">New England colonies grew the way they did because colonists simply preferred it.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
       <strong>Your job, junior editor:</strong> Study the source evidence and decide: was preference the only factor — or did rocky soil, cold winters, religious beliefs, and economic realities all shape these communities?
     </div>
   </div>
@@ -2940,9 +4406,6 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
       <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine the evidence about the New England colonies — and publish a <strong>Gazette Correction</strong> that explains what really shaped the region.
     </div>
   </div>
@@ -2954,19 +4417,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this source show about New England colonial life, how did geography and religion work together to shape these communities, and what must we still question?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. A courageous editor knows that “they just liked it” is never the whole story.
       </div>
     </div>
@@ -2977,18 +4432,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-02-explore-explainer -->
@@ -3002,13 +4447,10 @@ html, body {
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
       <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
       <div class="desk-title">Source Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3028,53 +4470,46 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 Rocky Soil, Strong Beliefs, and Town Meetings</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>The New England colonies — Massachusetts, Connecticut, Rhode Island, and New Hampshire — sat on rocky, thin soil with short growing seasons and cold, harsh winters. Large-scale farming was nearly impossible. Instead, New Englanders built an economy around fishing, shipbuilding, lumber, and trade. Harbors like Boston became busy commercial ports. Small farms fed families, but the economy depended on the sea and the forest.</p>
-    <p>Religion shaped New England as powerfully as geography. The Puritans who founded Massachusetts Bay wanted to build a “city upon a hill” — a model Christian community where church and government were closely linked. Education was a priority: the first public schools were established so children could read the Bible, and Harvard College was founded in 1636. Town meetings became the foundation of local government — citizens gathered to debate and vote on community decisions. But Puritan control had limits: Roger Williams was expelled from Massachusetts for arguing that government and religion should be separate, and he went on to found Rhode Island as a colony with religious tolerance. Geography made large plantations impossible; religion made education and governance central; the economy followed both.</p>
+    <p>The New England colonies were Massachusetts, Connecticut, Rhode Island and New Hampshire. Their soil was thin and rocky, and winters were long and cold, so the growing season was short. Big plantations could not work there. Families ran small farms to feed themselves, and many people made a living from the forest and the sea: cutting lumber, fishing for cod, building ships and trading. Boston became a busy trading port.</p>
+    <p>Beliefs shaped New England as much as the land did. In 1630, Puritans started the Massachusetts Bay Colony. <strong>Puritans</strong> were English Protestants who wanted a stricter, plainer church. Their leader, John Winthrop, said they would be “as a city upon a hill,” a model community everyone would watch. Puritans believed every person should read the Bible, so they started schools: a school in Boston in 1635, Harvard College in 1636, and a 1647 law that made every town with 50 families hire a teacher. Each town built a <strong>meetinghouse</strong>, used for church and for <strong>town meetings</strong>, where the men of the town voted on local rules.</p>
+    <p>Not everyone had a say. Only men voted at town meetings, and for many years only church members could vote for the colony’s leaders. Puritans wanted freedom to worship their own way, not freedom for everyone: in 1635 Roger Williams was <strong>expelled</strong> (forced to leave) for saying the government should not make rules about religion. In 1636 he started Providence, in Rhode Island, where people could worship in different ways. Native nations, including the Wampanoag, Narragansett and Pequot, lost land and lives in wars with the colonists. Slavery was legal in New England too.</p>
 
     <!-- Geography vs Religion grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">🏔️ Geography’s Role</div>
         <div class="source-type-name">What the Land Shaped</div>
-        <div class="source-type-defn">Rocky soil, cold winters, forests, and harbors determined what New Englanders could grow, build, and trade.</div>
+        <div class="source-type-defn">Rocky soil, cold winters, forests and harbors shaped what New Englanders could grow, build and trade.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Rocky soil → small farms, not plantations · Harbors → fishing, shipbuilding, trade · Forests → lumber industry · Cold winters → short growing seasons
+          Rocky soil → small farms, not plantations · Harbors → fishing, shipbuilding, trade · Forests → lumber · Cold winters → a short growing season
         </div>
       </div>
       <div class="source-type-card secondary">
         <div class="source-type-label">⛪ Religion’s Role</div>
         <div class="source-type-name">What Beliefs Shaped</div>
-        <div class="source-type-defn">Puritan values made education, governance, and community standards central to New England life.</div>
+        <div class="source-type-defn">Puritan beliefs made reading, schools and town meetings a big part of New England life.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Town meetings for local governance · First public schools for Bible literacy · Harvard College (1636) · Roger Williams expelled → Rhode Island founded with religious tolerance
+          Town meetings to make local rules · Schools so children could read the Bible (1647 school law) · Harvard College (1636) · Roger Williams expelled → Rhode Island, where people could worship in different ways
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald said colonists “simply preferred it.” But rocky soil forced small farms and a maritime economy. Puritan beliefs created town meetings, public schools, and strict community standards. And when Roger Williams challenged those standards, he founded a new colony. Preference was part of it — but geography, religion, and economics shaped New England together.</p>
+    <p>The Hasty Herald said colonists “simply preferred it.” Some of it was a choice: the Puritans chose to come for their beliefs. But rocky soil pushed people toward the sea, Puritan beliefs led to schools and town meetings, and many people, like women, enslaved people, Native nations and people who disagreed, got no say at all. The land, beliefs and work shaped New England together.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
   <div class="content-section">
-    <h2>🔎 The New England Colonies: Shaped by More Than Preference</h2>
-    <p>Look at this source carefully. Notice the building style, the setting, and what the scene suggests about daily life. Think about what forces — geography, religion, economy — created a community like this.</p>
+    <h2>🔎 Inside a Real Puritan Meetinghouse</h2>
+    <p>This is the inside of the Old Ship Meetinghouse in Hingham, Massachusetts. Puritans built it in 1681, and people still worship in it today. Look carefully. What can you see? What can you guess about what mattered to the people who built it? Then check: the box pews were added in 1755, and the photo was taken in the 1900s.</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
       <div class="source-image-placeholder" data-image="source-5-07-02-new-england-colonial">
-        🖼️ <strong>Image placeholder:</strong> Photograph of a New England colonial building or meetinghouse, or a painting of Puritan daily life.<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-07-02-new-england-colonial.jpg</code>
+        🖼️ <strong>Source:</strong> Old Ship Meetinghouse, Hingham, Massachusetts (built 1681), center aisle and pulpit. Historic American Buildings Survey, HABS MA-595. Library of Congress, no known restrictions (loc.gov/item/ma0440).
       </div>
       <div class="source-image-caption">
-        <em>What does this building or scene tell you about what mattered most to the people who settled here?</em>
+        <em>What does this room tell you about what mattered most to the people who built it, and what can’t it tell you?</em><br><small style="font-style:normal;opacity:.85">Old Ship Meetinghouse, built 1681. Box pews added 1755. Photo taken for the Historic American Buildings Survey (begun 1933). Library of Congress.</small>
       </div>
     </div>
   </div>
@@ -3086,7 +4521,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3096,7 +4530,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Geography and economy" placeholder="New England’s geography shaped its economy because..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3106,7 +4539,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Religion’s broader influence" placeholder="Puritan beliefs shaped New England by..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3123,10 +4555,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3135,14 +4563,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3174,7 +4594,7 @@ html, body {
       <span class="factcheck-q-text">Why was Roger Williams expelled from Massachusetts?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
         <span class="factcheck-option-letter">A</span>
         <span>He argued that government and religion should be separate, and founded Rhode Island with religious tolerance</span>
       </div>
@@ -3182,7 +4602,7 @@ html, body {
         <span class="factcheck-option-letter">B</span>
         <span>He refused to attend church on Sundays</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
         <span>He tried to start a competing shipbuilding business</span>
       </div>
@@ -3219,7 +4639,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3241,21 +4660,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-02-assignment-explainer -->
@@ -3285,16 +4691,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Gazette Correction — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
           <span>(1) Quote the Herald’s claim about preference. (2) Describe how geography and religion shaped New England. (3) Rewrite the claim so it captures the full picture.</span>
         </div>
@@ -3310,9 +4712,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about new england colonies.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3341,8 +4740,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and gazette correction</span></div>
@@ -3357,32 +4754,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 30 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> You corrected the Herald’s oversimplified claim with evidence and courage — the Gazette’s readers now understand the real forces behind New England’s development.
+      <strong>Well done, Junior Editor.</strong> You corrected the Herald’s too-simple claim with evidence and courage. The Gazette’s readers now know what really shaped New England, and who didn’t get a say.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.03) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Middle Colonies</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that the Middle Colonies were important only because they were in the middle. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-02-closing -->
@@ -3657,7 +5043,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 30 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -3968,5 +5354,6 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>
