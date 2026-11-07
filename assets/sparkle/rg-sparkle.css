@@ -782,3 +782,47 @@ html.rg-hlmode .rg-dock-main{ box-shadow:0 0 0 4px #F4C430, 0 6px 14px rgba(20,2
 .rg-dock.open{ pointer-events:auto; }
 @media (max-width:560px){ .rg-evtoast{ flex-wrap:wrap; } .rg-evtoast > span:nth-child(2){ flex:1 1 calc(100% - 44px); font-size:14px; } .rg-evtoast button{ margin-left:auto; } .rg-evtoast button + button{ margin-left:0; } }
 .rg-readyl li small{ display:block; font-size:12.5px; color:var(--rg-soft); font-weight:600; }
+
+/* v6.8 · Desk: one step at a time */
+html.rg-on .rg-bs-off{ display:none!important; }
+.rg-bs-jump{ cursor:pointer; border-radius:6px 6px 0 0; }
+.rg-bs-jump::after{ content:'▾'; font:900 18px 'Nunito',sans-serif; color:#6B6455; margin-left:8px; transition:transform .15s; }
+.rg-bs-jump.shut::after{ transform:rotate(-90deg); }
+.rg-bs-jump.shut{ margin:8px 0 0; padding:8px 6px; border-bottom:1px solid #D6CBB0; }
+.rg-bs-jump.shut .t{ font-size:18px; } .rg-bs-jump.shut .n{ flex-basis:30px; height:30px; font-size:16px; }
+.rg-bs-jump.shut:hover{ background:#F6F0E1; }
+.rg-bs-jump:focus-visible{ outline:3px solid #E9B44C; outline-offset:2px; }
+.rg-bs-nextbar{ display:none; margin:14px 0 4px; text-align:right; } .rg-bs-nextbar.ready{ display:block; }
+.rg-bs-nextbar .rg-btn{ font-size:15px; }
+
+/* v6.8 · one heading, slim job line, tap-to-define words */
+html.rg-on .rg-notitle > .rg-game-k, html.rg-on .rg-notitle > .rg-game-t{ display:none; }
+.rg-job.slim{ display:block; background:#FFFDF6; border:1px solid #E3D8BF; border-left:4px solid var(--rg-navy); border-radius:6px; padding:8px 12px; margin:6px 0 12px; font:15px/1.5 'Nunito',sans-serif; }
+.rg-job.slim .do b{ font:900 12px 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--rg-navy); }
+.rg-job.slim ol{ margin:2px 0 0; padding-left:22px; } .rg-job.slim li{ margin:1px 0; } .rg-job.slim .do p{ margin:2px 0 0; }
+.rg-job.slim details.why{ margin-top:4px; } .rg-job.slim details.why summary{ cursor:pointer; font:800 13.5px 'Nunito',sans-serif; color:#8B2D26; }
+.rg-job.slim details.why p{ margin:4px 0; color:#3D372C; } .rg-job.slim details.why p b{ display:inline; font:800 14px 'Nunito',sans-serif; text-transform:none; letter-spacing:0; color:inherit; }
+.rg-job.slim .words{ margin-top:4px; font:600 13.5px 'Nunito',sans-serif; color:#6B6455; } .rg-job.slim .words span{ font-weight:800; }
+.rg-def{ background:none; border:0; padding:0; font:inherit; color:inherit; cursor:help; border-bottom:2px dotted #B8923E; line-height:inherit; }
+.rg-job.slim .words .rg-def{ font-weight:800; color:var(--rg-navy); margin-right:6px; }
+.rg-def:focus-visible{ outline:2px solid #E9B44C; outline-offset:1px; }
+.rg-deftip{ position:absolute; z-index:9900; background:var(--rg-navy); color:#FBF3DC; font:600 14.5px/1.45 'Nunito',sans-serif; padding:8px 12px; border-radius:8px; box-shadow:0 6px 16px rgba(14,20,38,.3); display:none; }
+.rg-deftip.show{ display:block; } .rg-deftip b{ color:#E9B44C; }
+
+/* v6.8 · extras out of the way */
+html.rg-on:not(.rg-pub) #panel-press .gathered-card, html.rg-on:not(.rg-pub) #panel-press .next-issue-teaser{ display:none; }
+html.rg-on #introSection .intro-2col{ grid-template-columns:1fr!important; }
+.rg-hd-panel .intro-card, .rg-hd-panel .need-strip, .rg-hd-panel .rg-lens{ margin:10px 0 0; color:var(--rg-ink); }
+.rg-snapov .tip .ms{ flex-basis:100%; font:600 13px 'Nunito',sans-serif; margin-top:6px; } .rg-snapov .tip .ms ol{ list-style:none; margin:2px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:4px 14px; } .rg-snapov .tip .ms li.on{ opacity:.7; }
+.rg-snapov .tip{ flex-wrap:wrap; border-radius:14px; max-width:min(680px,94vw); }
+/* v6.8 · one calm card style: same paper card everywhere, color saved for things to act on */
+html.rg-on .rg-game{ background:#FFFDF8; border:1px solid #E5DBC3!important; border-left:1px solid #E5DBC3!important; border-radius:10px; box-shadow:0 1px 3px rgba(60,45,25,.06); margin:14px 0; padding:16px 18px; }
+html.rg-on .rg-game[data-tab]::before, html.rg-on .rg-game::after{ display:none!important; }
+html.rg-on .rg-vn, html.rg-on #panel-desk.rg-bs .rg-vn{ background:#FFFDF8!important; border:1px solid #E5DBC3!important; border-radius:10px; box-shadow:none; }
+html.rg-on .rg-evintro{ background:#FFFDF8; color:var(--rg-ink); border:1px solid #E5DBC3; border-radius:10px; } html.rg-on .rg-evintro b{ color:var(--rg-navy); }
+html.rg-on .rg-story{ background:#FFFDF8; border:1px solid #E5DBC3; border-radius:10px; }
+html.rg-on .rg-job.slim{ background:#F6F3EA; border:0; border-radius:8px; }
+html.rg-on #panel-desk.rg-bs .rg-myth{ border:1px solid #E5DBC3; border-radius:8px; background:#FFFDF8; }
+html.rg-on .rg-scene{ border-bottom:1px solid #E5DBC3; }
+html.rg-on .rg-nd.rg-notitle .rg-nd-hd > .rg-game-k, html.rg-on .rg-nd.rg-notitle .rg-nd-hd > .rg-game-t{ display:none; }
+html.rg-on .rg-job.slim .words{ background:none; border:0; padding:0; border-radius:0; }

@@ -189,7 +189,7 @@
     var t=DATA.storySoFar||'You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.';
     var le=$('#lastEditionBlock .story-block-summary'), last=le?le.textContent.replace(/Tap to recap\.?|▼/g,'').trim():'';
     var bx=el('div','rg rg-story','<span class="k">🗞️ The story so far</span><span class="t">'+esc(t)+(last?' <span class="last">'+esc(last)+'</span>':'')+'</span>');
-    var pr=pressEl; if(pr) after(pr,bx); else before(anchor,bx); }
+    var pd=document.getElementById('panel-dispatch'); if(pd){ var sc=$('.rg-scene',pd); if(sc) after(sc,bx); else pd.insertBefore(bx,pd.firstChild); } else { var pr=pressEl; if(pr) after(pr,bx); else before(anchor,bx); } }
 
   /* ================================================================ THE PRESS BAR — tabs + a front page that inks in as you work */
   var pressEl, STAGES=DATA.stages||[];
@@ -241,11 +241,13 @@
     function pill(label,panel){ var b=el('button','rg-pill',label); b.type='button'; b.setAttribute('aria-expanded','false'); b.addEventListener('click',function(){ var o=!panel.classList.contains('open'); panels.forEach(function(p){ p[1].classList.remove('open'); p[0].setAttribute('aria-expanded','false'); }); panel.classList.toggle('open',o); b.setAttribute('aria-expanded',o); }); panels.push([b,panel]); tools.appendChild(b); }
     var anchor=hd, ra=document.getElementById('optima-read-aloud');
     if(ra){ var rp=el('div','rg rg-hd-panel'); after(anchor,rp); anchor=rp; move(ra,function(n){ rp.appendChild(n); }); pill('🔊 Read aloud',rp); }
-    var strip=$('.info-strip'); if(strip){ var dp=el('div','rg rg-hd-panel'); after(anchor,dp); move(strip,function(n){ dp.appendChild(n); }); pill('ⓘ Lesson details',dp); }
+    var strip=$('.info-strip'); if(strip){ var dp=el('div','rg rg-hd-panel'); after(anchor,dp); move(strip,function(n){ dp.appendChild(n); }); pill('ⓘ Lesson details',dp); DETAILS=dp;
+      var learn=$$('#introSection .intro-2col .intro-card')[1]; if(learn) move(learn,function(n){ dp.appendChild(n); }); var need=$('#introSection .need-strip'); if(need) move(need,function(n){ dp.appendChild(n); }); }
     hd.appendChild(tools); }
+  var DETAILS=null;
   function buildLens(){ var two=$('#introSection .intro-2col'); if(!two||!DATA.lens) return;
     var v=$('.virtue-lens-label'), virtue=v?(v.textContent.split('·').pop()||'').replace(/★/g,'').trim():'';
-    after(two,el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>')); }
+    var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
      scene1.type            dateit
@@ -257,7 +259,10 @@
   var MOD={};
   function mstate(k,d){ if(!S.m[k]) S.m[k]=d; return S.m[k]; }
   /* every activity says three things plainly: why it is here, what to do, and what it is for (DATA.<module>.job) */
-  function jobHTML(j){ if(!j) return ''; return '<div class="rg-job">'+(j.why?'<div class="r why"><b>Why this is here</b><p>'+esc(j.why)+'</p></div>':'')+(j.do?'<div class="r do"><b>Your job</b><p>'+esc(j.do)+'</p></div>':'')+(j.use?'<div class="r use"><b>What it’s for</b><p>'+esc(j.use)+'</p></div>':'')+(j.words?'<div class="r words"><b>Words to know</b><ul>'+j.words.map(function(w){ return '<li><b>'+esc(w[0])+'</b>: '+esc(w[1])+'</li>'; }).join('')+'</ul></div>':'')+'</div>'; }
+  function jobHTML(j){ if(!j) return ''; var steps=String(j.do||'').split(/\s*(?=\b\d+\.\s)/).map(function(x){ return x.replace(/^\d+\.\s*/,'').trim(); }).filter(Boolean);
+    return '<div class="rg-job slim"'+(j.words?' data-words="'+esc(JSON.stringify(j.words))+'"':'')+'>'+(steps.length?'<div class="do"><b>Your job</b>'+(steps.length>1?'<ol>'+steps.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join('')+'</ol>':'<p>'+esc(steps[0])+'</p>')+'</div>':'')+
+      ((j.why||j.use)?'<details class="why"><summary>Why are we doing this?</summary>'+(j.why?'<p>'+esc(j.why)+'</p>':'')+(j.use?'<p><b>What it’s for:</b> '+esc(j.use)+'</p>':'')+'</details>':'')+
+      (j.words?'<div class="words"><span>Words:</span> '+j.words.map(function(w){ return '<button type="button" class="rg-def" data-def="'+esc(w[1])+'">'+esc(w[0])+'</button>'; }).join(' ')+'</div>':'')+'</div>'; }
   function gameShell(cls,kicker,title,c){ var g=el('section','rg rg-game '+cls); g.dataset.tab='Issue '+ISSUE+' · '+kicker.split('·')[0].trim(); g.innerHTML='<div class="rg-game-k">'+esc(kicker)+'</div><h3 class="rg-game-t">'+esc(title)+'</h3>'+(c&&c.job?jobHTML(c.job):whyCard(c&&c.why)+todo(c&&c.todo)); return g; }
   /* drag OR tap: tap a card, then tap where it goes. dropTargets get .rg-drop; cb(card,target) */
   /* keyboard: cards and targets are real buttons (Tab, then Enter/Space); after a repaint, focus lands on the next card */
@@ -558,14 +563,21 @@
     notebook:function(){ return $('#panel-desk .reflection-block'); } };
   var BS_DONE={
     listen:function(){ return !!(S.heard&&S.heard.v3); },
-    sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length; return !!m&&m.stop>=N-1; },
+    sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&m.stop>=N-1&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
     herald:function(){ var m=S.m.sun, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
     picture:function(){ return !!(R.evidence&&R.evidence.done()); },
     almanac:function(){ return !!(R.almanac&&R.almanac.done()); },
     pair:function(){ return !!(R.pair&&R.pair.done()); },
     word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
     notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
-  var bsEl=null;
+  var bsEl=null, BS_GROUPS={}, BS_ORDER=[];
+  function bsFirstOpen(){ for(var i=0;i<BS_ORDER.length;i++){ var k=BS_ORDER[i]; if(!(BS_DONE[k]&&BS_DONE[k]())) return k; } return null; }
+  function bsOwner(node){ if(!node) return null; if(node.classList&&node.classList.contains('rg-bs-jump')&&BS_GROUPS[node.dataset.k]) return node.dataset.k; for(var i=0;i<BS_ORDER.length;i++){ var k=BS_ORDER[i]; if(BS_GROUPS[k].some(function(g){ return g===node||g.contains(node); })) return k; } return null; }
+  function bsReveal(node){ var k=bsOwner(node); if(k&&S.m.bsOpen!==k) bsOpen(k,false); }
+  function bsOpen(k,scroll){ S.m.bsOpen=k; save(); paintBsOpen(); if(scroll&&k){ var j=document.getElementById('rg-bs-'+k); if(j) setTimeout(function(){ j.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); },40); } }
+  function paintBsOpen(){ BS_ORDER.forEach(function(k){ var on=S.m.bsOpen===k, j=document.getElementById('rg-bs-'+k); if(j){ j.classList.toggle('open',on); j.classList.toggle('shut',!on); j.setAttribute('aria-expanded',on?'true':'false'); }
+      BS_GROUPS[k].forEach(function(n){ n.classList.toggle('rg-bs-off',!on); }); });
+    BS_ORDER.forEach(function(k){ var g=BS_GROUPS[k], bar=g[g.length-1]; if(bar&&bar.classList.contains('rg-bs-nextbar')) bar.classList.toggle('ready',!!(BS_DONE[k]&&BS_DONE[k]())); }); }
   function buildBroadsheet(){ var B=DATA.broadsheet; if(!B) return; var panel=document.getElementById('panel-'+(B.tab||'desk')); if(!panel) return;
     var steps=(B.steps||[]).filter(function(s){ return BS_FIND[s.key]&&BS_FIND[s.key](); }); if(!steps.length) return;
     panel.classList.add('rg-bs');
@@ -580,14 +592,23 @@
       var j=el('div','rg rg-bs-jump','<span class="n">'+(i+1)+'</span><span class="t"><small>Step '+(i+1)+' of '+steps.length+'</small>'+esc(s.t)+'</span><span class="ok">✓ Done</span>'); j.id='rg-bs-'+s.key; j.dataset.k=s.key;
       if(s.fold) before(t,el('div','rg rg-bs-fold','<span>'+esc(B.fold||'Below the fold')+'</span>'));
       if(s.key==='herald'){ t.parentNode.insertBefore(j,t); } else before(t,j); });
-    bsEl.addEventListener('click',function(e){ var a=e.target.closest('a[href^="#rg-bs-"]'); if(!a) return; e.preventDefault(); var t=document.getElementById(a.getAttribute('href').slice(1)); if(t) t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); });
+    /* one step at a time: every panel child after a step head belongs to that step; only the open step shows */
+    BS_GROUPS={}; BS_ORDER=[]; var curK=null;
+    [].slice.call(panel.children).forEach(function(k){ if(k.classList.contains('rg-bs-jump')){ curK=k.dataset.k; BS_GROUPS[curK]=[]; BS_ORDER.push(curK); return; } if(curK&&!k.classList.contains('tab-next-btn-wrap')) BS_GROUPS[curK].push(k); });
+    BS_ORDER.forEach(function(k,i){ var j=document.getElementById('rg-bs-'+k), g=BS_GROUPS[k]; j.setAttribute('role','button'); j.tabIndex=0; j.setAttribute('aria-controls','rg-bs-body-'+k);
+      var nx=BS_ORDER[i+1], bar=el('div','rg rg-bs-nextbar',nx?'<button type="button" class="rg-btn">Next: '+esc((steps.filter(function(s){ return s.key===nx; })[0]||{}).t||'next step')+' →</button>':''); var last=g[g.length-1]||j; after(last,bar); g.push(bar);
+      if(nx) $('button',bar).addEventListener('click',function(){ bsOpen(nx,true); });
+      j.addEventListener('click',function(){ bsOpen(S.m.bsOpen===k?null:k,false); });
+      j.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); j.click(); } }); });
+    S.m.bsOpen=S.m.bsOpen!==undefined&&BS_GROUPS[S.m.bsOpen]?S.m.bsOpen:bsFirstOpen();
+    bsEl.addEventListener('click',function(e){ var a=e.target.closest('a[href^="#rg-bs-"]'); if(!a) return; e.preventDefault(); var k=a.getAttribute('href').slice(7); if(!BS_GROUPS[k]) k=bsOwner(document.getElementById('rg-bs-'+k)); if(k) bsOpen(k,true); });
     paintBroadsheet();
     var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paintBroadsheet,120); }); mo.observe(panel,{subtree:true,attributes:true,attributeFilter:['class']}); OBS.push(mo);
     panel.addEventListener('input',function(){ clearTimeout(mo.t); mo.t=setTimeout(paintBroadsheet,200); }); }
   function paintBroadsheet(){ if(!bsEl) return; var keys=$$('.idx li',bsEl).map(function(li){ return li.dataset.k; }), n=0, nextSet=false;
     keys.forEach(function(k){ var d=BS_DONE[k]?BS_DONE[k]():false; if(d) n++; var li=$('.idx li[data-k="'+k+'"]',bsEl); li.classList.toggle('done',d); li.classList.toggle('next',!d&&!nextSet); var j=document.getElementById('rg-bs-'+k); if(j){ j.classList.toggle('done',d); j.classList.toggle('next',!d&&!nextSet); } if(!d) nextSet=true;
       if(k==='herald'&&j){ var my=j.nextElementSibling; j.classList.toggle('rg-hide',!(my&&my.children.length)); } });
-    $('.prog',bsEl).innerHTML='<i style="width:'+Math.round(n/keys.length*100)+'%"></i><span>'+n+' of '+keys.length+' done</span>'; }
+    paintBsOpen(); $('.prog',bsEl).innerHTML='<i style="width:'+Math.round(n/keys.length*100)+'%"></i><span>'+n+' of '+keys.length+' done</span>'; }
 
   /* ================================================================ THE NEWSROOM DESK (5.07.05 v6)
      One evidence drawer for the whole lesson → the student's own front page → one saved record that the proof,
@@ -645,6 +666,7 @@
   function goSrc(ret){ if(!ret) return; closeDrawer(true); if(ret.tab&&window.switchTab&&currentScene()!==ret.tab) window.switchTab(ret.tab);
     if(ret.mod&&R[ret.mod]&&R[ret.mod].go) R[ret.mod].go(ret.arg);
     if(ret.tab==='factcheck'&&FSTEP) FSTEP(true,ret.sel&&$(ret.sel));
+    if(ret.tab==='desk'&&typeof bsReveal==='function'){ var t0=ret.sel&&$(ret.sel); if(t0) bsReveal(t0); }
     setTimeout(function(){ var t=ret.sel&&$(ret.sel); if(!t){ ticker('That part of the page isn’t open yet. Keep going on that tab to reach it.'); return; }
       t.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'}); t.classList.remove('rg-srcflash'); void t.offsetWidth; t.classList.add('rg-srcflash'); setTimeout(function(){ t.classList.remove('rg-srcflash'); },2200);
       if(!t.hasAttribute('tabindex')&&!/^(BUTTON|INPUT|TEXTAREA|SELECT|A)$/.test(t.tagName)) t.setAttribute('tabindex','-1'); try{ t.focus({preventScroll:true}); }catch(x){} },RM?60:420); }
@@ -866,7 +888,7 @@
     ck.appendChild(readyEl);
     readyEl.addEventListener('change',function(e){ var t=e.target; if(t.dataset.self==null) return; D().self[t.dataset.self]=t.checked; save(); paintReady(); });
     readyEl.addEventListener('click',function(e){ var b=e.target.closest('button[data-go]'); if(!b) return; var it=readiness().items.filter(function(x){ return x.k===b.dataset.go; })[0]; if(it) goSrc(it.go); }); }
-  function paintReady(){ var R0=readiness(); if(readyEl){ var G=DATA.readyGroups||R0.items.map(function(x){ return {t:x.t,k:[x.k]}; }), by={}; R0.items.forEach(function(x){ by[x.k]=x; });
+  function paintReady(){ var R0=readiness(); html.classList.toggle('rg-pub',!!S.published); if(readyEl){ var G=DATA.readyGroups||R0.items.map(function(x){ return {t:x.t,k:[x.k]}; }), by={}; R0.items.forEach(function(x){ by[x.k]=x; });
       var shown={}; G=G.map(function(g){ var its=g.k.map(function(k){ shown[k]=1; return by[k]; }).filter(Boolean); return {t:g.t,its:its}; }); R0.items.forEach(function(x){ if(!shown[x.k]) G.push({t:x.t,its:[x]}); });
       var pre=R0.items.filter(function(x){ return x.k!=='self'&&x.k!=='arch'; }).every(function(x){ return x.ok; }), lock=!pre&&!selfOK();
       $('ul',readyEl).innerHTML=G.map(function(g){ var left=g.its.filter(function(x){ return !x.ok; }), ok=!left.length, sl=lock&&!ok&&left[0].k==='self';
@@ -946,7 +968,7 @@
 
   /* ================================================================ wiring + small fixes from the audit */
   function fixModalAndKeys(){ document.addEventListener('keydown',function(e){ if(e.key!=='Escape'||!html.classList.contains('rg-on')) return; var m=$('#rgModal.open'); if(m){ closeModal(); return; } if(wireEl&&wireEl.classList.contains('open')){ openWire(false); if(wireBtn) wireBtn.focus(); } }); }
-  function buildNewsroom(){ if(!window.__rgKeysFixed){ fixModalAndKeys(); window.__rgKeysFixed=true; } buildNewsroomBar(); buildDrawer(); buildNudges(); buildClaims(); restoreQuiz(); kbdQuiz(); if(FSTEP) FSTEP(true); buildDesk(); buildReady(); buildExports(); paintEdition(); paintReady(); paintEvidence();
+  function buildNewsroom(){ if(!window.__rgKeysFixed){ fixModalAndKeys(); window.__rgKeysFixed=true; } buildNewsroomBar(); buildDrawer(); buildNudges(); buildClaims(); restoreQuiz(); kbdQuiz(); if(FSTEP) FSTEP(true); buildDesk(); buildReady(); buildExports(); var gcx=$('#panel-press .gathered-card'), tz=$('#panel-press .next-issue-teaser'); if(gcx&&tz) move(gcx,function(n){ tz.parentNode.insertBefore(n,tz); }); paintEdition(); paintReady(); paintEvidence();
     var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(kbdQuiz,40); }); var fp=document.getElementById('panel-factcheck'); if(fp){ mo.observe(fp,{attributes:true,subtree:true,attributeFilter:['class']}); OBS.push(mo); }
     if(window.switchTab&&!window.__rgNdWrapped){ var o=window.switchTab; window.switchTab=function(t){ var r=o.apply(this,arguments); if(html.classList.contains('rg-on')&&t==='press'){ if(R.planner&&R.planner.paint) R.planner.paint(); paintDesk(); paintReady(); } return r; }; window.__rgNdWrapped=true; }
     if(window.updateProgress&&!window.__rgProgWrapped){ var up=window.updateProgress; window.updateProgress=function(){ var r=up.apply(this,arguments); if(html.classList.contains('rg-on')){ var st=stageState(), n=st.filter(Boolean).length, f=document.getElementById('progressFill'), t=document.getElementById('progressPct'); if(f) f.style.width=(n*25)+'%'; if(t) t.textContent=(n*25)+'%'; } return r; }; window.__rgProgWrapped=true; }
@@ -987,6 +1009,21 @@
 
   /* ================================================================ Fact-Check one claim at a time + "why that one's tempting" */
   var FSTEP=null;
+  /* one heading per activity: a module right under a step head drops its own kicker + title */
+  function tidyHeads(){ var st=$('.rg-story'), sc=$('#panel-dispatch .rg-scene'); if(st&&sc) before(sc,st); $$('.rg-game, .rg-nd').forEach(function(g){ if(g.classList.contains('rg-worddesk')) return; var p=g.previousElementSibling; while(p&&(p.classList.contains('rg-vn')||getComputedStyle(p).display==='none')) p=p.previousElementSibling; if(p&&(p.classList.contains('rg-bs-jump')||p.classList.contains('rg-stephead'))) g.classList.add('rg-notitle'); }); }
+  /* Words to know: tap a dotted word (in the job line or in the text) to see what it means */
+  var defTip=null;
+  function showDef(b){ if(!defTip){ defTip=el('div','rg rg-deftip'); defTip.setAttribute('role','tooltip'); document.body.appendChild(defTip); }
+    if(defTip.dataset.for===b.textContent&&defTip.classList.contains('show')){ defTip.classList.remove('show'); return; }
+    defTip.innerHTML='<b>'+esc(b.textContent)+'</b>: '+esc(b.dataset.def); defTip.dataset.for=b.textContent; var r=b.getBoundingClientRect(); defTip.classList.add('show');
+    var w=Math.min(300,innerWidth-24); defTip.style.width=w+'px'; defTip.style.left=Math.max(12,Math.min(r.left+scrollX,scrollX+innerWidth-w-12))+'px'; defTip.style.top=(r.bottom+scrollY+6)+'px'; }
+  function wireDefs(){ $$('.rg-job[data-words]').forEach(function(j){ var W; try{ W=JSON.parse(j.dataset.words); }catch(e){ return; } var root=j.closest('.rg-game, .rg-al3, .rg-nd, section')||j.parentNode;
+      W.forEach(function(w){ var word=w[0]; if($$('.rg-def.inl',root).some(function(x){ return x.textContent.toLowerCase().indexOf(word.toLowerCase())===0; })) return;
+        var rx=new RegExp('\\b('+word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'s?)\\b','i'), tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){ var p=n.parentNode; if(!p||p.closest('textarea,input,button,select,option,label,script,style,svg,mark,h3,.rg-job,.rg-def,.rg-game-k,.rg-bs-off,[hidden]')) return NodeFilter.FILTER_REJECT; return rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP; }}), n=tw.nextNode();
+        if(!n) return; var m=rx.exec(n.nodeValue), after=n.splitText(m.index); after.splitText(m[1].length); var b=document.createElement('button'); b.type='button'; b.className='rg-def inl'; b.dataset.def=w[1]; after.parentNode.insertBefore(b,after); b.appendChild(after); }); }); }
+  function buildDefs(){ wireDefs(); var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(wireDefs,400); }); $$('.tab-panel').forEach(function(p){ mo.observe(p,{childList:true,subtree:true}); }); OBS.push(mo);
+    if(!window.__rgDefs){ window.__rgDefs=true; document.addEventListener('click',function(e){ var b=e.target.closest('.rg-def'); if(b){ e.preventDefault(); e.stopPropagation(); showDef(b); return; } if(defTip&&!e.target.closest('.rg-deftip')) defTip.classList.remove('show'); },true);
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&defTip) defTip.classList.remove('show'); }); } }
   function buildFactSteps(){ var qs=$$('#panel-factcheck .factcheck-q'); if(qs.length<2) return;
     var cur=0, bar=el('nav','rg rg-qprog'); bar.setAttribute('aria-label','Fact-Check claims'); before(qs[0],bar); var score=document.getElementById('factcheckScore');
     function items(){ return qs.concat($$('#panel-factcheck .rg-cc')); }
@@ -1246,11 +1283,12 @@
   var huntEl=null;
   function buildHunt(){ var CAM=DATA.camera||{}, MS=CAM.missions||[]; if(!MS.length) return; var anchor=$('#panel-dispatch .rg-scene'); if(!anchor) return;
     huntEl=el('div','rg rg-hunt','<div class="cam">📷</div><div><div class="rg-game-k">Bonus · Photo assignment <span class="opt">optional</span></div><div class="t">'+esc(CAM.title||'Every newspaper needs pictures. Can you snap all '+MS.length+'?')+'</div><ol></ol><div class="row"><button type="button" class="rg-btn alt">📷 Try the camera</button><span>'+esc(CAM.how||'Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything on the page. Your photos print in your Reporter’s Notebook.')+'</span></div></div>');
-    after(anchor,huntEl); $('button',huntEl).addEventListener('click',startSnap); paintHunt(); }
+    if(CAM.onPage) after(anchor,huntEl); else { huntEl=null; return; } $('button',huntEl).addEventListener('click',startSnap); paintHunt(); }
   function paintHunt(){ if(!huntEl) return; var MS=(DATA.camera||{}).missions||[], a=photos(), n=0; $('ol',huntEl).innerHTML=MS.map(function(ms,i){ var d=a.some(function(p){ return p.mission===i; }); if(d) n++; return '<li class="'+(d?'on':'')+'"><span>'+(d?'✅':'🎯')+'</span>'+esc(ms)+'</li>'; }).join(''); huntEl.classList.toggle('done',n===MS.length); }
   var ov=null;
-  function startSnap(){ var MAX=(DATA.camera||{}).max||8; if(photos().length>=MAX){ ticker('Your clippings are full. Delete a photo in 🗂 Clippings to make room.'); return; }
-    ov=el('div','rg rg-snapov','<div class="vf"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="tip"><span class="rec">● CAMERA ON</span><b>Drag a box around what you want to snap.</b><button type="button">✕ Cancel</button></div><div class="mid"><span>📷</span>Press, hold and drag to draw your box</div><div class="box"></div>');
+  function snapMissions(){ var MS=(DATA.camera||{}).missions||[]; if(!MS.length) return ''; var a=photos(); return '<div class="ms"><span>Bonus photo assignment <i>(optional)</i>:</span><ol>'+MS.map(function(m,i){ var d=a.some(function(p){ return p.mission===i; }); return '<li class="'+(d?'on':'')+'">'+(d?'✅ ':'🎯 ')+esc(m)+'</li>'; }).join('')+'</ol></div>'; }
+  function startSnap(){ var MAX=(DATA.camera||{}).max||8; if(photos().length>=MAX){ ticker('Your photo spots are full. Delete a photo in your evidence drawer to make room.'); return; }
+    ov=el('div','rg rg-snapov','<div class="vf"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="tip"><span class="rec">● CAMERA ON</span><b>Drag a box around what you want to snap.</b><button type="button">✕ Cancel</button>'+snapMissions()+'</div><div class="mid"><span>📷</span>Press, hold and drag to draw your box</div><div class="box"></div>');
     document.body.appendChild(ov); SFX.clack(); var box=$('.box',ov), st=null;
     function end(){ if(ov){ ov.remove(); ov=null; } document.removeEventListener('keydown',esc1); } function esc1(e){ if(e.key==='Escape') end(); }
     $('.tip button',ov).addEventListener('click',function(e){ e.stopPropagation(); end(); }); document.addEventListener('keydown',esc1);
@@ -1308,17 +1346,17 @@
     var bar=el('div','rg-mockbar','<b>✦ REVIEW · '+esc(DATA.lesson)+'</b><label><input type="checkbox" id="rgOn" checked> layer on</label><label><input type="checkbox" id="rgEmpty"> show empty media slots</label><button type="button" id="rgReset">reset progress</button>'); document.body.appendChild(bar);
     $('#rgOn',bar).addEventListener('change',function(e){ e.target.checked?build():teardown(); }); $('#rgEmpty',bar).addEventListener('change',function(e){ html.classList.toggle('rg-showempty',e.target.checked); });
     $('#rgReset',bar).addEventListener('click',function(){ try{ Object.keys(localStorage).forEach(function(k){ if(k.indexOf(KEY)===0) localStorage.removeItem(k); }); }catch(e){} S=fresh(); thread=S.thread; pendingKey=null; MEMPH=null; teardown(); build(); }); }
-  function teardown(){ FSTEP=null; html.classList.remove('rg-on','rg-quiet','rg-hlmode','rg-cueing'); delete html.dataset.rgTab;
+  function teardown(){ FSTEP=null; $$('.rg-bs-off').forEach(function(n){ n.classList.remove('rg-bs-off'); }); $$('.rg-notitle').forEach(function(n){ n.classList.remove('rg-notitle'); }); html.classList.remove('rg-on','rg-quiet','rg-hlmode','rg-cueing','rg-pub'); delete html.dataset.rgTab;
     OBS.forEach(function(o){ o.disconnect(); }); OBS=[];
     $$('mark.rg-hl').forEach(function(m){ var p=m.parentNode; while(m.firstChild) p.insertBefore(m.firstChild,m); p.removeChild(m); p.normalize(); });
     MOVES.reverse().forEach(function(x){ x[1].parentNode.insertBefore(x[0],x[1]); x[1].remove(); }); MOVES=[];
     TEXTS.reverse().forEach(function(x){ x[0].innerHTML=x[1]; }); TEXTS=[];
     $$('.rg').forEach(function(n){ n.remove(); });
     $$('[class*="rg-"]').forEach(function(n){ [].slice.call(n.classList).forEach(function(c){ if(c.indexOf('rg-')===0) n.classList.remove(c); }); });
-    pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=dockEl=hlbar=huntEl=bsEl=null; deskEl=readyEl=edEl=drawerEl=toastEl=null; html.classList.remove('rg-evdrawer-open'); R={}; unread=0; }
+    defTip=null; pressEl=wireEl=wireBtn=tickEl=stepperEl=trayEl=dockEl=hlbar=huntEl=bsEl=null; deskEl=readyEl=edEl=drawerEl=toastEl=null; html.classList.remove('rg-evdrawer-open'); R={}; unread=0; }
   function build(){ try{ P=loadProfile(); html.classList.add('rg-on'); if(QUIET) html.classList.add('rg-quiet');
       buildTop(); buildWire(); buildOpening(); buildPress(); buildStory(); if(openingWaiting) showNameCard(false); buildScenes(); buildLens(); buildModules();
-      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildBroadsheet(); buildMedia(); buildTray(); buildNotebook(); buildNewsroom();
+      buildFactSteps(); buildQuizMiss(); buildHelp(); buildSteps(); buildRedPencil(); buildMorgue(); buildVoice(); buildBroadsheet(); buildMedia(); buildTray(); buildNotebook(); buildNewsroom(); tidyHeads(); buildDefs();
       var bl=document.getElementById('brief-byline-name'); if(bl&&!bl.value.trim()&&nm()) bl.value=nm();
       refreshPress(); render(); }catch(e){ console.warn('rg layer:',e); } }
   window.__rgSparkleAPI={teardown:teardown,build:build,data:DATA,sayKey:sayKey};
