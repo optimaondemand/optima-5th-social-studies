@@ -322,7 +322,7 @@
       now.textContent=s<0?'Drag the sun or tap the button.':view<s?'Looking back at '+c.times[view]+'. Tap '+c.times[s]+' to come back.':'Now: '+c.times[s]+'. Read every column.'+(s>0?' Tap an earlier time to look back.':'');
       mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s; }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact">'+(m.img?'<figure><img alt="" src="'+esc(LOCAL+m.img)+'"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>':'')+'<div><b>Fact-check:</b> '+esc(m.fact)+' '+evBtn({k:'lesson', t:m.fact, who:'Fact-check of the Herald', when:'', where:'', from:'Lesson explanation (a fact-check written for this lesson)', ctx:'The Herald claimed: “'+m.claim+'”', tags:['herald'], ret:{tab:'desk', sel:'.rg-myth[data-i="'+i+'"]'}},'sm')+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
       var all=done(); $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; g.classList.toggle('finished',all); }
-    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; st.stop=i; view=i; save(); SFX.paper(); paint(true); if(R.pair) R.pair.paint(); refreshPress(); if(i===N-1) beat('sunDone'); }
+    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; st.stop=i; view=i; save(); SFX.paper(); paint(true); if(R.pair) R.pair.paint(); refreshPress(); if(i===N-1&&!R.pair) beat('sunDone'); }
     nextB.addEventListener('click',function(){ go(st.stop+1); });
     $('.rg-sun-labels',g).addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) go(+b.dataset.i); });
     /* drag the sun along the arc */
@@ -474,7 +474,9 @@
   /* ---------------------------------------------------------------- almanac v3: why it's here, said up front.
      1 · the real 1748 cover (it promises sunrise and sunset times)  2 · a calendar page: read the sun, count the workday
      3 · same sunrise for everyone, but who got to stop at sunset? */
-  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!(ed||R.reading)) return; var st=mstate('almanac3',{seen:{},q:{},sort:{},step:1,mo:0});
+  function buildAlmanac(){ var A=DATA.almanac, ed=$('#panel-dispatch .editors-desk'); if(!A||!(ed||R.reading)) return;
+    if(A.mini&&R.reading){ var M=A.mini, card=el('aside','rg rg-al3 rg-almini','<img src="'+esc(local(M.img||'rg-poor-richard-1748.jpg'))+'" alt="'+esc(M.alt||'The cover of Poor Richard improved, an almanac for 1748')+'"><div><div class="k">'+esc(M.title||'Did you know?')+'</div><p>'+esc(M.t)+'</p><p class="q"><b>'+esc(M.q)+'</b></p><small>'+esc(M.cap||'')+'</small></div>');
+      var my=$('.rg-myths',R.reading.el); if(my&&my.parentNode) after(my,card); else R.reading.el.appendChild(card); return; } var st=mstate('almanac3',{seen:{},q:{},sort:{},step:1,mo:0});
     var spots=A.spots||[], sort=A.sort||{}, MO=A.months||[], P=A.point||{};
     var a=el('section','rg rg-almanac2 rg-al3','<div class="rg-al2-head"><span class="sun">☀</span><b>The Almanac Corner</b><span class="moon">☾</span></div>'+
       (A.job?jobHTML(A.job):'<div class="rg-al3-point"><span class="ic">🕰️</span><div><b>'+esc(P.q||'Why is an almanac here?')+'</b> '+esc(P.t||'')+'</div></div>')+
@@ -522,21 +524,19 @@
   function buildPair(){ var PC=DATA.pair, rd=R.reading&&R.reading.el; if(!PC||!rd) return; var st=mstate('layout2',{head:null,p1:null,p2:null,f:{}});
     var cols=((DATA.explore||{}).reading||{}).cols||[], times=((DATA.explore||{}).reading||{}).times||[];
     function col(id){ return cols.filter(function(x){ return x.id===id; })[0]; }
-    var g=gameShell('rg-pair','The Front Page Desk · look closely',PC.title||'Study two people closely',PC);
-    function opts(sel){ return '<option value="">Choose a person…</option>'+cols.map(function(x){ return '<option value="'+esc(x.id)+'"'+(sel===x.id?' selected':'')+'>'+esc(x.who)+'</option>'; }).join(''); }
-    g.innerHTML+='<div class="rg-pair-pick"><label>Person 1 <select class="p1">'+opts(st.p1)+'</select></label><label>Person 2 <select class="p2">'+opts(st.p2)+'</select></label></div><div class="rg-pair-tbl" aria-live="polite"></div><div class="rg-pair-legal"></div>'+
-      '<div class="rg-pair-note"><label for="rg-pair-note"><b>'+esc(PC.q||'At the same hour, what is the biggest difference between their days?')+'</b></label><textarea id="rg-pair-note" rows="3" placeholder="At sunrise, … but …">'+esc(st.pnote||'')+'</textarea><div class="sv"></div></div>';
-    after(R.almanac&&R.almanac.el&&R.almanac.el.closest('#panel-desk')?R.almanac.el:rd,g); var s1=$('select.p1',g), s2=$('select.p2',g), ta=$('#rg-pair-note',g);
-    function paint(){ var a=col(st.p1), b=col(st.p2), reached=((S.m.sun||{}).stop);
-      $('.rg-pair-tbl',g).innerHTML=a&&b&&a!==b?'<table><caption class="rg-sr">'+esc(a.who)+' and '+esc(b.who)+', hour by hour</caption><thead><tr><th scope="col">Time</th><th scope="col">'+esc(a.icon+' '+a.who)+'</th><th scope="col">'+esc(b.icon+' '+b.who)+'</th></tr></thead><tbody>'+times.map(function(t,i){ var locked=reached==null||reached<i; return '<tr><th scope="row">'+esc(t)+'</th><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(a.lines[i]||'')+' '+evBtn({k:'routine', t:a.lines[i]||'', who:a.who, when:t, where:a.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[a.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+a.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td><td>'+(locked?'<i>Move the sun to '+esc(t)+' first.</i>':esc(b.lines[i]||'')+' '+evBtn({k:'routine', t:b.lines[i]||'', who:b.who, when:t, where:b.where||'', from:((DATA.explore||{}).reading||{}).srcLabel||'Lesson reconstruction', ctx:((DATA.explore||{}).reading||{}).period||'', tags:[b.id,'routine'], ret:{tab:'desk', sel:'.rg-col[data-id="'+b.id+'"] .rg-col-line[data-i="'+i+'"]'}},'xs'))+'</td></tr>'; }).join('')+'</tbody></table>':a&&b?'<p class="rg-todo">Choose two different people.</p>':'<p class="rg-todo">Choose two people to compare.</p>';
+    var g=el('div','rg rg-pair rg-pair2'); function opts(sel){ return '<option value="">Choose a person…</option>'+cols.map(function(x){ return '<option value="'+esc(x.id)+'"'+(sel===x.id?' selected':'')+'>'+esc(x.who)+'</option>'; }).join(''); }
+    g.innerHTML='<h4>'+esc(PC.title||'Now pick two people')+'</h4><p class="sub">'+esc(PC.todo||'')+'</p><div class="rg-pair-pick"><label>Person 1 <select class="p1">'+opts(st.p1)+'</select></label><label>Person 2 <select class="p2">'+opts(st.p2)+'</select></label></div><div class="rg-pair-tbl" aria-live="polite"></div><div class="rg-pair-legal"></div><p class="next"></p>';
+    var al=$('.rg-almini',rd); if(al) after(al,g); else rd.appendChild(g); var s1=$('select.p1',g), s2=$('select.p2',g);
+    function open(){ var r=(S.m.sun||{}).stop; return r!=null&&r>=times.length-1; }
+    function paint(){ g.classList.toggle('rg-hide',!open()); var a=col(st.p1), b=col(st.p2);
+      $('.rg-pair-tbl',g).innerHTML=a&&b&&a!==b?'<table><caption class="rg-sr">'+esc(a.who)+' and '+esc(b.who)+', hour by hour</caption><thead><tr><th scope="col">Time</th><th scope="col">'+esc(a.icon+' '+a.who)+'</th><th scope="col">'+esc(b.icon+' '+b.who)+'</th></tr></thead><tbody>'+times.map(function(t,i){ return '<tr><th scope="row">'+esc(t)+'</th><td>'+esc(a.lines[i]||'')+'</td><td>'+esc(b.lines[i]||'')+'</td></tr>'; }).join('')+'</tbody></table>':(a&&b?'<p class="rg-todo">Pick two different people.</p>':'');
       var L=(PC.legal||[]).filter(function(x){ return a&&b&&x.ids.indexOf(a.id)>-1&&x.ids.indexOf(b.id)>-1; })[0];
       $('.rg-pair-legal',g).innerHTML=L?'<div class="rg-legal"><b>'+esc(L.t)+'</b> '+esc(L.d)+'</div>':'';
-      var n=words(ta.value); $('.sv',g).innerHTML=n>=10&&a&&b?evBtn({k:'mine', auto:'pair', t:ta.value.trim(), who:a.who+' and '+b.who, when:'same hour', where:'', from:'My comparison notes (Desk tab)', ctx:'Compared from the lesson’s illustrative routines.', tags:[a.id,b.id,'mine','compare'], ret:{tab:'desk', sel:'#rg-pair-note'}},''):'<p class="rg-todo">📝 '+n+' of 10 words.</p>';
-      g.classList.toggle('finished',done()); }
-    function done(){ return !!(st.p1&&st.p2&&st.p1!==st.p2&&words(st.pnote||'')>=10); }
-    [s1,s2].forEach(function(sel,k){ sel.addEventListener('change',function(){ st[k?'p2':'p1']=sel.value||null; save(); paint(); refreshPress(); SFX.paper(); }); });
-    ta.addEventListener('input',function(){ st.pnote=ta.value; save(); paint(); refreshPress(); });
-    paint(); R.pair={el:g,done:done,paint:paint,state:function(){ var a=col(st.p1), b=col(st.p2); return {p1:a?a.who:'', p2:b?b.who:'', note:st.pnote||''}; }}; }
+      $('.next',g).innerHTML=done()?esc(PC.next||''):''; g.classList.toggle('finished',done()); }
+    function done(){ return !!(st.p1&&st.p2&&st.p1!==st.p2); }
+    [s1,s2].forEach(function(sel,k){ sel.addEventListener('change',function(){ st[k?'p2':'p1']=sel.value||null; save(); paint(); refreshPress(); SFX.paper(); if(done()) beat('sunDone'); }); });
+    var mo=new MutationObserver(function(){ clearTimeout(mo.t); mo.t=setTimeout(paint,80); }); mo.observe(rd,{attributes:true,subtree:true,attributeFilter:['class','data-stop','style']}); OBS.push(mo);
+    paint(); R.pair={el:g,done:done,paint:paint,state:function(){ var a=col(st.p1), b=col(st.p2); return {p1:a?a.who:'', p2:b?b.who:'', note:''}; }}; }
 
   function buildModules(){
     var p1=document.getElementById('panel-dispatch'), p2=document.getElementById('panel-desk'), p4=document.getElementById('panel-press');
@@ -563,7 +563,7 @@
     notebook:function(){ return $('#panel-desk .reflection-block'); } };
   var BS_DONE={
     listen:function(){ return !!(S.heard&&S.heard.v3); },
-    sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&m.stop>=N-1&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
+    sun:function(){ var m=S.m.sun, N=(((DATA.explore||{}).reading||{}).times||[]).length, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&m.stop>=N-1&&my.every(function(x,i){ return m.myth&&m.myth[i]; })&&(!R.pair||R.pair.done()); },
     herald:function(){ var m=S.m.sun, my=(((DATA.explore||{}).reading||{}).myths||[]); return !!m&&my.every(function(x,i){ return m.myth&&m.myth[i]; }); },
     picture:function(){ return !!(R.evidence&&R.evidence.done()); },
     almanac:function(){ return !!(R.almanac&&R.almanac.done()); },
@@ -848,7 +848,7 @@
     function low(t){ return t?t.charAt(0).toLowerCase()+t.slice(1):''; }
     return (q.starters||[]).map(function(t){ return t.replace(/\{p1\}/g,pr[0]?low(pr[0].who):'one person').replace(/\{p2\}/g,pr[1]?low(pr[1].who):'another person').replace(/\{f\}/g,f.length?f.map(low).join(' and '):'…'); }); }
   function earlierNotes(){ var out=[], push=function(k,l,t){ if((t||'').trim()) out.push({k:k,l:l,t:t.trim()}); };
-    var pz=R.pair&&R.pair.state?R.pair.state():null; if(pz) push('pair','Desk · comparing '+pz.p1+' and '+pz.p2,pz.note);
+    var pz=R.pair&&R.pair.state?R.pair.state():null; if(pz&&pz.note) push('pair','Desk · comparing '+pz.p1+' and '+pz.p2,pz.note);
     $$('.reflection-textarea').forEach(function(t,i){ push('journal'+(i+1),'Notebook · '+(t.dataset.label||('Question '+(i+1))),t.value); });
     var rp=R.evidence&&R.evidence.state?R.evidence.state():null; if(rp){ push('notice','Source desk · what I noticed',rp.notice); push('date','Source desk · made vs. shown',rp.dateExp); push('limit','Source desk · what the picture can’t show',rp.limitation); }
     (CC||[]).forEach(function(c){ var A=(S.cc||{})[c.id]; if(A&&A.why) push('claims','Fact-Check · '+c.claim.slice(0,50)+'…',A.why); });
@@ -930,7 +930,7 @@
     if(r.rev.length){ P('--- REVISION ---'); r.rev.forEach(function(x){ P('Word: “'+x.word+'” → '+(x.state==='revised'?'revised':x.state==='keep'?'kept. Reason: '+blank(x.why):'not answered yet')); }); P(''); }
     P('--- ARCHIVE LINE ---'); P(blank(r.arch)); P('');
     P('--- EDITOR’S NOTEBOOK ---'); r.notebook.forEach(function(n){ P(n.q); P(blank(n.a)); P(''); });
-    if(r.pair){ P('--- COMPARING TWO PEOPLE (Desk) ---'); P((r.pair.p1||'?')+' and '+(r.pair.p2||'?')); P(blank(r.pair.note)); P(''); }
+    if(r.pair){ P('--- COMPARING TWO PEOPLE (Desk) ---'); P((r.pair.p1||'?')+' and '+(r.pair.p2||'?')); if(r.pair.note) P(r.pair.note); P(''); }
     if(r.source){ var s=r.source; P('--- THE SOURCE DESK: THE KITCHEN PRINT ---'); if(r.scene&&r.scene.locked) P('Before the reveal: the scene seemed to show about '+r.scene.guess+'. Drawn later? '+(r.scene.later||'—')); P('What I noticed: '+blank(s.notice)); P('Made vs. shown (my explanation): '+blank(s.dateExp)); (s.cats||[]).forEach(function(ct){ P(ct.t+': '+((s.sort[ct.k]||[]).join(', ')||'—')); }); P('Another source that could help: '+(s.followup||'—')); P('What this picture can’t show (my words): '+blank(s.limitation)); P(''); }
     if(r.almanac){ P('--- THE ALMANAC ---'); r.almanac.months.forEach(function(m){ P(m.name+': sun rose '+m.rise+', set '+m.set+'. '+(m.ok?'My answer: '+m.a:'(not answered)')); }); P('Chose their own hours: '+(r.almanac.sort.yes.join(', ')||'—')); P('Someone else chose: '+(r.almanac.sort.no.join(', ')||'—')); P(''); }
     P('--- FACT-CHECK ---'); r.quiz.forEach(function(q,i){ P((i+1)+'. '+q.q); P('   My answer: '+(q.a||'(not answered)')+(q.ok==null?'':q.ok?' ✓':' ✗')); }); r.claims.forEach(function(c){ P('Claim: “'+c.claim+'”'); P('   My call: '+blank(c.verdict)); P('   Detail: '+blank(c.detail)); P('   My explanation: '+blank(c.why)); }); P('');

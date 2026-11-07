@@ -2278,7 +2278,7 @@ html, body {
   {
    "tab": "desk",
    "t": "Follow one day",
-   "why": "Test the Herald’s claim. Follow six people through one day, count the daylight in the almanac, study two people, and check the Herald’s picture. Save details as evidence."
+   "why": "Test the Herald’s claim. Follow six people through one day, then check the Herald’s picture. Save details as evidence."
   },
   {
    "tab": "factcheck",
@@ -2363,11 +2363,11 @@ html, body {
     "scene": "desk",
     "list": [
      {
-      "t": "Show me the almanac.",
-      "reply": "Here it is. Find the sunrise and sunset times, then highlight the one that helps you answer the question.",
+      "t": "Show me the picture.",
+      "reply": "Here it is. Tap the red numbers, read the notes, and highlight the one that helps you answer the question.",
       "go": {
        "tab": "desk",
-       "sel": "#rg-bs-almanac"
+       "sel": "#rg-bs-picture"
       }
      },
      {
@@ -2594,7 +2594,7 @@ html, body {
    "srcLabel": "Lesson reconstruction (written for this lesson; not a diary quotation)",
    "job": {
     "why": "The Herald says everyone lived the same day. Let’s test it by following six people through one day.",
-    "do": "1. Move the sun to each time of day. 2. Read across all six people. 3. Fact-check the Herald when it pops up. 4. Highlight details that show a difference.",
+    "do": "1. Move the sun to each time of day. 2. Read across all six people. 3. Fact-check the Herald when it pops up. 4. At Evening, pick two people to look at side by side.",
     "use": "Your highlights become evidence for your front page.",
     "words": [
      [
@@ -2913,7 +2913,7 @@ html, body {
       "woman",
       "almanac"
      ],
-     "fitTip": "Good fits: the planter, the enslaved person, the apprentice, and the almanac.",
+     "fitTip": "Good fits: the planter, the enslaved person, the apprentice, and the 1748 almanac.",
      "ideas": [
       "Same Sun, Unequal Choices",
       "Who Chose the Hours?"
@@ -2951,7 +2951,7 @@ html, body {
       "almanac",
       "compare"
      ],
-     "fitTip": "Good fits: two routines at the same hour, and the almanac’s sun times.",
+     "fitTip": "Good fits: two routines at the same hour, and the almanac’s daylight hours.",
      "ideas": [
       "One Colony, Very Different Days",
       "Same Sunrise, Different Lives"
@@ -3154,6 +3154,13 @@ html, body {
      "a yearly book with sunrise and sunset times, weather guesses, and sayings"
     ]
    ]
+  },
+  "mini": {
+   "title": "Did you know?",
+   "t": "Most families had no clock. An almanac, a yearly book, listed when the sun rose and set. In Philadelphia, a June day had about 15 hours of daylight. A December day had about 9.",
+   "q": "Same sun for everyone. But who got to choose when to stop working?",
+   "img": "rg-poor-richard-1748.jpg",
+   "cap": "Poor Richard improved, an almanac for 1748, printed by B. Franklin in Philadelphia. Library of Congress."
   }
  },
  "redpencil": {
@@ -5321,15 +5328,7 @@ html, body {
    },
    {
     "key": "sun",
-    "t": "Move the sun, read across, and fact-check the Herald"
-   },
-   {
-    "key": "almanac",
-    "t": "Use the almanac to count the daylight"
-   },
-   {
-    "key": "pair",
-    "t": "Study two people closely"
+    "t": "Follow six people through one day"
    },
    {
     "key": "picture",
@@ -5350,14 +5349,9 @@ html, body {
   "evIntro": "Today’s question: Was daily life in the colonies the same for everyone? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
  },
  "pair": {
-  "title": "Study two people closely",
-  "why": {
-   "icon": "🔍",
-   "q": "Why look at just two?",
-   "t": "Comparing everyone at once is hard. Editors pick two people and compare them at the same hour. That’s how a difference becomes clear."
-  },
-  "todo": "Choose two people. Read their lines side by side, hour by hour. Then write the biggest difference you see.",
-  "q": "At the same hour, what is the biggest difference between their days?",
+  "title": "Now pick two people",
+  "todo": "Choose two people whose days were very different. Read their day side by side.",
+  "next": "Look for the biggest difference. You’ll write about it in your notebook (step 5).",
   "legal": [
    {
     "ids": [
@@ -5375,12 +5369,7 @@ html, body {
     "t": "Same place, different rights.",
     "d": "They lived on the same plantation, but the law let the planter own people. Enslaved people had no say over their work, their pay, or their families."
    }
-  ],
-  "job": {
-   "why": "Two people side by side make the difference easy to see.",
-   "do": "1. Choose two people whose days were very different. 2. Read their rows side by side. 3. Write the biggest difference, with a detail from each person.",
-   "use": "Your note saves itself and comes back when you write your front page."
-  }
+  ]
  },
  "newsroom": {
   "title": "Your front page",
@@ -5598,19 +5587,19 @@ html, body {
    {
     "after": 540,
     "below": 2,
-    "t": "{name,}still hunting? Try the almanac. Compare sunrise in June with sunrise in December. Did the sun decide how long people worked, or did something else?",
+    "t": "{name,}still hunting? Try the kitchen picture. Read the red notes, and highlight one that shows what work at home was like.",
     "choice": "evnudge2"
    }
   ],
   "check": {
    "rx": "\\b(work|works|worked|working|day|days|hour|hours|sun|sunrise|sunset|daylight|morning|midday|noon|evening|night|dark|enslaved|slave|slavery|planter|plantation|apprentice|indenture|farm|farmer|merchant|servant|chore|chores|rest|free|freedom|rich|wealthy|poor|money|cook|cooking|field|fields|kitchen|candle|candles|school|church|wife|woman|women|girl|boy|child|children|man|men|family|tobacco|rice|law|laws|choose|chose|choice)\\b",
-   "off": "Does this detail show whether people’s days were the same or different? If it doesn’t, you can keep it, but also look for one in the six columns or the almanac.",
+   "off": "Does this detail show whether people’s days were the same or different? If it doesn’t, you can keep it, but also look for one in the six columns.",
    "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
    "direction": "These are directions for the activity, not evidence about life in the colonies. Look for a detail about a person’s day instead."
   },
   "find": {
    "cmp": {
-    "t": "This part needs details that show two people at the same hour. Look in the six columns, or in the Study two people table.",
+    "t": "This part needs details that show two people at the same hour. Look in the six columns, or in the side-by-side table at Evening.",
     "go": [
      {
       "l": "The six columns",
@@ -5618,19 +5607,19 @@ html, body {
       "sel": "#rg-bs-sun"
      },
      {
-      "l": "Study two people",
+      "l": "Two people side by side",
       "tab": "desk",
-      "sel": "#rg-bs-pair"
+      "sel": ".rg-pair2"
      }
     ]
    },
    "exp": {
-    "t": "This part needs a detail that shows WHY their days were different: money, freedom, where they lived, or being a man or a woman. Try the notes under Study two people, the Herald fact-checks, or the almanac’s sun times.",
+    "t": "This part needs a detail that shows WHY their days were different: money, freedom, where they lived, or being a man or a woman. Try the notes under the side-by-side table, the Herald fact-checks, or Did you know?",
     "go": [
      {
-      "l": "Study two people",
+      "l": "Two people side by side",
       "tab": "desk",
-      "sel": "#rg-bs-pair"
+      "sel": ".rg-pair2"
      },
      {
       "l": "Herald fact-checks",
@@ -5638,14 +5627,14 @@ html, body {
       "sel": ".rg-myths"
      },
      {
-      "l": "The almanac",
+      "l": "Did you know?",
       "tab": "desk",
-      "sel": "#rg-bs-almanac"
+      "sel": ".rg-almini"
      }
     ]
    },
    "cap": {
-    "t": "This part needs a detail about a source: when it was made, what it shows, or what it can’t show. Try the notes on the kitchen picture, or the almanac cover.",
+    "t": "This part needs a detail about a source: when it was made, what it shows, or what it can’t show. Try the notes on the kitchen picture, or the 1748 almanac.",
     "go": [
      {
       "l": "The kitchen picture",
@@ -5653,9 +5642,9 @@ html, body {
       "sel": "#rg-bs-picture"
      },
      {
-      "l": "The almanac",
+      "l": "The 1748 almanac",
       "tab": "desk",
-      "sel": "#rg-bs-almanac"
+      "sel": ".rg-almini"
      }
     ]
    }

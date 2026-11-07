@@ -826,3 +826,10 @@ html.rg-on #panel-desk.rg-bs .rg-myth{ border:1px solid #E5DBC3; border-radius:8
 html.rg-on .rg-scene{ border-bottom:1px solid #E5DBC3; }
 html.rg-on .rg-nd.rg-notitle .rg-nd-hd > .rg-game-k, html.rg-on .rg-nd.rg-notitle .rg-nd-hd > .rg-game-t{ display:none; }
 html.rg-on .rg-job.slim .words{ background:none; border:0; padding:0; border-radius:0; }
+
+/* v6.9 · Did you know? (almanac) and pick-two live inside the sun step */
+.rg-almini{ display:flex; gap:14px; align-items:flex-start; background:#FBF3DE; border:1px solid #E1CF9F; border-radius:10px; padding:12px 14px; margin:16px 0; font:15.5px/1.5 'Nunito',sans-serif; }
+.rg-almini img{ width:96px; height:auto; border:1px solid #B9995A; border-radius:3px; flex:0 0 auto; }
+.rg-almini .k{ font:900 13px 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:#8B6F2E; } .rg-almini p{ margin:4px 0; } .rg-almini small{ color:#6B6455; font-size:12.5px; }
+.rg-pair2{ background:#FFFDF8; border:1px solid #E5DBC3; border-radius:10px; padding:14px 16px; margin:16px 0; } .rg-pair2 h4{ margin:0 0 4px; font:800 19px 'Playfair Display',Georgia,serif; color:var(--rg-navy); } .rg-pair2 .sub{ margin:0 0 8px; font:15px 'Nunito',sans-serif; } .rg-pair2 .next{ margin:8px 0 0; font:700 14.5px 'Nunito',sans-serif; color:#2F5A26; }
+@media (max-width:520px){ .rg-almini img{ width:70px; } }
