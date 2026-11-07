@@ -571,6 +571,8 @@
     word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
     notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
   var bsEl=null, BS_GROUPS={}, BS_ORDER=[];
+  /* a step starts at Ms. Avery's call when the call sits just above it (hidden original sections in between don't count) */
+  function bsLead(t){ var pv=t&&t.previousElementSibling; while(pv&&(pv.classList.contains('rg-vn')||(pv.classList.contains('rg-off')&&!pv.classList.contains('rg')))){ if(pv.classList.contains('rg-vn')) t=pv; pv=pv.previousElementSibling; } return t; }
   function bsFirstOpen(){ for(var i=0;i<BS_ORDER.length;i++){ var k=BS_ORDER[i]; if(!(BS_DONE[k]&&BS_DONE[k]())) return k; } return null; }
   function bsOwner(node){ if(!node) return null; if(node.classList&&node.classList.contains('rg-bs-jump')&&BS_GROUPS[node.dataset.k]) return node.dataset.k; for(var i=0;i<BS_ORDER.length;i++){ var k=BS_ORDER[i]; if(BS_GROUPS[k].some(function(g){ return g===node||g.contains(node); })) return k; } return null; }
   function bsReveal(node){ var k=bsOwner(node); if(k&&S.m.bsOpen!==k) bsOpen(k,false); }
@@ -581,7 +583,7 @@
   function buildBroadsheet(){ var B=DATA.broadsheet; if(!B) return; var panel=document.getElementById('panel-'+(B.tab||'desk')); if(!panel) return;
     var steps=(B.steps||[]).filter(function(s){ return BS_FIND[s.key]&&BS_FIND[s.key](); }); if(!steps.length) return;
     panel.classList.add('rg-bs');
-    var first=BS_FIND[steps[0].key]();
+    var first=bsLead(BS_FIND[steps[0].key]());
     bsEl=el('header','rg rg-bs-mast','<div class="ears"><div class="ear">'+esc((B.ears||[])[0]||'')+'</div><div class="name">The Republic Gazette</div><div class="ear r">'+esc((B.ears||[])[1]||'')+'</div></div>'+
       '<div class="line">'+esc(B.dateline||'')+'</div>'+
       '<div class="lead"><div class="story"><div class="kick">'+esc(B.kicker||'Today’s front page')+'</div><h2 class="hl">'+esc(B.head||'')+'</h2><p class="deck">'+esc(B.deck||'')+'</p>'+(B.lede?'<p class="lede">'+(B.place?'<b>'+esc(B.place)+' —</b> ':'')+esc(B.lede)+'</p>':'')+'</div>'+
@@ -591,7 +593,7 @@
     steps.forEach(function(s,i){ var t=BS_FIND[s.key](); if(!t) return;
       var j=el('div','rg rg-bs-jump','<span class="n">'+(i+1)+'</span><span class="t"><small>Step '+(i+1)+' of '+steps.length+'</small>'+esc(s.t)+'</span><span class="ok">✓ Done</span>'); j.id='rg-bs-'+s.key; j.dataset.k=s.key;
       if(s.fold) before(t,el('div','rg rg-bs-fold','<span>'+esc(B.fold||'Below the fold')+'</span>'));
-      if(s.key==='herald'){ t.parentNode.insertBefore(j,t); } else before(t,j); });
+      if(s.key==='herald'){ t.parentNode.insertBefore(j,t); } else { before(bsLead(t),j); } });
     /* one step at a time: every panel child after a step head belongs to that step; only the open step shows */
     BS_GROUPS={}; BS_ORDER=[]; var curK=null;
     [].slice.call(panel.children).forEach(function(k){ if(k.classList.contains('rg-bs-jump')){ curK=k.dataset.k; BS_GROUPS[curK]=[]; BS_ORDER.push(curK); return; } if(curK&&!k.classList.contains('tab-next-btn-wrap')) BS_GROUPS[curK].push(k); });
