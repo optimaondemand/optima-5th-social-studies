@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 7 Family Guide · 5th Grade Social Studies · Optima Academy Online</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=UnifrakturMaguntia&family=Special+Elite&family=Nunito:wght@400;600;700;800;900&display=swap');
+:root{
+  --navy:#1A2138; --navy2:#0E1426; --ink:#2A3142; --soft:#4A5568;
+  --gold:#B8923E; --gold2:#8B6F2E; --gold-bg:#F6ECD3;
+  --red:#8B2D26; --red2:#B83D2C; --red-bg:#F7E4E0;
+  --green:#5C7A4A; --green-bg:#E8EFE0;
+  --cream:#FAF3E0; --news:#F5F2EC; --edge:#D4C9A8; --paper:#FFFDF8;
+  --head:'Playfair Display',Georgia,serif; --type:'Special Elite','Courier New',monospace;
+  --black:'UnifrakturMaguntia','Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--news);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;font-size:18px;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 48px;}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;}
+p{margin:0 0 10px;}
+strong{color:var(--navy);}
+a{color:var(--red);font-weight:800;}
+img{max-width:100%;}
+
+/* masthead */
+.mast{background:var(--cream);border:1px solid var(--edge);border-radius:6px;padding:18px 24px 22px;position:relative;}
+.mast-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--type);font-size:14px;color:var(--soft);border-bottom:1px solid var(--edge);padding-bottom:8px;}
+.brand{display:flex;align-items:center;gap:8px;}
+.brand img{width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--edge);}
+.paper-name{font-family:var(--black);font-weight:400;font-size:52px;line-height:1.05;text-align:center;color:var(--navy2);margin:14px 0 2px;}
+.motto{text-align:center;font-family:var(--type);font-size:14px;letter-spacing:.06em;color:var(--soft);}
+.rule{border:0;border-top:3px double var(--navy);margin:12px 0 0;}
+.mast-body{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-top:16px;align-items:start;}
+.kicker{font-family:var(--type);font-size:15px;color:var(--red);letter-spacing:.04em;}
+.mast h1{font-size:38px;line-height:1.15;margin:4px 0 6px;font-weight:900;}
+.deck{font-size:19px;color:var(--soft);margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{background:#fff;border:1px solid var(--edge);border-radius:4px;padding:4px 11px;font-size:15px;font-weight:800;color:var(--navy);}
+.print-btn{display:inline-block;margin-top:16px;background:var(--navy);color:#fff;border:none;border-radius:4px;padding:9px 18px;font-family:"Nunito",sans-serif;font-weight:800;font-size:16px;cursor:pointer;}
+.print-btn:hover{background:var(--red);}
+.avery{background:#fff;border:1px solid var(--edge);border-top:4px solid var(--gold);border-radius:4px;padding:16px;text-align:center;}
+.avery img{width:116px;height:116px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);display:block;margin:0 auto 8px;}
+.avery b{display:block;font-family:var(--head);font-size:21px;color:var(--navy);}
+.avery .role{font-family:var(--type);font-size:14px;color:var(--red);}
+.avery p{font-size:16px;margin:8px 0 0;color:var(--soft);}
+
+/* cards */
+.card{background:var(--paper);border:1px solid var(--edge);border-radius:6px;padding:22px 24px;margin-top:18px;}
+.card-head{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap;border-bottom:1px solid var(--edge);padding-bottom:8px;}
+.card-head .ico{font-size:24px;line-height:1;}
+.card-head h2{font-size:26px;font-weight:800;}
+.card-head .tag{margin-left:auto;font-family:var(--type);font-size:14px;color:var(--soft);}
+.small{font-size:16px;color:var(--soft);}
+
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+.box{border-radius:4px;padding:14px 16px;font-size:17px;}
+.box-label{font-family:var(--type);font-size:14px;letter-spacing:.04em;margin-bottom:4px;}
+.b-gold{background:var(--gold-bg);} .b-gold .box-label{color:var(--gold2);}
+.b-green{background:var(--green-bg);} .b-green .box-label{color:#3F5A31;}
+.b-red{background:var(--red-bg);} .b-red .box-label{color:var(--red);}
+.quote{font-family:var(--head);font-style:italic;font-weight:700;font-size:21px;color:var(--navy);border-left:4px solid var(--red);padding:4px 0 4px 16px;margin:16px 0 0;}
+.quote small{display:block;font-family:"Nunito",sans-serif;font-style:normal;font-weight:600;font-size:15px;color:var(--soft);margin-top:4px;}
+.virtues{list-style:none;margin:6px 0 0;padding:0;}
+.virtues li{padding:3px 0;}
+
+/* how-to */
+.howto{background:var(--cream);border:1px solid var(--edge);border-radius:6px;padding:18px 22px;margin-top:18px;}
+.howto h2{font-size:23px;font-weight:800;margin-bottom:10px;}
+.howto ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
+.howto li{position:relative;padding-left:32px;font-size:17px;line-height:1.5;}
+.howto li span{position:absolute;left:0;top:0;font-size:20px;}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px;}
+.tabs b{font-family:var(--type);font-weight:400;font-size:14px;background:#fff;border:1px solid var(--edge);border-radius:3px;padding:1px 7px;color:var(--navy);}
+
+/* story */
+.story{background:var(--navy);color:#DCE2F0;border:none;}
+.story .card-head{border-bottom-color:rgba(255,255,255,.2);}
+.story h2,.story strong{color:#fff;}
+.story .card-head .tag{color:#C9B37A;}
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0;}
+.cast div{background:rgba(255,255,255,.07);border-radius:4px;padding:12px 14px;font-size:16px;}
+.cast b{display:block;font-family:var(--head);font-size:19px;color:#fff;}
+.cast i{font-style:normal;font-family:var(--type);font-size:13px;color:#E4C77E;display:block;margin-bottom:4px;}
+.herald{display:grid;gap:8px;margin-top:10px;}
+.herald div{background:rgba(255,255,255,.07);border-left:4px solid var(--red2);border-radius:3px;padding:8px 12px;font-size:16px;}
+.herald em{font-family:var(--head);font-style:italic;color:#fff;font-size:17px;}
+.herald span{display:block;font-family:var(--type);font-size:13px;color:#C9B37A;}
+
+/* lessons */
+.issue{border:1px solid var(--edge);border-radius:6px;overflow:hidden;margin-top:14px;background:#fff;}
+.issue:first-of-type{margin-top:4px;}
+.issue-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;background:var(--cream);border-bottom:3px double var(--navy);padding:10px 16px;}
+.issue-top .num{font-family:var(--type);font-size:14px;color:var(--red);}
+.issue-top h3{font-size:22px;font-weight:800;}
+.issue-top .virtue{margin-left:auto;font-size:14px;font-weight:800;color:#3F5A31;background:var(--green-bg);border-radius:3px;padding:2px 9px;}
+.issue-body{display:grid;grid-template-columns:1.6fr 1fr;}
+.issue-body > div{padding:14px 16px;}
+.issue-body > div + div{border-left:1px solid var(--edge);background:var(--paper);}
+.lab{font-family:var(--type);font-size:13px;color:var(--soft);display:block;margin-bottom:2px;}
+.claim{font-family:var(--head);font-style:italic;color:var(--red);}
+.steps{margin:8px 0 0;padding-left:22px;font-size:17px;}
+.steps li{margin-bottom:5px;}
+.pill{display:inline-block;font-size:14px;font-weight:800;border-radius:3px;padding:2px 9px;margin:6px 6px 0 0;}
+.p-source{background:var(--gold-bg);color:var(--gold2);}
+.p-word{background:var(--red-bg);color:var(--red);}
+
+/* sources */
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.src{border:1px solid var(--edge);border-radius:4px;background:#fff;overflow:hidden;display:flex;flex-direction:column;}
+.src img{display:block;width:100%;height:170px;object-fit:cover;object-position:center top;background:var(--cream);border-bottom:1px solid var(--edge);}
+.src div{padding:10px 12px;font-size:15px;}
+.src b{display:block;font-family:var(--head);font-size:17px;color:var(--navy);line-height:1.3;}
+.src .yr{font-family:var(--type);font-size:13px;color:var(--red);}
+.src q{display:block;font-family:var(--head);font-style:italic;color:var(--navy);margin-top:6px;quotes:"“" "”";}
+.src .cite{display:block;font-size:13px;color:var(--soft);margin-top:6px;}
+
+/* words */
+.words{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.word{border:1px solid var(--edge);border-radius:4px;padding:10px 14px;background:#fff;}
+.word b{font-family:var(--head);font-size:20px;color:var(--navy);}
+.word .from{font-family:var(--type);font-size:12px;color:var(--soft);margin-left:6px;}
+.word span{display:block;font-size:17px;}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.roots div{background:var(--red-bg);border-radius:4px;padding:10px 14px;font-size:16px;}
+.roots b{font-family:var(--type);font-weight:400;color:var(--red);font-size:16px;}
+
+/* ask */
+.ask{list-style:none;margin:0;padding:0;counter-reset:q;}
+.ask li{counter-increment:q;position:relative;padding:12px 0 12px 50px;border-bottom:1px dashed var(--edge);}
+.ask li:last-child{border-bottom:none;}
+.ask li::before{content:counter(q);position:absolute;left:0;top:11px;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--head);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.ask .q{font-weight:800;color:var(--navy);display:block;}
+.ask .listen{font-size:16px;color:var(--soft);}
+
+/* lists */
+.check{list-style:none;margin:0;padding:0;}
+.check li{padding:7px 0 7px 32px;position:relative;}
+.check li::before{content:"✓";position:absolute;left:4px;top:6px;color:var(--green);font-weight:900;font-size:19px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.two > .card{margin-top:18px;}
+
+.next{background:var(--navy);color:#DCE2F0;border:none;}
+.next .card-head{border-bottom-color:rgba(255,255,255,.2);}
+.next h2,.next strong{color:#fff;}
+.next .claim{color:#F0B9AE;}
+.foot{text-align:center;font-size:15px;color:var(--soft);margin-top:26px;}
+.foot .end{font-family:var(--type);letter-spacing:.2em;color:var(--gold2);display:block;margin-bottom:8px;}
+
+@media (max-width:760px){
+  .paper-name{font-size:36px;}
+  .mast{padding:14px 16px 18px;}
+  .mast h1{font-size:30px;}
+  .mast-body,.glance,.howto ul,.cast,.issue-body,.sources,.words,.roots,.two{grid-template-columns:1fr;}
+  .issue-body > div + div{border-left:none;border-top:1px solid var(--edge);}
+  .issue-top .virtue{margin-left:0;}
+  .card{padding:18px 16px;}
+  .card-head .tag{margin-left:0;}
+  .src img{height:200px;}
+}
+@media print{
+  body{background:#fff;font-size:15px;}
+  .wrap{padding:0;}
+  .print-btn{display:none;}
+  .card,.issue,.howto,.src,.word{break-inside:avoid;}
+  .card{margin-top:12px;padding:14px 16px;}
+  .story,.next,.mast,.issue-top{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="mast">
+    <div class="mast-top">
+      <span class="brand"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy Online">Family Guide · 5th Grade Social Studies</span>
+      <span>Colonial America Edition</span>
+    </div>
+    <div class="paper-name">The Republic Gazette</div>
+    <div class="motto">Honest Reporting · Evidence First · For Every Citizen</div>
+    <hr class="rule">
+    <div class="mast-body">
+      <div>
+        <div class="kicker">Unit 7 · Colonial America</div>
+        <h1>Why They Came, How They Lived</h1>
+        <div class="deck">Lessons 5.07.01, 5.07.02 and 5.07.05: why people came to the colonies, what shaped New England, and what an ordinary day looked like for very different people.</div>
+        <div class="chips">
+          <span class="chip">3 lessons</span>
+          <span class="chip">Issues 29, 30 &amp; 33</span>
+          <span class="chip">6 real sources to study</span>
+        </div>
+        <button class="print-btn" type="button" onclick="window.print()">🖨️ Print this guide</button>
+      </div>
+      <aside class="avery">
+        <img src="images/rg/ms-avery-320.jpg" alt="Ms. Avery, Editor-in-Chief of The Republic Gazette">
+        <b>Ms. Avery</b>
+        <span class="role">Editor-in-Chief</span>
+        <p>Careful, encouraging, and asks questions before answering them. She guides your student through every lesson.</p>
+      </aside>
+    </div>
+  </header>
+
+  <!-- HOW THE LESSON PAGES WORK -->
+  <section class="howto">
+    <h2>🧭 How the Lesson Pages Work</h2>
+    <ul>
+      <li><span>🗂️</span><strong>Four tabs, in order:</strong><span class="tabs" style="position:static;font-size:inherit;"><b>The Dispatch</b>→<b>The Desk</b>→<b>Fact-Check</b>→<b>Go to Press</b></span>A button at the bottom of each tab moves to the next.</li>
+      <li><span>💬</span><strong>Ms. Avery sends messages.</strong> Your student taps her picture at the top to start. Her messages play in her voice, and she leaves short voice notes with tips along the way.</li>
+      <li><span>🖍️</span><strong>Saving evidence.</strong> Tap 🧰 Tools (bottom right), then Highlight, drag across a detail, and tap Save as evidence. It goes into an evidence drawer. Each lesson needs at least two.</li>
+      <li><span>✅</span><strong>Fact-Check has two parts:</strong> three quick questions, then two harder claims where your student decides if each is Supported, Misleading, or Not enough evidence, and explains why.</li>
+      <li><span>💾</span><strong>Work saves as your student goes</strong>, but only in that browser on that computer. Switching computers or clearing the browser loses it.</li>
+      <li><span>📄</span><strong>Everything lands in one submission.</strong> At the end of Go to Press: Copy, Download a text file, or Print or save as PDF. Use that to <strong>submit in Canvas</strong>.</li>
+      <li><span>🔊</span><strong>Listen</strong> at the top reads the page aloud, with a speed control.</li>
+      <li><span>📓</span><strong>Reporter’s Notebook</strong> is a button that prints the notebook, or saves it as a PDF.</li>
+    </ul>
+  </section>
+
+  <!-- THE STORY -->
+  <section class="card story">
+    <div class="card-head"><span class="ico">🗞️</span><h2>In the Republic Gazette</h2><span class="tag">The story in every lesson</span></div>
+    <p>Your student is a <strong>Junior Editor</strong> at The Republic Gazette, a newspaper that checks before it prints. Each lesson is a new issue of the paper.</p>
+    <div class="cast">
+      <div><i>Editor-in-Chief</i><b>Ms. Avery</b>Sends the day’s story, gives tips, and asks good questions.</div>
+      <div><i>The rival paper</i><b>The Hasty Herald</b>Prints fast and checks little. Every lesson, it has already printed a claim that’s too simple.</div>
+      <div><i>The archive</i><b>The Morgue</b>The newspaper’s archive. Every issue your student publishes gets filed there.</div>
+    </div>
+    <p>Each lesson goes the same way. Your student makes a guess and seals it in an envelope, tests the Herald’s claim against real evidence, opens the envelope to see how the guess held up, then writes a front page and “strikes” the Herald’s claim with a red pencil so the correction prints in its place. The Herald’s claims this unit:</p>
+    <div class="herald">
+      <div><span>5.07.01 · The Herald printed:</span><em>“Colonists settled for the same reasons in every colony.”</em></div>
+      <div><span>5.07.02 · The Herald printed:</span><em>“New England colonies grew the way they did because colonists simply preferred it.”</em></div>
+      <div><span>5.07.05 · The Herald printed:</span><em>“Daily life in the colonies was the same for everyone.”</em></div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🧭</span><h2>At a Glance</h2></div>
+    <p>Unit 7 starts Colonial America. In these three lessons your student learns that people came to the colonies for many different reasons, and some didn’t choose to come at all. They see how New England’s rocky land and Puritan beliefs shaped the towns there. Then they follow six people through one day and find out how different those days were, depending on where people lived, how much money they had, their race, and whether they were men or women.</p>
+    <div class="glance">
+      <div class="box b-gold"><div class="box-label">History skill</div><strong>Check a source before you trust it.</strong> Who made it, when, and for whom? Your student learns that a picture can be made long after the time it shows, and names one thing each source <em>can’t</em> show (the lessons call this a <strong>limitation</strong>).</div>
+      <div class="box b-green"><div class="box-label">Virtues</div>
+        <ul class="virtues">
+          <li><strong>Courtesy</strong> (5.07.01): treating every person with respect.</li>
+          <li><strong>Courage</strong> (5.07.02): telling the whole truth, even when a simple answer would be easier.</li>
+          <li><strong>Self-governance</strong> (5.07.05): being in charge of your own choices.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="quote">“Big words like ‘every’ are easy to write and hard to prove.”<small>Ms. Avery, when your student’s front page uses a word like every, all, or only</small></p>
+    <p class="small" style="margin-top:12px;"><strong>Good to know:</strong> The lessons are honest about hard parts of this history. Enslaved Africans were brought by force, slavery was legal in all thirteen colonies (New England too), and every colony was built on land where Native nations already lived. The six people in 5.07.05 are examples based on real history, not real diaries, and the lesson says so. The plain-English versions of the two old ads in 5.07.01 were also written for the lesson.</p>
+  </section>
+
+  <!-- LESSON BY LESSON -->
+  <section class="card">
+    <div class="card-head"><span class="ico">📅</span><h2>Lesson by Lesson</h2></div>
+
+    <article class="issue">
+      <div class="issue-top"><span class="num">Issue 29 · 5.07.01</span><h3>Motives for Colonial Settlement</h3><span class="virtue">Courtesy</span></div>
+      <div class="issue-body">
+        <div>
+          <span class="lab">The question</span>
+          <p>Did colonists really settle for the same reasons in every colony?</p>
+          <ol class="steps">
+            <li><strong>Read two real ads.</strong> Colonies had to find people, so they printed ads. Your student reads two (1609 and 1681) and taps what each one was selling.</li>
+            <li><strong>Bring in seven ships,</strong> one at a time, from St. Augustine, Florida (1565) to Savannah, Georgia (1733). For each ship: who came, why they came, and who already lived there. Your student sorts the reasons into columns: money and profit, faith, trade, guarding the land, a fresh start, and forced to come.</li>
+            <li><strong>Study the oldest picture of St. Augustine,</strong> printed in London in 1589. It was made for an English book, so it shows the town from the attackers’ side.</li>
+          </ol>
+          <span class="pill p-word">Word root: mot / mov = move</span>
+        </div>
+        <div>
+          <span class="lab">What your student learns</span>
+          <p class="small" style="color:var(--ink);font-size:16px;">Spain started St. Augustine in 1565, 42 years before Jamestown. Fewer than half of the Mayflower’s 102 passengers were Separatists. Indentured servants signed a contract to work 4 to 7 years to pay for the trip. About 20 Africans on the White Lion were captured in Angola and forced to come.</p>
+          <span class="lab" style="margin-top:8px;">What they write</span>
+          <p style="font-size:16px;">A <strong>front page</strong> comparing why two colonies began.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-top"><span class="num">Issue 30 · 5.07.02</span><h3>New England Colonies</h3><span class="virtue">Courage</span></div>
+      <div class="issue-body">
+        <div>
+          <span class="lab">The question</span>
+          <p>Did New England grow this way just because people preferred it?</p>
+          <ol class="steps">
+            <li><strong>Build a town</strong> on New England land. The land “talks back”: a big tobacco plantation won’t work on thin, rocky soil with a short summer, but a small farm, a fishing wharf, a sawmill, and a shipyard will.</li>
+            <li><strong>Build three chains,</strong> one link at a time: the land and the work it allowed, Puritan beliefs and town life (reading the Bible, schools, town meetings), and the people who had no say.</li>
+            <li><strong>Study a photo of a real 1681 meetinghouse</strong> and sort what they can see (observation) from what they’re guessing (inference).</li>
+          </ol>
+        </div>
+        <div>
+          <span class="lab">What your student learns</span>
+          <p class="small" style="color:var(--ink);font-size:16px;">Rocky soil pushed people to fishing, lumber, shipbuilding, and trade. Puritans started schools so children could read the Bible: Boston in 1635, Harvard College in 1636. Only men voted at town meetings. Roger Williams was expelled for saying the government should not make rules about religion, and started Providence, Rhode Island in 1636.</p>
+          <span class="lab" style="margin-top:8px;">What they write</span>
+          <p style="font-size:16px;">A <strong>Gazette Correction</strong> that rewrites the Herald’s claim so it is accurate and fair.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-top"><span class="num">Issue 33 · 5.07.05</span><h3>Daily Life in the Thirteen Colonies</h3><span class="virtue">Self-governance</span></div>
+      <div class="issue-body">
+        <div>
+          <span class="lab">The question</span>
+          <p>Was daily life in the colonies the same for everyone?</p>
+          <ol class="steps">
+            <li><strong>Check the Herald’s picture.</strong> With the caption covered, your student guesses what time the kitchen scene shows and whether it might have been drawn later.</li>
+            <li><strong>Follow six people</strong> from sunrise to midday to evening: a wealthy planter in Virginia, an enslaved person on the same plantation, a Massachusetts farm family, a printer’s apprentice in Philadelphia, a farm wife and mother, and a child in New England.</li>
+            <li><strong>Read a real almanac.</strong> Most families had no clock. An almanac listed sunrise and sunset. Your student counts the daylight (about 15 hours in June, about 9 in December) and sorts who got to choose their own hours.</li>
+          </ol>
+          <span class="pill p-word">Word root: vers = turn</span>
+        </div>
+        <div>
+          <span class="lab">What your student learns</span>
+          <p class="small" style="color:var(--ink);font-size:16px;">The kitchen picture was made about 1876 but shows about 1776, so the artist imagined it. Women did hard, skilled work but could not vote. An apprentice signed a contract for a set number of years and then was free. An enslaved person was held as property for life, and their children were born enslaved.</p>
+          <span class="lab" style="margin-top:8px;">What they write</span>
+          <p style="font-size:16px;">A <strong>front page</strong> comparing two people’s days at the same hour.</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🔎</span><h2>Real Sources on the Desk</h2><span class="tag">Look for these</span></div>
+    <div class="sources">
+      <div class="src">
+        <img src="images/rg/rg-nova-britannia-1609.jpg" alt="The title page of Nova Britannia, printed in London in 1609, with a printer’s decoration of a woman holding a dove">
+        <div><span class="yr">1609 · 5.07.01</span><b>Nova Britannia</b>A recruiting pamphlet for the Virginia Company, printed in London. Old spelling, from the title page:
+          <q>Nova Britannia. Offring most excellent fruites by planting in Virginia. Exciting all such as be well affected to further the same.</q>
+          <span class="cite">“Fruites” here means rewards or profits. Robert Johnson. New York Public Library.</span></div>
+      </div>
+      <div class="src">
+        <img src="images/rg/rg-penn-some-account-1681.jpg" alt="The title page of Some Account of the Province of Pennsilvania in America, printed in London in 1681">
+        <div><span class="yr">1681 · 5.07.01</span><b>William Penn’s ad for Pennsylvania</b>Printed for people who might move there, or send servants there. From the title page:
+          <q>Made publick for the Information of such as are or may be disposed to Transport themselves or Servants into those Parts.</q>
+          <span class="cite">William Penn, Some Account of the Province of Pennsilvania in America, London.</span></div>
+      </div>
+      <div class="src">
+        <img src="images/source-5-07-01-colonial-settlement.jpg" alt="A colored bird’s-eye picture of St. Augustine in 1586: a town with garden plots, a wooden fort, English soldiers marching along the shore, and many English ships">
+        <div><span class="yr">Printed 1589 · 5.07.01</span><b>St. Augustine, by Baptista Boazio</b>The oldest known printed picture of any town in what is now the United States. It shows the English attack of 1586: the fort, the town, and Drake’s ships.
+          <span class="cite">Library of Congress.</span></div>
+      </div>
+      <div class="src">
+        <img src="images/source-5-07-02-new-england-colonial.jpg" alt="Black-and-white photo inside a plain wooden meetinghouse, with box pews, a center aisle, and a tall pulpit under a wooden canopy">
+        <div><span class="yr">Built 1681 · 5.07.02</span><b>The Old Ship Meetinghouse</b>Hingham, Massachusetts. Puritans built it, and people still worship in it today. One picture, three dates: built in 1681, box pews added in 1755, photo taken in the 1900s.
+          <span class="cite">Historic American Buildings Survey, Library of Congress.</span></div>
+      </div>
+      <div class="src">
+        <img src="images/source-5-07-05-colonial-daily-life.png" alt="A busy kitchen with a big fireplace, a woman spinning, a woman churning butter, a woman rolling dough, an old man, and two small children">
+        <div><span class="yr">About 1876 · 5.07.05</span><b>A kitchen picture</b>Its caption reads
+          <q>A New England Kitchen. A Hundred Years Ago.</q>
+          It shows chores at home, but it can’t show who in the room was free or enslaved.
+          <span class="cite">Print by H. W. Pierce. Library of Congress.</span></div>
+      </div>
+      <div class="src">
+        <img src="images/rg/rg-poor-richard-1748.jpg" alt="The cover of Poor Richard improved, an almanac for the year 1748, printed by B. Franklin in Philadelphia">
+        <div><span class="yr">1748 · 5.07.05</span><b>Poor Richard improved</b>Benjamin Franklin’s almanac listed “The Rising and Setting of the Sun.” A saying from Poor Richard’s Almanack (1735):
+          <q>Early to bed and early to rise, makes a man healthy wealthy and wise.</q>
+          <span class="cite">Printed by B. Franklin in Philadelphia. Library of Congress.</span></div>
+      </div>
+    </div>
+    <p class="small" style="margin-top:12px;">Also in the lessons: the <em>Boston News-Letter</em> (1704), the first newspaper printed regularly in the colonies, and the <em>South Carolina Gazette</em> (1739), the paper Elizabeth Timothy took over. She was the first woman in America to edit and publish a newspaper.</p>
+  </section>
+
+  <!-- WORDS -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🔤</span><h2>Words to Know</h2><span class="tag">Use them at home!</span></div>
+    <div class="words">
+      <div class="word"><b>motive</b><span class="from">5.07.01</span><span>a reason that moves someone to act</span></div>
+      <div class="word"><b>joint-stock company</b><span class="from">5.07.01</span><span>a company where many people paid in and hoped to split the profits</span></div>
+      <div class="word"><b>indentured servant</b><span class="from">5.07.01</span><span>a worker who signed a contract to work for years in return for the trip</span></div>
+      <div class="word"><b>forced migration</b><span class="from">5.07.01</span><span>being moved to a new place against your will</span></div>
+      <div class="word"><b>Puritan</b><span class="from">5.07.02</span><span>an English Protestant who wanted a stricter, plainer church</span></div>
+      <div class="word"><b>town meeting</b><span class="from">5.07.02</span><span>a meeting where the men of a town voted on local rules</span></div>
+      <div class="word"><b>self-government</b><span class="from">5.07.02</span><span>people making their own rules</span></div>
+      <div class="word"><b>tolerance</b><span class="from">5.07.02</span><span>letting people believe and worship in different ways</span></div>
+      <div class="word"><b>apprentice</b><span class="from">5.07.05</span><span>a young worker who lives with a master to learn a trade</span></div>
+      <div class="word"><b>overseer</b><span class="from">5.07.05</span><span>a boss who watched enslaved workers</span></div>
+      <div class="word"><b>observation / inference</b><span class="from">5.07.02</span><span>something you can see / a smart guess about what something means</span></div>
+      <div class="word"><b>limitation</b><span class="from">all three</span><span>something a source can’t show</span></div>
+    </div>
+    <div class="roots">
+      <div><b>mot / mov = move</b><br>motive, remove, motion, emotion</div>
+      <div><b>vers = turn</b><br>diverse, reverse, versus, anniversary</div>
+    </div>
+  </section>
+
+  <!-- ASK AT HOME -->
+  <section class="card">
+    <div class="card-head"><span class="ico">💬</span><h2>Ask at Home</h2><span class="tag">Better than “How was school?”</span></div>
+    <ol class="ask">
+      <li><span class="q">Did everyone come to the colonies for the same reason?</span><span class="listen">Listen for: no. Some came for money and profit (Jamestown), some for faith (Plymouth, Pennsylvania), some for trade, some to guard land (St. Augustine), some for a fresh start (Georgia). And some, like the Africans on the White Lion, didn’t choose to come.</span></li>
+      <li><span class="q">Which came first, St. Augustine or Jamestown?</span><span class="listen">Listen for: St. Augustine, Florida, in 1565. That’s 42 years before Jamestown (1607).</span></li>
+      <li><span class="q">Why didn’t New England have big plantations?</span><span class="listen">Listen for: thin, rocky soil and a short summer. People turned to fishing, lumber, building ships, and trade.</span></li>
+      <li><span class="q">Who got to vote at a New England town meeting?</span><span class="listen">Listen for: only men. Women, servants, enslaved people, and Native people could not vote.</span></li>
+      <li><span class="q">How is an apprentice different from an enslaved person?</span><span class="listen">Listen for: an apprentice signed a contract for a set number of years and became free when it ended. An enslaved person was held as property for life, and their children were born enslaved.</span></li>
+      <li><span class="q">The kitchen picture: when was it made, and what time does it show?</span><span class="listen">Listen for: it was made about 1876 but shows about 1776, so the artist imagined the scene.</span></li>
+    </ol>
+  </section>
+
+  <!-- TURN IN + TRY AT HOME -->
+  <div class="two">
+    <section class="card">
+      <div class="card-head"><span class="ico">📬</span><h2>What Gets Turned In</h2></div>
+      <ul class="check">
+        <li><strong>Editor’s Notebook:</strong> 3 short written answers on the Desk tab</li>
+        <li><strong>Fact-Check:</strong> 3 questions, plus 2 harder claims with a call and a reason</li>
+        <li><strong>A front page</strong> (in 5.07.02, a Gazette Correction): a headline, three short parts in your student’s own words, and a corrected version of the Herald’s claim</li>
+        <li><strong>At least 2 pieces of evidence,</strong> each with a sentence saying what it proves</li>
+        <li><strong>An Archive Line:</strong> one careful sentence for future citizens to remember</li>
+        <li>Copied, downloaded, or saved as a PDF, then <strong>submitted in Canvas</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px;"><strong>Done well looks like:</strong> real details, not just names, and evidence that’s explained. As Ms. Avery says, “Picking cards isn’t the work. Explaining them is.”</p>
+    </section>
+    <section class="card">
+      <div class="card-head"><span class="ico">🏡</span><h2>Try at Home</h2><span class="tag">5 minutes</span></div>
+      <ul class="check">
+        <li><strong>Read an ad like an editor.</strong> Pick any ad together. Ask Ms. Avery’s two questions: who made this, and what do they want me to do?</li>
+        <li><strong>Count the daylight.</strong> Look up today’s sunrise and sunset. How many hours of daylight is that? Compare it to the almanac’s June (about 15) and December (about 9).</li>
+        <li><strong>Made vs. shown.</strong> Find an old photo or a picture in a book. When was it made? What does it show? What can’t it show?</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- COMING UP -->
+  <section class="card next">
+    <div class="card-head"><span class="ico">🔭</span><h2>Coming Up</h2></div>
+    <p><strong>Next issue (5.07.06): Triangular Trade.</strong> A new dispatch arrives at the Source Desk, and the Hasty Herald has already printed that <span class="claim">triangular trade was just an ordinary business arrangement</span>. Your student will check that claim the same careful way.</p>
+    <p class="small" style="color:#C9CFDD;margin-top:8px;">This guide covers the three lessons on the pilot page. In the full unit, 5.07.03 (Middle Colonies) and 5.07.04 (Southern Colonies) come between New England and Daily Life.</p>
+  </section>
+
+  <p class="foot"><span class="end">— 30 —</span>Optima Academy Online · 5th Grade Social Studies · Unit 7 Family Guide<br>Questions? Reach out to your student’s teacher anytime.</p>
+</div>
+</body>
+</html>
