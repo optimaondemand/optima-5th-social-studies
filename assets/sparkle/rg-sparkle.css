@@ -810,7 +810,8 @@ html.rg-on .rg-notitle > .rg-game-k, html.rg-on .rg-notitle > .rg-game-t{ displa
 .rg-deftip.show{ display:block; } .rg-deftip b{ color:#E9B44C; }
 
 /* v6.8 · extras out of the way */
-html.rg-on:not(.rg-pub) #panel-press .gathered-card, html.rg-on:not(.rg-pub) #panel-press .next-issue-teaser{ display:none; }
+/* Submission packet (Copy / Download / Print) stays visible at all times so students can always turn in, printed or not. */
+html.rg-on:not(.rg-pub) #panel-press .next-issue-teaser{ display:none; }
 html.rg-on #introSection .intro-2col{ grid-template-columns:1fr!important; }
 .rg-hd-panel .intro-card, .rg-hd-panel .need-strip, .rg-hd-panel .rg-lens{ margin:10px 0 0; color:var(--rg-ink); }
 .rg-snapov .tip .ms{ flex-basis:100%; font:600 13px 'Nunito',sans-serif; margin-top:6px; } .rg-snapov .tip .ms ol{ list-style:none; margin:2px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:4px 14px; } .rg-snapov .tip .ms li.on{ opacity:.7; }
