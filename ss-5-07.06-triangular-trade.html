@@ -2258,6 +2258,1851 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.06",
+ "title": "Triangular Trade",
+ "issue": 34,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "route",
+ "place": "Newport",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>was the triangular trade just ordinary business?<\/i> Use the 🖍 highlighter to save details about what was carried, who got the money, and who paid the price. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: daily life in the colonies. Today we follow the ships that connected the colonies to Africa and Europe.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Check the clerk’s ledger",
+   "k": "The Dispatch",
+   "why": "Before you read anything, open a ship clerk’s account book. On each page, pick the honest version of what he wrote."
+  },
+  {
+   "tab": "desk",
+   "t": "Follow the routes",
+   "k": "The Desk",
+   "why": "Follow each route on the map, check the map itself, and read a real voice from 1789. Save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Gazette Correction",
+   "k": "Go to Press",
+   "why": "Pick your angle, write your correction from your evidence, then strike the Herald’s claim and print."
+  }
+ ],
+ "lens": "Responsibility means you answer for what you report. Today, a responsible editor doesn’t stop at the goods and the money. She names the people who paid the price.",
+ "recordFoot": "(The facts in this lesson come from historians’ records. Olaudah Equiano’s words are a real source from 1789. The trade map was made in 2025 for teaching. The clerk’s ledger, the route cards and the plain explanations were written for this lesson. The voyage numbers are estimates from the SlaveVoyages project.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story is the triangular trade. The Herald says it was just ordinary business."
+   },
+   {
+    "t": "Before you read anything, open a ship clerk’s account book and check his words. Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "What’s an account book?",
+      "reply": "A record of a ship’s business. Clerks wrote down what a ship carried and what it sold for. It’s also called a ledger."
+     },
+     {
+      "t": "Maybe it was just business.",
+      "reply": "Partly. There really were goods, ships and money. The question is what the business words leave out."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Good. The ledger is waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the map is wrong?",
+      "reply": "Not wrong. It’s a summary made today. It’s useful, as long as we remember what it can’t show."
+     },
+     {
+      "t": "Who made it?",
+      "reply": "Someone who shares free maps on Wikimedia Commons, in 2025. We changed two of its labels."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the map. Then you’ll read Equiano’s own words."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the routes. Open route 2 and highlight the line that says who paid the price. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me Equiano’s words.",
+      "reply": "Here they are. Read them slowly, and highlight a few words that show what the ledger leaves out.",
+      "go": {
+       "tab": "desk",
+       "sel": ".rg-tworec"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Your answer is sealed. Now go to the Desk tab (tab 2) and follow the routes on the map.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Every route is done, and the Herald is fact-checked. Next, check the map itself, and read a real voice from 1789.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "Made in 2025. That makes it a helpful summary, but not a source from the past. What can’t a map show?",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your correction and your evidence are on the record. Issue 34 is in the Morgue. Next issue: slavery in the colonies and African American life.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "ledger",
+  "title": "The clerk’s ledger",
+  "srcLabel": "Fact from the lesson",
+  "clerkLabel": "The clerk wrote (an example written for this lesson, in the style of real ship records):",
+  "clerkFrom": "Example written for this lesson (a ship clerk’s ledger, in the style of real records)",
+  "job": {
+   "why": "The Hasty Herald says the triangular trade was ordinary business. Business records used business words. Rewriting them shows what those words hide.",
+   "do": "1. Read what the clerk wrote. 2. Pick the honest version. 3. Turn the page. 4. After page 3, answer the question and seal it.",
+   "use": "Your rewritten ledger and your sealed answer come back on the Desk tab.",
+   "words": [
+    [
+     "ledger",
+     "an account book where a ship’s business was written down"
+    ],
+    [
+     "cargo",
+     "goods carried on a ship"
+    ],
+    [
+     "profit",
+     "the money left over after the costs are paid"
+    ],
+    [
+     "Middle Passage",
+     "the forced voyage of enslaved Africans across the Atlantic Ocean"
+    ]
+   ]
+  },
+  "q": "The 1750s. A British ship sails a three-sided route, a triangle. Its clerk writes the voyage in a ledger, the ship’s account book. Read his three pages.",
+  "lockedT": "Pick the honest version to turn the page",
+  "table": {
+   "title": "Two ways to write it",
+   "leg": "Page",
+   "clerk": "The clerk wrote",
+   "honest": "The honest version",
+   "close": "Look down the ledger. The clerk’s words make it sound like ordinary business. The honest words show the people. That is what the Herald’s claim leaves out."
+  },
+  "pages": [
+   {
+    "id": "eu",
+    "icon": "⚓",
+    "short": "Leg 1",
+    "leg": "Page 1 of 3 · Leg 1",
+    "place": "Bristol, England → the coast of West Africa",
+    "when": "Spring",
+    "clerk": "Loaded for Africa: cloth, guns, gunpowder, iron bars and brandy. A fine cargo. Business as usual.",
+    "ask": "The clerk’s list is true. Which version tells the WHOLE truth about what these goods were for?",
+    "opts": [
+     {
+      "t": "Goods made in Britain were carried to Africa to buy captured people.",
+      "ok": true,
+      "say": "Yes. The goods were real, but they were going to pay for human beings."
+     },
+     {
+      "t": "Goods were carried to Africa to sell to families who wanted them.",
+      "ok": false,
+      "say": "Some goods were sold that way, but this was a slave-trading voyage. Its goods were meant to buy captives."
+     },
+     {
+      "t": "Goods were carried to Africa as gifts.",
+      "ok": false,
+      "say": "They weren’t gifts. They were payment."
+     }
+    ],
+    "fact": "In West Africa, European traders bought captives from African traders and rulers, who often took them in wars and raids. Many Africans resisted capture, and some fought back on the ships."
+   },
+   {
+    "id": "mp",
+    "icon": "⛓️",
+    "short": "Leg 2",
+    "leg": "Page 2 of 3 · Leg 2, the Middle Passage",
+    "place": "The coast of West Africa → Barbados, in the Caribbean",
+    "when": "Summer",
+    "calm": true,
+    "clerk": "Took on 300 head of cargo. Sailed for Barbados. 41 lost at sea. Sold the rest at a good price.",
+    "ask": "The clerk calls them “cargo.” Which version tells the truth?",
+    "opts": [
+     {
+      "t": "300 African men, women and children were chained below deck. 41 of them died on the way. The rest were sold into slavery.",
+      "ok": true,
+      "say": "Yes. They were people, not cargo. The clerk’s word hides them."
+     },
+     {
+      "t": "300 workers were hired and carried to new jobs.",
+      "ok": false,
+      "say": "No one was hired. They were captured, and they were never paid."
+     },
+     {
+      "t": "The ship carried supplies to Barbados.",
+      "ok": false,
+      "say": "The ship carried people. Calling them supplies hides what happened."
+     }
+    ],
+    "fact": "The Middle Passage took weeks or months. People were crowded together in the dark with little food, water or fresh air. About 1 in every 7 people died on the ships. They came from many different African peoples, with their own languages, families and names."
+   },
+   {
+    "id": "am",
+    "icon": "🌾",
+    "short": "Leg 3",
+    "leg": "Page 3 of 3 · Leg 3",
+    "place": "Barbados → Bristol, England",
+    "when": "Winter",
+    "clerk": "Loaded: 200 barrels of sugar and molasses. Sold in Bristol at a fine profit. A good voyage.",
+    "ask": "Which version tells the whole truth about this profit?",
+    "opts": [
+     {
+      "t": "Sugar grown by enslaved people was sold in Britain. The merchants kept the profit, and the people who grew it got nothing.",
+      "ok": true,
+      "say": "Yes. Follow the goods, then the people: the work was forced, and the money went to others."
+     },
+     {
+      "t": "Sugar was grown by paid farm workers and sold at a fair price.",
+      "ok": false,
+      "say": "On Caribbean sugar plantations, almost all the work was done by enslaved people, who were never paid."
+     },
+     {
+      "t": "The profit was shared equally with the sailors and the workers.",
+      "ok": false,
+      "say": "Sailors were paid wages, but enslaved workers got nothing."
+     }
+    ],
+    "fact": "Molasses is a thick, dark syrup left over from making sugar. The merchants used their profit to buy more goods and send the ship out again, and the triangle began once more."
+   }
+  ],
+  "seal": {
+   "q": "Before you read on: of all the people forced onto slave ships, where do you think MOST were taken?",
+   "opts": [
+    "To the thirteen colonies in North America",
+    "To the Caribbean islands and Brazil",
+    "To Europe"
+   ],
+   "reveal": [
+    "A common guess, but no. About 388,000 people were taken straight to mainland North America, fewer than 4 of every 100 who survived the crossing. Most were taken to the Caribbean and Brazil.",
+    "Yes. Most were taken to the Caribbean and Brazil. About 388,000 were taken to mainland North America, fewer than 4 of every 100 who survived the crossing.",
+    "No. Very few were taken to Europe. Most were taken to the Caribbean and Brazil. About 388,000 were taken to mainland North America."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after you follow the routes."
+ },
+ "explore": {
+  "reading": {
+   "type": "maplayers",
+   "title": "Follow the routes",
+   "times": [
+    "What was carried",
+    "Who got the money",
+    "Who paid the price"
+   ],
+   "cols": [
+    {
+     "id": "eu",
+     "n": "1",
+     "layer": 1,
+     "icon": "⚓",
+     "short": "Europe → Africa",
+     "who": "Leg 1: Europe to West Africa",
+     "leg": "Layer 1 · Route 1",
+     "kind": "goods",
+     "path": "M724,87 C716.7,94.2 695.7,106.0 680,130 C664.3,154.0 642.0,198.5 630,231 C618.0,263.5 604.3,298.5 608,325 C611.7,351.5 632.7,374.7 652,390 C671.3,405.3 712.0,412.5 724,417",
+     "at": [
+      601,
+      289
+     ],
+     "lines": [
+      "Cloth, guns, gunpowder, iron bars, metal pots and alcohol, made in Britain and other parts of Europe.",
+      "Factory owners and merchants (traders) in Britain. In Africa, some traders and rulers who sold captives.",
+      "People in Africa who were captured in wars and raids so they could be traded for these goods."
+     ],
+     "ask": "Who paid the price on this route?",
+     "opts": [
+      {
+       "t": "Africans who were captured to be traded for these goods",
+       "ok": true,
+       "say": "Yes. The goods were used to buy people."
+      },
+      {
+       "t": "The sailors, who did hard work",
+       "ok": false,
+       "say": "Sailors had a hard, dangerous job, but they were free and paid. The answer is:"
+      },
+      {
+       "t": "No one. It was just goods.",
+       "ok": false,
+       "say": "Read the last line again. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "mp",
+     "n": "2",
+     "layer": 1,
+     "icon": "⛓️",
+     "short": "The Middle Passage",
+     "who": "Leg 2: Africa to the Americas (the Middle Passage)",
+     "leg": "Layer 1 · Route 2",
+     "kind": "people",
+     "calm": true,
+     "path": "M760,429 C744.3,430.8 703.3,444.2 666,440 C628.7,435.8 579.3,416.0 536,404 C492.7,392.0 439.7,377.0 406,368 C372.3,359.0 346.0,353.0 334,350",
+     "at": [
+      536,
+      408
+     ],
+     "lines": [
+      "Enslaved African men, women and children, chained below deck for weeks or months.",
+      "Ship owners and merchants, who sold the captives in the Caribbean, Brazil and North America.",
+      "The enslaved people themselves. About 1 in every 7 died on the ships. The rest were sold into slavery, and their children were born enslaved."
+     ],
+     "ask": "On this route, what was the “cargo”?",
+     "opts": [
+      {
+       "t": "Human beings, forced onto the ships",
+       "ok": true,
+       "say": "Yes. This route is why the trade can’t be called ordinary business."
+      },
+      {
+       "t": "Sugar and molasses",
+       "ok": false,
+       "say": "Those went on route 3. The answer is:"
+      },
+      {
+       "t": "Cloth and guns",
+       "ok": false,
+       "say": "Those went on route 1. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "am",
+     "n": "3",
+     "layer": 1,
+     "icon": "🌾",
+     "short": "Americas → Europe",
+     "who": "Leg 3: the Americas to Europe",
+     "leg": "Layer 1 · Route 3",
+     "kind": "goods",
+     "path": "M320,303 C310.3,293.3 269.3,264.2 262,245 C254.7,225.8 252.0,207.2 276,188 C300.0,168.8 356.7,144.5 406,130 C455.3,115.5 523.8,108.8 572,101 C620.2,93.2 674.5,86.0 695,83",
+     "at": [
+      435,
+      119
+     ],
+     "lines": [
+      "Sugar, molasses, tobacco, rice and indigo (a plant used to make blue dye). Cotton came much later, after 1793.",
+      "Planters, merchants, and governments that taxed the goods. Ports like Bristol and Liverpool grew rich.",
+      "The enslaved people who grew these crops. They were never paid."
+     ],
+     "ask": "Who grew the sugar and tobacco on this route?",
+     "opts": [
+      {
+       "t": "Enslaved people on plantations",
+       "ok": true,
+       "say": "Yes. Follow the goods, then the people."
+      },
+      {
+       "t": "Merchants in Britain",
+       "ok": false,
+       "say": "Merchants sold it, but they didn’t grow it. The answer is:"
+      },
+      {
+       "t": "Paid farm workers",
+       "ok": false,
+       "say": "On these plantations, most workers were enslaved and never paid. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "ne",
+     "n": "4",
+     "layer": 2,
+     "icon": "⛵",
+     "short": "New England → Africa",
+     "who": "New England to West Africa (the rum route)",
+     "leg": "Layer 2 · Route 4",
+     "kind": "north",
+     "path": "M262,155 C277.7,162.8 320.0,182.2 356,202 C392.0,221.8 440.8,251.2 478,274 C515.2,296.8 551.3,321.5 579,339 C606.7,356.5 633.2,372.3 644,379",
+     "at": [
+      457,
+      263
+     ],
+     "lines": [
+      "Rum, made in New England distilleries (buildings where rum was made) from Caribbean molasses.",
+      "New England ship owners, merchants and rum makers. Rhode Island merchants sent more slave-trading voyages than any other colony.",
+      "Africans who were bought with the rum and carried across the Middle Passage."
+     ],
+     "ask": "What does this route show?",
+     "opts": [
+      {
+       "t": "New England took part in the trade too",
+       "ok": true,
+       "say": "Yes. Remember the New England Colonies (5.07.02)? Their ships and their trade were part of this."
+      },
+      {
+       "t": "Only the Southern Colonies took part",
+       "ok": false,
+       "say": "This route started in New England. The answer is:"
+      },
+      {
+       "t": "New England ships carried only fish",
+       "ok": false,
+       "say": "They carried fish and lumber too, but this route carried rum to buy captives. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "wi",
+     "n": "5",
+     "layer": 2,
+     "icon": "🏝️",
+     "short": "Caribbean → New England",
+     "who": "The Caribbean to New England (the molasses route)",
+     "leg": "Layer 2 · Route 5",
+     "kind": "north",
+     "path": "M284,325 C276.7,316.5 250.8,292.2 240,274 C229.2,255.8 218.3,234.7 219,216 C219.7,197.3 239.8,171.0 244,162",
+     "at": [
+      215,
+      238
+     ],
+     "lines": [
+      "Molasses and sugar from Caribbean plantations. Fish, lumber and food went the other way, to feed the plantations.",
+      "New England merchants and rum makers, and Caribbean planters.",
+      "Enslaved people on Caribbean sugar plantations, where the work was brutal and many died young."
+     ],
+     "ask": "Why did New England ships go to the Caribbean?",
+     "opts": [
+      {
+       "t": "To get molasses for making rum",
+       "ok": true,
+       "say": "Yes. The molasses became rum, and the rum sailed to Africa."
+      },
+      {
+       "t": "To get tobacco seeds",
+       "ok": false,
+       "say": "Read what was carried again. The answer is:"
+      },
+      {
+       "t": "To get gold",
+       "ok": false,
+       "say": "Read what was carried again. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "br",
+     "n": "6",
+     "layer": 2,
+     "icon": "🌊",
+     "short": "Brazil ↔ Africa",
+     "who": "Brazil and West Central Africa (no triangle at all)",
+     "leg": "Layer 2 · Route 6",
+     "kind": "route",
+     "path": "M825,498 C806.8,500.3 754.5,506.0 716,512 C677.5,518.0 630.0,529.7 594,534 C558.0,538.3 515.7,537.3 500,538",
+     "at": [
+      644,
+      523
+     ],
+     "lines": [
+      "Ships sailed straight back and forth: tobacco and rum from Brazil to Africa, and captives from Africa to Brazil.",
+      "Merchants and planters in Brazil and Portugal.",
+      "Enslaved Africans. More were taken to Brazil than to any other place: almost 5 million people."
+     ],
+     "ask": "What does this route show about the “triangle”?",
+     "opts": [
+      {
+       "t": "Not every voyage was a triangle. Many ships went straight back and forth.",
+       "ok": true,
+       "say": "Yes. The triangle is a simple picture of something messier."
+      },
+      {
+       "t": "Every ship sailed the same neat triangle",
+       "ok": false,
+       "say": "This route has only two sides. The answer is:"
+      },
+      {
+       "t": "Brazil was not part of the trade",
+       "ok": false,
+       "say": "Brazil was the biggest part of it. The answer is:"
+      }
+     ]
+    }
+   ],
+   "map": {
+    "vb": "120 20 840 580",
+    "base": "<path class=\"land\" d=\"M313,374L307,375L306,375L308,373L307,370L312,369L313,369ZM279,316L277,318L272,318L268,318L267,315L268,314L274,314L278,314ZM198,318L195,320L191,319L187,316L188,314L191,314L193,314L198,315L201,316L203,318ZM229,304L235,305L236,304L242,304L246,306L248,306L249,308L253,308L253,310L256,310L260,313L257,316L253,314L250,315L248,314L246,316L244,316L243,314L240,315L237,320L235,319L235,317L230,316L227,316L223,316L219,317L215,315L216,313L223,314L228,314L231,313L227,310L227,307L223,306L224,304ZM178,283L180,286L187,285L190,287L196,291L200,294L203,294L207,296L206,298L212,298L217,301L216,303L212,304L207,304L202,303L191,304L196,300L193,298L189,298L186,296L184,292L180,292L174,290L172,288L162,287L160,286L162,284L155,284L150,287L147,288L146,289L142,290L139,289L143,287L145,285L148,283L152,282L157,281L159,280L165,281L171,281ZM193,276L191,276L189,272L187,270L188,265L190,266L193,272ZM191,256L183,257L183,254L186,254L191,254ZM197,256L196,261L194,260L194,256L191,253L191,252ZM1000,191L997,193L998,194L998,195L991,198L987,197L985,194L989,194L989,194L990,192L996,192L1000,191L1000,191ZM924,190L928,192L933,192L939,192L938,194L942,193L941,195L931,195L931,194L922,193ZM865,172L862,177L863,179L862,183L856,180L852,180L842,176L843,172L852,173L859,172ZM819,150L823,155L822,165L819,164L816,167L813,165L813,156L811,152L815,152ZM822,143L819,149L816,147L814,142L816,140L820,137ZM293,112L298,112L305,112L302,115L299,116L290,113L288,110L291,108ZM307,93L303,93L294,91L287,88L289,87L299,89L306,92ZM347,82L343,88L347,86L352,87L350,90L356,92L359,90L367,92L364,97L369,96L370,100L373,104L370,111L366,111L362,110L363,104L361,103L353,109L348,109L354,105L347,104L339,104L325,104L324,102L328,99L325,97L331,93L339,81L343,77L349,75L353,75L351,77ZM704,70L691,75L681,73L686,66L683,59L692,53L698,50L704,49L712,54L708,59L709,64ZM844,46L840,52L832,48L831,45L842,43ZM731,24L723,32L731,31L738,31L737,37L730,43L738,44L745,53L749,54L754,63L756,65L765,67L764,71L760,74L763,77L757,81L747,81L735,83L731,82L726,85L720,84L715,87L711,85L721,78L728,76L717,75L715,72L722,70L718,66L720,61L730,62L731,58L726,53L718,52L716,50L719,47L716,45L712,48L712,41L708,38L711,30L716,24L722,25ZM180,0L178,3L175,2L173,0L180,0ZM1000,245L999,247L997,248L995,246L992,242L987,232L986,233L989,240L993,248L999,259L1000,261L1000,626L1000,626L1000,627L991,630L988,633L988,636L990,637L989,640L988,646L987,652L985,655L980,659L979,660L976,663L974,667L969,672L961,680L956,684L951,687L943,690L940,690L939,692L934,691L931,693L923,691L918,692L915,692L908,695L902,696L897,699L894,699L891,696L889,696L886,693L885,694L884,692L884,688L882,683L884,681L884,676L879,669L876,663L876,663L871,654L865,648L862,643L861,636L859,631L857,620L856,611L855,607L853,604L849,598L845,589L844,585L838,578L837,572L837,568L838,561L840,555L840,552L843,545L845,542L849,538L851,534L852,529L851,525L849,522L847,518L845,514L846,512L848,509L846,502L844,497L841,493L841,491L840,489L839,484L833,476L825,469L820,463L816,455L816,453L818,451L820,445L821,440L820,439L822,431L823,425L820,420L817,419L816,416L814,415L814,413L806,416L804,415L801,417L795,417L791,412L789,407L784,402L778,402L772,402L766,403L760,405L749,409L745,411L738,413L732,411L729,411L724,410L719,410L710,411L705,413L698,416L697,416L695,416L688,413L681,407L675,403L670,398L668,398L663,395L659,391L658,389L657,383L654,379L651,376L649,375L647,374L647,371L645,369L643,368L640,365L636,364L635,362L635,361L633,360L632,358L631,353L632,349L629,344L625,341L629,340L632,335L634,331L633,327L635,324L636,317L635,310L634,306L635,302L633,299L629,296L630,293L630,289L633,288L635,284L635,281L637,276L641,272L644,270L646,266L646,262L648,258L653,255L658,248L662,245L668,244L674,239L678,237L684,231L682,222L684,216L685,212L690,208L697,204L703,201L708,194L710,189L715,189L719,192L726,192L734,194L737,194L744,190L752,188L756,185L763,183L775,182L787,181L791,182L798,180L805,180L808,181L813,181L821,178L826,179L826,182L832,180L833,181L829,185L829,188L832,190L831,196L826,200L827,204L831,204L833,207L835,208L844,211L847,210L853,211L863,215L866,221L872,222L883,225L890,229L894,227L897,224L896,218L898,215L903,211L908,210L918,212L920,215L923,215L925,216L932,217L934,220L944,219L951,221L958,224L961,225L967,222L970,220L976,220L981,221L983,224L985,222L991,224L996,224L1000,222L1000,222L1000,245ZM1000,184L998,186L987,187L981,183L974,183L972,186L967,187L960,183L952,183L948,176L943,172L946,166L941,163L949,156L961,155L964,150L977,151L986,146L994,144L1000,144L1000,184ZM1000,126L997,127L993,126L995,122L987,120L988,119L995,117L993,115L982,113L981,110L974,111L972,115L966,121L966,122L963,124L961,123L959,132L955,135L952,140L955,144L955,147L962,149L960,151L952,152L949,154L943,158L941,154L941,153L936,153L932,152L924,154L929,158L925,159L921,159L917,155L916,157L917,161L921,165L918,166L922,170L926,172L926,176L919,174L922,177L917,178L920,185L915,185L909,182L906,176L905,171L902,168L898,164L898,161L897,161L897,159L893,157L892,154L893,149L894,146L892,145L891,145L889,142L886,141L879,138L875,136L868,133L862,128L864,128L860,125L860,122L855,121L853,124L851,122L851,119L852,119L853,118L847,117L842,120L842,124L841,126L843,129L850,133L854,139L862,145L867,145L869,146L867,148L874,150L879,152L885,156L886,158L885,160L881,157L874,156L871,160L876,163L876,167L873,167L869,173L866,174L866,172L867,168L869,166L866,162L864,158L861,158L859,154L854,153L851,150L846,150L840,146L833,142L828,138L826,130L823,130L817,127L813,128L809,132L806,132L800,136L785,134L775,137L774,141L775,145L768,150L758,151L758,154L753,158L751,164L753,168L749,171L748,176L742,177L737,183L728,183L721,183L717,185L714,188L710,187L708,185L706,181L699,180L696,182L692,181L688,181L689,176L689,171L686,171L684,168L684,163L687,161L688,158L689,153L689,150L688,148L687,145L688,140L685,137L695,132L704,133L714,133L721,134L727,134L739,134L743,130L744,115L737,108L731,104L720,101L719,96L729,95L741,96L739,88L745,91L762,86L764,80L771,78L776,77L780,75L787,64L796,61L802,61L804,60L810,60L811,61L816,58L814,55L814,51L811,47L811,39L812,37L814,35L821,35L823,33L829,31L829,35L827,37L827,39L831,40L830,43L827,42L822,47L824,51L824,53L832,55L832,58L839,56L843,54L851,57L854,59L859,57L871,54L880,52L887,53L888,55L894,55L896,51L906,49L905,43L905,38L908,33L915,31L921,36L927,36L928,30L929,26L926,27L922,24L921,20L930,18L939,17L947,18L955,18L963,14L955,11L942,11L929,14L918,16L913,12L906,9L908,2L907,0L1000,0ZM879,0L876,5L881,10L888,14L882,22L874,24L871,36L867,43L858,42L854,48L846,48L844,41L838,33L832,23L827,18L813,27L803,28L793,25L791,17L789,0L789,0L879,0ZM80,0L72,8L70,14L69,22L80,23L83,30L87,35L97,34L110,37L117,40L122,43L131,45L139,48L151,49L159,49L158,56L160,63L165,71L176,78L181,76L185,68L182,57L176,53L188,50L196,44L200,39L200,35L195,28L186,23L194,15L191,9L189,0L228,0L228,0L235,3L238,6L250,7L250,13L253,22L259,23L264,27L275,23L282,15L287,12L292,18L302,28L310,36L307,41L316,45L323,49L334,51L339,53L342,59L347,60L350,63L351,71L345,74L340,76L328,79L319,85L307,86L292,84L281,84L273,85L267,90L258,93L248,103L239,110L246,108L257,99L272,93L283,92L289,96L283,101L285,108L287,114L297,117L309,116L316,108L316,113L321,116L312,121L296,125L289,128L281,133L275,133L275,127L288,121L276,121L268,122L269,124L262,128L254,130L247,132L242,137L242,138L241,142L244,146L247,146L246,143L248,145L248,147L243,148L239,148L234,149L231,150L227,150L221,152L231,151L233,152L223,154L219,154L219,153L217,155L219,156L217,161L212,166L211,165L210,164L208,162L209,166L211,168L211,170L209,173L205,179L204,179L206,174L202,171L202,165L200,168L202,173L197,172L202,174L202,181L204,181L205,184L206,191L202,196L194,198L189,203L186,203L182,206L181,208L173,213L169,216L166,221L164,226L166,231L168,237L171,242L171,245L175,253L175,258L174,261L173,266L170,266L167,266L166,262L163,261L159,255L156,249L155,246L156,241L154,237L148,231L146,230L138,234L137,233L134,230L129,228L121,229L115,228L109,229L106,230L107,232L107,235L109,236L107,237L105,236L102,237L97,237L91,233L85,234L80,232L75,233L69,235L63,240L56,243L52,247L50,250L50,255L50,258L52,261L52,261L52,261L49,267L48,272L47,282L46,285L48,289L50,293L51,299L56,304L58,308L61,312L68,313L71,316L77,314L83,314L88,312L93,311L98,308L99,304L100,298L101,296L106,294L114,292L120,293L124,292L126,293L126,297L122,301L120,306L122,307L121,310L119,316L117,314L115,314L115,315L117,315L117,317L115,320L116,321L115,324L116,324L115,328L114,330L112,330L111,333L113,334L114,333L116,334L117,334L118,333L120,333L121,333L122,333L125,334L129,334L131,333L132,332L134,332L136,333L138,333L139,332L143,333L144,333L146,334L148,336L151,337L153,339L152,340L152,342L152,344L151,347L150,350L150,353L150,355L150,358L149,359L148,362L149,364L147,365L148,367L149,368L151,372L154,375L157,378L159,381L159,382L162,383L163,382L165,384L168,384L172,382L176,380L178,378L182,378L182,379L186,379L189,381L192,383L194,385L198,385L204,380L206,379L207,377L208,371L212,367L217,367L217,366L223,366L228,363L231,361L235,358L237,358L239,360L238,362L238,364L233,365L236,368L236,372L232,376L235,382L238,381L240,376L238,374L237,368L246,365L245,362L248,360L250,365L255,365L260,369L260,371L267,371L275,371L279,374L284,375L288,372L288,371L297,370L306,370L300,372L302,376L308,376L314,380L315,386L318,385L321,387L326,390L331,394L331,398L333,398L337,402L340,404L349,406L350,404L355,404L363,406L366,407L371,408L379,414L380,417L382,417L384,421L388,434L392,435L392,440L387,446L389,448L402,449L402,456L407,452L417,454L429,459L432,463L431,467L439,465L453,468L464,468L475,474L484,482L490,484L496,485L498,487L501,496L502,500L499,512L495,517L485,527L481,535L475,542L473,542L471,547L472,560L470,572L469,576L467,579L466,589L458,598L457,606L451,609L450,613L442,613L430,616L425,619L417,621L409,627L403,634L402,640L403,644L401,651L400,654L395,658L387,671L380,677L375,680L372,687L367,691L364,696L356,700L351,698L347,699L340,696L335,696L331,692L330,696L337,700L231,700L231,700L234,692L237,681L235,671L238,665L237,656L241,647L242,633L245,618L247,602L246,590L245,580L237,576L237,573L223,565L210,558L204,553L201,547L202,545L196,536L189,522L182,508L179,505L177,499L171,495L166,492L169,488L165,482L167,477L173,472L177,467L175,463L173,467L168,464L170,462L169,455L171,454L172,449L175,445L175,442L179,440L184,437L183,435L185,435L185,431L187,428L190,428L193,423L196,420L193,418L195,414L193,407L195,405L193,399L191,395L188,393L187,389L188,387L187,387L185,385L182,382L178,383L177,385L174,387L172,388L172,389L175,393L173,394L172,395L169,395L168,391L167,392L164,392L163,389L160,388L158,388L155,388L155,389L154,388L150,386L148,385L149,384L149,382L147,380L144,379L142,378L141,376L139,375L140,377L138,378L137,376L134,376L133,374L133,372L134,370L132,369L134,367L132,365L128,362L127,360L124,358L120,354L121,353L122,354L122,354L121,351L119,351L118,353L114,352L111,352L108,350L104,350L102,348L99,347L94,347L91,345L87,342L79,335L75,332L69,331L65,331L59,334L56,334L51,333L45,331L39,328L33,327L25,324L19,320L17,318L13,318L6,315L3,312L0,311L0,0ZM275,0L275,0L272,0L275,0ZM446,0L446,1L443,7L440,14L429,14L419,8L404,8L397,4L394,0L446,0Z\"/>",
+    "labels": [
+     {
+      "x": 825,
+      "y": 87,
+      "t": "EUROPE"
+     },
+     {
+      "x": 882,
+      "y": 375,
+      "t": "AFRICA"
+     },
+     {
+      "x": 265,
+      "y": 92,
+      "t": "NORTH AMERICA"
+     },
+     {
+      "x": 334,
+      "y": 505,
+      "t": "SOUTH AMERICA"
+     },
+     {
+      "x": 560,
+      "y": 200,
+      "t": "Atlantic Ocean",
+      "cls": "sea"
+     },
+     {
+      "x": 778,
+      "y": 47,
+      "t": "Britain",
+      "cls": "sm"
+     },
+     {
+      "x": 222,
+      "y": 150,
+      "t": "New England",
+      "cls": "sm"
+     },
+     {
+      "x": 265,
+      "y": 352,
+      "t": "Caribbean",
+      "cls": "sm"
+     },
+     {
+      "x": 435,
+      "y": 577,
+      "t": "Brazil",
+      "cls": "sm"
+     },
+     {
+      "x": 719,
+      "y": 372,
+      "t": "West Africa",
+      "cls": "sm"
+     },
+     {
+      "x": 845,
+      "y": 568,
+      "t": "West Central Africa",
+      "cls": "sm"
+     }
+    ],
+    "alt": "A map of the Atlantic Ocean with Europe, Africa, North America and South America. Numbered routes connect them.",
+    "cap": "Map drawn for this lesson from modern coastline data. The routes are simplified: real ships sailed many different paths."
+   },
+   "layer2": {
+    "btn": "Turn on layer 2: other routes",
+    "lockT": "Answer routes 1, 2 and 3 to turn on layer 2.",
+    "readyT": "Layer 1 is done. Turn on layer 2 to see three more routes.",
+    "onT": "Layer 2 is on",
+    "t": "Layer 2 shows routes that don’t fit the neat triangle."
+   },
+   "srcLabel": "Fact from the lesson",
+   "deskEmpty": "Tap route 1 on the map, or its button above, to start.",
+   "miniAfter": "mp",
+   "myths": [
+    {
+     "after": "mp",
+     "claim": "It was just business. Everyone got a fair deal.",
+     "fact": "Business words hide what happened. Enslaved Africans were captured, chained and sold. They never agreed to anything, and they got nothing.",
+     "calm": true
+    },
+    {
+     "after": "ne",
+     "claim": "Only the Southern Colonies had anything to do with the slave trade.",
+     "fact": "New England ships carried rum to Africa, and Rhode Island merchants sent more slave-trading voyages than any other colony. The North was part of it too."
+    },
+    {
+     "after": "br",
+     "claim": "The triangular trade was one ship sailing one neat triangle.",
+     "fact": "The triangle is a simple picture. Many ships sailed only part of it, and ships from Brazil sailed straight to Africa and back."
+    }
+   ],
+   "close": "Follow the goods, then the people. Every route carried goods and made someone money. But route 2 carried human beings, and the people who paid the price on every route got nothing. That is what “ordinary business” leaves out.",
+   "job": {
+    "why": "The Herald calls it ordinary business. On each route, check what was carried, who got the money, and who paid the price.",
+    "do": "1. Tap a route on the map. 2. Read what was carried and who got the money. 3. Answer the question. 4. Turn on layer 2 and do routes 4 to 6. 5. Fact-check the Herald when it shows up.",
+    "use": "Your routes give you evidence for the notebook and your Gazette Correction.",
+    "words": [
+     [
+      "captive",
+      "a person who has been captured"
+     ],
+     [
+      "molasses",
+      "a thick, dark syrup left over from making sugar"
+     ],
+     [
+      "rum",
+      "a strong alcohol made from molasses"
+     ],
+     [
+      "merchant",
+      "a trader who buys and sells goods"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Check the map",
+   "kind": "modern",
+   "srcName": "the map",
+   "srcWho": "The trade map (made in 2025)",
+   "srcCant": "This map",
+   "showsWord": "The map shows ",
+   "img": "source-5-07-06-triangular-trade-map",
+   "alt": "A modern map of the Atlantic Ocean. A thick gray loop with arrows runs from Europe down to Africa, across to the Americas, and back to Europe. Labels on the loop: Textiles, firearms, tools; Enslaved Africans (forced); Sugar, molasses, tobacco, rice. Europe is green, the coast of Africa is red, and coasts in North America, the Caribbean and South America are blue.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 59,
+     "y": 38,
+     "rx": 4,
+     "ry": 6,
+     "label": "Leg 1: Europe to Africa",
+     "t": "The arrow goes from Europe down to Africa. The label lists cloth (textiles), guns (firearms) and tools.",
+     "lx": 82,
+     "ly": 50
+    },
+    {
+     "x": 45,
+     "y": 57,
+     "rx": 4,
+     "ry": 5,
+     "label": "Leg 2: Africa to the Americas",
+     "t": "This is the Middle Passage. We changed the label from “Slaves” to “Enslaved Africans (forced),” because they were people forced into slavery.",
+     "lx": 40,
+     "ly": 72
+    },
+    {
+     "x": 44,
+     "y": 21,
+     "rx": 4,
+     "ry": 5,
+     "label": "Leg 3: the Americas to Europe",
+     "t": "Crops grown by enslaved people went to Europe. We took “cotton” off this label, because cotton became a big crop only after 1793.",
+     "lx": 30,
+     "ly": 8
+    },
+    {
+     "x": 12,
+     "y": 30,
+     "rx": 6,
+     "ry": 7,
+     "label": "The blue coasts",
+     "t": "Blue marks the Americas: North America, the Caribbean and South America, where captives were taken and crops were loaded.",
+     "lx": 10,
+     "ly": 52
+    },
+    {
+     "x": 82,
+     "y": 57,
+     "rx": 8,
+     "ry": 12,
+     "label": "The red coast",
+     "t": "Red marks the coast of West and West Central Africa, where captives were forced onto ships.",
+     "lx": 70,
+     "ly": 84
+    },
+    {
+     "x": 72,
+     "y": 19,
+     "rx": 5,
+     "ry": 6,
+     "label": "Green Europe",
+     "t": "Green marks Europe, where many voyages started and ended.",
+     "lx": 72,
+     "ly": 4
+    }
+   ],
+   "date": {
+    "x": 9,
+    "y": 93,
+    "w": 16,
+    "h": 10,
+    "tapT": "Now tap the 📅 date mark in the bottom-left corner to find out when this map was made.",
+    "year": 2025,
+    "shows": 1700,
+    "yearT": "in 2025",
+    "showsT": "trade routes from the 1500s to the 1800s",
+    "gapT": "about 200 to 500 years",
+    "text": "This map was made in 2025 by a Wikimedia Commons user named Jefunky, to teach about the trade. Anyone may use it for free. It is not a source from the past: it is a modern summary of what historians know. We changed two of its labels for this lesson.",
+    "madeBy": "Made for teaching (Wikimedia Commons)",
+    "showsWhy": "A modern summary of more than 300 years of trade",
+    "q": "In your own words: when was this map made, and what does that mean for how we use it?",
+    "check": [
+     "say when it was made (2025)?",
+     "say it is not from the time of the trade?",
+     "say what it is good for, or what it can’t show?"
+    ],
+    "model": "This map was made in 2025, long after the trade, so it is not a source from the past. It is a good summary of the routes, but it can’t show what the voyage was like for the people on the ships.",
+    "card": "The trade map was made in 2025 to teach about the trade, long after it ended.",
+    "madeT": "made 2025",
+    "journalT": "The map was made in 2025, so it is a modern summary, not a source from the past."
+   },
+   "missing": {
+    "q": "What can this map tell us, and what can’t it?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown on the map",
+      "icon": "🗺"
+     },
+     {
+      "k": "not",
+      "t": "Not shown on this map",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this map alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Which way the ships sailed on each leg",
+      "k": "shown",
+      "say": "Yes. Follow the arrows.",
+      "hint": "Look at the arrows on the loop."
+     },
+     {
+      "t": "What was carried on each leg",
+      "k": "shown",
+      "say": "Yes. Each leg has a label.",
+      "hint": "Read the labels on the loop."
+     },
+     {
+      "t": "That one leg carried human beings",
+      "k": "shown",
+      "say": "Yes. Leg 2 says so.",
+      "hint": "Read the label on leg 2."
+     },
+     {
+      "t": "The names of the people on the ships",
+      "k": "not",
+      "say": "Right. A map can’t show who they were.",
+      "hint": "Can you find any names of people?"
+     },
+     {
+      "t": "What it was like below deck",
+      "k": "not",
+      "say": "Right. For that we need someone who was there.",
+      "hint": "Does the map show the inside of a ship?"
+     },
+     {
+      "t": "How many people each ship carried",
+      "k": "cant",
+      "say": "Right. We’d need ship records, like a ledger.",
+      "hint": "Does the map give any numbers?"
+     },
+     {
+      "t": "Whether every ship sailed the whole triangle",
+      "k": "cant",
+      "say": "Right. The map draws one neat loop. Layer 2 showed that many ships didn’t sail it.",
+      "hint": "Think about layer 2 on the routes map."
+     }
+    ]
+   },
+   "close": "A modern map is a good summary: it shows the routes and what was carried. It can’t show the people’s names, their voices, or what the voyage was like. For that, we need a real voice from the past.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice on this map.",
+   "from": "Made today to teach: “Map of the Triangular trade” by Jefunky (Wikimedia Commons, 2025, free to use), with two labels changed for this lesson",
+   "zoomCap": "“Map of the Triangular trade,” by Jefunky, 2025. Wikimedia Commons, CC0 (free to use): https://commons.wikimedia.org/wiki/File:Map_of_the_Triangular_trade.jpg. Two labels changed for this lesson.",
+   "followup": {
+    "q": "This map can’t show what the voyage was like for the people on the ships. Which other source could help?",
+    "opts": [
+     {
+      "t": "A book written by someone who survived the Middle Passage",
+      "ok": true,
+      "say": "Yes. A survivor’s own words can show what a map can’t. You’ll read one next."
+     },
+     {
+      "t": "A bigger copy of this same map",
+      "ok": false,
+      "say": "A bigger copy would still show only the routes."
+     },
+     {
+      "t": "A list of sugar prices in London",
+      "ok": false,
+      "say": "Prices show the money, not the people."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this map can’t show? (This is called a limitation.)",
+    "limPh": "This map can’t show…"
+   },
+   "job": {
+    "why": "Maps can make the trade look neat and simple. Before you use this one as evidence, check what it shows, when it was made, and what it can’t show.",
+    "do": "1. Write one thing you notice. 2. Open at least 4 red marks. 3. Open the 📅 date. 4. Sort the cards.",
+    "use": "Your notes about this map go into your evidence drawer for your Gazette Correction.",
+    "words": [
+     [
+      "label",
+      "the words printed on a map"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  },
+  "tworec": {
+   "title": "Two records of one voyage",
+   "a": {
+    "kind": "Example written for this lesson",
+    "label": "A ship clerk’s ledger: leg 2",
+    "short": "The clerk’s ledger",
+    "t": "Took on 300 head of cargo. Sailed for Barbados. 41 lost at sea. Sold the rest at a good price.",
+    "cite": "Written for this lesson, in the style of real ship records from the 1700s."
+   },
+   "b": {
+    "kind": "Real source from the past",
+    "label": "Olaudah Equiano, who lived through the Middle Passage",
+    "short": "Equiano’s words",
+    "who": "Olaudah Equiano",
+    "when": "1789",
+    "where": "London",
+    "cite": "The Interesting Narrative of the Life of Olaudah Equiano, Vol. I, chapter 2 (London, 1789)",
+    "quotes": [
+     {
+      "t": "…a multitude of black people of every description chained together, every one of their countenances expressing dejection and sorrow…",
+      "cite": "Olaudah Equiano, 1789, describing what he saw when he was brought onto the ship"
+     },
+     {
+      "t": "The closeness of the place, and the heat of the climate, added to the number in the ship, which was so crowded that each had scarcely room to turn himself, almost suffocated us.",
+      "cite": "Olaudah Equiano, 1789, describing the ship’s hold during the crossing"
+     }
+    ],
+    "note": "Equiano wrote that he was taken from West Africa as a boy. He survived the Middle Passage, later bought his freedom, and in 1789 published his life story in London to help end the slave trade. Some historians question whether he was born in Africa or in South Carolina, because of a few later records. Either way, his book is one of the most important records of the Middle Passage."
+   },
+   "sortQ": "Which record shows this? Tap a card, then tap a box.",
+   "sortDone": "Every card is sorted.",
+   "cards": [
+    {
+     "t": "How many people were on the ship",
+     "k": "a",
+     "say": "Right. The clerk counted people, as if they were goods.",
+     "hint": "Which record gives a number?"
+    },
+    {
+     "t": "How many people died",
+     "k": "a",
+     "say": "Right. The clerk wrote a number: “41 lost at sea.”",
+     "hint": "Which record gives a number?"
+    },
+    {
+     "t": "What the people felt",
+     "k": "b",
+     "say": "Right. Only Equiano tells us: “dejection and sorrow.”",
+     "hint": "Which record talks about faces and feelings?"
+    },
+    {
+     "t": "How crowded and hot it was below deck",
+     "k": "b",
+     "say": "Right. Equiano: “so crowded that each had scarcely room to turn himself.”",
+     "hint": "Which record describes the space below deck?"
+    },
+    {
+     "t": "That the people were chained",
+     "k": "b",
+     "say": "Right. Equiano saw people “chained together.” The clerk never says so.",
+     "hint": "Which record uses the word chained?"
+    },
+    {
+     "t": "That there were many people on the ship",
+     "k": "both",
+     "say": "Right. The clerk wrote 300, and Equiano wrote of “a multitude” and “the number in the ship.”",
+     "hint": "Do both records say there were many people?"
+    }
+   ],
+   "q": {
+    "q": "Which record tells you more about what the Middle Passage was like for the people on the ship?",
+    "opts": [
+     {
+      "t": "Equiano’s words",
+      "ok": true,
+      "say": "Yes. He was there. His words show what the clerk’s numbers hide."
+     },
+     {
+      "t": "The clerk’s ledger",
+      "ok": false,
+      "say": "The ledger gives numbers, but it treats people as cargo. It can’t tell us what they lived through."
+     },
+     {
+      "t": "They tell us the same things",
+      "ok": false,
+      "say": "Look at your sort again. Most cards went to only one record."
+     }
+    ]
+   },
+   "writeQ": "In your own words: what does the clerk’s ledger leave out that Equiano’s words show? (at least 12 words)",
+   "writePh": "The ledger leaves out… Equiano shows…",
+   "min": 12,
+   "job": {
+    "why": "A business record and a survivor’s book can describe the same kind of voyage. Comparing them shows what business words hide.",
+    "do": "1. Read both records. 2. Sort each card into the record that shows it. 3. Answer the question. 4. Write what the ledger leaves out.",
+    "use": "Your comparison goes into your evidence drawer for your Gazette Correction.",
+    "words": [
+     [
+      "countenances",
+      "faces"
+     ],
+     [
+      "dejection",
+      "deep sadness"
+     ],
+     [
+      "closeness",
+      "crowding, with no fresh air"
+     ],
+     [
+      "scarcely",
+      "barely"
+     ],
+     [
+      "suffocated",
+      "choked, unable to breathe"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "The triangular trade connected Europe, Africa and the Americas across the Atlantic Ocean.",
+   "Leg 1 carried goods made in Europe to Africa. Leg 2, the Middle Passage, carried enslaved Africans to the Americas. Leg 3 carried crops like sugar, molasses, tobacco and rice to Europe.",
+   "About 12.5 million Africans were forced onto slave ships, and about 1 in 7 died on the way. Most were taken to the Caribbean and Brazil; about 388,000 to mainland North America.",
+   "Merchants, ship owners and planters got the money. Enslaved Africans paid the price and got nothing.",
+   "New England was part of the trade too: its ships carried rum to Africa, and Rhode Island merchants sent the most slave-trading voyages of any colony.",
+   "The triangle is a simple picture. Many ships sailed only part of it, or went straight between Brazil and Africa.",
+   "A modern map is a summary, not a source from the past. Olaudah Equiano’s 1789 book is a real voice from the Middle Passage."
+  ],
+  "vocab": [
+   [
+    "triangular trade",
+    "the three-sided trade between Europe, Africa and the Americas"
+   ],
+   [
+    "Middle Passage",
+    "the forced voyage of enslaved Africans across the Atlantic Ocean"
+   ],
+   [
+    "cargo",
+    "goods carried on a ship"
+   ],
+   [
+    "merchant",
+    "a trader who buys and sells goods"
+   ],
+   [
+    "profit",
+    "the money left over after the costs are paid"
+   ],
+   [
+    "captive",
+    "a person who has been captured"
+   ],
+   [
+    "molasses",
+    "a thick, dark syrup left over from making sugar"
+   ],
+   [
+    "ledger",
+    "an account book"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: merc means “trade”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "The clerk’s ledger was full of trade words. Cracking the root shows how many of them come from one word part.",
+   "do": "1. Tap the part of each word that means “trade.” 2. Use merchant in a sentence about today’s lesson.",
+   "use": "Your sentence can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "merc",
+  "meaning": "trade",
+  "words": [
+   {
+    "parts": [
+     "merc",
+     "hant"
+    ],
+    "root": 0,
+    "m": "merchant: a trader who buys and sells goods to make money"
+   },
+   {
+    "parts": [
+     "com",
+     "merce"
+    ],
+    "root": 1,
+    "m": "commerce: buying and selling between people and places (com means together)"
+   },
+   {
+    "parts": [
+     "merc",
+     "handise"
+    ],
+    "root": 0,
+    "m": "merchandise: goods that are bought and sold"
+   },
+   {
+    "parts": [
+     "com",
+     "merc",
+     "ial"
+    ],
+    "root": 1,
+    "m": "commercial: having to do with buying and selling"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "The root merc comes from the Latin word merx, which means goods for sale. In the triangular trade, ship clerks wrote down captured people as if they were merchandise. That is why an honest editor checks the words.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "British and New England merchants…",
+   "min": 8,
+   "must": "merchant",
+   "word": "merchant"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Gazette Correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your main idea (angle): what will your correction argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "Not Just Business",
+     "ok": true,
+     "tip": "The business words hid human beings. Show what they hid.",
+     "fit": [
+      "mp",
+      "ledger",
+      "clerk",
+      "honest",
+      "herald",
+      "equiano",
+      "quote",
+      "people"
+     ],
+     "fitTip": "Good fits: route 2, the clerk’s ledger, and Equiano’s words.",
+     "ideas": [
+      "Not Just Business",
+      "People, Not Cargo"
+     ]
+    },
+    {
+     "t": "Follow the Goods, Then the People",
+     "ok": true,
+     "tip": "On each route: what was carried, who got the money, who paid the price.",
+     "fit": [
+      "eu",
+      "mp",
+      "am",
+      "goods",
+      "people",
+      "link",
+      "ledger"
+     ],
+     "fitTip": "Good fits: routes 1, 2 and 3 on the map, and your rewritten ledger.",
+     "ideas": [
+      "Follow the Goods, Then the People",
+      "Who Paid the Price?"
+     ]
+    },
+    {
+     "t": "The Triangle Ran Through New England Too",
+     "ok": true,
+     "tip": "Rum, molasses and Rhode Island ships: the North was part of it.",
+     "fit": [
+      "ne",
+      "wi",
+      "br",
+      "north",
+      "route",
+      "herald"
+     ],
+     "fitTip": "Good fits: routes 4, 5 and 6, and the Herald fact-checks.",
+     "ideas": [
+      "The Triangle Ran Through New England Too",
+      "Not Just a Southern Story"
+     ]
+    },
+    {
+     "t": "Triangular Trade: Just Business!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at route 2: what was carried?"
+    }
+   ]
+  },
+  "p1Label": "Route 1: one route from the map",
+  "p2Label": "Route 2: a different route",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "What was carried, and who paid the price?",
+  "whyLabel": "Why it matters: what does the Herald’s claim leave out?",
+  "factors": [
+   "What was carried",
+   "Who got the money",
+   "Who paid the price",
+   "Business words that hide people",
+   "Routes beyond the triangle",
+   "A survivor’s own words"
+  ],
+  "close": "Your angle is set. Now write your correction below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every correction argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two routes. 3. Pick what the Herald left out.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know?",
+   "img": false,
+   "who": "Where people were taken",
+   "from": "Fact from the lesson (SlaveVoyages estimates)",
+   "t": "About 12.5 million Africans were forced onto slave ships between the 1500s and the 1860s. About 10.7 million lived through the crossing. Most were taken to the Caribbean and Brazil. About 388,000 were taken to mainland North America. Historians worked out these numbers from the records of tens of thousands of voyages.",
+   "q": "Why do you think the Herald never mentions numbers like these?",
+   "tags": [
+    "count",
+    "people",
+    "route"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong. Strike the Herald’s claim, and your Gazette Correction prints in its place."
+  },
+  "win": "Printed. Your Gazette Correction is on the record, and Issue 34 is filed in the Morgue.",
+  "claim": "Triangular trade was just an ordinary business arrangement."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap your rewritten ledger after page 3",
+   "Snap the map when all six routes are done",
+   "Snap Equiano’s words",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "About 12.5 million Africans were forced onto ships, but only about 388,000 were taken to North America.",
+   "key": [
+    "12.5",
+    "million",
+    "Africans",
+    "forced",
+    "388,000",
+    "America"
+   ],
+   "small": [
+    "about",
+    "were",
+    "onto",
+    "but",
+    "only",
+    "to",
+    "taken"
+   ],
+   "model": "Key words: 12.5 million, Africans, forced, 388,000, North America."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Goods on leg 1",
+    "rx": "cloth|textile|gun|gunpowder|iron|metal|tool|alcohol|brandy|rum|goods|made in",
+    "n": 1
+   },
+   {
+    "t": "People on leg 2",
+    "rx": "enslav|slave|captive|african|people|human|men|women|child",
+    "n": 1
+   },
+   {
+    "t": "Crops on leg 3",
+    "rx": "sugar|molasses|tobacco|rice|indigo|crop",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "People, not goods",
+    "rx": "people|human|person|men|women|child|not cargo|not goods|african",
+    "n": 1
+   },
+   {
+    "t": "Forced or harmful",
+    "rx": "forc|chain|captur|kidnap|crowd|die|died|death|dead|sick|suffer|never agreed|against their will|enslav|slave|stolen|taken",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|trade|business|goods|money|profit|ship|sold|bought",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|people|human|enslav|slave|forced|middle passage|died|chain",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at your rewritten ledger, or routes 1, 2 and 3 on the map.",
+   "Name what each leg carried: goods, then people, then crops.",
+   "Try: “Leg 1 carried ___. Leg 2 carried ___. Leg 3 carried ___.”"
+  ],
+  "journal-q2": [
+   "Look at route 2 on the map and at Equiano’s words.",
+   "What did leg 2 carry that the other legs didn’t?",
+   "Try: “The Middle Passage was different because ___, who ___.”"
+  ],
+  "journal-q3": [
+   "Were there ships, goods and money? Then the Herald is partly right.",
+   "Now look at route 2. What does “ordinary business” leave out?",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "Trade with Asia was a different route. Look back at route 2 on the map.",
+   "C": "That would be a route inside the colonies. The Middle Passage crossed the Atlantic from Africa. Look back at route 2."
+  },
+  {
+   "A": "Enslaved people were never paid at all. Look back at route 3: who grew the sugar?",
+   "B": "No one volunteered. Enslaved Africans were captured and forced. Look back at page 2 of the clerk’s ledger."
+  },
+  {
+   "A": "That’s the Herald’s claim. Captives never agreed to anything. Look back at route 2.",
+   "C": "The trade lasted more than 300 years and harmed millions of people. Look back at the Did you know? card."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · The Triangular Trade",
+  "head": "Not Just Business",
+  "deck": "Was the triangular trade just ordinary business? Follow the goods, then the people.",
+  "dateline": "Vol. I · No. 34 · Price: One Penny",
+  "ears": [
+   "Issue 34 · Colonial America Edition",
+   "⚓ Ships at the wharf"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Follow the routes on the map"
+   },
+   {
+    "key": "picture",
+    "t": "Check the map, then read a real voice",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "NEWPORT",
+  "lede": "The Hasty Herald says the triangular trade was ordinary business. Six routes on a map, one modern map to check, and one real voice from 1789 will test that. You decide.",
+  "evIntro": "Today’s question: Was the triangular trade just ordinary business? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means something made back then, like Equiano’s book. “Made today to teach” means the modern map.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail about what was carried or who paid the price, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "Not Just Business",
+   "Follow the Goods, Then the People"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "What the Herald left out",
+    "short": "What the Herald left out (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Make your claim: was the triangular trade just ordinary business? Use one detail about the goods or the money AND one about the people.",
+    "ph": "Write your claim and your evidence, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said the triangular trade was just ordinary business. But",
+     "On the Middle Passage,"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Who paid the price",
+    "short": "Who paid the price (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Name the people who paid the price, and say why readers should know.",
+    "ph": "Write about who paid the price, and why it matters.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "tworec",
+     "cardnotes"
+    ],
+    "starters": [
+     "The people who paid the price were",
+     "Readers should know this because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our sources",
+    "short": "Your source note (at least 8 words)",
+    "ask": "Write about the map or Equiano’s words: what it can show, and what it can’t.",
+    "ph": "For example, start with: The map… or Equiano’s words…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit",
+     "tworec"
+    ],
+    "starters": [
+     "The map was made in 2025, so",
+     "Equiano’s words show"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Was the triangular trade just ordinary business?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll strike the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "south-only",
+   "claim": "The triangular trade was a Southern business.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Southern planters were part of it. But were they the only ones?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Southern planters bought enslaved people, but New England ships, rum makers and merchants were part of the trade too."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: routes 4 and 5 on the map."
+    }
+   ],
+   "details": [
+    {
+     "from": "Route 4:",
+     "t": "Rhode Island merchants sent more slave-trading voyages than any other colony.",
+     "ok": true,
+     "say": "This shows the North was deeply involved."
+    },
+    {
+     "from": "Route 5:",
+     "t": "New England merchants and rum makers got the money from the molasses route.",
+     "ok": true,
+     "say": "This shows New England made money from the trade."
+    },
+    {
+     "from": "Route 3:",
+     "t": "Sugar, molasses, tobacco, rice and indigo went to Europe.",
+     "ok": false,
+     "say": "This is about goods going to Europe. It doesn’t tell us which colonies took part."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "ledger-source",
+   "claim": "A ship’s account book is a good source for learning what the Middle Passage was like for the people on board.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "An account book has numbers. But does it show what people lived through?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. An account book is a real record with useful numbers, but its business words hide the people. It can’t show what they lived through."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You have evidence: compare the ledger with Equiano’s words."
+    }
+   ],
+   "details": [
+    {
+     "from": "The clerk’s ledger:",
+     "t": "Took on 300 head of cargo. 41 lost at sea.",
+     "ok": true,
+     "say": "This shows the ledger counted people like goods."
+    },
+    {
+     "from": "Equiano’s words:",
+     "t": "“…every one of their countenances expressing dejection and sorrow…”",
+     "ok": true,
+     "say": "This shows what the ledger leaves out: what the people felt and suffered."
+    },
+    {
+     "from": "The trade map:",
+     "t": "The arrows show which way the ships sailed.",
+     "ok": false,
+     "say": "This is about the routes, not about what a ledger can show."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My correction says what the Herald got right and what it left out.",
+  "I named what was carried AND who paid the price.",
+  "I used at least two details, each with my reason.",
+  "I said what one source can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is route 2 on the map. Find one sentence that shows who paid the price.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try Equiano’s words. Read them slowly, and highlight a few words the clerk’s ledger leaves out.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(triang\\w*|trade\\w*|trading|routes?|legs?|voyages?|ships?|sail\\w*|crossing|atlantic|ocean|europe\\w*|britain|british|england|bristol|liverpool|africa\\w*|west|barbados|caribbean|brazil|portugal|america\\w*|colon\\w*|new england|rhode island|newport|north|south\\w*|cloth|textiles?|guns?|gunpowder|iron|metal|tools?|alcohol|brandy|rum|distill\\w*|molasses|sugar|tobacco|rice|indigo|cotton|crops?|goods|cargo|merchan\\w*|commerce|profit\\w*|money|paid|pay|rich|wealth\\w*|sold|sell|bought|buy|price|planters?|plantations?|owners?|enslav\\w*|slave\\w*|slavery|captives?|captur\\w*|raids?|wars?|chain\\w*|deck|hold|crowd\\w*|died|die|death|dead|disease|sick\\w*|suffer\\w*|harm\\w*|forced|force|middle passage|equiano|ledger|clerk|account|heads?|lost|1789|1793|12\\.5|10\\.7|388,000|million|300|41|people|men|women|children|human|countenances|dejection|sorrow|suffocated|map|2025|labels?|resist\\w*)\\b",
+   "off": "Does this detail show what was carried, who got the money, or who paid the price? If it doesn’t, you can keep it, but also look for one on the routes map.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about the triangular trade. Look for a detail about the goods, the money or the people instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs a detail about the goods or the money AND one about the people. Look at the routes map and your rewritten ledger.",
+    "go": [
+     {
+      "l": "The routes map",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "The clerk’s ledger",
+      "tab": "dispatch",
+      "sel": ".rg-lg-tblwrap"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail about the people who paid the price. Try route 2, the Herald fact-checks, or Equiano’s words.",
+    "go": [
+     {
+      "l": "The routes map",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Equiano’s words",
+      "tab": "desk",
+      "sel": ".rg-tworec"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about a source: when the map was made and what it can’t show, or what Equiano’s words show.",
+    "go": [
+     {
+      "l": "The map check",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     },
+     {
+      "l": "Equiano’s words",
+      "tab": "desk",
+      "sel": ".rg-tworec"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Read the clerk’s words",
+   "script": "Ship clerks wrote every voyage down like a shopping list: goods in, goods out, money made. Today you’ll read one clerk’s ledger, page by page. On every page, ask one question: what do these words hide? Then pick the version that tells the whole truth. Business words can make anything sound ordinary. Editors check."
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "Goods, then people",
+   "script": "On the map, take one route at a time. First read what was carried, and who got the money. Then stop, and ask who paid the price. Route two is the Middle Passage. Go slowly there. Later you’ll read the words of Olaudah Equiano, who lived through it. He wrote them so people would know."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^ledger",
+    "sel": "#panel-dispatch .rg-lg-page",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^hide",
+    "sel": "#panel-dispatch .rg-lg-sheet",
+    "fx": "point"
+   },
+   {
+    "at": "^truth",
+    "sel": "#panel-dispatch .rg-lg-page fieldset",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^route",
+    "sel": "#panel-desk .rg-ml-fig",
+    "fx": "glow",
+    "calm": true,
+    "scroll": true
+   },
+   {
+    "at": "^price",
+    "sel": "#panel-desk .rg-ml-desk",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^Middle",
+    "sel": "#panel-desk .rg-ml-legs",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    7.84,
+    8.4,
+    "ledger,"
+   ],
+   [
+    13.68,
+    14.56,
+    "hide?"
+   ],
+   [
+    16.92,
+    17.76,
+    "truth."
+   ]
+  ],
+  "v2": [
+   [
+    1.6,
+    1.84,
+    "route"
+   ],
+   [
+    8.4,
+    9.36,
+    "price."
+   ],
+   [
+    10.72,
+    10.8,
+    "Middle"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4334,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4349,34 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An open account book with a quill and an inkwell on a wooden crate at the end of a wharf, a sailing ship on the water, and three faint dotted routes fading across the sea at dusk" class="b0706">
+<defs>
+<clipPath id="b0706WL" clipPathUnits="userSpaceOnUse"><rect x="-200" y="-300" width="400" height="301"/></clipPath>
+<linearGradient id="b0706Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4E5A7E"/><stop offset=".5" stop-color="#B98A8A"/><stop offset="1" stop-color="#EBC08E"/></linearGradient>
+<linearGradient id="b0706Sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C8BA0"/><stop offset="1" stop-color="#2F3D55"/></linearGradient>
+<linearGradient id="b0706Pg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9DDC2"/><stop offset=".5" stop-color="#F7EFDC"/><stop offset="1" stop-color="#E4D6B8"/></linearGradient>
+<style>
+.b0706 .b0706-ship{ animation:b0706bob 7s ease-in-out infinite; }
+.b0706 .b0706-wave{ animation:b0706wave 14s linear infinite; }
+.b0706 .b0706-cloud{ animation:b0706cloud 45s linear infinite alternate; }
+.b0706 .b0706-route{ animation:b0706breathe 9s ease-in-out infinite; }
+.b0706 .b0706-lamp{ animation:b0706lamp 5s ease-in-out infinite; }
+@keyframes b0706bob{ 0%,100%{ translate:0 0 } 50%{ translate:0 2px } }
+@keyframes b0706wave{ from{ transform:translateX(0) } to{ transform:translateX(-80px) } }
+@keyframes b0706cloud{ from{ transform:translateX(0) } to{ transform:translateX(30px) } }
+@keyframes b0706breathe{ 0%,100%{ opacity:.45 } 50%{ opacity:.8 } }
+@keyframes b0706lamp{ 0%,100%{ opacity:.55 } 50%{ opacity:.8 } }
+@media (prefers-reduced-motion:reduce){ .b0706 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0706Sky)"/>
+<circle cx="690" cy="128" r="30" fill="#F6D29A" opacity=".75"/>
+<g class="b0706-cloud" fill="#F3DCC8" opacity=".55"><ellipse cx="200" cy="46" rx="90" ry="10"/><ellipse cx="270" cy="38" rx="46" ry="7"/><ellipse cx="610" cy="58" rx="100" ry="10"/><ellipse cx="720" cy="48" rx="50" ry="7"/></g>
+<g fill="#F7EBD8" opacity=".8"><circle cx="485" cy="38" r="1.2"/><circle cx="811" cy="54" r="0.9"/><circle cx="855" cy="30" r="0.8"/><circle cx="103" cy="35" r="0.7"/><circle cx="261" cy="40" r="1.1"/><circle cx="682" cy="12" r="0.6"/><circle cx="245" cy="37" r="1.2"/><circle cx="724" cy="57" r="1.0"/><circle cx="580" cy="23" r="0.8"/><circle cx="201" cy="36" r="1.0"/><circle cx="524" cy="28" r="0.9"/><circle cx="239" cy="50" r="1.0"/><circle cx="679" cy="50" r="0.8"/><circle cx="123" cy="23" r="1.2"/><circle cx="717" cy="29" r="1.1"/><circle cx="321" cy="53" r="0.7"/><circle cx="672" cy="59" r="0.9"/><circle cx="426" cy="15" r="0.8"/><circle cx="226" cy="23" r="0.6"/><circle cx="283" cy="13" r="1.0"/><circle cx="378" cy="20" r="1.3"/><circle cx="292" cy="36" r="1.2"/></g>
+<rect x="0" y="140" width="920" height="122" fill="url(#b0706Sea)"/>
+<path d="M0,140 L920,140" stroke="#E8C79A" stroke-width="1.2" opacity=".6"/>
+<path d="M620,141 L760,141 L740,148 L640,148 Z" fill="#F6D29A" opacity=".35"/>
+<g class="b0706-route" fill="none" stroke="#F3E3C6" stroke-width="2" stroke-dasharray="2 9" stroke-linecap="round"><path d="M360,232 C470,200 600,172 860,150"/><path d="M420,250 C560,236 700,190 900,170"/><path d="M380,214 C520,170 620,158 820,144"/></g><g class="b0706-wave" stroke="#D9DEE8" stroke-width="1.1" opacity=".45" fill="none"><path d="M300,152 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M314,170 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M328,188 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M342,206 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M356,224 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M370,242 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/></g><g class="b0706-ship s1" transform="translate(700,196) scale(1.1)"><g clip-path="url(#b0706WL)"><path d="M-60,-12 L64,-12 Q58,6 40,10 L-42,10 Q-56,1 -60,-12 Z" fill="#3A2618"/><path d="M-60,-12 L64,-12 L63,-7 L-59,-7 Z" fill="#7A4E2A"/><path d="M-48,-22 L-60,-12 L-30,-12 Z" fill="#4A3020"/></g><line x1="-30" y1="0" x2="-30" y2="-76" stroke="#2E2218" stroke-width="2"/><path d="M-44,-55 L-16,-55 L-14,-35.2 L-46,-35.2 Z" fill="#E9D9BE" opacity=".93"/><path d="M-47,-32.0 L-13,-32.0 L-11,-9 L-49,-9 Z" fill="#E2CFB0" opacity=".93"/><line x1="4" y1="0" x2="4" y2="-92" stroke="#2E2218" stroke-width="2"/><path d="M-10,-71 L18,-71 L20,-44.0 L-12,-44.0 Z" fill="#E9D9BE" opacity=".93"/><path d="M-13,-40.0 L21,-40.0 L23,-9 L-15,-9 Z" fill="#E2CFB0" opacity=".93"/><line x1="36" y1="0" x2="36" y2="-70" stroke="#2E2218" stroke-width="2"/><path d="M22,-49 L50,-49 L52,-31.900000000000002 L20,-31.900000000000002 Z" fill="#E9D9BE" opacity=".93"/><path d="M19,-29.0 L53,-29.0 L55,-9 L17,-9 Z" fill="#E2CFB0" opacity=".93"/><path d="M64,-2 L90,-20" stroke="#2E2218" stroke-width="1.6"/><ellipse cx="2" cy="16" rx="66" ry="4" fill="#1B2A3A" opacity=".3"/><path d="M-66,12 q6,-2.6 12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#E8D9C8" stroke-width="1.5" opacity=".7"/></g><g opacity=".55"><g class="b0706-ship s2" transform="translate(880,156) scale(0.42)"><g clip-path="url(#b0706WL)"><path d="M-60,-12 L64,-12 Q58,6 40,10 L-42,10 Q-56,1 -60,-12 Z" fill="#3A2618"/><path d="M-60,-12 L64,-12 L63,-7 L-59,-7 Z" fill="#7A4E2A"/><path d="M-48,-22 L-60,-12 L-30,-12 Z" fill="#4A3020"/></g><line x1="-30" y1="0" x2="-30" y2="-76" stroke="#2E2218" stroke-width="2"/><path d="M-44,-55 L-16,-55 L-14,-35.2 L-46,-35.2 Z" fill="#E9D9BE" opacity=".93"/><path d="M-47,-32.0 L-13,-32.0 L-11,-9 L-49,-9 Z" fill="#E2CFB0" opacity=".93"/><line x1="4" y1="0" x2="4" y2="-92" stroke="#2E2218" stroke-width="2"/><path d="M-10,-71 L18,-71 L20,-44.0 L-12,-44.0 Z" fill="#E9D9BE" opacity=".93"/><path d="M-13,-40.0 L21,-40.0 L23,-9 L-15,-9 Z" fill="#E2CFB0" opacity=".93"/><line x1="36" y1="0" x2="36" y2="-70" stroke="#2E2218" stroke-width="2"/><path d="M22,-49 L50,-49 L52,-31.900000000000002 L20,-31.900000000000002 Z" fill="#E9D9BE" opacity=".93"/><path d="M19,-29.0 L53,-29.0 L55,-9 L17,-9 Z" fill="#E2CFB0" opacity=".93"/><path d="M64,-2 L90,-20" stroke="#2E2218" stroke-width="1.6"/><ellipse cx="2" cy="16" rx="66" ry="4" fill="#1B2A3A" opacity=".3"/><path d="M-66,12 q6,-2.6 12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#E8D9C8" stroke-width="1.5" opacity=".7"/></g></g><path d="M0,196 L330,196 L330,206 L0,206 Z" fill="#6A4A30"/><g fill="#4A3220"><rect x="14" y="206" width="8" height="56"/><rect x="58" y="206" width="8" height="56"/><rect x="102" y="206" width="8" height="56"/><rect x="146" y="206" width="8" height="56"/><rect x="190" y="206" width="8" height="56"/><rect x="234" y="206" width="8" height="56"/><rect x="278" y="206" width="8" height="56"/><rect x="322" y="206" width="8" height="56"/></g><g stroke="#4F3622" stroke-width="1"><line x1="30" y1="196" x2="30" y2="206"/><line x1="60" y1="196" x2="60" y2="206"/><line x1="90" y1="196" x2="90" y2="206"/><line x1="120" y1="196" x2="120" y2="206"/><line x1="150" y1="196" x2="150" y2="206"/><line x1="180" y1="196" x2="180" y2="206"/><line x1="210" y1="196" x2="210" y2="206"/><line x1="240" y1="196" x2="240" y2="206"/><line x1="270" y1="196" x2="270" y2="206"/><line x1="300" y1="196" x2="300" y2="206"/></g><rect x="300" y="120" width="8" height="78" fill="#4A3220"/><rect x="292" y="110" width="24" height="12" rx="2" fill="#3A2A1C"/><rect class="b0706-lamp" x="296" y="122" width="16" height="14" fill="#F6C46A"/><circle class="b0706-lamp" cx="304" cy="129" r="20" fill="#F6C46A" opacity=".25"/><rect x="96" y="150" width="140" height="46" fill="#8A6440" stroke="#5A3B22" stroke-width="1.5"/><path d="M96,165 L236,165 M96,180 L236,180" stroke="#6E4E30" stroke-width="1.2"/><rect x="236" y="168" width="44" height="28" fill="#7A5638" stroke="#5A3B22" stroke-width="1.2"/><g transform="translate(166,146)"><path d="M-62,2 L0,-6 L62,2 L58,6 L0,0 L-58,6 Z" fill="#5A3B22"/><path d="M-60,0 Q-30,-10 0,-4 L0,-36 Q-30,-42 -60,-32 Z" fill="url(#b0706Pg)" stroke="#BFA97E" stroke-width="1"/><path d="M60,0 Q30,-10 0,-4 L0,-36 Q30,-42 60,-32 Z" fill="url(#b0706Pg)" stroke="#BFA97E" stroke-width="1"/><path d="M-54,-30 Q-30,-38 -6,-33" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M6,-33 Q30,-38 54,-30" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M-54,-24 Q-30,-32 -6,-27" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M6,-27 Q30,-32 54,-24" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M-54,-18 Q-30,-26 -6,-21" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M6,-21 Q30,-26 54,-18" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M-54,-12 Q-30,-20 -6,-15" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M6,-15 Q30,-20 54,-12" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M-54,-6 Q-30,-14 -6,-9" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><path d="M6,-9 Q30,-14 54,-6" stroke="#8A7A60" stroke-width=".9" fill="none" opacity=".7"/><line x1="-20" y1="-36" x2="-20" y2="-6" stroke="#B3261E" stroke-width=".9" opacity=".6"/><line x1="40" y1="-38" x2="40" y2="-6" stroke="#B3261E" stroke-width=".9" opacity=".6"/></g><g transform="translate(250,166)"><path d="M-10,0 L10,0 L8,-12 L-8,-12 Z" fill="#1E2430"/><rect x="-5" y="-16" width="10" height="5" fill="#2A3040"/><path d="M0,-14 L-24,-56" stroke="#E9E2D2" stroke-width="1.6"/><path d="M-24,-56 Q-30,-40 -10,-26 Q-18,-44 -24,-56 Z" fill="#F2ECDD" stroke="#CFC6B0" stroke-width=".8"/></g></svg>
   </div>
 
   <div class="hero-headline-strip serif">Triangular Trade</div>
@@ -2677,7 +4388,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 17 · Q3</div>
     </div>
   </div>
@@ -2692,7 +4402,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Responsibility</div>
     </div>
   </div>
@@ -2700,27 +4409,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.5 · SS.5.A.4.6 · SS.5.AA.1.1 · TEKS 9(A), 10(A), 11(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 34 · Circulation 1450 · <em>Colonial coverage — triangular trade</em>
+      Vol. 1 · Issue 34 · Readers: 1,450 · <em>Colonial coverage — triangular trade</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,20 +4431,18 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1450</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — The Gazette examines the trade network that connected three continents — and the human cost at its center.
+        — The Gazette looks at the trade routes that connected three continents, and the harm to people at their center.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4465,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2793,25 +4485,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.06</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette showed how different daily life was for different colonial people. Now: <em>5.07.06 — Triangular Trade</em>. This dispatch lands on the <strong>Source Desk</strong>. A three-sided trade network connected Europe, Africa, and the Americas. Manufactured goods went to Africa. Enslaved Africans were forcibly transported to the Americas. Raw materials — sugar, tobacco, cotton — went back to Europe. The Gazette must examine this system honestly. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
+      <p>Last issue, the Gazette showed how different daily life was for different colonial people. Now: <em>5.07.06, Triangular Trade</em>. This dispatch lands on the <strong>Source Desk</strong> (where we check one source closely). Ships sailed a three-sided route, a triangle, between Europe, Africa and the Americas. Goods made in workshops and mills went to Africa. Enslaved Africans were forced onto ships and carried to the Americas. Crops like sugar, molasses, tobacco and rice went back to Europe. The Gazette must report this honestly. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
     </div>
   </div>
 
@@ -2821,14 +4506,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Was the triangular trade really just ordinary business — or was the Middle Passage at its center something no honest editor can describe as “ordinary”?</p>
       </div>
     </div>
@@ -2842,8 +4524,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Examine a source showing the triangular trade routes and identify what was traded on each leg.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain what the Middle Passage was and why it cannot be described as ordinary business.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Correct the Herald’s claim by showing the human cost at the center of this trade system.</div>
@@ -2874,7 +4554,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-06-welcome -->
@@ -2892,25 +4571,19 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore the triangular trade & spotlight responsibility</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Follow the goods, then the people</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a map of the triangular trade routes</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a map and a real voice from the past</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Responsibility ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A responsible editor names what a system cost in human terms — not just what it produced in economic terms.</strong> Today, responsibility means reporting the triangular trade as a system that depended on the forced transport of human beings, not just goods.
+      <strong>A responsible editor names the harm a system did to people, not just the money it made.</strong> Today, responsibility means reporting the triangular trade as a system that depended on forcing human beings onto ships, not just on moving goods.
     </div>
   </div>
 
@@ -2920,19 +4593,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Triangular Trade: Just Business!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Triangular trade was just an ordinary business arrangement.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Study the map evidence and decide: was this really just ordinary business — or was the Middle Passage at its center a horror that no honest editor can call “ordinary”?
+      <strong>Your job, junior editor:</strong> Study the evidence and decide: was this really just ordinary business, or was the Middle Passage at its center a horror that no honest editor can call “ordinary”?
     </div>
   </div>
 
@@ -2940,10 +4607,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine the evidence about the triangular trade — and publish a <strong>Gazette Correction</strong> that names both the economics and the human cost.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to check the evidence about the triangular trade and publish a <strong>Gazette Correction</strong> (a news story that fixes another paper’s mistake) that names both the money it made and the harm done to people.
     </div>
   </div>
 
@@ -2954,19 +4618,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Responsibility</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this map show about the three legs of the trade, what made the Middle Passage different from ordinary trade, and why must a responsible editor report the human cost?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. A responsible editor never calls the forced transport of human beings “ordinary business.”
       </div>
     </div>
@@ -2977,18 +4633,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-06-explore-explainer -->
@@ -2997,18 +4643,15 @@ html, body {
     <div class="video-placeholder-title">At the Source Desk: Triangular Trade</div>
     <div class="video-placeholder-filename">5-07-06-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Cover the three legs: (1) Europe to Africa: manufactured goods (textiles, guns, metal tools) traded for enslaved people. (2) Africa to the Americas (the Middle Passage): enslaved Africans packed into ships for weeks, chained below deck in horrific conditions; many died. (3) Americas to Europe: raw materials (sugar, tobacco, cotton, rum) produced by enslaved labor shipped to European markets. The system was profitable for European merchants and colonial planters. The human cost fell on enslaved Africans. Emphasize: “ordinary business” erases millions of people’s suffering. A responsible editor names the human cost. 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Cover the three legs: (1) Europe to Africa: manufactured goods (textiles, guns, metal tools) traded for enslaved people. (2) Africa to the Americas (the Middle Passage): enslaved Africans packed into ships for weeks, chained below deck in horrific conditions; many died. (3) Americas to Europe: crops (sugar, molasses, tobacco, rice; cotton came later, after 1793) grown by enslaved people shipped to European markets. The system was profitable for European merchants and colonial planters. The human cost fell on enslaved Africans. Emphasize: “ordinary business” erases millions of people’s suffering. A responsible editor names the human cost. 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Source Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3028,55 +4671,69 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 A Trade Route Built on Human Suffering</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>The triangular trade was a three-sided network connecting Europe, Africa, and the Americas. On the <strong>first leg</strong>, European ships carried manufactured goods — textiles, guns, metal tools, and alcohol — to the coast of West Africa. On the <strong>second leg</strong>, called the <strong>Middle Passage</strong>, enslaved Africans were packed into ships and transported across the Atlantic to the Americas. Conditions were horrific: people were chained below deck, given barely enough food and water, and many died from disease, violence, or despair during the weeks-long voyage.</p>
-    <p>On the <strong>third leg</strong>, raw materials produced by enslaved labor — sugar, tobacco, cotton, rum, and indigo — were shipped from the Americas to European markets, where they were sold at enormous profit. The system was economically powerful: it enriched European merchants, colonial planters, and the nations that controlled the trade. But the profit was built on the forced transport, labor, and suffering of millions of Africans. Historians estimate that over 12 million Africans were forcibly taken from their homes; millions more died before reaching the ships. No honest editor can call this “ordinary business.”</p>
+    <p>The triangular trade was a web of routes connecting Europe, Africa and the Americas across the Atlantic Ocean. On the <strong>first leg</strong>, ships from ports like Bristol and Liverpool in Britain carried goods made in workshops and mills (cloth, guns, metal tools and alcohol) to the coast of West Africa. There, European traders bought captives from African traders and rulers, who often took them in wars and raids. On the <strong>second leg</strong>, called the <strong>Middle Passage</strong>, enslaved Africans were forced onto ships and carried across the Atlantic to the Americas. People were chained below deck and crowded together, with barely enough food and water, for weeks or months. About 1 in every 7 died on the way, from disease, cruelty and hopelessness.</p>
+    <p>On the <strong>third leg</strong>, crops grown by enslaved people (sugar, molasses, tobacco, rice and indigo) were shipped to Europe and sold for a big <strong>profit</strong>, the money left over after the costs are paid. (Cotton came much later, after 1793.) The trade made <strong>merchants</strong> (traders), colonial planters and whole nations rich. But the profit was built on the forced work and suffering of millions of Africans. Historians estimate that about 12.5 million Africans were forced onto slave ships. Many more died before they ever reached the ships; no one knows how many. No honest editor can call this “ordinary business.”</p>
+    <p>The triangle is a simple picture of something messier. Many ships sailed only part of it. New England ships carried rum to Africa and brought molasses home from the Caribbean, and Rhode Island merchants sent more slave-trading voyages than any other colony. Ships from Brazil sailed straight to Africa and back.</p>
 
-    <!-- Economic view vs Human view grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
-        <div class="source-type-label">💰 The Economic View</div>
+        <div class="source-type-label">💰 The Money View</div>
         <div class="source-type-name">What the Herald Reports</div>
-        <div class="source-type-defn">A three-sided trade route that moved goods and raw materials across the Atlantic — profitable for merchants and colonial planters.</div>
+        <div class="source-type-defn">A three-sided trade route that moved goods and crops across the Atlantic and made money for merchants and colonial planters.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Goods traded</span>
-          Leg 1: Manufactured goods → Africa · Leg 2: (the Herald skips this) · Leg 3: Sugar, tobacco, cotton → Europe
+          Leg 1: Goods made in workshops and mills → Africa · Leg 2: (the Herald skips this) · Leg 3: Sugar, molasses, tobacco, rice → Europe
         </div>
       </div>
       <div class="source-type-card secondary">
-        <div class="source-type-label">⚠️ The Human Cost</div>
+        <div class="source-type-label">⚠️ The Harm to People</div>
         <div class="source-type-name">What the Herald Leaves Out</div>
-        <div class="source-type-defn">The second leg — the Middle Passage — was the forced transport of enslaved Africans under horrific conditions. This was not ordinary business.</div>
+        <div class="source-type-defn">The second leg, the Middle Passage, forced enslaved Africans across the ocean in terrible conditions. This was not ordinary business.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          12+ million Africans forcibly taken · Chained below deck for weeks · Disease, violence, and death · Families destroyed · Millions more died before reaching the ships
+          About 12.5 million Africans forced onto ships · Chained below deck for weeks or months · About 1 in 7 died on the way · Families torn apart · Many more died before reaching the ships
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald reduced the triangular trade to a business arrangement. It was a trade network, yes — but one with the Middle Passage at its center. A responsible editor reports both the economics and the human cost, because the people who suffered through this system deserve an honest account.</p>
+    <p>The Hasty Herald made the triangular trade sound like a business deal. It was a trade network, yes, but one with the Middle Passage at its center. A responsible editor reports both the money and the harm done to people, because the people who suffered deserve an honest account.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
   <div class="content-section">
-    <h2>🔎 The Triangular Trade: Three Legs, One Human Cost</h2>
-    <p>Look at this map carefully. Trace the three legs of the route. Notice what was traded on each leg. Think about which leg involved human beings — and what that means for calling this system “ordinary.”</p>
+    <h2>🔎 A Map Made Today, and a Voice From 1789</h2>
+    <p>Look at this map. It was made in 2025 to teach about the trade, so it is not a source from the past. Trace the three legs. Notice what was carried on each one. Which leg carried human beings?</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
       <div class="source-image-placeholder" data-image="source-5-07-06-triangular-trade-map">
-        🖼️ <strong>Image placeholder:</strong> Historical diagram or map of the triangular trade routes across the Atlantic showing goods, enslaved people, and raw materials.<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-07-06-triangular-trade-map.jpg</code>
+        🖼️ <strong>Map:</strong> “Map of the Triangular trade,” by Jefunky, 2025. Wikimedia Commons, free to use (CC0). Two labels changed for this lesson.
       </div>
       <div class="source-image-caption">
-        <em>What does this map show about what was traded on each leg of the route — and what makes one leg different from the others?</em>
+        <em>What does this map show about what was carried on each leg, and what makes one leg different from the others?</em><br><small style="font-style:normal;opacity:.85">Made in 2025 for teaching (Wikimedia Commons, free to use). We changed two labels: the map said “Slaves” (we say enslaved Africans, because they were people forced into slavery), and it listed cotton, which became a big crop only after 1793.</small>
       </div>
     </div>
+
+    <h3>A real voice from the past: Olaudah Equiano</h3>
+    <p>Equiano wrote that he was taken from West Africa as a boy. He survived the Middle Passage, later bought his freedom, and in 1789 published his life story in London to help end the slave trade. Here is what he wrote about the ship:</p>
+    <blockquote><p>“…a multitude of black people of every description chained together, every one of their countenances expressing dejection and sorrow…”</p>
+    <p>“The closeness of the place, and the heat of the climate, added to the number in the ship, which was so crowded that each had scarcely room to turn himself, almost suffocated us.”</p>
+    <p><small>Olaudah Equiano, <em>The Interesting Narrative of the Life of Olaudah Equiano</em>, Vol. I, chapter 2 (London, 1789).</small></p></blockquote>
+    <p><strong>Words to know:</strong> countenances means faces; dejection means deep sadness; closeness means crowding with no fresh air; scarcely means barely; suffocated means choked, unable to breathe.</p>
+    <p>Some historians question whether Equiano was born in Africa or in South Carolina, because of a few later records. Either way, his book is one of the most important records of the Middle Passage.</p>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>merc</em> means “trade”</h2>
+    <p>Many English words come from the Latin word <strong>merx</strong>, which means <strong>goods for sale</strong>. You can spot it as <strong>merc</strong> or <strong>merce</strong>.</p>
+    <ul>
+      <li><strong>merchant</strong> (merc + hant): a trader who buys and sells goods to make money</li>
+      <li><strong>commerce</strong> (com + merce): buying and selling between people and places (com means together)</li>
+      <li><strong>merchandise</strong> (merc + handise): goods that are bought and sold</li>
+      <li><strong>commercial</strong> (com + merc + ial): having to do with buying and selling</li>
+    </ul>
+    <p><strong>Discovery:</strong> In the triangular trade, ship clerks wrote down captured people as if they were merchandise. That is why an honest editor checks the words.</p>
+    <p><em>Try it: use the word <strong>merchant</strong> in a sentence about the triangular trade.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
@@ -3086,7 +4743,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3096,7 +4752,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Three legs" placeholder="Leg 1:... Leg 2:... Leg 3:..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3106,7 +4761,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — The Middle Passage" placeholder="The Middle Passage was different because..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3118,7 +4772,7 @@ html, body {
   </div>
   <div style="background:#FFF8E7;border:2px solid #E8D5A0;border-radius:14px;padding:16px 20px;margin:16px 0;">
     <p style="font-size:16px;color:#0E1C42;font-weight:800;margin:0 0 8px;">📊 Texas Connection — Free Enterprise in the Colonial Economy (TEKS 10)</p>
-    <p style="font-size:15px;color:#5A4D3E;line-height:1.65;margin:0;">Texas standards highlight how the free-enterprise system developed in the colonies — how colonists produced goods, traded across the Atlantic, and built an economy that eventually outgrew British control. The Triangular Trade shows both the power and the deep injustice of early economic systems: enormous wealth was created, but much of it depended on the forced labor of enslaved Africans. Understanding <em>how</em> economies work helps us understand <em>why</em> people fought to change them.</p>
+    <p style="font-size:15px;color:#5A4D3E;line-height:1.65;margin:0;">Texas standards highlight how the free-enterprise system (people owning businesses and deciding what to make and sell) developed in the colonies: how colonists made goods, traded across the Atlantic, and built an economy that later outgrew British control. The triangular trade shows both the power and the deep unfairness of early trade: enormous wealth was made, but much of it depended on the forced work of enslaved Africans. Understanding <em>how</em> economies work helps us understand <em>why</em> people fought to change them.</p>
   </div>
 
 
@@ -3128,10 +4782,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3140,14 +4790,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3224,7 +4866,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3246,21 +4887,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-06-assignment-explainer -->
@@ -3290,16 +4918,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Gazette Correction — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
           <span>(1) Quote the Herald’s claim about ordinary business. (2) Describe the three legs of the route, especially the Middle Passage. (3) Rewrite the claim so it names the human cost.</span>
         </div>
@@ -3315,9 +4939,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about triangular trade.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3346,8 +4967,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and gazette correction</span></div>
@@ -3362,32 +4981,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 34 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
       <strong>Well done, Junior Editor.</strong> You reported on the triangular trade with evidence and responsibility — the Gazette’s readers now understand both the economics and the human cost of this system.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.07) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Slavery in the Colonies and African American Life in the Colonial Era</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that colonial slavery can be summarized as labor without discussing human dignity. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-06-closing -->
@@ -4019,5 +5627,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail
-     explore.reading.type   suncolumns | ships | chains | scale | grid
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers   (explore.tworec: optional, sits inside the picture step)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -722,6 +722,131 @@
       journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">'+GR.concat(TR?[TR]:[]).map(function(h){ var mine=L.filter(function(x){ return x.pan===h.k&&st.placed[x.id]; }); return '<b>'+e(h.t)+':</b> '+e(mine.map(function(x){ return x.short||x.who; }).join(', ')||'—'); }).join('<br>')+(nCmp()?'<br><b>'+e((CP||{}).title||'Compared')+':</b> '+e(Object.keys(st.cmp).map(function(i){ var p=(CP.places||[])[i]; return p.t+' '+p.n+' of 100'; }).join(', ')):'')+'</p>'; },
       people:function(){ return L.map(function(x){ return x.who; }); }}; };
 
+  /* ---------------------------------------------------------------- ledger: a ship clerk's ledger, one page per leg; each page shows the clerk's business words; the student picks the honest rewrite; the honest words are inked over the clerk's; then seal a guess
+     DATA.scene1 = {type:'ledger', title, job, q, srcLabel, clerkLabel, pages:[{id,icon,leg,place,short,when,clerk,ask,opts:[{t,ok,say}],fact,calm}], table:{title,clerk,honest,close}, seal:{q,opts,reveal}, sealed} */
+  MOD.ledger=function(c,anchor){ var st=mstate('ledger',{stop:0,ans:{}}); if(!st.ans) st.ans={}; var PG=c.pages||[], N=PG.length, TB=c.table||{};
+    var g=gameShell('rg-ledger','Dispatch · the clerk’s ledger',c.title||'The clerk’s ledger',c);
+    g.innerHTML+=(c.q?'<p class="rg-lg-q">'+esc(c.q)+'</p>':'')+'<ol class="rg-lg-tabs" aria-label="The pages of the ledger"></ol><div class="rg-lg-page" aria-live="polite"></div>'+
+      '<div class="rg-lg-nav"><button type="button" class="rg-btn rg-lg-next"></button></div>'+
+      '<div class="rg-lg-tblwrap rg-hide"><div class="hd">📒 '+esc(TB.title||'Two ways to write it')+'</div><table class="rg-lg-tbl"><thead><tr><th scope="col">'+esc(TB.leg||'Leg')+'</th><th scope="col">'+esc(TB.clerk||'The clerk wrote')+'</th><th scope="col">'+esc(TB.honest||'The honest version')+'</th></tr></thead><tbody></tbody></table></div>'+
+      '<div class="rg-lg-count" aria-live="polite"></div><div class="rg-ads-seal rg-lg-seal"></div>';
+    after(anchor,g);
+    var view=Math.min(st.stop,N-1), box=$('.rg-lg-page',g), nextB=$('.rg-lg-next',g);
+    function answered(i){ return st.ans[i]!=null; }
+    function nDone(){ return PG.filter(function(x,i){ return answered(i); }).length; }
+    function honest(p){ return ((p.opts||[]).filter(function(o){ return o.ok; })[0]||{}).t||''; }
+    function pageHTML(i){ var p=PG[i], a=st.ans[i], O=p.opts||[], ok=O.filter(function(o){ return o.ok; })[0]||{};
+      return '<article class="rg-lg-card'+(p.calm?' calm':'')+(a!=null?' inked':'')+'" data-i="'+i+'"><header><span class="ic" aria-hidden="true">'+esc(p.icon||'📒')+'</span><div><small>'+esc(p.leg||('Page '+(i+1)+' of '+N))+(p.when?' · '+esc(p.when):'')+'</small><b>'+esc(p.place)+'</b></div></header>'+
+        '<div class="rg-lg-sheet"><div class="lbl">'+esc(c.clerkLabel||'The clerk wrote (an example written for this lesson):')+'</div><p class="rg-lg-clerk">'+esc(p.clerk)+'</p>'+
+        (a!=null?'<p class="rg-lg-honest"><span class="lbl2">The honest version:</span> '+esc(ok.t||'')+'</p>':'')+'</div>'+
+        (a==null?'<fieldset class="rg-ad-q"><legend>'+esc(p.ask||'Which rewrite tells the whole truth?')+'</legend>'+O.map(function(o,k){ return '<label class="rg-radio"><input type="radio" name="rg-lg-'+i+'" value="'+k+'"> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>':
+          '<div class="rg-trail-say"><p class="'+((O[a]||{}).ok?'ok':'no')+'">'+((O[a]||{}).ok?'✓ ':'You picked: “'+esc(((O[a]||{}).t||'').replace(/[.]$/,''))+'.” ')+esc((O[a]||{}).say||'')+'</p>'+(p.fact?'<p class="rg-lg-fact">'+esc(p.fact)+'</p>':'')+'</div>')+'</article>'; }
+    function paint(){ var n=nDone();
+      $('.rg-lg-tabs',g).innerHTML=PG.map(function(p,i){ var can=i<=st.stop; return '<li><button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(answered(i)?'ok':'')+'"'+(can?'':' disabled')+' aria-pressed="'+(i===view)+'" aria-label="Page '+(i+1)+': '+esc(p.short||p.place)+(can?'':' (not open yet)')+'"><span class="ic" aria-hidden="true">'+esc(p.icon||'📒')+'</span><span class="t">'+esc(p.short||p.place)+'</span></button></li>'; }).join('');
+      box.innerHTML=pageHTML(view);
+      $$('input[type=radio]',box).forEach(function(r){ r.addEventListener('change',function(){ var i=+box.firstChild.dataset.i; if(answered(i)) return; st.ans[i]=+r.value; save(); var ok1=((PG[i].opts||[])[+r.value]||{}).ok; if(PG[i].calm) SFX.soft(); else if(ok1) SFX.chime(); else SFX.soft(); paint(); refreshPress(); if(!nextB.disabled) nextB.focus({preventScroll:true}); else { var q=$('input[name="rg-lg-q"]',g); if(q) q.focus({preventScroll:true}); } }); });
+      var cur=answered(st.stop); nextB.disabled=!cur||st.stop>=N-1; nextB.classList.toggle('rg-hide',st.stop>=N-1&&cur);
+      nextB.textContent=!cur?(c.lockedT||'Pick the honest version to turn the page'):view<st.stop?'Back to page '+(st.stop+1)+' ▸':'📒 Turn to the next page ▸';
+      $('tbody',g).innerHTML=PG.map(function(p,i){ return answered(i)?'<tr><th scope="row">'+esc(p.icon||'')+' '+esc(p.short||p.place)+'</th><td><s>'+esc(p.clerk)+'</s></td><td>'+esc(honest(p))+'</td></tr>':''; }).join('');
+      $('.rg-lg-tblwrap',g).classList.toggle('rg-hide',!n);
+      $('.rg-lg-count',g).innerHTML=n<N?'<p class="rg-todo">📒 <b>'+n+' of '+N+'</b> pages rewritten.</p>':(TB.close?'<p class="rg-trail-close">'+esc(TB.close)+'</p>':'');
+      var sb=$('.rg-lg-seal',g), S1=c.seal||{};
+      if(n<N){ sb.innerHTML=''; delete sb.dataset.on; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-lg-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        $$('input[name="rg-lg-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-lg-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',sb).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    nextB.addEventListener('click',function(){ if(view<st.stop){ view=st.stop; SFX.paper(); paint(); return; } if(!answered(st.stop)||st.stop>=N-1) return; st.stop++; view=st.stop; save(); SFX.paper(); paint(); refreshPress(); var f=$('input[type=radio]',box); if(f) f.focus({preventScroll:true}); });
+    $('.rg-lg-tabs',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; view=+b.dataset.v; SFX.paper(); paint(); });
+    paint();
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },page:function(i){ return PG[i]; },
+      journal:function(e,NA){ if(!nDone()) return NA; return '<p class="a"><b>The clerk’s ledger, rewritten:</b> '+e(PG.filter(function(p,i){ return answered(i); }).map(function(p){ return (p.short||p.place)+': '+honest(p); }).join(' · '))+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:PG.filter(function(p,i){ return answered(i); }).map(function(p){ return p.short||p.place; }), vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- maplayers: an Atlantic map; tap each route; read what was carried and who got the money; answer who paid the price; then turn on layer 2 (other routes)
+     DATA.explore.reading = {type:'maplayers', title, job, times:[carried, money, price], cols:[{id,short,who,icon,layer,path,at:[x,y],kind,lines:[3],ask,opts,calm}],
+       map:{vb, base, labels:[{x,y,t,cls}], cap, alt}, layer2:{btn,t,lockT}, myths:[{after:id,claim,fact,calm}], miniAfter:id, close, srcLabel, sealReveal:true} */
+  MOD.maplayers=function(c,anchor){ var st=mstate('sun',{stop:-1,myth:{},ans:{},l2:false}); if(!st.ans) st.ans={}; if(!st.myth) st.myth={};
+    var L=c.cols||[], N=L.length, TM=c.times||[], MP=c.map||{}, L2=c.layer2||{};
+    var g=gameShell('rg-chains rg-maplayers','The Desk · follow the routes',c.title||'Follow the routes',c);
+    function idx(id){ return L.map(function(x){ return x.id; }).indexOf(id); }
+    function ans(i){ return st.ans[L[i].id]!=null; }
+    function l1(){ return L.filter(function(x){ return (x.layer||1)===1; }); }
+    function l1Done(){ return l1().every(function(x){ return st.ans[x.id]!=null; }); }
+    function avail(i){ return (L[i].layer||1)===1||st.l2; }
+    g.innerHTML+='<figure class="rg-ml-fig"><svg class="rg-ml-map" viewBox="'+esc(MP.vb||'0 0 1000 700')+'" role="img" aria-label="'+esc(MP.alt||'A map of the Atlantic Ocean')+'"><defs><marker id="rg-ml-ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>'+(MP.base||'')+
+        L.map(function(x,i){ return '<g class="rg-ml-r'+((x.layer||1)===2?' l2':'')+(x.calm?' calm':'')+'" data-id="'+esc(x.id)+'"><path class="hit" d="'+esc(x.path)+'"/><path class="ln" d="'+esc(x.path)+'" marker-end="url(#rg-ml-ah)"/><circle class="pin" cx="'+x.at[0]+'" cy="'+x.at[1]+'" r="17"/><text class="pinn" x="'+x.at[0]+'" y="'+(x.at[1]+6)+'" text-anchor="middle">'+esc(x.n||String(i+1))+'</text></g>'; }).join('')+
+        (MP.labels||[]).map(function(t){ return '<text class="lab '+esc(t.cls||'')+'" x="'+t.x+'" y="'+t.y+'" text-anchor="middle">'+esc(t.t)+'</text>'; }).join('')+'</svg>'+(MP.cap?'<figcaption>'+esc(MP.cap)+'</figcaption>':'')+'</figure>'+
+      '<div class="rg-ml-legs" role="group" aria-label="Routes on the map"></div><div class="rg-ml-l2"></div><div class="rg-link-desk rg-ml-desk"></div>'+
+      '<div class="rg-myths"></div><div class="rg-sun-close"></div>';
+    after(anchor,g);
+    var view=-1, desk=$('.rg-ml-desk',g), mythBox=$('.rg-myths',g);
+    function cardHTML(i){ var x=L[i], a=st.ans[x.id], O=x.opts||[], ok=O.filter(function(o){ return o.ok; })[0]||{};
+      return '<article class="rg-link rg-ml-card'+(x.calm?' calm':'')+'" data-id="'+esc(x.id)+'"><header><span class="ic" aria-hidden="true">'+esc(x.icon||'•')+'</span><div><small>'+esc(x.leg||('Route '+(x.n||i+1)))+'</small><b>'+esc(x.who)+'</b></div></header>'+
+        '<dl>'+TM.map(function(t,r){ return '<div class="rg-link-row'+(r===2&&a==null?' rg-hide':'')+'"><dt>'+esc(t)+'</dt><dd class="rg-link-line" data-i="'+r+'">'+esc(x.lines[r]||'')+'</dd></div>'; }).join('')+'</dl>'+
+        (a==null?'<fieldset class="rg-ad-q"><legend>'+esc(x.ask||'Who paid the price on this route?')+'</legend>'+O.map(function(o,k){ return '<label class="rg-radio"><input type="radio" name="rg-ml-'+esc(x.id)+'" value="'+k+'"> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>':
+          '<p class="say '+((O[a]||{}).ok?'ok':'no')+'">'+((O[a]||{}).ok?'✓ ':'')+esc((O[a]||{}).say||'')+((O[a]||{}).ok?'':' <b>'+esc(ok.t||'')+'.</b>')+'</p>')+'</article>'; }
+    function paint(){
+      $$('.rg-ml-r',g).forEach(function(r){ var i=idx(r.dataset.id); r.classList.toggle('on',i===view); r.classList.toggle('ok',ans(i)); r.classList.toggle('off',!avail(i)); });
+      $('.rg-ml-legs',g).innerHTML=L.map(function(x,i){ var av=avail(i); return '<button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(ans(i)?'ok ':'')+((x.layer||1)===2?'l2':'')+'"'+(av?'':' disabled')+' aria-pressed="'+(i===view)+'"><span class="n">'+esc(x.n||String(i+1))+'</span>'+esc(x.short||x.who)+(ans(i)?' ✓':'')+(av?'':' <span class="rg-sr">(turn on layer 2 first)</span>')+'</button>'; }).join('');
+      var lb=$('.rg-ml-l2',g); lb.innerHTML=L2.btn?'<button type="button" class="rg-btn alt rg-ml-l2btn"'+(l1Done()&&!st.l2?'':' disabled')+' aria-pressed="'+!!st.l2+'">'+(st.l2?'✓ '+esc(L2.onT||'Layer 2 is on'):'🗺 '+esc(L2.btn))+'</button><span class="t">'+esc(st.l2?(L2.t||''):(l1Done()?(L2.readyT||''):(L2.lockT||'')))+'</span>':'';
+      desk.innerHTML=view<0?'<div class="rg-harbor-empty">'+esc(c.deskEmpty||'Tap route 1 on the map, or its button, to start.')+'</div>':cardHTML(view);
+      $$('input[type=radio]',desk).forEach(function(r){ r.addEventListener('change',function(){ var x=L[view]; if(st.ans[x.id]!=null) return; st.ans[x.id]=+r.value; save(); if(x.calm) SFX.soft(); else (((x.opts||[])[+r.value]||{}).ok?SFX.chime():SFX.soft()); paint(); refreshPress(); if(done()) beat('sunDone'); var nx=nextOpen(); var f=nx>-1?$('.rg-ml-legs button[data-v="'+nx+'"]',g):$('.rg-ml-l2btn:not([disabled])',g); if(f) f.focus({preventScroll:true}); }); });
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ var i=idx(m.after); return i>-1&&ans(i); }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+(m.calm?' calm':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact"><div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      var mi=idx(c.miniAfter), mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',mi>-1&&!ans(mi));
+      var all=done(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':''; g.classList.toggle('finished',all); }
+    function nextOpen(){ for(var i=0;i<N;i++) if(avail(i)&&!ans(i)) return i; return -1; }
+    function open(i){ if(i<0||i>=N||!avail(i)) return; view=i; SFX.paper(); paint(); var rr=desk.getBoundingClientRect(); if(rr.top>innerHeight-160||rr.bottom<0) desk.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'}); var f=$('input[type=radio]',desk); if(f&&!ans(i)) f.focus({preventScroll:true}); }
+    $('.rg-ml-legs',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; open(+b.dataset.v); });
+    $('.rg-ml-map',g).addEventListener('click',function(e){ var r=e.target.closest('.rg-ml-r'); if(!r) return; var i=idx(r.dataset.id); if(!avail(i)){ var lb=$('.rg-ml-l2btn',g); if(lb) lb.focus({preventScroll:true}); return; } open(i); });
+    $('.rg-ml-l2',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-ml-l2btn'); if(!b||b.disabled) return; st.l2=true; save(); SFX.paper(); var nx=nextOpen(); if(nx>-1) view=nx; paint(); refreshPress(); var f=$('input[type=radio]',desk); if(f) f.focus({preventScroll:true}); });
+    mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
+      if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
+      st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); });
+    function allAns(){ return L.every(function(x,i){ return ans(i); }); }
+    function done(){ return allAns()&&(c.myths||[]).every(function(m,i){ return st.myth[i]; }); }
+    if(view<0&&st.stop<0){ var f0=nextOpen(); view=-1; }
+    paint(); setTimeout(paint,0);
+    return {el:g,done:done,open:allAns,paint:paint,go:function(id){ var i=idx(id); if(i>-1&&avail(i)){ view=i; paint(); } },
+      journal:function(e,NA){ if(!L.some(function(x,i){ return ans(i); })) return NA; return '<p class="a">'+L.filter(function(x,i){ return ans(i); }).map(function(x){ return '<b>'+e(x.short||x.who)+':</b> '+e(x.lines[0]||'')+' '+e(x.lines[2]||''); }).join('<br>')+'</p>'; },
+      people:function(){ return L.map(function(x){ return x.who; }); }}; };
+
+  /* ---------------------------------------------------------------- tworec: two records of one voyage side by side (a clerk's line written for the lesson vs. a real source); sort what each can show, then write which tells more and why
+     DATA.explore.tworec = {title, job, a:{k,label,kind,t,cite}, b:{k,label,kind,quotes:[{t,cite}],note,words}, q:{q,opts:[{t,ok,say}]}, cards:[{t,k:'a'|'b'|'both',say,hint}], writeQ, writePh, min, model} */
+  MOD.tworec=function(c,anchor){ var st=mstate('tworec',{sort:{},q:null,w:''}); if(!st.sort) st.sort={}; var A=c.a||{}, B=c.b||{}, CD=c.cards||[], Q=c.q||{};
+    var g=gameShell('rg-tworec','The Desk · two records',c.title||'Two records of one voyage',c);
+    g.innerHTML+='<div class="rg-tr-pair"><section class="rg-tr-rec a"><div class="k">'+esc(A.kind||'')+'</div><b>'+esc(A.label||'')+'</b><p class="rg-tr-clerk">'+esc(A.t||'')+'</p><small>'+esc(A.cite||'')+'</small></section>'+
+      '<section class="rg-tr-rec b calm"><div class="k">'+esc(B.kind||'')+'</div><b>'+esc(B.label||'')+'</b>'+(B.quotes||[]).map(function(q){ return '<blockquote class="rg-tr-quote"><p>“'+esc(q.t)+'”</p><small>'+esc(q.cite||'')+'</small></blockquote>'; }).join('')+(B.note?'<p class="rg-tr-note">'+esc(B.note)+'</p>':'')+'</section></div>'+
+      '<div class="rg-tr-sort"><div class="hd">'+esc(c.sortQ||'Which record shows this? Tap a card, then tap a box.')+'</div><div class="rg-tr-cards"></div><div class="rg-tr-bins">'+[['a',A.short||'The clerk’s ledger'],['b',B.short||'Equiano’s words'],['both','Both records']].map(function(b){ return '<button type="button" class="drop rg-tr-bin" data-k="'+b[0]+'"><b>'+esc(b[1])+'</b><span class="got"></span><span class="rg-sr"> (put the chosen card here)</span></button>'; }).join('')+'</div><p class="say" aria-live="polite"></p></div>'+
+      '<div class="rg-tr-q"></div><div class="rg-tr-w"></div>';
+    after(anchor,g);
+    function nSorted(){ return Object.keys(st.sort).length; }
+    function paint(){
+      $('.rg-tr-cards',g).innerHTML=CD.map(function(x,i){ return st.sort[i]?'':'<button type="button" class="rg-card'+(x.calm?' calm':'')+'" data-i="'+i+'" aria-pressed="false" draggable="true">'+esc(x.t)+'</button>'; }).join('')||'<p class="rg-todo">✓ '+esc(c.sortDone||'Every card is sorted.')+'</p>';
+      $$('.rg-tr-bin',g).forEach(function(b){ $('.got',b).innerHTML=CD.map(function(x,i){ return st.sort[i]===b.dataset.k?'<span class="lk on">'+esc(x.t)+'</span>':''; }).join(''); });
+      var qb=$('.rg-tr-q',g); if(nSorted()<CD.length){ qb.innerHTML=''; $('.rg-tr-w',g).innerHTML=''; g.classList.remove('finished'); return; }
+      qb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(Q.q||'')+'</legend>'+(Q.opts||[]).map(function(o,k){ return '<label class="rg-radio'+(st.q===k?(o.ok?' right':' wrong'):'')+'"><input type="radio" name="rg-tr-q" value="'+k+'"'+(st.q===k?' checked':'')+'> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>'+(st.q!=null?'<p class="say">'+esc(((Q.opts||[])[st.q]||{}).say||'')+'</p>':'');
+      $$('input[name="rg-tr-q"]',qb).forEach(function(r){ r.addEventListener('change',function(){ st.q=+r.value; save(); SFX.soft(); paint(); refreshPress(); var t=$('#rg-tr-txt'); if(t) t.focus({preventScroll:true}); }); });
+      var wb=$('.rg-tr-w',g); if(st.q==null){ wb.innerHTML=''; g.classList.remove('finished'); return; }
+      if(!$('#rg-tr-txt',wb)){ wb.innerHTML='<label for="rg-tr-txt" class="hd">'+esc(c.writeQ||'')+'</label><textarea id="rg-tr-txt" class="rg-ta" rows="3" placeholder="'+esc(c.writePh||'')+'"></textarea><div class="rg-wc"></div><div class="rg-tr-sv"></div>';
+        var ta=$('#rg-tr-txt',wb); ta.value=st.w||''; ta.addEventListener('input',function(){ st.w=ta.value; save(); paintW(); refreshPress(); }); }
+      paintW(); }
+    function paintW(){ var n=words(st.w||''), min=c.min||12, wc=$('.rg-tr-w .rg-wc',g); if(!wc) return; wc.textContent=n>=min?'✓ '+n+' words':n+' of '+min+' words';
+      $('.rg-tr-sv',g).innerHTML=n>=min?evBtn({k:'mine', auto:'tworec', t:(st.w||'').trim(), who:'Two records of one voyage: my comparison', when:'', where:'', from:'My own notes comparing the clerk’s ledger and Equiano’s words', ctx:'', tags:['picture','equiano','mine'], ret:{tab:'desk', sel:'#rg-tr-txt'}},''):'';
+      g.classList.toggle('finished',done()); }
+    dragTap(g,'.rg-tr-cards .rg-card','.rg-tr-bin',function(card,bin){ var i=+card.dataset.i, x=CD[i], k=bin.dataset.k, sy=$('.rg-tr-sort .say',g);
+      if(x.k!==k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); sy.textContent=x.hint||'Read both records again.'; return; }
+      st.sort[i]=k; save(); SFX.soft(); sy.textContent=x.say||''; paint(); refreshPress(); var f=$('.rg-tr-cards .rg-card',g); if(f) f.focus({preventScroll:true}); });
+    function done(){ return nSorted()>=CD.length&&st.q!=null&&words(st.w||'')>=(c.min||12); }
+    paint();
+    return {el:g,done:done,state:function(){ return {note:st.w||''}; },
+      journal:function(e,NA){ if(!st.w) return NA; return '<p class="a"><b>Two records of one voyage:</b> '+e(st.w)+'</p>'; }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -729,7 +854,7 @@
     var spots=c.spots||[], need=c.need||Math.min(4,spots.length), last=null, say={}, M=c.missing||{}, cats=M.cats||[{k:'in',t:'In the picture'},{k:'out',t:'Not in the picture'}], FU=c.followup||null, D=c.date||{};
     var SRC_FROM=c.from||'Historical source: the kitchen print', SW=c.srcWho||'Kitchen print', SN=c.srcName||'the kitchen print', SCANT=c.srcCant||('The '+(D.year||'')+' kitchen print');
     function lpos(s){ if(s.lx!=null) return [s.lx,s.ly]; return [Math.max(14,Math.min(86,s.x+(s.x<50?-1:1)*-16)),Math.max(8,Math.min(86,s.y+(s.y<50?16:-16)))]; }
-    function spotCard(s,i){ return {k:'source', t:(c.showsWord||'The print shows ')+s.label.charAt(0).toLowerCase()+s.label.slice(1)+'.', who:SW, when:D.madeT||('made about '+(D.year||'')), where:'', from:SRC_FROM, ctx:s.t, tags:['picture'], ret:{tab:'desk', sel:'.rg-rp-n[data-i="'+i+'"]'}}; }
+    function spotCard(s,i){ return {k:c.kind||'source', t:(c.showsWord||'The print shows ')+s.label.charAt(0).toLowerCase()+s.label.slice(1)+'.', who:SW, when:D.madeT||('made about '+(D.year||'')), where:'', from:SRC_FROM, ctx:s.t, tags:['picture'], ret:{tab:'desk', sel:'.rg-rp-n[data-i="'+i+'"]'}}; }
     g.innerHTML+='<div class="rg-rp-look"><label for="rg-rp-notice"><b>Look first.</b> '+esc(c.lookQ||'Before the editor’s marks appear, look closely. Write one thing you notice in this picture.')+'</label><textarea id="rg-rp-notice" rows="2" placeholder="I notice…">'+esc(st.notice||'')+'</textarea><div class="row"><button type="button" class="rg-btn alt rg-rp-zoom">🔍 Look closer</button><button type="button" class="rg-btn rg-rp-go">Show the editor’s marks</button><span class="rg-rp-sv"></span></div></div>'+
       '<div class="rg-rp-wrap"><figure class="rg-rp-pic"><div class="rg-rp-img"></div><svg class="rg-rp-ink" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+spots.map(function(s,i){ return '<ellipse class="ring" data-i="'+i+'" cx="'+s.x+'" cy="'+s.y+'" rx="'+(s.rx||6)+'" ry="'+(s.ry||7)+'"/>'; }).join('')+
       spots.map(function(s,i){ var L=lpos(s); return '<line class="lead" data-i="'+i+'" x1="'+s.x+'" y1="'+s.y+'" x2="'+L[0]+'" y2="'+L[1]+'"/>'; }).join('')+(c.date?'<rect class="ring date" x="'+(D.x-D.w/2)+'" y="'+(D.y-D.h/2)+'" width="'+D.w+'" height="'+D.h+'" rx="2"/>':'')+'</svg>'+
@@ -939,6 +1064,7 @@
     if(ex.evidence&&MOD[ex.evidence.type]&&p2){ var fr=$('.source-image-frame',p2), sec2=fr&&fr.closest('.content-section'); if(sec2){ hide(sec2); R.evidence=MOD[ex.evidence.type](ex.evidence,sec2); } }
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
+    if(ex.tworec&&MOD.tworec&&R.evidence){ R.tworec=MOD.tworec(ex.tworec,R.evidence.el); var ed0=R.evidence.done; R.evidence.done=function(){ return ed0()&&R.tworec.done(); }; }
     buildAlmanac(); buildPair(); }
 
   /* ================================================================ THE BROADSHEET — one tab laid out as a real front page
@@ -1013,6 +1139,7 @@
   /* ---- evidence kinds: say plainly what each clipping is ---- */
   var EVK={ routine:{n:'Example written for this lesson', s:'Example', d:'Based on real history, but written for this lesson. It is not a real person’s diary.'},
     source:{n:'Real source from the past', s:'Source', d:'A detail from something people really made long ago, like an old print or almanac.'},
+    modern:{n:'Made today to teach', s:'Modern', d:'Made recently to teach about the past, like a modern map. It is not a source from the past.'},
     lesson:{n:'Fact from the lesson', s:'Lesson', d:'A fact the lesson’s authors checked and wrote for you.'},
     mine:{n:'My own notes', s:'Mine', d:'Something I noticed or wrote myself.'},
     photo:{n:'My photo', s:'Photo', d:'A photo I took of part of the lesson page.'} };
@@ -1246,6 +1373,7 @@
     var pz=R.pair&&R.pair.state?R.pair.state():null; if(pz&&pz.note) push('pair','Desk · comparing '+pz.p1+' and '+pz.p2,pz.note);
     $$('.reflection-textarea').forEach(function(t,i){ push('journal'+(i+1),'Notebook · '+(t.dataset.label||('Question '+(i+1))),t.value); });
     var rp=R.evidence&&R.evidence.state?R.evidence.state():null; if(rp){ push('notice','Source desk · what I noticed',rp.notice); push('date','Source desk · made vs. shown',rp.dateExp); push('limit','Source desk · what the picture can’t show',rp.limitation); }
+    var tw=R.tworec&&R.tworec.state?R.tworec.state():null; if(tw) push('tworec','Source desk · two records of one voyage',tw.note);
     (CC||[]).forEach(function(c){ var A=(S.cc||{})[c.id]; if(A&&A.why) push('claims','Fact-Check · '+c.claim.slice(0,50)+'…',A.why); });
     EV().filter(function(c){ return (c.note||'').trim(); }).forEach(function(c){ push('cardnotes','Drawer note · '+cardMeta(c),c.note); });
     return out; }
@@ -1394,6 +1522,14 @@
     if(line&&col){ var c=(rd.cols||[]).filter(function(x){ return x.id===col.dataset.id; })[0]; return m({k:'routine', who:c?c.who:'', when:(rd.times||[])[+line.dataset.i]||'', where:c?c.where||'':'', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:[c?c.id:'','routine','highlight']}); }
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
+    var S1L=DATA.scene1||{};
+    if(block.closest('.rg-lg-clerk')){ var lc=block.closest('.rg-lg-card'), P0=(S1L.pages||[])[lc?+lc.dataset.i:-1]||{}; return m({k:'routine', who:'A ship clerk’s ledger: '+(P0.short||P0.place||''), when:P0.when||'', from:S1L.clerkFrom||'Example written for this lesson (a ship clerk’s ledger)', ctx:'These are business words. They hide what happened to people.', tags:['ledger','clerk',P0.id||'','highlight']}); }
+    if(block.closest('.rg-lg-fact')){ var lc3=block.closest('.rg-lg-card'), P2=(S1L.pages||[])[lc3?+lc3.dataset.i:-1]||{}; return m({k:'lesson', who:P2.place||'The clerk’s ledger', when:P2.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['ledger',P2.id||'','highlight']}); }
+    if(block.closest('.rg-lg-card, .rg-lg-tbl')){ var lc2=block.closest('.rg-lg-card'), P1=lc2?(S1L.pages||[])[+lc2.dataset.i]||{}:{}; if(!lc2){ var rw=block.closest('tr'), ri2=rw?[].indexOf.call(rw.parentNode.children,rw):-1; P1=(S1L.pages||[]).filter(function(x,i){ return R.scene1&&R.scene1.state&&R.scene1.state().built.indexOf(x.short||x.place)>-1; })[ri2]||{}; } return m({k:'lesson', who:'The honest version'+(P1.short?': '+P1.short:''), when:P1.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['ledger','honest',P1.id||'','highlight']}); }
+    var TRD=(DATA.explore||{}).tworec||{};
+    if(block.closest('.rg-tr-quote')){ var QB=(TRD.b||{}); return m({k:'source', quote:true, who:QB.who||'Olaudah Equiano', when:QB.when||'1789', where:QB.where||'', from:'Real source from the past: '+(QB.cite||''), tags:['equiano','quote','highlight']}); }
+    if(block.closest('.rg-tr-clerk')) return m({k:'routine', who:(TRD.a||{}).label||'A clerk’s ledger line', from:'Example written for this lesson', ctx:'A business record: it lists people as cargo.', tags:['ledger','clerk','highlight']});
+    if(block.closest('.rg-tr-note, .rg-tworec')) return m({k:'lesson', who:'About Equiano’s book', from:'Fact from the lesson', tags:['equiano','highlight']});
     var trc=block.closest('.rg-trail-card'); if(trc&&R.scene1&&R.scene1.stop){ var T0=R.scene1.stop(+trc.dataset.i)||{}; return m({k:'lesson', who:T0.place||'', when:T0.when||'', from:(DATA.scene1||{}).srcLabel||'Fact from the lesson', tags:['trail',T0.id||'',T0.kind||'','highlight']}); }
     var trl=block.closest('.rg-trail-led'); if(trl){ var row=block.closest('tr'), ri=row?[].indexOf.call(row.parentNode.children,row):-1, SPs=((DATA.scene1||{}).stops||[]).filter(function(x,i){ return R.scene1&&R.scene1.state&&R.scene1.state().built.indexOf(x.short||x.place)>-1; }), T1=SPs[ri]||{}; return m({k:'lesson', who:'The barrel’s account book'+(T1.place?': '+T1.place:''), when:T1.when||'', from:(DATA.scene1||{}).srcLabel||'Fact from the lesson', tags:['trail','ledger',T1.id||'','highlight']}); }
     if(block.closest('.rg-gr-method, .rg-gr-cmp')){ return m({k:'lesson', who:rd.methodWho||'Counting the people', when:rd.when||'', from:rd.methodFrom||'Fact from the lesson', tags:['count','grid','highlight']}); }
@@ -1408,7 +1544,7 @@
     if(al){ var A=DATA.almanac||{}; if(block.closest('.say')) return m({k:'source', quote:true, who:'Poor Richard’s Almanack', when:'1735', where:'Philadelphia', from:'Real source from the past: '+(A.cite||'Poor Richard’s Almanack, 1735'), tags:['almanac','highlight']});
       if(block.closest('.rg-al3-ann')) return m({k:'source', who:'Poor Richard improved (cover)', when:'1748', where:'Philadelphia', from:'Real source from the past: the 1748 almanac cover (Library of Congress)', tags:['almanac','highlight']});
       return m({k:'lesson', who:'Almanac calendar page', where:'Philadelphia', from:'Fact from the lesson: a calendar page re-set for this lesson (sun times worked out for Philadelphia)', ctx:A.note||'', tags:['almanac','highlight']}); }
-    if(block.closest('.rg-redpen')){ var ev=(DATA.explore||{}).evidence||{}; return m({k:'source', who:ev.srcWho||'Kitchen print', when:(ev.date||{}).madeT||('made about '+((ev.date||{}).year||'')), from:ev.from||'Real source from the past: the kitchen print', tags:['picture','highlight']}); }
+    if(block.closest('.rg-redpen')){ var ev=(DATA.explore||{}).evidence||{}; return m({k:ev.kind||'source', who:ev.srcWho||'Kitchen print', when:(ev.date||{}).madeT||('made about '+((ev.date||{}).year||'')), from:ev.from||'Real source from the past: the kitchen print', tags:['picture','highlight']}); }
     if(block.closest('.rg-myth')) return m({k:'lesson', who:'Fact-check of the Herald', from:'Fact from the lesson (a fact-check written for this lesson)', tags:['herald','highlight']});
     if(block.closest('.herald-wrap, .herald-claim')) return m({k:'lesson', who:'The Hasty Herald', from:'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','highlight']});
     return m({k:'lesson', who:'Highlighted from the lesson', from:'Fact from the lesson ('+whereAmI(block)+')'}); }
@@ -1602,7 +1738,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -1783,7 +1919,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
