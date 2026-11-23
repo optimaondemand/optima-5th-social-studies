@@ -2258,6 +2258,1676 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.04",
+ "title": "Southern Colonies",
+ "issue": 32,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "group",
+ "place": "Charles Town",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>were the Southern Colonies just farms and plantations?<\/i> Use the 🖍 highlighter to save details about who did the work, who got the money, and what else the South had. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: the Middle Colonies. Today we move south to Virginia, Maryland, North Carolina, South Carolina and Georgia.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Follow the barrel",
+   "k": "The Dispatch",
+   "why": "Before you read anything, follow one barrel of tobacco from a Virginia field to a London dock. At each stop, decide who did the work."
+  },
+  {
+   "tab": "desk",
+   "t": "Count the 100 people",
+   "k": "The Desk",
+   "why": "Find out who lived in South Carolina, put each group on the grid, and then study a real picture from the 1750s. Save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Gazette Correction",
+   "k": "Go to Press",
+   "why": "Pick your angle, write your correction from your evidence, then strike the Herald’s claim and print."
+  }
+ ],
+ "lens": "Perseverance means you keep going when a story is hard. Today, a persevering editor doesn’t stop at “farms and plantations.” She keeps asking who did the work, who got the money, and who was left out.",
+ "recordFoot": "(The facts in this lesson come from historians’ records. The 1755 map scene and the 1855 engraving are real sources. The barrel trail, the group cards and the plain explanations were written for this lesson. The population numbers are U.S. Census Bureau estimates.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story is the Southern Colonies. The Herald says they were just farms and plantations."
+   },
+   {
+    "t": "Before you read anything, follow one barrel of tobacco from the field to the ship. Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Why follow a barrel?",
+      "reply": "Because a barrel goes through a lot of hands. If we follow it, we can see who did the work and who got paid."
+     },
+     {
+      "t": "Maybe the Herald is right.",
+      "reply": "Partly. There really were farms and plantations. The question is whether that’s the whole story."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Good. The first stop is the seedbed, on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So this picture is better than the 1855 one?",
+      "reply": "It’s closer in time, so it can tell us more about the 1750s. But no picture tells us everything. Check what it can’t show."
+     },
+     {
+      "t": "Why does London matter?",
+      "reply": "Because the artist may never have stood on a Virginia wharf. Parts of the scene could be imagined."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the picture. Some things a picture just can’t tell us."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the 100 people. Open a group card, read it, and highlight the sentence that shows who did the work or who got the money. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the picture.",
+      "reply": "Here it is. Tap the red numbers, read the notes, and highlight one that shows who is working on the wharf.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Your answer is sealed. Now go to the Desk tab (tab 2) and find out who the people of South Carolina were.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Every group is on the grid, and you compared the colonies. Next, study a real picture from the 1750s.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "Drawn in 1751, printed in London in 1755. That’s colonial times, unlike the 1855 picture. But did the London artist ever see a Virginia wharf?",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your correction and your evidence are on the record. Issue 32 is in the Morgue. Next issue: daily life in the colonies.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "trail",
+  "title": "Follow one barrel of tobacco",
+  "srcLabel": "Fact from the lesson (the barrel trail)",
+  "job": {
+   "why": "The Hasty Herald says the Southern Colonies were just farms and plantations. Following one barrel shows who did the work and who got paid, before you read anything else.",
+   "do": "1. Read the stop. 2. Answer who did the work. 3. Roll on to the next stop. 4. After stop 5, answer the question and seal it.",
+   "use": "Your account book and your sealed answer come back on the Desk tab.",
+   "words": [
+    [
+     "cash crop",
+     "a crop grown to sell, not to eat"
+    ],
+    [
+     "hogshead",
+     "a giant wooden barrel that held about 1,000 pounds of tobacco"
+    ],
+    [
+     "overseer",
+     "a boss who watched enslaved workers and forced them to keep working"
+    ],
+    [
+     "planter",
+     "a person who owned a plantation"
+    ]
+   ]
+  },
+  "q": "Virginia, 1750s. Tobacco was Virginia’s cash crop, a crop grown to sell. Follow one hogshead (a giant barrel) of it.",
+  "lockedT": "Answer the question to move on",
+  "ledger": {
+   "title": "The barrel’s account book",
+   "stop": "Stop",
+   "work": "Who did the work",
+   "paid": "Who got paid",
+   "close": "Look down the account book. The people who did most of the work got nothing for it. That’s the part the Herald left out."
+  },
+  "stops": [
+   {
+    "id": "seed",
+    "icon": "🌱",
+    "short": "Seedbed",
+    "place": "The seedbed",
+    "when": "Late winter",
+    "kind": "work",
+    "t": "Tiny tobacco seeds were planted in seedbeds and covered with branches to keep off the frost. In spring, after a rain, the young plants were carried out and planted one by one in the fields.",
+    "ask": "Who did most of this work on a big Virginia plantation in the 1750s?",
+    "opts": [
+     {
+      "t": "Enslaved Africans and African Americans",
+      "ok": true,
+      "say": "Yes. On big plantations, enslaved people did most of the field work."
+     },
+     {
+      "t": "The planter himself",
+      "ok": false,
+      "say": "Not on a big plantation. Planters owned the land but mostly didn’t do the field work. The answer is:"
+     },
+     {
+      "t": "Workers from England who were paid good wages",
+      "ok": false,
+      "say": "Not by the 1750s. The answer is:"
+     }
+    ],
+    "fact": "On small farms, free families did the work themselves, sometimes with one or a few enslaved people.",
+    "work": "Enslaved workers on big plantations; free families on small farms",
+    "paid": "No one yet. Nothing has been sold."
+   },
+   {
+    "id": "field",
+    "icon": "🌿",
+    "short": "Field",
+    "place": "The tobacco field",
+    "when": "Summer",
+    "kind": "work",
+    "calm": true,
+    "t": "All summer, workers hoed weeds, picked green worms off every leaf by hand, and broke the tops off the plants so the leaves grew big. An overseer, a boss who watched the workers, kept them working from sunrise to sunset.",
+    "ask": "Who decided how long the workers worked?",
+    "opts": [
+     {
+      "t": "The planter and his overseer",
+      "ok": true,
+      "say": "Yes. Enslaved workers had no say about their work."
+     },
+     {
+      "t": "The workers chose their own hours",
+      "ok": false,
+      "say": "Enslaved people could not choose. The answer is:"
+     },
+     {
+      "t": "The King of England",
+      "ok": false,
+      "say": "The King was far away. The answer is:"
+     }
+    ],
+    "fact": "Enslaved people were not paid and could not quit. Overseers used harsh punishments to force them to keep working.",
+    "work": "Enslaved workers, watched by an overseer",
+    "paid": "Overseers were often paid with a share of the crop"
+   },
+   {
+    "id": "barn",
+    "icon": "🏚️",
+    "short": "Barn",
+    "place": "The tobacco barn",
+    "when": "Late summer and fall",
+    "kind": "skill",
+    "t": "Workers cut the plants and hung them in a tall wooden barn to dry for weeks. Then they stripped off the leaves and pressed them tight into a hogshead, a giant barrel that held about 1,000 pounds of tobacco.",
+    "ask": "Who made the hogshead barrels?",
+    "opts": [
+     {
+      "t": "Coopers (barrel makers), many of them enslaved",
+      "ok": true,
+      "say": "Yes. Many skilled craftsmen on plantations were enslaved."
+     },
+     {
+      "t": "Barrels were shipped over from London",
+      "ok": false,
+      "say": "Barrels that big were made right in Virginia. The answer is:"
+     },
+     {
+      "t": "Children in a factory",
+      "ok": false,
+      "say": "There were no barrel factories. The answer is:"
+     }
+    ],
+    "fact": "Many enslaved people had skilled jobs: coopers, carpenters, blacksmiths and boatmen. The plantation could not run without their skills.",
+    "work": "Enslaved field workers and skilled coopers",
+    "paid": "Still no one"
+   },
+   {
+    "id": "wharf",
+    "icon": "⚓",
+    "short": "Warehouse",
+    "place": "The warehouse by the river",
+    "when": "Winter",
+    "kind": "money",
+    "t": "The barrels were rolled or floated to a public warehouse by the river. Under a Virginia law from 1730, inspectors opened every barrel, threw out bad tobacco, and stamped the barrel with its weight. The owner got a paper called a tobacco note.",
+    "ask": "Who got the tobacco note that said how much the tobacco was worth?",
+    "opts": [
+     {
+      "t": "The planter who owned the tobacco",
+      "ok": true,
+      "say": "Yes. The note went to the owner, not to the people who grew it."
+     },
+     {
+      "t": "The enslaved people who grew it",
+      "ok": false,
+      "say": "Enslaved people owned nothing they grew. The answer is:"
+     },
+     {
+      "t": "The inspector",
+      "ok": false,
+      "say": "Inspectors were paid a fee, but they didn’t own the tobacco. The answer is:"
+     }
+    ],
+    "fact": "Tobacco was so important that Virginians used tobacco notes almost like money, and paid some taxes and debts in tobacco.",
+    "work": "Enslaved workers rolled the barrels; inspectors checked them",
+    "paid": "Inspectors got fees; the planter got a tobacco note"
+   },
+   {
+    "id": "london",
+    "icon": "🚢",
+    "short": "London",
+    "place": "A dock in London",
+    "when": "The next spring",
+    "kind": "money",
+    "t": "Ships carried the barrels across the ocean. By law, Virginia tobacco had to go to Britain first. Merchants (traders) in London and Glasgow sold it, and much of it was sold again to other countries in Europe.",
+    "ask": "Who got money from the sale?",
+    "opts": [
+     {
+      "t": "Merchants, ship owners, the King’s tax collectors, and the planter",
+      "ok": true,
+      "say": "Yes. Lots of people got paid along the way."
+     },
+     {
+      "t": "The enslaved people who grew it",
+      "ok": false,
+      "say": "They got nothing. The answer is:"
+     },
+     {
+      "t": "Only the sailors",
+      "ok": false,
+      "say": "Sailors got wages, but they weren’t the only ones paid. The answer is:"
+     }
+    ],
+    "fact": "The people who grew the tobacco got nothing. Planters used their money to buy cloth, tools, books from Britain, and more land and enslaved people.",
+    "work": "Sailors and dock workers",
+    "paid": "Merchants, ship owners, the King’s tax collectors, and the planter"
+   }
+  ],
+  "seal": {
+   "img": "source-5-07-04-southern-colonial-plantation",
+   "alt": "An old black-and-white engraving. Three men in straw hats and light shirts hoe tobacco plants in a field. Behind them stand a long, low barn and a white farmhouse among big trees, and a few more workers are far off in the field.",
+   "cap": "Who made this picture, and when, is sealed until the Desk tab.",
+   "q": "This picture shows people hoeing a tobacco field. When do you think it was made?",
+   "opts": [
+    "In colonial times, the 1600s or 1700s",
+    "Later, after the colonies became the United States",
+    "I can’t tell from the picture alone"
+   ],
+   "reveal": [
+    "It was printed in 1855, in Harper’s New Monthly Magazine, about 100 years after the 1750s. It looks old, but old isn’t the same as colonial. Next, you’ll study a picture made in colonial times.",
+    "Good thinking. It was printed in 1855, in Harper’s New Monthly Magazine, about 100 years after the 1750s. It can show tobacco work in the 1850s, but not in colonial Virginia. Next, a picture made in colonial times.",
+    "Saying you can’t tell is honest. Now you can: it was printed in 1855, in Harper’s New Monthly Magazine, about 100 years after the 1750s. Next, a picture made in colonial times."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after you count the people."
+ },
+ "explore": {
+  "reading": {
+   "type": "grid",
+   "title": "Who were the 100?",
+   "times": [
+    "What the reading says",
+    "Why it matters"
+   ],
+   "cols": [
+    {
+     "id": "planters",
+     "short": "Wealthy planters",
+     "who": "Wealthy planters",
+     "icon": "💰",
+     "pan": "w",
+     "kind": "money",
+     "lines": [
+      "A small group of families owned the biggest plantations, sometimes thousands of acres, and many enslaved people. In South Carolina they grew rice and indigo, a plant used to make blue dye. In Virginia they grew tobacco.",
+      "They got most of the money, and they ran the government. In Virginia they filled the House of Burgesses, a group elected to make laws, first held in 1619. Only white men who owned land could vote for it."
+     ],
+     "say": "Yes. Planters were free and white, and they were a small part of the 100.",
+     "hint": "Were the planters free or enslaved? Which part of the grid fits?"
+    },
+    {
+     "id": "farmers",
+     "short": "Small farmers",
+     "who": "Small farmers",
+     "icon": "🌽",
+     "pan": "w",
+     "kind": "more",
+     "lines": [
+      "Most free white families farmed small pieces of land. They grew corn, raised hogs and cattle, and sold a little of what they grew. Some owned one or a few enslaved people; many owned none.",
+      "Most free Southerners were not rich planters. The Herald’s picture of big plantations leaves them out too."
+     ],
+     "say": "Yes. Small farmers were free, and there were far more of them than planters.",
+     "hint": "Were small farmers free or enslaved?"
+    },
+    {
+     "id": "town",
+     "short": "Charles Town",
+     "who": "Charles Town merchants and tradespeople",
+     "icon": "🏛️",
+     "pan": "w",
+     "kind": "more",
+     "lines": [
+      "Charles Town (today’s Charleston) was one of the busiest ports in the colonies. Merchants, printers, shopkeepers and craftspeople worked there. A newspaper, The South-Carolina Gazette, was printed there starting in 1732.",
+      "The South was not just farms. It had towns, trade and newspapers."
+     ],
+     "say": "Yes. These merchants and tradespeople were free. (Many workers in the town were enslaved, too. You’ll meet them soon.)",
+     "hint": "Were these merchants and printers free or enslaved?"
+    },
+    {
+     "id": "field",
+     "short": "Rice field workers",
+     "who": "Workers in the rice fields",
+     "icon": "🌾",
+     "pan": "b",
+     "kind": "work",
+     "calm": true,
+     "lines": [
+      "Most enslaved people worked in the fields. In the rice swamps they dug ditches, built banks of earth, planted, flooded, weeded and harvested, often standing in mud and water in the summer heat.",
+      "Their work made rice the colony’s richest crop. They were not paid, they could be sold, and their children were born enslaved."
+     ],
+     "say": "Yes. These workers were enslaved. They were the biggest group of the 100.",
+     "hint": "Were these workers free or enslaved?"
+    },
+    {
+     "id": "skilled",
+     "short": "Skilled workers",
+     "who": "Enslaved skilled workers",
+     "icon": "🔨",
+     "pan": "b",
+     "kind": "skill",
+     "calm": true,
+     "lines": [
+      "Many enslaved people had skilled jobs: carpenters, blacksmiths, coopers (barrel makers), boat pilots, cooks and seamstresses. In Charles Town, many skilled workers were enslaved.",
+      "The South ran on their skill, not just their strength. Even with valuable skills, they were held as property."
+     ],
+     "say": "Yes. Skilled or not, these workers were enslaved.",
+     "hint": "Were these workers free or enslaved?"
+    },
+    {
+     "id": "native",
+     "short": "Native nations",
+     "who": "Native nations",
+     "icon": "🏹",
+     "pan": "out",
+     "kind": "left",
+     "calm": true,
+     "lines": [
+      "The Cherokee, Catawba, Creek and other nations lived on and near the land the colony claimed. Colonists traded with them for deerskins. Carolina traders also captured Native people and sold them into slavery, mostly before 1720.",
+      "The estimates for 1750 did not count Native people, so they are not in the 100 dots. A fair count says who was left out."
+     ],
+     "say": "Right. Native people were left out of the colonial count.",
+     "hint": "Look at the card again: were Native people counted in the 1750 estimates?"
+    }
+   ],
+   "place": "South Carolina, 1750: 100 people",
+   "total": 100,
+   "groups": [
+    {
+     "k": "w",
+     "n": 39,
+     "t": "39 white colonists",
+     "short": "white colonists (most were free)",
+     "d": "Most were free. A few were servants."
+    },
+    {
+     "k": "b",
+     "n": 61,
+     "t": "61 Black people",
+     "short": "Black people (almost all enslaved)",
+     "d": "Almost all were enslaved.",
+     "calm": true
+    }
+   ],
+   "tray": {
+    "k": "out",
+    "icon": "🏹",
+    "t": "Not in this count",
+    "d": "People the 1750 estimates left out",
+    "calm": true
+   },
+   "srcLabel": "Fact from the lesson",
+   "sortQ": "Where does this group belong? Tap the card, then tap a part of the grid, or the box under it.",
+   "deskEmpty": "These 100 dots stand for everyone in South Carolina in 1750. Tap the button to read the first group.",
+   "sumEmpty": "Who were these 100 people? Read a card to find out.",
+   "method": "Each dot stands for 1 out of every 100 people. The numbers are estimates made by the U.S. Census Bureau from old colonial records (Historical Statistics of the United States, Series Z 1–19). South Carolina in 1750 had about 64,000 people: about 25,000 white and about 39,000 Black. 39,000 out of 64,000 is about 61 out of every 100. Almost all Black people in South Carolina were enslaved. The estimates did not count Native Americans.",
+   "methodWho": "Counting the people (U.S. Census Bureau estimates)",
+   "methodFrom": "Fact from the lesson (U.S. Census Bureau estimates)",
+   "when": "1750",
+   "miniAfter": 3,
+   "myths": [
+    {
+     "after": 1,
+     "claim": "Everyone in the South was a rich planter.",
+     "fact": "Most free Southern families farmed small pieces of land, and many owned no enslaved people. Only a small group were wealthy planters."
+    },
+    {
+     "after": 2,
+     "claim": "The South had no towns or trade. It was just farms.",
+     "fact": "Charles Town was one of the busiest ports in the colonies, Williamsburg was Virginia’s capital, and the South had printers and newspapers."
+    },
+    {
+     "after": 4,
+     "claim": "Slavery only happened in the South.",
+     "fact": "Slavery was legal in all thirteen colonies. But the South depended on it far more: compare the colonies when you finish the grid.",
+     "calm": true
+    }
+   ],
+   "compare": {
+    "title": "Compare the count",
+    "q": "Slavery was legal in every colony. But how much did each one depend on it? Tap a colony to see its 100 people.",
+    "need": 2,
+    "sumT": "{b} out of every 100 people were Black. Most were enslaved.",
+    "backT": "Back to South Carolina",
+    "doneT": "Compared. South Carolina depended on enslaved people far more than the northern colonies.",
+    "places": [
+     {
+      "k": "va",
+      "t": "Virginia",
+      "n": 44,
+      "note": "Virginia, 1750: about 101,000 of its 231,000 people were Black, about 44 out of every 100. Most worked growing tobacco."
+     },
+     {
+      "k": "md",
+      "t": "Maryland",
+      "n": 31,
+      "note": "Maryland, 1750: about 43,000 of its 141,000 people were Black, about 31 out of every 100."
+     },
+     {
+      "k": "nc",
+      "t": "North Carolina",
+      "n": 27,
+      "note": "North Carolina, 1750: about 20,000 of its 73,000 people were Black, about 27 out of every 100."
+     },
+     {
+      "k": "ny",
+      "t": "New York",
+      "n": 14,
+      "note": "New York, 1750: about 11,000 of its 77,000 people were Black, about 14 out of every 100. Slavery was legal in the North too."
+     },
+     {
+      "k": "ma",
+      "t": "Massachusetts",
+      "n": 2,
+      "note": "Massachusetts, 1750: about 4,000 of its 188,000 people were Black, about 2 out of every 100. Slavery was legal there too, but the colony did not depend on it the way the South did."
+     }
+    ]
+   },
+   "close": "The 100 dots answer the Herald. Most people in South Carolina were enslaved, and their work made the planters rich. Most free families were small farmers, not rich planters. Slavery was legal everywhere, but the South depended on it most.",
+   "job": {
+    "why": "This tests the Herald’s claim. “Farms and plantations” sounds like land. But who were the people, and who did the work? Let’s count.",
+    "do": "1. Tap the button to read a group. 2. Put it on the grid, or in the box under it. 3. Fact-check the Herald when it shows up. 4. Place all 6, then compare 2 other colonies.",
+    "use": "Your grid gives you evidence for the notebook and your Gazette Correction.",
+    "words": [
+     [
+      "enslaved",
+      "forced to work for no pay, and owned by another person as property"
+     ],
+     [
+      "estimate",
+      "a careful guess using the best numbers we have"
+     ],
+     [
+      "indigo",
+      "a plant used to make blue dye"
+     ],
+     [
+      "merchant",
+      "a trader who buys and sells goods"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Investigate the 1755 map scene",
+   "srcName": "the 1755 map scene",
+   "srcWho": "The 1755 map scene",
+   "srcCant": "This map scene",
+   "showsWord": "The map scene shows ",
+   "img": "source-5-07-04-fry-jefferson-1755-wharf",
+   "alt": "An old engraving in the corner of a map. On a wharf beside a stone warehouse, men in long coats and three-cornered hats talk and shake hands near a table. A young Black man brings them a drink. An open barrel spills tobacco leaves. Two Black men pack and roll huge barrels toward a tall sailing ship, and a man works in a small boat by the wharf.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 50,
+     "y": 10,
+     "rx": 22,
+     "ry": 8,
+     "label": "The title",
+     "t": "The big letters name the places on the map: Virginia, Maryland, and parts of Pennsylvania, New Jersey and North Carolina. This scene decorates the corner of the map.",
+     "lx": 14,
+     "ly": 24
+    },
+    {
+     "x": 11,
+     "y": 80,
+     "rx": 6,
+     "ry": 9,
+     "label": "An open barrel of tobacco",
+     "t": "Dried tobacco leaves spill out of a hogshead. This is the crop the whole scene is about.",
+     "lx": 12,
+     "ly": 52
+    },
+    {
+     "x": 20,
+     "y": 72,
+     "rx": 4,
+     "ry": 14,
+     "label": "A man serving a drink",
+     "t": "A young Black man carries a drink to the men at the table. He is working while they sit.",
+     "lx": 14,
+     "ly": 96
+    },
+    {
+     "x": 38,
+     "y": 65,
+     "rx": 10,
+     "ry": 18,
+     "label": "Men making a deal",
+     "t": "Men in long coats and hats talk and shake hands. They may be a planter and a merchant (a trader) agreeing on a sale. The picture doesn’t say who they are.",
+     "lx": 40,
+     "ly": 96
+    },
+    {
+     "x": 53,
+     "y": 66,
+     "rx": 3,
+     "ry": 13,
+     "label": "A man writing",
+     "t": "A man in a coat writes in a book, maybe counting barrels. Records like his account book are another kind of source.",
+     "lx": 50,
+     "ly": 42
+    },
+    {
+     "x": 62,
+     "y": 70,
+     "rx": 7,
+     "ry": 15,
+     "label": "Men packing and rolling barrels",
+     "t": "Two Black men work on the hogsheads. One hammers a barrel shut, and one leans on a barrel to roll it toward the ship.",
+     "lx": 66,
+     "ly": 96
+    },
+    {
+     "x": 75,
+     "y": 55,
+     "rx": 7,
+     "ry": 15,
+     "label": "A ship at the wharf",
+     "t": "A tall sailing ship waits to carry the tobacco across the ocean to Britain.",
+     "lx": 80,
+     "ly": 30
+    },
+    {
+     "x": 87,
+     "y": 78,
+     "rx": 4,
+     "ry": 6,
+     "label": "A man in a small boat",
+     "t": "A man works in a small boat beside the wharf, maybe carrying barrels out to the ship.",
+     "lx": 84,
+     "ly": 88
+    }
+   ],
+   "date": {
+    "x": 49,
+    "y": 29,
+    "w": 16,
+    "h": 10,
+    "tapT": "Now tap the 📅 date mark on the words “Drawn by … in 1751” to read when this was made.",
+    "year": 1755,
+    "shows": 1751,
+    "yearT": "in 1755 (the map was drawn in 1751)",
+    "showsT": "a tobacco wharf in the 1750s, as a London artist pictured it",
+    "gapT": "about 4 years",
+    "text": "Joshua Fry and Peter Jefferson drew their map of Virginia in 1751. Thomas Jefferys printed it in London in 1755. This scene is a decoration in the map’s corner, called a cartouche. It was made in London, so the artist may never have seen a Virginia wharf. (Peter Jefferson was Thomas Jefferson’s father.) Library of Congress",
+    "madeBy": "Printed in London by Thomas Jefferys, 1755",
+    "showsWhy": "A scene added to the corner of Fry and Jefferson’s 1751 map",
+    "q": "In your own words: when was this picture made, and why does it matter that it was made in London?",
+    "check": [
+     "say when it was made (the 1750s)?",
+     "say that’s colonial times, unlike the 1855 picture?",
+     "say the artist may not have seen Virginia?"
+    ],
+    "model": "The scene was printed in 1755, during colonial times, so it is much closer to the time than the 1855 picture. But it was made in London, so the artist may have imagined parts of it.",
+    "card": "The map scene was printed in London in 1755, from a map Fry and Jefferson drew in 1751.",
+    "madeT": "printed 1755 (map drawn 1751)",
+    "journalT": "The map was drawn in 1751 and printed in London in 1755."
+   },
+   "missing": {
+    "q": "What can this picture tell us, and what can’t it?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in the picture",
+      "icon": "🖼"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this scene",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this picture alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Barrels of tobacco (hogsheads)",
+      "k": "shown",
+      "say": "Yes. Look at marks 2 and 6.",
+      "hint": "Look again at marks 2 and 6."
+     },
+     {
+      "t": "Black men packing and rolling barrels",
+      "k": "shown",
+      "say": "Yes. Mark 6.",
+      "hint": "Look again at mark 6."
+     },
+     {
+      "t": "A ship waiting at the wharf",
+      "k": "shown",
+      "say": "Yes. Mark 7.",
+      "hint": "Look at the right side of the scene."
+     },
+     {
+      "t": "The fields where the tobacco grew",
+      "k": "not",
+      "say": "Right. This scene is the wharf, not the fields.",
+      "hint": "Can you see any fields in the scene?"
+     },
+     {
+      "t": "The inside of a planter’s house",
+      "k": "not",
+      "say": "Right. We only see the wharf and the warehouse.",
+      "hint": "Can you see inside a house?"
+     },
+     {
+      "t": "Whether the Black workers were enslaved or free",
+      "k": "cant",
+      "say": "Right. Most Black people in Virginia were enslaved, but a picture can’t show one person’s legal status. We’d need records.",
+      "hint": "Can a drawing show whether a person was free?"
+     },
+     {
+      "t": "Who owned the tobacco",
+      "k": "cant",
+      "say": "Right. We’d need a tobacco note or a merchant’s account book.",
+      "hint": "Does the picture name the owner?"
+     },
+     {
+      "t": "Whether a real Virginia wharf looked like this",
+      "k": "cant",
+      "say": "Right. The artist worked in London. We’d need a description from someone who was there.",
+      "hint": "Was the artist standing on a Virginia wharf?"
+     }
+    ]
+   },
+   "close": "A real scene from the 1750s: tobacco in barrels, men making deals, and Black workers doing the heavy work. It can’t show the fields, who owned the tobacco, or whether the London artist got the wharf right.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this picture.",
+   "from": "Real source from the past: the decorated corner of Fry and Jefferson’s map of Virginia (drawn 1751; printed in London by Thomas Jefferys, 1755), Library of Congress",
+   "zoomCap": "A map of the most inhabited part of Virginia containing the whole province of Maryland… Drawn by Joshua Fry & Peter Jefferson in 1751. London: Thos. Jefferys, 1755. Detail of the decorated title. Library of Congress, Geography and Map Division, https://www.loc.gov/item/74693166/",
+   "followup": {
+    "q": "This picture can’t show the fields, or who owned the workers and the tobacco. Which other source could help?",
+    "opts": [
+     {
+      "t": "A plantation’s records, like a list of workers and crops",
+      "ok": true,
+      "say": "Yes. Plantation records can show who worked, what they grew, and who claimed to own them."
+     },
+     {
+      "t": "A bigger copy of this same map",
+      "ok": false,
+      "say": "A bigger copy would still show the same imagined wharf."
+     },
+     {
+      "t": "A painting of a street in London",
+      "ok": false,
+      "say": "That’s a different place, far from Virginia."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this picture can’t show? (This is called a limitation.)",
+    "limPh": "This picture can’t show…"
+   },
+   "job": {
+    "why": "The 1855 picture was made long after colonial times. This scene was made in the 1750s. Before using it as evidence, check what it shows and when it was made.",
+    "do": "1. Write one thing you notice. 2. Open at least 4 red marks. 3. Open the 📅 date. 4. Sort the cards.",
+    "use": "Your notes about this picture go into your evidence drawer for your Gazette Correction.",
+    "words": [
+     [
+      "wharf",
+      "a dock where ships tie up to load and unload"
+     ],
+     [
+      "cartouche",
+      "a decorated box on a map that holds its title"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "The Southern Colonies were Virginia, Maryland, North Carolina, South Carolina and Georgia.",
+   "Their cash crops were tobacco (Virginia and Maryland), and rice and indigo (the Carolinas). Cotton came much later.",
+   "Enslaved people did most of the work on big plantations, and they got nothing for it. Planters, merchants and the King’s tax collectors got the money.",
+   "In South Carolina in 1750, about 61 out of every 100 people were Black, and almost all were enslaved. Slavery was legal in all thirteen colonies, but the South depended on it most.",
+   "Most free Southern families were small farmers, not rich planters. The South also had towns like Charles Town, and the House of Burgesses (1619).",
+   "A picture can be made long after the time it shows. The tobacco field engraving was printed in 1855; the map scene was printed in 1755."
+  ],
+  "vocab": [
+   [
+    "cash crop",
+    "a crop grown to sell, not to eat"
+   ],
+   [
+    "plantation",
+    "a very large farm where enslaved people were forced to work"
+   ],
+   [
+    "planter",
+    "a person who owned a plantation"
+   ],
+   [
+    "enslaved",
+    "forced to work for no pay, and owned by another person as property"
+   ],
+   [
+    "overseer",
+    "a boss who watched enslaved workers and forced them to keep working"
+   ],
+   [
+    "hogshead",
+    "a giant wooden barrel that held about 1,000 pounds of tobacco"
+   ],
+   [
+    "indigo",
+    "a plant used to make blue dye"
+   ],
+   [
+    "export",
+    "to send goods out to sell in another place"
+   ],
+   [
+    "House of Burgesses",
+    "Virginia’s group of elected lawmakers, first held in 1619"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: port means “carry”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "The barrel trail was about carrying: crops carried out, goods carried in. Cracking the root shows how one word part names all of it.",
+   "do": "1. Tap the part of each word that means “carry.” 2. Use export in a sentence about today’s lesson.",
+   "use": "Your sentence can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "port",
+  "meaning": "carry",
+  "words": [
+   {
+    "parts": [
+     "ex",
+     "port"
+    ],
+    "root": 1,
+    "m": "export: to carry goods out to sell in another place (ex means out)"
+   },
+   {
+    "parts": [
+     "im",
+     "port"
+    ],
+    "root": 1,
+    "m": "import: to carry goods in from another place (im means in)"
+   },
+   {
+    "parts": [
+     "trans",
+     "port"
+    ],
+    "root": 1,
+    "m": "transport: to carry across from one place to another (trans means across)"
+   },
+   {
+    "parts": [
+     "port",
+     "er"
+    ],
+    "root": 0,
+    "m": "porter: a person whose job is carrying loads"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "The root port comes from the Latin word portare, to carry. Southern planters exported tobacco, rice and indigo to Britain, and imported cloth, tools and books.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Southern planters exported…",
+   "min": 8,
+   "must": "export",
+   "word": "export"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Gazette Correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your main idea (angle): what will your correction argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "Who Did the Work?",
+     "ok": true,
+     "tip": "Follow the barrel: who planted, packed and rolled it.",
+     "fit": [
+      "field",
+      "skilled",
+      "seed",
+      "barn",
+      "trail",
+      "work",
+      "skill",
+      "picture"
+     ],
+     "fitTip": "Good fits: the field and skilled worker cards, and the barrel trail.",
+     "ideas": [
+      "Who Did the Work?",
+      "The Hands Behind the Harvest"
+     ]
+    },
+    {
+     "t": "Who Got the Money, Who Paid the Price",
+     "ok": true,
+     "tip": "The account book: who got paid, and who got nothing.",
+     "fit": [
+      "planters",
+      "field",
+      "london",
+      "wharf",
+      "ledger",
+      "money",
+      "count"
+     ],
+     "fitTip": "Good fits: the planters card, the account book, and the 100 dots.",
+     "ideas": [
+      "Who Got the Money, Who Paid the Price",
+      "Rich Planters, Unpaid Workers"
+     ]
+    },
+    {
+     "t": "More Than Plantations",
+     "ok": true,
+     "tip": "Small farms, a busy port, newspapers, and the people the count left out.",
+     "fit": [
+      "farmers",
+      "town",
+      "native",
+      "more",
+      "left",
+      "count",
+      "herald"
+     ],
+     "fitTip": "Good fits: the small farmers, Charles Town and Native nations cards.",
+     "ideas": [
+      "More Than Plantations",
+      "The South Beyond the Fields"
+     ]
+    },
+    {
+     "t": "Southern Colonies: Just Farms!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your account book: who did the work?"
+    }
+   ]
+  },
+  "p1Label": "Group 1: one group from the 100",
+  "p2Label": "Group 2: a very different group",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "Who did the work, and who got the money?",
+  "whyLabel": "Why it matters: what does the Herald’s claim leave out?",
+  "factors": [
+   "Who did the work",
+   "Who got the money",
+   "Skills and know-how",
+   "Small farms and towns",
+   "People left out of the count",
+   "Slavery in other colonies"
+  ],
+  "close": "Your angle is set. Now write your correction below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every correction argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two groups. 3. Pick what the Herald left out.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know?",
+   "img": false,
+   "who": "Rice and West African know-how",
+   "from": "Fact from the lesson",
+   "t": "Rice was Carolina’s richest crop, and growing it took special know-how: banks of earth, water gates and careful flooding. Many enslaved people came from parts of West Africa where people had grown rice for hundreds of years. Historians agree they brought skills, like pressing seeds into the mud with the heel and cleaning rice in wide, flat baskets. They still debate how much of the whole system came from Africa.",
+   "q": "Whose knowledge helped make the rice planters rich?",
+   "tags": [
+    "rice",
+    "skill",
+    "work"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong. Strike the Herald’s claim, and your Gazette Correction prints in its place."
+  },
+  "win": "Printed. Your Gazette Correction is on the record, and Issue 32 is filed in the Morgue.",
+  "claim": "The Southern Colonies were just farms and plantations."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the account book after the last stop",
+   "Snap the 100 dots when every group is placed",
+   "Snap the ship in the 1755 map scene",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "In 1750, about 39,000 of South Carolina’s 64,000 people were Black, and almost all of them were enslaved.",
+   "key": [
+    "1750",
+    "39,000",
+    "South Carolina’s",
+    "64,000",
+    "Black",
+    "enslaved"
+   ],
+   "small": [
+    "in",
+    "about",
+    "of",
+    "were",
+    "and",
+    "almost",
+    "all",
+    "them"
+   ],
+   "model": "Key words: 1750, 39,000 of 64,000, South Carolina, Black, enslaved."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "A cash crop",
+    "rx": "tobacco|rice|indigo|cotton|cash crop",
+    "n": 1
+   },
+   {
+    "t": "Who did the work",
+    "rx": "enslav|slave|african|black|forced|unpaid|not paid",
+    "n": 1
+   },
+   {
+    "t": "A detail about the work",
+    "rx": "field|hoe|plant|harvest|barrel|hogshead|ditch|swamp|sun|worm|cooper|skill|carpent|blacksmith|overseer",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "Who did the work, or who got the money",
+    "rx": "enslav|slave|forced|unpaid|work|labor|money|paid|rich|planter|profit",
+    "n": 1
+   },
+   {
+    "t": "Something besides farms",
+    "rx": "town|port|charles|city|trade|merchant|newspaper|gazette|burgess|govern|law|vote|skill|carpent|blacksmith|cooper|native|cherokee|creek|catawba|small farm",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|farm|plantation|crop|tobacco|rice|indigo",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|enslav|slave|work|labor|money|paid|rich|town|port|native|skill|small farm",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at the barrel trail and the rice field workers card.",
+   "Name one crop. Then say who planted and harvested it.",
+   "Try: “The South grew ___, and most of the work was done by ___.”"
+  ],
+  "journal-q2": [
+   "Look at the account book on the Dispatch tab.",
+   "Who did the work? Who got the money? What else did the South have?",
+   "Try: “Just farms leaves out ___, who ___.”"
+  ],
+  "journal-q3": [
+   "Were there farms and plantations? Then the Herald is partly right.",
+   "Now look at your grid. Who is missing from “just farms”?",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "There were no factories, and field workers weren’t paid. Look back at the first stop on the barrel trail.",
+   "C": "No. Most work on big plantations was forced labor by enslaved people. Look back at the 100 people."
+  },
+  {
+   "A": "Crops were sold at warehouses and docks. Look back at the wealthy planters card on the Desk tab.",
+   "B": "Planters lived in big houses, but the House of Burgesses was a group elected to make laws. Look back at the wealthy planters card."
+  },
+  {
+   "A": "That’s the Herald’s kind of claim. Look at the account book: who got paid, and who got nothing?",
+   "C": "The Middle Colonies grew grain on many small farms. The South depended on enslaved people far more."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · The Southern Colonies",
+  "head": "Who Did the Work?",
+  "deck": "Were the Southern Colonies really just farms and plantations? Count the people and find out.",
+  "dateline": "Vol. I · No. 32 · Price: One Penny",
+  "ears": [
+   "Issue 32 · Colonial America Edition",
+   "🛢 Tobacco on the wharf"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Count the 100 people"
+   },
+   {
+    "key": "picture",
+    "t": "Investigate the 1755 map scene",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "CHARLES TOWN",
+  "lede": "The Hasty Herald says the Southern Colonies were just farms and plantations. One hundred dots, six groups of people and one real picture from the 1750s will test that. You decide.",
+  "evIntro": "Today’s question: Were the Southern Colonies really just farms and plantations? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means something made back then, like the 1755 map scene.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail about who did the work or who got the money, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "Who Did the Work?",
+   "More Than Plantations"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "What the Herald left out",
+    "short": "What the Herald left out (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Make your claim: were the Southern Colonies just farms and plantations? Use one detail about who did the work AND one about who got the money.",
+    "ph": "Write your claim and your evidence, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said the Southern Colonies were just farms and plantations. But",
+     "{p1} and {p2} show that"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Who paid the price",
+    "short": "Who paid the price (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Name the people whose work built the South but who got nothing for it, and say why readers should know.",
+    "ph": "Write about who paid the price, and why it matters.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "The people who did the hardest work got",
+     "Readers should know this because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "Write about the 1755 map scene: what it can show, and what it can’t.",
+    "ph": "For example, start with: This picture…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "This picture was made in 1755, so",
+     "This picture can’t show"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Were the Southern Colonies really just farms and plantations?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll strike the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "rich-all",
+   "claim": "The South had big plantations, so it was a rich place for the people who lived there.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Plantations did make money. But for which people?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Plantations made planters rich, but most people in South Carolina were enslaved and got nothing."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: the 100 dots and the account book."
+    }
+   ],
+   "details": [
+    {
+     "from": "The 100 people:",
+     "t": "About 61 out of every 100 people in South Carolina were Black, and almost all were enslaved.",
+     "ok": true,
+     "say": "This shows most people did not share in the riches."
+    },
+    {
+     "from": "The account book:",
+     "t": "The people who did most of the work got nothing for it.",
+     "ok": true,
+     "say": "This shows the money went to some people, not to the workers."
+    },
+    {
+     "from": "The 1755 map scene:",
+     "t": "A tall sailing ship waits to carry the tobacco across the ocean.",
+     "ok": false,
+     "say": "This shows trade, but it can’t tell us who got rich."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "rice-skill",
+   "claim": "Enslaved Africans brought skills that helped make Carolina rice valuable.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": true,
+     "say": "Yes. Historians agree they brought rice-growing skills, and many enslaved people were skilled workers."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": false,
+     "say": "What wrong idea would it lead to? Look at the Did you know? card again."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": true,
+     "say": "A fair call if you mean how much: historians still debate how much of the system came from Africa. Explain your thinking below."
+    }
+   ],
+   "details": [
+    {
+     "from": "Did you know?:",
+     "t": "Historians agree they brought skills, like pressing seeds into the mud with the heel and cleaning rice in wide, flat baskets.",
+     "ok": true,
+     "say": "This shows real skills came from West Africa."
+    },
+    {
+     "from": "Enslaved skilled workers:",
+     "t": "Many enslaved people had skilled jobs: carpenters, blacksmiths, coopers, boat pilots, cooks and seamstresses.",
+     "ok": true,
+     "say": "This shows the South ran on their skill, not just their strength."
+    },
+    {
+     "from": "Wealthy planters:",
+     "t": "They got most of the money, and they ran the government.",
+     "ok": false,
+     "say": "This is about who got the money, not about who had the skills."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My correction says what the Herald got right and what it left out.",
+  "I named who did the work AND who got the money.",
+  "I used at least two details, each with my reason.",
+  "I said what my source can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is the 100 people. Find one sentence that shows who did the work.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1755 map scene. Read the red notes, and highlight one that shows who is working on the wharf.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(south\\w*|colon\\w*|virginia|maryland|carolina|georgia|charles ?town|charleston|williamsburg|london|glasgow|britain|tobacco|rice|indigo|cotton|cash crops?|crops?|plantations?|planters?|farm\\w*|seed\\w*|fields?|hoe\\w*|worms?|barns?|hogsheads?|barrels?|coopers?|warehouses?|inspect\\w*|notes?|ships?|merchants?|sailors?|tax\\w*|king|money|paid|pay|profit\\w*|rich|wealth\\w*|enslav\\w*|slave\\w*|slavery|black|african\\w*|white|free|servants?|overseers?|skill\\w*|carpenters?|blacksmiths?|pilots?|cooks?|seamstress\\w*|swamps?|ditch\\w*|flood\\w*|heat|native\\w*|cherokee|catawba|creek|deerskins?|burgesses|vote\\w*|law\\w*|government|newspapers?|gazette|printers?|port|ports|trade|wharf|wharves|1619|1730|1732|1750|1751|1755|1855|100|61|39|44|31|27|14|estimates?|census|count\\w*|fry|jefferson|jefferys|map)\\b",
+   "off": "Does this detail show who did the work, who got the money, or what else the South had? If it doesn’t, you can keep it, but also look for one in the 100 people.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about the Southern Colonies. Look for a detail about the work, the money or the people instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs a detail about who did the work AND one about who got the money. Look at your account book and the 100 people.",
+    "go": [
+     {
+      "l": "The 100 people",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "The account book",
+      "tab": "dispatch",
+      "sel": ".rg-trail-ledwrap"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail about the people who did the work and got nothing. Try the rice field and skilled worker cards, or the Herald fact-checks.",
+    "go": [
+     {
+      "l": "The 100 people",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Herald fact-checks",
+      "tab": "desk",
+      "sel": ".rg-myths"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about the picture: when it was made, and what it can’t show.",
+    "go": [
+     {
+      "l": "The 1755 map scene",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Follow the barrel",
+   "script": "Before you read anything, follow one barrel of tobacco. It starts as a tiny seed in a Virginia field and ends on a dock in London. At every stop, ask the same question: who did this work? Then check the account book. Who got paid? Keep your eyes on both."
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "Every dot is a person",
+   "script": "Before you start, look at the dots. Each one stands for real people who lived in South Carolina in 1750. Most of them were enslaved. Take your time with each card. Read who they were and what their work was, then put them on the grid. Counting carefully is one way we remember them."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^barrel",
+    "sel": "#panel-dispatch .rg-trail-route",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^question",
+    "sel": "#panel-dispatch .rg-trail-stop fieldset",
+    "fx": "point"
+   },
+   {
+    "at": "^account",
+    "sel": "#panel-dispatch .rg-trail-stop",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^dots",
+    "sel": "#panel-desk .rg-gr-dots",
+    "fx": "glow",
+    "calm": true,
+    "scroll": true
+   },
+   {
+    "at": "^card",
+    "sel": "#panel-desk .rg-link-ctl",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^grid",
+    "sel": "#panel-desk .rg-gr-zones",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    2.4,
+    2.72,
+    "barrel"
+   ],
+   [
+    11.2,
+    12.16,
+    "question:"
+   ],
+   [
+    14.48,
+    14.72,
+    "account"
+   ]
+  ],
+  "v2": [
+   [
+    1.76,
+    2.56,
+    "dots."
+   ],
+   [
+    11.28,
+    12.16,
+    "card."
+   ],
+   [
+    15.6,
+    16.48,
+    "grid."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4159,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4174,31 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rows of tobacco plants beside a tall wooden tobacco barn, barrels of tobacco stacked on a river wharf by a warehouse, and a tall sailing ship on the river in late-afternoon light" class="b0704">
+<defs>
+<clipPath id="b0704WL" clipPathUnits="userSpaceOnUse"><rect x="-200" y="-300" width="400" height="301"/></clipPath>
+<linearGradient id="b0704Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9DB3C6"/><stop offset=".55" stop-color="#EBD9B4"/><stop offset="1" stop-color="#F4DDA8"/></linearGradient>
+<linearGradient id="b0704Riv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86A3AC"/><stop offset="1" stop-color="#3E5E6A"/></linearGradient>
+<linearGradient id="b0704Field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8C7A4E"/><stop offset="1" stop-color="#6E5B37"/></linearGradient>
+<style>
+.b0704 .b0704-ship{ animation:b0704bob 6s ease-in-out infinite; }
+.b0704 .b0704-sway{ animation:b0704sway 5s ease-in-out infinite; transform-box:fill-box; transform-origin:bottom; }
+.b0704 .b0704-wave{ animation:b0704wave 12s linear infinite; }
+.b0704 .b0704-cloud{ animation:b0704cloud 40s linear infinite alternate; }
+.b0704 .b0704-gull{ animation:b0704gull 14s ease-in-out infinite; }
+@keyframes b0704bob{ 0%,100%{ translate:0 0 } 50%{ translate:0 2px } }
+@keyframes b0704sway{ 0%,100%{ transform:skewX(0deg) } 50%{ transform:skewX(-3deg) } }
+@keyframes b0704wave{ from{ transform:translateX(0) } to{ transform:translateX(-80px) } }
+@keyframes b0704cloud{ from{ transform:translateX(0) } to{ transform:translateX(36px) } }
+@keyframes b0704gull{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(-26px,-7px) } }
+@media (prefers-reduced-motion:reduce){ .b0704 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0704Sky)"/>
+<circle cx="770" cy="70" r="26" fill="#FBE7B0" opacity=".85"/>
+<g class="b0704-cloud" fill="#FBF4E2" opacity=".7"><ellipse cx="150" cy="42" rx="80" ry="11"/><ellipse cx="215" cy="33" rx="44" ry="8"/><ellipse cx="560" cy="34" rx="90" ry="11"/><ellipse cx="650" cy="44" rx="48" ry="7"/></g>
+<g class="b0704-gull" fill="none" stroke="#3E4650" stroke-width="1.6" stroke-linecap="round"><path d="M610,78 q6,-6 12,0 q6,-6 12,0"/><path d="M640,92 q5,-5 10,0 q5,-5 10,0"/></g>
+<g fill="#5F7550" opacity=".85"><path d="M-3.4,124.2 L-12.4,152 L5.6,152 Z"/><path d="M18.4,111.8 L9.4,152 L27.4,152 Z"/><path d="M40.0,115.0 L31.0,152 L49.0,152 Z"/><path d="M56.8,118.8 L47.8,152 L65.8,152 Z"/><path d="M82.7,118.6 L73.7,152 L91.7,152 Z"/><path d="M103.6,112.1 L94.6,152 L112.6,152 Z"/><path d="M119.0,128.0 L110.0,152 L128.0,152 Z"/><path d="M142.0,125.7 L133.0,152 L151.0,152 Z"/><path d="M156.1,114.8 L147.1,152 L165.1,152 Z"/><path d="M182.7,112.9 L173.7,152 L191.7,152 Z"/><path d="M203.6,124.4 L194.6,152 L212.6,152 Z"/><path d="M216.7,125.8 L207.7,152 L225.7,152 Z"/><path d="M243.8,126.0 L234.8,152 L252.8,152 Z"/><path d="M257.3,127.6 L248.3,152 L266.3,152 Z"/><path d="M276.4,127.3 L267.4,152 L285.4,152 Z"/><path d="M298.8,125.1 L289.8,152 L307.8,152 Z"/><path d="M318.5,111.3 L309.5,152 L327.5,152 Z"/><path d="M337.3,113.3 L328.3,152 L346.3,152 Z"/><path d="M361.9,117.8 L352.9,152 L370.9,152 Z"/><path d="M380.6,114.1 L371.6,152 L389.6,152 Z"/><path d="M400.7,123.9 L391.7,152 L409.7,152 Z"/><path d="M418.6,123.6 L409.6,152 L427.6,152 Z"/><path d="M439.2,110.2 L430.2,152 L448.2,152 Z"/><path d="M459.4,126.7 L450.4,152 L468.4,152 Z"/><path d="M479.8,113.4 L470.8,152 L488.8,152 Z"/><path d="M499.6,115.4 L490.6,152 L508.6,152 Z"/><path d="M516.7,126.9 L507.7,152 L525.7,152 Z"/><path d="M541.3,127.1 L532.3,152 L550.3,152 Z"/><path d="M558.4,121.1 L549.4,152 L567.4,152 Z"/><path d="M577.5,127.3 L568.5,152 L586.5,152 Z"/><path d="M596.1,110.9 L587.1,152 L605.1,152 Z"/><path d="M621.5,110.9 L612.5,152 L630.5,152 Z"/><path d="M639.9,110.8 L630.9,152 L648.9,152 Z"/><path d="M662.9,116.9 L653.9,152 L671.9,152 Z"/><path d="M680.2,118.8 L671.2,152 L689.2,152 Z"/><path d="M697.8,121.2 L688.8,152 L706.8,152 Z"/><path d="M721.8,124.5 L712.8,152 L730.8,152 Z"/><path d="M742.8,118.8 L733.8,152 L751.8,152 Z"/><path d="M760.8,113.2 L751.8,152 L769.8,152 Z"/><path d="M781.2,125.5 L772.2,152 L790.2,152 Z"/><path d="M798.0,128.0 L789.0,152 L807.0,152 Z"/><path d="M816.2,110.9 L807.2,152 L825.2,152 Z"/><path d="M840.7,110.6 L831.7,152 L849.7,152 Z"/><path d="M862.2,122.3 L853.2,152 L871.2,152 Z"/><path d="M883.7,111.4 L874.7,152 L892.7,152 Z"/><path d="M899.7,126.5 L890.7,152 L908.7,152 Z"/></g><rect x="0" y="148" width="920" height="8" fill="#5F7550" opacity=".85"/><path d="M0,150 L560,150 C600,160 610,190 600,262 L0,262 Z" fill="url(#b0704Field)"/><path d="M560,152 L920,152 L920,262 L600,262 C612,200 602,166 560,152 Z" fill="url(#b0704Riv)"/><g class="b0704-wave" stroke="#D6E3E6" stroke-width="1.2" opacity=".55" fill="none"><path d="M600,170 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M610,188 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M620,206 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M630,224 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/><path d="M640,242 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0 q10,-3 20,0 t20,0"/></g><path d="M0,182 L300,182" stroke="#5A4A2C" stroke-width="2" opacity=".5"/><g class="b0704-sway" style="animation-delay:-0.83s"><line x1="11.3" y1="182.0" x2="11.3" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M11.3,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M11.3,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M11.3,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M11.3,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M11.3,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M11.3,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="11.3" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.41s"><line x1="32.5" y1="182.0" x2="32.5" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M32.5,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M32.5,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M32.5,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M32.5,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M32.5,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M32.5,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="32.5" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.90s"><line x1="54.9" y1="182.0" x2="54.9" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M54.9,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M54.9,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M54.9,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M54.9,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M54.9,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M54.9,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="54.9" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.90s"><line x1="73.8" y1="182.0" x2="73.8" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M73.8,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.8,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M73.8,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.8,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M73.8,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.8,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="73.8" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.41s"><line x1="96.3" y1="182.0" x2="96.3" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M96.3,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M96.3,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M96.3,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M96.3,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M96.3,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M96.3,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="96.3" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.89s"><line x1="118.6" y1="182.0" x2="118.6" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M118.6,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M118.6,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M118.6,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M118.6,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M118.6,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M118.6,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="118.6" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.17s"><line x1="139.3" y1="182.0" x2="139.3" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M139.3,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M139.3,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M139.3,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M139.3,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M139.3,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M139.3,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="139.3" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.91s"><line x1="160.9" y1="182.0" x2="160.9" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M160.9,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M160.9,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M160.9,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M160.9,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M160.9,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M160.9,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="160.9" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.41s"><line x1="178.0" y1="182.0" x2="178.0" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M178.0,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.0,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M178.0,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.0,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M178.0,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.0,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="178.0" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.37s"><line x1="201.9" y1="182.0" x2="201.9" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M201.9,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M201.9,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M201.9,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M201.9,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M201.9,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M201.9,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="201.9" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.89s"><line x1="223.1" y1="182.0" x2="223.1" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M223.1,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M223.1,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M223.1,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M223.1,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M223.1,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M223.1,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="223.1" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.59s"><line x1="241.5" y1="182.0" x2="241.5" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M241.5,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M241.5,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M241.5,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M241.5,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M241.5,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M241.5,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="241.5" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.91s"><line x1="265.8" y1="182.0" x2="265.8" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M265.8,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M265.8,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M265.8,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M265.8,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M265.8,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M265.8,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="265.8" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.21s"><line x1="283.9" y1="182.0" x2="283.9" y2="156.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M283.9,176.8 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M283.9,173.8 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M283.9,170.0 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M283.9,167.0 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M283.9,163.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M283.9,160.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="283.9" cy="154.0" rx="2" ry="3" fill="#D9B8C8"/></g><path d="M0,206 L292,206" stroke="#5A4A2C" stroke-width="2" opacity=".5"/><g class="b0704-sway" style="animation-delay:-4.52s"><line x1="17.8" y1="206.0" x2="17.8" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M17.8,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M17.8,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M17.8,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M17.8,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M17.8,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M17.8,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="17.8" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.15s"><line x1="37.0" y1="206.0" x2="37.0" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M37.0,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M37.0,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M37.0,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M37.0,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M37.0,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M37.0,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="37.0" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.75s"><line x1="59.0" y1="206.0" x2="59.0" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M59.0,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M59.0,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M59.0,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M59.0,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M59.0,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M59.0,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="59.0" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.42s"><line x1="79.5" y1="206.0" x2="79.5" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M79.5,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M79.5,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M79.5,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M79.5,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M79.5,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M79.5,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="79.5" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.51s"><line x1="103.5" y1="206.0" x2="103.5" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M103.5,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M103.5,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M103.5,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M103.5,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M103.5,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M103.5,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="103.5" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.32s"><line x1="124.9" y1="206.0" x2="124.9" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M124.9,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M124.9,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M124.9,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M124.9,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M124.9,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M124.9,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="124.9" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.37s"><line x1="145.0" y1="206.0" x2="145.0" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M145.0,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M145.0,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M145.0,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M145.0,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M145.0,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M145.0,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="145.0" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.96s"><line x1="165.4" y1="206.0" x2="165.4" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M165.4,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M165.4,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M165.4,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M165.4,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M165.4,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M165.4,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="165.4" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.33s"><line x1="186.0" y1="206.0" x2="186.0" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M186.0,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M186.0,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M186.0,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M186.0,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M186.0,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M186.0,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="186.0" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.94s"><line x1="205.7" y1="206.0" x2="205.7" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M205.7,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M205.7,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M205.7,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M205.7,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M205.7,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M205.7,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="205.7" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.24s"><line x1="229.9" y1="206.0" x2="229.9" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M229.9,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M229.9,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M229.9,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M229.9,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M229.9,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M229.9,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="229.9" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.57s"><line x1="248.3" y1="206.0" x2="248.3" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M248.3,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M248.3,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M248.3,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M248.3,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M248.3,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M248.3,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="248.3" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.93s"><line x1="270.0" y1="206.0" x2="270.0" y2="174.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M270.0,199.6 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M270.0,196.6 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M270.0,191.3 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M270.0,188.3 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M270.0,183.0 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M270.0,180.0 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="270.0" cy="172.0" rx="2" ry="3" fill="#D9B8C8"/></g><path d="M0,230 L284,230" stroke="#5A4A2C" stroke-width="2" opacity=".5"/><g class="b0704-sway" style="animation-delay:-1.83s"><line x1="24.5" y1="230.0" x2="24.5" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M24.5,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M24.5,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M24.5,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M24.5,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M24.5,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M24.5,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="24.5" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.55s"><line x1="43.1" y1="230.0" x2="43.1" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M43.1,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M43.1,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M43.1,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M43.1,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M43.1,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M43.1,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="43.1" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.89s"><line x1="67.0" y1="230.0" x2="67.0" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M67.0,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M67.0,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M67.0,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M67.0,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M67.0,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M67.0,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="67.0" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.62s"><line x1="85.3" y1="230.0" x2="85.3" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M85.3,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M85.3,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M85.3,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M85.3,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M85.3,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M85.3,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="85.3" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.88s"><line x1="109.7" y1="230.0" x2="109.7" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M109.7,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M109.7,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M109.7,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M109.7,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M109.7,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M109.7,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="109.7" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.18s"><line x1="128.9" y1="230.0" x2="128.9" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M128.9,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M128.9,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M128.9,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M128.9,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M128.9,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M128.9,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="128.9" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.64s"><line x1="150.1" y1="230.0" x2="150.1" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M150.1,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M150.1,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M150.1,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M150.1,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M150.1,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M150.1,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="150.1" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.03s"><line x1="170.1" y1="230.0" x2="170.1" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M170.1,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M170.1,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M170.1,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M170.1,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M170.1,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M170.1,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="170.1" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.44s"><line x1="190.8" y1="230.0" x2="190.8" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M190.8,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M190.8,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M190.8,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M190.8,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M190.8,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M190.8,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="190.8" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.10s"><line x1="212.6" y1="230.0" x2="212.6" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M212.6,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M212.6,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M212.6,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M212.6,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M212.6,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M212.6,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="212.6" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.61s"><line x1="235.4" y1="230.0" x2="235.4" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M235.4,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M235.4,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M235.4,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M235.4,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M235.4,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M235.4,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="235.4" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.06s"><line x1="256.9" y1="230.0" x2="256.9" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M256.9,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M256.9,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M256.9,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M256.9,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M256.9,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M256.9,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="256.9" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.77s"><line x1="275.1" y1="230.0" x2="275.1" y2="192.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M275.1,222.4 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M275.1,219.4 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M275.1,212.5 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M275.1,209.5 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M275.1,202.6 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M275.1,199.6 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="275.1" cy="190.0" rx="2" ry="3" fill="#D9B8C8"/></g><path d="M0,254 L276,254" stroke="#5A4A2C" stroke-width="2" opacity=".5"/><g class="b0704-sway" style="animation-delay:-2.68s"><line x1="29.9" y1="254.0" x2="29.9" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M29.9,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M29.9,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M29.9,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M29.9,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M29.9,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M29.9,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="29.9" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.66s"><line x1="49.5" y1="254.0" x2="49.5" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M49.5,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M49.5,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M49.5,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M49.5,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M49.5,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M49.5,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="49.5" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.23s"><line x1="73.0" y1="254.0" x2="73.0" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M73.0,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.0,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M73.0,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.0,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M73.0,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M73.0,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="73.0" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.61s"><line x1="92.0" y1="254.0" x2="92.0" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M92.0,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M92.0,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M92.0,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M92.0,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M92.0,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M92.0,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="92.0" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.98s"><line x1="113.2" y1="254.0" x2="113.2" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M113.2,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M113.2,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M113.2,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M113.2,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M113.2,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M113.2,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="113.2" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.01s"><line x1="135.8" y1="254.0" x2="135.8" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M135.8,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M135.8,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M135.8,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M135.8,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M135.8,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M135.8,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="135.8" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.75s"><line x1="155.8" y1="254.0" x2="155.8" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M155.8,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M155.8,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M155.8,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M155.8,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M155.8,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M155.8,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="155.8" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-2.10s"><line x1="178.1" y1="254.0" x2="178.1" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M178.1,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.1,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M178.1,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.1,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M178.1,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M178.1,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="178.1" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-4.76s"><line x1="196.3" y1="254.0" x2="196.3" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M196.3,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M196.3,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M196.3,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M196.3,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M196.3,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M196.3,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="196.3" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-3.04s"><line x1="220.2" y1="254.0" x2="220.2" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M220.2,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M220.2,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M220.2,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M220.2,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M220.2,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M220.2,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="220.2" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-0.37s"><line x1="240.3" y1="254.0" x2="240.3" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M240.3,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M240.3,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M240.3,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M240.3,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M240.3,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M240.3,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="240.3" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g class="b0704-sway" style="animation-delay:-1.51s"><line x1="262.9" y1="254.0" x2="262.9" y2="210.0" stroke="#4F6B2C" stroke-width="1.6"/><path d="M262.9,245.2 q-11.2,-4 -16.0,2.0 q8.0,3 16.0,-2.0 Z" fill="#6E8C3A"/><path d="M262.9,242.2 q11.2,-4 16.0,2.0 q-8.0,3 -16.0,-2.0 Z" fill="#7E9C44"/><path d="M262.9,233.8 q-9.1,-5 -13.0,2.0 q6.5,3 13.0,-2.0 Z" fill="#6E8C3A"/><path d="M262.9,230.8 q9.1,-5 13.0,2.0 q-6.5,3 -13.0,-2.0 Z" fill="#7E9C44"/><path d="M262.9,222.3 q-7.0,-6 -10.0,2.0 q5.0,3 10.0,-2.0 Z" fill="#6E8C3A"/><path d="M262.9,219.3 q7.0,-6 10.0,2.0 q-5.0,3 -10.0,-2.0 Z" fill="#7E9C44"/><ellipse cx="262.9" cy="208.0" rx="2" ry="3" fill="#D9B8C8"/></g><g transform="translate(330,200)"><path d="M-6,-118 L48,-150 L102,-118 Z" fill="#6A4B32"/><rect x="0" y="-118" width="96" height="118" fill="#9C7A55"/><line x1="6" y1="-118" x2="6" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="15" y1="-118" x2="15" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="24" y1="-118" x2="24" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="33" y1="-118" x2="33" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="42" y1="-118" x2="42" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="51" y1="-118" x2="51" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="60" y1="-118" x2="60" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="69" y1="-118" x2="69" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="78" y1="-118" x2="78" y2="0" stroke="#6E5236" stroke-width="2"/><line x1="87" y1="-118" x2="87" y2="0" stroke="#6E5236" stroke-width="2"/><rect x="32" y="-60" width="32" height="60" fill="#3A2A1C"/><path d="M36,-56 q-2,10 0,18 q2,-8 0,-18 Z" fill="#B58A3E"/><path d="M42,-56 q-2,10 0,18 q2,-8 0,-18 Z" fill="#B58A3E"/><path d="M48,-56 q-2,10 0,18 q2,-8 0,-18 Z" fill="#B58A3E"/><path d="M54,-56 q-2,10 0,18 q2,-8 0,-18 Z" fill="#B58A3E"/><path d="M60,-56 q-2,10 0,18 q2,-8 0,-18 Z" fill="#B58A3E"/><path d="M-6,-118 L48,-150 L102,-118" fill="none" stroke="#4A3020" stroke-width="2"/></g><g><rect x="452" y="148" width="92" height="54" fill="#B9A27A" stroke="#6E5236" stroke-width="1.5"/><path d="M446,150 L498,122 L550,150 Z" fill="#7A5638"/><rect x="486" y="170" width="22" height="32" fill="#3A2A1C"/></g><rect x="440" y="200" width="200" height="10" fill="#7A5638"/><g fill="#5A3B22"><rect x="450" y="210" width="6" height="30"/><rect x="476" y="210" width="6" height="30"/><rect x="502" y="210" width="6" height="30"/><rect x="528" y="210" width="6" height="30"/><rect x="554" y="210" width="6" height="30"/><rect x="580" y="210" width="6" height="30"/><rect x="606" y="210" width="6" height="30"/><rect x="632" y="210" width="6" height="30"/></g><g transform="translate(560,188) scale(1)"><path d="M-11,-14 Q-15,0 -11,14 L11,14 Q15,0 11,-14 Z" fill="#9A6A3A" stroke="#5A3B22" stroke-width="1.2"/><path d="M-13,-7 L13,-7 M-14,0 L14,0 M-13,7 L13,7" stroke="#4A3020" stroke-width="1.4"/><ellipse cx="0" cy="-14" rx="11" ry="3" fill="#B98A55" stroke="#5A3B22" stroke-width="1"/></g><g transform="translate(586,188) scale(1)"><path d="M-11,-14 Q-15,0 -11,14 L11,14 Q15,0 11,-14 Z" fill="#9A6A3A" stroke="#5A3B22" stroke-width="1.2"/><path d="M-13,-7 L13,-7 M-14,0 L14,0 M-13,7 L13,7" stroke="#4A3020" stroke-width="1.4"/><ellipse cx="0" cy="-14" rx="11" ry="3" fill="#B98A55" stroke="#5A3B22" stroke-width="1"/></g><g transform="translate(573,163) scale(1)"><path d="M-11,-14 Q-15,0 -11,14 L11,14 Q15,0 11,-14 Z" fill="#9A6A3A" stroke="#5A3B22" stroke-width="1.2"/><path d="M-13,-7 L13,-7 M-14,0 L14,0 M-13,7 L13,7" stroke="#4A3020" stroke-width="1.4"/><ellipse cx="0" cy="-14" rx="11" ry="3" fill="#B98A55" stroke="#5A3B22" stroke-width="1"/></g><g transform="translate(612,190) scale(0.9)"><path d="M-11,-14 Q-15,0 -11,14 L11,14 Q15,0 11,-14 Z" fill="#9A6A3A" stroke="#5A3B22" stroke-width="1.2"/><path d="M-13,-7 L13,-7 M-14,0 L14,0 M-13,7 L13,7" stroke="#4A3020" stroke-width="1.4"/><ellipse cx="0" cy="-14" rx="11" ry="3" fill="#B98A55" stroke="#5A3B22" stroke-width="1"/></g><g transform="translate(430,194) scale(0.9)"><path d="M-11,-14 Q-15,0 -11,14 L11,14 Q15,0 11,-14 Z" fill="#9A6A3A" stroke="#5A3B22" stroke-width="1.2"/><path d="M-13,-7 L13,-7 M-14,0 L14,0 M-13,7 L13,7" stroke="#4A3020" stroke-width="1.4"/><ellipse cx="0" cy="-14" rx="11" ry="3" fill="#B98A55" stroke="#5A3B22" stroke-width="1"/></g><g class="b0704-ship s1" transform="translate(780,206) scale(1.15)"><g clip-path="url(#b0704WL)"><path d="M-60,-12 L64,-12 Q58,6 40,10 L-42,10 Q-56,1 -60,-12 Z" fill="#4A3020"/><path d="M-60,-12 L64,-12 L63,-7 L-59,-7 Z" fill="#8A5A30"/><path d="M-48,-22 L-60,-12 L-30,-12 Z" fill="#5A3B25"/></g><line x1="-30" y1="0" x2="-30" y2="-76" stroke="#3A2A1C" stroke-width="2"/><path d="M-44,-55 L-16,-55 L-14,-35.2 L-46,-35.2 Z" fill="#F4EAD4" opacity=".96"/><path d="M-47,-32.0 L-13,-32.0 L-11,-9 L-49,-9 Z" fill="#EEE2C8" opacity=".96"/><line x1="4" y1="0" x2="4" y2="-92" stroke="#3A2A1C" stroke-width="2"/><path d="M-10,-71 L18,-71 L20,-44.0 L-12,-44.0 Z" fill="#F4EAD4" opacity=".96"/><path d="M-13,-40.0 L21,-40.0 L23,-9 L-15,-9 Z" fill="#EEE2C8" opacity=".96"/><line x1="36" y1="0" x2="36" y2="-70" stroke="#3A2A1C" stroke-width="2"/><path d="M22,-49 L50,-49 L52,-31.900000000000002 L20,-31.900000000000002 Z" fill="#F4EAD4" opacity=".96"/><path d="M19,-29.0 L53,-29.0 L55,-9 L17,-9 Z" fill="#EEE2C8" opacity=".96"/><path d="M64,-2 L90,-20" stroke="#3A2A1C" stroke-width="1.6"/><path d="M4,-80 L4,-90 L18,-86 L4,-82" fill="#9B2C24"/><ellipse cx="2" cy="18" rx="66" ry="4" fill="#1E3340" opacity=".25"/><path d="M-66,13 q6,-2.6 12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#E2ECEE" stroke-width="1.5" opacity=".75"/></g></svg>
   </div>
 
   <div class="hero-headline-strip serif">Southern Colonies</div>
@@ -2677,8 +4210,7 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
-      <div class="info-value">Week 16 · Q3</div>
+      <div class="info-value">Week 16 · Q2</div>
     </div>
   </div>
   <div class="info-cell">
@@ -2692,7 +4224,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Perseverance</div>
     </div>
   </div>
@@ -2700,27 +4231,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.2 · SS.5.A.4.3 · SS.5.E.1.1 · TEKS 1(A)–(C), 6(A), 9(A), 11(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 32 · Circulation 1400 · <em>Colonial regional coverage — Southern Colonies</em>
+      Vol. 1 · Issue 32 · Readers: 1,400 · <em>Colonial regional coverage — Southern Colonies</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,20 +4253,18 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1400</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — The Gazette turns to the plantation South — the hardest colonial story to tell honestly.
+        — The Gazette turns to the South, the hardest colonial story to tell honestly.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,23 +4287,18 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: the Front Page reported on the <em>Middle Colonies</em> — fertile farmland, diverse peoples, and religious tolerance. Tap to recap. ▼
+      Last issue: the Front Page reported on the <em>Middle Colonies</em>: rich farmland, people from many homelands, and more religious freedom than most colonies. Tap to recap. ▼
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that the Middle Colonies were significant for their fertile soil, grain exports, ethnic and religious diversity, and cities like Philadelphia. The Herald reduced them to their location; our editors proved their economy, people, and values made them distinctive. Last issue’s Archive Line asked what future citizens should remember about the Middle Colonies.
+      The Gazette showed that the Middle Colonies mattered for their rich soil, their grain and flour, their people from many homelands and faiths, and cities like Philadelphia, though not everyone shared in it. The Herald said they mattered only because of their location; our editors showed there was much more. Last issue’s Archive Line asked what future citizens should remember about the Middle Colonies.
     </div>
   </div>
 </div>
@@ -2793,24 +4307,17 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.04</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
       <p>Last issue, the Gazette covered the diverse Middle Colonies. Now the most difficult regional story: <em>5.07.04 — Southern Colonies</em>. This dispatch lands on the <strong>Source Desk</strong>. Virginia, Maryland, the Carolinas, and Georgia had warm climates and rich soil that supported large-scale farming. But the plantation economy depended on the labor of enslaved people. The Gazette must report the full story — not just the farms and fields. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
     </div>
   </div>
@@ -2821,14 +4328,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Were the Southern Colonies really just farms and plantations — or does the full story include who did the work, who profited, and who was harmed?</p>
       </div>
     </div>
@@ -2842,8 +4346,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Examine a source showing Southern colonial life and identify what it reveals about the economy and labor system.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how the plantation economy depended on enslaved labor and created deep inequality.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Correct the Herald’s oversimplified claim by including the experiences of enslaved people alongside the economic facts.</div>
@@ -2874,7 +4376,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-04-welcome -->
@@ -2892,25 +4393,19 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore the Southern Colonies & spotlight perseverance</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Follow one barrel of tobacco</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a source about Southern colonial life</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Count the people and study a real 1750s picture</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Perseverance ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A persevering editor keeps reporting even when the story is painful.</strong> Today, perseverance means looking honestly at how the Southern economy worked, who benefited, and who suffered — and not stopping at a comfortable summary.
+      <strong>A persevering editor keeps reporting even when the story is painful.</strong> Today, perseverance means looking honestly at how the South made its money, who got the money and who suffered, and not stopping at an easy summary.
     </div>
   </div>
 
@@ -2920,19 +4415,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Southern Colonies: Just Farms!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">The Southern Colonies were just farms and plantations.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Study the source evidence and decide: were the Southern Colonies really just farms — or was the full story about a system built on enslaved labor, deep inequality, and human cost?
+      <strong>Your job, junior editor:</strong> Study the evidence and decide: were the Southern Colonies really just farms, or does the full story include who did the work, who got the money, and the harm done to people?
     </div>
   </div>
 
@@ -2940,10 +4429,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine the evidence about the Southern Colonies — and publish a <strong>Gazette Correction</strong> that reports the full story, including the experiences of enslaved people.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> (where we check one source closely) at The Republic Gazette. The Editor-in-Chief has asked the team to check the evidence about the Southern Colonies and publish a <strong>Gazette Correction</strong> (a news story that fixes another paper’s mistake) that tells the full story, including the lives of enslaved people.
     </div>
   </div>
 
@@ -2954,19 +4440,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Perseverance</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this source show about Southern colonial life, whose labor made the economy possible, and what perspectives are missing from the Herald’s claim?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. A persevering editor doesn’t skip the hardest part of the story.
       </div>
     </div>
@@ -2977,18 +4455,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-04-explore-explainer -->
@@ -3002,13 +4470,10 @@ html, body {
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
       <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
       <div class="desk-title">Source Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3028,55 +4493,71 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 Cash Crops, Plantations, and Enslaved Labor</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>The Southern Colonies — Virginia, Maryland, North Carolina, South Carolina, and Georgia — had warm climates, long growing seasons, and fertile soil along wide rivers. These conditions were ideal for growing cash crops: tobacco in Virginia and Maryland, rice and indigo in the Carolinas, and later cotton across the region. Large plantations — estates sometimes covering thousands of acres — produced these crops for export to Europe.</p>
-    <p>But the plantation economy depended on the forced labor of enslaved Africans. By the 1700s, enslaved people made up a large portion of the Southern population. They worked in fields from sunrise to sunset, had no freedom, could be bought and sold, and faced violence if they resisted. Families were separated at auction. The wealth of Southern planters was built directly on this labor. The social hierarchy was steep: wealthy planters at the top, small farmers and tradespeople in the middle, and enslaved people at the bottom with no legal rights. The South also had political firsts — Virginia’s House of Burgesses (1619) was the first elected colonial legislature — but that legislature represented only free white men. An honest report of the Southern Colonies includes the economy, the government, AND the human cost.</p>
+    <p>The Southern Colonies were Virginia, Maryland, North Carolina, South Carolina and Georgia. They had warm weather, long growing seasons and rich soil along wide rivers. Those were good conditions for <strong>cash crops</strong>, crops grown to sell: tobacco in Virginia and Maryland, and rice and indigo (a plant used to make blue dye) in the Carolinas. Cotton came much later. <strong>Plantations</strong>, very large farms that sometimes covered thousands of acres, grew these crops to send to Britain and Europe.</p>
+    <p>But the plantations depended on the forced work of <strong>enslaved</strong> Africans and African Americans. By the 1700s, enslaved people were a large part of the Southern population. In South Carolina in 1750 they were more than half. They worked from sunrise to sunset for no pay, could be bought and sold, and faced harsh punishment if they resisted. Families were split up when people were sold. The planters’ wealth was built on this work. A small group of rich planters was on top, small farmers and tradespeople were in the middle, and enslaved people were at the bottom, with no legal rights. Slavery was legal in all thirteen colonies, but the South depended on it most.</p>
+    <p>The South was more than farms, too. Charles Town was a busy port with merchants and printers. Virginia’s <strong>House of Burgesses</strong>, first held in 1619, was the first elected group of lawmakers in the English colonies, but only white men who owned land could vote for it. An honest report of the Southern Colonies includes the crops, the government, AND the harm done to people.</p>
 
     <!-- Who profited vs Who suffered grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
-        <div class="source-type-label">💰 Who Profited</div>
+        <div class="source-type-label">💰 Who Got the Money</div>
         <div class="source-type-name">Wealthy Planters</div>
-        <div class="source-type-defn">A small class of wealthy plantation owners controlled the land, the economy, and the colonial government.</div>
+        <div class="source-type-defn">A small group of rich plantation owners controlled the land, the money and the colonial government.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Tobacco, rice, and indigo exports to Europe · Thousands of acres per plantation · House of Burgesses represented free white men · Social and political power concentrated
+          Tobacco, rice and indigo sent to Britain · Thousands of acres per plantation · Only white men who owned land could vote for the House of Burgesses · Most of the power
         </div>
       </div>
       <div class="source-type-card secondary">
-        <div class="source-type-label">⛓️ Who Suffered</div>
-        <div class="source-type-name">Enslaved Africans</div>
-        <div class="source-type-defn">The plantation economy was built on the forced labor of enslaved people who had no freedom, no rights, and no choice.</div>
+        <div class="source-type-label">⛓️ Who Paid the Price</div>
+        <div class="source-type-name">Enslaved Africans and African Americans</div>
+        <div class="source-type-defn">The plantations ran on the forced work of enslaved people, who had no freedom, no rights and no choice.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Forced labor from sunrise to sunset · Bought and sold as property · Families separated at auction · Violence used to maintain control · No legal rights
+          Forced work from sunrise to sunset · Bought and sold as property · Families split up by sales · Harsh punishment used to control them · No legal rights
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald called the Southern Colonies “just farms and plantations.” They were plantations, yes — but plantations built on enslaved labor, producing wealth for some and suffering for others. A persevering editor reports both the economy and the human cost, because the people who built the South deserve an honest account.</p>
+    <p>The Hasty Herald called the Southern Colonies “just farms and plantations.” There were plantations, yes. But they were built on the work of enslaved people, and they made some people rich while others suffered. A persevering editor reports both the crops and the harm done to people, because the people who built the South deserve an honest account.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
   <div class="content-section">
-    <h2>🔎 The Southern Colonies: Wealth Built on Forced Labor</h2>
-    <p>Look at this source carefully. Notice the landscape, the crops, and the people shown. Think about who is working, who is profiting, and what the source might not show.</p>
+    <h2>🔎 Two Real Pictures of Southern Tobacco</h2>
+    <p>Here are two real pictures, made about 100 years apart. Look at both. Who is working? Who isn’t? When was each one made?</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
-      <div class="source-image-placeholder" data-image="source-5-07-04-southern-colonial-plantation">
-        🖼️ <strong>Image placeholder:</strong> Painting or photograph showing a Southern colonial plantation or tobacco field.<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-07-04-southern-colonial-plantation.jpg</code>
+      <div class="source-image-placeholder" data-image="source-5-07-04-fry-jefferson-1755-wharf">
+        🖼️ <strong>Source:</strong> Detail from the corner of “A map of the most inhabited part of Virginia,” drawn by Joshua Fry and Peter Jefferson in 1751 and printed in London by Thomas Jefferys, 1755. Library of Congress, Geography and Map Division (loc.gov/item/74693166).
       </div>
       <div class="source-image-caption">
-        <em>What does this scene show about the Southern economy — and whose labor made it possible?</em>
+        <em>Made in colonial times: what does this scene show about who did the work, and what can’t it show?</em><br><small style="font-style:normal;opacity:.85">A decorated corner (cartouche) of a 1755 map of Virginia. It was made in London, so the artist may never have seen a Virginia wharf. Library of Congress.</small>
       </div>
     </div>
+
+    <div class="source-image-frame">
+      <div class="source-image-placeholder" data-image="source-5-07-04-southern-colonial-plantation">
+        🖼️ <strong>Source:</strong> “Tobacco Plantation,” wood engraving by J. W. Orr, from “The History and Mystery of Tobacco,” Harper’s New Monthly Magazine, 1855. Public domain (Wikimedia Commons).
+      </div>
+      <div class="source-image-caption">
+        <em>Made in 1855, about 100 years after the colonial era: what can it show, and what can’t it show about the 1700s?</em><br><small style="font-style:normal;opacity:.85">This engraving shows tobacco work in the 1850s, when slavery was still legal in the South. It can’t show what colonial Virginia looked like, and a picture alone can’t show whether these workers were enslaved.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>port</em> means “carry”</h2>
+    <p>Many English words come from the Latin word <strong>portare</strong>, which means <strong>to carry</strong>. You can spot it as <strong>port</strong>.</p>
+    <ul>
+      <li><strong>export</strong> (ex + port): to carry goods out to sell in another place (ex means out)</li>
+      <li><strong>import</strong> (im + port): to carry goods in from another place (im means in)</li>
+      <li><strong>transport</strong> (trans + port): to carry across from one place to another (trans means across)</li>
+      <li><strong>porter</strong> (port + er): a person whose job is carrying loads</li>
+    </ul>
+    <p><strong>Discovery:</strong> Southern planters exported tobacco, rice and indigo to Britain, and imported cloth, tools and books.</p>
+    <p><em>Try it: use the word <strong>export</strong> in a sentence about the Southern Colonies.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
@@ -3086,7 +4567,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3096,7 +4576,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Crops and labor" placeholder="The main cash crops were... and the labor was done by..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3106,7 +4585,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Missing perspective" placeholder="It’s incomplete because..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3123,10 +4601,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3135,14 +4609,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3219,7 +4685,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3241,21 +4706,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-04-assignment-explainer -->
@@ -3285,16 +4737,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Gazette Correction — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
           <span>(1) Quote the Herald’s claim about farms and plantations. (2) Describe the economy AND whose labor made it possible. (3) Rewrite the claim so it includes the full story.</span>
         </div>
@@ -3310,9 +4758,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about southern colonies.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3341,8 +4786,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and gazette correction</span></div>
@@ -3357,32 +4800,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 32 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
       <strong>Well done, Junior Editor.</strong> You reported on the Southern Colonies with evidence and perseverance — the Gazette’s readers now understand both the economy and the human cost of the plantation system.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.05) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Daily Life in the Thirteen Colonies</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that daily life in the colonies was the same for everyone. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-04-closing -->
@@ -3657,7 +5089,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 32 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4014,5 +5446,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

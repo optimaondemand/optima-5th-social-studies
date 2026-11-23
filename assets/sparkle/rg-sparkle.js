@@ -228,7 +228,7 @@
 
   /* ================================================================ stage heads + a wire strip at the end of each tab */
   function buildScenes(){ STAGES.forEach(function(s,i){ var panel=document.getElementById('panel-'+s.tab); if(!panel) return;
-      var sc=el('div','rg rg-scene','<div class="rg-scene-n">'+(i+1)+'</div><div><div class="rg-scene-k">'+esc(['Masthead','Headline','Columns','Photo'][i]||'')+'</div><div class="rg-scene-t">'+esc(s.t)+'</div><p class="rg-scene-why">'+esc(s.why)+'</p></div>');
+      var sc=el('div','rg rg-scene','<div class="rg-scene-n">'+(i+1)+'</div><div><div class="rg-scene-k">'+esc(s.k!=null?s.k:(['Masthead','Headline','Columns','Photo'][i]||''))+'</div><div class="rg-scene-t">'+esc(s.t)+'</div><p class="rg-scene-why">'+esc(s.why)+'</p></div>');
       var vr=panel.firstElementChild&&panel.firstElementChild.classList.contains('video-ratio')?panel.firstElementChild:null; if(vr) after(vr,sc); else panel.insertBefore(sc,panel.firstChild);
     }); }
 
@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass
-     explore.reading.type   suncolumns | ships | chains | scale
+     scene1.type            dateit | ads | plot | spyglass | trail
+     explore.reading.type   suncolumns | ships | chains | scale | grid
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -614,6 +614,114 @@
       journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">'+PN.map(function(h){ var mine=L.filter(function(x){ return x.pan===h.k&&st.placed[x.id]; }); return '<b>'+e(h.t)+':</b> '+e(mine.map(function(x){ return x.short||x.who; }).join(', ')||'—'); }).join('<br>')+(FL&&st.flipSeen?'<br><b>'+e(FL.title||'')+':</b> '+e(FL.front.k)+' → '+e(FL.back.k):'')+'</p>'; },
       people:function(){ return L.map(function(x){ return x.who; }); }}; };
 
+  /* ---------------------------------------------------------------- trail: follow one thing (a tobacco barrel) stop by stop; at each stop guess who did the work, then a work/money ledger fills in; then seal a guess
+     DATA.scene1 = {type:'trail', title, job, item, q, stops:[{id,icon,place,when,t,ask,opts:[{t,ok,say}],fact,work,paid}], ledger:{work,paid}, seal:{q,opts,reveal}, sealed} */
+  MOD.trail=function(c,anchor){ var st=mstate('trail',{stop:0,ans:{}}); if(!st.ans) st.ans={}; var SP=c.stops||[], N=SP.length, LG=c.ledger||{};
+    var g=gameShell('rg-trail','Dispatch · follow the barrel',c.title||'Follow the barrel',c);
+    g.innerHTML+=(c.q?'<p class="rg-trail-q">'+esc(c.q)+'</p>':'')+'<ol class="rg-trail-route" aria-label="The stops on the trail"></ol><div class="rg-trail-stop" aria-live="polite"></div>'+
+      '<div class="rg-trail-nav"><button type="button" class="rg-btn rg-trail-next"></button></div>'+
+      '<div class="rg-trail-ledwrap rg-hide"><div class="hd">📒 '+esc(LG.title||'The barrel’s account book')+'</div><table class="rg-trail-led"><thead><tr><th scope="col">'+esc(LG.stop||'Stop')+'</th><th scope="col">'+esc(LG.work||'Who did the work')+'</th><th scope="col">'+esc(LG.paid||'Who got paid')+'</th></tr></thead><tbody></tbody></table></div>'+
+      '<div class="rg-trail-count" aria-live="polite"></div><div class="rg-ads-seal rg-trail-seal"></div>';
+    after(anchor,g);
+    var view=Math.min(st.stop,N-1), box=$('.rg-trail-stop',g), nextB=$('.rg-trail-next',g);
+    function answered(i){ return st.ans[i]!=null; }
+    function nDone(){ return SP.filter(function(x,i){ return answered(i); }).length; }
+    function stopHTML(i){ var s=SP[i], a=st.ans[i], O=s.opts||[], ok=O.filter(function(o){ return o.ok; })[0]||{};
+      return '<article class="rg-trail-card'+(s.calm?' calm':'')+'" data-i="'+i+'"><header><span class="ic" aria-hidden="true">'+esc(s.icon||'📍')+'</span><div><small>Stop '+(i+1)+' of '+N+(s.when?' · '+esc(s.when):'')+'</small><b>'+esc(s.place)+'</b></div></header>'+
+        '<p class="rg-trail-t">'+esc(s.t)+'</p>'+
+        '<fieldset class="rg-ad-q"><legend>'+esc(s.ask||'Who did this work?')+'</legend>'+O.map(function(o,k){ return '<label class="rg-radio'+(a!=null&&o.ok?' right':'')+(a===k&&!o.ok?' wrong':'')+'"><input type="radio" name="rg-trail-'+i+'" value="'+k+'"'+(a===k?' checked':'')+(a!=null?' disabled':'')+'> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>'+
+        (a!=null?'<div class="rg-trail-say"><p class="'+((O[a]||{}).ok?'ok':'no')+'">'+((O[a]||{}).ok?'✓ ':'')+esc((O[a]||{}).say||'')+((O[a]||{}).ok?'':' <b>'+esc(ok.t||'')+'.</b>')+'</p>'+(s.fact?'<p class="rg-trail-fact">'+esc(s.fact)+'</p>':'')+'</div>':'')+'</article>'; }
+    function paint(){ var n=nDone();
+      $('.rg-trail-route',g).innerHTML=SP.map(function(s,i){ var can=i<=st.stop; return '<li><button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(answered(i)?'ok':'')+'"'+(can?'':' disabled')+' aria-pressed="'+(i===view)+'" aria-label="Stop '+(i+1)+': '+esc(s.place)+(can?'':' (not open yet)')+'"><span class="ic" aria-hidden="true">'+esc(s.icon||'📍')+'</span><span class="t">'+esc(s.short||s.place)+'</span></button></li>'; }).join('');
+      box.innerHTML=stopHTML(view);
+      $$('input[type=radio]',box).forEach(function(r){ r.addEventListener('change',function(){ var i=+box.firstChild.dataset.i; if(answered(i)) return; st.ans[i]=+r.value; save(); ((SP[i].opts||[])[+r.value]||{}).ok?SFX.chime():SFX.soft(); paint(); refreshPress(); var nb=!nextB.disabled?nextB:$('input[name="rg-trail-q"]',g); if(nb) nb.focus({preventScroll:true}); }); });
+      var cur=answered(st.stop); nextB.disabled=!cur||st.stop>=N-1; nextB.classList.toggle('rg-hide',st.stop>=N-1&&cur);
+      nextB.textContent=!cur?(c.lockedT||'Answer the question to move on'):view<st.stop?'Back to stop '+(st.stop+1)+' ▸':'🛢 Roll on to the next stop ▸';
+      var rows=SP.map(function(s,i){ return answered(i)?'<tr><th scope="row">'+esc(s.icon||'')+' '+esc(s.short||s.place)+'</th><td>'+esc(s.work||'')+'</td><td>'+esc(s.paid||'')+'</td></tr>':''; }).join('');
+      $('tbody',g).innerHTML=rows; $('.rg-trail-ledwrap',g).classList.toggle('rg-hide',!n);
+      $('.rg-trail-count',g).innerHTML=n<N?'<p class="rg-todo">🛢 <b>'+n+' of '+N+'</b> stops done.</p>':(LG.close?'<p class="rg-trail-close">'+esc(LG.close)+'</p>':'');
+      var sb=$('.rg-trail-seal',g), S1=c.seal||{};
+      if(n<N){ sb.innerHTML=''; delete sb.dataset.on; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML=(S1.img?'<figure class="rg-trail-fig"><div class="pic"></div>'+(S1.cap?'<figcaption>'+esc(S1.cap)+'</figcaption>':'')+'</figure>':'')+'<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-trail-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        if(S1.img){ var im=srcImg(S1.img,'',S1.alt||''); $('.rg-trail-fig .pic',sb).appendChild(im); }
+        $$('input[name="rg-trail-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-trail-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',sb).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    nextB.addEventListener('click',function(){ if(view<st.stop){ view=st.stop; SFX.paper(); paint(); return; } if(!answered(st.stop)||st.stop>=N-1) return; st.stop++; view=st.stop; save(); SFX.paper(); paint(); refreshPress(); var f=$('input[type=radio]',box); if(f) f.focus({preventScroll:true}); });
+    $('.rg-trail-route',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; view=+b.dataset.v; SFX.paper(); paint(); });
+    paint();
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },stop:function(i){ return SP[i]; },
+      journal:function(e,NA){ if(!nDone()) return NA; return '<p class="a"><b>The barrel trail:</b> '+e(SP.filter(function(s,i){ return answered(i); }).map(function(s){ return (s.short||s.place)+': '+(s.work||''); }).join(' · '))+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:SP.filter(function(s,i){ return answered(i); }).map(function(s){ return s.short||s.place; }), vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- grid: 100 people stand for a whole colony; read one group at a time and tap where it belongs on the grid; the dots fill in; then compare other colonies
+     DATA.explore.reading = {type:'grid', title, job, place, groups:[{k,n,t,d,calm}], tray:{k,t,d,calm}, times:[2], cols:[{id,short,who,icon,pan,kind,lines,say,hint,calm}],
+       myths:[{after,claim,fact,calm}], method, compare:{q,need,places:[{k,t,n,note}]}, close, srcLabel, miniAfter, job}. cols/times match the other reading modules, so the press planner works unchanged. */
+  MOD.grid=function(c,anchor){ var st=mstate('sun',{stop:-1,myth:{},placed:{},cmp:{}}); if(!st.placed) st.placed={}; if(!st.myth) st.myth={}; if(!st.cmp) st.cmp={};
+    var L=c.cols||[], N=L.length, GR=c.groups||[], TR=c.tray||null, TM=c.times||[], CP=c.compare||null, TOT=c.total||100;
+    var g=gameShell('rg-chains rg-grid','The Desk · count the people',c.title||'Who were the 100?',c);
+    function grp(k){ return GR.filter(function(h){ return h.k===k; })[0]||(TR&&TR.k===k?TR:{}); }
+    g.innerHTML+='<div class="rg-gr-board"><div class="rg-gr-head"><b class="rg-gr-place">'+esc(c.place||'')+'</b><span class="rg-gr-sum" aria-live="polite"></span></div>'+
+      '<div class="rg-gr-dots" aria-hidden="true"></div><div class="rg-gr-zones">'+GR.map(function(h){ return '<button type="button" class="drop rg-gr-zone'+(h.calm?' calm':'')+'" data-k="'+esc(h.k)+'"><span class="sw" aria-hidden="true"></span><b>'+esc(h.t)+'</b><small>'+esc(h.d||'')+'</small><span class="rg-sr"> (put the chosen card here)</span></button>'; }).join('')+'</div>'+
+      (TR?'<button type="button" class="drop rg-gr-zone tray'+(TR.calm?' calm':'')+'" data-k="'+esc(TR.k)+'"><span class="ic" aria-hidden="true">'+esc(TR.icon||'⬚')+'</span><b>'+esc(TR.t)+'</b><small>'+esc(TR.d||'')+'</small><span class="rg-sr"> (put the chosen card here)</span></button>':'')+
+      '<div class="rg-gr-links"></div>'+(c.method?'<details class="rg-gr-method"><summary>How we counted</summary><p>'+esc(c.method)+'</p></details>':'')+'</div>'+
+      '<div class="rg-link-log" role="group" aria-label="Groups you have read"></div><div class="rg-link-desk"></div><div class="rg-ship-ctl rg-link-ctl"><button type="button" class="rg-btn rg-link-next"></button><span class="rg-link-now"></span></div>'+
+      '<div class="rg-myths"></div><div class="rg-gr-cmp rg-hide"></div><div class="rg-sun-close"></div>';
+    after(anchor,g);
+    var view=-1, nextB=$('.rg-link-next',g), now=$('.rg-link-now',g), mythBox=$('.rg-myths',g), desk=$('.rg-link-desk',g), cmpBox=$('.rg-gr-cmp',g);
+    function placed(i){ return !!st.placed[L[i].id]; }
+    function shown(k){ return L.some(function(x){ return x.pan===k&&st.placed[x.id]; }); }
+    function linkHTML(i){ var x=L[i], p=placed(i), H=grp(x.pan); return '<article class="rg-link'+(x.calm?' calm':'')+'" data-id="'+esc(x.id)+'"><header><span class="ic" aria-hidden="true">'+esc(x.icon||'•')+'</span><div><small>Group '+(i+1)+' of '+N+'</small><b>'+esc(x.who)+'</b></div></header>'+
+      '<dl>'+TM.map(function(t,r){ return '<div class="rg-link-row'+(r===1&&!p?' rg-hide':'')+'"><dt>'+esc(t)+'</dt><dd class="rg-link-line" data-i="'+r+'">'+esc(x.lines[r]||'')+'</dd></div>'; }).join('')+'</dl>'+
+      '<div class="rg-link-sort">'+(p?'<span class="placed-note">✓ Placed: <i>'+esc(H.t||'')+'</i></span>':'<div class="hd">'+esc(c.sortQ||'Where does this group belong? Tap the card, then tap a part of the grid.')+'</div><button type="button" class="rg-card'+(x.calm?' calm':'')+'" data-i="'+i+'" aria-pressed="false" draggable="true">👥 '+esc(x.short||x.who)+'</button>')+'<p class="say" aria-live="polite">'+(st.say&&st.say[0]===i?esc(st.say[1]):'')+'</p></div></article>'; }
+    /* the dots: the colony being shown (South Carolina unless a comparison is picked); group 0 fills from the start, group 1 from the end */
+    function paintDots(){ var P=CP&&st.cmpOn!=null?(CP.places||[])[st.cmpOn]:null, d=$('.rg-gr-dots',g), h='';
+      if(P){ for(var i=0;i<TOT;i++) h+='<i class="'+(i>=TOT-P.n?'b':'a')+'"></i>'; d.innerHTML=h; d.classList.add('cmp'); $('.rg-gr-place',g).textContent=P.t;
+        $('.rg-gr-sum',g).textContent=(CP.sumT||'{b} of 100 were Black, almost all of them enslaved.').replace('{b}',P.n); return; }
+      d.classList.remove('cmp'); $('.rg-gr-place',g).textContent=c.place||'';
+      var a=GR[0]||{n:0}, b=GR[1]||{n:0}, sa=shown(a.k), sb=shown(b.k);
+      for(var j=0;j<TOT;j++){ var isB=j>=TOT-b.n; h+='<i class="'+(isB?(sb?'b':'q'):(sa?'a':'q'))+'"></i>'; } d.innerHTML=h;
+      $('.rg-gr-sum',g).textContent=[sa?a.n+' '+(a.short||a.t):'', sb?b.n+' '+(b.short||b.t):''].filter(Boolean).join(' · ')||(c.sumEmpty||'Who were these 100 people? Read a card to find out.'); }
+    function paint(){ var s=st.stop; if(view<0||view>s) view=s;
+      desk.innerHTML=view<0?'<div class="rg-harbor-empty">'+esc(c.deskEmpty||'Tap the button to read the first group.')+'</div>':linkHTML(view);
+      $('.rg-link-log',g).innerHTML=s<0?'':L.slice(0,s+1).map(function(x,i){ return '<button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(placed(i)?'ok':'')+'" aria-pressed="'+(i===view)+'">'+esc(x.icon||'•')+' '+esc(x.short||x.who)+'</button>'; }).join('');
+      $$('.rg-gr-zone',g).forEach(function(z){ var k=z.dataset.k; z.classList.toggle('on',shown(k)); });
+      $('.rg-gr-links',g).innerHTML=GR.concat(TR?[TR]:[]).map(function(h){ var mine=L.filter(function(x){ return x.pan===h.k&&st.placed[x.id]; }); return mine.length?'<div class="row"><b>'+esc(h.short||h.t)+':</b> '+mine.map(function(x){ return '<span class="lk on'+(x.calm?' calm':'')+'">'+esc(x.short||x.who)+'</span>'; }).join('')+'</div>':''; }).join('');
+      paintDots();
+      var cur=s<0||placed(s);
+      nextB.disabled=!cur||s>=N-1; nextB.textContent=s<0?'👥 Read the first group ▸':s>=N-1?(cur?'Every group is placed':'Place this group first'):!cur?'Place this group first':'Read the next group ▸';
+      now.textContent=s<0?'':'Group '+(view+1)+' of '+N+'.'+(view<s?' Tap “'+(L[s].short||L[s].who)+'” to come back.':'');
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ return m.after<=s&&(m.after<s||placed(m.after)); }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+(m.calm?' calm':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact"><div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      var mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',s<(c.miniAfter||0)||(s===(c.miniAfter||0)&&!placed(s)));
+      if(CP){ var showC=allPlaced(); cmpBox.classList.toggle('rg-hide',!showC); var vn=cmpBox.previousElementSibling; if(showC) paintCmp(); }
+      var all=done(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':''; g.classList.toggle('finished',all); }
+    function nCmp(){ return Object.keys(st.cmp).length; }
+    function paintCmp(){ var P=CP.places||[], need=CP.need||2, n=nCmp();
+      cmpBox.innerHTML='<div class="hd"><b>'+esc(CP.title||'Compare the count')+'</b> '+esc(CP.q||'')+'</div><div class="btns">'+P.map(function(p,i){ return '<button type="button" class="rg-btn alt'+(st.cmpOn===i?' on':'')+(st.cmp[i]?' seen':'')+'" data-p="'+i+'" aria-pressed="'+(st.cmpOn===i)+'">'+esc(p.t)+'</button>'; }).join('')+(st.cmpOn!=null?'<button type="button" class="rg-btn alt" data-p="back">↺ '+esc(CP.backT||'Back to South Carolina')+'</button>':'')+'</div>'+
+        (st.cmpOn!=null?'<p class="note">'+esc((P[st.cmpOn]||{}).note||'')+'</p>':'')+'<p class="rg-todo">'+(n<need?'🗺 <b>'+n+' of '+need+'</b> places compared.':'✓ '+esc(CP.doneT||'Compared.'))+'</p>'; }
+    cmpBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-p]'); if(!b) return; if(b.dataset.p==='back'){ st.cmpOn=null; } else { var i=+b.dataset.p; st.cmpOn=i; st.cmp[i]=true; } save(); SFX.paper(); paint(); refreshPress(); if(done()) beat('sunDone'); var f=$('button[data-p="'+b.dataset.p+'"]',cmpBox)||$('button[data-p]',cmpBox); if(f) f.focus({preventScroll:true}); });
+    function go(i){ if(i<=st.stop){ if(i>=0&&i!==view){ view=i; SFX.paper(); paint(); } return; } if(i>st.stop+1) return; if(st.stop>=0&&!placed(st.stop)) return; st.stop=i; view=i; save(); SFX.paper(); paint(); refreshPress(); }
+    nextB.addEventListener('click',function(){ go(st.stop+1); var f=$('.rg-link-desk .rg-card',g); if(f) f.focus({preventScroll:true}); });
+    $('.rg-link-log',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(b) go(+b.dataset.v); });
+    dragTap(g,'.rg-link-desk .rg-card','.rg-gr-zone',function(card,row){ var i=+card.dataset.i, x=L[i], k=row.dataset.k;
+      if(x.pan!==k){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); st.say=[i,x.hint||'Read the card again. Which part of the grid fits this group?']; var sy=$('.rg-link-desk .say',g); if(sy) sy.textContent=st.say[1]; return; }
+      st.placed[x.id]=k; st.say=[i,x.say||'']; st.cmpOn=null; save(); (x.calm||grp(k).calm)?SFX.soft():SFX.thud(); paint(); refreshPress(); if(done()) beat('sunDone'); });
+    desk.addEventListener('click',function(e){ var cd=e.target.closest('.rg-card'); if(!cd||e.detail!==0) return; setTimeout(function(){ if(cd.classList.contains('picked')){ var f=$('.rg-gr-zone',g); if(f) f.focus(); } },0); });
+    mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
+      if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
+      st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); });
+    function allPlaced(){ return st.stop>=N-1&&L.every(function(x,i){ return placed(i); }); }
+    function done(){ return allPlaced()&&(c.myths||[]).every(function(m,i){ return st.myth[i]; })&&(!CP||nCmp()>=(CP.need||2)); }
+    paint();
+    return {el:g,done:done,open:allPlaced,paint:paint,go:function(id){ var i=L.map(function(x){ return x.id; }).indexOf(id); if(i>-1&&i<=st.stop){ view=i; paint(); } },
+      journal:function(e,NA){ if(st.stop<0) return NA; return '<p class="a">'+GR.concat(TR?[TR]:[]).map(function(h){ var mine=L.filter(function(x){ return x.pan===h.k&&st.placed[x.id]; }); return '<b>'+e(h.t)+':</b> '+e(mine.map(function(x){ return x.short||x.who; }).join(', ')||'—'); }).join('<br>')+(nCmp()?'<br><b>'+e((CP||{}).title||'Compared')+':</b> '+e(Object.keys(st.cmp).map(function(i){ var p=(CP.places||[])[i]; return p.t+' '+p.n+' of 100'; }).join(', ')):'')+'</p>'; },
+      people:function(){ return L.map(function(x){ return x.who; }); }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -651,7 +759,7 @@
       $$('.lead',g).forEach(function(l){ l.classList.toggle('on',!!st.seen[l.dataset.i]); });
       var cs=last!=null&&spots[+last]; $('.rg-rp-cur',g).innerHTML=cs?'<b>'+(+last+1)+'. '+esc(cs.label)+'</b> '+esc(cs.t)+' '+evBtn(spotCard(cs,+last),'sm'):'';
       var dbtn=$('.rg-rp-n.date',g); if(dbtn){ dbtn.classList.toggle('ready',looked()&&n>=need&&oiDone()&&!st.date); }
-      $('.rg-rp-count',g).innerHTML=!looked()?'':st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> marks opened. Tap a number on the picture.':!oiDone()?'👀 Now sort the cards just under the photo: what can you see, and what are you guessing?':'📅 Now tap the date mark at the bottom of the picture to read the caption.';
+      $('.rg-rp-count',g).innerHTML=!looked()?'':st.date?'':n<need?'🖍 <b>'+n+' of '+need+'</b> marks opened. Tap a number on the picture.':!oiDone()?'👀 Now sort the cards just under the photo: what can you see, and what are you guessing?':'📅 '+esc(D.tapT||'Now tap the date mark at the bottom of the picture to read the caption.');
       paintOI(); paintDate(); paintMiss(); paintFU(); fin(); }
     /* ---- the date: when it was MADE vs. the time it SHOWS; the student's explanation is the point, not the guess */
     function paintDate(){ var box=$('.rg-rp-date',g); if(!st.date){ box.innerHTML=''; return; } var gs=guess();
@@ -1286,6 +1394,9 @@
     if(line&&col){ var c=(rd.cols||[]).filter(function(x){ return x.id===col.dataset.id; })[0]; return m({k:'routine', who:c?c.who:'', when:(rd.times||[])[+line.dataset.i]||'', where:c?c.where||'':'', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:[c?c.id:'','routine','highlight']}); }
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
+    var trc=block.closest('.rg-trail-card'); if(trc&&R.scene1&&R.scene1.stop){ var T0=R.scene1.stop(+trc.dataset.i)||{}; return m({k:'lesson', who:T0.place||'', when:T0.when||'', from:(DATA.scene1||{}).srcLabel||'Fact from the lesson', tags:['trail',T0.id||'',T0.kind||'','highlight']}); }
+    var trl=block.closest('.rg-trail-led'); if(trl){ var row=block.closest('tr'), ri=row?[].indexOf.call(row.parentNode.children,row):-1, SPs=((DATA.scene1||{}).stops||[]).filter(function(x,i){ return R.scene1&&R.scene1.state&&R.scene1.state().built.indexOf(x.short||x.place)>-1; }), T1=SPs[ri]||{}; return m({k:'lesson', who:'The barrel’s account book'+(T1.place?': '+T1.place:''), when:T1.when||'', from:(DATA.scene1||{}).srcLabel||'Fact from the lesson', tags:['trail','ledger',T1.id||'','highlight']}); }
+    if(block.closest('.rg-gr-method, .rg-gr-cmp')){ return m({k:'lesson', who:rd.methodWho||'Counting the people', when:rd.when||'', from:rd.methodFrom||'Fact from the lesson', tags:['count','grid','highlight']}); }
     var scq=block.closest('.rg-sc-quote'); if(scq){ var q0=((rd.cols||[]).filter(function(x){ return x.quote&&scq.closest('.rg-link')&&x.id===scq.closest('.rg-link').dataset.id; })[0]||{}).quote||{}; return m({k:'source', quote:true, who:q0.who||'', when:q0.when||'', where:q0.where||'', from:'Real source from the past: '+(q0.cite||''), tags:['quote','highlight']}); }
     var flp=block.closest('.rg-sc-flip'); if(flp){ var FL0=rd.flip||{}; return m({k:'lesson', who:FL0.who||FL0.title||'Then and later', when:flp.classList.contains('flipped')?(FL0.back||{}).k||'':(FL0.front||{}).k||'', from:rd.srcLabel||'Fact from the lesson', tags:['flip','native','highlight']}); }
     if(block.closest('.rg-spy')){ var SP=DATA.scene1||{}; return m({k:'source', who:SP.srcWho||'The print', when:SP.madeT||'', from:SP.from||'Real source from the past', tags:['spyglass','picture','highlight']}); }
@@ -1491,7 +1602,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -1672,7 +1783,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
