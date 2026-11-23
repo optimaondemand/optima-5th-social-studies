@@ -2258,6 +2258,1609 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.03",
+ "title": "Middle Colonies",
+ "issue": 31,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "weight",
+ "place": "Philadelphia",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>were the Middle Colonies important only because they were in the middle?<\/i> Use the 🖍 highlighter to save details about the land, the work, the people, or who didn’t share in it. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: New England. Today we move south to the Middle Colonies: New York, New Jersey, Pennsylvania and Delaware.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Look through the spyglass",
+   "why": "Before you read anything, look closely at a real picture of Philadelphia from the 1750s. Log what you spot, then seal your answer."
+  },
+  {
+   "tab": "desk",
+   "t": "Weigh the claim",
+   "why": "Put each fact on the scale: is it about where the region sat, or about what it had? Then study the real picture more closely. Save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the front page brief",
+   "why": "Pick your angle, write your brief from your evidence, then strike the Herald’s claim and print."
+  }
+ ],
+ "lens": "Service means giving readers the whole story so they can understand a place and its people. Today, an editor practicing service shows what really made the Middle Colonies matter, and who didn’t share in it.",
+ "recordFoot": "(The facts in this lesson come from historians’ records. The 1750s picture of Philadelphia and Mittelberger’s words are real sources. The scale cards and the plain explanations were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story is the Middle Colonies. The Herald says they were important only because they were in the middle."
+   },
+   {
+    "t": "Before you read anything, look at a real 1750s picture of Philadelphia. Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Why start with a picture?",
+      "reply": "Because a picture can show you things before anyone tells you what to think. Look first, then read."
+     },
+     {
+      "t": "Maybe the middle really was the point.",
+      "reply": "Maybe partly. Location can matter. Let’s find out if it’s the whole story."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Good. The spyglass is waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the picture is wrong?",
+      "reply": "No. It’s a real view of the city. We just need to know that this copy was printed years after the drawing was made."
+     },
+     {
+      "t": "Why does the date matter?",
+      "reply": "Because the city kept growing. A picture drawn around 1750 can’t show the city in 1768, even if that’s when this copy was printed."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the picture. Some things a picture just can’t tell us."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here’s the scale. Open a weight, read it, and highlight the sentence that shows why the region mattered. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the picture.",
+      "reply": "Here it is. Tap the red numbers, read the notes, and highlight one that shows what the city had besides its spot on the river.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Your answer is sealed. Now go to the Desk tab (tab 2) and weigh the Herald’s claim, one weight at a time.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Every weight is on the scale. Look which way it tipped. Next, study the picture of Philadelphia more closely.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "Drawn around 1750, first printed in 1754, and this copy printed in 1768. One picture, three dates. That’s why we check.",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your brief and your evidence are on the record. Issue 31 is in the Morgue. Next issue: the Southern Colonies.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "spyglass",
+  "title": "Look at Philadelphia through a spyglass",
+  "img": "source-5-07-03-east-prospect-philadelphia",
+  "aspect": 0.2387295081967213,
+  "zoom": 3.2,
+  "alt": "A very wide old print of Philadelphia seen from across the Delaware River. Ships and boats fill the river, long docks stick out from the shore, a windmill stands on a small island, and church steeples rise over rows of brick houses.",
+  "cap": "An East Prospect of the City of Philadelphia, drawn by George Heap from the New Jersey shore. This copy was printed by Thomas Jefferys in London, 1768. Library of Congress, no known restrictions.",
+  "srcWho": "The 1750s view of Philadelphia",
+  "madeT": "drawn about 1750; this copy printed 1768",
+  "from": "Real source from the past: An East Prospect of the City of Philadelphia (George Heap; this copy printed by Thomas Jefferys, 1768), Library of Congress",
+  "job": {
+   "why": "The Hasty Herald says the Middle Colonies mattered only because of where they sat. Before you read, look at a real picture of their biggest city and see what was going on there.",
+   "do": "1. Drag the spyglass along the picture (or use the slider). 2. When something is in the circle, tap Log it. 3. Log at least 4 things. 4. Answer the question and seal it.",
+   "use": "Your sealed answer opens on the Desk tab, after you weigh the Herald’s claim.",
+   "words": [
+    [
+     "colony",
+     "a settlement ruled by a faraway country"
+    ],
+    [
+     "wharf",
+     "a dock where ships tie up to load and unload"
+    ],
+    [
+     "print",
+     "a picture made by pressing an inked metal plate onto paper"
+    ]
+   ]
+  },
+  "q": "This is Philadelphia, Pennsylvania, around 1750, seen from across the river. Drag the spyglass. When something is in the circle, log it.",
+  "none": "Nothing to log here yet. Keep looking: try the ships, the steeples, the docks and the river.",
+  "need": 4,
+  "finds": [
+   {
+    "x": 87.6,
+    "y": 67,
+    "label": "Ocean ships",
+    "t": "Ships with three tall masts could sail across the ocean. The print’s own description says 117 sea ships were in the harbor at one time."
+   },
+   {
+    "x": 12.7,
+    "y": 64,
+    "label": "A windmill on an island (number 14)",
+    "t": "The key under the print calls it the “Cornmill.” Corn was an old word for grain. The mill ground grain into flour."
+   },
+   {
+    "x": 61,
+    "y": 57,
+    "label": "Long wharves",
+    "t": "Wooden docks reached into the river, so ships could load and unload right at the edge of the city."
+   },
+   {
+    "x": 52.4,
+    "y": 36,
+    "label": "Christ Church (number 1)",
+    "t": "A Church of England church. Its tall steeple rises over the whole city."
+   },
+   {
+    "x": 47.4,
+    "y": 46,
+    "label": "The Quakers’ Meeting House (number 7)",
+    "t": "A plain building where Quakers met to worship. William Penn, who started Pennsylvania, was a Quaker."
+   },
+   {
+    "x": 64.6,
+    "y": 40,
+    "label": "A German church (number 5)",
+    "t": "The key calls it the “Dutch Calvinist Church.” Back then, English speakers often called Germans “Dutch.” It was most likely a church for German-speaking Protestants."
+   },
+   {
+    "x": 42.4,
+    "y": 44,
+    "label": "The State House (number 2)",
+    "t": "Pennsylvania’s lawmakers met here. Today it’s called Independence Hall."
+   }
+  ],
+  "seal": {
+   "q": "From what you spotted: did Philadelphia matter only because of where it sat?",
+   "opts": [
+    "Yes. It was just a good spot on the river",
+    "Partly. Its spot helped, but there was more going on",
+    "No. Its spot didn’t matter at all"
+   ],
+   "reveal": [
+    "The scale tipped the other way: the region’s spot helped, but its soil, its work and its people weighed more. Changing your mind when the evidence changes is what careful editors do.",
+    "That’s what the scale showed too. Location helped, but land, work and people made the region matter.",
+    "Its spot did matter: rivers and a central harbor helped trade. But the scale showed that land, work and people weighed even more."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after you weigh the claim."
+ },
+ "explore": {
+  "reading": {
+   "type": "scale",
+   "title": "Weigh the Herald’s claim",
+   "times": [
+    "What the reading says",
+    "Why it matters"
+   ],
+   "pans": [
+    {
+     "k": "loc",
+     "side": "l",
+     "icon": "📍",
+     "t": "Where it sat",
+     "d": "its location"
+    },
+    {
+     "k": "more",
+     "side": "r",
+     "icon": "🧺",
+     "t": "What it had",
+     "d": "land, work, people, ideas"
+    },
+    {
+     "k": "hard",
+     "side": "tray",
+     "icon": "🕯",
+     "t": "Not everyone shared in it",
+     "d": "people who helped build the region but weren’t free or equal",
+     "calm": true
+    }
+   ],
+   "cols": [
+    {
+     "id": "mid",
+     "short": "Halfway down the coast",
+     "who": "Halfway down the coast",
+     "icon": "📍",
+     "pan": "loc",
+     "kind": "place",
+     "pref": true,
+     "lines": [
+      "The Middle Colonies were New York, New Jersey, Pennsylvania and Delaware. They sat between New England and the Southern Colonies. Ships sailing up and down the coast could stop at their ports.",
+      "Being in the middle really did help trade. The Herald is right about this part."
+     ],
+     "say": "Yes. This is about where the region sat. The Herald gets this weight.",
+     "hint": "Is this about where the region sat on the map, or about what it had?"
+    },
+    {
+     "id": "soil",
+     "short": "Rich soil",
+     "who": "Rich soil and a longer summer",
+     "icon": "🌱",
+     "pan": "more",
+     "kind": "land",
+     "lines": [
+      "The river valleys had deep, rich soil. Summers were longer and warmer than in New England, so crops had more time to grow.",
+      "Farmers could grow much more food than their families needed."
+     ],
+     "say": "Yes. Good soil is something the land had, not just where it sat.",
+     "hint": "Is rich soil about the spot on the map, or about what the land had?"
+    },
+    {
+     "id": "grain",
+     "short": "The breadbasket",
+     "who": "The breadbasket colonies",
+     "icon": "🌾",
+     "pan": "more",
+     "kind": "work",
+     "lines": [
+      "Farmers grew wheat, corn, rye and oats. They grew so much grain that people called the Middle Colonies “the breadbasket colonies.”",
+      "Grain fed people in the colonies, and the extra was sold to other places."
+     ],
+     "say": "Yes. That’s work people did, and it made the region matter.",
+     "hint": "Is growing grain about location, or about what people did there?"
+    },
+    {
+     "id": "rivers",
+     "short": "Rivers and harbors",
+     "who": "Rivers and deep harbors",
+     "icon": "🏞️",
+     "pan": "loc",
+     "kind": "place",
+     "lines": [
+      "The Hudson and Delaware rivers were wide and deep. Boats carried grain down the rivers to New York City and Philadelphia, which had deep harbors where big ships could anchor.",
+      "Good rivers and harbors made shipping easy. This is about where the region sat too."
+     ],
+     "say": "Right. Rivers and harbors are part of the region’s location. That’s two weights for the Herald.",
+     "hint": "Are rivers and harbors about where the region sat, or about the people?"
+    },
+    {
+     "id": "mills",
+     "short": "Mills and flour",
+     "who": "Mills, flour and iron",
+     "icon": "⚙️",
+     "pan": "more",
+     "kind": "work",
+     "lines": [
+      "Mills beside the rivers ground wheat into flour, which was packed in barrels. The print’s description says that from December 1751 to December 1752, Philadelphia shipped out 125,960 barrels of flour. Ironworks made iron for tools and nails.",
+      "Turning grain into flour made it worth more, and it was shipped to the Caribbean islands and to Europe."
+     ],
+     "say": "Yes. Mills and ironworks are work people built here.",
+     "hint": "Is a flour mill about the spot on the map, or about work people did?"
+    },
+    {
+     "id": "dutch",
+     "short": "Dutch and Swedes first",
+     "who": "The Dutch and the Swedes came first",
+     "icon": "🌷",
+     "pan": "more",
+     "kind": "people",
+     "lines": [
+      "The Dutch started the colony of New Netherland in 1624. Its town, New Amsterdam, became New York in 1664, when the English took over. Swedes settled along the Delaware River in 1638.",
+      "Dutch and Swedish families stayed after the English took over, so the region began with people from more than one country."
+     ],
+     "say": "Yes. The people who settled here are part of what the region had.",
+     "hint": "Is this about the spot on the map, or about the people who lived there?"
+    },
+    {
+     "id": "penn",
+     "short": "Penn’s rules",
+     "who": "William Penn’s rules about religion",
+     "icon": "📜",
+     "pan": "more",
+     "kind": "ideas",
+     "lines": [
+      "In 1681, the King of England gave William Penn the land that became Pennsylvania. Penn was a Quaker, a Christian who believed in peace and plain worship. In 1701 his Charter of Privileges said people who believed in God could worship freely. But only Christians could hold a government job.",
+      "Freedom to worship drew many people who were not welcome in other places. It was wider than in most colonies, but it was not freedom for everyone."
+     ],
+     "say": "Yes. Penn’s rules were an idea, not a place. But notice who was left out.",
+     "hint": "Are rules about religion about location, or about what people believed and decided?"
+    },
+    {
+     "id": "many",
+     "short": "Many homelands",
+     "who": "People from many homelands",
+     "icon": "🧭",
+     "pan": "more",
+     "kind": "people",
+     "lines": [
+      "English, Dutch, Swedish, German, Welsh, Scots-Irish and Jewish settlers lived in the Middle Colonies, along with free and enslaved Africans. It was the most diverse region in the colonies. Diverse means many different kinds.",
+      "People from many places brought different skills, languages and ways of worship."
+     ],
+     "quote": {
+      "t": "…that colony possesses great liberties above all other English colonies, inasmuch as all religious sects are tolerated there. We find there Lutherans, Reformed, Catholics, Quakers, Mennonists or Anabaptists, … Presbyterians, … Jews …",
+      "cite": "Gottlieb Mittelberger, Journey to Pennsylvania (written after his trip of 1750–1754; English translation by Carl Theo. Eben, 1898, pages 54–55)",
+      "who": "Gottlieb Mittelberger",
+      "when": "1750–1754",
+      "where": "Pennsylvania",
+      "note": "Mittelberger was a German organist who lived in Pennsylvania for four years. A sect is a religious group. Mennonists means Mennonites. The … marks show words left out. He says “all” sects were tolerated, but the law protected only people who believed in God."
+     },
+     "say": "Yes. The people are one of the heaviest weights on the scale.",
+     "hint": "Is this about where the region sat, or about who lived there?"
+    },
+    {
+     "id": "city",
+     "short": "A growing city",
+     "who": "Philadelphia grows",
+     "icon": "🏛️",
+     "pan": "more",
+     "kind": "ideas",
+     "lines": [
+      "Penn planned Philadelphia in 1682 with straight streets in a grid. By the 1760s it was the biggest city in the thirteen colonies, with printers, newspapers, a library and a school called the Academy.",
+      "A city full of printers, readers and lawmakers mattered for its ideas and its people, not just its spot on the river."
+     ],
+     "say": "Yes. Printers, readers and lawmakers aren’t a location.",
+     "hint": "Is a library about the map, or about the people of the city?"
+    },
+    {
+     "id": "servants",
+     "short": "Working off the trip",
+     "who": "Working off the ocean trip",
+     "icon": "📄",
+     "pan": "hard",
+     "kind": "left",
+     "calm": true,
+     "lines": [
+      "Many Germans and Scots-Irish could not pay for the ocean trip. They signed papers to work for someone for several years, often three to seven, to pay it off. Some Germans were called redemptioners.",
+      "These newcomers helped the region grow, but for years they were not free to choose their own work."
+     ],
+     "say": "Right. They helped build the region, but they didn’t share in it equally.",
+     "hint": "Did these workers share equally in the region’s riches? Which place fits?"
+    },
+    {
+     "id": "enslaved",
+     "short": "Enslaved people",
+     "who": "Enslaved people",
+     "icon": "⛓️",
+     "pan": "hard",
+     "kind": "left",
+     "calm": true,
+     "lines": [
+      "Slavery was legal in all the Middle Colonies. Enslaved Africans worked on farms, in homes, in shops and on the docks. In the 1740s, about one person in five in New York City was enslaved.",
+      "Enslaved people did much of the work that made the region rich, but they were held as property and had no say. Some Quakers spoke out against slavery, and in 1780 Pennsylvania passed the first law in the new United States to slowly end it."
+     ],
+     "say": "Right. Diverse did not mean free.",
+     "hint": "Did enslaved people share in the region’s riches? Which place fits?"
+    }
+   ],
+   "start": {
+    "t": "The Herald: “only the middle”",
+    "w": 2
+   },
+   "srcLabel": "Fact from the lesson",
+   "prefNote": "This weight is about location. The Herald is right about this part.",
+   "sortQ": "Where does this weight go? Tap it, then tap a pan on the scale, or the box under it.",
+   "deskEmpty": "The Herald’s claim starts on the scale. Tap the button to read the first weight.",
+   "readT": "Where it sat: {l} · What it had: {r}",
+   "tiltL": "The scale leans toward location, for now.",
+   "tiltR": "The scale tips away from location.",
+   "tiltE": "The scale is even.",
+   "miniAfter": 8,
+   "myths": [
+    {
+     "after": 4,
+     "claim": "Middle Colonies farmers only grew enough food for their own families.",
+     "fact": "They grew far more than they needed. In one year, December 1751 to December 1752, Philadelphia shipped out 125,960 barrels of flour, according to the print’s own description."
+    },
+    {
+     "after": 6,
+     "claim": "In Pennsylvania, anyone could worship any way they wanted and run for any job.",
+     "fact": "Penn’s 1701 Charter of Privileges protected people who believed in God, and only Christians could hold a government job. That was more freedom than in most colonies, but not freedom for everyone."
+    },
+    {
+     "after": 10,
+     "claim": "There was no slavery in the Middle Colonies.",
+     "fact": "Slavery was legal in all thirteen colonies, including New York, New Jersey, Pennsylvania and Delaware.",
+     "calm": true
+    }
+   ],
+   "flip": {
+    "title": "Then and later: William Penn and the Lenape",
+    "who": "William Penn and the Lenape",
+    "q": "The land wasn’t empty. The Lenape people lived here first. Read the card, then flip it.",
+    "front": {
+     "k": "1682",
+     "t": "Penn buys land with deeds",
+     "p": [
+      "The Lenape (also called the Delaware) lived along the Delaware River long before Penn came.",
+      "Starting in 1682, Penn and his agents bought land from Lenape leaders with written agreements called deeds. Penn learned some of the Lenape language and promised to live in peace. For many years, Pennsylvania and the Lenape did not go to war."
+     ]
+    },
+    "back": {
+     "k": "1737",
+     "t": "The Walking Purchase",
+     "p": [
+      "Penn died in 1718. In 1737, his sons and their agent, James Logan, showed Lenape leaders an old, unsigned deed from 1686. They said it gave them land as far as a man could walk in a day and a half.",
+      "They cleared a path and hired fast walkers. One man went more than 60 miles. The Lenape lost about 1,200 square miles of land, about the size of Rhode Island, and were pushed off it."
+     ]
+    },
+    "done": "Both sides are true. A fair report tells what Penn did, and what happened later."
+   },
+   "close": "The Herald’s claim started heavy, but the scale tipped. Location was one or two weights. The land, the work and the people weighed more, and not everyone shared in what they built.",
+   "job": {
+    "why": "This tests the Herald’s claim. If the Middle Colonies mattered only because of their spot on the map, almost every weight would go on the location side. Let’s see.",
+    "do": "1. Tap the button to read a weight. 2. Put it on a pan, or in the box under the scale. 3. Fact-check the Herald when it shows up. 4. Place all 11, then read the Penn card and flip it.",
+    "use": "Your scale gives you evidence for the notebook and your front page brief.",
+    "words": [
+     [
+      "location",
+      "where a place is"
+     ],
+     [
+      "diverse",
+      "made of many different kinds"
+     ],
+     [
+      "Quaker",
+      "a member of a Christian group that believed in peace and plain worship"
+     ],
+     [
+      "deed",
+      "a paper that says who owns land"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Investigate the 1750s picture of Philadelphia",
+   "srcName": "the 1750s view of Philadelphia",
+   "srcWho": "The 1750s view of Philadelphia",
+   "srcCant": "This picture of Philadelphia",
+   "showsWord": "The picture shows ",
+   "img": "source-5-07-03-east-prospect-philadelphia",
+   "alt": "A very wide old print of Philadelphia seen from across the Delaware River. Ships and boats fill the river, long docks stick out from the shore, a windmill stands on a small island, church steeples rise over rows of brick houses, hills rise behind the city, and a few people stand on the near shore beside a torn, white patch in the paper.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 52.4,
+     "y": 22,
+     "rx": 3,
+     "ry": 5,
+     "label": "Small numbers",
+     "t": "Tiny numbers sit above some buildings. A key printed under the picture names each one, like 1 for Christ Church and 2 for the State House.",
+     "lx": 40,
+     "ly": 10
+    },
+    {
+     "x": 58,
+     "y": 40,
+     "rx": 12,
+     "ry": 14,
+     "label": "Church steeples",
+     "t": "At least five numbered buildings are places of worship for different groups: Christ Church, a Presbyterian church, a German church, the Quakers’ meetinghouse, and more. One city, many faiths.",
+     "lx": 74,
+     "ly": 22
+    },
+    {
+     "x": 60,
+     "y": 58,
+     "rx": 13,
+     "ry": 6,
+     "label": "Wharves and ships",
+     "t": "Ships tie up right at the wharves. The print’s description says that from December 1751 to December 1752, the port shipped out 125,960 barrels of flour.",
+     "lx": 72,
+     "ly": 50
+    },
+    {
+     "x": 55,
+     "y": 90,
+     "rx": 5,
+     "ry": 8,
+     "label": "The near shore",
+     "t": "The artist stood across the river, on the New Jersey shore. That’s why the title says the view was “taken from the Jersey shore.” A few people stand on that shore.",
+     "lx": 66,
+     "ly": 84
+    },
+    {
+     "x": 51.8,
+     "y": 92,
+     "rx": 1.6,
+     "ry": 8,
+     "label": "A torn spot",
+     "t": "The paper tore and was repaired. Library workers took care of it in 1975. Old sources can be damaged.",
+     "lx": 38,
+     "ly": 84
+    },
+    {
+     "x": 82,
+     "y": 38,
+     "rx": 10,
+     "ry": 8,
+     "label": "The hills",
+     "t": "Tall hills rise behind the city. The land around Philadelphia is fairly flat, so the artist may have drawn them bigger. A picture can show an artist’s choices, not just facts.",
+     "lx": 86,
+     "ly": 20
+    }
+   ],
+   "date": {
+    "x": 94,
+    "y": 94,
+    "w": 10,
+    "h": 8,
+    "year": 1768,
+    "shows": 1750,
+    "yearT": "in 1768 (first printed in 1754)",
+    "showsT": "Philadelphia around 1750",
+    "gapT": "about 18 years",
+    "text": "George Heap drew Philadelphia from the New Jersey shore around 1750. He died in 1752 while taking his drawing to London to be printed. The first prints were made in London in 1754. This copy was printed later, in 1768, by Thomas Jefferys. The description under the picture also counts ships and houses from 1752 and 1753. (Library of Congress)",
+    "madeBy": "A copy printed in London by Thomas Jefferys",
+    "showsWhy": "Drawn by George Heap from the New Jersey shore",
+    "q": "In your own words: when was this view drawn, when was this copy printed, and why does that matter when you use it as evidence?",
+    "check": [
+     "say when the view was drawn?",
+     "say this copy was printed later?",
+     "say why that matters, like the city kept changing?"
+    ],
+    "model": "George Heap drew the view around 1750, but this copy was printed in 1768. The city kept growing in between, so the picture shows Philadelphia around 1750, not 1768.",
+    "card": "George Heap drew this view of Philadelphia around 1750. The first prints came out in 1754, and this copy was printed in 1768.",
+    "madeT": "drawn about 1750; this copy printed 1768",
+    "journalT": "The view was drawn about 1750, first printed in 1754, and this copy was printed in 1768."
+   },
+   "missing": {
+    "q": "What can this picture tell us, and what can’t it?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in the picture",
+      "icon": "🖼"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this picture",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this picture alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Ships at the wharves",
+      "k": "shown",
+      "say": "Yes. Look at mark 3.",
+      "hint": "Look again at mark 3."
+     },
+     {
+      "t": "Several church steeples",
+      "k": "shown",
+      "say": "Yes. Mark 2.",
+      "hint": "Look again at mark 2."
+     },
+     {
+      "t": "A windmill on an island",
+      "k": "shown",
+      "say": "Yes. It’s on the left side of the river.",
+      "hint": "Look at the left side of the river."
+     },
+     {
+      "t": "The farms where the wheat grew",
+      "k": "not",
+      "say": "Right. The farms were out in the country, far from this view of the city.",
+      "hint": "Can you see any fields of wheat in the picture?"
+     },
+     {
+      "t": "The inside of a church",
+      "k": "not",
+      "say": "Right. We only see the buildings from far away.",
+      "hint": "Can you see inside any building?"
+     },
+     {
+      "t": "Whether the people on the docks were free or enslaved",
+      "k": "cant",
+      "say": "Right. A picture can’t show a person’s legal status. We’d need records, like lists of who was enslaved.",
+      "hint": "Can a tiny figure in a picture show whether a person was free?"
+     },
+     {
+      "t": "Which languages people spoke",
+      "k": "cant",
+      "say": "Right. A picture has no sound. Letters, newspapers and church records could help.",
+      "hint": "Can you hear anyone in a picture?"
+     },
+     {
+      "t": "Whether the hills really looked that tall",
+      "k": "cant",
+      "say": "Right. An artist can make choices. We’d need a map or a modern photo to check.",
+      "hint": "Could the artist have changed the hills?"
+     }
+    ]
+   },
+   "close": "A real view of Philadelphia, drawn around 1750 and printed again in 1768. It shows a busy port with many churches. It can’t show the farms, who was free, or what languages people spoke.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this picture.",
+   "from": "Real source from the past: An East Prospect of the City of Philadelphia, drawn by George Heap about 1750; this copy printed by Thomas Jefferys, London, 1768 (Library of Congress)",
+   "zoomCap": "An East Prospect of the City of Philadelphia; taken by George Heap from the Jersey shore, under the direction of Nicholas Scull. Engraved by T. Jefferys, London, 1768. Library of Congress, https://www.loc.gov/item/2004672470/",
+   "followup": {
+    "q": "This picture can’t show where all that flour came from. Which other source could help you find out?",
+    "opts": [
+     {
+      "t": "A farmer’s account book, or a list of the mills near Philadelphia",
+      "ok": true,
+      "say": "Yes. Farm and mill records can show who grew the wheat and where it was ground into flour."
+     },
+     {
+      "t": "A bigger copy of this same picture",
+      "ok": false,
+      "say": "A bigger copy would still show the city, not the farms."
+     },
+     {
+      "t": "A painting of a city in England",
+      "ok": false,
+      "say": "That’s a different place, in a different country."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this picture can’t show? (This is called a limitation.)",
+    "limPh": "This picture can’t show…"
+   },
+   "job": {
+    "why": "This is a real view of Philadelphia from the 1750s. It can show us what the city had besides its spot on the river. Before using it as evidence, check what it shows and when it was made.",
+    "do": "1. Write one thing you notice. 2. Open at least 4 red marks. 3. Open the 📅 date. 4. Sort the cards.",
+    "use": "Your notes about this picture go into your evidence drawer for your front page brief.",
+    "words": [
+     [
+      "wharf",
+      "a dock where ships tie up to load and unload"
+     ],
+     [
+      "print",
+      "a picture made by pressing an inked metal plate onto paper"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "The Middle Colonies were New York, New Jersey, Pennsylvania and Delaware.",
+   "Their spot between New England and the South helped trade, but rich soil, grain, mills and busy ports made them matter too. They were called the breadbasket colonies.",
+   "They were the most diverse region: Dutch, Swedish, English, German, Scots-Irish, Jewish and African people lived there.",
+   "Penn’s 1701 charter let people who believed in God worship freely, but only Christians could hold government jobs, and slavery was legal.",
+   "Penn bought land from the Lenape with deeds, but in 1737 his sons used the Walking Purchase to take about 1,200 square miles.",
+   "A source can be printed long after it was drawn. The view of Philadelphia was drawn around 1750; this copy was printed in 1768."
+  ],
+  "vocab": [
+   [
+    "location",
+    "where a place is"
+   ],
+   [
+    "breadbasket",
+    "a region that grows lots of grain"
+   ],
+   [
+    "diverse",
+    "made of many different kinds"
+   ],
+   [
+    "Quaker",
+    "a member of a Christian group that believed in peace and plain worship"
+   ],
+   [
+    "tolerance",
+    "letting people believe and worship in different ways"
+   ],
+   [
+    "deed",
+    "a paper that says who owns land"
+   ],
+   [
+    "wharf",
+    "a dock where ships tie up to load and unload"
+   ],
+   [
+    "indentured servant",
+    "a person who worked for several years to pay off a debt, like the cost of the ocean trip"
+   ],
+   [
+    "colony",
+    "a settlement ruled by a faraway country"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: col and cult mean “farm”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "The word colony itself comes from farming. Cracking the root shows why the breadbasket colonies fit their name.",
+   "do": "1. Tap the part of each word that means “farm.” 2. Use cultivate in a sentence about today’s lesson.",
+   "use": "Your sentence can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "col / cult",
+  "meaning": "farm, grow, settle",
+  "words": [
+   {
+    "parts": [
+     "col",
+     "ony"
+    ],
+    "root": 0,
+    "m": "colony: a settlement, from the Latin word for a farmer"
+   },
+   {
+    "parts": [
+     "cult",
+     "iv",
+     "ate"
+    ],
+    "root": 0,
+    "m": "cultivate: to prepare land and grow crops"
+   },
+   {
+    "parts": [
+     "agri",
+     "cult",
+     "ure"
+    ],
+    "root": 1,
+    "m": "agriculture: farming (agri means field)"
+   },
+   {
+    "parts": [
+     "cult",
+     "ure"
+    ],
+    "root": 0,
+    "m": "culture: the way a group of people lives, first meaning “the growing of something”"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "The word colony comes from the Latin colonus, a farmer. Many colonists were farmers, and the Middle Colonies farmed so well they were called the breadbasket colonies.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Farmers in the Middle Colonies cultivated…",
+   "min": 8,
+   "must": "cultivat",
+   "word": "cultivate"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your front page brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your main idea (angle): what will your brief argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "More Than a Spot on the Map",
+     "ok": true,
+     "tip": "Location helped, but land, work and people mattered more.",
+     "fit": [
+      "mid",
+      "rivers",
+      "soil",
+      "grain",
+      "many",
+      "spyglass",
+      "loc",
+      "more"
+     ],
+     "fitTip": "Good fits: one location weight and one weight about what the region had.",
+     "ideas": [
+      "More Than a Spot on the Map",
+      "The Middle Had More"
+     ]
+    },
+    {
+     "t": "The Breadbasket at Work",
+     "ok": true,
+     "tip": "Rich soil, grain, mills and busy docks.",
+     "fit": [
+      "soil",
+      "grain",
+      "mills",
+      "land",
+      "work",
+      "picture",
+      "spyglass"
+     ],
+     "fitTip": "Good fits: the soil, grain and mills weights, and the wharves in the picture.",
+     "ideas": [
+      "The Breadbasket at Work",
+      "Flour From the Middle"
+     ]
+    },
+    {
+     "t": "Many Homelands, Many Faiths",
+     "ok": true,
+     "tip": "Who came, how they worshipped, and who was left out.",
+     "fit": [
+      "dutch",
+      "penn",
+      "many",
+      "city",
+      "people",
+      "ideas",
+      "quote",
+      "left",
+      "flip",
+      "herald"
+     ],
+     "fitTip": "Good fits: the people weights, Mittelberger’s words, and the churches in the picture.",
+     "ideas": [
+      "Many Homelands, Many Faiths",
+      "Who Lived in the Middle?"
+     ]
+    },
+    {
+     "t": "Just in the Middle",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your scale: which way did it tip?"
+    }
+   ]
+  },
+  "p1Label": "Weight 1: one about the land or work",
+  "p2Label": "Weight 2: one about the people or ideas",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "How did each of these make the Middle Colonies matter?",
+  "whyLabel": "Why it matters: what made the Middle Colonies important?",
+  "factors": [
+   "Rich soil and a longer summer",
+   "Rivers, harbors and a spot on the coast",
+   "Mills, flour and busy ports",
+   "People from many homelands",
+   "Penn’s rules about religion",
+   "People who didn’t share in it"
+  ],
+  "close": "Your angle is set. Now write your brief below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every front page brief argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two weights. 3. Pick what made the region important.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know?",
+   "img": false,
+   "who": "The Library Company of Philadelphia",
+   "from": "Fact from the lesson",
+   "t": "In 1731, Benjamin Franklin and his friends started the Library Company of Philadelphia. Members paid to join, and the money bought books they all shared. It is still open today.",
+   "q": "Does a library tell you about where a city sat, or about its people?",
+   "tags": [
+    "city",
+    "people"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong. Strike the Herald’s claim, and your front page brief prints in its place."
+  },
+  "win": "Printed. Your front page brief is on the record, and Issue 31 is filed in the Morgue.",
+  "claim": "The Middle Colonies were important only because they were in the middle."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the windmill through your spyglass",
+   "Snap your scale when every weight is placed",
+   "Snap the church steeples in the picture",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "From December 1751 to December 1752, Philadelphia shipped out 125,960 barrels of flour.",
+   "key": [
+    "1751",
+    "1752",
+    "Philadelphia",
+    "shipped",
+    "125,960",
+    "barrels",
+    "flour"
+   ],
+   "small": [
+    "from",
+    "to",
+    "out",
+    "of"
+   ],
+   "model": "Key words: 1751–1752, Philadelphia, shipped, 125,960 barrels of flour."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Something about the land",
+    "rx": "soil|rich|fertile|deep|summer|season|climate|warm|river|valley|land|harbor|geograph",
+    "n": 1
+   },
+   {
+    "t": "A crop or a job",
+    "rx": "wheat|corn|rye|oat|grain|flour|mill|farm|crop|breadbasket|iron|trade|ship|sell|sold|export|port",
+    "n": 1
+   },
+   {
+    "t": "How one led to the other",
+    "rx": "because|so |so,|led to|that.?s why|which meant|caus|made|helped|let ",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A group of people",
+    "rx": "dutch|swed|german|quaker|scot|irish|jew|african|english|welsh|lutheran|mennon|catholic|presbyter|many (countries|places|homelands|religions|faiths)|different (countries|people|religions|faiths)",
+    "n": 1
+   },
+   {
+    "t": "A comparison with New England",
+    "rx": "new england|puritan|than|more|less|but|instead|unlike|different",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|middle|between|coast|location|spot|river|harbor|port|helped",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|soil|grain|wheat|flour|mill|people|dutch|german|quaker|penn|divers|relig|faith|enslav|slave|lenape|walking",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at the land weights on your scale.",
+   "What grew well, and what did people do with it?",
+   "Try: “Because the soil was ___, farmers ___.”"
+  ],
+  "journal-q2": [
+   "Look at the people weights, and Mittelberger’s words.",
+   "Name one group that lived here. Was New England like that?",
+   "Try: “The Middle Colonies had ___, but New England was mostly ___.”"
+  ],
+  "journal-q3": [
+   "Which weights went on the location side?",
+   "Now look at the other pan, and the box under the scale.",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "They grew grain and sent flour out, not in. Look back at the breadbasket weight.",
+   "C": "The name comes from growing lots of grain, not from bakeries. Look back at the breadbasket weight."
+  },
+  {
+   "A": "Philadelphia grew into the biggest city in the colonies, with busy trade. Look back at the growing city weight.",
+   "C": "That describes New England. The Middle Colonies had Dutch, Swedes, Quakers, Germans and more. Look back at the many homelands weight."
+  },
+  {
+   "A": "That’s the Herald’s claim. Your scale tipped the other way.",
+   "C": "The Middle Colonies were different from New England: more kinds of people and more ways of worship."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · The Middle Colonies",
+  "head": "The Breadbasket in the Middle",
+  "deck": "Were the Middle Colonies important only because of where they were? Put the claim on the scale.",
+  "dateline": "Vol. I · No. 31 · Price: One Penny",
+  "ears": [
+   "Issue 31 · Colonial America Edition",
+   "🌾 Wheat in the barrels"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Weigh the Herald’s claim"
+   },
+   {
+    "key": "picture",
+    "t": "Investigate the picture of Philadelphia",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "PHILADELPHIA",
+  "lede": "The Hasty Herald says the Middle Colonies mattered only because they were in the middle. Eleven weights, one scale and one real 1750s picture will test that. You decide.",
+  "evIntro": "Today’s question: Were the Middle Colonies important only because of where they were? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means something made back then, like the 1750s picture or Mittelberger’s words.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail about the land, the work or the people, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "More Than a Spot on the Map",
+   "The Breadbasket at Work"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "What made the region matter",
+    "short": "What made the region matter (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Make your claim: why were the Middle Colonies important? Use one detail about the land or work AND one about the people.",
+    "ph": "Write your claim and your evidence, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said the Middle Colonies mattered just because they sat in the middle. But",
+     "{p1} helped because",
+     "{p2} mattered because"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Who shared in it",
+    "short": "Who shared in it (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Did everyone share in the region’s riches? Name at least one group who didn’t, and say why readers should know.",
+    "ph": "Write about who shared in it, and who didn’t.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Some of the people who built the region didn’t share in it:",
+     "Readers should know this because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "Write about the 1750s picture of Philadelphia: what it can show, and what it can’t.",
+    "ph": "For example, start with: This picture…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "This picture was drawn around 1750, but",
+     "This picture can’t show"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Were the Middle Colonies important only because of where they were?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll strike the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "lenape-fair",
+   "claim": "Pennsylvania was always fair to the Lenape.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Penn did buy land with deeds. But read the other side of the card."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Penn’s early deals were real, but the Walking Purchase in 1737 was not fair."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: the Penn and Lenape card on the Desk tab."
+    }
+   ],
+   "details": [
+    {
+     "from": "1737, the Walking Purchase:",
+     "t": "They cleared a path and hired fast walkers. The Lenape lost about 1,200 square miles of land.",
+     "ok": true,
+     "say": "This shows the later deal was not fair."
+    },
+    {
+     "from": "1682, Penn buys land:",
+     "t": "Penn and his agents bought land from Lenape leaders with written agreements called deeds.",
+     "ok": true,
+     "say": "This shows the true part the claim starts with, and why the word “always” is the problem."
+    },
+    {
+     "from": "The breadbasket:",
+     "t": "Farmers grew wheat, corn, rye and oats.",
+     "ok": false,
+     "say": "This is about farming. It can’t tell us how the Lenape were treated."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "all-free",
+   "claim": "Pennsylvania let people worship freely, so everyone in the Middle Colonies was free.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Freedom to worship was real. But was everyone free?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Many people could worship freely, but slavery was legal and some people worked for years to pay off their trip."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: look in the box under the scale."
+    }
+   ],
+   "details": [
+    {
+     "from": "Enslaved people:",
+     "t": "Slavery was legal in all the Middle Colonies.",
+     "ok": true,
+     "say": "This shows many people were not free at all."
+    },
+    {
+     "from": "Working off the ocean trip:",
+     "t": "They signed papers to work for someone for several years to pay for the trip.",
+     "ok": true,
+     "say": "This shows some newcomers were not free to choose their work for years."
+    },
+    {
+     "from": "Mittelberger:",
+     "t": "We find there Lutherans, Reformed, Catholics, Quakers…",
+     "ok": false,
+     "say": "This shows many faiths, but it can’t tell us whether everyone was free."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My brief makes a clear claim about why the region mattered.",
+  "I used details about the land or work AND about the people.",
+  "I said who didn’t share in it.",
+  "I said what my source can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is the scale. Find one sentence that shows why the region mattered.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the picture of Philadelphia. Read the red notes, and highlight one that shows what the city had.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(middle|colon\\w*|new york|new jersey|pennsylvania|delaware|philadelphia|hudson|rivers?|harbors?|ports?|coast|location|soil|rich|deep|summers?|wheat|corn|rye|oats|grain|breadbasket|flour|barrels?|mills?|iron\\w*|ships?|wharf|wharves|trade|caribbean|europe|dutch|swed\\w*|german\\w*|scots|irish|welsh|jew\\w*|african\\w*|english|quakers?|lutherans?|catholics?|mennon\\w*|presbyterians?|reformed|church\\w*|steeples?|worship\\w*|relig\\w*|god|christians?|penn|charter|deeds?|lenape|delaware|walking|logan|miles|land|slavery|enslaved|slaves?|servants?|redemptioners?|trip|library|franklin|printers?|newspapers?|academy|state house|windmill|cornmill|1624|1638|1664|1681|1682|1701|1731|1737|1750|1751|1752|1754|1768|diverse|homelands?|faiths?|sects?|tolerat\\w*)\\b",
+   "off": "Does this detail show why the Middle Colonies mattered, or who shared in it? If it doesn’t, you can keep it, but also look for one on the scale.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about the Middle Colonies. Look for a detail about the land, the work or the people instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs a detail about the land or work AND one about the people. Look at the weights on your scale, and what you spotted in the spyglass.",
+    "go": [
+     {
+      "l": "The scale",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Your spyglass",
+      "tab": "dispatch",
+      "sel": ".rg-spy"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail about who didn’t share in it. Try the box under the scale, the Penn card, or the Herald fact-checks.",
+    "go": [
+     {
+      "l": "The scale",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "Herald fact-checks",
+      "tab": "desk",
+      "sel": ".rg-myths"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about the picture: when it was made, and what it can’t show.",
+    "go": [
+     {
+      "l": "The picture of Philadelphia",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Look before you read",
+   "script": "Before you read a word, look. This is a real picture of Philadelphia, drawn from across the river. The Herald says this place only mattered because of where it sat. So pick up the spyglass. Hunt for ships, steeples, and that windmill. Then decide."
+  },
+  {
+   "at": "flip",
+   "slot": "v3",
+   "label": "Both sides of the card",
+   "script": "One more card before you finish. William Penn made promises to the Lenape, whose land this was. Read what he did first. Then flip the card and read what his sons did after he died. Take it slowly. A fair report tells both sides of the card."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^picture$",
+    "sel": "#panel-dispatch .rg-spy-strip",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^spyglass",
+    "sel": "#panel-dispatch .rg-spy-view",
+    "fx": "pop"
+   },
+   {
+    "at": "^ships",
+    "sel": "#panel-dispatch .rg-spy-ctl",
+    "fx": "point"
+   },
+   {
+    "at": "^decide",
+    "sel": "#panel-dispatch .rg-spy-count",
+    "fx": "glow"
+   }
+  ],
+  "v3": [
+   {
+    "at": "^card$",
+    "sel": "#panel-desk .rg-sc-flip",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^flip$",
+    "sel": "#panel-desk .rg-sc-flipbtn",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^slowly",
+    "sel": "#panel-desk .rg-sc-flip .face",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    3.44,
+    3.76,
+    "picture"
+   ],
+   [
+    11.6,
+    12.16,
+    "spyglass."
+   ],
+   [
+    12.96,
+    13.6,
+    "ships,"
+   ],
+   [
+    16.32,
+    17.12,
+    "decide."
+   ]
+  ],
+  "v3": [
+   [
+    0.48,
+    0.72,
+    "card"
+   ],
+   [
+    8.56,
+    8.72,
+    "flip"
+   ],
+   [
+    12.64,
+    13.44,
+    "slowly."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4092,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4107,32 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Golden wheat fields and a water mill beside a wide river, with tall ships on the water and a colonial city of brick houses and church steeples on the far bank" class="b0703">
+<defs>
+<clipPath id="b0703WL" clipPathUnits="userSpaceOnUse"><rect x="-200" y="-300" width="400" height="311"/></clipPath>
+<linearGradient id="b0703Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FA9C0"/><stop offset=".6" stop-color="#E2DCC6"/><stop offset="1" stop-color="#F3E7C6"/></linearGradient>
+<linearGradient id="b0703Riv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7C9AA6"/><stop offset="1" stop-color="#3B5A68"/></linearGradient>
+<linearGradient id="b0703Wheat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E3C26A"/><stop offset="1" stop-color="#C79A3E"/></linearGradient>
+<style>
+.b0703 .b0703-ship{ animation:b0703bob 6s ease-in-out infinite; } .b0703 .s2{ animation-delay:-3s }
+.b0703 .b0703-wheel{ animation:b0703spin 10s linear infinite; transform-box:fill-box; transform-origin:center; }
+.b0703 .b0703-sway{ animation:b0703sway 5s ease-in-out infinite; transform-box:fill-box; transform-origin:bottom; }
+.b0703 .b0703-wave{ animation:b0703wave 12s linear infinite; }
+.b0703 .b0703-cloud{ animation:b0703cloud 40s linear infinite alternate; }
+.b0703 .b0703-gull{ animation:b0703gull 14s ease-in-out infinite; }
+@keyframes b0703bob{ 0%,100%{ translate:0 0 } 50%{ translate:0 2px } }
+@keyframes b0703spin{ to{ transform:rotate(360deg) } }
+@keyframes b0703sway{ 0%,100%{ transform:skewX(0deg) } 50%{ transform:skewX(-4deg) } }
+@keyframes b0703wave{ from{ transform:translateX(0) } to{ transform:translateX(-80px) } }
+@keyframes b0703cloud{ from{ transform:translateX(0) } to{ transform:translateX(36px) } }
+@keyframes b0703gull{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(-26px,-7px) } }
+@media (prefers-reduced-motion:reduce){ .b0703 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0703Sky)"/>
+<g class="b0703-cloud" fill="#F7F2E4" opacity=".7"><ellipse cx="140" cy="40" rx="78" ry="11"/><ellipse cx="200" cy="32" rx="44" ry="8"/><ellipse cx="610" cy="30" rx="92" ry="11"/><ellipse cx="700" cy="40" rx="50" ry="7"/></g>
+<g class="b0703-gull" fill="none" stroke="#3E4650" stroke-width="1.6" stroke-linecap="round"><path d="M470,58 q6,-6 12,0 q6,-6 12,0"/><path d="M500,74 q5,-5 10,0 q5,-5 10,0"/></g>
+<path d="M380,150 C470,118 560,112 650,122 C740,108 830,112 920,124 L920,170 L380,170 Z" fill="#A7AE8C" opacity=".8"/><path d="M0,120 C80,104 170,108 250,124 C300,134 340,150 380,170 L380,262 L0,262 Z" fill="#9AA56C"/><path d="M0,150 C70,132 160,134 250,150 C300,160 330,172 350,186 L350,262 L0,262 Z" fill="url(#b0703Wheat)"/><g class="b0703-sway" style="animation-delay:-3.42s"><line x1="4.5" y1="245.3" x2="4.5" y2="209.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="4.5" cy="209.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.79s"><line x1="9.5" y1="245.3" x2="9.5" y2="211.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="9.5" cy="211.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.68s"><line x1="14.1" y1="241.6" x2="14.1" y2="201.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="14.1" cy="201.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.98s"><line x1="19.9" y1="243.3" x2="19.9" y2="206.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="19.9" cy="206.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.01s"><line x1="23.2" y1="245.9" x2="23.2" y2="200.8" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="23.2" cy="200.8" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.78s"><line x1="28.1" y1="244.0" x2="28.1" y2="208.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="28.1" cy="208.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.74s"><line x1="32.7" y1="244.7" x2="32.7" y2="205.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="32.7" cy="205.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.02s"><line x1="39.6" y1="241.0" x2="39.6" y2="205.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="39.6" cy="205.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.68s"><line x1="43.8" y1="240.1" x2="43.8" y2="209.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="43.8" cy="209.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.98s"><line x1="48.5" y1="242.1" x2="48.5" y2="208.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="48.5" cy="208.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.10s"><line x1="52.7" y1="244.8" x2="52.7" y2="204.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="52.7" cy="204.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.98s"><line x1="55.2" y1="244.0" x2="55.2" y2="208.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="55.2" cy="208.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.88s"><line x1="61.6" y1="241.0" x2="61.6" y2="195.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="61.6" cy="195.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.88s"><line x1="67.3" y1="241.3" x2="67.3" y2="206.4" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="67.3" cy="206.4" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.47s"><line x1="70.8" y1="242.7" x2="70.8" y2="201.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="70.8" cy="201.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.48s"><line x1="74.1" y1="240.5" x2="74.1" y2="200.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="74.1" cy="200.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.25s"><line x1="78.4" y1="243.6" x2="78.4" y2="199.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="78.4" cy="199.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.00s"><line x1="85.7" y1="244.8" x2="85.7" y2="207.5" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="85.7" cy="207.5" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.59s"><line x1="88.6" y1="241.3" x2="88.6" y2="202.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="88.6" cy="202.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.97s"><line x1="92.2" y1="240.1" x2="92.2" y2="208.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="92.2" cy="208.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.38s"><line x1="97.5" y1="241.7" x2="97.5" y2="198.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="97.5" cy="198.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.86s"><line x1="102.6" y1="241.3" x2="102.6" y2="206.8" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="102.6" cy="206.8" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.56s"><line x1="107.5" y1="242.2" x2="107.5" y2="211.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="107.5" cy="211.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.87s"><line x1="110.7" y1="241.6" x2="110.7" y2="200.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="110.7" cy="200.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.93s"><line x1="117.2" y1="244.5" x2="117.2" y2="202.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="117.2" cy="202.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.41s"><line x1="120.5" y1="245.9" x2="120.5" y2="209.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="120.5" cy="209.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.33s"><line x1="124.6" y1="245.7" x2="124.6" y2="213.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="124.6" cy="213.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.97s"><line x1="128.8" y1="242.3" x2="128.8" y2="209.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="128.8" cy="209.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.27s"><line x1="135.8" y1="244.2" x2="135.8" y2="211.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="135.8" cy="211.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.01s"><line x1="140.0" y1="242.9" x2="140.0" y2="199.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="140.0" cy="199.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.59s"><line x1="144.1" y1="241.7" x2="144.1" y2="204.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="144.1" cy="204.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.92s"><line x1="148.5" y1="245.2" x2="148.5" y2="213.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="148.5" cy="213.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.90s"><line x1="153.9" y1="240.3" x2="153.9" y2="199.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="153.9" cy="199.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.12s"><line x1="156.8" y1="240.9" x2="156.8" y2="209.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="156.8" cy="209.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.13s"><line x1="161.3" y1="243.7" x2="161.3" y2="208.8" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="161.3" cy="208.8" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.89s"><line x1="167.6" y1="242.8" x2="167.6" y2="208.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="167.6" cy="208.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.07s"><line x1="172.3" y1="241.0" x2="172.3" y2="210.5" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="172.3" cy="210.5" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.07s"><line x1="177.4" y1="244.4" x2="177.4" y2="211.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="177.4" cy="211.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.92s"><line x1="180.4" y1="243.6" x2="180.4" y2="200.5" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="180.4" cy="200.5" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.49s"><line x1="184.5" y1="244.7" x2="184.5" y2="209.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="184.5" cy="209.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.25s"><line x1="189.6" y1="241.4" x2="189.6" y2="210.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="189.6" cy="210.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.68s"><line x1="195.0" y1="243.1" x2="195.0" y2="205.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="195.0" cy="205.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.41s"><line x1="198.5" y1="244.9" x2="198.5" y2="214.4" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="198.5" cy="214.4" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.00s"><line x1="203.2" y1="243.2" x2="203.2" y2="213.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="203.2" cy="213.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.56s"><line x1="208.0" y1="241.5" x2="208.0" y2="206.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="208.0" cy="206.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.17s"><line x1="213.2" y1="243.6" x2="213.2" y2="201.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="213.2" cy="201.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.60s"><line x1="217.9" y1="240.9" x2="217.9" y2="202.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="217.9" cy="202.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.87s"><line x1="221.0" y1="242.6" x2="221.0" y2="209.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="221.0" cy="209.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.60s"><line x1="226.9" y1="240.4" x2="226.9" y2="199.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="226.9" cy="199.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.39s"><line x1="232.5" y1="244.1" x2="232.5" y2="207.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="232.5" cy="207.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.12s"><line x1="236.2" y1="244.7" x2="236.2" y2="208.1" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="236.2" cy="208.1" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.77s"><line x1="239.8" y1="241.8" x2="239.8" y2="211.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="239.8" cy="211.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.98s"><line x1="245.8" y1="244.1" x2="245.8" y2="198.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="245.8" cy="198.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.99s"><line x1="248.5" y1="244.5" x2="248.5" y2="206.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="248.5" cy="206.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.22s"><line x1="253.3" y1="245.7" x2="253.3" y2="210.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="253.3" cy="210.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.71s"><line x1="258.7" y1="242.8" x2="258.7" y2="205.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="258.7" cy="205.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.40s"><line x1="262.2" y1="242.1" x2="262.2" y2="205.0" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="262.2" cy="205.0" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.14s"><line x1="268.1" y1="245.1" x2="268.1" y2="200.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="268.1" cy="200.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.45s"><line x1="273.5" y1="249.4" x2="273.5" y2="216.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="273.5" cy="216.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.55s"><line x1="278.5" y1="253.0" x2="278.5" y2="213.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="278.5" cy="213.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.72s"><line x1="281.5" y1="252.3" x2="281.5" y2="215.6" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="281.5" cy="215.6" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.65s"><line x1="287.2" y1="251.8" x2="287.2" y2="221.2" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="287.2" cy="221.2" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.68s"><line x1="291.1" y1="256.0" x2="291.1" y2="212.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="291.1" cy="212.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.14s"><line x1="297.0" y1="256.4" x2="297.0" y2="211.8" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="297.0" cy="211.8" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.69s"><line x1="300.6" y1="257.5" x2="300.6" y2="220.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="300.6" cy="220.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-0.63s"><line x1="305.3" y1="258.9" x2="305.3" y2="214.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="305.3" cy="214.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-4.80s"><line x1="309.2" y1="264.3" x2="309.2" y2="228.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="309.2" cy="228.9" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-2.20s"><line x1="314.0" y1="265.7" x2="314.0" y2="231.3" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="314.0" cy="231.3" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-1.13s"><line x1="319.3" y1="267.7" x2="319.3" y2="234.7" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="319.3" cy="234.7" rx="2.4" ry="6" fill="#D9B356"/></g><g class="b0703-sway" style="animation-delay:-3.77s"><line x1="322.7" y1="265.6" x2="322.7" y2="232.9" stroke="#A9802F" stroke-width="1.3"/><ellipse cx="322.7" cy="232.9" rx="2.4" ry="6" fill="#D9B356"/></g><g stroke="#B88C3A" stroke-width="1.2" opacity=".55"><path d="M10,150.0 C60,140 120,142 170,152" fill="none"/><path d="M40,148.8 C90,140 150,142 200,152" fill="none"/><path d="M70,147.6 C120,140 180,142 230,152" fill="none"/><path d="M100,146.4 C150,140 210,142 260,152" fill="none"/><path d="M130,145.2 C180,140 240,142 290,152" fill="none"/></g><g fill="#5D6E45"><circle cx="30" cy="112" r="12"/><circle cx="48" cy="108" r="14"/><circle cx="70" cy="112" r="10"/><circle cx="214" cy="116" r="12"/><circle cx="232" cy="118" r="10"/></g><path d="M300,176 C420,168 600,166 920,170 L920,260 L250,260 C280,230 290,200 300,176 Z" fill="url(#b0703Riv)"/><g class="b0703-wave" stroke="#CFE0E6" stroke-width="1.3" fill="none" opacity=".55"><path d="M360,200 q10,-3 20,0 t20,0"/><path d="M460,214 q10,-3 20,0 t20,0"/><path d="M560,198 q10,-3 20,0 t20,0"/><path d="M660,226 q10,-3 20,0 t20,0"/><path d="M760,206 q10,-3 20,0 t20,0"/><path d="M860,236 q10,-3 20,0 t20,0"/><path d="M940,214 q10,-3 20,0 t20,0"/><path d="M1000,200 q10,-3 20,0 t20,0"/><path d="M420,240 q10,-3 20,0 t20,0"/><path d="M620,248 q10,-3 20,0 t20,0"/></g><path d="M210,190 C240,200 270,210 300,200" fill="none" stroke="#6F93A0" stroke-width="7" stroke-linecap="round"/><g transform="translate(232,150)"><rect x="0" y="0" width="52" height="40" fill="#B9AE98" stroke="#7E735F"/><path d="M-6,2 L26,-20 L58,2 Z" fill="#6E4A32"/><rect x="20" y="20" width="12" height="20" fill="#5A3D28"/><rect x="6" y="8" width="9" height="8" fill="#3E3A34"/></g><g transform="translate(222,182)"><g class="b0703-wheel"><circle r="21" fill="none" stroke="#5A3D28" stroke-width="3"/><g stroke="#5A3D28" stroke-width="2"><line x1="0" y1="0" x2="20.0" y2="0.0"/><line x1="0" y1="0" x2="17.3" y2="10.0"/><line x1="0" y1="0" x2="10.0" y2="17.3"/><line x1="0" y1="0" x2="-0.0" y2="20.0"/><line x1="0" y1="0" x2="-10.0" y2="17.3"/><line x1="0" y1="0" x2="-17.3" y2="10.0"/><line x1="0" y1="0" x2="-20.0" y2="-0.0"/><line x1="0" y1="0" x2="-17.3" y2="-10.0"/><line x1="0" y1="0" x2="-10.0" y2="-17.3"/><line x1="0" y1="0" x2="0.0" y2="-20.0"/><line x1="0" y1="0" x2="10.0" y2="-17.3"/><line x1="0" y1="0" x2="17.3" y2="-10.0"/></g><circle r="4" fill="#3A2A1C"/></g></g><g><rect x="430" y="142" width="16" height="24" fill="#9B4F37"/><path d="M429,142 L438.0,134 L447,142 Z" fill="#4A3A30"/><rect x="433" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="439" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="448" y="138" width="22" height="28" fill="#B7694A"/><path d="M447,138 L459.0,130 L471,138 Z" fill="#4A3A30"/><rect x="451" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="457" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="463" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="470" y="150" width="26" height="16" fill="#9B4F37"/><path d="M469,150 L483.0,142 L497,150 Z" fill="#4A3A30"/><rect x="473" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="479" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="485" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="491" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="498" y="138" width="22" height="28" fill="#9B4F37"/><path d="M497,138 L509.0,130 L521,138 Z" fill="#4A3A30"/><rect x="501" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="507" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="513" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="520" y="138" width="22" height="28" fill="#B7694A"/><path d="M519,138 L531.0,130 L543,138 Z" fill="#4A3A30"/><rect x="523" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="529" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="535" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="542" y="136" width="20" height="30" fill="#9B4F37"/><path d="M541,136 L552.0,128 L563,136 Z" fill="#4A3A30"/><rect x="545" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="551" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="557" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="563" y="136" width="20" height="30" fill="#A65A3E"/><path d="M562,136 L573.0,128 L584,136 Z" fill="#4A3A30"/><rect x="566" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="572" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="578" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="584" y="136" width="16" height="30" fill="#B7694A"/><path d="M583,136 L592.0,128 L601,136 Z" fill="#4A3A30"/><rect x="587" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="593" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="602" y="136" width="26" height="30" fill="#8E4A34"/><path d="M601,136 L615.0,128 L629,136 Z" fill="#4A3A30"/><rect x="605" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="611" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="617" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="623" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="628" y="146" width="20" height="20" fill="#8E4A34"/><path d="M627,146 L638.0,138 L649,146 Z" fill="#4A3A30"/><rect x="631" y="151" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="637" y="151" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="643" y="151" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="649" y="136" width="22" height="30" fill="#C08560"/><path d="M648,136 L660.0,128 L672,136 Z" fill="#4A3A30"/><rect x="652" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="658" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="664" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="673" y="136" width="20" height="30" fill="#9B4F37"/><path d="M672,136 L683.0,128 L694,136 Z" fill="#4A3A30"/><rect x="676" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="682" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="688" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="695" y="136" width="16" height="30" fill="#B7694A"/><path d="M694,136 L703.0,128 L712,136 Z" fill="#4A3A30"/><rect x="698" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="704" y="141" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="711" y="138" width="18" height="28" fill="#8E4A34"/><path d="M710,138 L720.0,130 L730,138 Z" fill="#4A3A30"/><rect x="714" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="720" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="731" y="138" width="18" height="28" fill="#C08560"/><path d="M730,138 L740.0,130 L750,138 Z" fill="#4A3A30"/><rect x="734" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="740" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="749" y="138" width="18" height="28" fill="#8E4A34"/><path d="M748,138 L758.0,130 L768,138 Z" fill="#4A3A30"/><rect x="752" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="758" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="767" y="142" width="26" height="24" fill="#C08560"/><path d="M766,142 L780.0,134 L794,142 Z" fill="#4A3A30"/><rect x="770" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="776" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="782" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="788" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="794" y="138" width="18" height="28" fill="#9B4F37"/><path d="M793,138 L803.0,130 L813,138 Z" fill="#4A3A30"/><rect x="797" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="803" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="812" y="142" width="22" height="24" fill="#B7694A"/><path d="M811,142 L823.0,134 L835,142 Z" fill="#4A3A30"/><rect x="815" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="821" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="827" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="836" y="138" width="18" height="28" fill="#9B4F37"/><path d="M835,138 L845.0,130 L855,138 Z" fill="#4A3A30"/><rect x="839" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="845" y="143" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="854" y="150" width="18" height="16" fill="#C08560"/><path d="M853,150 L863.0,142 L873,150 Z" fill="#4A3A30"/><rect x="857" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="863" y="155" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="874" y="142" width="22" height="24" fill="#B7694A"/><path d="M873,142 L885.0,134 L897,142 Z" fill="#4A3A30"/><rect x="877" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="883" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="889" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="896" y="142" width="26" height="24" fill="#B7694A"/><path d="M895,142 L909.0,134 L923,142 Z" fill="#4A3A30"/><rect x="899" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="905" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="911" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/><rect x="917" y="147" width="3" height="4" fill="#F1E2B8" opacity=".8"/></g><rect x="633.0" y="122" width="14" height="44" fill="#EDE4CF" stroke="#8C7E66"/><rect x="635.0" y="108" width="10" height="14" fill="#EDE4CF" stroke="#8C7E66"/><path d="M635.0,108 L640,50 L645.0,108 Z" fill="#6A5A48"/><rect x="554.0" y="136" width="12" height="30" fill="#EDE4CF" stroke="#8C7E66"/><rect x="556.0" y="122" width="8" height="14" fill="#EDE4CF" stroke="#8C7E66"/><path d="M556.0,122 L560,96 L564.0,122 Z" fill="#6A5A48"/><rect x="714.5" y="132" width="11" height="34" fill="#EDE4CF" stroke="#8C7E66"/><rect x="716.5" y="118" width="7" height="14" fill="#EDE4CF" stroke="#8C7E66"/><path d="M716.5,118 L720,78 L723.5,118 Z" fill="#6A5A48"/><rect x="815.0" y="140" width="10" height="26" fill="#EDE4CF" stroke="#8C7E66"/><rect x="817.0" y="126" width="6" height="14" fill="#EDE4CF" stroke="#8C7E66"/><path d="M817.0,126 L820,96 L823.0,126 Z" fill="#6A5A48"/><g fill="#8C6A44" stroke="#5E4630" stroke-width="1"><path d="M470,168 L504,168 L510,184 L476,184 Z"/><path d="M560,168 L594,168 L600,184 L566,184 Z"/><path d="M650,168 L684,168 L690,184 L656,184 Z"/><path d="M740,168 L774,168 L780,184 L746,184 Z"/><path d="M830,168 L864,168 L870,184 L836,184 Z"/></g><rect x="420" y="164" width="500" height="5" fill="#6E5236"/><g class="b0703-ship s1" transform="translate(560,214) scale(0.82)"><g clip-path="url(#b0703WL)"><path d="M-52,0 L56,0 Q50,16 36,20 L-38,20 Q-50,12 -52,0 Z" fill="#4E3422"/><path d="M-52,0 L56,0 L55,4 L-51,4 Z" fill="#8A5A30"/></g><line x1="-26" y1="0" x2="-26" y2="-56" stroke="#3A2A1C" stroke-width="2"/><path d="M-39,-48 L-13,-48 L-11,-30.800000000000004 L-41,-30.800000000000004 Z" fill="#F2EADA" opacity=".96"/><path d="M-42,-28.0 L-10,-28.0 L-8,-8 L-44,-8 Z" fill="#EDE3CF" opacity=".96"/><line x1="4" y1="0" x2="4" y2="-70" stroke="#3A2A1C" stroke-width="2"/><path d="M-9,-62 L17,-62 L19,-38.5 L-11,-38.5 Z" fill="#F2EADA" opacity=".96"/><path d="M-12,-35.0 L20,-35.0 L22,-8 L-14,-8 Z" fill="#EDE3CF" opacity=".96"/><line x1="32" y1="0" x2="32" y2="-50" stroke="#3A2A1C" stroke-width="2"/><path d="M19,-42 L45,-42 L47,-27.500000000000004 L17,-27.500000000000004 Z" fill="#F2EADA" opacity=".96"/><path d="M16,-25.0 L48,-25.0 L50,-8 L14,-8 Z" fill="#EDE3CF" opacity=".96"/><path d="M56,-2 L80,-18" stroke="#3A2A1C" stroke-width="1.6"/><ellipse cx="2" cy="16" rx="58" ry="4" fill="#1E3340" opacity=".25"/><path d="M-58,12 q6,-2.6 12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#D8E6EA" stroke-width="1.5" opacity=".75"/></g><g class="b0703-ship s2" transform="translate(800,236) scale(1.0)"><g clip-path="url(#b0703WL)"><path d="M-52,0 L56,0 Q50,16 36,20 L-38,20 Q-50,12 -52,0 Z" fill="#4E3422"/><path d="M-52,0 L56,0 L55,4 L-51,4 Z" fill="#8A5A30"/></g><line x1="-26" y1="0" x2="-26" y2="-56" stroke="#3A2A1C" stroke-width="2"/><path d="M-39,-48 L-13,-48 L-11,-30.800000000000004 L-41,-30.800000000000004 Z" fill="#F2EADA" opacity=".96"/><path d="M-42,-28.0 L-10,-28.0 L-8,-8 L-44,-8 Z" fill="#EDE3CF" opacity=".96"/><line x1="4" y1="0" x2="4" y2="-70" stroke="#3A2A1C" stroke-width="2"/><path d="M-9,-62 L17,-62 L19,-38.5 L-11,-38.5 Z" fill="#F2EADA" opacity=".96"/><path d="M-12,-35.0 L20,-35.0 L22,-8 L-14,-8 Z" fill="#EDE3CF" opacity=".96"/><line x1="32" y1="0" x2="32" y2="-50" stroke="#3A2A1C" stroke-width="2"/><path d="M19,-42 L45,-42 L47,-27.500000000000004 L17,-27.500000000000004 Z" fill="#F2EADA" opacity=".96"/><path d="M16,-25.0 L48,-25.0 L50,-8 L14,-8 Z" fill="#EDE3CF" opacity=".96"/><path d="M56,-2 L80,-18" stroke="#3A2A1C" stroke-width="1.6"/><ellipse cx="2" cy="16" rx="58" ry="4" fill="#1E3340" opacity=".25"/><path d="M-58,12 q6,-2.6 12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0 t12,0" fill="none" stroke="#D8E6EA" stroke-width="1.5" opacity=".75"/></g></svg>
   </div>
 
   <div class="hero-headline-strip serif">Middle Colonies</div>
@@ -2677,8 +4144,7 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
-      <div class="info-value">Week 16 · Q3</div>
+      <div class="info-value">Week 16 · Q2</div>
     </div>
   </div>
   <div class="info-cell">
@@ -2692,7 +4158,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Service</div>
     </div>
   </div>
@@ -2700,27 +4165,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.2 · SS.5.A.4.3 · SS.5.E.1.1 · TEKS 1(A)–(C), 6(A), 9(A), 13(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 31 · Circulation 1400 · <em>Colonial regional coverage — Middle Colonies</em>
+      Vol. 1 · Issue 31 · Readers: 1,400 · <em>Colonial regional coverage — Middle Colonies</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,20 +4187,18 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1400</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — The Gazette moves to the diverse, commercially vibrant Middle Colonies.
+        — The Gazette moves to the Middle Colonies, a region full of farms, busy ports and people from many homelands.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4221,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2800,17 +4248,10 @@ html, body {
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.03</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
       <p>Last issue, the Gazette covered the New England colonies. Now we move south and inland: <em>5.07.03 — Middle Colonies</em>. This dispatch arrives at the <strong>Front Page Desk</strong>. New York, New Jersey, Pennsylvania, and Delaware sat between New England and the South — but their importance went far beyond geography. Rich farmland, busy ports, diverse populations, and a tradition of religious tolerance made the Middle Colonies unique. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
     </div>
   </div>
@@ -2821,14 +4262,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Were the Middle Colonies important only because of their location — or did fertile land, diverse people, and tolerance make them significant in their own right?</p>
       </div>
     </div>
@@ -2842,8 +4280,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify key geographic and economic features of the Middle Colonies.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how diversity and tolerance set the Middle Colonies apart from New England and the South.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Support a claim that the Middle Colonies were important for reasons beyond location.</div>
@@ -2874,7 +4310,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-03-welcome -->
@@ -2892,24 +4327,18 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore the Middle Colonies & spotlight service</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Look at 1750s Philadelphia through a spyglass</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a text about the Middle Colonies</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Weigh the Herald’s claim and study a real picture</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Service ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
       <strong>An editor who practices service tells the stories that help readers understand how diversity strengthens a community.</strong> Today, service means showing that the Middle Colonies were significant because of their people, tolerance, and economy — not just their location on a map.
     </div>
   </div>
@@ -2920,19 +4349,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Middle Colonies: Just in the Middle!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">The Middle Colonies were important only because they were in the middle.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Study the evidence and decide: was location really all that mattered — or did fertile land, diverse populations, and religious tolerance make these colonies important in their own right?
+      <strong>Your job, junior editor:</strong> Study the evidence and decide: was location really all that mattered, or did rich land, people from many homelands, and freedom of worship make these colonies important for their own reasons?
     </div>
   </div>
 
@@ -2940,9 +4363,6 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
       <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to gather the facts about the Middle Colonies — and publish a <strong>Front Page Brief</strong> that shows readers what really made this region distinctive.
     </div>
   </div>
@@ -2954,19 +4374,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Service</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What do we notice about the Middle Colonies’ geography, people, and economy, what made them different from New England, and why does it matter?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. An editor practicing service looks for what makes a community strong — not just where it sits on a map.
       </div>
     </div>
@@ -2977,18 +4389,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-03-explore-explainer -->
@@ -3002,13 +4404,10 @@ html, body {
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
       <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
       <div class="desk-title">Front Page Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3028,17 +4427,16 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 Fertile Land, Diverse People, and Tolerance</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>The Middle Colonies — New York, New Jersey, Pennsylvania, and Delaware — occupied the fertile river valleys of the Hudson and Delaware rivers. The climate was milder than New England’s, and the soil was rich and deep. Farmers grew wheat, corn, rye, and oats in such abundance that the region earned the nickname “the breadbasket colonies.” Flour mills processed the grain, and busy ports like Philadelphia and New York shipped it across the Atlantic.</p>
-    <p>But the Middle Colonies were distinctive for more than farming. They were the most ethnically and religiously diverse region in colonial America. Dutch settlers had founded New Amsterdam (later New York). Swedes settled along the Delaware River. William Penn’s Pennsylvania welcomed Quakers, Germans, Scots-Irish, and others with a promise of religious tolerance. Free and enslaved Africans lived and worked throughout the region. Philadelphia — Penn’s “City of Brotherly Love” — became one of the largest, most cosmopolitan cities in British North America, with printing presses, libraries, and a culture of civic engagement. The Middle Colonies showed that diversity and tolerance could build a thriving society.</p>
+    <p>The Middle Colonies were New York, New Jersey, Pennsylvania and Delaware. They sat between New England and the Southern Colonies, along the Hudson and Delaware rivers. The soil in the river valleys was deep and rich, and summers were longer and warmer than in New England. Farmers grew so much wheat, corn, rye and oats that the region was called “the breadbasket colonies.” Mills ground the grain into flour, and ships carried it from New York City and Philadelphia to the Caribbean islands and to Europe.</p>
+    <p>The Middle Colonies were also the most <strong>diverse</strong> region, which means they had people of many different kinds. The Dutch started New Netherland in 1624; the English took it over in 1664 and renamed it New York. Swedes settled along the Delaware River in 1638. In 1681 the King of England gave the land of Pennsylvania to William Penn, a <strong>Quaker</strong> (a member of a Christian group that believed in peace and plain worship). Penn’s 1701 Charter of Privileges let people who believed in God worship freely, but only Christians could hold a government job. English, German, Welsh, Scots-Irish and Jewish settlers came, and many Germans and Scots-Irish worked for several years to pay off the cost of the ocean trip. Rhode Island and Maryland also had laws about freedom of worship, but Pennsylvania drew the widest mix of people. By the 1760s, Philadelphia was the biggest city in the thirteen colonies, with printers, newspapers, a library and a school.</p>
+    <p>Not everyone shared in this. Slavery was legal in all the Middle Colonies, and enslaved Africans worked on farms, in homes and on the docks. The land also belonged to the Lenape people first. Penn bought land from Lenape leaders with written agreements called deeds, starting in 1682. But in 1737, after Penn died, his sons used an old, unsigned deed and hired fast walkers to claim land “as far as a man could walk in a day and a half.” This was the Walking Purchase. The Lenape lost about 1,200 square miles of land and were pushed off it.</p>
 
     <!-- Economy vs Society grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">🌾 Economy</div>
         <div class="source-type-name">The Breadbasket</div>
-        <div class="source-type-defn">Fertile river valleys and a mild climate made the Middle Colonies the most productive farming region in colonial America.</div>
+        <div class="source-type-defn">Rich river valleys and a longer growing season made the Middle Colonies a great place to grow grain.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
           Wheat, corn, rye, and oats · Flour mills · Busy ports (Philadelphia, New York) · Ironworks and trade
@@ -3047,41 +4445,60 @@ html, body {
       <div class="source-type-card secondary">
         <div class="source-type-label">🤝 Society</div>
         <div class="source-type-name">Diversity and Tolerance</div>
-        <div class="source-type-defn">The Middle Colonies were the most ethnically and religiously diverse region, with a culture of tolerance that other colonies lacked.</div>
+        <div class="source-type-defn">The Middle Colonies had people from more homelands and more religions than any other region. Pennsylvania’s freedom of worship was wider than in most other colonies (Rhode Island was another).</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Dutch, Swedish, Quaker, German, Scots-Irish settlers · Penn’s promise of religious tolerance · Philadelphia’s cosmopolitan culture · Free and enslaved Africans
+          Dutch, Swedish, Quaker, German, Scots-Irish and Jewish settlers · Penn’s 1701 Charter of Privileges (for people who believed in God) · Philadelphia, full of people from many countries · Free and enslaved Africans
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald reduced the Middle Colonies to their location. But fertile soil, grain exports, ethnic diversity, religious tolerance, and cities like Philadelphia made this region significant in its own right. An editor practicing service reports the substance, not just the geography.</p>
+    <p>The Hasty Herald said the Middle Colonies mattered only because of their location. Their spot on the coast did help trade. But rich soil, grain and flour, people from many homelands, and a growing city like Philadelphia made the region matter for its own reasons, and not everyone shared in it. An editor practicing service gives readers the whole story, not just the map.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
   <div class="content-section">
-    <h2>🔎 The Middle Colonies: The Breadbasket and Beyond</h2>
-    <p>Read the source text below carefully. Notice what it says about the land, the people, and the values of the Middle Colonies. Think about what set this region apart.</p>
+    <h2>🔎 A Real View of Philadelphia</h2>
+    <p>This is a real picture of Philadelphia, the biggest city in the Middle Colonies. George Heap drew it around 1750 from across the Delaware River, in New Jersey. This copy was printed in London in 1768. Look closely. What does the city have besides its spot on the river?</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
-      <!-- Embedded text source — Middle Colonies description -->
-      <div style="background:rgba(255,255,255,.7);border:2px solid #B8923E;border-radius:10px;padding:1.4rem;margin:1rem 0;font-family:'Crimson Text',Georgia,serif;">
-        <div style="font-family:'Special Elite',monospace;font-size:.85rem;color:#888;margin-bottom:.6rem;">PRIMARY SOURCE EXCERPT — adapted for classroom use</div>
-        <div style="font-size:1.02rem;color:#1A2138;line-height:1.7;">
-          <p style="margin:0 0 .8rem 0;">“The soil along the Hudson and Delaware rivers is deep and fertile. <strong>Wheat, corn, rye, and oats</strong> grow in such plenty that farmers send shiploads of flour to other colonies and across the sea. The region has earned the name <strong>‘the breadbasket.’</strong>”</p>
-          <p style="margin:0 0 .8rem 0;">“The people here come from <strong>many nations</strong>: Dutch, English, Swedish, German, Scots-Irish, and African — both free and enslaved. In <strong>Pennsylvania</strong>, Mr. Penn has promised religious tolerance to all, and Quakers, Lutherans, and Mennonites worship side by side.”</p>
-          <p style="margin:0;">“<strong>Philadelphia</strong> is now one of the largest cities in British North America — a place of printing presses, lending libraries, and civic debate. It is nothing like the small church towns of New England.”</p>
-        </div>
-        <div style="font-size:.85rem;color:#5C3D24;margin-top:.8rem;font-style:italic;">Adapted from colonial-era descriptions, mid-1700s</div>
+      <div class="source-image-placeholder" data-image="source-5-07-03-east-prospect-philadelphia">
+        🖼️ <strong>Source:</strong> An East Prospect of the City of Philadelphia, taken by George Heap from the Jersey shore, under the direction of Nicholas Scull. Engraved by T. Jefferys, London, 1768. Library of Congress, no known restrictions (loc.gov/item/2004672470).
       </div>
       <div class="source-image-caption">
-        <em>What does this text reveal about what made the Middle Colonies distinctive — and who lived there?</em>
+        <em>What does this picture show that the city had, besides its location, and what can’t it show?</em><br><small style="font-style:normal;opacity:.85">Drawn by George Heap around 1750; first printed in 1754; this copy printed by Thomas Jefferys, 1768. The small numbers name buildings: 1 Christ Church, 2 State House, 5 a German church, 7 Quakers’ Meeting House, 14 the corn mill. Library of Congress.</small>
       </div>
     </div>
+
+    <div style="background:rgba(255,255,255,.7);border:2px solid #B8923E;border-radius:10px;padding:1.2rem 1.4rem;margin:1rem 0;font-family:'Crimson Text',Georgia,serif;">
+      <div style="font-family:'Special Elite',monospace;font-size:.85rem;color:#5C3D24;margin-bottom:.6rem;">REAL SOURCE FROM THE PAST: a visitor’s words</div>
+      <p style="margin:0 0 .6rem 0;font-size:1.02rem;color:#1A2138;line-height:1.7;">“…that colony possesses great liberties above all other English colonies, inasmuch as all religious sects are tolerated there. We find there Lutherans, Reformed, Catholics, Quakers, Mennonists or Anabaptists, … Presbyterians, … Jews …”</p>
+      <div style="font-size:.88rem;color:#5C3D24;font-style:italic;">Gottlieb Mittelberger, <em>Journey to Pennsylvania</em> (he lived there 1750–1754; English translation by Carl Theo. Eben, 1898, pages 54–55). A sect is a religious group. The … marks show words left out. He says “all” sects, but Pennsylvania’s law protected only people who believed in God.</div>
+    </div>
+
+    <div style="background:#F3F5FA;border:1px dashed #6B7280;border-radius:10px;padding:1.2rem 1.4rem;margin:1rem 0;font-family:'Crimson Text',Georgia,serif;">
+      <div style="font-family:'Special Elite',monospace;font-size:.85rem;color:#4B5563;margin-bottom:.6rem;">EXAMPLE WRITTEN FOR THIS LESSON (not a real quote from the past)</div>
+      <div style="font-size:1.02rem;color:#1A2138;line-height:1.7;">
+        <p style="margin:0 0 .8rem 0;">The soil along the Hudson and Delaware rivers is deep and rich. <strong>Wheat, corn, rye and oats</strong> grow in such plenty that farmers send shiploads of flour to other colonies and across the sea. The region has earned the name <strong>“the breadbasket.”</strong></p>
+        <p style="margin:0 0 .8rem 0;">The people here come from <strong>many nations</strong>: Dutch, English, Swedish, German, Scots-Irish, Jewish and African, both free and enslaved. In <strong>Pennsylvania</strong>, the law lets people who believe in God worship freely, so Quakers, Lutherans and Mennonites worship near one another.</p>
+        <p style="margin:0;"><strong>Philadelphia</strong> is one of the largest cities in British North America, a place of printing presses, a lending library, and people who join in running their city.</p>
+      </div>
+      <div style="font-size:.85rem;color:#4B5563;margin-top:.8rem;font-style:italic;">Written for this lesson to sum up the facts above. It is not words from the 1700s.</div>
+    </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>col</em> and <em>cult</em> mean “farm”</h2>
+    <p>Many English words come from the Latin word <strong>colere</strong>, which means <strong>to farm, grow or settle</strong>. You can spot it as <strong>col</strong> or <strong>cult</strong>.</p>
+    <ul>
+      <li><strong>colony</strong> (col + ony): a settlement, from the Latin word for a farmer</li>
+      <li><strong>cultivate</strong> (cult + iv + ate): to prepare land and grow crops</li>
+      <li><strong>agriculture</strong> (agri + cult + ure): farming (agri means field)</li>
+      <li><strong>culture</strong> (cult + ure): the way a group of people lives, first meaning “the growing of something”</li>
+    </ul>
+    <p><strong>Discovery:</strong> The word colony comes from the Latin <em>colonus</em>, a farmer. Many colonists were farmers, and the Middle Colonies farmed so well they were called the breadbasket colonies.</p>
+    <p><em>Try it: use the word <strong>cultivate</strong> in a sentence about the Middle Colonies.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
@@ -3091,7 +4508,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3101,7 +4517,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Geography and economy" placeholder="The Middle Colonies had... which led to..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3111,7 +4526,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Diversity" placeholder="The Middle Colonies were more diverse because..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3128,10 +4542,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3140,14 +4550,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3183,11 +4585,11 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>They had fewer people and less trade</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
         <span class="factcheck-option-letter">B</span>
         <span>They were the most ethnically and religiously diverse region, with Dutch, Quaker, German, and other settlers</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
         <span>They were entirely Puritan, just like New England</span>
       </div>
@@ -3224,7 +4626,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3246,21 +4647,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-03-assignment-explainer -->
@@ -3290,16 +4678,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
           <span>(1) A clear claim about why the Middle Colonies were important. (2) Evidence about their economy and their diversity. (3) Why this matters — what should readers understand?</span>
         </div>
@@ -3315,9 +4699,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about middle colonies.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3346,8 +4727,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and front page brief</span></div>
@@ -3362,32 +4741,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 31 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
       <strong>Well done, Junior Editor.</strong> You reported on the Middle Colonies with evidence and service — the Gazette’s readers now see a region that was significant for its land, its people, and its values.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.04) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Southern Colonies</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that the Southern Colonies were just farms and plantations. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-03-closing -->
@@ -3662,7 +5030,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 31 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4019,5 +5387,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>
