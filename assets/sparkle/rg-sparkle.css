@@ -1279,3 +1279,60 @@ html:not(.rg-quiet) .rg-fp-card.flipped:not(.calm) .rg-fp-ans{ animation:rg-fp-t
 .rg-st-q .rg-radio.right{ background:#EEF7EF; border-color:#2E6B3A; } .rg-st-q .rg-radio.wrong{ background:#FBEFEE; border-color:#B3261E; }
 @media (max-width:640px){ .rg-fp-card{ grid-template-columns:1fr; } .rg-fp-tabs .t{ display:none; } .rg-st-row{ grid-template-columns:1fr; } .rg-cl-head{ font-size:20px; } }
 @media (prefers-reduced-motion:reduce){ .rg-cl-line.inked .rg-cl-cut, .rg-fp-card.flipped .rg-fp-ans{ animation:none!important; } }
+/* ================= v13 (5.07.08): zoom, ask, pins ================= */
+.rg-zm-q{ font:15.5px/1.5 'Nunito',sans-serif; margin:4px 0 10px; }
+.rg-zm-paper{ background:#FBF8F0; border:1px solid #D8CDB4; border-radius:10px; padding:12px; max-width:460px; margin:0 auto; }
+.rg-zm-h{ font:italic 15px/1.4 'Playfair Display',Georgia,serif; margin:4px 0 0; color:#3A2F1A; }
+.rg-zm-stage{ position:relative; width:100%; overflow:hidden; border-radius:6px; background:#EFE6CF; margin-top:8px; }
+.rg-zm-map{ position:absolute; inset:0; opacity:.15; }
+.rg-zm-map img{ width:100%; height:100%; object-fit:cover; display:block; }
+.rg-zm-photo{ position:absolute; overflow:hidden; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.35); background:#ddd; }
+.rg-zm-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.rg-zm-cap{ position:absolute; left:0; right:0; bottom:0; background:rgba(20,20,20,.72); color:#fff; font:900 15px/1.2 'Playfair Display',Georgia,serif; letter-spacing:.06em; text-transform:uppercase; padding:6px 8px; text-align:center; }
+.rg-zm-photo.small{ border-width:2px; } .rg-zm-photo.small .rg-zm-cap{ display:none; }
+.rg-zm-dot{ position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; border:3px solid #B3261E; opacity:0; pointer-events:none; }
+.rg-zm-dot.on{ opacity:1; } html:not(.rg-quiet) .rg-zm-dot.on{ animation:rg-zm-ping 1.6s ease-out 2; }
+@keyframes rg-zm-ping{ from{ box-shadow:0 0 0 0 rgba(179,38,30,.5); } to{ box-shadow:0 0 0 18px rgba(179,38,30,0); } }
+.rg-zm-ctl{ max-width:460px; margin:12px auto 0; display:flex; flex-direction:column; gap:6px; font:800 15px 'Nunito',sans-serif; color:#1F4E8C; }
+.rg-zm-ctl input[type=range]{ width:100%; height:36px; accent-color:#1F4E8C; cursor:pointer; }
+.rg-zm-say{ max-width:460px; margin:8px auto 0; font:15px/1.45 'Nunito',sans-serif; min-height:1.3em; }
+.rg-zm-close{ max-width:460px; margin:0 auto; }
+/* ask the three */
+.rg-ask-wrap{ overflow-x:auto; }
+.rg-ask-tbl{ width:100%; border-collapse:separate; border-spacing:6px; table-layout:fixed; font:15px/1.4 'Nunito',sans-serif; }
+.rg-ask-tbl thead th{ font:900 14px 'Nunito',sans-serif; color:#3A2F1A; text-align:left; padding:4px 6px; }
+.rg-ask-tbl thead th:first-child{ width:22%; }
+.rg-ask-tbl tbody th{ text-align:left; vertical-align:top; font:800 14.5px/1.35 'Nunito',sans-serif; color:#1F4E8C; padding:8px 6px; background:#F1F5FA; border-radius:8px; }
+.rg-ask-tbl tbody th .n{ display:inline-grid; place-items:center; width:22px; height:22px; border-radius:50%; background:#1F4E8C; color:#fff; font-size:12px; margin-right:4px; }
+.rg-ask-tbl tr.ok th .n{ background:#2E6B3A; }
+.rg-ask-tbl td{ vertical-align:top; background:#FBF8F0; border:1px solid #E3D8BF; border-radius:8px; padding:8px; }
+.rg-ask-tbl tr.cur td{ border-color:#C9B78E; }
+.rg-ask-who{ display:none; font-weight:900; }
+.rg-ask-look{ display:block; color:#6B6455; font-size:12px; margin-top:3px; }
+.rg-ask-cell{ padding:4px!important; background:transparent!important; border:none!important; }
+.rg-ask-btn{ width:100%; min-height:48px; border:2px dashed #9BB0C9; border-radius:8px; background:#F4F7FB; color:#1F4E8C; font:800 14px/1.3 'Nunito',sans-serif; cursor:pointer; padding:6px; }
+.rg-ask-btn:hover{ background:#E8EFF8; } .rg-ask-btn:focus-visible{ outline:3px solid #1F4E8C; outline-offset:2px; }
+html:not(.rg-quiet) .rg-ask-ans{ animation:rg-in .35s; }
+.rg-ask-q{ margin-top:8px; } .rg-ask-sdb{ display:flex; gap:10px; flex-wrap:wrap; margin:6px 0; } .rg-ask-sdb .rg-btn{ min-height:44px; }
+.rg-ask-sdb .rg-btn[aria-pressed="true"]{ outline:3px solid #1F4E8C; }
+.rg-ask-q .say{ font:14.5px/1.45 'Nunito',sans-serif; margin:6px 0 0; } .rg-ask-q .say.ok{ color:#2E6B3A; font-weight:700; } .rg-ask-q .say.no{ color:#7A2E1E; }
+@media (max-width:640px){
+  .rg-ask-tbl, .rg-ask-tbl tbody, .rg-ask-tbl tr, .rg-ask-tbl th, .rg-ask-tbl td{ display:block; width:auto; }
+  .rg-ask-tbl thead{ display:none; } .rg-ask-tbl tr{ margin-bottom:10px; } .rg-ask-tbl td{ margin-top:6px; } .rg-ask-who{ display:inline; } }
+/* pins */
+.rg-pn-chips{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0; }
+.rg-pn-chip.picked{ outline:3px solid #1F4E8C; background:#E8EFF8; } .rg-pn-chip.placed{ opacity:.7; }
+.rg-pn-say{ font:15px/1.45 'Nunito',sans-serif; min-height:1.3em; margin:4px 0 8px; }
+.rg-pn-fig{ margin:0 auto; max-width:460px; }
+.rg-pn-map{ position:relative; width:100%; border-radius:6px; overflow:hidden; background:#EFE6CF; }
+.rg-pn-map > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.rg-pn-map.picking{ cursor:crosshair; box-shadow:0 0 0 3px #1F4E8C; }
+.rg-pn-zones{ position:absolute; inset:0; }
+.rg-pn-zone{ position:absolute; background:transparent; border:0; padding:0; margin:0; cursor:inherit; }
+.rg-pn-zone:focus-visible{ outline:3px dashed #1F4E8C; background:rgba(31,78,140,.12); }
+.rg-pn-pins{ position:absolute; inset:0; pointer-events:none; }
+.rg-pn-pin{ position:absolute; width:0; height:0; }
+.rg-pn-pin::before{ content:''; position:absolute; left:-8px; top:-20px; width:16px; height:16px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#B3261E; box-shadow:0 1px 3px rgba(0,0,0,.4); }
+.rg-pn-pin .lb{ position:absolute; left:10px; top:-24px; white-space:nowrap; background:rgba(255,255,255,.94); border:1px solid #B3261E; border-radius:8px; padding:1px 6px; font:800 12px 'Nunito',sans-serif; color:#7A2E1E; }
+.rg-pn-pin.l .lb{ left:auto; right:10px; }
+.rg-pn-fig figcaption{ font:12.5px/1.4 'Nunito',sans-serif; color:#5A5446; margin-top:4px; }

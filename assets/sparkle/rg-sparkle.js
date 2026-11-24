@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips   (explore.tworec: optional, after the picture; explore.stereo: optional, before it)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask   (explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -951,6 +951,111 @@
     paint();
     return {el:g,done:done,stop:function(){ clearInterval(timer); }}; };
 
+  /* ---------------------------------------------------------------- zoom: the Herald runs ONE photo as "Colonial America"; a slider pulls back until that photo is one small pin on a map of all thirteen colonies; then seal a question
+     DATA.scene1 = {type:'zoom', title, job, q, head, heraldCap, photo:{img,alt,aspect}, map:{img,alt,aspect,cap}, pin:[x,y] (% of the map), steps:[{at,t}], slideT, close, seal:{q,opts,reveal}, sealed, srcLabel, heraldFrom} */
+  MOD.zoom=function(c,anchor){ var st=mstate('zoom',{v:0,max:0}); var P=c.photo||{}, M=c.map||{}, PIN=c.pin||[50,50], SP=c.steps||[];
+    var g=gameShell('rg-zoom','Dispatch · zoom out',c.title||'Zoom out',c);
+    g.innerHTML+=(c.q?'<p class="rg-zm-q">'+esc(c.q)+'</p>':'')+
+      '<div class="rg-zm-paper"><div class="rg-cl-mast">The Hasty Herald</div><div class="rg-cl-head">'+esc(c.head||'')+'</div>'+(c.heraldLine?'<p class="rg-zm-h">'+esc(c.heraldLine)+'</p>':'')+
+      '<div class="rg-zm-stage" style="aspect-ratio:'+(M.aspect||0.64)+'"><div class="rg-zm-map"></div><div class="rg-zm-photo"><div class="rg-zm-cap">'+esc(c.heraldCap||'')+'</div></div><span class="rg-zm-dot" aria-hidden="true"></span></div></div>'+
+      '<div class="rg-zm-ctl"><label for="rg-zm-r">🔭 '+esc(c.slideT||'Slide to zoom out')+'</label><input type="range" id="rg-zm-r" min="0" max="100" step="1" value="'+(st.v||0)+'"></div>'+
+      '<p class="rg-zm-say" aria-live="polite"></p><div class="rg-zm-close"></div><div class="rg-ads-seal rg-zm-seal"></div>';
+    after(anchor,g);
+    var stage=$('.rg-zm-stage',g), ph=$('.rg-zm-photo',g), mp=$('.rg-zm-map',g), dot=$('.rg-zm-dot',g), rng=$('#rg-zm-r',g);
+    var pim=srcImg(P.img,'',P.alt||''), mim=srcImg(M.img,'',M.alt||''); ph.insertBefore(pim,ph.firstChild); mp.appendChild(mim);
+    var pa=P.aspect||1, ma=M.aspect||0.64;
+    function lerp(a,b,t){ return a+(b-a)*t; }
+    function layout(){ var t=Math.max(0,Math.min(1,(st.v||0)/100)), e=t*t*(3-2*t);
+      /* start: photo fills the width, centred; end: a small square at the pin */
+      var w0=100, h0=100*ma/pa, l0=0, t0=(100-h0)/2, w1=7, h1=7*ma/pa, l1=PIN[0]-w1/2, t1=PIN[1]-h1/2;
+      var w=lerp(w0,w1,e), h=lerp(h0,h1,e); ph.style.width=w+'%'; ph.style.height=h+'%'; ph.style.left=lerp(l0,l1,e)+'%'; ph.style.top=lerp(t0,t1,e)+'%';
+      ph.classList.toggle('small',e>0.6); mp.style.opacity=String(Math.min(1,0.15+e)); dot.style.left=PIN[0]+'%'; dot.style.top=PIN[1]+'%'; dot.classList.toggle('on',e>0.92);
+      var say=''; SP.forEach(function(s){ if((st.v||0)>=s.at) say=s.t; }); $('.rg-zm-say',g).textContent=say; }
+    rng.addEventListener('input',function(){ st.v=+rng.value; if(st.v>st.max){ st.max=st.v; } layout(); if(st.max>=95&&!st.out){ st.out=true; SFX.paper(); save(); paint(); refreshPress(); } });
+    rng.addEventListener('change',function(){ save(); });
+    function paint(){ var cl=$('.rg-zm-close',g); cl.innerHTML=st.out&&c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':(st.out?'':'<p class="rg-todo">🔭 '+esc(c.todoT||'Slide all the way to the right.')+'</p>');
+      var sb=$('.rg-zm-seal',g), S1=c.seal||{};
+      if(!st.out){ sb.innerHTML=''; delete sb.dataset.on; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-zm-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        $$('input[name="rg-zm-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-zm-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',sb).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    layout(); paint(); window.addEventListener('resize',layout);
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ if(!st.out) return NA; return '<p class="a"><b>Zoomed out:</b> '+e(c.close||'')+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:[], vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- ask: one question at a time to three regions; tap each region to fill its cell in the chart; then say whether the three answers are the same or different
+     DATA.explore.reading = {type:'ask', title, job, times:[questions], rows:[{id,n,short,ans:'same'|'diff',ok,no}], cols:[{id,who,icon,short,lines:[one per question],look:[one per question]}],
+       askT, sameQ, myths:[{after,claim,fact,calm}], miniAfter, close, srcLabel} */
+  MOD.ask=function(c,anchor){ var st=mstate('sun',{stop:0,myth:{},ans:{},seen:{}}); if(!st.ans) st.ans={}; if(!st.myth) st.myth={}; if(!st.seen) st.seen={}; if(!(st.stop>=0)) st.stop=0;
+    var RW=c.rows||[], CL=c.cols||[], TM=c.times||[], N=RW.length;
+    var g=gameShell('rg-ask','The Desk · ask the three regions',c.title||'Same question, three answers',c);
+    g.innerHTML+='<div class="rg-ask-wrap"><table class="rg-ask-tbl"><caption class="rg-sr">'+esc(c.title||'The three regions, question by question')+'</caption><thead><tr><th scope="col"><span class="rg-sr">Question</span></th>'+CL.map(function(x){ return '<th scope="col"><span aria-hidden="true">'+esc(x.icon||'')+'</span> '+esc(x.head||x.who)+'</th>'; }).join('')+'</tr></thead><tbody></tbody></table></div>'+
+      '<div class="rg-ask-sd" aria-live="polite"></div><div class="rg-fp-nav"><button type="button" class="rg-btn rg-ask-next"></button></div><div class="rg-myths"></div><div class="rg-sun-close"></div>';
+    after(anchor,g);
+    var tb=$('tbody',g), sd=$('.rg-ask-sd',g), nextB=$('.rg-ask-next',g), mythBox=$('.rg-myths',g);
+    function rid(i){ return (RW[i]||{}).id||String(i); }
+    function seenAll(i){ var s=st.seen[rid(i)]||{}; return CL.every(function(x){ return s[x.id]; }); }
+    function ok(i){ return st.ans[rid(i)]===(RW[i]||{}).ans; }
+    function mythsFor(i){ return (c.myths||[]).map(function(m,k){ return [m,k]; }).filter(function(p){ return p[0].after===rid(i); }); }
+    function cleared(i){ return ok(i)&&mythsFor(i).every(function(p){ return st.myth[p[1]]; }); }
+    function idx(id){ return RW.map(function(r){ return r.id; }).indexOf(id); }
+    function paint(){ var cur=st.stop;
+      tb.innerHTML=RW.map(function(r,i){ if(i>cur) return ''; var s=st.seen[rid(i)]||{};
+        return '<tr class="'+(i===cur?'cur':'')+(ok(i)?' ok':'')+'" data-r="'+i+'"><th scope="row"><span class="n">'+(i+1)+'</span> '+esc(TM[i]||r.short||'')+'</th>'+CL.map(function(x){ return s[x.id]?'<td class="rg-ask-ans" data-c="'+esc(x.id)+'" data-r="'+i+'"><span class="rg-ask-who">'+esc(x.short||x.who)+': </span>'+esc((x.lines||[])[i]||'')+((x.look||[])[i]?' <small class="rg-ask-look">'+esc(x.look[i])+'</small>':'')+'</td>':'<td class="rg-ask-cell"><button type="button" class="rg-ask-btn" data-c="'+esc(x.id)+'" data-r="'+i+'"'+(i<cur?' disabled':'')+'><span aria-hidden="true">'+esc(x.icon||'❓')+'</span> '+esc(c.askT||'Ask')+' '+esc(x.short||x.who)+'</button></td>'; }).join('')+'</tr>'; }).join('');
+      var R0=RW[cur]||{}, a=st.ans[rid(cur)];
+      sd.innerHTML=seenAll(cur)?'<fieldset class="rg-ad-q rg-ask-q"><legend>'+esc(R0.q||c.sameQ||'Are the three answers the same, or different?')+'</legend><div class="rg-ask-sdb"><button type="button" class="rg-btn alt" data-v="same" aria-pressed="'+(a==='same')+'">🟰 '+esc(c.sameT||'The same')+'</button><button type="button" class="rg-btn alt" data-v="diff" aria-pressed="'+(a==='diff')+'">↔ '+esc(c.diffT||'Different')+'</button></div>'+(a?'<p class="say '+(ok(cur)?'ok':'no')+'">'+(ok(cur)?'✓ '+esc(R0.ok||''):esc(R0.no||'Look at the three answers again.'))+'</p>':'')+'</fieldset>':'<p class="rg-todo">👆 '+esc(c.tapT||'Tap each region to hear its answer.')+'</p>';
+      var last=cur>=N-1, clr=cleared(cur); nextB.disabled=!clr||last; nextB.classList.toggle('rg-hide',last&&clr);
+      nextB.textContent=!seenAll(cur)?(c.lockedT||'Ask all three regions to go on'):!ok(cur)?(c.pickT||'Pick same or different to go on'):!clr?(c.mythT||'Fact-check the Herald below to go on'):'Next question ▸';
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ var i=idx(m.after); return i>-1&&ok(i); }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+(m.calm?' calm':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact"><div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      var mi=idx(c.miniAfter), mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',mi>-1&&!ok(mi));
+      var all=done(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':''; g.classList.toggle('finished',all); }
+    tb.addEventListener('click',function(e){ var b=e.target.closest('.rg-ask-btn'); if(!b||b.disabled) return; var i=+b.dataset.r, k=rid(i); if(!st.seen[k]) st.seen[k]={}; st.seen[k][b.dataset.c]=true; save(); SFX.paper(); paint(); refreshPress();
+      var f=$('.rg-ask-btn:not([disabled])',tb)||$('.rg-ask-sdb button',sd); if(f) f.focus({preventScroll:true}); });
+    sd.addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; var k=rid(st.stop); if(ok(st.stop)) return; st.ans[k]=b.dataset.v; save(); (ok(st.stop)?SFX.chime:SFX.soft)(); paint(); refreshPress(); if(done()) beat('sunDone');
+      var mb=$('.rg-myth:not(.done) button[data-a="check"]',g); if(mb) mb.focus({preventScroll:true}); else if(!nextB.disabled) nextB.focus({preventScroll:true}); else { var bb=$('.rg-ask-sdb button[data-v="'+b.dataset.v+'"]',sd); if(bb) bb.focus({preventScroll:true}); } });
+    nextB.addEventListener('click',function(){ if(!cleared(st.stop)||st.stop>=N-1) return; st.stop++; save(); SFX.paper(); paint(); refreshPress(); var f=$('.rg-ask-btn:not([disabled])',tb); if(f) f.focus({preventScroll:true}); });
+    mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
+      if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
+      st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); if(!nextB.disabled) nextB.focus({preventScroll:true}); });
+    function allAns(){ return RW.every(function(r,i){ return ok(i); }); }
+    function done(){ return allAns()&&(c.myths||[]).every(function(m,i){ return st.myth[i]; }); }
+    paint(); setTimeout(paint,0);
+    return {el:g,done:done,open:allAns,paint:paint,go:function(){ paint(); },
+      journal:function(e,NA){ var any=RW.filter(function(r,i){ return seenAll(i); }); if(!any.length) return NA; return '<p class="a">'+RW.map(function(r,i){ if(!seenAll(i)) return ''; return '<b>'+e(TM[i]||'')+'</b> '+CL.map(function(x){ return e(x.short||x.who)+': '+e((x.lines||[])[i]||''); }).join(' · '); }).filter(Boolean).join('<br>')+'</p>'; },
+      people:function(){ return CL.map(function(x){ return x.who; }); }}; };
+
+  /* ---------------------------------------------------------------- pins: tap a region name, then tap where it is on a real map; three pins, then on to the red pencil
+     DATA.explore.pins = {title, job, img, alt, cap, aspect, regions:[{k,t,icon,box:[x0,y0,x1,y1],hint,say}], close} */
+  MOD.pins=function(c,anchor){ var st=mstate('pins',{at:{}}); if(!st.at) st.at={}; var RG=c.regions||[], pick=null;
+    var g=gameShell('rg-pins','The Desk · pin the regions',c.title||'Pin the three regions',c);
+    g.innerHTML+='<div class="rg-pn-chips" role="group" aria-label="Regions to pin"></div><p class="rg-pn-say" aria-live="polite"></p>'+
+      '<figure class="rg-pn-fig"><div class="rg-pn-map" style="aspect-ratio:'+(c.aspect||0.64)+'"><div class="rg-pn-zones"></div><div class="rg-pn-pins"></div></div><figcaption>'+esc(c.cap||'')+'</figcaption></figure><div class="rg-pn-close"></div>';
+    after(anchor,g);
+    var map=$('.rg-pn-map',g), im=srcImg(c.img,'',c.alt||''); map.insertBefore(im,map.firstChild);
+    function rg(k){ return RG.filter(function(r){ return r.k===k; })[0]||{}; }
+    function inBox(r,x,y){ var b=r.box||[0,0,0,0]; return x>=b[0]&&x<=b[2]&&y>=b[1]&&y<=b[3]; }
+    function paint(){ $('.rg-pn-chips',g).innerHTML=RG.map(function(r){ var on=!!st.at[r.k]; return '<button type="button" class="rg-card rg-pn-chip'+(on?' placed':'')+(pick===r.k?' picked':'')+'" data-k="'+esc(r.k)+'" aria-pressed="'+(pick===r.k)+'"'+(on?' disabled':'')+'>'+(on?'✓ ':'📍 ')+esc(r.t)+'</button>'; }).join('');
+      $('.rg-pn-zones',g).innerHTML=RG.map(function(r,i){ var b=r.box; return '<button type="button" class="rg-pn-zone" data-k="'+esc(r.k)+'" style="left:'+b[0]+'%;top:'+b[1]+'%;width:'+(b[2]-b[0])+'%;height:'+(b[3]-b[1])+'%"'+(pick?'':' tabindex="-1"')+'><span class="rg-sr">'+esc(r.zone||('Part '+(i+1)+' of the map'))+'</span></button>'; }).join('');
+      $('.rg-pn-pins',g).innerHTML=RG.filter(function(r){ return st.at[r.k]; }).map(function(r){ var p=st.at[r.k]; return '<span class="rg-pn-pin'+(p[0]>55?' l':'')+'" style="left:'+p[0]+'%;top:'+p[1]+'%"><span class="lb">'+esc(r.icon||'📍')+' '+esc(r.t)+'</span></span>'; }).join('');
+      map.classList.toggle('picking',!!pick); var d=done(); g.classList.toggle('finished',d); $('.rg-pn-close',g).innerHTML=d&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; }
+    function drop(x,y,zoneK){ if(!pick) { $('.rg-pn-say',g).textContent=c.pickFirst||'First tap a region name above. Then tap the map.'; return; } var r=rg(pick), hit=zoneK?zoneK===r.k:inBox(r,x,y);
+      if(!hit){ SFX.bounce(); $('.rg-pn-say',g).textContent=r.hint||'Not quite. Look at the map again.'; return; }
+      if(zoneK){ var b=r.box; x=(b[0]+b[2])/2; y=(b[1]+b[3])/2; } st.at[r.k]=[Math.round(x*10)/10,Math.round(y*10)/10]; save(); SFX.chime(); $('.rg-pn-say',g).textContent=r.say||''; pick=null; paint(); refreshPress();
+      var f=$('.rg-pn-chip:not([disabled])',g); if(f) f.focus({preventScroll:true}); }
+    $('.rg-pn-chips',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-pn-chip'); if(!b||b.disabled) return; pick=b.dataset.k; SFX.paper(); $('.rg-pn-say',g).textContent=(c.nowT||'Now tap the map where this region is.'); paint(); var z=$('.rg-pn-zone',g); if(z&&e.detail===0) z.focus({preventScroll:true}); });
+    map.addEventListener('click',function(e){ var zb=e.target.closest('.rg-pn-zone'), r=map.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*100, y=(e.clientY-r.top)/r.height*100;
+      if(zb&&e.detail===0){ drop(0,0,zb.dataset.k); return; } drop(x,y,null); });
+    function done(){ return RG.every(function(r){ return st.at[r.k]; }); }
+    paint();
+    return {el:g,done:done}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -1168,6 +1273,7 @@
     if(ex.evidence&&MOD[ex.evidence.type]&&p2){ var fr=$('.source-image-frame',p2), sec2=fr&&fr.closest('.content-section'); if(sec2){ hide(sec2); R.evidence=MOD[ex.evidence.type](ex.evidence,sec2); } }
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
+    if(ex.pins&&MOD.pins&&R.evidence){ var px=R.evidence.el.previousElementSibling; if(px){ R.pins=MOD.pins(ex.pins,px); var ed2=R.evidence.done; R.evidence.done=function(){ return ed2()&&R.pins.done(); }; } }
     if(ex.stereo&&MOD.stereo&&R.evidence){ var sx=R.evidence.el.previousElementSibling; if(sx){ R.stereo=MOD.stereo(ex.stereo,sx); var ed1=R.evidence.done; R.evidence.done=function(){ return ed1()&&R.stereo.done(); }; } }
     if(ex.tworec&&MOD.tworec&&R.evidence){ R.tworec=MOD.tworec(ex.tworec,R.evidence.el); var ed0=R.evidence.done; R.evidence.done=function(){ return ed0()&&R.tworec.done(); }; }
     buildAlmanac(); buildPair(); }
@@ -1180,7 +1286,7 @@
     listen:function(){ return $('#panel-desk .rg-vn[data-slot="v3"]')||(R.reading&&R.reading.el); },
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
-    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
+    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.pins&&R.pins.el)||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
     almanac:function(){ return R.almanac&&R.almanac.el; },
     pair:function(){ return R.pair&&R.pair.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
@@ -1628,6 +1734,10 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    if(block.closest('.rg-zm-h')) return m({k:'lesson', who:'The Hasty Herald', from:S1L.heraldFrom||'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','zoom','highlight']});
+    if(block.closest('.rg-zm-say')) return m({k:'lesson', who:S1L.sayWho||'Zooming out', from:S1L.srcLabel||'Fact from the lesson', tags:['zoom','map','highlight']});
+    var aq=block.closest('.rg-ask-ans'); if(aq){ var AC=(rd.cols||[]).filter(function(x){ return x.id===aq.dataset.c; })[0]||{}, AR=(rd.rows||[])[+aq.dataset.r]||{}; return m({k:'lesson', who:AC.who||'', when:(rd.times||[])[+aq.dataset.r]||'', from:rd.srcLabel||'Fact from the lesson', ctx:((AC.look||[])[+aq.dataset.r])||'', tags:[AC.id||'',AR.id||'','ask','highlight']}); }
+    if(block.closest('.rg-pins')){ var PNX=(DATA.explore||{}).pins||{}; return m({k:'source', who:PNX.who||'The 1755 map', when:PNX.when||'', from:PNX.from||'Real source from the past', tags:['picture','map','highlight']}); }
     if(block.closest('.rg-cl-h')) return m({k:'lesson', who:'The Hasty Herald', from:S1L.heraldFrom||'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','clip','highlight']});
     if(block.closest('.rg-cl-cut')){ var cl0=block.closest('.rg-cl-line'), SN0=cl0&&R.scene1&&R.scene1.snip?R.scene1.snip(cl0.dataset.id):{}; return m({k:'lesson', who:SN0.who||'What the Herald cut', when:SN0.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['clip',SN0.id||'',SN0.kind||'','highlight']}); }
     if(block.closest('.rg-stereo')){ var STX=(DATA.explore||{}).stereo||{}; return m({k:'lesson', who:STX.who||'About the photo card', from:'Fact from the lesson', tags:['picture','stereo','highlight']}); }
@@ -1846,7 +1956,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -2027,7 +2137,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
