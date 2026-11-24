@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask   (explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick   (explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -1056,6 +1056,86 @@
     paint();
     return {el:g,done:done}; };
 
+  /* ---------------------------------------------------------------- ghost: the Herald's headline jumps from one year to another; "hold it to the light" shows the empty years between, then faint ghost letters, then a sealed guess
+     DATA.scene1 = {type:'ghost', title, job, head, heraldLine, from, to, lightT, steps:[t1,t2,t3], ghosts:[word], gapT, close, seal:{q,opts,reveal}, sealed, srcLabel, heraldFrom} */
+  MOD.ghost=function(c,anchor){ var st=mstate('ghost',{n:0}); var A=+c.from||1763, B=+c.to||1776, SP=c.steps||[], GH=c.ghosts||[], N=Math.max(1,SP.length);
+    var g=gameShell('rg-ghost','Dispatch · hold it to the light',c.title||'Hold it to the light',c);
+    var yrs=[]; for(var y=A;y<=B;y++) yrs.push(y);
+    g.innerHTML+='<div class="rg-zm-paper rg-gh-paper"><div class="rg-cl-mast">The Hasty Herald</div><div class="rg-cl-head">'+esc(c.head||'')+'</div>'+(c.heraldLine?'<p class="rg-gh-h">'+esc(c.heraldLine)+'</p>':'')+
+      '<div class="rg-gh-strip" aria-hidden="true">'+yrs.map(function(y,i){ var end=i===0||i===yrs.length-1; return '<span class="rg-gh-y'+(end?' end':'')+'"><b>'+(end?y:'')+'</b><i>'+(end?'':y)+'</i></span>'; }).join('')+
+      '<div class="rg-gh-ghosts">'+GH.map(function(w,i){ return '<span style="left:'+(8+i*(84/Math.max(1,GH.length-1)))+'%">'+esc(w)+'</span>'; }).join('')+'</div></div></div>'+
+      '<div class="rg-gh-ctl"><button type="button" class="rg-btn rg-gh-light"></button></div><div class="rg-gh-say" aria-live="polite"></div><div class="rg-zm-close"></div><div class="rg-ads-seal rg-gh-seal"></div>';
+    after(anchor,g);
+    var paper=$('.rg-gh-paper',g), lb=$('.rg-gh-light',g);
+    function show(){ paper.classList.toggle('lit1',st.n>=1); paper.classList.toggle('lit2',st.n>=2); paper.classList.toggle('lit3',st.n>=3);
+      $('.rg-gh-say',g).innerHTML=SP.slice(0,st.n).map(function(t){ return '<p>'+esc(t)+'</p>'; }).join('');
+      lb.disabled=st.n>=N; lb.textContent=st.n>=N?'💡 '+(c.litT||'All lit up'):'💡 '+(c.lightT||'Hold it to the light')+' ('+(st.n+1)+' of '+N+')'; }
+    lb.addEventListener('click',function(){ if(st.n>=N) return; st.n++; if(st.n>=N) st.out=true; save(); SFX.paper(); show(); paint(); refreshPress(); });
+    function paint(){ var cl=$('.rg-zm-close',g); cl.innerHTML=st.out&&c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':(st.out?'':'<p class="rg-todo">💡 '+esc(c.todoT||'Tap Hold it to the light until it is all lit up.')+'</p>');
+      var sb=$('.rg-gh-seal',g), S1=c.seal||{};
+      if(!st.out){ sb.innerHTML=''; delete sb.dataset.on; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-gh-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        $$('input[name="rg-gh-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-gh-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',sb).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    show(); paint();
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ if(!st.out) return NA; return '<p class="a"><b>The empty years:</b> '+e(c.close||'')+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:[], vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- stick: a printer's composing stick. The first and last lines of type are set; the student sets the missing middle one block at a time
+     (tap the block that comes next, then pick why it comes next), then decodes a real sentence phrase by phrase. The lesson's own reading stays on the page above it.
+     DATA.explore.reading = {type:'stick', title, job, first:{t,yr}, last:{t,yr}, blocks:[{id,t,yr,q,opts:[{t,ok,say}],why}] (in true order), tray:[ids in shown order], wrongT, head,
+       decode:{title,job,who,when,from,cap,phrases:[{old,plain}]}, close, cols, times, srcLabel, keepReading:true} */
+  MOD.stick=function(c,anchor){ var st=mstate('sun',{set:[],why:{},dc:{}}); if(!st.set) st.set=[]; if(!st.why) st.why={}; if(!st.dc) st.dc={};
+    var BK=c.blocks||[], TR=(c.tray||BK.map(function(b){ return b.id; })), D=c.decode||{}, PH=D.phrases||[];
+    var g=gameShell('rg-stick','The Desk · set the missing middle',c.title||'Set the missing middle',c);
+    if(c.keepReading!==false){ anchor.classList.remove('rg-off'); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); }); }
+    g.innerHTML+='<div class="rg-cs-wrap"><div class="rg-cs-stick" role="list" aria-label="'+esc(c.stickL||'The composing stick, in time order')+'"></div><div class="rg-cs-why"></div>'+
+      '<div class="rg-cs-tray"><div class="lab">'+esc(c.trayT||'Type blocks')+'</div><div class="blocks" role="group" aria-label="'+esc(c.trayT||'Type blocks')+'"></div><p class="rg-cs-say" aria-live="polite"></p></div></div>'+
+      '<div class="rg-cs-head"></div>'+
+      '<div class="rg-dc rg-hide"><h4>'+esc(D.title||'Decode the real words')+'</h4>'+(D.job?jobHTML(D.job):'')+'<div class="rg-dc-src">'+PH.map(function(p,i){ return '<div class="rg-dc-ph" data-i="'+i+'"><button type="button" class="rg-dc-btn" data-i="'+i+'" aria-expanded="false"><span class="rg-dc-old">'+esc(p.old)+'</span></button><div class="rg-dc-plain" hidden>'+esc(p.plain)+'</div></div>'; }).join('')+'</div><small class="rg-dc-cap">'+esc(D.cap||'')+'</small></div>'+
+      '<div class="rg-sun-close"></div>';
+    after(anchor,g); if(c.keepReading!==false){ g.insertBefore(anchor,$('.rg-cs-wrap',g)); }
+    function bk(id){ return BK.filter(function(b){ return b.id===id; })[0]||{}; }
+    function locked(id){ return !!st.why[id]&&(bk(id).opts||[])[st.why[id]-1]&&(bk(id).opts||[])[st.why[id]-1].ok; }
+    function cur(){ var l=st.set[st.set.length-1]; return l&&!locked(l)?l:null; }
+    function stickDone(){ return st.set.length===BK.length&&BK.every(function(b){ return locked(b.id); }); }
+    function dcDone(){ return PH.every(function(p,i){ return st.dc[i]; }); }
+    function line(b,set){ return '<div class="rg-cs-line'+(set?' set':'')+'" role="listitem"><span class="yr">'+esc(b.yr||'')+'</span><span class="t">'+esc(b.t)+'</span>'+(set&&b.why?'<span class="rg-cs-reason">'+esc(b.why)+'</span>':'')+'</div>'; }
+    function paint(){ var sk=$('.rg-cs-stick',g), html=line(c.first||{},true);
+      st.set.forEach(function(id){ var b=bk(id); html+=line({t:b.t,yr:b.yr,why:locked(id)?b.why:''},locked(id)); });
+      for(var k=st.set.length;k<BK.length;k++) html+='<div class="rg-cs-line gap" role="listitem"><span class="yr">?</span><span class="t">'+esc(c.gapT||'missing line')+'</span></div>';
+      html+=line(c.last||{},stickDone()); sk.innerHTML=html;
+      var cid=cur(), wb=$('.rg-cs-why',g);
+      if(cid){ var b=bk(cid), a=st.why[cid]; wb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(b.q||'Why does this come next?')+'</legend>'+(b.opts||[]).map(function(o,i){ return '<button type="button" class="rg-btn alt rg-cs-opt" data-i="'+(i+1)+'" aria-pressed="'+(a===i+1)+'">'+esc(o.t)+'</button>'; }).join('')+(a?'<p class="say '+((b.opts[a-1]||{}).ok?'ok':'no')+'">'+esc((b.opts[a-1]||{}).say||'')+'</p>':'')+'</fieldset>'; }
+      else wb.innerHTML='';
+      var done=stickDone();
+      $('.blocks',g).innerHTML=TR.filter(function(id){ return st.set.indexOf(id)<0; }).map(function(id){ var b=bk(id); return '<button type="button" class="rg-cs-blk" data-id="'+esc(id)+'"'+(cid?' disabled':'')+'><span class="yr">'+esc(b.yr||'')+'</span> '+esc(b.t)+'</button>'; }).join('');
+      $('.rg-cs-tray',g).classList.toggle('rg-hide',done);
+      $('.rg-cs-head',g).innerHTML=done&&c.head?'<div class="rg-cs-fixed"><span class="k">'+esc(c.headK||'The corrected headline')+'</span><b>'+esc(c.head)+'</b></div>':'';
+      var dc=$('.rg-dc',g); dc.classList.toggle('rg-hide',!done);
+      PH.forEach(function(p,i){ var ph=$('.rg-dc-ph[data-i="'+i+'"]',g), o=!!st.dc[i]; ph.classList.toggle('open',o); $('.rg-dc-plain',ph).hidden=!o; $('.rg-dc-btn',ph).setAttribute('aria-expanded',o); });
+      var mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',!(done&&dcDone()));
+      var all=done&&dcDone(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':'';
+      g.classList.toggle('finished',all); }
+    $('.blocks',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-cs-blk'); if(!b||b.disabled) return; var id=b.dataset.id, want=BK[st.set.length];
+      if(!want||id!==want.id){ SFX.bounce(); b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); var prev=st.set.length?bk(st.set[st.set.length-1]):(c.first||{}); $('.rg-cs-say',g).textContent=bk(id).early||((c.wrongT||'Not next yet. What happened right after this?')+' (“'+(prev.t||'')+'”)'); return; }
+      st.set.push(id); save(); SFX.clack(); $('.rg-cs-say',g).textContent=''; paint(); refreshPress(); var f=$('.rg-cs-opt',g); if(f) f.focus({preventScroll:true}); });
+    $('.rg-cs-why',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-cs-opt'); if(!b) return; var id=cur(); if(!id) return; st.why[id]=+b.dataset.i; save(); var ok=locked(id); (ok?SFX.chime:SFX.soft)(); paint(); refreshPress();
+      if(ok){ if(stickDone()){ beat('sunDone'); var d=$('.rg-dc-btn',g); if(d) d.focus({preventScroll:true}); } else { var n=$('.rg-cs-blk',g); if(n) n.focus({preventScroll:true}); } } else { var bb=$('.rg-cs-opt[data-i="'+b.dataset.i+'"]',g); if(bb) bb.focus({preventScroll:true}); } });
+    $('.rg-dc',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-dc-btn'); if(!b) return; var i=+b.dataset.i; if(st.dc[i]) return; st.dc[i]=true; save(); SFX.paper(); paint(); refreshPress(); if(dcDone()) beat('dcDone'); var n=$('.rg-dc-btn[aria-expanded="false"]',g); if(n) n.focus({preventScroll:true}); });
+    paint(); setTimeout(paint,0);
+    function done(){ return stickDone()&&dcDone(); }
+    return {el:g,done:done,open:done,paint:paint,go:function(){ paint(); },
+      journal:function(e,NA){ if(!st.set.length) return NA; return '<p class="a"><b>The missing middle:</b> '+e((c.first||{}).t||'')+' → '+st.set.filter(locked).map(function(id){ return e(bk(id).t); }).join(' → ')+(stickDone()?' → '+e((c.last||{}).t||''):'')+'</p>'; },
+      people:function(){ return (c.cols||[]).map(function(x){ return x.who; }); }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -1734,6 +1814,12 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    if(block.closest('.rg-gh-h')) return m({k:'lesson', who:'The Hasty Herald', from:S1L.heraldFrom||'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','ghost','highlight']});
+    if(block.closest('.rg-gh-say')) return m({k:'lesson', who:S1L.sayWho||'The empty years', from:S1L.srcLabel||'Fact from the lesson', tags:['ghost','gap','highlight']});
+    var dcp=block.closest('.rg-dc-ph'); if(dcp){ var DCX=rd.decode||{}; return m({k:'source', quote:true, who:DCX.who||'', when:DCX.when||'', from:DCX.from||'Real source from the past', ctx:((DCX.phrases||[])[+dcp.dataset.i]||{}).plain||'', tags:['proclamation','decode','highlight']}); }
+    var csl=block.closest('.rg-cs-line'); if(csl){ var cst=(csl.querySelector('.t')||{}).textContent||'', CB=(rd.blocks||[]).concat([rd.first||{},rd.last||{}]).filter(function(x){ return x.t===cst; })[0]||{}; return m({k:'lesson', who:cst, when:CB.yr||'', from:rd.srcLabel||'Fact from the lesson', ctx:CB.why||'', tags:['chain',CB.id||'','highlight'].concat(CB.tags||[])}); }
+    if(block.closest('.rg-cs-fixed')) return m({k:'lesson', who:'The corrected headline', from:rd.srcLabel||'Fact from the lesson', tags:['chain','highlight']});
+    if(block.closest('.rg-stick .content-section')) return m({k:'lesson', who:rd.readWho||'The Desk reading', from:rd.readFrom||'Fact from the lesson', tags:['reading','highlight']});
     if(block.closest('.rg-zm-h')) return m({k:'lesson', who:'The Hasty Herald', from:S1L.heraldFrom||'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','zoom','highlight']});
     if(block.closest('.rg-zm-say')) return m({k:'lesson', who:S1L.sayWho||'Zooming out', from:S1L.srcLabel||'Fact from the lesson', tags:['zoom','map','highlight']});
     var aq=block.closest('.rg-ask-ans'); if(aq){ var AC=(rd.cols||[]).filter(function(x){ return x.id===aq.dataset.c; })[0]||{}, AR=(rd.rows||[])[+aq.dataset.r]||{}; return m({k:'lesson', who:AC.who||'', when:(rd.times||[])[+aq.dataset.r]||'', from:rd.srcLabel||'Fact from the lesson', ctx:((AC.look||[])[+aq.dataset.r])||'', tags:[AC.id||'',AR.id||'','ask','highlight']}); }
@@ -1857,6 +1943,7 @@
     dispatch:function(){ var h=$('#panel-dispatch .herald-wrap'); return h&&[h,'before']; },
     s1done:function(){ var g=R.scene1&&R.scene1.el; return g&&[g,'after']; },
     desk:function(){ var g=R.reading&&R.reading.el; return g&&[g,'before']; },
+    decode:function(){ var d=R.reading&&$('.rg-dc h4',R.reading.el); return d&&[d,'after']; },
     afterread:function(){ var g=R.reading&&R.reading.el; return g&&[g,'after']; },
     flip:function(){ var f=R.reading&&$('.rg-sc-flipbox',R.reading.el); return f&&[f,'before']; },
     source:function(){ var g=R.evidence&&R.evidence.el; return g&&[g,'before']; },
@@ -1956,7 +2043,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -2137,7 +2224,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }

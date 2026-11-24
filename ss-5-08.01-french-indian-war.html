@@ -2258,6 +2258,1395 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.01",
+ "title": "French and Indian War",
+ "issue": 37,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "group",
+ "place": "the Ohio Valley",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Which event changed what came next, and how do we know?<\/i> Use the 🖍 highlighter to save facts from the reading, the type lines, the king’s 1763 words and the print. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: three regions, three stories. Today: Unit 8 begins with a war that pulled all thirteen colonies in.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Hold the headline to the light",
+   "k": "The Dispatch",
+   "why": "Look at the years the Herald skipped."
+  },
+  {
+   "tab": "desk",
+   "t": "Set the missing middle",
+   "k": "The Desk",
+   "why": "Set the missing middle, then study a real print."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Front Page Brief",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor prints what the evidence shows, even when the true story is harder to tell than the simple one.",
+ "recordFoot": "(The facts come from historians’ records. The Lake George print and the king’s 1763 words are real sources from the past. The Herald’s story was written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Unit 8 starts today. Read the Herald’s new headline."
+   },
+   {
+    "t": "Thirteen years are missing from it. Start on the Dispatch tab (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "What war?",
+      "reply": "Britain and France fought over land, 1754 to 1763."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here’s the reading. Highlight one fact.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the print.",
+      "reply": "Here it is. Save one thing it shows.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Sealed. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Now decode the king’s words.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 37 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "ghost",
+  "title": "Hold it to the light",
+  "srcLabel": "Fact from the lesson",
+  "sayWho": "The years the Herald skipped",
+  "heraldFrom": "The Hasty Herald’s story, written for this lesson. It is a claim to check, not a fact.",
+  "job": {
+   "why": "A gap in a story can hide the most important part.",
+   "do": "1. Tap Hold it to the light 3 times. 2. Seal an answer.",
+   "use": "It opens on the Desk tab.",
+   "words": [
+    [
+     "Revolution",
+     "the war the colonists fought to break away from Britain"
+    ]
+   ]
+  },
+  "head": "",
+  "from": 1763,
+  "to": 1776,
+  "ghosts": [
+   "DEBT",
+   "A LINE",
+   "TAXES",
+   "PROTESTS"
+  ],
+  "steps": [
+   "1763: the war ends. 1776: the Declaration.",
+   "Faint letters show through.",
+   "That’s 13 years. The Herald skipped them."
+  ],
+  "close": "Something filled those 13 years. The Desk will show you.",
+  "seal": {
+   "q": "What do you think filled those 13 years?",
+   "opts": [
+    "New laws, taxes and arguments with Britain",
+    "Nothing: people just waited",
+    "Another war with France"
+   ],
+   "reveal": [
+    "The type lines agree.",
+    "The type lines show a lot happened.",
+    "No. France was gone. The arguments were with Britain."
+   ]
+  },
+  "sealed": ""
+ },
+ "explore": {
+  "reading": {
+   "type": "stick",
+   "title": "Set the missing middle",
+   "srcLabel": "Fact from the lesson",
+   "readWho": "The Desk reading",
+   "first": {
+    "t": "Britain and France fight for the Ohio Valley",
+    "yr": "1754–1763"
+   },
+   "last": {
+    "t": "The Declaration of Independence",
+    "yr": "1776"
+   },
+   "blocks": [
+    {
+     "id": "debt",
+     "t": "Britain wins, but owes a huge war debt",
+     "yr": "1763",
+     "q": "Why does this come next?",
+     "opts": [
+      {
+       "t": "Wars cost a lot of money.",
+       "ok": true,
+       "say": "Yes."
+      },
+      {
+       "t": "France paid for the war.",
+       "ok": false,
+       "say": "No. France lost."
+      }
+     ],
+     "why": "Winning cost Britain a fortune.",
+     "tags": [
+      "debt",
+      "britain"
+     ]
+    },
+    {
+     "id": "line",
+     "t": "The Proclamation line: no settling west of the mountains",
+     "yr": "1763",
+     "q": "Why does this come next?",
+     "opts": [
+      {
+       "t": "Britain wanted peace with Native nations.",
+       "ok": true,
+       "say": "Yes."
+      },
+      {
+       "t": "Colonists asked for it.",
+       "ok": false,
+       "say": "No. Colonists wanted that land."
+      }
+     ],
+     "why": "Britain wanted to stop more fighting with Native nations.",
+     "tags": [
+      "proclamation",
+      "native"
+     ]
+    },
+    {
+     "id": "tax",
+     "t": "Parliament taxes the colonies",
+     "yr": "1764–1765",
+     "q": "Why does this come next?",
+     "opts": [
+      {
+       "t": "Britain wanted help paying the debt.",
+       "ok": true,
+       "say": "Yes."
+      },
+      {
+       "t": "The colonies asked to pay more.",
+       "ok": false,
+       "say": "No. Colonists didn’t ask."
+      }
+     ],
+     "why": "Britain wanted colonists to help pay the debt.",
+     "tags": [
+      "tax",
+      "debt",
+      "britain",
+      "colonists"
+     ]
+    },
+    {
+     "id": "anger",
+     "t": "Colonists protest: taxed without a vote",
+     "yr": "1765–1775",
+     "q": "Why does this come next?",
+     "opts": [
+      {
+       "t": "They had no representatives in Parliament.",
+       "ok": true,
+       "say": "Yes."
+      },
+      {
+       "t": "They wanted no government at all.",
+       "ok": false,
+       "say": "No. They wanted a say."
+      }
+     ],
+     "why": "Colonists had no one in Parliament to speak for them.",
+     "tags": [
+      "anger",
+      "rights",
+      "colonists"
+     ]
+    }
+   ],
+   "tray": [
+    "tax",
+    "anger",
+    "debt",
+    "line"
+   ],
+   "trayT": "Type blocks: tap the one that comes next",
+   "gapT": "missing line",
+   "wrongT": "Not next yet. What happened right after this line?",
+   "headK": "Your corrected headline",
+   "head": "Britain Wins the War. Then Debt, Taxes and Protest Lead Toward Revolution.",
+   "close": "That’s the 13 years the Herald skipped.",
+   "decode": {
+    "title": "Decode the king’s words, 1763",
+    "who": "King George III",
+    "when": "October 7, 1763",
+    "from": "Real source from the past: the Royal Proclamation of 1763",
+    "job": {
+     "why": "The king’s own words drew the line.",
+     "do": "1. Tap each line of old words. 2. Read the plain words.",
+     "use": "Highlight a line to save it.",
+     "words": [
+      [
+       "proclamation",
+       "an official announcement from a ruler"
+      ]
+     ]
+    },
+    "phrases": [
+     {
+      "old": "And We do hereby strictly forbid, on Pain of our Displeasure,",
+      "plain": "The king firmly says no, or he will be angry:"
+     },
+     {
+      "old": "all our loving Subjects",
+      "plain": "to all the people he rules, including the colonists,"
+     },
+     {
+      "old": "from making any Purchases or Settlements whatever,",
+      "plain": "buying land or building homes or farms"
+     },
+     {
+      "old": "or taking Possession of any of the Lands above reserved",
+      "plain": "or taking any of the land saved for Native nations west of the mountains,"
+     },
+     {
+      "old": "without our especial leave and Licence for that Purpose first obtained.",
+      "plain": "unless the king gives special permission first."
+     }
+    ],
+    "cap": "Royal Proclamation, October 7, 1763."
+   },
+   "times": [
+    "During the war (1754–1763)",
+    "When it ended (1763)",
+    "Right after (1763–1765)"
+   ],
+   "cols": [
+    {
+     "id": "britain",
+     "who": "Britain",
+     "icon": "👑",
+     "lines": [
+      "Fought France",
+      "Won the land",
+      "In debt; taxed colonies"
+     ]
+    },
+    {
+     "id": "colonists",
+     "who": "Colonists",
+     "icon": "🏡",
+     "lines": [
+      "Fought for Britain",
+      "Hoped to move west",
+      "Taxed and blocked"
+     ]
+    },
+    {
+     "id": "native",
+     "who": "Native nations",
+     "icon": "🌲",
+     "lines": [
+      "Chose their own sides",
+      "Not asked in the treaty",
+      "Pontiac’s War; the line"
+     ]
+    },
+    {
+     "id": "france",
+     "who": "France",
+     "icon": "⚜️",
+     "lines": [
+      "Fought Britain",
+      "Lost its land here",
+      "Gone from the east"
+     ]
+    }
+   ],
+   "job": {
+    "why": "The Herald skipped the middle. Rebuild it.",
+    "do": "1. Read the story above. 2. Tap the next type block. 3. Pick why.",
+    "use": "Your type lines are evidence.",
+    "words": [
+     [
+      "debt",
+      "money you owe"
+     ],
+     [
+      "Parliament",
+      "Britain’s group of lawmakers"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the print",
+   "kind": "source",
+   "srcName": "the 1756 print",
+   "srcWho": "The Lake George print (1756)",
+   "srcCant": "This 1756 print",
+   "showsWord": "The print shows ",
+   "img": "source-5-08-01-lake-george-1755",
+   "alt": "An old engraving with a long title at the top. On the left, a thin river map; in the middle, soldiers fighting in thick woods; on the right, a camp with rows of tents, cannons and flags beside a lake with boats along the shore.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 50,
+     "y": 5,
+     "rx": 9,
+     "ry": 3,
+     "label": "The title",
+     "t": "It says 2,000 English soldiers and 250 Mohawks fought 2,500 French soldiers and their Native allies."
+    },
+    {
+     "x": 26,
+     "y": 78,
+     "rx": 4,
+     "ry": 6,
+     "label": "A column of soldiers",
+     "t": "Soldiers march in a long column through thick woods."
+    },
+    {
+     "x": 70,
+     "y": 58,
+     "rx": 5,
+     "ry": 5,
+     "label": "The British camp",
+     "t": "Tents, cannons and British flags fill the camp."
+    },
+    {
+     "x": 7,
+     "y": 50,
+     "rx": 4,
+     "ry": 8,
+     "label": "A tiny river map",
+     "t": "A small map of the Hudson River, from New York up to Lake George."
+    }
+   ],
+   "date": {
+    "x": 46,
+    "y": 97,
+    "w": 6,
+    "h": 4,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1756,
+    "shows": 1755,
+    "yearT": "1756",
+    "showsT": "September 1755",
+    "gapT": "a few months later",
+    "madeBy": "Samuel Blodget (drawing) and Thomas Jefferys (engraving)",
+    "showsWhy": "",
+    "text": "Published in London, February 1756.",
+    "q": "In your own words: when was it made, and what day does it show?",
+    "check": [
+     "say 1756?",
+     "say 1755?"
+    ],
+    "model": "It was made in 1756 and shows a battle from 1755.",
+    "card": "Made in 1756. It shows a battle from September 1755.",
+    "madeT": "made in 1756",
+    "journalT": "The print was made in 1756, a few months after the battle."
+   },
+   "missing": {
+    "q": "What can this print show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this print",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this print",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this print alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Native allies on both sides",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Read the title."
+     },
+     {
+      "t": "A camp with tents and cannons",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look on the right."
+     },
+     {
+      "t": "The Ohio Valley",
+      "k": "not",
+      "say": "Right. This is New York.",
+      "hint": "Where is this battle?"
+     },
+     {
+      "t": "The Treaty of Paris",
+      "k": "not",
+      "say": "Right.",
+      "hint": "When was the treaty?"
+     },
+     {
+      "t": "Why the Mohawk chose Britain’s side",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Can a picture show reasons?",
+      "calm": true
+     },
+     {
+      "t": "If each soldier is drawn where he stood",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Was the artist everywhere at once?"
+     }
+    ]
+   },
+   "close": "A picture shows one moment, not the whole war.",
+   "lookQ": "Write one thing you notice in this print.",
+   "from": "Real source from the past: the Lake George print, London, 1756 (Library of Congress)",
+   "zoomCap": "Samuel Blodget (drawing) and Thomas Jefferys (engraving), “A Prospective View of the Battle fought near Lake George, on the 8th of Sepr. 1755,” London, 1756. Library of Congress Prints and Photographs, LCCN 2004670649. Public domain.",
+   "followup": {
+    "q": "This print can’t show why the Mohawk chose a side. Which source could help?",
+    "opts": [
+     {
+      "t": "Words of Mohawk leaders, written down back then",
+      "ok": true,
+      "say": "Yes."
+     },
+     {
+      "t": "A bigger copy of this print",
+      "ok": false,
+      "say": "Still only a picture."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this print can’t show (a limitation).",
+    "limPh": "This print can’t show…"
+   },
+   "job": {
+    "why": "Check what a source can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "Britain and France both claimed the Ohio Valley, where Native nations already lived.",
+   "The fighting began in 1754, when the French made George Washington surrender at Fort Necessity. Britain declared war in 1756.",
+   "Native nations chose sides for their own reasons: many helped France, and the Mohawk often helped Britain.",
+   "The Treaty of Paris (1763) gave Britain nearly all French land east of the Mississippi.",
+   "The war left Britain in debt, so Parliament taxed the colonies. The Proclamation of 1763 blocked settling west of the mountains.",
+   "Colonists had no representatives in Parliament. In 1776 they explained their rights in the Declaration of Independence.",
+   "The Lake George print is a real source from 1756. It shows one battle, not the whole war."
+  ],
+  "vocab": [
+   [
+    "claim",
+    "saying that something belongs to you or is true"
+   ],
+   [
+    "militia",
+    "part-time soldiers from a colony"
+   ],
+   [
+    "debt",
+    "money you owe"
+   ],
+   [
+    "Parliament",
+    "Britain’s group of lawmakers"
+   ],
+   [
+    "proclamation",
+    "an official announcement from a ruler"
+   ],
+   [
+    "treaty",
+    "a peace agreement between nations"
+   ],
+   [
+    "representative",
+    "a person elected to speak for others"
+   ],
+   [
+    "unalienable rights",
+    "rights no government can take away"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: claim / clam means “call out”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "A proclamation is a calling out.",
+   "do": "1. Tap the part meaning “call out.” 2. Use proclamation in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "claim / clam",
+  "meaning": "call out",
+  "words": [
+   {
+    "parts": [
+     "claim"
+    ],
+    "root": 0,
+    "m": "claim: to call out that something is yours"
+   },
+   {
+    "parts": [
+     "pro",
+     "clam",
+     "ation"
+    ],
+    "root": 1,
+    "m": "proclamation: a public calling out"
+   },
+   {
+    "parts": [
+     "ex",
+     "claim"
+    ],
+    "root": 1,
+    "m": "exclaim: to cry out"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Clamare is Latin for “call out.”",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "The Proclamation of 1763…",
+   "min": 8,
+   "must": "proclam",
+   "word": "proclamation"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Front Page Brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "The Missing Middle",
+     "ok": true,
+     "tip": "The chain the Herald skipped.",
+     "fit": [
+      "chain",
+      "debt",
+      "tax",
+      "anger",
+      "proclamation",
+      "gap",
+      "reading"
+     ],
+     "fitTip": "Good fits: your type lines.",
+     "ideas": [
+      "The Missing Middle",
+      "Thirteen Years the Herald Skipped"
+     ]
+    },
+    {
+     "t": "Who Paid for the Win?",
+     "ok": true,
+     "tip": "Debt and taxes.",
+     "fit": [
+      "debt",
+      "tax",
+      "britain",
+      "colonists",
+      "chain",
+      "reading"
+     ],
+     "fitTip": "Good fits: the debt and tax lines.",
+     "ideas": [
+      "Who Paid for the Win?",
+      "A Victory with a Bill"
+     ]
+    },
+    {
+     "t": "A Line on the Map",
+     "ok": true,
+     "tip": "The Proclamation and Native land.",
+     "fit": [
+      "proclamation",
+      "decode",
+      "native",
+      "pontiac",
+      "picture"
+     ],
+     "fitTip": "Good fits: the king’s words, Pontiac’s War.",
+     "ideas": [
+      "A Line on the Map",
+      "The King’s Line, 1763"
+     ]
+    },
+    {
+     "t": "War Ends, Revolution Begins — Simple!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your type lines."
+    }
+   ]
+  },
+  "p1Label": "Group 1",
+  "p2Label": "Group 2",
+  "cmpHd": "What each group did, gained or lost (from the Desk).",
+  "cmpQ": "Who came out better? Who came out worse?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "The war debt",
+   "New taxes",
+   "The Proclamation line",
+   "No vote in Parliament",
+   "Native nations’ land",
+   "13 years of events"
+  ],
+  "close": "Now write your brief below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two groups. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Pontiac’s War, 1763",
+   "img": false,
+   "who": "Pontiac’s War",
+   "from": "Fact from the lesson",
+   "t": "In 1763, Native nations, led in part by the Odawa leader Pontiac, attacked British forts near the Great Lakes. That October, Britain drew the Proclamation line, partly to keep the peace.",
+   "q": "Why would Britain want peace?",
+   "tags": [
+    "pontiac",
+    "native",
+    "proclamation"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 37 is in the Morgue.",
+  "claim": "The French and Indian War ended, and then the Revolution simply began."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the Herald’s headline with the years lit up",
+   "Snap your finished composing stick",
+   "Snap one red mark on the 1756 print",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "After the war, Britain owed a huge debt, so Parliament taxed the colonies.",
+   "key": [
+    "war",
+    "Britain",
+    "owed",
+    "huge",
+    "debt",
+    "Parliament",
+    "taxed",
+    "colonies"
+   ],
+   "small": [
+    "After",
+    "the",
+    "a",
+    "so"
+   ],
+   "model": "Key words: Britain, huge debt, Parliament, taxed, colonies."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Two causes",
+    "rx": "ohio|valley|land|claim|fur|trade|fort|territor|control|empire|native|washington|west",
+    "n": 2
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "What changed",
+    "rx": "debt|tax|proclamation|line|settle|west|parliament|anger|angry|vote|represent|law",
+    "n": 1
+   },
+   {
+    "t": "Why it mattered",
+    "rx": "because|so |angr|upset|unfair|right|revolution|protest|mad",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|did end|ended|1763|1776|later|before|first",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|skip|middle|debt|tax|proclamation|13|thirteen|years|anger|protest",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "See the Cause card.",
+   "Think: land, forts, claims.",
+   "Try: “Both ___ and ___ wanted ___.”"
+  ],
+  "journal-q2": [
+   "See your type lines.",
+   "What did Britain owe?",
+   "Try: “After the war, Britain ___, so ___.”"
+  ],
+  "journal-q3": [
+   "Did the war end? When?",
+   "What came in between?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "B": "Both sides wanted the fur trade.",
+   "C": "Colonists fought for Britain here."
+  },
+  {
+   "A": "Britain raised taxes.",
+   "B": "Colonists fought for Britain."
+  },
+  {
+   "A": "It skips 13 years.",
+   "C": "Honest editors correct mistakes."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · The French and Indian War",
+  "head": "The War Ended. Then What?",
+  "deck": "Which event changed what came next, and how do we know?",
+  "dateline": "Vol. I · No. 37 · Price: One Penny",
+  "ears": [
+   "Issue 37 · Road to Revolution Edition",
+   "🖼️ Lake George print, 1756"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Set the missing middle"
+   },
+   {
+    "key": "picture",
+    "t": "Study a real print from 1756",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "OHIO VALLEY",
+  "lede": "One war, thirteen years, one real print.",
+  "evIntro": "Today’s question: Which event changed what came next, and how do we know? Evidence is a detail that helps answer it. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the 1756 print or the king’s 1763 words.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a fact, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s headline so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "The Missing Middle",
+   "Who Paid for the Win?"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your claim and evidence",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "How did the war change what came next?",
+    "ph": "Write your claim and evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said the Revolution simply began. But",
+     "After the war,"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "What should readers understand?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our sources",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1756 print show, and not show?",
+    "ph": "For example, start with: The print…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The print was made in 1756, so",
+     "The print shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer: Which event changed what came next, and how do we know?",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "Make your call, pick a detail, and explain. Supported: true. Misleading: true start, wrong idea. Not enough evidence: can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "happy-win",
+   "claim": "Britain won the war, so the colonists were happy.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Were they?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. A true win, a wrong idea."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "Your type lines show what came next."
+    }
+   ],
+   "details": [
+    {
+     "from": "Type line:",
+     "t": "Parliament taxes the colonies (1764–1765).",
+     "ok": true,
+     "say": "Yes."
+    },
+    {
+     "from": "Type line:",
+     "t": "The Proclamation line: no settling west of the mountains.",
+     "ok": true,
+     "say": "Yes."
+    },
+    {
+     "from": "The reading:",
+     "t": "The French made Washington surrender at Fort Necessity.",
+     "ok": false,
+     "say": "That’s from the start of the war."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  },
+  {
+   "id": "one-side",
+   "claim": "The Lake George print proves Native nations all fought for France.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Read the print’s title again."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Some did, not all."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "The title answers it."
+    }
+   ],
+   "details": [
+    {
+     "from": "The print’s title:",
+     "t": "2,000 English, with 250 Mohawks.",
+     "ok": true,
+     "say": "Yes."
+    },
+    {
+     "from": "The print’s title:",
+     "t": "2,500 French and Indians.",
+     "ok": true,
+     "say": "The true part."
+    },
+    {
+     "from": "The print:",
+     "t": "Boats along Lake George.",
+     "ok": false,
+     "say": "Boats don’t show sides."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I named at least two links in the chain.",
+  "I gave two details, each with a reason.",
+  "I said what the print can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is empty. Try the reading.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the print.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(britain|british|england|english|france|french|colon\\w*|native|nations?|mohawks?|iroquois|shawnee|lenape|odawa|abenaki|pontiac|ohio|valley|appalachian|mountains?|mississippi|quebec|lake george|fort\\w*|necessity|duquesne|washington|militia|war|wars|battle\\w*|fought|fight\\w*|soldiers?|allies|sides?|treaty|paris|debt|owed|money|cost|tax\\w*|parliament|proclamation|line|settl\\w*|west\\w*|land\\w*|claims?|claimed|protest\\w*|angry|anger|vote|representatives?|rights?|declaration|independence|revolution|king|george|subjects|forbid|purchases?|reserved|licen[cs]e|1754|1755|1756|1758|1759|1763|1764|1765|1776|print|engrav\\w*|blodget|jefferys|camp|tents?|cannons?)\\b",
+   "off": "Does this help show what the war changed? Try the reading or your type lines.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Use one type line, or a fact from the reading.",
+    "go": [
+     {
+      "l": "Your type lines",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Use what the Herald skipped, or the king’s words.",
+    "go": [
+     {
+      "l": "Your type lines",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "The king’s words",
+      "tab": "desk",
+      "sel": ".rg-dc"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a print note.",
+    "go": [
+     {
+      "l": "The print",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "What’s in the gap?",
+   "script": "The Herald says the war ended, and then the Revolution simply began. Look at the dates. Seventeen sixty-three. Seventeen seventy-six. That’s thirteen years, longer than you’ve been alive! Hold the headline to the light, and ask yourself: what could happen in thirteen years that a careful paper would need to report?"
+  },
+  {
+   "at": "decode",
+   "slot": "v2",
+   "label": "Real words from 1763",
+   "script": "These are the king’s own words, from October, seventeen sixty-three. They’re old and formal, so take them one line at a time. Tap each line, then read the plain words. Now think about that land west of the mountains. Native nations lived there. Colonists wanted to move there. One line on a map touched them both."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^dates",
+    "sel": "#panel-dispatch .rg-gh-strip",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^light",
+    "sel": "#panel-dispatch .rg-gh-light",
+    "fx": "point"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^words",
+    "sel": "#panel-desk .rg-dc-src",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^tap",
+    "sel": "#panel-desk .rg-dc-btn",
+    "fx": "point"
+   },
+   {
+    "at": "^mountains",
+    "sel": "#panel-desk .rg-dc-ph[data-i=\"3\"]",
+    "fx": "glow"
+   },
+   {
+    "at": "^touched",
+    "sel": "#panel-desk .rg-almini",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.2,
+    0.56,
+    "Herald"
+   ],
+   [
+    5.28,
+    5.96,
+    "dates."
+   ],
+   [
+    14.72,
+    15.2,
+    "light,"
+   ]
+  ],
+  "v2": [
+   [
+    1.28,
+    1.92,
+    "words,"
+   ],
+   [
+    8.72,
+    8.88,
+    "Tap"
+   ],
+   [
+    14.08,
+    15.04,
+    "mountains."
+   ],
+   [
+    20.44,
+    20.68,
+    "touched"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3878,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3893,26 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two rivers meeting below wooded hills at sunrise, with a small log fort on the point of land between them and smoke rising" class="b0801">
+<defs>
+<linearGradient id="b0801Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E7398"/><stop offset=".55" stop-color="#E2B49C"/><stop offset="1" stop-color="#F6D9A8"/></linearGradient>
+<linearGradient id="b0801Riv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#AFC0C6"/><stop offset="1" stop-color="#5E7C8E"/></linearGradient>
+<radialGradient id="b0801Sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF1C8"/><stop offset=".6" stop-color="#F9D58E" stop-opacity=".7"/><stop offset="1" stop-color="#F9D58E" stop-opacity="0"/></radialGradient>
+<style>
+.b0801 .b0801-smoke{ animation:b0801rise 9s ease-in-out infinite; }
+.b0801 .b0801-smoke2{ animation:b0801rise 9s ease-in-out infinite; animation-delay:-4.5s; }
+.b0801 .b0801-glint{ animation:b0801glint 12s linear infinite; }
+.b0801 .b0801-mist{ animation:b0801mist 30s ease-in-out infinite alternate; }
+@keyframes b0801rise{ 0%{ transform:translate(0,0); opacity:.0 } 15%{ opacity:.55 } 100%{ transform:translate(26px,-46px); opacity:0 } }
+@keyframes b0801glint{ from{ transform:translateY(0) } to{ transform:translateY(14px) } }
+@keyframes b0801mist{ from{ transform:translateX(-30px) } to{ transform:translateX(40px) } }
+@media (prefers-reduced-motion:reduce){ .b0801 *{ animation:none!important } .b0801 .b0801-smoke,.b0801 .b0801-smoke2{ opacity:.45 } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0801Sky)"/>
+<circle cx="610" cy="96" r="70" fill="url(#b0801Sun)"/><circle cx="610" cy="98" r="22" fill="#FFE7B0"/>
+<g fill="#F7E1CF" opacity=".45"><ellipse cx="190" cy="44" rx="110" ry="8"/><ellipse cx="720" cy="56" rx="120" ry="8"/></g>
+<path d="M0,120 Q80,96 170,112 T350,104 T540,114 T740,100 T920,112 L920,170 L0,170 Z" fill="#7F8DA6" opacity=".55"/><path d="M0,138 Q110,116 230,132 T470,128 T700,134 T920,126 L920,180 L0,180 Z" fill="#6F8173" opacity=".7"/><g class="b0801-mist" fill="#F4E6D4" opacity=".35"><ellipse cx="300" cy="150" rx="220" ry="7"/><ellipse cx="760" cy="146" rx="180" ry="6"/></g><rect x="0" y="150" width="920" height="110" fill="#3D573C"/><path d="M0,150 Q70,136 150,146 Q230,156 300,170 L330,260 L0,260 Z" fill="#3F5A3E"/><path d="M920,146 Q840,132 760,142 Q680,152 610,168 L580,260 L920,260 Z" fill="#3B5639"/><g><path d="M197.7813225705136,133.36187538230277 L189.9,158.0113042663624 L205.7,158.0113042663624 Z" fill="#284430"/><path d="M242.01958368706605,140.69848581257418 L234.1,165.53301732671363 L250.0,165.53301732671363 Z" fill="#33553A"/><path d="M126.94516236428467,132.7180893732703 L117.4,162.4732044170989 L136.5,162.4732044170989 Z" fill="#33553A"/><path d="M174.19382490743618,137.69376824951854 L167.4,158.99378806227332 L181.0,158.99378806227332 Z" fill="#284430"/><path d="M122.73641570452197,127.3019245342899 L114.0,154.5044375853049 L131.4,154.5044375853049 Z" fill="#2C4A33"/><path d="M26.397975383706502,128.31806784956083 L20.0,148.35827160726294 L32.8,148.35827160726294 Z" fill="#33553A"/><path d="M187.98694174316776,137.3308361271407 L180.2,161.55991033615086 L195.7,161.55991033615086 Z" fill="#33553A"/><path d="M185.36540928857704,146.6272219093798 L180.1,163.10401423966943 L190.6,163.10401423966943 Z" fill="#284430"/><path d="M179.62581524134208,145.09044487992284 L174.2,161.97275156092238 L185.0,161.97275156092238 Z" fill="#2C4A33"/><path d="M190.17662747157377,150.454628740196 L184.7,167.41518140206347 L195.6,167.41518140206347 Z" fill="#284430"/><path d="M65.20937775678564,130.09957580542692 L57.7,153.48459527342152 L72.7,153.48459527342152 Z" fill="#2C4A33"/><path d="M211.12776550588336,149.35535296216835 L205.0,168.4068505132359 L217.2,168.4068505132359 Z" fill="#284430"/><path d="M90.35368854443828,128.6200380064058 L82.3,153.71199853211752 L98.4,153.71199853211752 Z" fill="#33553A"/><path d="M181.22860947400437,133.353217684433 L172.9,159.39251717883639 L189.6,159.39251717883639 Z" fill="#33553A"/><path d="M41.51204252078704,126.60141791512198 L33.5,151.4869763465388 L49.5,151.4869763465388 Z" fill="#33553A"/><path d="M130.22931039662214,143.8307268748416 L125.1,159.86626134413714 L135.4,159.86626134413714 Z" fill="#284430"/><path d="M69.35063373727382,137.32353715920644 L63.6,155.1462500781423 L75.1,155.1462500781423 Z" fill="#33553A"/><path d="M8.54131675052334,141.56479371540019 L3.1,158.46320417044967 L13.9,158.46320417044967 Z" fill="#2C4A33"/><path d="M182.15246689816814,136.4962170243807 L173.4,163.94270872349514 L190.9,163.94270872349514 Z" fill="#33553A"/><path d="M137.46793819626453,136.89204567879756 L129.9,160.50282483230615 L145.0,160.50282483230615 Z" fill="#33553A"/><path d="M39.511473188718334,131.20113838994598 L33.6,149.5234024503669 L45.4,149.5234024503669 Z" fill="#284430"/><path d="M150.95331450385126,149.2006044974184 L145.8,165.31938708478896 L156.1,165.31938708478896 Z" fill="#33553A"/><path d="M19.73426053960834,137.98755512466053 L13.6,157.12667776392658 L25.9,157.12667776392658 Z" fill="#2C4A33"/><path d="M116.38717501944504,137.49574436751183 L110.4,156.21780955755375 L122.4,156.21780955755375 Z" fill="#33553A"/><path d="M13.50154178600432,130.7385143051861 L5.2,156.60229714430432 L21.8,156.60229714430432 Z" fill="#284430"/><path d="M203.36106690872535,137.68355666919615 L195.8,161.38321400445105 L210.9,161.38321400445105 Z" fill="#284430"/><path d="M11.858315954682102,131.42563693787167 L3.7,156.85364705368283 L20.0,156.85364705368283 Z" fill="#2C4A33"/><path d="M208.6852724131553,142.6910124495539 L200.7,167.6468909312987 L216.7,167.6468909312987 Z" fill="#33553A"/><path d="M168.0825920358102,146.10976998725258 L161.8,165.75429866147127 L174.4,165.75429866147127 Z" fill="#33553A"/><path d="M63.73070989918952,133.82879817288295 L54.9,161.4097939609882 L72.6,161.4097939609882 Z" fill="#33553A"/><path d="M279.9507534463742,143.83981276941844 L271.0,171.8818689205973 L288.9,171.8818689205973 Z" fill="#2C4A33"/><path d="M246.483344643994,148.48138127286472 L241.1,165.4394235727555 L251.9,165.4394235727555 Z" fill="#33553A"/><path d="M174.96370307862728,144.0652241288965 L169.1,162.3955308910192 L180.8,162.3955308910192 Z" fill="#284430"/><path d="M207.8647631781067,140.41339120766617 L201.3,160.87120706726753 L214.4,160.87120706726753 Z" fill="#33553A"/><path d="M671.6133836208511,131.67674854880704 L663.2,157.935543857855 L680.0,157.935543857855 Z" fill="#33553A"/><path d="M802.3363712946345,124.0059151527442 L793.9,150.35283326731346 L810.8,150.35283326731346 Z" fill="#2C4A33"/><path d="M671.990890918168,132.8276527234932 L662.7,161.8256311815023 L681.3,161.8256311815023 Z" fill="#2C4A33"/><path d="M677.9780780217309,139.35169923935752 L671.4,159.8206617575866 L684.5,159.8206617575866 Z" fill="#2C4A33"/><path d="M679.1798218650058,139.55998735850164 L670.5,166.80464779178976 L687.9,166.80464779178976 Z" fill="#33553A"/><path d="M768.6089746172137,123.0908433548135 L759.2,152.58168222210162 L778.0,152.58168222210162 Z" fill="#33553A"/><path d="M789.2508892024932,143.2982561305837 L783.4,161.4873250636235 L795.1,161.4873250636235 Z" fill="#284430"/><path d="M768.5073812074247,132.55822321150953 L760.4,157.88858253371072 L776.6,157.88858253371072 Z" fill="#2C4A33"/><path d="M905.5542558857201,126.13401162032639 L899.3,145.62548908145962 L911.8,145.62548908145962 Z" fill="#284430"/><path d="M794.786828508646,131.83209530688336 L787.4,154.78553589282953 L802.1,154.78553589282953 Z" fill="#33553A"/><path d="M904.4866002190047,128.8362540224709 L896.8,152.96212300172863 L912.2,152.96212300172863 Z" fill="#33553A"/><path d="M866.8532676656303,135.8944235616141 L860.8,154.74446542548486 L872.9,154.74446542548486 Z" fill="#2C4A33"/><path d="M674.1922717699769,140.89236631833603 L667.1,163.19164875879687 L681.3,163.19164875879687 Z" fill="#2C4A33"/><path d="M859.2343936676006,128.96402856904308 L853.4,147.12882137636342 L865.0,147.12882137636342 Z" fill="#284430"/><path d="M632.3645906493208,147.50939971876792 L625.7,168.21208622399362 L639.0,168.21208622399362 Z" fill="#284430"/><path d="M674.0428889770329,133.8004143010659 L666.0,158.88422711095959 L682.1,158.88422711095959 Z" fill="#284430"/><path d="M766.7482341544721,135.5698924187342 L761.5,151.96731332616986 L772.0,151.96731332616986 Z" fill="#284430"/><path d="M670.4649433739153,144.30119271973956 L664.2,163.7857120988604 L676.7,163.7857120988604 Z" fill="#33553A"/><path d="M839.4737326087244,122.74750352382617 L830.7,150.03952778909377 L848.2,150.03952778909377 Z" fill="#2C4A33"/><path d="M772.1521457667003,127.46037163892066 L763.5,154.58957941606758 L780.8,154.58957941606758 Z" fill="#33553A"/><path d="M771.8716932406059,139.10048753657856 L764.5,161.98448632637033 L779.2,161.98448632637033 Z" fill="#33553A"/><path d="M806.4227568209039,139.2084440965729 L801.0,156.08562231765376 L811.8,156.08562231765376 Z" fill="#284430"/><path d="M808.0805123272794,128.67698526903303 L800.7,151.63449867715934 L815.4,151.63449867715934 Z" fill="#33553A"/><path d="M819.5287645122829,131.43722513478045 L812.0,154.8630906503792 L827.0,154.8630906503792 Z" fill="#2C4A33"/><path d="M678.831216498871,140.30609580323767 L669.8,168.40506343736755 L687.8,168.40506343736755 Z" fill="#33553A"/><path d="M735.0016904164071,127.32442838239973 L726.1,155.21164688695936 L743.9,155.21164688695936 Z" fill="#2C4A33"/><path d="M829.5271201833347,132.61366166139152 L821.5,157.79091630255212 L837.6,157.79091630255212 Z" fill="#33553A"/><path d="M832.8274234150788,131.77063297322837 L827.3,149.10802364383002 L838.4,149.10802364383002 Z" fill="#284430"/><path d="M839.2633011037796,130.75357122741318 L830.3,158.69231953930728 L848.2,158.69231953930728 Z" fill="#2C4A33"/><path d="M880.6002215252546,126.90601376807031 L871.6,155.07168031551345 L889.6,155.07168031551345 Z" fill="#284430"/><path d="M644.917824950061,146.7276354357166 L638.7,166.0453414215673 L651.1,166.0453414215673 Z" fill="#2C4A33"/><path d="M804.8645972797485,130.98523948336998 L795.8,159.23017691511552 L813.9,159.23017691511552 Z" fill="#33553A"/><path d="M730.58861119839,136.21150617933154 L722.5,161.38489858451746 L738.6,161.38489858451746 Z" fill="#2C4A33"/><path d="M839.3998331514407,132.97748317213768 L832.5,154.6562731472519 L846.3,154.6562731472519 Z" fill="#33553A"/></g><path d="M150,150 Q300,160 430,180 L455,192 L470,260 L400,260 Q380,214 300,184 Q220,166 140,160 Z" fill="url(#b0801Riv)"/><path d="M780,146 Q620,160 492,182 L470,192 L470,260 L560,260 Q560,214 640,182 Q720,164 790,156 Z" fill="url(#b0801Riv)"/><path d="M400,260 Q430,214 462,192 Q492,214 560,260 Z" fill="url(#b0801Riv)"/><path d="M150,150 Q300,160 430,180 L462,190 L492,182 Q620,160 780,146 L920,142 L920,134 Q460,120 0,138 L0,150 Q80,148 150,150 Z" fill="#5F7A4C"/><path d="M330,166 Q400,174 440,182 L462,188 L486,182 Q540,170 600,162 Q470,150 330,166 Z" fill="#8C9A5C"/><g><path d="M649.3475624263845,136.0020818466558 L644.8,150.21839394614378 L653.9,150.21839394614378 Z" fill="#33553A"/><path d="M579.0426451900817,131.69201661040066 L574.5,145.99497258578313 L583.6,145.99497258578313 Z" fill="#33553A"/><path d="M404.439785320394,137.5266186620345 L399.5,152.89643695347007 L409.4,152.89643695347007 Z" fill="#2C4A33"/><path d="M529.7415874470627,132.28381786772343 L525.5,145.41191406350623 L533.9,145.41191406350623 Z" fill="#33553A"/><path d="M594.729460425461,135.89543501832307 L589.7,151.63790591037792 L599.8,151.63790591037792 Z" fill="#2C4A33"/><path d="M322.3696214116434,138.9822780788768 L318.7,150.41434580135098 L326.0,150.41434580135098 Z" fill="#2C4A33"/><path d="M591.3571157469953,132.275711562596 L587.6,144.13244322798928 L595.2,144.13244322798928 Z" fill="#33553A"/><path d="M669.8842740582834,137.5629272575919 L666.2,148.95035059418072 L673.5,148.95035059418072 Z" fill="#2C4A33"/><path d="M301.16078637581785,138.9835402874626 L297.6,150.01433184170352 L304.7,150.01433184170352 Z" fill="#33553A"/><path d="M632.6367779611185,136.29574810623058 L629.0,147.77805757363117 L636.3,147.77805757363117 Z" fill="#2C4A33"/><path d="M353.04869730718684,127.56206760382456 L347.6,144.5258422889862 L358.5,144.5258422889862 Z" fill="#33553A"/><path d="M672.4482677769548,132.7999595311075 L667.8,147.358364162684 L677.1,147.358364162684 Z" fill="#2C4A33"/><path d="M294.8258889724932,133.50668704786295 L290.8,146.1969000485864 L298.9,146.1969000485864 Z" fill="#33553A"/><path d="M667.4013355787433,127.80197525347326 L661.7,145.56407546377673 L673.1,145.56407546377673 Z" fill="#2C4A33"/><path d="M557.2005032972628,128.02546888588265 L551.8,144.772715466369 L562.6,144.772715466369 Z" fill="#33553A"/><path d="M513.2153666664066,137.45627163604777 L508.6,151.988000235606 L517.9,151.988000235606 Z" fill="#33553A"/><path d="M361.45976860387077,133.31129188240263 L356.4,149.27600869483877 L366.6,149.27600869483877 Z" fill="#33553A"/><path d="M569.6517023426277,139.9250981985927 L565.2,153.70693740589618 L574.1,153.70693740589618 Z" fill="#33553A"/></g><g transform="translate(0,6)"><rect x="440.0" y="163" width="2.8" height="13" fill="#6A4A2E"/><path d="M440.0,163 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="443.2" y="162" width="2.8" height="14" fill="#6A4A2E"/><path d="M443.2,162 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="446.4" y="161" width="2.8" height="15" fill="#6A4A2E"/><path d="M446.4,161 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="449.6" y="163" width="2.8" height="13" fill="#6A4A2E"/><path d="M449.6,163 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="452.8" y="162" width="2.8" height="14" fill="#6A4A2E"/><path d="M452.8,162 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="456.0" y="161" width="2.8" height="15" fill="#6A4A2E"/><path d="M456.0,161 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="459.2" y="163" width="2.8" height="13" fill="#6A4A2E"/><path d="M459.2,163 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="462.4" y="162" width="2.8" height="14" fill="#6A4A2E"/><path d="M462.4,162 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="465.6" y="161" width="2.8" height="15" fill="#6A4A2E"/><path d="M465.6,161 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="468.8" y="163" width="2.8" height="13" fill="#6A4A2E"/><path d="M468.8,163 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="472.0" y="162" width="2.8" height="14" fill="#6A4A2E"/><path d="M472.0,162 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="475.2" y="161" width="2.8" height="15" fill="#6A4A2E"/><path d="M475.2,161 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="478.4" y="163" width="2.8" height="13" fill="#6A4A2E"/><path d="M478.4,163 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="481.6" y="162" width="2.8" height="14" fill="#6A4A2E"/><path d="M481.6,162 l1.4,-2.4 l1.4,2.4 Z" fill="#6A4A2E"/><rect x="452" y="164" width="16" height="10" fill="#5A3E28"/><path d="M450,165 L460,158 L470,165 Z" fill="#4A3220"/><rect x="458" y="168" width="4" height="6" fill="#2E2014"/></g><g fill="#EDE6DA"><circle class="b0801-smoke" cx="463" cy="152" r="5"/><circle class="b0801-smoke2" cx="466" cy="150" r="6"/></g><g class="b0801-glint" stroke="#FFF1CC" stroke-width="1.5" stroke-linecap="round" opacity=".6"><line x1="430" y1="200" x2="440" y2="200"/><line x1="467" y1="204" x2="477" y2="204"/><line x1="434" y1="208" x2="444" y2="208"/><line x1="471" y1="212" x2="481" y2="212"/><line x1="438" y1="216" x2="448" y2="216"/><line x1="475" y1="220" x2="485" y2="220"/><line x1="442" y1="224" x2="452" y2="224"/><line x1="479" y1="228" x2="489" y2="228"/><line x1="446" y1="232" x2="456" y2="232"/><line x1="483" y1="236" x2="493" y2="236"/><line x1="450" y1="240" x2="460" y2="240"/><line x1="487" y1="244" x2="497" y2="244"/><line x1="454" y1="248" x2="464" y2="248"/><line x1="491" y1="252" x2="501" y2="252"/><line x1="220" y1="172" x2="230" y2="172"/><line x1="560" y1="176" x2="570" y2="176"/><line x1="242" y1="174" x2="252" y2="174"/><line x1="584" y1="174" x2="594" y2="174"/><line x1="264" y1="176" x2="274" y2="176"/><line x1="608" y1="172" x2="618" y2="172"/><line x1="286" y1="178" x2="296" y2="178"/><line x1="632" y1="170" x2="642" y2="170"/><line x1="308" y1="180" x2="318" y2="180"/><line x1="656" y1="168" x2="666" y2="168"/><line x1="330" y1="182" x2="340" y2="182"/><line x1="680" y1="166" x2="690" y2="166"/><line x1="352" y1="184" x2="362" y2="184"/><line x1="704" y1="164" x2="714" y2="164"/><line x1="374" y1="186" x2="384" y2="186"/><line x1="728" y1="162" x2="738" y2="162"/></g><path d="M140,160 Q220,166 300,184 Q380,214 400,260" stroke="#2E432F" stroke-width="2" fill="none" opacity=".5"/><path d="M790,156 Q720,164 640,182 Q560,214 560,260" stroke="#2E432F" stroke-width="2" fill="none" opacity=".5"/></svg>
   </div>
 
   <div class="hero-headline-strip serif">French and Indian War</div>
@@ -2677,7 +3924,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 19 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3938,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3945,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.CG.1.1 · SS.5.CG.2.1 · SS.5.CG.2.2 · SS.5.CG.2.6 · TEKS 2(A)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 37 · Circulation ~3,500 · <em>Rights and resistance — every claim must be tested against the evidence.</em>
+      Vol. 1 · Issue 37 · Readers: about 3,500 · <em>Unit 8 opens: the road to the Revolution</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3963,22 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 37</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 37</strong> — <em>Rights, rumors and protests: check big claims about the road to the Revolution.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,500</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Ms. Avery: "Rights and resistance — every claim must be tested against the evidence."
+        — Ms. Avery: "We check every claim."
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4001,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2784,7 +4012,7 @@ html, body {
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      In Lesson 5.07.08, the Gazette tested The Hasty Herald's claim that "One colonial region can stand for all thirteen colonies." Students used source evidence to show regional differences across New England, Middle, and Southern colonies — and found that geography, economy, and daily life varied too much to lump together. That regional picture matters today, because when Britain and France went to war over North American land, all those different colonies were pulled into the conflict.
+      In 5.07.08 the Gazette showed that one region can’t stand for all thirteen colonies. Today, a war pulls all thirteen into one fight.
     </div>
   </div>
 </div>
@@ -2793,25 +4021,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.01</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Colonial Region Comparison</em>; today the editor asks whether that evidence changes how we should read the French and Indian War. A new file marked <em>5.08.01 — French and Indian War</em> arrives on the <strong>Front Page Desk</strong>. The Gazette may print only after students examine the record and improve the public account.</p>
+      <p>Last issue showed three very different regions. Today, one war pulls all thirteen colonies in. A new file marked <em>5.08.01: French and Indian War</em> is on the <strong>Front Page Desk</strong>. The Gazette prints only after you check the record.</p>
     </div>
   </div>
 
@@ -2821,14 +4042,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Which event changed what came next, and how do we know?</p>
       </div>
     </div>
@@ -2842,8 +4060,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify the causes and key events of the French and Indian War.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how the war changed the relationship between Britain and its colonies.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Evaluate evidence to write a Front Page Brief.</div>
@@ -2874,7 +4090,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-01-welcome -->
@@ -2892,25 +4107,19 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Meet the French and Indian War &amp; spotlight courage</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Hold the Herald’s headline to the light</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Gather the facts at the Front Page Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Set the missing middle and study a real print</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check the claims → 📰 Publish your Front Page Brief</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor prints what the evidence shows — even when the full story is harder to explain than the simple version.</strong> When you study the French and Indian War, courage means resisting easy headlines and reporting the complicated chain of causes and consequences that actually led to the American Revolution.
+      <strong>A courageous editor prints what the evidence shows, even when the true story is harder to tell than the simple one.</strong> Today, courage means reporting the whole chain of events between the war and the Revolution.
     </div>
   </div>
 
@@ -2920,19 +4129,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">War Ends, Revolution Begins — Simple!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">"The French and Indian War ended, and then the Revolution simply began."</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Use the Front Page Desk evidence to find out what the Herald left out — and what really connected the war to the coming revolution.
+      <strong>Your job, junior editor:</strong> Find what the Herald left out between the war and the Revolution.
     </div>
   </div>
 
@@ -2940,10 +4143,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to gather the essential facts about the French and Indian War — and publish a Front Page Brief that sets the record straight.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong>. Ms. Avery wants the key facts about the French and Indian War and a <strong>Front Page Brief</strong> (a short front-page story) that sets the record straight.
     </div>
   </div>
 
@@ -2954,20 +4154,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "Which event changed what came next, and how do we know? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. A courageous editor considers more than one perspective — especially when the evidence complicates the simple story.
+        A courageous editor looks at more than one side.
       </div>
     </div>
   </div>
@@ -2977,18 +4169,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-01-explore-explainer -->
@@ -2997,24 +4179,16 @@ html, body {
     <div class="video-placeholder-title">At the Front Page Desk: French and Indian War</div>
     <div class="video-placeholder-filename">5-08-01-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk students through the Ohio Valley conflict, alliance systems (British + Iroquois vs. French + Algonquin), key battles (Fort Necessity, Fort Duquesne, Plains of Abraham), and the Treaty of Paris 1763. Emphasize: Britain won land but gained massive debt, which led to new taxes — that's the missing link the Herald skipped. Show a simple territorial map. 3–4 minutes.
+      <strong>Teacher recording notes:</strong> Walk students through the Ohio Valley conflict, how Native nations chose sides for their own reasons (many, such as the Abenaki and Odawa, helped France; the Mohawk often helped Britain), key events (Washington's surrender at Fort Necessity in 1754; Britain declared war in 1756; the French burned and left Fort Duquesne in 1758; the Plains of Abraham at Quebec in 1759), and the Treaty of Paris 1763. Emphasize: Britain won land but gained massive debt, which led to new taxes — that's the missing link the Herald skipped. Show a simple territorial map. 3–4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Front Page Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
       <div class="desk-subtitle">Where junior editors gather the facts and write the brief.</div>
     </div>
   </div>
@@ -3028,74 +4202,87 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 What Was the French and Indian War?</h2>
-    <p>In the mid-1700s, two of the world's most powerful nations — Britain and France — both wanted the same thing: control of North America. The Ohio Valley, a vast region west of the Appalachian Mountains, was rich with land for farming and fur trading. Both empires claimed it. But the people who had lived there for generations — including the Lenape, Shawnee, and other Native nations — were not consulted. This clash of competing claims set off a nine-year war that would change the continent forever.</p>
-    <p>In 1754, a young Virginia militia officer named <strong>George Washington</strong> — just 22 years old — led a small force into the Ohio Valley on orders from Virginia's governor. His mission was to push the French out. It didn't go as planned: the French forced Washington to surrender at Fort Necessity, and the war officially began. Britain poured resources into the fight, and the tide turned in 1758–1759. British and colonial forces captured Fort Duquesne (near present-day Pittsburgh) and defeated the French at the Battle of the Plains of Abraham in Quebec. By 1763, the war was over.</p>
-    <p>The <strong>Treaty of Paris (1763)</strong> ended the fighting. France gave up nearly all of its North American territory east of the Mississippi River to Britain. Britain had won — but winning came at an enormous price.</p>
+    <p>In the mid-1700s, Britain and France both claimed the <strong>Ohio Valley</strong>, rich land west of the Appalachian Mountains. Native nations, such as the Shawnee and Lenape, already lived there, and no one asked them. These competing <strong>claims</strong> (saying land belongs to you) started a war that lasted from 1754 to 1763.</p>
+    <p>In 1754, Virginia sent 22-year-old <strong>George Washington</strong> and the colony’s <strong>militia</strong> (part-time soldiers) to drive the French out. The French made him surrender at Fort Necessity. Britain declared war in 1756. Colonists fought on Britain’s side, and Native nations chose sides for their own reasons. Britain won big victories in 1758 and 1759, at Fort Duquesne and at Quebec.</p>
+    <p>The <strong>Treaty of Paris (1763)</strong>, the peace agreement, ended the war. France gave Britain nearly all its land east of the Mississippi River. Britain had won, but at a high cost.</p>
 
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">Cause</div>
-        <div class="source-type-name">Why War Broke Out</div>
-        <div class="source-type-defn">Competing claims to the Ohio Valley by Britain and France, with Native nations caught in the middle.</div>
+        <div class="source-type-name">Why the War Started</div>
+        <div class="source-type-defn">Britain and France both claimed the Ohio Valley, where Native nations already lived.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Key Details</span>
-          Both empires built forts to claim the land · Native alliances formed on both sides (British + Iroquois vs. French + Algonquin) · Virginia sent 22-year-old George Washington in 1754 · French forced his surrender at Fort Necessity
+          Both sides built forts · Many Native nations helped France; the Mohawk often helped Britain
         </div>
       </div>
       <div class="source-type-card secondary">
-        <div class="source-type-label">Consequence</div>
+        <div class="source-type-label">Consequence (what happened because of it)</div>
         <div class="source-type-name">What Changed After</div>
-        <div class="source-type-defn">Britain won vast territory but accumulated massive war debt — and made decisions that angered colonists.</div>
+        <div class="source-type-defn">Britain won land but owed a huge amount of money, a war <strong>debt</strong>.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Key Details</span>
-          Treaty of Paris 1763 gave Britain land east of Mississippi · War debt led Parliament to tax the colonies · Proclamation of 1763 blocked westward settlement · Colonists felt taxed and restricted without a voice in Parliament
+          Parliament (Britain’s lawmakers) taxed the colonies · The Proclamation of 1763 blocked settling in the west
         </div>
       </div>
     </div>
 
     <div style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
       <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">📜 Looking Ahead: Rights, Voice, and a Famous Document</div>
-      <p style="margin:0;font-size:14px;line-height:1.6;">During the war, colonists took part in government through their own elected assemblies and town meetings, but they had no representatives in Parliament. (Today, citizens vote for members of Congress who speak for them.) When Britain began taxing the colonies to pay its war debts, colonists said their rights were being ignored. Thirteen years after the war ended, they explained those rights in the <strong>Declaration of Independence</strong> (1776), which says all people have <strong>unalienable rights</strong> — rights no government can take away. The Declaration is still one of the most important documents and symbols of the United States.</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;">During the war, colonists governed themselves through elected assemblies and town meetings, but they had no <strong>representatives</strong> (people elected to speak for them) in Parliament. (Today, citizens vote for members of Congress.) When Britain taxed the colonies to pay its debt, colonists said their rights were ignored. In 1776 they explained those rights in the <strong>Declaration of Independence</strong>, which says all people have <strong>unalienable rights</strong>, rights no government can take away. It is still one of the most important documents and symbols of the United States.</p>
     </div>
 
-    <div style="background:var(--gold-pale,#fffbf0);border-left:4px solid var(--gold,#c9a84c);border-radius:8px;padding:14px 18px;margin:18px 0;">
+    <div class="rg-keep-off" style="background:var(--gold-pale,#fffbf0);border-left:4px solid var(--gold,#c9a84c);border-radius:8px;padding:14px 18px;margin:18px 0;">
       <div style="font-weight:700;font-size:13px;letter-spacing:.05em;color:var(--gold-dark,#8a6914);margin-bottom:6px;">★ Key Concept</div>
-      <p style="margin:0;font-size:14px;">The French and Indian War did not simply <em>cause</em> the Revolution. It created the <em>conditions</em>: a cash-strapped Britain began taxing colonists who believed they had earned their rights. The Herald's headline skips the middle — and the middle is everything.</p>
+      <p style="margin:0;font-size:14px;">The French and Indian War did not simply <em>cause</em> the Revolution. It <em>set the stage</em>: Britain, short of money, began taxing colonists who believed they had earned their rights. The Herald’s headline skips the middle, and the middle is the story.</p>
     </div>
 
-    <div style="display:flex;gap:12px;align-items:flex-start;background:var(--cream,#fdf9f2);border:1.5px solid var(--gold-light,#e8d9aa);border-radius:10px;padding:14px 16px;margin:18px 0;">
+    <div class="rg-keep-off" style="display:flex;gap:12px;align-items:flex-start;background:var(--cream,#fdf9f2);border:1.5px solid var(--gold-light,#e8d9aa);border-radius:10px;padding:14px 16px;margin:18px 0;">
       <span style="font-size:28px;line-height:1;">🦉</span>
       <div>
         <div style="font-weight:700;font-size:13px;color:var(--ink,#2b2013);margin-bottom:4px;">Opti's Fun Fact</div>
-        <p style="margin:0;font-size:13px;color:var(--ink,#2b2013);">George Washington was only 22 years old when he led his first military mission into the Ohio Valley in 1754. His early defeat at Fort Necessity taught him lessons about leadership and persistence he would carry all the way to the Revolutionary War — and beyond.</p>
+        <p style="margin:0;font-size:13px;color:var(--ink,#2b2013);">George Washington was only 22 when he first led soldiers, in 1754. His defeat at Fort Necessity taught him lessons about leadership he used in the Revolutionary War.</p>
       </div>
     </div>
 
-    <p>Here's what the Hasty Herald missed: after the war, Britain needed someone to pay the bills. Parliament decided that the colonists — who had benefited from Britain's protection — should share the cost. New taxes and trade laws followed. The <strong>Proclamation of 1763</strong> also forbade colonists from settling west of the Appalachians, blocking the very land they'd helped win. Colonists felt taxed and restricted without any say in Parliament. The war didn't just end — it planted seeds of anger that grew into revolution.</p>
+    <p class="rg-keep-off">Here’s what the Hasty Herald missed: after the war, Britain needed someone to pay the bills. Parliament decided that the colonists, who had been protected by Britain’s army, should share the cost. New taxes and trade laws followed. The <strong>Proclamation of 1763</strong> also said colonists could not settle west of the Appalachian Mountains, the very land they had helped win. Colonists felt taxed and blocked, with no say in Parliament. The war didn’t just end. It planted the anger that grew into the Revolution.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE -->
   <div class="content-section">
     <h2>🔎 Study the Historical Record</h2>
-    <p>Look carefully at this historical map of the French and Indian War. Notice where the competing territorial claims overlap, where major battles occurred, and which Native nations appear in the record. What does the image tell you that words alone might leave out?</p>
+    <p>This is a real print from 1756. It shows one battle of the war, at Lake George in New York, on September 8, 1755. Samuel Blodget, who was at the British camp that day, drew it. Thomas Jefferys engraved it in London. Look at who fought on each side.</p>
 
     <div class="source-image-frame">
-      <div class="source-image-placeholder" data-image="source-5-08-01-french-indian-war-map">
-        🖼️ <strong>Image placeholder:</strong> Historical map showing French and British territorial claims in eastern North America (circa 1754–1763), including battle locations such as Fort Necessity, Fort Duquesne, and the Plains of Abraham. Suggested sources: Library of Congress digital collections.<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-08-01-french-indian-war-map.jpg</code>
+      <div class="source-image-placeholder" data-image="source-5-08-01-lake-george-1755">
+        🖼️ <strong>Image:</strong> “A Prospective View of the Battle fought near Lake George, on the 8th of Sepr. 1755,” drawn by Samuel Blodget, engraved by Thomas Jefferys, London, 1756. Library of Congress.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-01-lake-george-1755.jpg</code>
       </div>
       <div class="source-image-caption">
-        What do the territorial boundaries on this map tell you about <em>why</em> Britain and France went to war — and who else had a stake in the outcome?
+        What does this print show about <em>who</em> fought in the war, and what can one picture of one battle not tell you?<br><small style="font-style:normal;opacity:.85">Real source from the past. Library of Congress, LCCN 2004670649. Public domain.</small>
       </div>
     </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>claim / clam</em> means “call out”</h2>
+    <p>Many English words come from the Latin word <em>clamare</em>, to <strong>call out</strong> or shout. You can spot it as <strong>claim</strong> or <strong>clam</strong>.</p>
+    <ul>
+      <li><strong>claim</strong>: to call out that something is yours or is true</li>
+      <li><strong>proclamation</strong> (pro + clam + ation): a public calling out, an official announcement</li>
+      <li><strong>exclaim</strong> (ex + claim): to cry out</li>
+    </ul>
+    <p><strong>Discovery:</strong> Britain and France both <em>claimed</em> the Ohio Valley. In 1763 the king’s <em>proclamation</em> called out a new rule for the land.</p>
+    <p><em>Try it: use the word <strong>proclamation</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS -->
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3132,10 +4319,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3144,14 +4327,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3160,13 +4335,13 @@ html, body {
       <span class="factcheck-q-text">What was the main cause of the French and Indian War?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>Britain wanted to end the fur trade in North America.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
+        <span class="factcheck-option-letter">A</span>
         <span>Britain and France both claimed the Ohio Valley and were determined to control it.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>Britain wanted to end the fur trade in North America.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3187,13 +4362,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>Britain rewarded the colonies with lower taxes and more self-government after the war.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>Britain's massive war debt led Parliament to tax the colonies and restrict westward settlement, angering colonists.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>The colonies refused to help fight the war, so Britain punished them by canceling all trade.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>Britain's massive war debt led Parliament to tax the colonies and restrict westward settlement, angering colonists.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q2"></div>
@@ -3228,7 +4403,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3250,21 +4424,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-01-assignment-explainer -->
@@ -3285,8 +4446,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 37</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Front Page Brief</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3294,16 +4453,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
           <span>(1) A clear claim about how the French and Indian War changed what came next. (2) One piece of evidence from the Front Page Desk. (3) Why it matters — what future citizens should understand.</span>
         </div>
@@ -3319,9 +4474,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about the French and Indian War and how it set the stage for revolution.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3350,8 +4502,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Front Page Brief</span></div>
@@ -3366,32 +4516,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 37 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you investigated the French and Indian War with courage — printing the complicated truth instead of the Herald's simple headline, and leaving the Gazette's record stronger for it.
+      <strong>Well done, Junior Editor.</strong> You reported the French and Indian War with courage: the true chain of events, not the Herald’s simple headline.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.02) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Parliamentary Acts and Colonial Grievances</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Parliamentary Acts and Colonial Grievances</em> arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim about why colonists were angry. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Parliamentary Acts and Colonial Grievances</em>, is on the <em>Source Desk</em>, and <strong>the Hasty Herald has already printed</strong> a claim about why colonists were angry.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-01-closing -->
@@ -3666,7 +4805,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 37 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4023,5 +5162,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

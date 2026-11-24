@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 8 Family Guide · The Road to Revolution · The Republic Gazette</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=UnifrakturMaguntia&family=Special+Elite&family=Nunito:wght@400;600;700;800;900&display=swap');
+:root{
+  --navy:#1A2138; --navy2:#0E1426; --ink:#2A3142; --soft:#4A5568;
+  --gold:#B8923E; --gold2:#8B6F2E; --gold-bg:#F6ECD3;
+  --red:#8B2D26; --red2:#B83D2C; --red-bg:#F7E4E0;
+  --green:#5C7A4A; --green-bg:#E8EFE0;
+  --cream:#FAF3E0; --news:#F5F2EC; --edge:#D4C9A8; --paper:#FFFDF8;
+  --head:'Playfair Display',Georgia,serif; --type:'Special Elite','Courier New',monospace;
+  --black:'UnifrakturMaguntia','Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--news);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;font-size:18px;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 48px;}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;}
+p{margin:0 0 10px;}
+strong{color:var(--navy);}
+a{color:var(--red);font-weight:800;}
+img{max-width:100%;}
+
+/* masthead */
+.mast{background:var(--cream);border:1px solid var(--edge);border-radius:6px;padding:18px 24px 22px;position:relative;}
+.mast-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-family:var(--type);font-size:14px;color:var(--soft);border-bottom:1px solid var(--edge);padding-bottom:8px;}
+.brand{display:flex;align-items:center;gap:8px;}
+.brand img{width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--edge);}
+.paper-name{font-family:var(--black);font-weight:400;font-size:52px;line-height:1.05;text-align:center;color:var(--navy2);margin:14px 0 2px;}
+.motto{text-align:center;font-family:var(--type);font-size:14px;letter-spacing:.06em;color:var(--soft);}
+.rule{border:0;border-top:3px double var(--navy);margin:12px 0 0;}
+.mast-body{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-top:16px;align-items:start;}
+.kicker{font-family:var(--type);font-size:15px;color:var(--red);letter-spacing:.04em;}
+.mast h1{font-size:38px;line-height:1.15;margin:4px 0 6px;font-weight:900;}
+.deck{font-size:19px;color:var(--soft);margin-bottom:14px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{background:#fff;border:1px solid var(--edge);border-radius:4px;padding:4px 11px;font-size:15px;font-weight:800;color:var(--navy);}
+.print-btn{display:inline-block;margin-top:16px;background:var(--navy);color:#fff;border:none;border-radius:4px;padding:9px 18px;font-family:"Nunito",sans-serif;font-weight:800;font-size:16px;cursor:pointer;}
+.print-btn:hover{background:var(--red);}
+.avery{background:#fff;border:1px solid var(--edge);border-top:4px solid var(--gold);border-radius:4px;padding:16px;text-align:center;}
+.avery img{width:116px;height:116px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);display:block;margin:0 auto 8px;}
+.avery b{display:block;font-family:var(--head);font-size:21px;color:var(--navy);}
+.avery .role{font-family:var(--type);font-size:14px;color:var(--red);}
+.avery p{font-size:16px;margin:8px 0 0;color:var(--soft);}
+
+/* cards */
+.card{background:var(--paper);border:1px solid var(--edge);border-radius:6px;padding:22px 24px;margin-top:18px;}
+.card-head{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap;border-bottom:1px solid var(--edge);padding-bottom:8px;}
+.card-head .ico{font-size:24px;line-height:1;}
+.card-head h2{font-size:26px;font-weight:800;}
+.card-head .tag{margin-left:auto;font-family:var(--type);font-size:14px;color:var(--soft);}
+.small{font-size:16px;color:var(--soft);}
+
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+.box{border-radius:4px;padding:14px 16px;font-size:17px;}
+.box-label{font-family:var(--type);font-size:14px;letter-spacing:.04em;margin-bottom:4px;}
+.b-gold{background:var(--gold-bg);} .b-gold .box-label{color:var(--gold2);}
+.b-green{background:var(--green-bg);} .b-green .box-label{color:#3F5A31;}
+.b-red{background:var(--red-bg);} .b-red .box-label{color:var(--red);}
+.quote{font-family:var(--head);font-style:italic;font-weight:700;font-size:21px;color:var(--navy);border-left:4px solid var(--red);padding:4px 0 4px 16px;margin:16px 0 0;}
+.quote small{display:block;font-family:"Nunito",sans-serif;font-style:normal;font-weight:600;font-size:15px;color:var(--soft);margin-top:4px;}
+.virtues{list-style:none;margin:6px 0 0;padding:0;}
+.virtues li{padding:3px 0;}
+
+/* how-to */
+.howto{background:var(--cream);border:1px solid var(--edge);border-radius:6px;padding:18px 22px;margin-top:18px;}
+.howto h2{font-size:23px;font-weight:800;margin-bottom:10px;}
+.howto ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
+.howto li{position:relative;padding-left:32px;font-size:17px;line-height:1.5;}
+.howto li span{position:absolute;left:0;top:0;font-size:20px;}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px;}
+.tabs b{font-family:var(--type);font-weight:400;font-size:14px;background:#fff;border:1px solid var(--edge);border-radius:3px;padding:1px 7px;color:var(--navy);}
+
+/* story */
+.story{background:var(--navy);color:#DCE2F0;border:none;}
+.story .card-head{border-bottom-color:rgba(255,255,255,.2);}
+.story h2,.story strong{color:#fff;}
+.story .card-head .tag{color:#C9B37A;}
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0;}
+.cast div{background:rgba(255,255,255,.07);border-radius:4px;padding:12px 14px;font-size:16px;}
+.cast b{display:block;font-family:var(--head);font-size:19px;color:#fff;}
+.cast i{font-style:normal;font-family:var(--type);font-size:13px;color:#E4C77E;display:block;margin-bottom:4px;}
+.herald{display:grid;gap:8px;margin-top:10px;}
+.herald div{background:rgba(255,255,255,.07);border-left:4px solid var(--red2);border-radius:3px;padding:8px 12px;font-size:16px;}
+.herald em{font-family:var(--head);font-style:italic;color:#fff;font-size:17px;}
+.herald span{display:block;font-family:var(--type);font-size:13px;color:#C9B37A;}
+
+/* lessons */
+.issue{border:1px solid var(--edge);border-radius:6px;overflow:hidden;margin-top:14px;background:#fff;}
+.issue:first-of-type{margin-top:4px;}
+.issue-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;background:var(--cream);border-bottom:3px double var(--navy);padding:10px 16px;}
+.issue-top .num{font-family:var(--type);font-size:14px;color:var(--red);}
+.issue-top h3{font-size:22px;font-weight:800;}
+.issue-top .virtue{margin-left:auto;font-size:14px;font-weight:800;color:#3F5A31;background:var(--green-bg);border-radius:3px;padding:2px 9px;}
+.issue-body{display:grid;grid-template-columns:1.6fr 1fr;}
+.issue-body > div{padding:14px 16px;}
+.issue-body > div + div{border-left:1px solid var(--edge);background:var(--paper);}
+.lab{font-family:var(--type);font-size:13px;color:var(--soft);display:block;margin-bottom:2px;}
+.claim{font-family:var(--head);font-style:italic;color:var(--red);}
+.steps{margin:8px 0 0;padding-left:22px;font-size:17px;}
+.steps li{margin-bottom:5px;}
+.pill{display:inline-block;font-size:14px;font-weight:800;border-radius:3px;padding:2px 9px;margin:6px 6px 0 0;}
+.p-source{background:var(--gold-bg);color:var(--gold2);}
+.p-word{background:var(--red-bg);color:var(--red);}
+
+/* sources */
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.src{border:1px solid var(--edge);border-radius:4px;background:#fff;overflow:hidden;display:flex;flex-direction:column;}
+.src img{display:block;width:100%;height:170px;object-fit:cover;object-position:center top;background:var(--cream);border-bottom:1px solid var(--edge);}
+.src div{padding:10px 12px;font-size:15px;}
+.src b{display:block;font-family:var(--head);font-size:17px;color:var(--navy);line-height:1.3;}
+.src .yr{font-family:var(--type);font-size:13px;color:var(--red);}
+.src q{display:block;font-family:var(--head);font-style:italic;color:var(--navy);margin-top:6px;quotes:"“" "”";}
+.src .cite{display:block;font-size:13px;color:var(--soft);margin-top:6px;}
+
+/* words */
+.words{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.word{border:1px solid var(--edge);border-radius:4px;padding:10px 14px;background:#fff;}
+.word b{font-family:var(--head);font-size:20px;color:var(--navy);}
+.word .from{font-family:var(--type);font-size:12px;color:var(--soft);margin-left:6px;}
+.word span{display:block;font-size:17px;}
+.roots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.roots div{background:var(--red-bg);border-radius:4px;padding:10px 14px;font-size:16px;}
+.roots b{font-family:var(--type);font-weight:400;color:var(--red);font-size:16px;}
+
+/* ask */
+.ask{list-style:none;margin:0;padding:0;counter-reset:q;}
+.ask li{counter-increment:q;position:relative;padding:12px 0 12px 50px;border-bottom:1px dashed var(--edge);}
+.ask li:last-child{border-bottom:none;}
+.ask li::before{content:counter(q);position:absolute;left:0;top:11px;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--head);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.ask .q{font-weight:800;color:var(--navy);display:block;}
+.ask .listen{font-size:16px;color:var(--soft);}
+
+/* lists */
+.check{list-style:none;margin:0;padding:0;}
+.check li{padding:7px 0 7px 32px;position:relative;}
+.check li::before{content:"✓";position:absolute;left:4px;top:6px;color:var(--green);font-weight:900;font-size:19px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.two > .card{margin-top:18px;}
+
+.next{background:var(--navy);color:#DCE2F0;border:none;}
+.next .card-head{border-bottom-color:rgba(255,255,255,.2);}
+.next h2,.next strong{color:#fff;}
+.next .claim{color:#F0B9AE;}
+.foot{text-align:center;font-size:15px;color:var(--soft);margin-top:26px;}
+.foot .end{font-family:var(--type);letter-spacing:.2em;color:var(--gold2);display:block;margin-bottom:8px;}
+
+@media (max-width:760px){
+  .paper-name{font-size:36px;}
+  .mast{padding:14px 16px 18px;}
+  .mast h1{font-size:30px;}
+  .mast-body,.glance,.howto ul,.cast,.issue-body,.sources,.words,.roots,.two{grid-template-columns:1fr;}
+  .issue-body > div + div{border-left:none;border-top:1px solid var(--edge);}
+  .issue-top .virtue{margin-left:0;}
+  .card{padding:18px 16px;}
+  .card-head .tag{margin-left:0;}
+  .src img{height:200px;}
+}
+@media print{
+  body{background:#fff;font-size:15px;}
+  .wrap{padding:0;}
+  .print-btn{display:none;}
+  .card,.issue,.howto,.src,.word{break-inside:avoid;}
+  .card{margin-top:12px;padding:14px 16px;}
+  .story,.next,.mast,.issue-top{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="mast">
+    <div class="mast-top">
+      <span class="brand"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy Online">Family Guide · 5th Grade Social Studies</span>
+      <span>Road to Revolution Edition</span>
+    </div>
+    <div class="paper-name">The Republic Gazette</div>
+    <div class="motto">Honest Reporting · Evidence First · For Every Citizen</div>
+    <hr class="rule">
+    <div class="mast-body">
+      <div>
+        <div class="kicker">Unit 8 · Road to Revolution</div>
+        <h1>From a War to a Revolution</h1>
+        <div class="deck">Lessons 5.08.01 to 5.08.08: how the colonies went from fighting for Britain to declaring independence from it. This guide grows as each lesson is added. So far: 5.08.01, the French and Indian War.</div>
+        <div class="chips">
+          <span class="chip">8 lessons</span>
+          <span class="chip">Issues 37 to 44</span>
+          <span class="chip">2 real sources so far</span>
+        </div>
+        <button class="print-btn" type="button" onclick="window.print()">🖨️ Print this guide</button>
+      </div>
+      <aside class="avery">
+        <img src="images/rg/ms-avery-320.jpg" alt="Ms. Avery, Editor-in-Chief of The Republic Gazette">
+        <b>Ms. Avery</b>
+        <span class="role">Editor-in-Chief</span>
+        <p>Careful, encouraging, and asks questions before answering them. She guides your student through every lesson.</p>
+      </aside>
+    </div>
+  </header>
+
+  <!-- HOW THE LESSON PAGES WORK -->
+  <section class="howto">
+    <h2>🧭 How the Lesson Pages Work</h2>
+    <ul>
+      <li><span>🗂️</span><strong>Four tabs, in order:</strong><span class="tabs" style="position:static;font-size:inherit;"><b>The Dispatch</b>→<b>The Desk</b>→<b>Fact-Check</b>→<b>Go to Press</b></span>A button at the bottom of each tab moves to the next.</li>
+      <li><span>💬</span><strong>Ms. Avery sends messages.</strong> Your student taps her picture at the top to start. Her messages play in her voice, and she leaves short voice notes with tips along the way.</li>
+      <li><span>🖍️</span><strong>Saving evidence.</strong> Tap 🧰 Tools (bottom right), then Highlight, drag across a detail, and tap Save as evidence. It goes into an evidence drawer. Each lesson needs at least two.</li>
+      <li><span>✅</span><strong>Fact-Check has two parts:</strong> three quick questions, then two harder claims where your student decides if each is Supported, Misleading, or Not enough evidence, and explains why.</li>
+      <li><span>💾</span><strong>Work saves as your student goes</strong>, but only in that browser on that computer. Switching computers or clearing the browser loses it.</li>
+      <li><span>📄</span><strong>Everything lands in one submission.</strong> At the end of Go to Press: Copy, Download a text file, or Print or save as PDF. Use that to <strong>submit in Canvas</strong>.</li>
+      <li><span>🔊</span><strong>Read aloud</strong> at the top reads the page aloud, with a speed control.</li>
+      <li><span>📓</span><strong>Reporter’s Notebook</strong> is a button that prints the notebook, or saves it as a PDF.</li>
+    </ul>
+  </section>
+
+  <!-- THE STORY -->
+  <section class="card story">
+    <div class="card-head"><span class="ico">🗞️</span><h2>In the Republic Gazette</h2><span class="tag">The story in every lesson</span></div>
+    <p>Your student is a <strong>Junior Editor</strong> at The Republic Gazette, a newspaper that checks before it prints. Each lesson is a new issue of the paper.</p>
+    <div class="cast">
+      <div><i>Editor-in-Chief</i><b>Ms. Avery</b>Sends the day’s story, gives tips, and asks good questions.</div>
+      <div><i>The rival paper</i><b>The Hasty Herald</b>Prints fast and checks little. Every lesson, it has already printed a claim that’s too simple.</div>
+      <div><i>The archive</i><b>The Morgue</b>The newspaper’s archive. Every issue your student publishes gets filed there.</div>
+    </div>
+    <p>Each lesson goes the same way. Your student makes a guess and seals it in an envelope, tests the Herald’s claim against real evidence, opens the envelope to see how the guess held up, then writes a front page and “strikes” the Herald’s claim with a red pencil so the correction prints in its place. The Herald’s claims this unit:</p>
+    <div class="herald">
+      <div><span>5.08.01 · The Herald printed:</span><em>“The French and Indian War ended, and then the Revolution simply began.”</em></div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🧭</span><h2>At a Glance</h2></div>
+    <p>Unit 8 follows the road from the French and Indian War to the Declaration of Independence. It starts with a war the colonists fought on Britain’s side and asks what changed afterward. Your student learns to look for the chain of events between big moments, instead of jumping straight from one date to the next.</p>
+    <div class="glance">
+      <div class="box b-gold"><div class="box-label">History skill</div><strong>Find the chain, not just the dates.</strong> What happened, what happened because of it, and how do we know? Your student also checks what a source can and <em>can’t</em> show (the lessons call this a <strong>limitation</strong>), and notices when a picture was made compared with the day it shows.</div>
+      <div class="box b-green"><div class="box-label">Virtues</div>
+        <ul class="virtues">
+          <li><strong>Courage</strong> (5.08.01): printing what the evidence shows, even when the true story is harder to tell than the simple one.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="quote">“Big words like ‘every’ are easy to write and hard to prove.”<small>Ms. Avery, when your student’s front page uses a word like every, all, or only</small></p>
+    <p class="small" style="margin-top:12px;"><strong>Good to know:</strong> The lessons are honest about who paid for this history. In 5.08.01, students learn that Native nations already lived in the Ohio Valley that Britain and France fought over, and that no one asked them. Native nations chose sides for their own reasons: many helped France, and the Mohawk often helped Britain. After the war, Native nations led in part by the Odawa leader Pontiac fought British forts (1763), and the king’s Proclamation of 1763 set the land west of the Appalachian Mountains aside for Native nations, which angered colonists who wanted to move there. The lesson tells this calmly and plainly, with no graphic detail. The Lake George print shows a battle from a distance, with no close-up violence. The Hasty Herald’s headline and the lesson’s summary lines were written for the lesson; the 1756 print and the king’s 1763 words are real.</p>
+  </section>
+
+  <!-- UNIT TIMELINE -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🗓️</span><h2>Unit 8 Timeline</h2><span class="tag">Dates from the lessons</span></div>
+    <ul class="check tl">
+      <li><strong>1754</strong> The French force George Washington to surrender at Fort Necessity; the fighting begins (5.08.01)</li>
+      <li><strong>1755</strong> The Battle of Lake George, New York (5.08.01)</li>
+      <li><strong>1756</strong> Britain declares war on France (5.08.01)</li>
+      <li><strong>1758–1759</strong> British victories at Fort Duquesne and Quebec (5.08.01)</li>
+      <li><strong>1763</strong> The Treaty of Paris ends the war; Pontiac’s War; the Proclamation of 1763 (5.08.01)</li>
+      <li><strong>1764–1765</strong> Parliament taxes the colonies (5.08.01)</li>
+      <li><strong>1776</strong> The Declaration of Independence (5.08.01)</li>
+    </ul>
+  </section>
+
+  <!-- LESSON BY LESSON -->
+  <section class="card">
+    <div class="card-head"><span class="ico">📅</span><h2>Lesson by Lesson</h2></div>
+
+    <article class="issue">
+      <div class="issue-top"><span class="num">Issue 37 · 5.08.01</span><h3>French and Indian War</h3><span class="virtue">Courage</span></div>
+      <div class="issue-body">
+        <div>
+          <span class="lab">The question</span>
+          <p>Which event changed what came next, and how do we know?</p>
+          <ol class="steps">
+            <li><strong>Hold it to the light.</strong> The Herald’s headline jumps from the end of the war (1763) straight to 1776. Your student lights up the 13 empty years in between and seals a guess about what filled them.</li>
+            <li><strong>Set the missing middle.</strong> After a short reading, your student sets lines of type in a printer’s composing stick, in order: Britain wins but owes a huge war debt, the Proclamation line, Parliament’s taxes, and colonists’ protests. Each line needs a reason why it comes next. Then they decode one real sentence from the king’s Proclamation of 1763, phrase by phrase.</li>
+            <li><strong>Study a real print.</strong> An engraving of the Battle of Lake George (1755), published in London in 1756. Its title says 250 Mohawks fought with the English, and French soldiers fought with their own Native allies. Your student works out what one battle picture can show, and what it can’t.</li>
+          </ol>
+          <span class="pill p-word">Word root: claim / clam = call out</span>
+        </div>
+        <div>
+          <span class="lab">What your student learns</span>
+          <p class="small" style="color:var(--ink);font-size:16px;">Britain and France both claimed the Ohio Valley, where Native nations already lived. The fighting began in 1754 at Fort Necessity, and the Treaty of Paris (1763) gave Britain nearly all French land east of the Mississippi. Winning left Britain deep in debt, so Parliament taxed the colonies, and the Proclamation of 1763 blocked settling west of the mountains. Colonists had no representatives in Parliament, and in 1776 they explained their rights in the Declaration of Independence.</p>
+          <span class="lab" style="margin-top:8px;">What they write</span>
+          <p style="font-size:16px;">A <strong>Front Page Brief</strong>: a short front-page story with a clear claim about how the war changed what came next, evidence, and why it matters.</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🔎</span><h2>Real Sources on the Desk</h2><span class="tag">Look for these</span></div>
+    <div class="sources">
+      <div class="src">
+        <img src="images/source-5-08-01-lake-george-1755.jpg" alt="An old engraving of a battle beside a lake, with soldiers in the woods, a camp of tents and cannons, and a small river map on the left">
+        <div><span class="yr">1756 · 5.08.01</span><b>The Battle of Lake George print</b>Drawn by Samuel Blodget, who was at the British camp, and engraved by Thomas Jefferys in London. The title begins:
+          <q>A Prospective View of the Battle fought near Lake George, on the 8th of Sepr. 1755</q>
+          It shows one battle, not the whole war.
+          <span class="cite">Library of Congress. Public domain.</span></div>
+      </div>
+      <div class="src">
+        <div><span class="yr">October 7, 1763 · 5.08.01</span><b>The Royal Proclamation of 1763</b>King George III’s order about the land west of the mountains. One sentence your student decodes begins:
+          <q>And We do hereby strictly forbid, on Pain of our Displeasure, all our loving Subjects from making any Purchases or Settlements whatever…</q>
+          <span class="cite">In plain words: colonists could not buy or settle that land without the king’s permission.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORDS -->
+  <section class="card">
+    <div class="card-head"><span class="ico">🔤</span><h2>Words to Know</h2><span class="tag">Use them at home!</span></div>
+    <div class="words">
+      <div class="word"><b>claim</b><span class="from">5.08.01</span><span>saying that something belongs to you or is true</span></div>
+      <div class="word"><b>militia</b><span class="from">5.08.01</span><span>part-time soldiers from a colony</span></div>
+      <div class="word"><b>debt</b><span class="from">5.08.01</span><span>money you owe</span></div>
+      <div class="word"><b>Parliament</b><span class="from">5.08.01</span><span>Britain’s group of lawmakers</span></div>
+      <div class="word"><b>proclamation</b><span class="from">5.08.01</span><span>an official announcement from a ruler</span></div>
+      <div class="word"><b>treaty</b><span class="from">5.08.01</span><span>a peace agreement between nations</span></div>
+      <div class="word"><b>representative</b><span class="from">5.08.01</span><span>a person elected to speak for others</span></div>
+      <div class="word"><b>unalienable rights</b><span class="from">5.08.01</span><span>rights no government can take away</span></div>
+      <div class="word"><b>limitation</b><span class="from">every lesson</span><span>something a source can’t show</span></div>
+      <div><b>claim / clam = call out</b><br>claim, proclamation, exclaim</div>
+    </div>
+  </section>
+
+  <!-- ASK AT HOME -->
+  <section class="card">
+    <div class="card-head"><span class="ico">💬</span><h2>Ask at Home</h2><span class="tag">Better than “How was school?”</span></div>
+    <ol class="ask">
+      <li><span class="q">Did the Revolution start right after the French and Indian War?</span><span class="listen">Listen for: no. The war ended in 1763 and the Declaration came in 1776. In between came Britain’s war debt, the Proclamation line, new taxes, and colonists’ protests.</span></li>
+      <li><span class="q">Britain won the war. Why weren’t colonists happy?</span><span class="listen">Listen for: Britain taxed them to help pay the debt, they had no vote in Parliament, and the Proclamation of 1763 said they couldn’t settle west of the mountains.</span></li>
+      <li><span class="q">Did all Native nations fight on the same side?</span><span class="listen">Listen for: no. They chose sides for their own reasons. Many helped France, and the Mohawk often helped Britain.</span></li>
+    </ol>
+  </section>
+
+  <!-- HOW LEARNING IS CHECKED -->
+  <section class="card">
+    <div class="card-head"><span class="ico">✅</span><h2>How Learning Is Checked</h2></div>
+    <p>Each lesson’s front page, notebook and Fact-Check show how your student is thinking. At the end of the unit there will be a short Canvas quiz, <strong>Unit 8 Check: Road to Revolution</strong>, about the unit’s lessons, mostly multiple choice. Some questions ask your student to reason like an editor: which detail supports a claim, and what a source can or can’t show. There is one try, and your student sees the right answers and a short reason after submitting.</p>
+  </section>
+
+  <!-- TURN IN + TRY AT HOME -->
+  <div class="two">
+    <section class="card">
+      <div class="card-head"><span class="ico">📬</span><h2>What Gets Turned In</h2></div>
+      <ul class="check">
+        <li><strong>Editor’s Notebook:</strong> 3 short written answers on the Desk tab</li>
+        <li><strong>Fact-Check:</strong> 3 questions, plus 2 harder claims with a call and a reason</li>
+        <li><strong>A front page</strong> (in 5.08.01, a Front Page Brief): a headline, three short parts in your student’s own words, and a corrected version of the Herald’s claim</li>
+        <li><strong>At least 2 pieces of evidence,</strong> each with a sentence saying what it proves</li>
+        <li><strong>An Archive Line:</strong> one careful sentence for future citizens to remember</li>
+        <li>Copied, downloaded, or saved as a PDF, then <strong>submitted in Canvas</strong></li>
+      </ul>
+      <p class="small" style="margin-top:10px;"><strong>How to help without doing it for them:</strong> ask what the Herald got wrong and which detail proves it, then let your student do the writing. Spelling can wait; the reasons can’t.</p>
+      <p class="small" style="margin-top:10px;"><strong>Done well looks like:</strong> real details, not just names, and evidence that’s explained. As Ms. Avery says, “Picking cards isn’t the work. Explaining them is.”</p>
+    </section>
+    <section class="card">
+      <div class="card-head"><span class="ico">🏡</span><h2>Try at Home</h2><span class="tag">5 minutes</span></div>
+      <ul class="check">
+        <li><strong>Find the middle.</strong> Pick a family story with a beginning and an end. What happened in between? Which step led to the next?</li>
+        <li><strong>Who paid?</strong> Talk about a time something was won or bought. Who paid for it, and how did they feel?</li>
+        <li><strong>Made vs. shown.</strong> Find an old photo or a picture in a book. When was it made? What does it show? What can’t it show?</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- COMING UP -->
+  <section class="card next">
+    <div class="card-head"><span class="ico">🔭</span><h2>Coming Up</h2></div>
+    <p><strong>Next issue (5.08.02): Parliamentary Acts and Colonial Grievances.</strong> A new file is on the Source Desk, and the Hasty Herald has already printed that colonists protested only because they disliked paying taxes. Your student will check that claim the same careful way.</p>
+    <p class="small" style="color:#C9CFDD;margin-top:8px;">This guide covers lesson 5.08.01 so far. It is updated as each Unit 8 lesson is added.</p>
+  </section>
+
+  <p class="foot"><span class="end">— 30 —</span>Optima Academy Online · 5th Grade Social Studies · Unit 8 Family Guide<br>Questions? Reach out to your student’s teacher anytime.</p>
+</div>
+</body>
+</html>
