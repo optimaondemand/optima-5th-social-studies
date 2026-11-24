@@ -2258,6 +2258,1340 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.02",
+ "title": "Parliamentary Acts and Colonial Grievances",
+ "issue": 38,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "act",
+ "place": "Boston",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>What does this source say, what can we infer, and what must we still question?<\/i> Use the 🖍 highlighter to save facts from the reading, your sorted chips, the real 1766 words and the broadside. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: the war left Britain in debt. Today: the taxes Parliament passed to pay it, and why colonists pushed back.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Break the seal",
+   "k": "The Dispatch",
+   "why": "Open a 1766 invitation."
+  },
+  {
+   "tab": "desk",
+   "t": "Money, or a say?",
+   "k": "The Desk",
+   "why": "Sort the four acts, then read a real 1766 broadside."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Gazette Correction",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor reports what the evidence shows, not what is easiest to believe.",
+ "recordFoot": "(The facts come from historians’ records. The 1766 Boston broadside is a real source from the past. The invitation and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today’s story is about taxes. Read the Herald first."
+   },
+   {
+    "t": "Then open the letter from Boston (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "What letter?",
+      "reply": "An invitation from Boston, 1766."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Highlight one fact here.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the 1766 words.",
+      "reply": "Save one line here.",
+      "go": {
+       "tab": "desk",
+       "sel": ".rg-ribbons"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Sealed. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Now read the real words from 1766.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 38 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "invite",
+  "title": "Break the seal",
+  "srcLabel": "Example written for this lesson",
+  "cardWho": "The invitation",
+  "when": "May 1766",
+  "where": "Boston",
+  "cardFrom": "Example written for this lesson, based on the real 1766 broadside.",
+  "heraldFrom": "The Hasty Herald’s story, written for this lesson. It is a claim to check, not a fact.",
+  "job": {
+   "why": "A party can show what people cared about.",
+   "do": "1. Tap Break the seal 3 times. 2. Seal an answer.",
+   "use": "It opens on the Desk tab.",
+   "words": [
+    [
+     "repeal",
+     "to cancel a law"
+    ]
+   ]
+  },
+  "to": "To the people of Boston",
+  "date": "Boston · May 1766",
+  "lines": [
+   "You are invited to a Day of General Rejoicing: Monday, May 19, 1766.",
+   "Parliament has repealed (canceled) the Stamp Act.",
+   "Light your windows. Our right to tax ourselves is still ours."
+  ],
+  "close": "The tax was gone. Boston still talked about a right.",
+  "seal": {
+   "q": "The Stamp Act was canceled. Why would Boston still talk about a right?",
+   "opts": [
+    "Who decides mattered, not only money",
+    "They wanted the tax back",
+    "They forgot the tax was gone"
+   ],
+   "reveal": [
+    "The 1766 words agree.",
+    "No. They were glad it was gone.",
+    "No. They were celebrating that it was gone."
+   ]
+  },
+  "sealed": ""
+ },
+ "explore": {
+  "reading": {
+   "type": "purse",
+   "title": "Purse or ballot box?",
+   "srcLabel": "Fact from the lesson",
+   "readWho": "The Desk reading",
+   "bins": {
+    "p": {
+     "t": "Coin purse",
+     "icon": "👛",
+     "d": "It cost money"
+    },
+    "b": {
+     "t": "Ballot box",
+     "icon": "🗳️",
+     "d": "It took away a say or a right"
+    }
+   },
+   "acts": [
+    {
+     "id": "sugar",
+     "yr": "1764",
+     "name": "Sugar Act",
+     "chips": [
+      {
+       "id": "s1",
+       "t": "A tax on sugar and molasses",
+       "k": "p",
+       "no": "Try the other box.",
+       "say": ""
+      },
+      {
+       "id": "s2",
+       "t": "Smugglers tried with no colonial jury",
+       "k": "b",
+       "no": "Try the other box.",
+       "say": ""
+      }
+     ]
+    },
+    {
+     "id": "stamp",
+     "yr": "1765",
+     "name": "Stamp Act",
+     "chips": [
+      {
+       "id": "t1",
+       "t": "A tax stamp on papers and cards",
+       "k": "p",
+       "no": "Try the other box.",
+       "say": ""
+      },
+      {
+       "id": "t2",
+       "t": "Taxed by a Parliament they didn’t elect",
+       "k": "b",
+       "no": "Try the other box.",
+       "say": ""
+      }
+     ]
+    },
+    {
+     "id": "town",
+     "yr": "1767",
+     "name": "Townshend Acts",
+     "chips": [
+      {
+       "id": "w1",
+       "t": "Taxes on glass, paper, paint and tea",
+       "k": "p",
+       "no": "Try the other box.",
+       "say": ""
+      },
+      {
+       "id": "w2",
+       "t": "New York’s Assembly shut down",
+       "k": "b",
+       "no": "Try the other box.",
+       "say": ""
+      }
+     ]
+    },
+    {
+     "id": "tea",
+     "yr": "1773",
+     "name": "Tea Act",
+     "chips": [
+      {
+       "id": "e1",
+       "t": "One company gets all the tea sales",
+       "k": "p",
+       "no": "Try the other box.",
+       "say": ""
+      },
+      {
+       "id": "e2",
+       "t": "A tea tax they never voted on",
+       "k": "b",
+       "no": "Try the other box.",
+       "say": ""
+      }
+     ]
+    }
+   ],
+   "pickT": "Tap a chip, then a box.",
+   "close": "Each act hit both boxes. The Herald only counted the purse.",
+   "times": [
+    "What it cost",
+    "What it took away",
+    "How colonists answered"
+   ],
+   "cols": [
+    {
+     "id": "sugar",
+     "who": "Sugar Act (1764)",
+     "icon": "🍬",
+     "lines": [
+      "Taxed sugar, molasses",
+      "No jury for smugglers",
+      "Boycotts"
+     ]
+    },
+    {
+     "id": "stamp",
+     "who": "Stamp Act (1765)",
+     "icon": "📜",
+     "lines": [
+      "Stamp on papers",
+      "Taxed with no vote",
+      "Congress; repealed 1766"
+     ]
+    },
+    {
+     "id": "town",
+     "who": "Townshend Acts (1767)",
+     "icon": "🪟",
+     "lines": [
+      "Taxed glass, paint, tea",
+      "Assembly shut down",
+      "Spinning bees"
+     ]
+    },
+    {
+     "id": "tea",
+     "who": "Tea Act (1773)",
+     "icon": "🫖",
+     "lines": [
+      "Tea tax stayed",
+      "One company’s tea",
+      "Tea Party"
+     ]
+    }
+   ],
+   "job": {
+    "why": "The Herald counted only money. Count both.",
+    "do": "1. Read the acts above. 2. Tap a chip, then 👛 or 🗳️.",
+    "use": "Your chips are evidence.",
+    "words": [
+     [
+      "Parliament",
+      "Britain’s group of lawmakers"
+     ],
+     [
+      "consent",
+      "agreement"
+     ]
+    ]
+   }
+  },
+  "ribbons": {
+   "title": "Sort the real words",
+   "who": "Boston town meeting",
+   "when": "April 21, 1766 (printed May 16, 1766)",
+   "where": "Boston",
+   "from": "Real source from the past: Boston town-meeting broadside, 1766 (Library of Congress)",
+   "ribbons": [
+    {
+     "k": "king",
+     "t": "Thanks the King",
+     "icon": "👑"
+    },
+    {
+     "k": "right",
+     "t": "Claims a right",
+     "icon": "⚖️"
+    },
+    {
+     "k": "party",
+     "t": "Plans the party",
+     "icon": "🕯️"
+    }
+   ],
+   "phrases": [
+    {
+     "old": "UNDER the deepest Sense of Duty and Loyalty to our Most Gracious Sovereign King GEORGE",
+     "plain": "We are loyal to our kind ruler, King George.",
+     "k": "king",
+     "no": "Who is this line about?",
+     "say": ""
+    },
+    {
+     "old": "our incontestible Right of Internal Taxation still remains to us inviolate",
+     "plain": "We still have the right to tax ourselves at home. No one can argue with it.",
+     "k": "right",
+     "no": "Find the word Right.",
+     "say": ""
+    },
+    {
+     "old": "every Inhabitant be desired to illuminate his Dwelling-House",
+     "plain": "Everyone is asked to light up their home.",
+     "k": "party",
+     "no": "Illuminate means light up.",
+     "say": ""
+    },
+    {
+     "old": "the Houses of those (if there are any) who from certain religious Scruples cannot conform to this Vote, ought to be protected from all Injury",
+     "plain": "Keep safe the homes of people whose religion keeps them from joining in.",
+     "k": "party",
+     "no": "It’s a rule for party night.",
+     "say": "So not everyone joined in."
+    }
+   ],
+   "close": "Loyal to the King AND sure of a right. Not every home joined in.",
+   "cap": "Spelling kept; the tall “ſ” is printed as s.",
+   "job": {
+    "why": "Real words show what Boston cared about.",
+    "do": "1. Tap a line of real words. 2. Tap its ribbon. 3. Read the plain words.",
+    "use": "Save a line as evidence.",
+    "words": [
+     [
+      "broadside",
+      "a big printed sheet, like a poster"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the broadside",
+   "kind": "source",
+   "srcName": "the 1766 broadside",
+   "srcWho": "The Boston broadside (1766)",
+   "srcCant": "This 1766 broadside",
+   "showsWord": "The broadside shows ",
+   "img": "source-5-08-02-boston-repeal-broadside-1766",
+   "alt": "A page of old printed type. A large letter A starts the first paragraph. Lower down is a paragraph in slanted type, the name William Cooper, Town-Clerk, and the words Boston, May 16. 1766.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 30,
+     "y": 11,
+     "rx": 9,
+     "ry": 4,
+     "label": "The meeting",
+     "t": "Boston’s town meeting, April 21, 1766."
+    },
+    {
+     "x": 40,
+     "y": 29.5,
+     "rx": 10,
+     "ry": 3,
+     "label": "King GEORGE",
+     "t": "The town thanks the King and Parliament for the repeal."
+    },
+    {
+     "x": 55,
+     "y": 41,
+     "rx": 12,
+     "ry": 3,
+     "label": "A right",
+     "t": "It says their right to tax themselves “still remains.”"
+    },
+    {
+     "x": 70,
+     "y": 90,
+     "rx": 12,
+     "ry": 3,
+     "label": "The town clerk",
+     "t": "Signed by William Cooper, Town-Clerk."
+    }
+   ],
+   "date": {
+    "x": 28,
+    "y": 93.5,
+    "w": 12,
+    "h": 4,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1766,
+    "shows": 1766,
+    "yearT": "May 16, 1766",
+    "showsT": "April 21, 1766 (the vote)",
+    "gapT": "about four weeks later",
+    "madeBy": "Boston’s town leaders",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: when was it printed, and when was the vote it shares?",
+    "check": [
+     "say May 1766?",
+     "say April 21?"
+    ],
+    "model": "It was printed on May 16, 1766. It shares a vote from April 21, 1766.",
+    "card": "Printed May 16, 1766. It shares a vote from April 21, 1766.",
+    "madeT": "printed May 16, 1766",
+    "journalT": "The broadside was printed on May 16, 1766, about four weeks after the vote."
+   },
+   "missing": {
+    "q": "What can this broadside show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown on this broadside",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown on this broadside",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this broadside alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Boston claimed a right to tax itself",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Find the word Right."
+     },
+     {
+      "t": "The Boston Tea Party",
+      "k": "not",
+      "say": "Right. That was 1773.",
+      "hint": "When was this printed?"
+     },
+     {
+      "t": "What every person in Boston thought",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Can one vote show every mind?",
+      "calm": true
+     },
+     {
+      "t": "If every house really lit its windows",
+      "k": "cant",
+      "say": "Right. It’s a plan.",
+      "hint": "A plan, or a report?"
+     }
+    ]
+   },
+   "close": "A source shows what its makers chose to say.",
+   "lookQ": "Write one thing you notice on this broadside.",
+   "from": "Real source from the past: Boston town-meeting broadside, 1766 (Library of Congress)",
+   "zoomCap": "Boston town meeting at Faneuil Hall, April 21, 1766; printed May 16, 1766, by order of the selectmen, William Cooper, Town-Clerk. Library of Congress Prints and Photographs, LCCN 2007681661. Public domain.",
+   "followup": {
+    "q": "This broadside can’t show what every colonist thought. Which source could help?",
+    "opts": [
+     {
+      "t": "Letters and diaries from many colonists back then",
+      "ok": true,
+      "say": "Yes."
+     },
+     {
+      "t": "A bigger copy of this broadside",
+      "ok": false,
+      "say": "Still the same words."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this broadside can’t show (a limitation).",
+    "limPh": "This broadside can’t show…"
+   },
+   "job": {
+    "why": "Check what a source can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "After the French and Indian War, Britain owed a huge amount of money, so Parliament taxed the colonies.",
+   "The Sugar Act (1764) taxed sugar and molasses and sent smugglers to trials with no colonial jury.",
+   "The Stamp Act (1765) was the first direct tax on the colonists. Nine colonies sent delegates to the Stamp Act Congress.",
+   "The Townshend Acts (1767) taxed glass, paper, paint and tea, and shut down the New York Assembly.",
+   "The Tea Act (1773) kept the tea tax and gave one company the tea sales. Boston dumped 342 chests of tea.",
+   "“No Taxation Without Representation”: colonists had no vote in Parliament, so they said Parliament had no right to tax them.",
+   "The 1766 Boston broadside is a real source. It thanks the King for the repeal and still claims the right to tax themselves."
+  ],
+  "vocab": [
+   [
+    "Parliament",
+    "Britain’s group of lawmakers"
+   ],
+   [
+    "grievance",
+    "a complaint about a wrong"
+   ],
+   [
+    "repeal",
+    "to cancel a law"
+   ],
+   [
+    "boycott",
+    "refusing to buy something to protest"
+   ],
+   [
+    "consent",
+    "agreement"
+   ],
+   [
+    "representative",
+    "a person elected to speak for others"
+   ],
+   [
+    "direct tax",
+    "a tax paid straight to the government"
+   ],
+   [
+    "broadside",
+    "a big printed sheet, like a poster"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: grav / griev means “heavy”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "A grievance is a wrong that feels heavy.",
+   "do": "1. Tap the part meaning “heavy.” 2. Use grievance in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "grav / griev",
+  "meaning": "heavy",
+  "words": [
+   {
+    "parts": [
+     "griev",
+     "ance"
+    ],
+    "root": 0,
+    "m": "grievance: a heavy wrong people complain about"
+   },
+   {
+    "parts": [
+     "griev",
+     "ous"
+    ],
+    "root": 0,
+    "m": "grievous: heavy and hurtful"
+   },
+   {
+    "parts": [
+     "grav",
+     "ity"
+    ],
+    "root": 0,
+    "m": "gravity: the pull that makes things heavy"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Gravis is Latin for “heavy.” The 1766 broadside called the Stamp Act “grievous.”",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "One colonial grievance was…",
+   "min": 8,
+   "must": "grievance",
+   "word": "grievance"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Gazette Correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "More Than Money",
+     "ok": true,
+     "tip": "The rights side.",
+     "fit": [
+      "say",
+      "acts",
+      "reading",
+      "broadside",
+      "right"
+     ],
+     "fitTip": "Good fits: your ballot box chips.",
+     "ideas": [
+      "More Than Money",
+      "Taxed Without a Say"
+     ]
+    },
+    {
+     "t": "Loyal, and Still Arguing",
+     "ok": true,
+     "tip": "The 1766 broadside.",
+     "fit": [
+      "broadside",
+      "king",
+      "right",
+      "picture",
+      "invite"
+     ],
+     "fitTip": "Good fits: the 1766 words.",
+     "ideas": [
+      "Loyal, and Still Arguing",
+      "A Party With a Warning"
+     ]
+    },
+    {
+     "t": "Who Gets a Say?",
+     "ok": true,
+     "tip": "Ways to be heard.",
+     "fit": [
+      "say",
+      "reading",
+      "acts",
+      "declaratory"
+     ],
+     "fitTip": "Good fits: Taking Part Without a Vote.",
+     "ideas": [
+      "Who Gets a Say?",
+      "Heard Without a Vote"
+     ]
+    },
+    {
+     "t": "Colonists Just Hate Taxes!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your ballot box."
+    }
+   ]
+  },
+  "p1Label": "Act 1",
+  "p2Label": "Act 2",
+  "cmpHd": "What each act cost and took away.",
+  "cmpQ": "Which act took away more of a say?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "No vote in Parliament",
+   "No jury",
+   "An assembly shut down",
+   "The right to consent",
+   "Loyal to the King",
+   "The Declaratory Act"
+  ],
+  "close": "Now write your correction below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two acts. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? The Declaratory Act, 1766",
+   "img": false,
+   "who": "The Declaratory Act",
+   "from": "Fact from the lesson",
+   "t": "On March 18, 1766, the Stamp Act’s repeal became law. The same day, so did the Declaratory Act. It said Parliament could make laws for the colonies “in all cases whatsoever.”",
+   "q": "Why might colonists still worry after the repeal?",
+   "tags": [
+    "declaratory",
+    "say",
+    "right"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 38 is in the Morgue.",
+  "claim": "Colonists protested only because they disliked paying taxes."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the open invitation",
+   "Snap your purse and ballot box",
+   "Snap one line on a ribbon",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "Colonists said Parliament had no right to tax them without a vote.",
+   "key": [
+    "Colonists",
+    "Parliament",
+    "no",
+    "right",
+    "tax",
+    "without",
+    "vote"
+   ],
+   "small": [
+    "said",
+    "had",
+    "to",
+    "them",
+    "a"
+   ],
+   "model": "Key words: Colonists, Parliament, no right, tax, without a vote."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "A pattern",
+    "rx": "tax|money|pay|cost|without|no vote|vote|right|say|consent|jury|represent|parliament|britain",
+    "n": 2
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A rights reason",
+    "rx": "right|vote|say|represent|consent|jury|assembly|decide|elect",
+    "n": 1
+   },
+   {
+    "t": "Evidence",
+    "rx": "broadside|1766|king|act|stamp|sugar|townshend|tea|jury|assembly|inviolate|remains",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|money|tax|pay|cost",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|vote|say|represent|consent|right|jury|decide",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "See your two boxes.",
+   "What did each act do?",
+   "Try: “Each act ___ and ___.”"
+  ],
+  "journal-q2": [
+   "See your ballot box.",
+   "What is “a say”?",
+   "Try: “They had no ___, so ___.”"
+  ],
+  "journal-q3": [
+   "Did money matter?",
+   "What else mattered?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "They paid some taxes. They objected to who decided.",
+   "B": "They protested from 1764 on."
+  },
+  {
+   "B": "Merchants weren’t the only ones hit.",
+   "C": "It lasted until 1766."
+  },
+  {
+   "A": "Rights mattered too.",
+   "C": "They paid some taxes."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · Parliament’s Acts",
+  "head": "Money, or a Say?",
+  "deck": "What does this source say, what can we infer, and what must we still question?",
+  "dateline": "Vol. I · No. 38 · Price: One Penny",
+  "ears": [
+   "Issue 38 · Road to Revolution Edition",
+   "🖼️ Boston broadside, 1766"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Sort the four acts"
+   },
+   {
+    "key": "picture",
+    "t": "Read a real broadside from 1766",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "BOSTON",
+  "lede": "Four acts, one real sheet from 1766.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the 1766 Boston broadside.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a fact, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "More Than Money",
+   "Loyal, and Still Arguing"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "The Herald’s claim and your evidence",
+    "short": "The claim and your evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "What did the Herald get wrong? What does the evidence show?",
+    "ph": "Write the Herald’s claim and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said colonists protested over money. But",
+     "The 1766 broadside shows"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "What should readers understand?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1766 broadside show, and not show?",
+    "ph": "For example, start with: The broadside…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The broadside was printed in 1766, so",
+     "The broadside shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Fix the Herald with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain. Supported: true. Misleading: true start, wrong idea. Not enough evidence: can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "repeal-over",
+   "claim": "Once the Stamp Act was repealed, the argument with Britain was over.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Was it over?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. A true repeal, a wrong idea."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "The Did you know? card answers it."
+    }
+   ],
+   "details": [
+    {
+     "from": "Did you know?",
+     "t": "The Declaratory Act said Parliament could make laws for the colonies “in all cases whatsoever.”",
+     "ok": true,
+     "say": "Yes."
+    },
+    {
+     "from": "The reading:",
+     "t": "The Townshend Acts (1767) taxed glass, paper, paint and tea.",
+     "ok": true,
+     "say": "Yes. New taxes came."
+    },
+    {
+     "from": "The reading:",
+     "t": "The Stamp Act taxed playing cards and dice.",
+     "ok": false,
+     "say": "That’s what was taxed, not what came after."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I named a money part and a rights part.",
+  "I gave two details, each with a reason.",
+  "I said what the broadside can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is empty. Try the four acts.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1766 words.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(britain|british|england|english|parliament|king|george|colon\\w*|boston|new york|assembly|sugar|molasses|stamps?|stamped|townshend|tea|east india|company|monopoly|acts?|tax\\w*|money|cost|pay|paid|duty|jury|juries|smuggl\\w*|courts?|judges?|vote\\w*|elect\\w*|say|consent|representatives?|representation|rights?|protest\\w*|boycott\\w*|petitions?|congress|delegates?|liberty|daughters|spinning|committees?|repeal\\w*|declaratory|whatsoever|loyal\\w*|sovereign|gracious|incontestible|inviolate|internal|illuminate|houses?|religious|scruples|protected|injury|selectmen|cooper|town|meeting|faneuil|grievances?|grievous|chests|harbor|1764|1765|1766|1767|1772|1773|broadside)\\b",
+   "off": "Does this help show what the colonists wanted? Try the acts or the 1766 words.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a ballot box chip or a 1766 line.",
+    "go": [
+     {
+      "l": "The four acts",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "The 1766 words",
+      "tab": "desk",
+      "sel": ".rg-ribbons"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try the Key Concept.",
+    "go": [
+     {
+      "l": "The four acts",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a broadside note.",
+    "go": [
+     {
+      "l": "The broadside",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Why throw a party?",
+   "script": "The Herald says colonists only hated paying taxes. So here’s a puzzle. In May, seventeen sixty-six, Parliament canceled the Stamp Act, and Boston threw a party! If money was the whole story, the argument should be over. Break the seal, and read closely. What else was Boston still talking about?"
+  },
+  {
+   "at": "ribbons",
+   "slot": "v2",
+   "label": "Read it like 1766",
+   "script": "These are real words from seventeen sixty-six. Printers back then used a tall letter that looks like an f, but it’s really an s. Read slowly, one line at a time. Some lines are polite to the King. Some lines are firm about a right. A careful editor notices both."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^party",
+    "sel": "#panel-dispatch .rg-iv-env",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^seal",
+    "sel": "#panel-dispatch .rg-iv-open",
+    "fx": "point"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^real",
+    "sel": "#panel-desk .rg-rb-src",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^polite",
+    "sel": "#panel-desk .rg-rb-band[data-k=\"king\"]",
+    "fx": "glow"
+   },
+   {
+    "at": "^firm",
+    "sel": "#panel-desk .rg-rb-band[data-k=\"right\"]",
+    "fx": "glow"
+   },
+   {
+    "at": "^both",
+    "sel": "#panel-desk .rg-rb-bands",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.24,
+    0.56,
+    "Herald"
+   ],
+   [
+    10.88,
+    11.56,
+    "party!"
+   ],
+   [
+    15.76,
+    16.32,
+    "seal,"
+   ]
+  ],
+  "v2": [
+   [
+    0.48,
+    0.76,
+    "real"
+   ],
+   [
+    13.04,
+    13.36,
+    "polite"
+   ],
+   [
+    15.44,
+    15.6,
+    "firm"
+   ],
+   [
+    18.4,
+    18.96,
+    "both."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3823,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3838,24 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A great elm tree hung with glowing lanterns at dusk, in front of a row of colonial houses with candle-lit windows and a church steeple" class="b0802">
+<defs>
+<linearGradient id="b0802Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E2A4A"/><stop offset=".55" stop-color="#4A4A6E"/><stop offset=".85" stop-color="#C9876A"/><stop offset="1" stop-color="#E9B07C"/></linearGradient>
+<radialGradient id="b0802Glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE2A0" stop-opacity=".85"/><stop offset="1" stop-color="#FFE2A0" stop-opacity="0"/></radialGradient>
+<style>
+.b0802 .b0802-lan{ transform-box:fill-box; transform-origin:50% 0; animation:b0802sway 5s ease-in-out infinite alternate; }
+.b0802 .b0802-lan.d1{ animation-delay:-1.3s } .b0802 .b0802-lan.d2{ animation-delay:-2.6s } .b0802 .b0802-lan.d3{ animation-delay:-3.9s }
+.b0802 .b0802-win{ animation:b0802flick 4s ease-in-out infinite; }
+.b0802 .b0802-win.d1{ animation-delay:-1s } .b0802 .b0802-win.d2{ animation-delay:-2.2s } .b0802 .b0802-win.d3{ animation-delay:-3.1s }
+.b0802 .b0802-star{ animation:b0802tw 6s ease-in-out infinite; }
+@keyframes b0802sway{ from{ transform:rotate(-4deg) } to{ transform:rotate(4deg) } }
+@keyframes b0802flick{ 0%,100%{ opacity:1 } 50%{ opacity:.72 } }
+@keyframes b0802tw{ 0%,100%{ opacity:.9 } 50%{ opacity:.25 } }
+@media (prefers-reduced-motion:reduce){ .b0802 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0802Sky)"/>
+<g fill="#FFF6DA"><circle class="b0802-star" style="animation-delay:-0.4s" cx="586" cy="43" r="0.8"/><circle class="b0802-star" style="animation-delay:-3.5s" cx="638" cy="39" r="1"/><circle class="b0802-star" style="animation-delay:-2.8s" cx="305" cy="66" r="1.2"/><circle class="b0802-star" style="animation-delay:-5.6s" cx="877" cy="56" r="1"/><circle class="b0802-star" style="animation-delay:-3.2s" cx="86" cy="48" r="1.5"/><circle class="b0802-star" style="animation-delay:-0.9s" cx="21" cy="39" r="0.8"/><circle class="b0802-star" style="animation-delay:-5.4s" cx="102" cy="17" r="1"/><circle class="b0802-star" style="animation-delay:-4.1s" cx="88" cy="71" r="1.2"/><circle class="b0802-star" style="animation-delay:-1.7s" cx="330" cy="83" r="1.5"/><circle class="b0802-star" style="animation-delay:-4.2s" cx="247" cy="44" r="1"/><circle class="b0802-star" style="animation-delay:-1.8s" cx="81" cy="51" r="1"/><circle class="b0802-star" style="animation-delay:-5.4s" cx="903" cy="20" r="1.5"/><circle class="b0802-star" style="animation-delay:-0.2s" cx="225" cy="38" r="0.8"/><circle class="b0802-star" style="animation-delay:-5.2s" cx="684" cy="51" r="1.2"/><circle class="b0802-star" style="animation-delay:-0.9s" cx="537" cy="11" r="1.5"/><circle class="b0802-star" style="animation-delay:-3.6s" cx="408" cy="62" r="1"/><circle class="b0802-star" style="animation-delay:-0.9s" cx="52" cy="44" r="0.8"/><circle class="b0802-star" style="animation-delay:-1.2s" cx="136" cy="51" r="1.2"/><circle class="b0802-star" style="animation-delay:-4.6s" cx="317" cy="29" r="0.8"/><circle class="b0802-star" style="animation-delay:-1.7s" cx="426" cy="53" r="1"/><circle class="b0802-star" style="animation-delay:-4.3s" cx="130" cy="23" r="1.2"/><circle class="b0802-star" style="animation-delay:-3.2s" cx="350" cy="16" r="0.8"/><circle class="b0802-star" style="animation-delay:-4.6s" cx="409" cy="40" r="0.8"/><circle class="b0802-star" style="animation-delay:-2.6s" cx="244" cy="42" r="1.5"/><circle class="b0802-star" style="animation-delay:-3.5s" cx="177" cy="41" r="0.8"/><circle class="b0802-star" style="animation-delay:-0.1s" cx="302" cy="31" r="1"/></g><path d="M0,170 L40,160 L70,170 L120,156 L170,168 L230,158 L290,168 L360,154 L420,166 L500,156 L560,166 L640,152 L700,164 L780,154 L860,166 L920,158 L920,200 L0,200 Z" fill="#3A3550" opacity=".8"/><g fill="#2A2740"><rect x="742" y="110" width="26" height="70"/><path d="M738,112 L755,58 L772,112 Z"/><rect x="747" y="96" width="16" height="16"/><path d="M752,58 L755,30 L758,58 Z"/></g><rect x="750" y="124" width="10" height="14" rx="5" fill="#F7C96A" opacity=".8"/><rect x="250" y="138" width="70" height="122" fill="#5A3A34"/><path d="M246,138 L285.0,112 L324,138 Z" fill="#2E2638"/><rect x="299" y="108" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="260" y="150" width="12" height="15" fill="#FFD27A"/><path d="M266,150 v15 M260,157.5 h12" stroke="#5A3A34" stroke-width="1.4"/><rect class="b0802-win d1" x="300" y="150" width="12" height="15" fill="#FFD27A"/><path d="M306,150 v15 M300,157.5 h12" stroke="#5A3A34" stroke-width="1.4"/><rect class="b0802-win d2" x="260" y="176" width="12" height="15" fill="#FFD27A"/><path d="M266,176 v15 M260,183.5 h12" stroke="#5A3A34" stroke-width="1.4"/><rect class="b0802-win d3" x="300" y="176" width="12" height="15" fill="#FFD27A"/><path d="M306,176 v15 M300,183.5 h12" stroke="#5A3A34" stroke-width="1.4"/><rect x="330" y="126" width="58" height="134" fill="#4E4058"/><path d="M326,126 L359.0,100 L392,126 Z" fill="#2E2638"/><rect x="371" y="96" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="340" y="138" width="12" height="15" fill="#FFD27A"/><path d="M346,138 v15 M340,145.5 h12" stroke="#4E4058" stroke-width="1.4"/><rect class="b0802-win d1" x="368" y="138" width="12" height="15" fill="#FFD27A"/><path d="M374,138 v15 M368,145.5 h12" stroke="#4E4058" stroke-width="1.4"/><rect class="b0802-win d2" x="340" y="164" width="12" height="15" fill="#FFD27A"/><path d="M346,164 v15 M340,171.5 h12" stroke="#4E4058" stroke-width="1.4"/><rect class="b0802-win d3" x="368" y="164" width="12" height="15" fill="#FFD27A"/><path d="M374,164 v15 M368,171.5 h12" stroke="#4E4058" stroke-width="1.4"/><rect x="398" y="142" width="76" height="118" fill="#5E3F33"/><path d="M394,142 L436.0,116 L478,142 Z" fill="#2E2638"/><rect x="451" y="112" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="408" y="154" width="12" height="15" fill="#FFD27A"/><path d="M414,154 v15 M408,161.5 h12" stroke="#5E3F33" stroke-width="1.4"/><rect class="b0802-win d1" x="454" y="154" width="12" height="15" fill="#FFD27A"/><path d="M460,154 v15 M454,161.5 h12" stroke="#5E3F33" stroke-width="1.4"/><rect class="b0802-win d2" x="408" y="180" width="12" height="15" fill="#FFD27A"/><path d="M414,180 v15 M408,187.5 h12" stroke="#5E3F33" stroke-width="1.4"/><rect class="b0802-win d3" x="454" y="180" width="12" height="15" fill="#FFD27A"/><path d="M460,180 v15 M454,187.5 h12" stroke="#5E3F33" stroke-width="1.4"/><rect x="484" y="130" width="64" height="130" fill="#4A3E52"/><path d="M480,130 L516.0,104 L552,130 Z" fill="#2E2638"/><rect x="529" y="100" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="494" y="142" width="12" height="15" fill="#FFD27A"/><path d="M500,142 v15 M494,149.5 h12" stroke="#4A3E52" stroke-width="1.4"/><rect class="b0802-win d1" x="528" y="142" width="12" height="15" fill="#FFD27A"/><path d="M534,142 v15 M528,149.5 h12" stroke="#4A3E52" stroke-width="1.4"/><rect class="b0802-win d2" x="494" y="168" width="12" height="15" fill="#FFD27A"/><path d="M500,168 v15 M494,175.5 h12" stroke="#4A3E52" stroke-width="1.4"/><rect class="b0802-win d3" x="528" y="168" width="12" height="15" fill="#FFD27A"/><path d="M534,168 v15 M528,175.5 h12" stroke="#4A3E52" stroke-width="1.4"/><rect x="556" y="140" width="72" height="120" fill="#5B3B36"/><path d="M552,140 L592.0,114 L632,140 Z" fill="#2E2638"/><rect x="606" y="110" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="566" y="152" width="12" height="15" fill="#FFD27A"/><path d="M572,152 v15 M566,159.5 h12" stroke="#5B3B36" stroke-width="1.4"/><rect class="b0802-win d1" x="608" y="152" width="12" height="15" fill="#FFD27A"/><path d="M614,152 v15 M608,159.5 h12" stroke="#5B3B36" stroke-width="1.4"/><rect class="b0802-win d2" x="566" y="178" width="12" height="15" fill="#FFD27A"/><path d="M572,178 v15 M566,185.5 h12" stroke="#5B3B36" stroke-width="1.4"/><rect class="b0802-win d3" x="608" y="178" width="12" height="15" fill="#FFD27A"/><path d="M614,178 v15 M608,185.5 h12" stroke="#5B3B36" stroke-width="1.4"/><rect x="636" y="128" width="62" height="132" fill="#463C50"/><path d="M632,128 L667.0,102 L702,128 Z" fill="#2E2638"/><rect x="679" y="98" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="646" y="140" width="12" height="15" fill="#FFD27A"/><path d="M652,140 v15 M646,147.5 h12" stroke="#463C50" stroke-width="1.4"/><rect class="b0802-win d1" x="678" y="140" width="12" height="15" fill="#FFD27A"/><path d="M684,140 v15 M678,147.5 h12" stroke="#463C50" stroke-width="1.4"/><rect class="b0802-win d2" x="646" y="166" width="12" height="15" fill="#FFD27A"/><path d="M652,166 v15 M646,173.5 h12" stroke="#463C50" stroke-width="1.4"/><rect class="b0802-win d3" x="678" y="166" width="12" height="15" fill="#FFD27A"/><path d="M684,166 v15 M678,173.5 h12" stroke="#463C50" stroke-width="1.4"/><rect x="806" y="136" width="64" height="124" fill="#563A35"/><path d="M802,136 L838.0,110 L874,136 Z" fill="#2E2638"/><rect x="851" y="106" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="816" y="148" width="12" height="15" fill="#FFD27A"/><path d="M822,148 v15 M816,155.5 h12" stroke="#563A35" stroke-width="1.4"/><rect class="b0802-win d1" x="850" y="148" width="12" height="15" fill="#FFD27A"/><path d="M856,148 v15 M850,155.5 h12" stroke="#563A35" stroke-width="1.4"/><rect class="b0802-win d2" x="816" y="174" width="12" height="15" fill="#FFD27A"/><path d="M822,174 v15 M816,181.5 h12" stroke="#563A35" stroke-width="1.4"/><rect class="b0802-win d3" x="850" y="174" width="12" height="15" fill="#FFD27A"/><path d="M856,174 v15 M850,181.5 h12" stroke="#563A35" stroke-width="1.4"/><rect x="878" y="130" width="52" height="130" fill="#47405A"/><path d="M874,130 L904.0,104 L934,130 Z" fill="#2E2638"/><rect x="914" y="100" width="9" height="20" fill="#3A2C2C"/><rect class="b0802-win " x="888" y="142" width="12" height="15" fill="#FFD27A"/><path d="M894,142 v15 M888,149.5 h12" stroke="#47405A" stroke-width="1.4"/><rect class="b0802-win d1" x="910" y="142" width="12" height="15" fill="#FFD27A"/><path d="M916,142 v15 M910,149.5 h12" stroke="#47405A" stroke-width="1.4"/><rect class="b0802-win d2" x="888" y="168" width="12" height="15" fill="#FFD27A"/><path d="M894,168 v15 M888,175.5 h12" stroke="#47405A" stroke-width="1.4"/><rect class="b0802-win d3" x="910" y="168" width="12" height="15" fill="#FFD27A"/><path d="M916,168 v15 M910,175.5 h12" stroke="#47405A" stroke-width="1.4"/><rect x="0" y="222" width="920" height="38" fill="#2C2A32"/><path d="M0,222 L920,222" stroke="#4A4552" stroke-width="2"/><path d="M150,232 C152,200 146,180 140,160 C130,150 112,146 100,140 L104,136 C120,140 134,146 142,150 C142,132 136,118 128,104 L134,102 C144,118 150,134 152,148 C158,130 170,116 186,106 L190,110 C176,122 166,138 162,154 C170,150 186,144 204,142 L204,148 C186,150 172,156 164,166 C160,186 162,210 168,232 Z" fill="#2B231F"/><g fill="#25302A"><circle cx="140" cy="70" r="48"/><circle cx="90" cy="90" r="40"/><circle cx="196" cy="84" r="44"/><circle cx="60" cy="118" r="30"/><circle cx="230" cy="112" r="32"/><circle cx="120" cy="40" r="34"/><circle cx="176" cy="44" r="34"/><circle cx="150" cy="104" r="40"/></g><g fill="#2F3B33" opacity=".9"><circle cx="112" cy="64" r="22"/><circle cx="182" cy="66" r="20"/><circle cx="148" cy="88" r="18"/></g><g class="b0802-lan "><line x1="78" y1="102" x2="78" y2="120" stroke="#1A1512" stroke-width="1"/><circle cx="78" cy="127" r="16" fill="url(#b0802Glow)"/><rect x="74" y="120" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M73,120 L83,120 L78,116 Z" fill="#3A2A12"/></g><g class="b0802-lan d1"><line x1="112" y1="106" x2="112" y2="128" stroke="#1A1512" stroke-width="1"/><circle cx="112" cy="135" r="16" fill="url(#b0802Glow)"/><rect x="108" y="128" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M107,128 L117,128 L112,124 Z" fill="#3A2A12"/></g><g class="b0802-lan d2"><line x1="150" y1="118" x2="150" y2="134" stroke="#1A1512" stroke-width="1"/><circle cx="150" cy="141" r="16" fill="url(#b0802Glow)"/><rect x="146" y="134" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M145,134 L155,134 L150,130 Z" fill="#3A2A12"/></g><g class="b0802-lan d3"><line x1="188" y1="102" x2="188" y2="126" stroke="#1A1512" stroke-width="1"/><circle cx="188" cy="133" r="16" fill="url(#b0802Glow)"/><rect x="184" y="126" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M183,126 L193,126 L188,122 Z" fill="#3A2A12"/></g><g class="b0802-lan "><line x1="224" y1="114" x2="224" y2="132" stroke="#1A1512" stroke-width="1"/><circle cx="224" cy="139" r="16" fill="url(#b0802Glow)"/><rect x="220" y="132" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M219,132 L229,132 L224,128 Z" fill="#3A2A12"/></g><g class="b0802-lan d1"><line x1="132" y1="86" x2="132" y2="100" stroke="#1A1512" stroke-width="1"/><circle cx="132" cy="107" r="16" fill="url(#b0802Glow)"/><rect x="128" y="100" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M127,100 L137,100 L132,96 Z" fill="#3A2A12"/></g><g class="b0802-lan d2"><line x1="170" y1="88" x2="170" y2="104" stroke="#1A1512" stroke-width="1"/><circle cx="170" cy="111" r="16" fill="url(#b0802Glow)"/><rect x="166" y="104" width="8" height="12" rx="2" fill="#FFCF6B" stroke="#3A2A12" stroke-width="1"/><path d="M165,104 L175,104 L170,100 Z" fill="#3A2A12"/></g></svg>
   </div>
 
   <div class="hero-headline-strip serif">Parliamentary Acts and Colonial Grievances</div>
@@ -2677,7 +3867,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 19 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3881,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3888,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.CG.1.1 · SS.5.CG.2.1 · SS.5.CG.2.2 · SS.5.CG.2.6 · TEKS 2(A), 14(A)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 38 · Circulation ~3,500 · <em>All four desks open</em>
+      Vol. 1 · Issue 38 · Readers: about 3,500 · <em>All four desks open</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3906,22 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 38</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 38</strong> — <em>Check big claims about the road to the Revolution.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,500</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Ms. Avery: "The evidence from the war didn't stay in the archive — it's reshaping today's investigation."
+        — Ms. Avery: "Last issue’s evidence still matters today."
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk · open</span>
         <span class="desk-chip">🗺️ Map Room · open</span>
@@ -2755,7 +3931,7 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — careful, encouraging, asks questions before answering them.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
@@ -2768,23 +3944,18 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: <em>French and Indian War</em> — The Herald rushed to print before the evidence was in. Tap to recap.
+      Last issue: <em>French and Indian War</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      In Lesson 5.08.01, the Gazette examined the French and Indian War. The Hasty Herald claimed "The French and Indian War ended, and then the Revolution simply began." But the evidence told a different story: British war debt, new taxes, and the Proclamation of 1763 created mounting tensions over years — not overnight. That context is now reshaping how we read today's file.
+      In 5.08.01 we found 13 years of debt, taxes and protest between the war and the Revolution. Today: the taxes.
     </div>
   </div>
 </div>
@@ -2793,25 +3964,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.02</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined the French and Indian War; today the editor asks whether that evidence changes how we should read the acts Parliament passed next. A new file marked <em>5.08.02 — Parliamentary Acts and Colonial Grievances</em> arrives on the Source Desk. The Gazette may print only after students examine the record and improve the public account.</p>
+      <p>Last issue, the war left Britain in debt. Today: the laws Parliament passed to help pay it, and why colonists pushed back. A new file marked <em>5.08.02: Parliamentary Acts and Colonial Grievances</em> is on the <strong>Source Desk</strong>. The Gazette prints only after you check the record.</p>
     </div>
   </div>
 
@@ -2821,14 +3985,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>What does this source say, what can we infer, and what must we still question?</p>
       </div>
     </div>
@@ -2842,8 +4003,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify the major Parliamentary acts that taxed or restricted the colonies.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Analyze a colonial protest source to separate observation from inference.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Gazette Correction using source evidence.</div>
@@ -2874,7 +4033,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-02-welcome -->
@@ -2892,25 +4050,19 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Read about Parliament's new acts &amp; spotlight courage</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Open a sealed invitation from 1766</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a colonial protest broadside at the Source Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Sort the four acts and read a real 1766 broadside</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Fact-check the claims and publish your Gazette Correction</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor listens to voices that challenge power — and reports what the evidence reveals, not what's easiest to believe.</strong> Today that means reading a colonial protest source with open eyes: not assuming colonists were simply selfish, and not dismissing their grievances as trivial.
+      <strong>A courageous editor reports what the evidence shows, not what is easiest to believe.</strong> Today, courage means taking the colonists’ <strong>grievances</strong> (complaints about a wrong) seriously, without making them simpler than they were.
     </div>
   </div>
 
@@ -2920,19 +4072,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Colonists Just Hate Taxes!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Colonists protested only because they disliked paying taxes.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Study the source evidence at the Source Desk and find out whether colonial grievances were really just about money — or something deeper.
+      <strong>Your job, junior editor:</strong> Find out if it was only about money.
     </div>
   </div>
 
@@ -2940,10 +4086,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine a colonial protest source and separate what it shows from what we can only infer — and then publish a Gazette Correction that sets the record straight.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong>. Ms. Avery wants you to read a real source from 1766, sort what it <em>shows</em> from what we can only <strong>infer</strong> (figure out from clues), and publish a <strong>Gazette Correction</strong> (a short piece that fixes a wrong story).
     </div>
   </div>
 
@@ -2954,20 +4097,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this source say, what can we infer, and what must we still question? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. Courage means sitting with the discomfort of incomplete evidence rather than rushing to the conclusion that feels right.
+        Courage means staying calm when evidence is missing.
       </div>
     </div>
   </div>
@@ -2977,38 +4112,27 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-02-explore-explainer -->
     <span class="video-placeholder-icon">🎬</span>
     <div class="video-placeholder-label">Explore Video</div>
-    <div class="video-placeholder-title">At the Source Desk: Colonial Protest Broadside</div>
+    <div class="video-placeholder-title">At the Source Desk: A Boston Broadside, 1766</div>
     <div class="video-placeholder-filename">5-08-02-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the four major Parliamentary acts (Sugar Act 1764, Stamp Act 1765, Townshend Acts 1767, Tea Act 1773). Explain that "no taxation without representation" was about consent and rights — not just money. Show how the broadside source reflects these ideas. Connect back to the Herald's claim and model separating observation from inference using the source. 3–4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the four major Parliamentary acts (Sugar Act 1764, Stamp Act 1765, Townshend Acts 1767, Tea Act 1773). Explain that "no taxation without representation" was about consent and rights — not just money. Show how the 1766 Boston town-meeting broadside (it celebrates the repeal of the Stamp Act, thanks the King, and still claims the right to vote on their own taxes) reflects these ideas. Connect back to the Herald's claim and model separating observation from inference using the source. 3–4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Source Desk</div>
-      <div class="desk-subtitle">Where one source is examined for what it says — and leaves out.</div>
+      <div class="desk-subtitle">Where one source is checked.</div>
     </div>
   </div>
 
@@ -3020,28 +4144,28 @@ html, body {
        • Socratic Seminar → two perspectives in a roundtable layout
   -->
   <div class="content-section">
-    <h2>📚 Parliament Passes the Bills — Colonists Push Back</h2>
-    <p>After the French and Indian War, Britain had a serious problem: enormous debt. To pay it off, Parliament decided the American colonies should help — after all, the war had been fought partly to protect them. Beginning in 1764, Parliament passed a series of acts that taxed goods and restricted colonial trade. But colonists didn't simply grumble about the cost. They argued something far more important was being taken away: their rights as British citizens.</p>
+    <h2>📚 Parliament Passes the Bills, Colonists Push Back</h2>
+    <p>After the French and Indian War, Britain owed a huge amount of money. <strong>Parliament</strong> (Britain’s lawmakers) decided the colonies should help pay. Starting in 1764, it passed new laws, called <strong>acts</strong>, that taxed goods and limited colonial trade. Colonists said something bigger was being taken: their rights as British subjects.</p>
 
-    <p>Here are the four acts you need to know for today's investigation:</p>
+    <p>Here are the four acts you need to know for today:</p>
 
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">1764</div>
         <div class="source-type-name">Sugar Act</div>
-        <div class="source-type-defn">Taxed sugar, molasses, and other imported goods. Gave British courts — not colonial juries — the power to try smugglers.</div>
+        <div class="source-type-defn">Taxed sugar, molasses and other goods brought in from overseas. People accused of <strong>smuggling</strong> (sneaking goods in to skip the tax) were tried by a British judge, with no colonial jury.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Why it mattered</span>
-          Colonists saw trial without a local jury as a violation of their rights as Englishmen. Merchants in Boston and New York organized early boycotts.
+          Colonists said a trial with no local jury broke their rights as British subjects. Some Boston merchants began early <strong>boycotts</strong> (refusing to buy British goods).
         </div>
       </div>
       <div class="source-type-card secondary">
         <div class="source-type-label">1765</div>
         <div class="source-type-name">Stamp Act</div>
-        <div class="source-type-defn">Required a tax stamp on all printed materials — newspapers, legal documents, even playing cards and dice.</div>
+        <div class="source-type-defn">Required a tax stamp on many printed papers: newspapers, legal papers, even playing cards and dice.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Why it mattered</span>
-          This was the first <em>direct</em> tax Parliament placed on the colonists. It sparked the slogan "No Taxation Without Representation" and led to the Stamp Act Congress — colonists uniting for the first time.
+          It was the first <em>direct</em> tax Parliament put on the colonists (a tax paid straight to the government, not hidden in a price). It sparked the slogan “No Taxation Without Representation.” Nine colonies sent <strong>delegates</strong> (people chosen to speak for them) to the Stamp Act Congress, one of the first times colonies worked together.
         </div>
       </div>
     </div>
@@ -3050,54 +4174,54 @@ html, body {
       <div class="source-type-card primary">
         <div class="source-type-label">1767</div>
         <div class="source-type-name">Townshend Acts</div>
-        <div class="source-type-defn">Taxed imported goods like glass, paper, paint, and tea. Also suspended the New York Assembly for refusing to house British soldiers.</div>
+        <div class="source-type-defn">Taxed glass, paper, paint and tea brought from Britain. They also shut down the New York <strong>Assembly</strong> (the colony’s elected lawmakers) for refusing to house British soldiers.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Why it mattered</span>
-          Colonists organized Committees of Correspondence to share news across colonies. Women-led groups called Daughters of Liberty organized spinning bees to replace British cloth with American-made fabric.
+          Women in groups called the Daughters of Liberty held spinning bees to make cloth instead of buying British cloth. Later, in 1772–1773, colonists set up Committees of Correspondence to share news between towns and colonies.
         </div>
       </div>
       <div class="source-type-card secondary">
         <div class="source-type-label">1773</div>
         <div class="source-type-name">Tea Act</div>
-        <div class="source-type-defn">Gave the British East India Company a monopoly on tea sales in the colonies, undercutting colonial merchants — even while keeping a tea tax in place.</div>
+        <div class="source-type-defn">Gave Britain’s East India Company a <strong>monopoly</strong> (the only right to sell) on tea in the colonies, so it could sell tea cheaper than colonial merchants could. The tea tax stayed in place.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Why it mattered</span>
-          Colonists in Boston responded by dumping 342 chests of British tea into Boston Harbor — the Boston Tea Party.
+          Colonists in Boston dumped 342 chests of British tea into Boston Harbor: the Boston Tea Party.
         </div>
       </div>
     </div>
 
     <div style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
       <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">🗳️ Taking Part Without a Vote</div>
-      <p style="margin:0;font-size:14px;line-height:1.6;">Colonists could not vote for Parliament, so they found other ways to be heard. They signed <strong>petitions</strong> (written requests to leaders), boycotted British goods, and sent delegates to the Stamp Act Congress in 1765. Today, citizens can vote, contact their representatives, and sign petitions. Many of the colonists' grievances were later listed in the <strong>Declaration of Independence</strong>, the founding document that says people have unalienable rights.</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;">Colonists could not vote for Parliament, so they found other ways to be heard. They signed <strong>petitions</strong> (written requests to leaders), boycotted British goods, and sent delegates to the Stamp Act Congress in 1765. Today, citizens can vote, contact their representatives, and sign petitions. Many of the colonists’ grievances were later listed in the <strong>Declaration of Independence</strong>, the founding document that says people have unalienable rights (rights no government can take away).</p>
     </div>
 
     <div style="margin-top:18px;background:#fdf6e3;border-left:4px solid #2563eb;padding:14px 16px;border-radius:6px;">
-      <div style="font-weight:700;font-size:13px;letter-spacing:.04em;margin-bottom:6px;">★ Key Concept: "No Taxation Without Representation"</div>
-      <p style="margin:0;font-size:14px;">This famous phrase is easy to misread. Colonists weren't simply saying "we don't want to pay taxes." They were saying: <em>we have no elected representatives in Parliament, so Parliament has no right to tax us.</em> For them, being taxed without a voice in the decision was a violation of their rights as British subjects — not just an inconvenience to their wallets. That's why they kept protesting even after some acts were repealed.</p>
+      <div style="font-weight:700;font-size:13px;letter-spacing:.04em;margin-bottom:6px;">★ Key Concept: “No Taxation Without Representation”</div>
+      <p style="margin:0;font-size:14px;">Colonists weren’t just saying “we don’t want to pay taxes.” They were saying: <em>we have no elected representatives in Parliament, so Parliament has no right to tax us.</em> Being taxed without their <strong>consent</strong> (agreement) broke their rights as British subjects.</p>
     </div>
 
-    <div style="margin-top:16px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
+    <div class="rg-keep-off" style="margin-top:16px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;">
       <span style="font-size:22px;flex-shrink:0;">🦦</span>
-      <div><strong>Opti's Fun Fact:</strong> The Stamp Act taxed playing cards, dice, and newspapers. Colonists burned stamp-tax paper in public bonfires — and some stamp collectors were hung in effigy (as dolls!) from liberty trees across the colonies.</div>
+      <div><strong>Opti's Fun Fact:</strong> The Stamp Act even taxed playing cards and dice. Some colonists burned stamped paper in bonfires, and crowds hung stamp tax officials in <strong>effigy</strong> (as stuffed dolls) from Liberty Trees.</div>
     </div>
 
-    <p style="margin-top:16px;">The Hasty Herald says colonists protested "only because they disliked paying taxes." Notice what that explanation leaves out: the argument about consent, representation, and rights. A courageous editor looks past the simplest explanation and asks what the source actually tells us.</p>
+    <p class="rg-keep-off" style="margin-top:16px;">The Hasty Herald says colonists protested “only because they disliked paying taxes.” Notice what that leaves out: the argument about consent, representation and rights. A courageous editor looks past the simplest explanation and asks what the source really tells us.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE -->
   <div class="content-section">
-    <h2>🔎 Read the Source: A Colonial Protest Broadside</h2>
-    <p>A <strong>broadside</strong> was a large printed sheet — an early form of newspaper or flier. Colonists posted broadsides in public squares, taverns, and shops to spread news and rally support. Look at this colonial protest broadside carefully. Notice the words and images the printer chose. What argument is being made? What feelings is it trying to stir?</p>
+    <h2>🔎 Read the Source: A Boston Broadside, 1766</h2>
+    <p>A <strong>broadside</strong> was a large printed sheet, like a poster or flier. Colonists posted broadsides in squares, taverns and shops to spread news. This real one was printed in Boston on May 16, 1766. It shares what a town meeting voted on April 21, 1766, while Boston waited for official news that Parliament had <strong>repealed</strong> (canceled) the Stamp Act. The news came on May 16. Look at the words the town chose. What did they celebrate, and what did they still insist on?</p>
 
     <div class="source-image-frame">
-      <div class="source-image-placeholder" data-image="source-5-08-02-colonial-protest-broadside">
-        🖼️ <strong>Image placeholder:</strong> Scan of a colonial broadside or newspaper protesting British acts — ideally a Stamp Act protest print or a "No Taxation Without Representation" broadside from 1765–1768. Look for examples in the Library of Congress digital collections.<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-08-02-colonial-protest-broadside.jpg</code>
+      <div class="source-image-placeholder" data-image="source-5-08-02-boston-repeal-broadside-1766">
+        🖼️ <strong>Image:</strong> Broadside of the Boston town meeting of April 21, 1766, about the repeal of the Stamp Act, signed by William Cooper, Town Clerk, Boston, May 16, 1766. Library of Congress.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-02-boston-repeal-broadside-1766.jpg</code>
       </div>
       <div class="source-image-caption">
-        What specific words or images in this broadside tell you what the printer believed — and who the printer was trying to persuade?
+        Which words show that the town was loyal to the King, and which words show that it still claimed a right?<br><small style="font-style:normal;opacity:.85">Real source from the past. Library of Congress, LCCN 2007681661. Public domain.</small>
       </div>
     </div>
 
@@ -3120,14 +4244,26 @@ html, body {
     </div>
   </div>
 
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>grav / griev</em> means “heavy”</h2>
+    <p>Many English words come from the Latin word <em>gravis</em>, which means <strong>heavy</strong>. You can spot it as <strong>grav</strong> or <strong>griev</strong>.</p>
+    <ul>
+      <li><strong>grievance</strong> (griev + ance): a heavy wrong that people complain about</li>
+      <li><strong>grievous</strong> (griev + ous): heavy and hurtful</li>
+      <li><strong>gravity</strong> (grav + ity): the force that makes things heavy and pulls them down</li>
+    </ul>
+    <p><strong>Discovery:</strong> In 1766, Boston’s town meeting called the Stamp Act “grievous” to the King’s subjects in America. A grievance is a wrong that feels heavy.</p>
+    <p><em>Try it: use the word <strong>grievance</strong> in a sentence about today’s lesson.</em></p>
+  </div>
+
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
+      Write a few sentences for each.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3137,7 +4273,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Pattern across acts" placeholder="Each act seemed to... One pattern I notice is..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3147,7 +4282,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Rights vs. money" placeholder="Colonists weren't just upset about money because... The evidence shows they believed..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3164,10 +4298,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3176,14 +4306,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3196,13 +4318,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>Colonists refused to pay any taxes at all, no matter what.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>Colonists argued that Parliament had no right to tax them because they had no elected representatives in Parliament.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>Colonists only objected to the Tea Act, not the earlier acts.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>Colonists argued that Parliament had no right to tax them because they had no elected representatives in Parliament.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q1"></div>
@@ -3215,13 +4337,13 @@ html, body {
       <span class="factcheck-q-text">The Stamp Act of 1765 was different from earlier taxes because it was —</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>A tax on imported goods that only affected merchants and traders.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
+        <span class="factcheck-option-letter">A</span>
         <span>The first direct tax Parliament placed on everyday colonists, hitting newspapers, legal papers, and even playing cards.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>A tax on imported goods that only affected merchants and traders.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3260,7 +4382,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3282,21 +4403,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-02-assignment-explainer -->
@@ -3305,7 +4413,7 @@ html, body {
     <div class="video-placeholder-title">Writing Your Gazette Correction</div>
     <div class="video-placeholder-filename">5-08-02-assignment-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the three parts of the Gazette Correction: (1) quote the Herald's claim, (2) describe or quote evidence from the source broadside, (3) rewrite the claim accurately. Show a strong example vs. the Herald's exaggerated version. About 2 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the three parts of the Gazette Correction: (1) quote the Herald's claim, (2) describe or quote evidence from the 1766 broadside or the acts, (3) rewrite the claim accurately. Show a strong example vs. the Herald's exaggerated version. About 2 minutes.
     </div>
   </div>
 </div>
@@ -3330,9 +4438,6 @@ html, body {
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
           <span>(1) Quote the Herald's claim. (2) Quote or describe evidence from the source broadside. (3) Rewrite the claim accurately using what you learned.</span>
         </div>
@@ -3348,9 +4453,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about Parliamentary Acts and Colonial Grievances.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3379,8 +4481,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Gazette Correction</span></div>
@@ -3395,32 +4495,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 38 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you studied a colonial protest source, separated observation from inference, and corrected the Herald's claim with evidence — the Gazette is more honest for it.
+      <strong>Well done, Junior Editor.</strong> You fixed the Herald’s claim with real evidence.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.03) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Patriots, Loyalists, and Other Colonists</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Patriots, Loyalists, and Other Colonists</em> arrives — and <strong>The Hasty Herald has already rushed to print</strong> a claim about who really sided with the Crown. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Patriots, Loyalists, and Other Colonists</em>, is on its way, and <strong>the Hasty Herald has already printed</strong> a claim about who sided with the king.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-02-closing -->
@@ -3695,7 +4784,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 38 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4052,5 +5141,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

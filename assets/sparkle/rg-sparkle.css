@@ -1385,3 +1385,61 @@ html:not(.rg-quiet) .rg-ask-ans{ animation:rg-in .35s; }
 .rg-dc-plain{ font:15px/1.4 'Nunito',sans-serif; color:#1F4E8C; padding:2px 0 0 12px; border-left:3px solid #1F4E8C; margin-top:3px; }
 .rg-dc-cap{ display:block; margin-top:6px; color:#5a4a2a; }
 @media (prefers-reduced-motion:reduce){ .rg-gh-strip,.rg-gh-y i,.rg-gh-ghosts span{ transition:none; } .rg-cs-blk.bounce{ animation:none; } }
+/* ================= v15 (5.08.02): sealed invitation, purse or ballot box, ribbons ================= */
+.rg-iv-env{ position:relative; max-width:440px; height:170px; margin:12px auto 0; transition:margin .5s; }
+.rg-iv-env.s2{ margin-top:104px; }
+.rg-iv-back{ position:absolute; inset:0; background:#EFE3C4; border:1px solid #BFA978; border-radius:6px; box-shadow:0 2px 6px rgba(60,40,10,.12); }
+.rg-iv-flap{ position:absolute; left:0; right:0; top:0; height:58%; background:#E6D6AE; border:1px solid #BFA978; border-radius:6px 6px 0 0; clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:top; transition:transform .6s; }
+.rg-iv-wax{ position:absolute; left:50%; top:46%; width:54px; height:54px; margin:-27px 0 0 -27px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#c8443a,#8B2D26 70%); box-shadow:0 2px 4px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; transition:transform .5s,opacity .5s; }
+.rg-iv-wax i{ font:900 italic 24px 'Playfair Display',Georgia,serif; color:#f3d3c9; }
+.rg-iv-wax::after{ content:''; position:absolute; left:48%; top:8%; width:2px; height:84%; background:#3d0f0b; transform:rotate(18deg); opacity:0; transition:opacity .3s; }
+.rg-iv-addr{ position:absolute; left:0; right:0; bottom:14px; text-align:center; font:italic 15px 'Playfair Display',Georgia,serif; color:#5a4a2a; }
+.rg-iv-env.s1 .rg-iv-wax::after{ opacity:1; }
+.rg-iv-env.s2 .rg-iv-wax{ transform:translateY(-10px) rotate(-25deg); opacity:.0; }
+.rg-iv-env.s2 .rg-iv-flap{ transform:scaleY(-1); }
+.rg-iv-env.s2 .rg-iv-addr{ opacity:0; }
+.rg-iv-card{ max-width:400px; margin:12px auto 0; position:relative; background:#FFFDF6; border:1px solid #D8CDB4; border-radius:6px; padding:12px 16px; text-align:center; opacity:0; transform:translateY(20px); transition:opacity .5s,transform .5s; pointer-events:none; }
+.rg-iv-card.out{ opacity:1; transform:none; pointer-events:auto; margin-top:12px; }
+.rg-iv-card:not(.out){ height:0; padding:0; border:0; overflow:hidden; }
+.rg-iv-top{ font:900 13px 'Nunito',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:#8B2D26; }
+.rg-iv-ln{ font:16px/1.45 'Playfair Display',Georgia,serif; color:#1A2138; margin:6px 0; opacity:0; max-height:0; overflow:hidden; transition:opacity .5s,max-height .5s; }
+.rg-iv-ln.on{ opacity:1; max-height:120px; }
+.rg-iv-from{ display:block; margin-top:6px; font:12px 'Nunito',sans-serif; color:#7a6a48; }
+/* purse or ballot box */
+.rg-pb-acts{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.rg-pb-tab{ font:700 14px 'Nunito',sans-serif; background:#FBF8F0; border:1px solid #D8CDB4; border-radius:999px; padding:6px 12px; cursor:pointer; color:#2b2013; }
+.rg-pb-tab.on{ background:#1A2138; color:#fff; border-color:#1A2138; } .rg-pb-tab.ok:not(.on){ background:#EAF4EA; border-color:#8fbf8f; }
+.rg-pb-tab[disabled]{ opacity:.5; cursor:not-allowed; }
+.rg-pb-act{ margin-top:10px; background:#FBF8F0; border:1px solid #D8CDB4; border-radius:10px; padding:10px 12px; min-height:60px; }
+.rg-pb-acth b{ font:800 17px 'Playfair Display',Georgia,serif; color:#1A2138; }
+.rg-pb-pick{ font:14px 'Nunito',sans-serif; color:#5a4a2a; margin:4px 0 8px; }
+.rg-pb-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.rg-pb-chip{ font:700 15px/1.3 'Nunito',sans-serif; background:#fff; border:1.5px solid #9a8f74; border-bottom-width:3px; border-radius:8px; padding:8px 12px; cursor:pointer; text-align:left; color:#2b2013; }
+.rg-pb-chip.picked{ border-color:#1F4E8C; background:#E8F0FB; box-shadow:0 0 0 2px #1F4E8C33; }
+.rg-pb-bins{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.rg-pb-bin{ background:#fff; border:1px solid #D8CDB4; border-radius:10px; padding:8px; }
+.rg-pb-drop{ width:100%; display:grid; justify-items:center; gap:2px; background:#F3EBD6; border:2px dashed #BFA978; border-radius:8px; padding:10px 6px; cursor:pointer; color:#2b2013; font:15px 'Nunito',sans-serif; }
+.rg-pb-drop .ic{ font-size:30px; line-height:1; } .rg-pb-drop small{ font-size:12.5px; color:#5a4a2a; }
+.rg-pb-drop:not([disabled]){ border-style:solid; border-color:#1F4E8C; background:#EEF3FA; }
+.rg-pb-drop[disabled]{ cursor:not-allowed; }
+.rg-pb-drop.bounce,.rg-rb-drop.bounce{ animation:rg-bounce .4s; }
+.rg-pb-in{ list-style:none; margin:6px 0 0; padding:0; display:grid; gap:4px; }
+.rg-pb-li{ font:14px/1.35 'Nunito',sans-serif; background:#FBF8F0; border-radius:6px; padding:4px 8px; }
+.rg-pb-li .yr{ font-weight:900; color:#1F4E8C; }
+.rg-pb-say,.rg-rb-say{ font:14.5px 'Nunito',sans-serif; color:#8B2D26; min-height:1.2em; margin:8px 0 0; }
+.rg-pb-next{ margin-top:4px; }
+@media (max-width:520px){ .rg-pb-bins{ grid-template-columns:1fr 1fr; gap:6px; } .rg-pb-drop{ font-size:13.5px; } .rg-pb-drop small{ font-size:11.5px; } }
+/* ribbons */
+.rg-rb-src{ display:grid; gap:8px; margin-top:12px; }
+.rg-rb-ph{ font:italic 16px/1.45 Georgia,'Times New Roman',serif; text-align:left; background:#F3EBD6; border:1px solid #CDBF9E; border-radius:6px; padding:8px 10px; cursor:pointer; color:#2b2013; }
+.rg-rb-ph.picked{ border-color:#1F4E8C; box-shadow:0 0 0 2px #1F4E8C55; background:#EEF3FA; }
+.rg-rb-bands{ display:grid; gap:8px; margin-top:10px; }
+.rg-rb-band{ background:#fff; border:1px solid #D8CDB4; border-radius:10px; padding:6px; }
+.rg-rb-drop{ display:block; width:100%; text-align:left; font:800 15px 'Nunito',sans-serif; color:#fff; background:#8B2D26; border:0; border-radius:4px; padding:8px 26px 8px 12px; cursor:pointer; clip-path:polygon(0 0,100% 0,97% 50%,100% 100%,0 100%); }
+.rg-rb-band:nth-child(2) .rg-rb-drop{ background:#1F4E8C; } .rg-rb-band:nth-child(3) .rg-rb-drop{ background:#2E6B3A; }
+.rg-rb-drop[disabled]{ opacity:.6; cursor:not-allowed; }
+.rg-rb-got{ padding:6px 8px 2px; }
+.rg-rb-got q{ display:block; font:italic 15px/1.4 Georgia,serif; color:#2b2013; }
+.rg-rb-got .plain{ display:block; font:14.5px/1.4 'Nunito',sans-serif; color:#1F4E8C; border-left:3px solid #1F4E8C; padding-left:8px; margin-top:2px; }
+.rg-rb-cap{ display:block; margin-top:8px; color:#5a4a2a; }
+@media (prefers-reduced-motion:reduce){ .rg-iv-env,.rg-iv-flap,.rg-iv-wax,.rg-iv-card,.rg-iv-ln{ transition:none; } .rg-pb-drop.bounce,.rg-rb-drop.bounce{ animation:none; } }
