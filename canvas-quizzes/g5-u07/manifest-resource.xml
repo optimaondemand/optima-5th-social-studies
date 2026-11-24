@@ -1,0 +1,8 @@
+<resource identifier="g5u07quiz99c6953742be02d4ecf1" type="imsqti_xmlv1p2/imscc_xmlv1p1/assessment">
+  <file href="g5u07quiz99c6953742be02d4ecf1/assessment_qti.xml"/>
+  <dependency identifierref="g5u07quiz99c6953742be02d4ecf1_meta"/>
+</resource>
+<resource identifier="g5u07quiz99c6953742be02d4ecf1_meta" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="g5u07quiz99c6953742be02d4ecf1/assessment_meta.xml">
+  <file href="g5u07quiz99c6953742be02d4ecf1/assessment_meta.xml"/>
+  <file href="non_cc_assessments/g5u07quiz99c6953742be02d4ecf1.xml.qti"/>
+</resource>
