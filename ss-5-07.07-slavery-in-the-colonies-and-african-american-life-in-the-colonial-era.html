@@ -2258,6 +2258,1623 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.07.07",
+ "title": "Slavery in the Colonies and African American Life in the Colonial Era",
+ "issue": 35,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "card",
+ "place": "Charleston",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one idea: <i>was slavery in the colonies just about work?<\/i> Use the 🖍 highlighter to save details about what the laws said and how people answered them. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: the triangular trade and the Middle Passage. Today: the lives of enslaved people in the colonies, and how they answered the laws made against them.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a newspaper that checks before it prints. Our rival, The Hasty Herald, prints fast and checks little. Every issue you publish gets filed in the Morgue.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Paste back what the Herald cut",
+   "k": "The Dispatch",
+   "why": "The Herald’s story has parts cut out. Put them back, then seal your answer."
+  },
+  {
+   "tab": "desk",
+   "t": "The law said. People answered.",
+   "k": "The Desk",
+   "why": "Read five real laws and how people answered them, check an 1860 photo, and save details as evidence."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then make the editor’s call on two harder ones."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Front Page Brief",
+   "k": "Go to Press",
+   "why": "Pick your angle, write your brief from your evidence, then strike the Herald’s claim and print."
+  }
+ ],
+ "lens": "Honesty means telling the whole story. Today, an honest editor reports what the laws did to people, and also what the people did: how they loved, resisted and built free lives.",
+ "recordFoot": "(The facts in this lesson come from historians’ records and from the colonial laws themselves. The 1860 photo is a real source from the past. The Herald’s story and the plain explanations were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top when you’re ready.",
+  "opening": [
+   {
+    "t": "Today’s story is slavery in the colonies. The Herald says it was just a labor system, just work."
+   },
+   {
+    "t": "Somebody cut pieces out of the Herald’s story. Start on the Dispatch tab (tab 1) and put them back.",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "What’s a labor system?",
+      "reply": "A way of getting work done. Labor means work. The Herald wants you to think slavery was only that."
+     },
+     {
+      "t": "Wasn’t it mostly work?",
+      "reply": "Enslaved people did a great deal of the work. The question is what that word leaves out about them as people."
+     },
+     {
+      "t": "I’m ready. Let’s go.",
+      "end": true,
+      "reply": "Good. The cut-up story is waiting on the Dispatch tab."
+     }
+    ]
+   },
+   "date": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "So the photo is useless?",
+      "reply": "Not at all. It’s a real photo of real people. It just shows 1860, not the 1700s."
+     },
+     {
+      "t": "Who were the people in it?",
+      "reply": "No one wrote their names down. That’s one thing this photo can’t tell us."
+     },
+     {
+      "t": "What’s next?",
+      "end": true,
+      "reply": "Sort the cards under the photo: shown, not shown, or can’t tell."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Here are the law cards. Flip one, and highlight a sentence about how people answered. Then tap Save as evidence.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good. Remember: tap Tools, then Highlight, then Save as evidence."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the photo.",
+      "reply": "Here it is. Open the red marks and save one detail the photo really shows.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right. I’ll be at my desk if you need me."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Sealed. Every piece the Herald cut was about people. Now go to the Desk tab (tab 2) and read the law cards.",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "All five cards are done, and the Herald is fact-checked. Next, look at a real photo from 1860.",
+     "scene": "desk"
+    }
+   ],
+   "dateOpened": [
+    {
+     "t": "About 1860. That’s a real photo of real people, but it’s long after colonial times. What can’t it show?",
+     "scene": "desk",
+     "choice": "date"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "The Desk is done, and your headline is set on the proof. Next is the Fact-Check tab (tab 3): five claims, one at a time.",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Your brief and your evidence are on the record. Issue 35 is in the Morgue. Next issue: comparing the colonial regions.",
+     "scene": "press"
+    }
+   ],
+   "firstEv": [
+    {
+     "t": "Good catch. That detail is in your evidence drawer now. A clipping only helps if you know what it can prove, so jot a note on it when you can.",
+     "quiet": true
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer. Saying what a source can’t prove is part of telling the truth.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "angleChosen": [
+    {
+     "t": "Good angle. Now pick clippings that fit it, and leave out the ones that don’t, even the interesting ones.",
+     "scene": "press",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one word. Big words like “every” are easy to write and hard to prove. Your call, editor.",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "clip",
+  "title": "What did the Herald cut?",
+  "srcLabel": "Fact from the lesson",
+  "heraldFrom": "The Hasty Herald’s story, written for this lesson. It is a claim to check, not a fact.",
+  "job": {
+   "why": "The Herald says slavery was just about work. Putting back what it cut shows what that claim leaves out.",
+   "do": "1. Read the Herald’s story. 2. Tap a snippet on the floor. 3. Tap the gap it was cut from. 4. When all 6 are back, answer and seal the question.",
+   "use": "Your sealed answer opens on the Desk tab, after the law cards.",
+   "words": [
+    [
+     "snippet",
+     "a small piece cut out of something"
+    ],
+    [
+     "labor",
+     "work"
+    ],
+    [
+     "dignity",
+     "the respect every person deserves just for being human"
+    ]
+   ]
+  },
+  "q": "You already know who did much of the work on Southern plantations (5.07.04) and how captives were brought across the ocean (5.07.06). Today’s question is about the people’s lives. The Herald printed this story, but someone cut six pieces out. Put each one back where it belongs.",
+  "head": "Colonial Slavery: Just a Labor System!",
+  "floorT": "On the cutting-room floor (the six pieces the Herald cut)",
+  "gapT": "something was cut here",
+  "floorDone": "The floor is clear. Every piece is back in the story.",
+  "lines": [
+   {
+    "h": "Colonial laws simply said who worked where.",
+    "gap": "law"
+   },
+   {
+    "h": "Workers lived in rows of cabins near the fields.",
+    "gap": "family"
+   },
+   {
+    "h": "The work went on, day after day, with no trouble.",
+    "gap": "stono"
+   },
+   {
+    "h": "After work, the cabins were quiet.",
+    "gap": "culture"
+   },
+   {
+    "h": "Every Black person in the colonies was owned by someone.",
+    "gap": "free"
+   },
+   {
+    "h": "There was nowhere else to go.",
+    "gap": "mose"
+   }
+  ],
+  "snips": [
+   {
+    "id": "stono",
+    "t": "In 1739, about 20 enslaved men rose up near the Stono River in South Carolina. They marched south toward Spanish Florida, beating drums and calling out “Liberty!”",
+    "who": "The Stono Rebellion",
+    "when": "1739",
+    "kind": "resist",
+    "say": "Back in the story. The Herald said there was “no trouble.” People fought for their freedom.",
+    "hint": "This piece is about trouble. Find the Herald’s sentence that says there was none.",
+    "calm": true
+   },
+   {
+    "id": "free",
+    "t": "Some Black colonists were free. In the 1650s, Anthony Johnson, a free Black man, owned a farm in Virginia.",
+    "who": "Free Black colonists",
+    "when": "1650s",
+    "kind": "free",
+    "say": "Back in the story. Not every Black colonist was enslaved.",
+    "hint": "This piece answers a claim about every Black person. Find that sentence.",
+    "calm": false
+   },
+   {
+    "id": "law",
+    "t": "A 1662 Virginia law said that a child born to an enslaved mother was enslaved for life. Slavery passed from parent to child.",
+    "who": "Virginia’s 1662 law",
+    "when": "1662",
+    "kind": "law",
+    "say": "Back in the story. That law made slavery last for generations. A job doesn’t do that.",
+    "hint": "This piece is about a law. Find the Herald’s sentence about laws.",
+    "calm": false
+   },
+   {
+    "id": "mose",
+    "t": "In 1738, people who escaped slavery built Fort Mose in Spanish Florida, near St. Augustine. It was the first legally free Black town in what is now the United States.",
+    "who": "Fort Mose",
+    "when": "1738",
+    "kind": "free",
+    "say": "Back in the story. There WAS somewhere to go, and people built it themselves.",
+    "hint": "This piece is about a place to go. Find the sentence that says there was none.",
+    "calm": false
+   },
+   {
+    "id": "culture",
+    "t": "People kept African songs, drumming, stories, prayers and words alive, and passed them on to their children.",
+    "who": "Culture kept alive",
+    "when": "1700s",
+    "kind": "culture",
+    "say": "Back in the story. The cabins weren’t quiet. People kept their culture alive.",
+    "hint": "This piece is about life after work. Find the sentence about after work.",
+    "calm": false
+   },
+   {
+    "id": "family",
+    "t": "Families could be sold apart at any time. No colony’s law protected an enslaved family. Parents still raised their children and passed down family names.",
+    "who": "Enslaved families",
+    "when": "1700s",
+    "kind": "family",
+    "say": "Back in the story. The cabins were homes, and the people in them were families.",
+    "hint": "This piece is about families and homes. Find the sentence about where people lived.",
+    "calm": true
+   }
+  ],
+  "close": "Six cuts, and every one was about people: laws that took their freedom, their families, their courage, their culture and their freedom won. The Herald kept the work and cut the people.",
+  "seal": {
+   "q": "Why would a paper cut these pieces out of its story?",
+   "opts": [
+    "To make slavery sound like ordinary work, so readers don’t think about the people",
+    "Because the pieces it cut weren’t true",
+    "Because there wasn’t room in the paper"
+   ],
+   "reveal": [
+    "That’s what the evidence shows. Every card on the Desk was about people, not just work. Leaving the people out changes the whole story.",
+    "Every piece the Herald cut is true. You just checked each one on the law cards. Cutting true facts is how a story can mislead without printing anything false.",
+    "Maybe, but look at what it chose to keep: only the work. When every cut is about people, that’s a choice, not a space problem."
+   ]
+  },
+  "sealed": "We’ll open it on the Desk tab (tab 2), after the law cards."
+ },
+ "explore": {
+  "reading": {
+   "type": "flips",
+   "title": "The law said. People answered.",
+   "times": [
+    "The law said",
+    "People answered"
+   ],
+   "cols": [
+    {
+     "id": "v1662",
+     "n": "1",
+     "icon": "👪",
+     "short": "Virginia, 1662",
+     "year": "1662",
+     "place": "Virginia",
+     "kind": "family",
+     "who": "Families held on",
+     "lawSrc": "Virginia law of December 1662",
+     "lines": [
+      "A child born to an enslaved mother is enslaved for life. (This made slavery pass from parent to child, forever.)",
+      "Enslaved parents raised their children, taught them, and gave them family names. Grandparents told stories about Africa and about relatives the children would never meet. Families couldn’t stop the law, but they kept their love and their memory alive."
+     ],
+     "fact": "This is why slavery was not just a job. An indentured servant worked for a set number of years and then went free. An enslaved person was owned for life, and so were their children and grandchildren.",
+     "ask": "What did this law take away that “work” alone doesn’t explain?",
+     "opts": [
+      {
+       "t": "Freedom for a person’s children and grandchildren",
+       "ok": true,
+       "say": "Yes. A job ends. This law made slavery last for generations. That is about dignity, not just work."
+      },
+      {
+       "t": "A day off on Sunday",
+       "ok": false,
+       "say": "This law was about who was born enslaved. The answer is:"
+      },
+      {
+       "t": "The right to pick a different job",
+       "ok": false,
+       "say": "That’s part of it, but the law reached much further. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "v1705",
+     "n": "2",
+     "icon": "🏃",
+     "short": "Virginia, 1705",
+     "year": "1705",
+     "place": "Virginia",
+     "kind": "resist",
+     "who": "People pushed back",
+     "calm": true,
+     "lawSrc": "Virginia laws of October 1705",
+     "lines": [
+      "Enslaved people are property, to be bought, sold and passed down like land. Anyone who runs away can be hunted down and punished.",
+      "People refused to be treated as property. Some worked slowly, broke tools or pretended to be sick. Many ran away. In 1739, about 20 enslaved men rose up near the Stono River in South Carolina and marched toward Spanish Florida, beating drums and calling out “Liberty!”"
+     ],
+     "fact": "The Stono Rebellion was put down within days. About 20 colonists and more than 40 of the rebels were killed. People in the North rose up too, in New York City in 1712. By 1750, slavery was legal in all thirteen colonies, North and South.",
+     "ask": "What does this card show about enslaved people?",
+     "opts": [
+      {
+       "t": "They resisted in many ways, big and small",
+       "ok": true,
+       "say": "Yes. From working slowly to rising up, people pushed back against being treated as property."
+      },
+      {
+       "t": "They accepted slavery quietly",
+       "ok": false,
+       "say": "Read the card again: working slowly, running away, rising up. The answer is:"
+      },
+      {
+       "t": "Resisting happened only once, at Stono",
+       "ok": false,
+       "say": "Stono was the biggest uprising in the colonies, but people resisted in many ways and many places. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "sc1740",
+     "n": "3",
+     "icon": "🥁",
+     "short": "South Carolina, 1740",
+     "year": "1740",
+     "place": "South Carolina",
+     "kind": "culture",
+     "who": "People kept their culture",
+     "lawSrc": "South Carolina’s Negro Act of May 1740, passed after the Stono Rebellion",
+     "lines": [
+      "Enslaved people may not gather in groups, use drums, grow their own food, earn money, or be taught to write. (Georgia copied much of this law in 1755.)",
+      "People kept African songs, rhythms, stories and prayers alive anyway, often in secret. On the rice coast of South Carolina and Georgia, they shaped the Gullah language from English and African languages. Some learned to read in secret."
+     ],
+     "fact": "Why ban drums and writing? Colonists feared that drums could send signals, like at Stono, and that people who could write could make passes to escape. A law against something is a clue that people were doing it.",
+     "ask": "Why does keeping songs, stories and a language count as resisting?",
+     "opts": [
+      {
+       "t": "It kept people’s own culture and dignity alive when the law tried to take them",
+       "ok": true,
+       "say": "Yes. Holding on to who you are is a way of refusing to be treated as property."
+      },
+      {
+       "t": "It made the work go faster",
+       "ok": false,
+       "say": "This card is about life beyond work. The answer is:"
+      },
+      {
+       "t": "The law allowed it",
+       "ok": false,
+       "say": "The 1740 law banned gatherings and drums. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "sold",
+     "n": "4",
+     "icon": "🕯️",
+     "short": "Sold apart",
+     "year": "1600s and 1700s",
+     "place": "Every colony",
+     "kind": "family",
+     "who": "Families stayed connected",
+     "calm": true,
+     "lawSrc": "No colony’s law protected enslaved families",
+     "lines": [
+      "Nothing in the law stops an owner from selling a husband, wife or child away from the rest of the family.",
+      "Families who were split up tried to stay connected. People walked miles at night to visit relatives on other plantations. Some ran away to find a husband, wife or child. Others took in children who had been sold away from their parents and raised them as family."
+     ],
+     "fact": "Runaway notices in colonial newspapers sometimes said a person had probably gone to find their family. Even notices written by owners show how much families mattered.",
+     "ask": "What does this card show?",
+     "opts": [
+      {
+       "t": "Enslaved people were families who loved each other, not just workers",
+       "ok": true,
+       "say": "Yes. People risked a great deal to stay connected to the people they loved."
+      },
+      {
+       "t": "Families were always kept together",
+       "ok": false,
+       "say": "The law didn’t protect enslaved families, and many were split up. The answer is:"
+      },
+      {
+       "t": "Being sold apart didn’t matter much to people",
+       "ok": false,
+       "say": "People walked miles and risked their lives to stay connected. The answer is:"
+      }
+     ]
+    },
+    {
+     "id": "mose",
+     "n": "5",
+     "icon": "🏰",
+     "short": "Fort Mose, 1738",
+     "year": "1693 and 1738",
+     "place": "Spanish Florida",
+     "kind": "free",
+     "who": "People built a free town",
+     "lawSrc": "An order from King Charles II of Spain, 1693",
+     "lines": [
+      "Anyone who escapes slavery in the English colonies and reaches Spanish Florida will be free, if they become Catholic (join the Catholic Church) and help defend the colony.",
+      "People escaped south through swamps and forests, many from South Carolina. In 1738 they built Fort Mose, about two miles north of St. Augustine. It was the first legally free Black town in what is now the United States. Its captain, Francisco Menéndez, had escaped slavery in Carolina himself."
+     ],
+     "fact": "The people of Fort Mose farmed, went to church and guarded the colony’s border. Later, many people who escaped slavery joined the Seminole people, a Native American nation in Florida. They became known as Black Seminoles, living, farming and fighting alongside them.",
+     "ask": "What does Fort Mose show?",
+     "opts": [
+      {
+       "t": "Not every Black person in the colonies was enslaved, and people built free lives when they could",
+       "ok": true,
+       "say": "Yes. Fort Mose shows courage, and freedom people won for themselves."
+      },
+      {
+       "t": "Spanish Florida had no slavery at all",
+       "ok": false,
+       "say": "Spanish Florida had slavery too. Its promise was for people escaping the English colonies. The answer is:"
+      },
+      {
+       "t": "Escaping was easy",
+       "ok": false,
+       "say": "The trip was long and dangerous, and many people were caught. The answer is:"
+      }
+     ]
+    }
+   ],
+   "srcLabel": "Fact from the lesson",
+   "flipT": "Flip the card: how did people answer?",
+   "lockedT": "Flip the card and answer its question to go on",
+   "mythT": "Fact-check the Herald below the card to go on",
+   "miniAfter": "v1705",
+   "myths": [
+    {
+     "after": "v1662",
+     "claim": "Slavery was just a job, like any other work.",
+     "fact": "A job ends, and a worker can leave. Enslaved people were owned for life, and so were their children. Slavery took away freedom and dignity, not just hours of work."
+    },
+    {
+     "after": "v1705",
+     "claim": "Enslaved people didn’t fight back.",
+     "fact": "They resisted in many ways: working slowly, breaking tools, running away, and rising up, at Stono in 1739 and in New York City in 1712.",
+     "calm": true
+    },
+    {
+     "after": "sold",
+     "claim": "Every Black person in the colonies was enslaved.",
+     "fact": "Not true. Some Black colonists were free, like Anthony Johnson, who owned a farm in Virginia in the 1650s. Free Black families lived in many colonies, North and South, though their freedom was never fully safe and laws limited their rights."
+    }
+   ],
+   "close": "The law said one thing: these people are property. The people answered with families, songs, courage, escape and a free town. An honest account of slavery has to include both, and the Herald left out the second half.",
+   "job": {
+    "why": "The Herald says slavery was just about work. Each card shows a real colonial law, and how real people answered it.",
+    "do": "1. Read what the law said. 2. Tap Flip the card. 3. Answer the question. 4. Fact-check the Herald when it shows up. 5. Do all 5 cards.",
+    "use": "Your cards give you evidence for the notebook and your Front Page Brief.",
+    "words": [
+     [
+      "law",
+      "a rule made by a colony’s government"
+     ],
+     [
+      "property",
+      "something a person owns"
+     ],
+     [
+      "resist",
+      "to push back against something or refuse to go along with it"
+     ],
+     [
+      "rebellion",
+      "when people rise up and fight against those in power"
+     ]
+    ]
+   }
+  },
+  "stereo": {
+   "title": "Look through the stereoscope",
+   "who": "About the 1860 photo card",
+   "img": "source-5-07-07-colonial-african-american",
+   "alt": "An orange photo card with two almost identical old photos side by side. Each shows a dirt lane between rows of small white wooden cabins, a tall tree and a wooden fence. Women, men and children sit outside the cabins. Handwriting on the left edge says Plantation No 3.",
+   "cap": "Osborn & Durbec, “Plantation no. 3,” about 1860. Library of Congress.",
+   "aspect": 1.035,
+   "halves": [
+    [
+     6.23,
+     5.63,
+     43.98,
+     88.11
+    ],
+    [
+     50.52,
+     5.63,
+     43.98,
+     88.11
+    ]
+   ],
+   "txt": [
+    "This is a stereograph: two photos of the same place, taken a few inches apart, the way your two eyes see. In a viewer called a stereoscope, the two photos blend into one picture that looks 3D.",
+    "People collected cards like this in the 1800s. Two photographers in Charleston, South Carolina, Osborn & Durbec, made this one around 1860, in a set of photos of plantations near the city."
+   ],
+   "q": {
+    "q": "Why does a stereograph have two photos side by side?",
+    "opts": [
+     {
+      "t": "They were taken a few inches apart, like your two eyes, so they look 3D in a viewer",
+      "ok": true,
+      "say": "Yes. Each eye sees one photo, and your brain puts them together."
+     },
+     {
+      "t": "One is a spare copy in case the other one fades",
+      "ok": false,
+      "say": "Look again: the two photos are taken from slightly different spots."
+     },
+     {
+      "t": "They show two different plantations",
+      "ok": false,
+      "say": "Look again: it’s the same lane, the same cabins and the same people."
+     }
+    ]
+   },
+   "close": "Now you know what this card is: a real photo from about 1860. Next, mark it up like an editor, and check what it can and can’t show about colonial times.",
+   "job": {
+    "why": "Before you use a source as evidence, find out what kind of thing it is. This one is a photo card from the 1800s.",
+    "do": "1. Read about the card. 2. Tap Look through the stereoscope. 3. Answer the question.",
+    "use": "Knowing what the card is helps you check what it can show in the next part.",
+    "words": [
+     [
+      "stereograph",
+      "a card with two photos that look 3D in a viewer"
+     ],
+     [
+      "stereoscope",
+      "a viewer for looking at stereographs"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the photo",
+   "kind": "source",
+   "srcName": "the 1860 photo",
+   "srcWho": "The photo card “Plantation no. 3” (about 1860)",
+   "srcCant": "This 1860 photo",
+   "showsWord": "The photo shows ",
+   "img": "source-5-07-07-colonial-african-american",
+   "alt": "An orange photo card with two almost identical old photos side by side. Each shows a dirt lane between rows of small white wooden cabins, a tall tree and a wooden fence. Women, men and children sit outside the cabins. Handwriting on the left edge says Plantation No 3.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 37,
+     "y": 42,
+     "rx": 5,
+     "ry": 8,
+     "label": "Rows of cabins",
+     "t": "Small whitewashed wooden cabins stand in a row along a dirt lane. These were the quarters, the homes of the enslaved people on this plantation."
+    },
+    {
+     "x": 21,
+     "y": 66,
+     "rx": 4,
+     "ry": 9,
+     "label": "A woman by the fence",
+     "t": "A woman sits on a stump by a wooden fence. We don’t know her name: the photographers didn’t write any names down."
+    },
+    {
+     "x": 40,
+     "y": 61,
+     "rx": 5,
+     "ry": 6,
+     "label": "A group by a cabin",
+     "t": "Children and grown-ups sit together by a cabin. They may be a family, but a photo alone can’t prove that."
+    },
+    {
+     "x": 46.5,
+     "y": 63,
+     "rx": 3,
+     "ry": 7,
+     "label": "A man on a bench",
+     "t": "A man in a cap sits on a low bench by a cabin door."
+    },
+    {
+     "x": 12,
+     "y": 50,
+     "rx": 5,
+     "ry": 10,
+     "label": "A board fence",
+     "t": "A fence of rough boards. We can’t tell from the photo what it fenced in."
+    },
+    {
+     "x": 72,
+     "y": 50,
+     "rx": 6,
+     "ry": 10,
+     "label": "The second photo",
+     "t": "The right photo is almost the same as the left one, taken a few inches to the side. That’s what makes this card a stereograph."
+    }
+   ],
+   "date": {
+    "x": 3,
+    "y": 62,
+    "w": 5,
+    "h": 46,
+    "tapT": "Now tap the 📅 date mark on the handwriting at the left edge to find out when this photo was taken.",
+    "year": 1860,
+    "shows": 1860,
+    "yearT": "about 1860",
+    "showsT": "a plantation in 1860, not colonial times",
+    "gapT": "a photo shows the moment it was taken",
+    "madeBy": "Osborn & Durbec, photographers in Charleston",
+    "showsWhy": "The colonial era ended about 85 years earlier",
+    "text": "The handwriting says “Plantation No 3.” The Library of Congress dates this card to about 1860. Cameras that could take photos like this weren’t invented until about 1839, so no photo can show the colonial era. This one shows a South Carolina plantation about 85 years after the colonies became the United States, and just before the Civil War.",
+    "q": "In your own words: when was this photo taken, and what does that mean if you use it as evidence about colonial times?",
+    "check": [
+     "say when it was taken (about 1860)?",
+     "say it is not from colonial times?",
+     "say what it can still show, or what it can’t?"
+    ],
+    "model": "This photo was taken around 1860, long after colonial times, so it can’t show colonial life directly. It does show real slave quarters on one plantation in 1860. To learn about the 1700s, we need sources from the 1700s.",
+    "card": "The photo was taken about 1860, about 85 years after the colonial era ended.",
+    "madeT": "taken about 1860",
+    "journalT": "The photo was taken about 1860, so it shows a plantation long after colonial times."
+   },
+   "missing": {
+    "q": "What can this photo tell us about slavery in colonial times?",
+    "todo": "Tap a card. Then tap the box where it belongs. (With a keyboard: Tab to a card, press Enter, then Tab to a box and press Enter.)",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this photo",
+      "icon": "📷"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this photo",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this photo alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Rows of small wooden cabins",
+      "k": "shown",
+      "say": "Yes. You can see them down the lane.",
+      "hint": "Look down the lane."
+     },
+     {
+      "t": "Children and grown-ups sitting outside",
+      "k": "shown",
+      "say": "Yes. They sit by the cabins.",
+      "hint": "Look by the cabin doors."
+     },
+     {
+      "t": "People working in a field",
+      "k": "not",
+      "say": "Right. No one is working in a field in this photo.",
+      "hint": "Is anyone working in a field?"
+     },
+     {
+      "t": "The people’s names",
+      "k": "not",
+      "say": "Right. No names were written on the card.",
+      "hint": "Can you find any names on the card?"
+     },
+     {
+      "t": "Whether the people in the group were one family",
+      "k": "cant",
+      "say": "Right. Sitting together doesn’t prove who is related to whom.",
+      "hint": "Can a photo prove who is related to whom?",
+      "calm": true
+     },
+     {
+      "t": "Whether the people chose to have their picture taken",
+      "k": "cant",
+      "say": "Right. We don’t know. Enslaved people often had no say.",
+      "hint": "Does the photo tell us whether they agreed?",
+      "calm": true
+     },
+     {
+      "t": "What life was like here in the 1700s",
+      "k": "cant",
+      "say": "Right. This photo is from 1860. For the 1700s we need sources from the 1700s.",
+      "hint": "When was the photo taken?"
+     }
+    ]
+   },
+   "close": "A real photo is strong evidence, but only for its own time. This one shows real people’s homes in 1860. It can’t tell us their names, their feelings, or what the 1700s were like.",
+   "lookQ": "Before the editor’s marks appear, look closely. Use 🔍 Look closer if you want. Write one thing you notice in this photo.",
+   "from": "Real source from the past: “Plantation no. 3,” a stereograph by Osborn & Durbec, Charleston, about 1860 (Library of Congress)",
+   "zoomCap": "Osborn & Durbec, “Plantation no. 3 Slave quarters,” stereograph, about 1860. Library of Congress Prints and Photographs Division, LC-DIG-stereo-1s03915. No known restrictions on publication. Black border trimmed for this lesson.",
+   "followup": {
+    "q": "This photo can’t show colonial times. Which other source could help?",
+    "opts": [
+     {
+      "t": "A record made in the 1700s, like South Carolina’s 1740 law or a colonial newspaper",
+      "ok": true,
+      "say": "Yes. A source made in the 1700s can show the 1700s."
+     },
+     {
+      "t": "Another photo from 1860",
+      "ok": false,
+      "say": "It would still show 1860, not colonial times."
+     },
+     {
+      "t": "A drawing made today",
+      "ok": false,
+      "say": "A drawing made today isn’t a source from the past."
+     }
+    ],
+    "limQ": "Now write it in your own words: what is one thing this photo can’t show? (This is called a limitation.)",
+    "limPh": "This photo can’t show…"
+   },
+   "job": {
+    "why": "A photo feels like proof. Before you use this one, check what it shows, when it was taken, and what it can’t show.",
+    "do": "1. Write one thing you notice. 2. Open at least 4 red marks. 3. Open the 📅 date. 4. Sort the cards. 5. Write what it can’t show.",
+    "use": "Your notes about this photo go into your evidence drawer for your Front Page Brief.",
+    "words": [
+     [
+      "quarters",
+      "the small homes where enslaved people lived on a plantation"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "Slavery was not just a job: enslaved people were owned for life, and a 1662 Virginia law made their children enslaved too.",
+   "Colonial laws treated enslaved people as property, banned them from gathering, using drums or learning to write (South Carolina, 1740), and did not protect their families.",
+   "Enslaved people resisted in many ways: working slowly, running away, and rising up, as at Stono in 1739 and in New York City in 1712.",
+   "They kept families, African songs, stories, prayers and the Gullah language alive.",
+   "Some Black colonists were free, like Anthony Johnson in Virginia. In 1738, people who escaped slavery built Fort Mose in Spanish Florida, the first legally free Black town in what is now the United States.",
+   "By 1750, slavery was legal in all thirteen colonies.",
+   "The 1860 photo is a real source, but it shows 1860, not colonial times."
+  ],
+  "vocab": [
+   [
+    "dignity",
+    "the respect every person deserves just for being human"
+   ],
+   [
+    "resist",
+    "to push back against something or refuse to go along with it"
+   ],
+   [
+    "rebellion",
+    "when people rise up and fight against those in power"
+   ],
+   [
+    "property",
+    "something a person owns"
+   ],
+   [
+    "quarters",
+    "the small homes where enslaved people lived on a plantation"
+   ],
+   [
+    "Fort Mose",
+    "the free Black town built in Spanish Florida in 1738"
+   ],
+   [
+    "Gullah",
+    "a language enslaved people shaped from English and African languages on the South Carolina and Georgia coast"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: dign means “worthy”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "The Herald left out one big word: dignity. Cracking the root shows what that word really means.",
+   "do": "1. Tap the part of each word that means “worthy.” 2. Use dignity in a sentence about today’s lesson.",
+   "use": "Your sentence can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "dign",
+  "meaning": "worthy",
+  "words": [
+   {
+    "parts": [
+     "dign",
+     "ity"
+    ],
+    "root": 0,
+    "m": "dignity: being worthy of respect, just for being human"
+   },
+   {
+    "parts": [
+     "dign",
+     "ified"
+    ],
+    "root": 0,
+    "m": "dignified: calm and worthy of respect"
+   },
+   {
+    "parts": [
+     "in",
+     "dign",
+     "ant"
+    ],
+    "root": 1,
+    "m": "indignant: angry about something unfair (in- here means not: treated as not worthy)"
+   },
+   {
+    "parts": [
+     "in",
+     "dign",
+     "ity"
+    ],
+    "root": 1,
+    "m": "indignity: treatment that takes away a person’s dignity"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "The root dign comes from the Latin word dignus, which means worthy. Slavery laws treated people as property, an indignity. But no law could make a person less worthy. That is why an honest editor writes about dignity, not just work.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Enslaved people kept their dignity by…",
+   "min": 8,
+   "must": "dignity",
+   "word": "dignity"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Front Page Brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your main idea (angle): what will your brief argue?",
+   "own": "Or write your own main idea:",
+   "choices": [
+    {
+     "t": "More Than Their Work",
+     "ok": true,
+     "tip": "Slavery took away freedom and dignity, not just hours of work. Show the people.",
+     "fit": [
+      "v1662",
+      "family",
+      "law",
+      "culture",
+      "clip",
+      "herald",
+      "people"
+     ],
+     "fitTip": "Good fits: card 1, card 4, and the pieces the Herald cut.",
+     "ideas": [
+      "More Than Their Work",
+      "People, Not Just Labor"
+     ]
+    },
+    {
+     "t": "The Law Said, People Answered",
+     "ok": true,
+     "tip": "Pair a law with how people answered it.",
+     "fit": [
+      "v1705",
+      "sc1740",
+      "sold",
+      "resist",
+      "culture",
+      "law",
+      "stono"
+     ],
+     "fitTip": "Good fits: cards 2, 3 and 4.",
+     "ideas": [
+      "The Law Said, People Answered",
+      "They Pushed Back"
+     ]
+    },
+    {
+     "t": "Freedom to the South: Fort Mose",
+     "ok": true,
+     "tip": "Stono, the Spanish promise, and the free town people built.",
+     "fit": [
+      "mose",
+      "stono",
+      "free",
+      "v1705",
+      "resist"
+     ],
+     "fitTip": "Good fits: card 5, card 2, and the Stono → Florida card.",
+     "ideas": [
+      "Freedom to the South: Fort Mose",
+      "The Road to Fort Mose"
+     ]
+    },
+    {
+     "t": "Colonial Slavery: Just a Labor System!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at what it cut out of its story."
+    }
+   ]
+  },
+  "p1Label": "Card 1: one law and its answer",
+  "p2Label": "Card 2: a different law",
+  "cmpHd": "Compare them side by side. These are your notes from the Desk tab.",
+  "cmpQ": "What did each law try to take away, and how did people answer?",
+  "whyLabel": "Why it matters: what does the Herald’s claim leave out?",
+  "factors": [
+   "Freedom for life, and for children",
+   "Families",
+   "Resistance",
+   "Culture: songs, stories, language",
+   "Free Black colonists",
+   "What a source can and can’t show"
+  ],
+  "close": "Your angle is set. Now write your brief below: choose clippings, write each part in your own words, and attach your evidence.",
+  "job": {
+   "why": "Every brief argues one main idea, called the angle. Pick it first.",
+   "do": "1. Pick an angle, or write your own. 2. Pick two cards. 3. Pick what the Herald left out.",
+   "use": "The evidence tray will show which saved details fit your angle."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Stono → Florida",
+   "img": false,
+   "who": "Stono and Spanish Florida",
+   "from": "Fact from the lesson",
+   "t": "The Stono marchers were heading south for a reason. Spain had promised freedom to people who escaped the English colonies and reached Spanish Florida. A year before Stono, in 1738, people who escaped had built a free town there. You’ll read about it on card 5.",
+   "q": "Why would people risk a long, dangerous march to reach Florida?",
+   "tags": [
+    "stono",
+    "mose",
+    "free",
+    "resist"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong. Strike the Herald’s claim, and your Front Page Brief prints in its place."
+  },
+  "win": "Printed. Your Front Page Brief is on the record, and Issue 35 is filed in the Morgue.",
+  "claim": "Colonial slavery can be summarized as labor without discussing human dignity."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the Herald’s story with every piece back in",
+   "Snap the Fort Mose card",
+   "Snap the photo card from 1860",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "In 1738, people who escaped slavery built Fort Mose, the first legally free Black town in what is now the United States.",
+   "key": [
+    "1738",
+    "escaped",
+    "Fort",
+    "Mose",
+    "free",
+    "Black",
+    "town"
+   ],
+   "small": [
+    "in",
+    "who",
+    "the",
+    "in",
+    "what",
+    "is",
+    "now"
+   ],
+   "model": "Key words: 1738, escaped, Fort Mose, legally free Black town."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "A law or practice",
+    "rx": "law|1662|1705|1740|hereditar|born|mother|child|property|own|sold|sell|auction|apart|separat|drum|gather|group|write|writing|read|whip|punish|hunt",
+    "n": 1
+   },
+   {
+    "t": "A second example",
+    "rx": "famil|child|sold|sell|apart|property|drum|gather|write|read|whip|punish|hunt|food|money|life",
+    "n": 2
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A way people resisted",
+    "rx": "resist|ran away|run away|runaway|escap|slow|broke|tool|sick|rebel|rose up|stono|1739|new york|1712|song|music|drum|stor|prayer|faith|gullah|language|famil|name|fort mose|florida|secret|read",
+    "n": 1
+   },
+   {
+    "t": "Why it matters",
+    "rx": "because|human|people|person|dignity|culture|courage|brave|love|free|freedom|not just|matter|shows",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|work|labor|field|crop|did the work|plantation",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|forgot|but|not|dignity|famil|resist|human|people|culture|free|fort mose|stono|law",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at what the law said on cards 1 to 4.",
+   "Name two laws or practices, like the 1662 Virginia law or families being sold apart.",
+   "Try: “One way was ___. Another way was ___.”"
+  ],
+  "journal-q2": [
+   "Flip cards 2, 3 and 4 again: how did people answer?",
+   "Pick two ways people resisted, then say what they show about the people.",
+   "Try: “People resisted by ___. This matters because it shows ___.”"
+  ],
+  "journal-q3": [
+   "Did enslaved people do a lot of work? Then the Herald is partly right.",
+   "Now look at what the Herald cut from its story. What does “just labor” leave out?",
+   "Try: “The Herald is partly right because ___. But it’s missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "No one chose slavery, and enslaved people were never paid. Look back at card 1: what did the 1662 law say?",
+   "C": "An apprenticeship ended. Slavery was for life, and for a person’s children too. Look back at card 1."
+  },
+  {
+   "B": "That’s what the Herald wants readers to think. Look back at card 2: how did people push back?",
+   "C": "People resisted in many ways, from working slowly to running away to rising up. Look back at cards 2 and 3."
+  },
+  {
+   "A": "That’s the Herald’s claim, the one we’re checking. Look back at what it cut out of its story.",
+   "C": "Slavery took away freedom, families and dignity. It harmed enslaved people. Look back at cards 1 and 4."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Colonial America · Slavery and African American Life",
+  "head": "More Than Their Work",
+  "deck": "Was slavery in the colonies just about work? Read the law, then read how people answered it.",
+  "dateline": "Vol. I · No. 35 · Price: One Penny",
+  "ears": [
+   "Issue 35 · Colonial America Edition",
+   "🏰 Fort Mose, 1738"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "The law said. People answered."
+   },
+   {
+    "key": "picture",
+    "t": "Check a photo from 1860",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "CHARLESTON",
+  "lede": "The Hasty Herald says slavery in the colonies was just a labor system. Five real laws, how people answered them, and one real photo will test that. You decide.",
+  "evIntro": "Today’s question: Was slavery in the colonies just about work? Evidence is a detail that helps answer it. To save one: tap 🧰 Tools, then 🖍 Highlight, drag across the detail, and tap ＋ Save as evidence. You need at least 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "1. In the tray, tick the clippings you want to use. 2. Write each part in your own words. 3. Attach evidence to a part, and say what it supports. Choosing cards is not the work: explaining them is.",
+  "trayFoot": "“Fact from the lesson” means the lesson’s own explanation. “Real source from the past” means something made back then, like the 1860 photo.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a detail about a law or how people answered it, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "More Than Their Work",
+   "The Law Said, People Answered"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "What the laws did, and how people answered",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Make your claim: was slavery just about work? Use one detail about what the laws did AND one about how people answered.",
+    "ph": "Write your claim and your evidence, in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Herald said slavery was just a labor system. But",
+     "One law said"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "What should readers understand about enslaved people as human beings?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our sources",
+    "short": "Your source note (at least 8 words)",
+    "ask": "Write about the 1860 photo: what it can show, and what it can’t.",
+    "ph": "For example, start with: The photo…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The photo was taken about 1860, so",
+     "The photo shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Answer today’s question in your own words, and show your evidence: Was slavery in the colonies just about work?",
+   "do": "1. Write each part in your own words. 2. Under each part, tap ＋ Add evidence and say what it proves.",
+   "use": "Your explanations matter more than the details you pick. When every part is done, you’ll strike the Herald and print."
+  }
+ },
+ "claimIntro": {
+  "title": "Two harder claims",
+  "todo": "The Herald is back with two tricky claims. For each one: 1. Make your call. 2. Choose the detail that helps you decide. 3. Explain the connection in your own words. Here is what the calls mean: Supported means the evidence shows it’s true. Misleading means it starts with something true but leads to a wrong idea. Not enough evidence means we can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "south-only",
+   "claim": "Slavery in the colonies was a Southern thing.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "The South had the most enslaved people. But was slavery only there?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Most enslaved people lived in the South, but by 1750 slavery was legal in all thirteen colonies, North and South."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: look at card 2."
+    }
+   ],
+   "details": [
+    {
+     "from": "Card 2:",
+     "t": "People in the North rose up too, in New York City in 1712.",
+     "ok": true,
+     "say": "This shows slavery existed in the North."
+    },
+    {
+     "from": "Card 2:",
+     "t": "By 1750, slavery was legal in all thirteen colonies, North and South.",
+     "ok": true,
+     "say": "This shows slavery was not just Southern."
+    },
+    {
+     "from": "Card 3:",
+     "t": "On the rice coast of South Carolina and Georgia, they shaped the Gullah language.",
+     "ok": false,
+     "say": "This is about the South. It doesn’t tell us about the North."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  },
+  {
+   "id": "photo-colonial",
+   "claim": "The 1860 photo shows what slave quarters looked like in colonial times.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "It’s a real photo of slave quarters. But when was it taken?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. It really shows slave quarters, but in 1860, about 85 years after colonial times. It can’t show the 1700s."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "You do have evidence: the date on the photo card."
+    }
+   ],
+   "details": [
+    {
+     "from": "The photo’s date:",
+     "t": "Taken about 1860.",
+     "ok": true,
+     "say": "This shows the photo is from long after colonial times."
+    },
+    {
+     "from": "About cameras:",
+     "t": "Cameras that could take photos like this weren’t invented until about 1839.",
+     "ok": true,
+     "say": "This shows no photo can show the colonial era."
+    },
+    {
+     "from": "The photo:",
+     "t": "Small whitewashed wooden cabins stand in a row along a dirt lane.",
+     "ok": false,
+     "say": "This is what the photo shows, but not WHEN. It can’t settle the claim."
+    }
+   ],
+   "whyQ": "How does that detail show whether the claim is right?"
+  }
+ ],
+ "selfIntro": "Read your front page once more. Tick each box only if it’s true.",
+ "selfCheck": [
+  "My brief says what the Herald got right and what it left out.",
+  "I named a law AND how people answered it.",
+  "I used at least two details, each with my reason.",
+  "I said what the 1860 photo can show, and what it can’t."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your evidence drawer is still empty. That’s okay. A good place to start is card 1. Flip it, and find one sentence about how people answered the law.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1860 photo. Open a red mark, and save one thing the photo really shows.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(slave\\w*|enslav\\w*|slavery|labor|work\\w*|jobs?|laws?|1662|1705|1712|1738|1739|1740|1750|1755|1693|1650s|1860|1839|virginia|south carolina|carolina|georgia|new york|florida|spanish|spain|st\\.? augustine|stono|fort|mose|men[ée]ndez|anthony|johnson|seminoles?|gullah|charleston|property|owned|owner\\w*|own|sold|sell|bought|auction|apart|famil\\w*|parents?|mother|children|child|husband|wife|names?|grandparents?|born|life|lifetime|forever|generations?|freedom|free|liberty|escap\\w*|ran|run\\w*|resist\\w*|rebel\\w*|rose|rising|uprising|fought|fight\\w*|slow\\w*|broke|tools?|drums?|songs?|music|rhythms?|stor\\w*|prayers?|faith|church|catholic|language|words|read\\w*|writ\\w*|secret|gather\\w*|groups?|dignity|human|people|person|culture|courage|punish\\w*|hunted|colon\\w*|north|south\\w*|cabins?|quarters|plantations?|photo\\w*|stereo\\w*|picture|1700s|names)\\b",
+   "off": "Does this detail show what a law did, or how people answered it? If it doesn’t, you can keep it, but also look for one on the law cards.",
+   "herald": "This is the Herald’s claim, the thing we’re checking. A claim can’t be its own evidence. Look for a detail that shows whether it’s true.",
+   "direction": "These are directions for the activity, not evidence about slavery in the colonies. Look for a detail about a law or about the people instead."
+  },
+  "find": {
+   "cmp": {
+    "t": "This part needs a detail about what a law did AND one about how people answered. Look at the law cards, or the pieces the Herald cut.",
+    "go": [
+     {
+      "l": "The law cards",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     },
+     {
+      "l": "The Herald’s cut story",
+      "tab": "dispatch",
+      "sel": ".rg-cl-paper"
+     }
+    ]
+   },
+   "exp": {
+    "t": "This part needs a detail that shows enslaved people as human beings: families, culture, courage or freedom. Try cards 3, 4 and 5.",
+    "go": [
+     {
+      "l": "The law cards",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "This part needs a detail about the photo: when it was taken, what it shows, or what it can’t show.",
+    "go": [
+     {
+      "l": "The photo check",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add evidence (at least 2, each with your reason)",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "What did the Herald cut?",
+   "script": "The Herald’s story about slavery has holes in it. Someone cut pieces out, and they’re lying on the floor. Read each piece. Then find the sentence it was cut from, and put it back. When you’re done, look at what was missing. Was it the work, or was it the people?"
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "The law said, people answered",
+   "script": "Each card starts with a real colonial law. Read it slowly. Some of these laws are hard to read, and that’s all right. Then flip the card, and see how people answered. Families held on. People ran, rose up, kept their songs. Some built a free town. Laws can’t tell the whole story. People can."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^holes",
+    "sel": "#panel-dispatch .rg-cl-paper",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^floor",
+    "sel": "#panel-dispatch .rg-cl-floor",
+    "fx": "glow"
+   },
+   {
+    "at": "^people",
+    "sel": "#panel-dispatch .rg-cl-body",
+    "fx": "point"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^law",
+    "sel": "#panel-desk .rg-fp-law",
+    "fx": "glow",
+    "calm": true,
+    "scroll": true
+   },
+   {
+    "at": "^flip",
+    "sel": "#panel-desk .rg-fp-ans",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^town",
+    "sel": "#panel-desk .rg-fp-tabs",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    2.16,
+    2.4,
+    "holes"
+   ],
+   [
+    5.48,
+    6.24,
+    "floor."
+   ],
+   [
+    15.6,
+    16.24,
+    "people?"
+   ]
+  ],
+  "v2": [
+   [
+    2.16,
+    2.76,
+    "law."
+   ],
+   [
+    8.24,
+    8.4,
+    "flip"
+   ],
+   [
+    16.72,
+    17.68,
+    "town."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +4106,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +4121,34 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A small fort of earth walls and upright logs on a rise beside a salt marsh at sunrise, with a glowing lantern on the wall, a thatched house inside, a sandy path leading to the gate and a creek reflecting the dawn" class="b0707">
+<defs>
+<linearGradient id="b0707Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E7398"/><stop offset=".45" stop-color="#D9A3A0"/><stop offset=".8" stop-color="#F4C98E"/><stop offset="1" stop-color="#F8DDB0"/></linearGradient>
+<linearGradient id="b0707Wat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9BE8F"/><stop offset="1" stop-color="#5D6F8A"/></linearGradient>
+<linearGradient id="b0707Mar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A9A5E"/><stop offset="1" stop-color="#5E6A3A"/></linearGradient>
+<radialGradient id="b0707Sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF1C8"/><stop offset=".6" stop-color="#F9D58E" stop-opacity=".8"/><stop offset="1" stop-color="#F9D58E" stop-opacity="0"/></radialGradient>
+<style>
+.b0707 .b0707-sun{ animation:b0707rise 20s ease-in-out infinite alternate; }
+.b0707 .b0707-grass{ transform-box:fill-box; transform-origin:50% 100%; animation:b0707sway 6s ease-in-out infinite; }
+.b0707 .b0707-grass.b{ animation-duration:7.5s; animation-delay:-2s; }
+.b0707 .b0707-glint{ animation:b0707glint 12s linear infinite; }
+.b0707 .b0707-lamp{ animation:b0707lamp 4.5s ease-in-out infinite; }
+.b0707 .b0707-bird{ animation:b0707fly 40s linear infinite; }
+@keyframes b0707rise{ from{ transform:translateY(4px) } to{ transform:translateY(-3px) } }
+@keyframes b0707sway{ 0%,100%{ transform:rotate(-2deg) } 50%{ transform:rotate(2.5deg) } }
+@keyframes b0707glint{ from{ transform:translateX(0) } to{ transform:translateX(-60px) } }
+@keyframes b0707lamp{ 0%,100%{ opacity:.55 } 50%{ opacity:.9 } }
+@keyframes b0707fly{ from{ transform:translateX(0) } to{ transform:translateX(-140px) } }
+@media (prefers-reduced-motion:reduce){ .b0707 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0707Sky)"/>
+<g class="b0707-sun"><circle cx="700" cy="132" r="70" fill="url(#b0707Sun)"/><circle cx="700" cy="134" r="24" fill="#FFE7B0"/></g>
+<g fill="#F7E1CF" opacity=".55"><ellipse cx="180" cy="52" rx="110" ry="9"/><ellipse cx="250" cy="44" rx="50" ry="6"/><ellipse cx="560" cy="70" rx="120" ry="8"/><ellipse cx="820" cy="58" rx="70" ry="6"/></g>
+<g class="b0707-bird" fill="none" stroke="#4A4A5E" stroke-width="1.4" stroke-linecap="round" opacity=".6"><path d="M610,84 q6,-5 12,0 q6,-5 12,0"/><path d="M650,72 q5,-4 10,0 q5,-4 10,0"/><path d="M820,96 q5,-4 10,0 q5,-4 10,0"/></g>
+<path d="M0,150 Q120,140 260,146 T560,144 T920,146 L920,162 L0,162 Z" fill="#7E8A6A" opacity=".55"/>
+<rect x="0" y="152" width="920" height="108" fill="url(#b0707Mar)"/>
+<path d="M920,250 C800,236 760,214 700,200 C640,186 660,170 720,162 C760,157 800,156 860,154 L920,154 L920,260 Z" fill="url(#b0707Wat)" opacity=".92"/><path d="M640,262 C660,236 720,222 760,210 C800,198 840,196 920,194 L920,262 Z" fill="url(#b0707Wat)" opacity=".55"/><g class="b0707-glint" stroke="#FFF1CC" stroke-width="1.6" stroke-linecap="round" opacity=".7"><line x1="690" y1="166" x2="702" y2="166"/><line x1="712" y1="180" x2="724" y2="180"/><line x1="734" y1="194" x2="746" y2="194"/><line x1="756" y1="208" x2="768" y2="208"/><line x1="778" y1="166" x2="790" y2="166"/><line x1="800" y1="180" x2="812" y2="180"/><line x1="822" y1="194" x2="834" y2="194"/><line x1="844" y1="208" x2="856" y2="208"/><line x1="866" y1="166" x2="878" y2="166"/><line x1="888" y1="180" x2="900" y2="180"/><line x1="910" y1="194" x2="922" y2="194"/><line x1="932" y1="208" x2="944" y2="208"/></g><path d="M0,236 C80,226 120,214 170,206 C220,198 250,192 300,188 L318,188 C266,196 236,204 190,214 C140,224 90,240 0,252 Z" fill="#D9C08E" opacity=".85"/><path d="M280,176 Q420,150 560,174 L560,186 L280,186 Z" fill="#8C7A50"/><path d="M300,168 L540,168 L556,186 L284,186 Z" fill="#9E8458"/><path d="M300,168 L540,168" stroke="#7A6440" stroke-width="2"/><g><rect x="304" y="139.3" width="6" height="28.7" fill="#6B4F33"/><path d="M304,139.3 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="311" y="138.2" width="6" height="29.8" fill="#6B4F33"/><path d="M311,138.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="318" y="138.3" width="6" height="29.7" fill="#6B4F33"/><path d="M318,138.3 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="325" y="137.7" width="6" height="30.3" fill="#6B4F33"/><path d="M325,137.7 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="332" y="140.6" width="6" height="27.4" fill="#6B4F33"/><path d="M332,140.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="339" y="137.2" width="6" height="30.8" fill="#6B4F33"/><path d="M339,137.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="346" y="139.2" width="6" height="28.8" fill="#6B4F33"/><path d="M346,139.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="353" y="138.3" width="6" height="29.7" fill="#6B4F33"/><path d="M353,138.3 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="360" y="138.2" width="6" height="29.8" fill="#6B4F33"/><path d="M360,138.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="367" y="137.4" width="6" height="30.6" fill="#6B4F33"/><path d="M367,137.4 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="374" y="140.6" width="6" height="27.4" fill="#6B4F33"/><path d="M374,140.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="381" y="140.2" width="6" height="27.8" fill="#6B4F33"/><path d="M381,140.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="388" y="138.4" width="6" height="29.6" fill="#6B4F33"/><path d="M388,138.4 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="395" y="139.1" width="6" height="28.9" fill="#6B4F33"/><path d="M395,139.1 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="402" y="138.2" width="6" height="29.8" fill="#6B4F33"/><path d="M402,138.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="409" y="140.2" width="6" height="27.8" fill="#6B4F33"/><path d="M409,140.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="416" y="137.2" width="6" height="30.8" fill="#6B4F33"/><path d="M416,137.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="423" y="141.9" width="6" height="26.1" fill="#6B4F33"/><path d="M423,141.9 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="430" y="138.4" width="6" height="29.6" fill="#6B4F33"/><path d="M430,138.4 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="437" y="140.1" width="6" height="27.9" fill="#6B4F33"/><path d="M437,140.1 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="444" y="141.9" width="6" height="26.1" fill="#6B4F33"/><path d="M444,141.9 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="451" y="138.6" width="6" height="29.4" fill="#6B4F33"/><path d="M451,138.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="458" y="141.7" width="6" height="26.3" fill="#6B4F33"/><path d="M458,141.7 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="465" y="140.8" width="6" height="27.2" fill="#6B4F33"/><path d="M465,140.8 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="472" y="140.4" width="6" height="27.6" fill="#6B4F33"/><path d="M472,140.4 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="479" y="141.2" width="6" height="26.8" fill="#6B4F33"/><path d="M479,141.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="486" y="141.2" width="6" height="26.8" fill="#6B4F33"/><path d="M486,141.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="493" y="141.6" width="6" height="26.4" fill="#6B4F33"/><path d="M493,141.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="500" y="137.8" width="6" height="30.2" fill="#6B4F33"/><path d="M500,137.8 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="507" y="141.6" width="6" height="26.4" fill="#6B4F33"/><path d="M507,141.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="514" y="141.2" width="6" height="26.8" fill="#6B4F33"/><path d="M514,141.2 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="521" y="141.6" width="6" height="26.4" fill="#6B4F33"/><path d="M521,141.6 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="528" y="137.5" width="6" height="30.5" fill="#6B4F33"/><path d="M528,137.5 l3,-4 l3,4 Z" fill="#5A4129"/><rect x="535" y="139.3" width="6" height="28.7" fill="#6B4F33"/><path d="M535,139.3 l3,-4 l3,4 Z" fill="#5A4129"/></g><g fill="#5C432B"><path d="M292,170 L314,150 L330,150 L330,170 Z"/><path d="M548,170 L526,150 L510,150 L510,170 Z"/></g><rect x="410" y="146" width="22" height="22" fill="#3A2A1C"/><path d="M410,146 L421,138 L432,146 Z" fill="#4A3620"/><path d="M454,138 L498,138 L498,124 L454,124 Z" fill="#B8A47A"/><path d="M446,126 L476,104 L506,126 Z" fill="#A8894E"/><path d="M450,124 L476,106 L502,124" stroke="#8C6E3A" stroke-width="1.2" fill="none"/><path d="M490,104 q-6,-12 2,-22 q8,-10 0,-22" fill="none" stroke="#EDE3D6" stroke-width="3" stroke-linecap="round" opacity=".45"/><rect x="352" y="120" width="5" height="22" fill="#3A2A1C"/><rect x="347" y="112" width="15" height="10" rx="2" fill="#2E2218"/><rect class="b0707-lamp" x="349" y="114" width="11" height="7" fill="#F6C46A"/><circle class="b0707-lamp" cx="354" cy="117" r="16" fill="#F6C46A" opacity=".3"/><g fill="#4E5A34"><rect x="250" y="118" width="4" height="58" fill="#5A4A30"/><path d="M252,118 q-24,-10 -42,13" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M252,118 q-10,-10 -18,9" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M252,118 q4,-10 7,7" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M252,118 q16,-10 28,11" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M252,118 q30,-10 52,15" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="590" y="112" width="4" height="64" fill="#5A4A30"/><path d="M592,112 q-24,-10 -42,13" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M592,112 q-10,-10 -18,9" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M592,112 q4,-10 7,7" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M592,112 q16,-10 28,11" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M592,112 q30,-10 52,15" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="620" y="128" width="4" height="48" fill="#5A4A30"/><path d="M622,128 q-24,-10 -42,13" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M622,128 q-10,-10 -18,9" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M622,128 q4,-10 7,7" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M622,128 q16,-10 28,11" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M622,128 q30,-10 52,15" stroke="#4E5A34" stroke-width="4" fill="none" stroke-linecap="round"/></g><g class="b0707-grass a" fill="none" stroke="#4E5C2E" stroke-width="2" stroke-linecap="round"><path d="M526,262 q-0.0,-20 -0.1,-40"/><path d="M528,262 q-0.7,-20 -1.5,-40"/><path d="M530,262 q-0.8,-20 -1.6,-40"/><path d="M532,262 q-1.6,-20 -3.3,-40"/><path d="M381,262 q0.0,-20 0.0,-39"/><path d="M383,262 q1.8,-20 3.6,-39"/><path d="M385,262 q2.7,-20 5.4,-39"/><path d="M387,262 q2.3,-20 4.6,-39"/><path d="M429,262 q-2.8,-16 -5.6,-32"/><path d="M431,262 q-0.9,-16 -1.7,-32"/><path d="M433,262 q2.5,-16 4.9,-32"/><path d="M435,262 q-0.4,-16 -0.8,-32"/><path d="M436,262 q0.6,-13 1.2,-27"/><path d="M438,262 q-2.0,-13 -3.9,-27"/><path d="M440,262 q2.0,-13 4.0,-27"/><path d="M442,262 q2.2,-13 4.4,-27"/><path d="M12,262 q-2.8,-17 -5.7,-34"/><path d="M14,262 q3.1,-17 6.3,-34"/><path d="M16,262 q-2.3,-17 -4.5,-34"/><path d="M18,262 q-2.6,-17 -5.2,-34"/><path d="M571,262 q-3.4,-17 -6.8,-33"/><path d="M573,262 q-0.2,-17 -0.5,-33"/><path d="M575,262 q2.3,-17 4.6,-33"/><path d="M577,262 q-2.3,-17 -4.7,-33"/><path d="M482,262 q-0.4,-14 -0.8,-27"/><path d="M484,262 q-0.7,-14 -1.5,-27"/><path d="M486,262 q-3.1,-14 -6.2,-27"/><path d="M488,262 q-0.8,-14 -1.5,-27"/><path d="M334,262 q0.3,-17 0.6,-33"/><path d="M336,262 q-2.3,-17 -4.6,-33"/><path d="M338,262 q0.7,-17 1.5,-33"/><path d="M340,262 q-1.5,-17 -2.9,-33"/><path d="M576,262 q1.9,-12 3.9,-24"/><path d="M578,262 q-2.9,-12 -5.8,-24"/><path d="M580,262 q0.4,-12 0.9,-24"/><path d="M582,262 q-1.0,-12 -2.1,-24"/><path d="M294,262 q2.1,-17 4.2,-34"/><path d="M296,262 q-3.5,-17 -6.9,-34"/><path d="M298,262 q2.7,-17 5.4,-34"/><path d="M300,262 q1.1,-17 2.1,-34"/><path d="M66,262 q2.2,-17 4.3,-35"/><path d="M68,262 q-0.9,-17 -1.8,-35"/><path d="M70,262 q2.6,-17 5.3,-35"/><path d="M72,262 q-2.4,-17 -4.7,-35"/><path d="M292,262 q2.3,-13 4.5,-26"/><path d="M294,262 q-1.4,-13 -2.7,-26"/><path d="M296,262 q-1.8,-13 -3.5,-26"/><path d="M298,262 q3.5,-13 7.0,-26"/><path d="M264,262 q1.4,-15 2.8,-30"/><path d="M266,262 q-2.2,-15 -4.5,-30"/><path d="M268,262 q2.2,-15 4.3,-30"/><path d="M270,262 q1.3,-15 2.7,-30"/><path d="M316,262 q2.6,-18 5.3,-36"/><path d="M318,262 q-2.8,-18 -5.6,-36"/><path d="M320,262 q3.2,-18 6.4,-36"/><path d="M322,262 q0.2,-18 0.3,-36"/><path d="M500,262 q3.2,-17 6.5,-34"/><path d="M502,262 q1.9,-17 3.7,-34"/><path d="M504,262 q-1.8,-17 -3.6,-34"/><path d="M506,262 q-2.5,-17 -5.0,-34"/><path d="M256,262 q-1.9,-13 -3.8,-27"/><path d="M258,262 q0.3,-13 0.6,-27"/><path d="M260,262 q0.0,-13 0.0,-27"/><path d="M262,262 q-0.7,-13 -1.4,-27"/><path d="M486,262 q-0.4,-12 -0.8,-25"/><path d="M488,262 q-0.4,-12 -0.8,-25"/><path d="M490,262 q0.8,-12 1.6,-25"/><path d="M492,262 q2.6,-12 5.2,-25"/><path d="M378,262 q0.7,-11 1.3,-22"/><path d="M380,262 q-1.0,-11 -2.0,-22"/><path d="M382,262 q-0.6,-11 -1.1,-22"/><path d="M384,262 q0.5,-11 1.0,-22"/><path d="M141,262 q-0.9,-18 -1.8,-36"/><path d="M143,262 q-0.9,-18 -1.9,-36"/><path d="M145,262 q0.3,-18 0.6,-36"/><path d="M147,262 q-3.1,-18 -6.3,-36"/><path d="M207,262 q-2.7,-20 -5.3,-40"/><path d="M209,262 q-0.8,-20 -1.5,-40"/><path d="M211,262 q1.9,-20 3.8,-40"/><path d="M213,262 q-0.2,-20 -0.4,-40"/><path d="M395,262 q2.4,-19 4.8,-37"/><path d="M397,262 q-0.5,-19 -1.0,-37"/><path d="M399,262 q-1.1,-19 -2.1,-37"/><path d="M401,262 q-3.4,-19 -6.8,-37"/><path d="M476,262 q-0.2,-12 -0.5,-24"/><path d="M478,262 q-2.6,-12 -5.3,-24"/><path d="M480,262 q1.7,-12 3.5,-24"/><path d="M482,262 q-0.3,-12 -0.6,-24"/><path d="M72,262 q-2.9,-16 -5.7,-33"/><path d="M74,262 q-1.1,-16 -2.1,-33"/><path d="M76,262 q-1.5,-16 -3.0,-33"/><path d="M78,262 q1.8,-16 3.6,-33"/><path d="M385,262 q-1.2,-13 -2.3,-26"/><path d="M387,262 q-0.4,-13 -0.7,-26"/><path d="M389,262 q2.3,-13 4.6,-26"/><path d="M391,262 q-1.1,-13 -2.1,-26"/><path d="M483,262 q-2.7,-12 -5.3,-23"/><path d="M485,262 q1.9,-12 3.9,-23"/><path d="M487,262 q-1.0,-12 -1.9,-23"/><path d="M489,262 q-3.2,-12 -6.4,-23"/><path d="M128,262 q-2.9,-15 -5.8,-30"/><path d="M130,262 q-0.9,-15 -1.7,-30"/><path d="M132,262 q3.5,-15 6.9,-30"/><path d="M134,262 q-3.0,-15 -5.9,-30"/></g><g class="b0707-grass b" fill="none" stroke="#6E7A3E" stroke-width="2" stroke-linecap="round"><path d="M227,262 q-2.4,-10 -4.9,-20"/><path d="M229,262 q3.1,-10 6.3,-20"/><path d="M231,262 q-1.6,-10 -3.1,-20"/><path d="M233,262 q-2.1,-10 -4.3,-20"/><path d="M282,262 q-0.2,-8 -0.4,-17"/><path d="M284,262 q-2.3,-8 -4.5,-17"/><path d="M286,262 q-0.0,-8 -0.1,-17"/><path d="M288,262 q-2.5,-8 -5.0,-17"/><path d="M555,262 q1.0,-12 2.0,-23"/><path d="M557,262 q-1.9,-12 -3.9,-23"/><path d="M559,262 q-3.2,-12 -6.4,-23"/><path d="M561,262 q-1.8,-12 -3.6,-23"/><path d="M322,262 q-2.2,-8 -4.4,-16"/><path d="M324,262 q3.0,-8 6.0,-16"/><path d="M326,262 q-1.4,-8 -2.9,-16"/><path d="M328,262 q-2.2,-8 -4.4,-16"/><path d="M519,262 q0.4,-10 0.8,-20"/><path d="M521,262 q0.2,-10 0.3,-20"/><path d="M523,262 q-0.0,-10 -0.1,-20"/><path d="M525,262 q-3.2,-10 -6.4,-20"/><path d="M438,262 q2.5,-10 5.0,-21"/><path d="M440,262 q3.3,-10 6.6,-21"/><path d="M442,262 q-0.9,-10 -1.8,-21"/><path d="M444,262 q2.5,-10 5.0,-21"/><path d="M608,262 q-1.5,-9 -2.9,-18"/><path d="M610,262 q2.9,-9 5.7,-18"/><path d="M612,262 q2.6,-9 5.2,-18"/><path d="M614,262 q-2.0,-9 -4.0,-18"/><path d="M135,262 q-2.9,-14 -5.8,-28"/><path d="M137,262 q-2.2,-14 -4.4,-28"/><path d="M139,262 q-2.3,-14 -4.6,-28"/><path d="M141,262 q-1.5,-14 -3.1,-28"/><path d="M289,262 q-2.1,-9 -4.2,-18"/><path d="M291,262 q3.4,-9 6.8,-18"/><path d="M293,262 q-0.2,-9 -0.3,-18"/><path d="M295,262 q-0.2,-9 -0.5,-18"/><path d="M188,262 q0.8,-15 1.6,-30"/><path d="M190,262 q-0.1,-15 -0.2,-30"/><path d="M192,262 q-2.6,-15 -5.1,-30"/><path d="M194,262 q1.6,-15 3.2,-30"/><path d="M218,262 q-2.6,-14 -5.1,-29"/><path d="M220,262 q0.5,-14 1.1,-29"/><path d="M222,262 q1.9,-14 3.8,-29"/><path d="M224,262 q0.8,-14 1.6,-29"/><path d="M613,262 q1.4,-15 2.9,-30"/><path d="M615,262 q-3.0,-15 -6.0,-30"/><path d="M617,262 q3.0,-15 6.0,-30"/><path d="M619,262 q0.0,-15 0.0,-30"/><path d="M234,262 q-3.4,-10 -6.7,-20"/><path d="M236,262 q-2.1,-10 -4.2,-20"/><path d="M238,262 q-2.1,-10 -4.3,-20"/><path d="M240,262 q-1.8,-10 -3.5,-20"/><path d="M503,262 q-1.7,-9 -3.5,-18"/><path d="M505,262 q0.6,-9 1.2,-18"/><path d="M507,262 q-2.6,-9 -5.2,-18"/><path d="M509,262 q2.0,-9 4.0,-18"/><path d="M3,262 q-2.4,-11 -4.7,-22"/><path d="M5,262 q-3.1,-11 -6.2,-22"/><path d="M7,262 q1.1,-11 2.2,-22"/><path d="M9,262 q0.2,-11 0.5,-22"/><path d="M312,262 q-0.9,-10 -1.8,-21"/><path d="M314,262 q-2.8,-10 -5.7,-21"/><path d="M316,262 q-3.3,-10 -6.6,-21"/><path d="M318,262 q-0.1,-10 -0.2,-21"/><path d="M439,262 q0.1,-10 0.1,-20"/><path d="M441,262 q0.0,-10 0.1,-20"/><path d="M443,262 q-0.7,-10 -1.5,-20"/><path d="M445,262 q-2.0,-10 -3.9,-20"/><path d="M356,262 q-0.4,-10 -0.9,-21"/><path d="M358,262 q2.0,-10 4.0,-21"/><path d="M360,262 q0.7,-10 1.4,-21"/><path d="M362,262 q2.0,-10 4.1,-21"/><path d="M495,262 q-2.2,-12 -4.3,-24"/><path d="M497,262 q2.6,-12 5.1,-24"/><path d="M499,262 q0.0,-12 0.1,-24"/><path d="M501,262 q2.2,-12 4.5,-24"/><path d="M49,262 q0.6,-13 1.2,-25"/><path d="M51,262 q2.4,-13 4.8,-25"/><path d="M53,262 q1.6,-13 3.2,-25"/><path d="M55,262 q2.2,-13 4.3,-25"/><path d="M351,262 q1.4,-15 2.8,-29"/><path d="M353,262 q-2.4,-15 -4.7,-29"/><path d="M355,262 q3.3,-15 6.6,-29"/><path d="M357,262 q-1.6,-15 -3.1,-29"/><path d="M139,262 q2.1,-10 4.3,-20"/><path d="M141,262 q0.8,-10 1.6,-20"/><path d="M143,262 q0.4,-10 0.7,-20"/><path d="M145,262 q-1.7,-10 -3.5,-20"/></g></svg>
   </div>
 
   <div class="hero-headline-strip serif">Slavery in the Colonies and African American Life in the Colonial Era</div>
@@ -2677,7 +4160,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 18 · Q3</div>
     </div>
   </div>
@@ -2692,7 +4174,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Honesty</div>
     </div>
   </div>
@@ -2700,27 +4181,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.4.1 · SS.5.A.4.2 · SS.5.A.4.6 · SS.5.AA.1.1 · SS.5.AA.1.6 · TEKS 4(E), 11(B), 21(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 35 · Circulation 1500 · <em>Colonial coverage — slavery and African American life</em>
+      Vol. 1 · Issue 35 · Readers: 1,500 · <em>Colonial coverage — slavery and African American life</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2732,20 +4203,18 @@ html, body {
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">1500</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — The Gazette honors the stories of enslaved Africans and African Americans who built the colonies with their labor and maintained their humanity against impossible odds.
+        — The Gazette honors the stories of enslaved Africans and African Americans, who did much of the work that built the colonies and kept their humanity against very hard odds.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2768,11 +4237,6 @@ html, body {
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
@@ -2784,7 +4248,7 @@ html, body {
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that the triangular trade was not ordinary business — it was a system built on the forced transport of millions of Africans. Over 12 million people were forcibly taken from their homes. The Herald tried to hide this by calling it ordinary; our editors insisted on naming the human cost. Last issue’s Archive Line asked what future citizens should remember about the triangular trade.
+      The Gazette showed that the triangular trade was not ordinary business — it was a system built on the forced transport of millions of Africans. About 12.5 million Africans were forced onto slave ships. The Herald tried to hide this by calling it ordinary; our editors insisted on naming the harm done to people. Last issue’s Archive Line asked what future citizens should remember about the triangular trade.
     </div>
   </div>
 </div>
@@ -2793,25 +4257,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.07.07</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined the triangular trade and the Middle Passage. Now we look deeper: <em>5.07.07 — Slavery in the Colonies and African American Life in the Colonial Era</em>. This dispatch arrives at the <strong>Front Page Desk</strong>. Slavery was not just a labor system — it was a system that denied human dignity to millions of people. Yet enslaved Africans and African Americans resisted, built families, created culture, and maintained their humanity. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
+      <p>Last issue, the Gazette examined the triangular trade and the Middle Passage. Now we look deeper: <em>5.07.07 — Slavery in the Colonies and African American Life in the Colonial Era</em>. This dispatch arrives at the <strong>Front Page Desk</strong>. Slavery was not just a labor system (a way of getting work done). It took away the <strong>dignity</strong>, the respect every person deserves, of millions of people. Yet enslaved Africans and African Americans resisted, raised families, made music and stories, and kept their humanity. <strong>The Hasty Herald</strong> has already rushed its version to print.</p>
     </div>
   </div>
 
@@ -2821,14 +4278,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Can slavery be summarized as labor — or does an honest account have to center the humanity, resistance, and achievements of enslaved people and African Americans?</p>
       </div>
     </div>
@@ -2842,8 +4296,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Explain that slavery was about denying human dignity, not just demanding labor.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Identify ways enslaved people resisted slavery and maintained their humanity and culture.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Support a claim that enslaved people deserve to be remembered as human beings with agency, not just as laborers.</div>
@@ -2874,7 +4326,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-07-welcome -->
@@ -2892,25 +4343,19 @@ html, body {
   <div class="todays-path">
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
-      <!-- ✏️ Step 1 — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Explore slavery and African American resilience & spotlight honesty</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>📍 Put back what the Herald cut</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study a source about enslaved African Americans</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Read the laws, how people answered, and a real photo</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
       <span class="todays-path-step"><span class="todays-path-step-num">3</span>📝 Publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Honesty ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>Honesty means reporting who people actually were — not just the labor extracted from them, but their agency, their resistance, and their humanity.</strong> Today, honesty means centering the voices and experiences of enslaved people and African Americans themselves.
+      <strong>Honesty means reporting who people really were: not just the work forced out of them, but their power to make their own choices, their resistance, and their humanity.</strong> Today, honesty means putting the lives of enslaved people and African Americans at the center of the story.
     </div>
   </div>
 
@@ -2920,19 +4365,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Colonial Slavery: Just a Labor System!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Colonial slavery can be summarized as labor without discussing human dignity.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Study the evidence and decide: was slavery just about labor — or was it a system designed to destroy human dignity, against which enslaved people constantly resisted?
+      <strong>Your job, junior editor:</strong> Study the evidence and decide: was slavery just about work, or was it a system built to take away people’s dignity, one that enslaved people resisted again and again?
     </div>
   </div>
 
@@ -2940,10 +4379,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to gather the evidence about slavery and African American life in the colonies — and publish a <strong>Front Page Brief</strong> that honors the humanity, resilience, and resistance of enslaved people.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to gather the evidence about slavery and African American life in the colonies — and publish a <strong>Front Page Brief</strong> (a short front-page news story) that honors the humanity, courage and resistance of enslaved people.
     </div>
   </div>
 
@@ -2954,19 +4390,11 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Honesty</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
-        "What do we notice about how slavery denied human dignity, what evidence of resistance and resilience emerges from the sources, and why does it matter that we report enslaved people’s own humanity and agency?"
+        "What do we notice about how slavery denied human dignity, what evidence of resistance and resilience emerges from the sources, and why does it matter that we report enslaved people’s own humanity and their power to make choices?"
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
         Keep this question on your desk as you investigate. An honest editor never reduces human beings to their labor.
       </div>
     </div>
@@ -2977,18 +4405,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-07-explore-explainer -->
@@ -2997,18 +4415,15 @@ html, body {
     <div class="video-placeholder-title">At the Front Page Desk: Slavery in the Colonies and African American Life in the Colonial Era</div>
     <div class="video-placeholder-filename">5-07-07-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Cover: (1) Slavery as a system of oppression, not just labor: it denied freedom, dignity, legal rights, and humanity. Laws were written to make slavery hereditary and to deny enslaved people literacy and legal protection. (2) Forms of resistance: running away, rebellion (Stono Rebellion, Nat Turner), refusing to obey, slowing work pace, maintaining family bonds. (3) Cultural resilience: music, language, religion, storytelling, and family traditions preserved despite forced separation. (4) Free African Americans: some in the North and even in the South owned property and had relative autonomy, though always vulnerable to re-enslavement. (5) The continuum of freedom: even enslaved people found ways to maintain dignity and build lives within impossible constraints. 4-5 minutes.
+      <strong>Teacher recording notes:</strong> Cover: (1) Slavery as a system of oppression, not just labor: it denied freedom, dignity, legal rights, and humanity. Laws were written to make slavery hereditary (Virginia, 1662) and to deny enslaved people legal protection; South Carolina's 1740 law banned teaching enslaved people to write. (2) Forms of resistance: running away, rebellion (Stono Rebellion, 1739; New York City, 1712), refusing to obey, slowing work pace, maintaining family bonds. (Nat Turner's rebellion was in 1831, after the colonial era.) (3) Cultural resilience: African songs and drumming, language (Gullah), religion, storytelling, and family traditions preserved despite forced separation. (Spirituals grew up mostly later.) (4) Free African Americans: some in the North and even in the South owned property and had relative autonomy, though always vulnerable to re-enslavement. (5) The continuum of freedom: even enslaved people found ways to maintain dignity and build lives within impossible constraints. 4-5 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Front Page Desk</div>
       <!-- Subtitle reflects what the desk does:
            Front Page Desk: "Where junior editors gather the facts and write the brief."
@@ -3028,61 +4443,66 @@ html, body {
   -->
   <div class="content-section">
     <h2>📚 Slavery Denied Dignity; Enslaved People Resisted</h2>
-    <!-- ✏️ Replace with 1-3 short paragraphs of explanation, fifth-grade reading level.
-         Use concrete American-history examples. Connect back to the Herald's claim. -->
-    <p>Slavery in colonial America was not simply a labor system — it was designed to destroy human dignity. Laws made slavery hereditary: the children of enslaved mothers were born into slavery. Many colonies banned enslaved people from learning to read or assemble freely. Families were separated at auction. Whipping and violence enforced obedience. The system treated human beings as property to be bought and sold.</p>
-    <p>Yet enslaved Africans and African Americans resisted constantly. Some ran away, seeking freedom in the North or even crossing into Spanish Florida where slavery laws were different. Others staged rebellions, like the Stono Rebellion (1739) in South Carolina. Many refused to work at full speed, slowed down deliberately, or broke tools. Within impossible constraints, they maintained family bonds, created music and spirituals that carried meaning and hope, and kept cultural traditions alive through language, storytelling, and religious practice. Free African Americans existed in some colonies, especially in the North, owning property and maintaining relative autonomy, though always at risk. An honest account of slavery must include the humanity, agency, and resistance of enslaved people themselves.</p>
+    <p>Slavery in colonial America was not just a way of getting work done. It was built to take away people’s freedom and <strong>dignity</strong>, the respect every person deserves. A 1662 Virginia law said a child born to an enslaved mother was enslaved for life, so slavery passed from parent to child. Laws in 1705 called enslaved people <strong>property</strong>, to be bought and sold. After 1740, South Carolina made it a crime for enslaved people to gather in groups or use drums, and for anyone to teach them to write (Georgia copied much of this law in 1755). No colony’s law protected an enslaved family, so families could be sold apart. Whipping and violence were used to force obedience. By 1750, slavery was legal in all thirteen colonies, North and South.</p>
+    <p>Yet enslaved Africans and African Americans <strong>resisted</strong> (pushed back) again and again. Some worked slowly, broke tools or pretended to be sick. Many ran away, some all the way to Spanish Florida. In 1739, about 20 enslaved men started the Stono <strong>Rebellion</strong> (an uprising) in South Carolina and marched south toward Florida, calling out “Liberty!” People in New York City rose up in 1712. Through all of it, people kept their families together when they could, and kept African songs, drumming, stories, prayers and words alive. On the South Carolina and Georgia coast they shaped the Gullah language. Some Black colonists were free, like Anthony Johnson, who owned a farm in Virginia in the 1650s, though a free Black person’s freedom was never fully safe. An honest account of slavery has to include the humanity, the choices and the resistance of enslaved people themselves.</p>
 
     <!-- System of oppression vs Acts of resistance grid -->
     <div class="source-comparison-grid">
       <div class="source-type-card primary">
         <div class="source-type-label">⚠️ System of Oppression</div>
         <div class="source-type-name">How Slavery Denied Dignity</div>
-        <div class="source-type-defn">Slavery was designed to strip human beings of freedom, rights, and dignity through laws, violence, and systematic control.</div>
+        <div class="source-type-defn">Slavery was built to take freedom, rights and dignity away from human beings, using laws, violence and control over every part of life.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Hereditary slavery (children born enslaved) · Banned literacy and assembly · Family separation at auction · Violence and whipping · Treated as property, not people
+          Slavery passed from parent to child (Virginia, 1662) · Treated as property (1705) · Banned from gathering in groups, using drums or learning to write (South Carolina, 1740) · Families sold apart at an auction (a public sale) · Violence and whipping
         </div>
       </div>
       <div class="source-type-card secondary">
         <div class="source-type-label">🌟 Acts of Resistance</div>
         <div class="source-type-name">How Enslaved People Resisted</div>
-        <div class="source-type-defn">Enslaved Africans and African Americans resisted oppression and maintained humanity through rebellion, escape, and cultural resilience.</div>
+        <div class="source-type-defn">Enslaved Africans and African Americans pushed back against cruel, unfair control and kept their humanity: they rose up, escaped, and kept their culture alive.</div>
         <div class="source-type-examples">
           <span class="source-type-examples-label">Evidence</span>
-          Running away · Rebellions (Stono, Nat Turner) · Slowing work pace · Maintaining family bonds · Creating music and spirituals · Preserving cultural traditions
+          Running away · Rebellions (Stono, 1739; New York City, 1712) · Working slowly · Keeping families connected · African songs, drumming and stories · The Gullah language
         </div>
       </div>
     </div>
 
-    <!-- ✏️ Optional closing paragraph that connects content back to the Herald's claim and today's virtue. -->
-    <p>The Hasty Herald called slavery just labor. But slavery was fundamentally about denying human dignity to millions of people. And enslaved people were not passive victims — they resisted in countless ways and maintained their humanity against terrible odds. An honest editor reports both the cruelty of the system and the courage of those who endured and resisted it.</p>
+    <p>The Hasty Herald called slavery just labor. But slavery took away the dignity of millions of people. And enslaved people were not people who just gave up: they resisted in many ways and kept their humanity against terrible odds. An honest editor reports both the cruelty of slavery and the courage of the people who lived through it and resisted it.</p>
+
+    <h3>🌴 African Americans in Early Florida</h3>
+    <p>Some enslaved people found a road to freedom to the south. In 1693, the king of Spain promised freedom to people who escaped from the English colonies and reached Spanish Florida, if they became Catholic (joined the Catholic Church) and helped defend the colony. In 1738 they built <strong>Fort Mose</strong>, about two miles north of St. Augustine. It was the first legally free Black settlement in what is now the United States. Its captain, Francisco Menéndez, had escaped slavery in Carolina himself.</p>
+    <p>Later, many people who escaped slavery joined the Seminole people, a Native American nation in Florida. They became known as <strong>Black Seminoles</strong>, living, farming, and fighting alongside the Seminoles.</p>
   </div>
 
   <!-- SOURCE STUDY IMAGE (or map / artifact / portrait depending on lesson) -->
-    <div class="content-section">
-      <h2>🌴 African Americans in Early Florida</h2>
-      <p>Some enslaved people found a road to freedom to the south. Spanish Florida promised freedom to people who escaped from the English colonies if they became Catholic and helped defend the colony. In 1738 they built <strong>Fort Mose</strong>, near St. Augustine. It was the first legally free Black settlement in what is now the United States.</p>
-      <p>Later, many people who escaped slavery joined the Seminole people in Florida's wilderness. They became known as <strong>Black Seminoles</strong>, living, farming, and fighting alongside the Seminoles.</p>
-    </div>
 
   <div class="content-section">
-    <h2>🔎 Slavery and Human Dignity: A System of Oppression and Resistance</h2>
-    <p>Look at this source carefully. Notice what it reveals about the lives of enslaved Africans and African Americans. Think about what makes them human: their families, their culture, their resistance, their survival.</p>
+    <h2>🔎 A Real Photo From 1860</h2>
+    <p>This photo card was made around 1860 by two photographers in Charleston, South Carolina. It shows the quarters (homes) of enslaved people on a plantation. Look carefully, and notice the people and their homes. Then ask: this was taken about 85 years after colonial times, so what can it show about the colonial era, and what can’t it?</p>
 
     <div class="source-image-frame">
-      <!-- ✏️ data-image MUST match the saved filename in your G5 GitHub /images folder
-           (without extension). Pattern: source-5-XX-XX-[descriptor].
-           The autoloader will try .jpg → .png → .jpeg → .webp. -->
       <div class="source-image-placeholder" data-image="source-5-07-07-colonial-african-american">
-        🖼️ <strong>Image placeholder:</strong> Historical illustration or museum photograph related to enslaved African Americans in colonial America (handled with sensitivity; educational context).<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-07-07-colonial-african-american.jpg</code>
+        🖼️ <strong>Photo:</strong> Osborn &amp; Durbec, “Plantation no. 3,” a stereograph (two photos side by side that look 3D in a viewer), about 1860. Library of Congress, no known restrictions.
       </div>
       <div class="source-image-caption">
-        <em>What does this source reveal about the lives and experiences of enslaved Africans and African Americans — beyond just the labor they performed?</em>
+        <em>What does this photo show about the lives of enslaved people beyond their work, and what can’t a photo from 1860 show about colonial times?</em><br><small style="font-style:normal;opacity:.85">Osborn &amp; Durbec, “Plantation no. 3 Slave quarters,” about 1860. Library of Congress (LC-DIG-stereo-1s03915). We trimmed the black border around the card.</small>
       </div>
     </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>dign</em> means “worthy”</h2>
+    <p>Many English words come from the Latin word <strong>dignus</strong>, which means <strong>worthy</strong> (deserving respect). You can spot it as <strong>dign</strong>.</p>
+    <ul>
+      <li><strong>dignity</strong> (dign + ity): being worthy of respect, just for being human</li>
+      <li><strong>dignified</strong> (dign + ified): calm and worthy of respect</li>
+      <li><strong>indignant</strong> (in + dign + ant): angry about something unfair</li>
+      <li><strong>indignity</strong> (in + dign + ity): treatment that takes away a person’s dignity</li>
+    </ul>
+    <p><strong>Discovery:</strong> Slavery laws treated people as property, an indignity. But no law could make a person less worthy. That is why an honest editor writes about dignity, not just work.</p>
+    <p><em>Try it: use the word <strong>dignity</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <!-- REFLECTION PROMPTS — 2-3 short-answer questions (feed Gathered Answers on Tab 4) -->
@@ -3092,7 +4512,6 @@ html, body {
       Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
     </p>
 
-    <!-- ✏️ Q1 — Concrete observation/example question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">1</span>
@@ -3102,7 +4521,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q1" data-label="Q1 — Denial of dignity" placeholder="Slavery systems denied dignity by..." oninput="autoSave(this, 'dot-q1')"></textarea>
     </div>
 
-    <!-- ✏️ Q2 — Application / comparison / explanation question -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">2</span>
@@ -3112,7 +4530,6 @@ html, body {
       <textarea class="reflection-textarea" id="journal-q2" data-label="Q2 — Resistance" placeholder="Enslaved people resisted by..." oninput="autoSave(this, 'dot-q2')"></textarea>
     </div>
 
-    <!-- ✏️ Q3 — "What did the Herald miss?" question — pattern is consistent across lessons -->
     <div class="reflection-q">
       <div class="reflection-q-label">
         <span class="reflection-q-num">3</span>
@@ -3129,10 +4546,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3141,14 +4554,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3180,7 +4585,7 @@ html, body {
       <span class="factcheck-q-text">What is an example of enslaved people resisting slavery?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
         <span class="factcheck-option-letter">A</span>
         <span>The Stono Rebellion and running away, as well as slowing work pace and maintaining cultural traditions</span>
       </div>
@@ -3188,7 +4593,7 @@ html, body {
         <span class="factcheck-option-letter">B</span>
         <span>Enslaved people never resisted because they were powerless</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
         <span>The only form of resistance was asking politely for freedom</span>
       </div>
@@ -3225,7 +4630,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3247,21 +4651,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-07-assignment-explainer -->
@@ -3291,18 +4682,14 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
-          <span>(1) A clear claim about slavery and dignity. (2) Evidence of how slavery denied dignity AND how enslaved people resisted. (3) Why this matters — what should readers understand about enslaved people’s humanity and agency?</span>
+          <span>(1) A clear claim about slavery and dignity. (2) Evidence of how slavery denied dignity AND how enslaved people resisted. (3) Why this matters: what should readers understand about enslaved people as human beings who made their own choices?</span>
         </div>
 
         <textarea class="gazette-body-input" id="brief-body" data-label="Front Page Brief" placeholder="Slavery was not just labor; it was a system that denied human dignity. Yet enslaved people resisted by..."></textarea>
@@ -3316,9 +4703,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about slavery in the colonies and african american life in the colonial era.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3347,8 +4731,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and front page brief</span></div>
@@ -3363,32 +4745,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 35 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> You reported on slavery and African American resilience with honesty and courage — the Gazette’s readers now see enslaved people as human beings with agency, dignity, and resistance, not just as laborers.
+      <strong>Well done, Junior Editor.</strong> You reported on slavery and African American resilience with honesty and courage — the Gazette’s readers now see enslaved people as human beings with dignity, courage and their own choices, not just as workers.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.07.08) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Colonial Region Comparison</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
       A new dispatch arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that one colonial region can stand for all thirteen colonies. Editors, sharpen your pencils.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-07-07-closing -->
@@ -4020,5 +5391,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

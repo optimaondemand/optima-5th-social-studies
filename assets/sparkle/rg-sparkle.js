@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers   (explore.tworec: optional, sits inside the picture step)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips   (explore.tworec: optional, after the picture; explore.stereo: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -847,6 +847,110 @@
     return {el:g,done:done,state:function(){ return {note:st.w||''}; },
       journal:function(e,NA){ if(!st.w) return NA; return '<p class="a"><b>Two records of one voyage:</b> '+e(st.w)+'</p>'; }}; };
 
+  /* ---------------------------------------------------------------- clip: the Herald's story with the people cut out; tap a snippet on the cutting-room floor, then the gap it was cut from; the clipping re-inks line by line; then seal a question
+     DATA.scene1 = {type:'clip', title, job, q, head, floorT, gapT, lines:[{h, gap}], snips:[{id,t,who,say,hint,calm}], close, seal:{q,opts,reveal}, sealed, srcLabel, heraldFrom} */
+  MOD.clip=function(c,anchor){ var st=mstate('clip',{put:{}}); if(!st.put) st.put={}; var LN=c.lines||[], SN=c.snips||[], N=LN.length;
+    var g=gameShell('rg-clip','Dispatch · the cut clipping',c.title||'What did the Herald cut?',c);
+    g.innerHTML+=(c.q?'<p class="rg-cl-q">'+esc(c.q)+'</p>':'')+
+      '<div class="rg-cl-paper"><div class="rg-cl-mast">The Hasty Herald</div><div class="rg-cl-head">'+esc(c.head||'')+'</div><div class="rg-cl-body"></div></div>'+
+      '<div class="rg-cl-floor"><div class="hd">✂ '+esc(c.floorT||'On the cutting-room floor')+'</div><div class="rg-cl-snips" role="group" aria-label="Snippets the Herald cut out"></div><p class="say" aria-live="polite"></p></div>'+
+      '<div class="rg-cl-count" aria-live="polite"></div><div class="rg-ads-seal rg-cl-seal"></div>';
+    after(anchor,g);
+    function snip(id){ return SN.filter(function(s){ return s.id===id; })[0]||{}; }
+    function nPut(){ return LN.filter(function(l){ return st.put[l.gap]; }).length; }
+    function paint(){ var n=nPut();
+      $('.rg-cl-body',g).innerHTML=LN.map(function(l,i){ var s=snip(l.gap), on=!!st.put[l.gap]; return '<div class="rg-cl-line'+(on?' inked':'')+(s.calm?' calm':'')+'" data-id="'+esc(l.gap)+'"><span class="rg-cl-h">'+esc(l.h)+'</span> '+(on?'<span class="rg-cl-cut">'+esc(s.t)+'</span>':'<button type="button" class="drop rg-cl-gap" data-k="'+esc(l.gap)+'"><span aria-hidden="true">✂ </span>'+esc(c.gapT||'something was cut here')+'<span class="rg-sr"> (gap '+(i+1)+' of '+N+': put the chosen snippet here)</span></button>')+'</div>'; }).join('');
+      var left=SN.filter(function(s){ return !st.put[s.id]; });
+      $('.rg-cl-snips',g).innerHTML=left.length?left.map(function(s){ return '<button type="button" class="rg-card'+(s.calm?' calm':'')+'" draggable="true" data-id="'+esc(s.id)+'" aria-pressed="false">'+esc(s.t)+'</button>'; }).join(''):'<p class="rg-todo">✓ '+esc(c.floorDone||'The floor is clear. Every snippet is back in the story.')+'</p>';
+      $('.rg-cl-floor',g).classList.toggle('empty',!left.length);
+      $('.rg-cl-count',g).innerHTML=n<N?'<p class="rg-todo">✂ <b>'+n+' of '+N+'</b> snippets pasted back.</p>':(c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':'');
+      var sb=$('.rg-cl-seal',g), S1=c.seal||{};
+      if(n<N){ sb.innerHTML=''; delete sb.dataset.on; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(S1.q||'')+'</legend>'+(S1.opts||[]).map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-cl-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock">🔒 Seal my answer</button><div class="rg-ads-env"></div>';
+        $$('input[name="rg-cl-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-ads-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-cl-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-ads-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Sealed':st.guess==null?'🔒 Pick an answer to seal it':'🔒 Seal my answer';
+      $('.rg-ads-env',sb).innerHTML=st.locked?'<div class="rg-envelope"><span class="seal">G</span><div><b>Sealed: “'+esc((S1.opts||[])[st.guess])+'”</b> '+esc(c.sealed||'')+'</div></div>':'';
+      g.classList.toggle('finished',!!st.locked); }
+    dragTap(g,'.rg-cl-snips .rg-card','.rg-cl-gap',function(card,gap){ var id=card.dataset.id, s=snip(id), sy=$('.rg-cl-floor .say',g);
+      if(gap.dataset.k!==id){ card.classList.add('bounce'); setTimeout(function(){ card.classList.remove('bounce'); },450); SFX.bounce(); sy.textContent=s.hint||'Read the Herald’s sentence just before that gap. Is this snippet about the same thing?'; return; }
+      st.put[id]=true; save(); if(s.calm) SFX.soft(); else SFX.paper(); sy.textContent=s.say||''; paint(); refreshPress();
+      var f=$('.rg-cl-snips .rg-card',g)||$('input[name="rg-cl-q"]',g); if(f) f.focus({preventScroll:true}); });
+    paint();
+    function line(){ var S1=c.seal||{}; return st.locked?'Before the Desk, I sealed this answer: “'+((S1.opts||[])[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },snip:snip,
+      journal:function(e,NA){ if(!nPut()) return NA; return '<p class="a"><b>What the Herald cut:</b> '+e(LN.filter(function(l){ return st.put[l.gap]; }).map(function(l){ return snip(l.gap).t; }).join(' · '))+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ var S1=c.seal||{}; return {locked:!!st.locked, line:line(), guess:st.locked?(S1.opts||[])[st.guess]:'', built:LN.filter(function(l){ return st.put[l.gap]; }).map(function(l){ return snip(l.gap).who||l.gap; }), vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- flips: "The law said / People answered", one card at a time; read the law, flip to see how people answered, answer one question; Herald fact-checks pop in after chosen cards
+     DATA.explore.reading = {type:'flips', title, job, times:[lawLabel, answerLabel], cols:[{id,n,icon,short,who,year,place,lawSrc,lines:[law, answer],fact,ask,opts:[{t,ok,say}],calm}],
+       myths:[{after,claim,fact,calm}], miniAfter, flipT, close, srcLabel} */
+  MOD.flips=function(c,anchor){ var st=mstate('sun',{stop:0,myth:{},ans:{},flip:{}}); if(!st.ans) st.ans={}; if(!st.myth) st.myth={}; if(!st.flip) st.flip={}; if(!(st.stop>=0)) st.stop=0;
+    var L=c.cols||[], N=L.length, TM=c.times||['The law said','People answered'];
+    var g=gameShell('rg-flips','The Desk · the law said, people answered',c.title||'The law said. People answered.',c);
+    g.innerHTML+='<ol class="rg-fp-tabs" aria-label="The cards"></ol><div class="rg-fp-desk" aria-live="polite"></div><div class="rg-fp-nav"><button type="button" class="rg-btn rg-fp-next"></button></div><div class="rg-myths"></div><div class="rg-sun-close"></div>';
+    after(anchor,g);
+    var view=Math.min(st.stop,N-1), desk=$('.rg-fp-desk',g), nextB=$('.rg-fp-next',g), mythBox=$('.rg-myths',g);
+    function idx(id){ return L.map(function(x){ return x.id; }).indexOf(id); }
+    function ans(i){ return L[i]&&st.ans[L[i].id]!=null; }
+    function mythsFor(i){ return (c.myths||[]).map(function(m,k){ return [m,k]; }).filter(function(p){ return p[0].after===L[i].id; }); }
+    function cleared(i){ return ans(i)&&mythsFor(i).every(function(p){ return st.myth[p[1]]; }); }
+    function cardHTML(i){ var x=L[i], a=st.ans[x.id], f=!!st.flip[x.id], O=x.opts||[], ok=O.filter(function(o){ return o.ok; })[0]||{};
+      return '<article class="rg-link rg-fp-card'+(x.calm?' calm':'')+(f?' flipped':'')+'" data-id="'+esc(x.id)+'">'+
+        '<section class="rg-fp-law"><div class="k"><span aria-hidden="true">📜</span> '+esc(TM[0])+(x.year?' · '+esc(x.year):'')+'</div><b>'+esc(x.place||'')+'</b><p class="rg-link-line" data-i="0">'+esc(x.lines[0]||'')+'</p>'+(x.lawSrc?'<small>'+esc(x.lawSrc)+'</small>':'')+'</section>'+
+        '<section class="rg-fp-ans">'+(f?'<div class="k"><span aria-hidden="true">'+esc(x.icon||'✊')+'</span> '+esc(TM[1])+'</div><b>'+esc(x.who||'')+'</b><p class="rg-link-line" data-i="1">'+esc(x.lines[1]||'')+'</p>'+(x.fact?'<p class="rg-fp-fact">'+esc(x.fact)+'</p>':'')+
+          (a==null?'<fieldset class="rg-ad-q"><legend>'+esc(x.ask||'What does this show?')+'</legend>'+O.map(function(o,k){ return '<label class="rg-radio"><input type="radio" name="rg-fp-'+esc(x.id)+'" value="'+k+'"> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>':
+            '<p class="say '+((O[a]||{}).ok?'ok':'no')+'">'+((O[a]||{}).ok?'✓ ':'')+esc((O[a]||{}).say||'')+((O[a]||{}).ok?'':' <b>'+esc(ok.t||'')+'.</b>')+'</p>')
+          :'<button type="button" class="rg-fp-flip"><span class="ic" aria-hidden="true">↻</span> '+esc(c.flipT||'Flip the card: how did people answer?')+'</button>')+'</section></article>'; }
+    function paint(){
+      $('.rg-fp-tabs',g).innerHTML=L.map(function(x,i){ var can=i<=st.stop; return '<li><button type="button" data-v="'+i+'" class="'+(i===view?'on ':'')+(ans(i)?'ok':'')+'"'+(can?'':' disabled')+' aria-pressed="'+(i===view)+'" aria-label="Card '+(i+1)+': '+esc(x.short||x.place)+(can?'':' (not open yet)')+'"><span class="n">'+esc(x.n||String(i+1))+'</span><span class="t">'+esc(x.short||x.place)+'</span></button></li>'; }).join('');
+      desk.innerHTML=cardHTML(view);
+      $$('input[type=radio]',desk).forEach(function(r){ r.addEventListener('change',function(){ var x=L[view]; if(st.ans[x.id]!=null) return; st.ans[x.id]=+r.value; save(); if(x.calm) SFX.soft(); else (((x.opts||[])[+r.value]||{}).ok?SFX.chime():SFX.soft()); paint(); refreshPress(); if(done()) beat('sunDone');
+        var mb=$('.rg-myth:not(.done) button[data-a="check"]',g); if(mb) mb.focus({preventScroll:true}); else if(!nextB.disabled) nextB.focus({preventScroll:true}); }); });
+      var cur=cleared(st.stop), last=st.stop>=N-1; nextB.disabled=view===st.stop&&(!cur||last); nextB.classList.toggle('rg-hide',view===st.stop&&last&&cur);
+      nextB.textContent=view<st.stop?'Back to card '+(st.stop+1)+' ▸':!ans(st.stop)?(c.lockedT||'Flip the card and answer its question to go on'):!cur?(c.mythT||'Fact-check the Herald below to go on'):'Next card ▸';
+      mythBox.innerHTML=(c.myths||[]).filter(function(m){ var i=idx(m.after); return i>-1&&ans(i); }).map(function(m){ var i=(c.myths||[]).indexOf(m), d=st.myth[i]; return '<div class="rg-myth'+(d?' done':'')+(m.calm?' calm':'')+'" data-i="'+i+'"><div class="clip"><span class="h">The Hasty Herald</span><p>“'+esc(m.claim)+'”</p></div>'+(d?'<div class="fact"><div><b>Fact-check:</b> '+esc(m.fact)+'</div></div>':'<div class="act"><button type="button" class="rg-btn alt" data-a="print">🖨 Print it</button><button type="button" class="rg-btn" data-a="check">🔍 Fact-check it</button><span class="say"></span></div>')+'</div>'; }).join('');
+      var mi=idx(c.miniAfter), mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',mi>-1&&!ans(mi));
+      var all=done(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=(DATA.scene1||{}).seal||{};
+      $('.rg-sun-close',g).innerHTML=all&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your sealed answer from the Dispatch tab:</b> “'+esc((S1.opts||[])[sealed])+'” '+esc((S1.reveal||[])[sealed]||'')+'</span>':'')+'</div>':''; g.classList.toggle('finished',all); }
+    desk.addEventListener('click',function(e){ var b=e.target.closest('.rg-fp-flip'); if(!b) return; var x=L[view]; st.flip[x.id]=true; save(); if(x.calm) SFX.soft(); else SFX.paper(); paint(); refreshPress(); var f=$('input[type=radio]',desk); if(f) f.focus({preventScroll:true}); });
+    nextB.addEventListener('click',function(){ if(view<st.stop){ view=st.stop; SFX.paper(); paint(); return; } if(!cleared(st.stop)||st.stop>=N-1) return; st.stop++; view=st.stop; save(); SFX.paper(); paint(); refreshPress(); var f=$('.rg-fp-flip',desk); if(f) f.focus({preventScroll:true}); var rr=desk.getBoundingClientRect(); if(rr.top<0||rr.top>innerHeight-200) desk.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); });
+    $('.rg-fp-tabs',g).addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b||b.disabled) return; view=+b.dataset.v; SFX.paper(); paint(); });
+    mythBox.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; var m=b.closest('.rg-myth'), i=+m.dataset.i;
+      if(b.dataset.a==='print'){ $('.say',m).textContent=(c.myths[i].stop||'Hold the presses! A careful paper checks a claim before it prints it. Tap Fact-check it.'); SFX.bounce(); return; }
+      st.myth[i]=true; save(); if(c.myths[i].calm) SFX.soft(); else SFX.chime(); paint(); refreshPress(); if(done()) beat('sunDone'); if(!nextB.disabled) nextB.focus({preventScroll:true}); });
+    function allAns(){ return L.every(function(x,i){ return ans(i); }); }
+    function done(){ return allAns()&&(c.myths||[]).every(function(m,i){ return st.myth[i]; }); }
+    paint(); setTimeout(paint,0);
+    return {el:g,done:done,open:allAns,paint:paint,go:function(id){ var i=idx(id); if(i>-1&&i<=st.stop){ view=i; paint(); } },
+      journal:function(e,NA){ if(!L.some(function(x,i){ return ans(i); })) return NA; return '<p class="a">'+L.filter(function(x,i){ return ans(i); }).map(function(x){ return '<b>'+e(x.short||x.who)+':</b> '+e(x.lines[0]||'')+' '+e(x.lines[1]||''); }).join('<br>')+'</p>'; },
+      people:function(){ return L.map(function(x){ return x.who; }); }}; };
+
+  /* ---------------------------------------------------------------- stereo: look through a stereoscope; the two halves of a stereograph wiggle into one picture that looks 3D (side by side under reduced motion); then one question about what a stereograph is
+     DATA.explore.stereo = {title, job, img, alt, aspect, halves:[[x,y,w,h],[x,y,w,h]] (% of the image), txt:[...], lookT, q:{q,opts:[{t,ok,say}]}, close} */
+  MOD.stereo=function(c,anchor){ var st=mstate('stereo',{}); var H=c.halves||[[0,0,50,100],[50,0,50,100]], Q=c.q||{};
+    var g=gameShell('rg-stereo','The Desk · a photo card from 1860',c.title||'Look through the stereoscope',c);
+    g.innerHTML+='<div class="rg-st-row"><figure class="rg-st-card"><div class="rg-st-img"></div><figcaption>'+esc(c.cap||'')+'</figcaption></figure><div class="rg-st-txt">'+(c.txt||[]).map(function(t){ return '<p>'+esc(t)+'</p>'; }).join('')+'</div></div>'+
+      '<div class="rg-st-hood'+(RM?' still':'')+'"><div class="rg-st-eyes">'+H.map(function(h,i){ return '<div class="rg-st-eye" data-i="'+i+'" style="aspect-ratio:'+(c.aspect||1)+'"><span class="lb">'+(i?'Right eye':'Left eye')+'</span></div>'; }).join('')+'</div><div class="rg-st-one" aria-hidden="true" style="aspect-ratio:'+(c.aspect||1)+'"></div>'+
+      '<button type="button" class="rg-btn rg-st-look">👀 '+esc(c.lookT||'Look through the stereoscope')+'</button><p class="rg-st-say" aria-live="polite"></p></div><div class="rg-st-q"></div><div class="rg-st-close"></div>';
+    after(anchor,g);
+    var im=srcImg(c.img,'',c.alt||''); $('.rg-st-img',g).appendChild(im); var timer=null;
+    function bg(n,i){ var h=H[i]; n.style.backgroundSize=(10000/h[2])+'% '+(10000/h[3])+'%'; n.style.backgroundPosition=(h[2]>=100?0:h[0]/(100-h[2])*100)+'% '+(h[3]>=100?0:h[1]/(100-h[3])*100)+'%'; }
+    function setImg(){ if(!im.src) return; $$('.rg-st-eye, .rg-st-one',g).forEach(function(n){ n.style.backgroundImage='url("'+im.src+'")'; }); $$('.rg-st-eye',g).forEach(function(n){ bg(n,+n.dataset.i); }); bg($('.rg-st-one',g),0); }
+    im.addEventListener('rgload',setImg); setImg();
+    function wiggle(){ var one=$('.rg-st-one',g), hood=$('.rg-st-hood',g); if(RM){ hood.classList.add('on'); return; } clearInterval(timer); hood.classList.add('on','wig'); var k=0, t0=Date.now(); timer=setInterval(function(){ k=1-k; bg(one,k); if(Date.now()-t0>3200){ clearInterval(timer); timer=null; bg(one,0); hood.classList.remove('wig'); } },220); }
+    $('.rg-st-look',g).addEventListener('click',function(){ st.looked=true; save(); SFX.clack(); wiggle(); $('.rg-st-say',g).textContent=RM?(c.stillT||'Here are the two photos side by side. Look from one to the other: they are almost the same, but taken a few inches apart.'):(c.sayT||'The two photos flick back and forth. See how the cabins seem to shift? That shift is what makes the picture look 3D in a viewer.'); $('.rg-st-look',g).textContent='👀 '+(c.againT||'Look again'); paint(); refreshPress(); });
+    function paint(){ var qb=$('.rg-st-q',g); if(!st.looked){ qb.innerHTML=''; fin(); return; }
+      qb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(Q.q||'')+'</legend>'+(Q.opts||[]).map(function(o,k){ return '<label class="rg-radio'+(st.q===k?(o.ok?' right':' wrong'):'')+'"><input type="radio" name="rg-st-q" value="'+k+'"'+(st.q===k?' checked':'')+'> '+esc(o.t)+'</label>'; }).join('')+'</fieldset>'+(st.q!=null?'<p class="say '+(((Q.opts||[])[st.q]||{}).ok?'ok':'no')+'">'+(((Q.opts||[])[st.q]||{}).ok?'✓ ':'Try again: ')+esc(((Q.opts||[])[st.q]||{}).say||'')+'</p>':'');
+      $$('input[name="rg-st-q"]',qb).forEach(function(r){ r.addEventListener('change',function(){ st.q=+r.value; save(); (((Q.opts||[])[st.q]||{}).ok?SFX.chime:SFX.soft)(); paint(); refreshPress(); var f=$('input[name="rg-st-q"]:checked',g); if(f) f.focus({preventScroll:true}); }); });
+      fin(); }
+    function done(){ return !!st.looked&&st.q!=null&&!!((Q.opts||[])[st.q]||{}).ok; }
+    function fin(){ var d=done(); g.classList.toggle('finished',d); $('.rg-st-close',g).innerHTML=d&&c.close?'<div class="rg-win">'+esc(c.close)+'</div>':''; }
+    if(st.looked) $('.rg-st-hood',g).classList.add('on');
+    paint();
+    return {el:g,done:done,stop:function(){ clearInterval(timer); }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -1064,6 +1168,7 @@
     if(ex.evidence&&MOD[ex.evidence.type]&&p2){ var fr=$('.source-image-frame',p2), sec2=fr&&fr.closest('.content-section'); if(sec2){ hide(sec2); R.evidence=MOD[ex.evidence.type](ex.evidence,sec2); } }
     var V=DATA.vocab, wd=p2&&$('.word-desk',p2); if(V&&MOD[V.type]&&wd){ hide(wd); R.vocab=MOD[V.type](V,wd); }
     var PL=DATA.planner, ga=p4&&$('.gazette-assignment-wrap',p4); if(PL&&MOD[PL.type]&&ga){ var mark=el('span','rg rg-mark'); before(ga,mark); R.planner=MOD[PL.type](PL,mark); }
+    if(ex.stereo&&MOD.stereo&&R.evidence){ var sx=R.evidence.el.previousElementSibling; if(sx){ R.stereo=MOD.stereo(ex.stereo,sx); var ed1=R.evidence.done; R.evidence.done=function(){ return ed1()&&R.stereo.done(); }; } }
     if(ex.tworec&&MOD.tworec&&R.evidence){ R.tworec=MOD.tworec(ex.tworec,R.evidence.el); var ed0=R.evidence.done; R.evidence.done=function(){ return ed0()&&R.tworec.done(); }; }
     buildAlmanac(); buildPair(); }
 
@@ -1075,7 +1180,7 @@
     listen:function(){ return $('#panel-desk .rg-vn[data-slot="v3"]')||(R.reading&&R.reading.el); },
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
-    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.evidence&&R.evidence.el); },
+    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
     almanac:function(){ return R.almanac&&R.almanac.el; },
     pair:function(){ return R.pair&&R.pair.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
@@ -1523,6 +1628,9 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    if(block.closest('.rg-cl-h')) return m({k:'lesson', who:'The Hasty Herald', from:S1L.heraldFrom||'The Hasty Herald’s story (the rival paper in our newsroom story). It is a claim to check, not a fact.', tags:['herald','clip','highlight']});
+    if(block.closest('.rg-cl-cut')){ var cl0=block.closest('.rg-cl-line'), SN0=cl0&&R.scene1&&R.scene1.snip?R.scene1.snip(cl0.dataset.id):{}; return m({k:'lesson', who:SN0.who||'What the Herald cut', when:SN0.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['clip',SN0.id||'',SN0.kind||'','highlight']}); }
+    if(block.closest('.rg-stereo')){ var STX=(DATA.explore||{}).stereo||{}; return m({k:'lesson', who:STX.who||'About the photo card', from:'Fact from the lesson', tags:['picture','stereo','highlight']}); }
     if(block.closest('.rg-lg-clerk')){ var lc=block.closest('.rg-lg-card'), P0=(S1L.pages||[])[lc?+lc.dataset.i:-1]||{}; return m({k:'routine', who:'A ship clerk’s ledger: '+(P0.short||P0.place||''), when:P0.when||'', from:S1L.clerkFrom||'Example written for this lesson (a ship clerk’s ledger)', ctx:'These are business words. They hide what happened to people.', tags:['ledger','clerk',P0.id||'','highlight']}); }
     if(block.closest('.rg-lg-fact')){ var lc3=block.closest('.rg-lg-card'), P2=(S1L.pages||[])[lc3?+lc3.dataset.i:-1]||{}; return m({k:'lesson', who:P2.place||'The clerk’s ledger', when:P2.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['ledger',P2.id||'','highlight']}); }
     if(block.closest('.rg-lg-card, .rg-lg-tbl')){ var lc2=block.closest('.rg-lg-card'), P1=lc2?(S1L.pages||[])[+lc2.dataset.i]||{}:{}; if(!lc2){ var rw=block.closest('tr'), ri2=rw?[].indexOf.call(rw.parentNode.children,rw):-1; P1=(S1L.pages||[]).filter(function(x,i){ return R.scene1&&R.scene1.state&&R.scene1.state().built.indexOf(x.short||x.place)>-1; })[ri2]||{}; } return m({k:'lesson', who:'The honest version'+(P1.short?': '+P1.short:''), when:P1.when||'', from:S1L.srcLabel||'Fact from the lesson', tags:['ledger','honest',P1.id||'','highlight']}); }
@@ -1738,7 +1846,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -1919,7 +2027,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
