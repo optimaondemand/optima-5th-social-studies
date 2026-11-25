@@ -2258,6 +2258,1343 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.03",
+ "title": "Patriots, Loyalists, and Other Colonists",
+ "issue": 39,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "colonist",
+ "place": "Virginia",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Was every colonist really either a Patriot or a Loyalist, or was choosing a side more complicated?<\/i> Use the 🖍 highlighter to save facts from the reading, the five colonists, and the 1775 cartoon. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: colonists argued with Parliament. Today: colonists argued with each other.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Answer the door",
+   "k": "The Dispatch",
+   "why": "A knock in 1774."
+  },
+  {
+   "tab": "desk",
+   "t": "Two sides, or more?",
+   "k": "The Desk",
+   "why": "Meet five colonists, then read a real 1775 cartoon."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Front Page Brief",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor reports every side of the story, even when it would be easier to pretend everyone agreed.",
+ "recordFoot": "(The facts come from historians’ records. The 1775 London cartoon is a real source from the past. The knock at the door, the two speeches and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today’s story is about choosing sides. Read the Herald first."
+   },
+   {
+    "t": "Then answer the knock at the door (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "What door?",
+      "reply": "You’ll see."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Save a reason or a cost.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the cartoon.",
+      "reply": "Save who made it.",
+      "go": {
+       "tab": "desk",
+       "sel": ".rg-povdial"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Locked. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Now: who made the 1775 cartoon?",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 39 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "door",
+  "title": "Who’s at the door?",
+  "cardWho": "The pledge at the door",
+  "when": "November 1774",
+  "where": "A Virginia town",
+  "cardFrom": "Example written for this lesson, based on the real 1774 pledge.",
+  "outFrom": "Fact from the lesson",
+  "heraldFrom": "The Hasty Herald’s story, written for this lesson. It is a claim to check, not a fact.",
+  "job": {
+   "why": "Feel the choice before you read about it.",
+   "do": "1. Tap Knock 3 times. 2. Pick and lock a choice. 3. Read all three costs.",
+   "use": "You’ll see your choice again on the Desk.",
+   "words": [
+    [
+     "pledge",
+     "a promise you sign"
+    ],
+    [
+     "committee",
+     "a small group chosen to do a job"
+    ]
+   ]
+  },
+  "lines": [
+   "Good evening. We are the town committee.",
+   "Congress asks every family to sign this pledge: buy no British goods.",
+   "Will you sign?"
+  ],
+  "q": "What do you do?",
+  "opts": [
+   {
+    "t": "Sign the pledge",
+    "out": "Your name goes on the list. Neighbors loyal to the king may stop trading with you."
+   },
+   {
+    "t": "Refuse",
+    "out": "Committees printed refusers’ names as “enemies of American liberty.” Neighbors stopped buying from them."
+   },
+   {
+    "t": "Let me think",
+    "out": "Both sides keep knocking. Staying out was hard too."
+   }
+  ],
+  "outsT": "Every door had a cost:",
+  "close": "No choice was free.",
+  "sealed": ""
+ },
+ "explore": {
+  "reading": {
+   "type": "street",
+   "title": "A street of doors",
+   "srcLabel": "Fact from the lesson (a kind of colonist, not one named person)",
+   "readWho": "The Desk reading",
+   "voicesWho": "Two voices (Patriot and Loyalist sides)",
+   "signs": [
+    {
+     "k": "p",
+     "t": "Patriot",
+     "icon": "⭐"
+    },
+    {
+     "k": "l",
+     "t": "Loyalist",
+     "icon": "👑"
+    },
+    {
+     "k": "n",
+     "t": "Neutral",
+     "icon": "⚪"
+    },
+    {
+     "k": "c",
+     "t": "It’s complicated",
+     "icon": "🔀"
+    }
+   ],
+   "people": [
+    {
+     "id": "printer",
+     "icon": "🖨️",
+     "short": "Printer",
+     "who": "A Boston printer",
+     "where": "Boston, Massachusetts",
+     "yr": "1775",
+     "reason": "He prints a Patriot newspaper. He says Parliament can’t tax people who have no vote.",
+     "cost": "If Britain wins, he could be tried for treason.",
+     "ok": [
+      "p"
+     ],
+     "no": "Which side does his newspaper take?"
+    },
+    {
+     "id": "merchant",
+     "icon": "🛢️",
+     "short": "Merchant",
+     "who": "A Virginia merchant",
+     "where": "Williamsburg, Virginia",
+     "yr": "1774",
+     "reason": "He trades with Britain and trusts the king to keep order.",
+     "cost": "A crowd pushed him to sign a pledge he didn’t want. Later, many Loyalists lost their homes and left.",
+     "ok": [
+      "l"
+     ],
+     "no": "Who does he trust to keep order?"
+    },
+    {
+     "id": "quaker",
+     "icon": "🌾",
+     "short": "Farm family",
+     "who": "A Quaker farm family",
+     "where": "Pennsylvania",
+     "yr": "1777",
+     "reason": "Their faith teaches them not to fight in any war.",
+     "cost": "They were fined, and some Quakers were sent away from home, for refusing to fight or swear an oath.",
+     "ok": [
+      "n"
+     ],
+     "no": "Did they join either army?"
+    },
+    {
+     "id": "enslaved",
+     "icon": "🧭",
+     "short": "Enslaved man",
+     "who": "An enslaved man",
+     "where": "Virginia",
+     "yr": "1775",
+     "reason": "Virginia’s British governor offered freedom to enslaved men of Patriot owners who joined the British army.",
+     "cost": "Escape was dangerous, and many died of disease. Some reached freedom in Nova Scotia (Canada) after the war.",
+     "ok": [
+      "c",
+      "l"
+     ],
+     "no": "Was he choosing a king, or his freedom?",
+     "say": "His choice was about his own freedom."
+    },
+    {
+     "id": "six",
+     "icon": "🌲",
+     "short": "Six Nations town",
+     "who": "A Haudenosaunee (Iroquois) family",
+     "where": "New York",
+     "yr": "1777",
+     "reason": "Most of the Six Nations sided with Britain to protect their land from settlers. The Oneida sided with the Patriots.",
+     "cost": "The Six Nations split apart. In 1779, a Patriot army burned dozens of their towns.",
+     "ok": [
+      "c"
+     ],
+     "no": "Did all Six Nations choose the same side?",
+     "say": "One people, two sides."
+    }
+   ],
+   "pickT": "Tap a door to see who lives there.",
+   "close": "Five doors, five reasons, five costs. Two sides were not enough.",
+   "reveal": [
+    "Many signed, some out of fear.",
+    "Some refused and paid for it.",
+    "Many waited. That was a choice too."
+   ],
+   "times": [
+    "Side",
+    "Reason",
+    "Cost"
+   ],
+   "cols": [
+    {
+     "id": "printer",
+     "who": "Boston printer (1775)",
+     "icon": "🖨️",
+     "lines": [
+      "Patriot",
+      "No tax without a vote",
+      "Could be tried for treason"
+     ]
+    },
+    {
+     "id": "merchant",
+     "who": "Virginia merchant (1774)",
+     "icon": "🛢️",
+     "lines": [
+      "Loyalist",
+      "Trade and order",
+      "Forced to sign; lost his home"
+     ]
+    },
+    {
+     "id": "quaker",
+     "who": "Quaker farm family (1777)",
+     "icon": "🌾",
+     "lines": [
+      "Neutral",
+      "Faith: no fighting",
+      "Fined or sent away"
+     ]
+    },
+    {
+     "id": "enslaved",
+     "who": "Enslaved man (1775)",
+     "icon": "🧭",
+     "lines": [
+      "Joined the British",
+      "Freedom",
+      "Danger and disease"
+     ]
+    },
+    {
+     "id": "six",
+     "who": "Haudenosaunee family (1777)",
+     "icon": "🌲",
+     "lines": [
+      "Most with Britain; Oneida Patriot",
+      "Protect their land",
+      "Split apart; towns burned"
+     ]
+    }
+   ],
+   "job": {
+    "why": "Test the Herald’s two sides.",
+    "do": "1. Read the groups above. 2. Tap a door. 3. Hang the sign that fits.",
+    "use": "Reasons and costs are evidence.",
+    "words": [
+     [
+      "treason",
+      "turning against your own government"
+     ],
+     [
+      "oath",
+      "a serious promise"
+     ]
+    ]
+   }
+  },
+  "povdial": {
+   "title": "Who made this picture?",
+   "who": "The 1775 cartoon: who made it",
+   "when": "February 16, 1775",
+   "where": "London",
+   "from": "Fact from the lesson",
+   "maker": [
+    "Made and sold in London, February 16, 1775.",
+    "Its makers were British printers who never saw Virginia."
+   ],
+   "q": "Whose side do the makers seem to be on?",
+   "left": "On the Patriots’ side",
+   "right": "Making fun of the Patriots",
+   "marks": [
+    "On the Patriots’ side",
+    "Leaning Patriot",
+    "Can’t tell",
+    "Leaning against the Patriots",
+    "Making fun of the Patriots"
+   ],
+   "want": [
+    3,
+    4
+   ],
+   "near": "Yes. The Patriot crowd has clubs and ugly faces.",
+   "far": "Look again at the crowd’s faces and clubs.",
+   "reveal": "It mocks the Patriots. But a letter from 1774 says the threat was real: tar and feathers waited nearby.",
+   "close": "A source can take a side and still show something true.",
+   "job": {
+    "why": "Every picture has a maker with a point of view.",
+    "do": "1. Read who made it. 2. Drag the dial. 3. Tap Check my answer.",
+    "use": "Then mark up the picture.",
+    "words": [
+     [
+      "point of view",
+      "the way a person sees things"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the cartoon",
+   "kind": "source",
+   "srcName": "the 1775 cartoon",
+   "srcWho": "The London cartoon (1775)",
+   "srcCant": "This 1775 cartoon",
+   "showsWord": "The cartoon shows ",
+   "img": "source-5-08-03-alternative-of-williamsburg-1775",
+   "alt": "An old black-and-white print. Men in wigs sign papers on top of two barrels while a crowd with clubs watches. Women, a child and a Black man stand in the crowd. At the top right, a bag of feathers and a barrel hang from a wooden post under a sign. A statue stands at the top left.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 83,
+     "y": 10.6,
+     "rx": 14,
+     "ry": 2.6,
+     "label": "The sign",
+     "t": "“A Cure for the Refractory” (stubborn people). Feathers and tar hang below."
+    },
+    {
+     "x": 52,
+     "y": 58,
+     "rx": 8,
+     "ry": 3,
+     "label": "The pledge",
+     "t": "A paper marked “Non Importation”: no British goods."
+    },
+    {
+     "x": 86,
+     "y": 33,
+     "rx": 5,
+     "ry": 7,
+     "label": "A club",
+     "t": "Men in the crowd hold clubs."
+    },
+    {
+     "x": 60,
+     "y": 35.5,
+     "rx": 6,
+     "ry": 4,
+     "label": "Watchers",
+     "t": "Women, a child and a Black man watch."
+    }
+   ],
+   "date": {
+    "x": 57,
+    "y": 97.6,
+    "w": 16,
+    "h": 2.6,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1775,
+    "shows": 1774,
+    "yearT": "February 16, 1775",
+    "showsT": "November 1774 (the scene)",
+    "gapT": "about three months later",
+    "madeBy": "London printers",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: when was it made, and when did the scene happen?",
+    "check": [
+     "say 1775?",
+     "say 1774?"
+    ],
+    "model": "It was made in February 1775 in London. It shows a scene from November 1774 in Virginia.",
+    "card": "Made in London, February 16, 1775. It shows Williamsburg, November 1774.",
+    "madeT": "made February 16, 1775",
+    "journalT": "The cartoon was made in London on February 16, 1775, about three months after the scene."
+   },
+   "missing": {
+    "q": "What can this cartoon show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this cartoon",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this cartoon",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this cartoon alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Men pushed to sign while a crowd watches",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look at the barrels."
+     },
+     {
+      "t": "A battle between two armies",
+      "k": "not",
+      "say": "Right. No soldiers here.",
+      "hint": "Do you see soldiers?"
+     },
+     {
+      "t": "What the signers really believed",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Can a face show a belief?",
+      "calm": true
+     },
+     {
+      "t": "If the tar and feathers were used",
+      "k": "cant",
+      "say": "Right. It shows a threat.",
+      "hint": "A threat, or what happened next?",
+      "calm": true
+     }
+    ]
+   },
+   "close": "A picture shows what its makers chose to show.",
+   "lookQ": "Write one thing you notice in this picture.",
+   "from": "Real source from the past: “The Alternative of Williams-Burg,” London, 1775 (The Metropolitan Museum of Art)",
+   "zoomCap": "“The Alternative of Williams-Burg,” mezzotint attributed to Philip Dawe, published by R. Sayer and J. Bennett, London, February 16, 1775. The Metropolitan Museum of Art, 83.2.182, gift of William H. Huntington, 1883. Public domain.",
+   "followup": {
+    "q": "This cartoon can’t show what the signers believed. Which source could help?",
+    "opts": [
+     {
+      "t": "Letters written by people who were there",
+      "ok": true,
+      "say": "Yes."
+     },
+     {
+      "t": "A bigger copy of this cartoon",
+      "ok": false,
+      "say": "Still the same picture."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this cartoon can’t show (a limitation).",
+    "limPh": "This cartoon can’t show…"
+   },
+   "job": {
+    "why": "Check what a source can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "alternative",
+      "another choice"
+     ],
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "Colonists were divided. Historians estimate about 40–45% were Patriots, 15–20% Loyalists, and about 35–40% neutral.",
+   "Patriots believed in natural rights and self-governance and, by 1776, wanted independence.",
+   "Loyalists stayed loyal to the Crown. They feared war and disorder, and many traded with Britain.",
+   "Many neutral colonists wanted peace. Quakers would not fight because of their faith. Both sides pressured neutrals.",
+   "In 1775, Virginia’s British governor offered freedom to enslaved men of Patriot owners who joined the British army.",
+   "Most of the Six Nations sided with Britain to protect their land; the Oneida sided with the Patriots.",
+   "The 1775 London cartoon is a real source. It mocks the Patriots, but letters say the threats in Williamsburg were real."
+  ],
+  "vocab": [
+   [
+    "Patriot",
+    "a colonist who wanted independence from Britain"
+   ],
+   [
+    "Loyalist",
+    "a colonist who stayed loyal to the king"
+   ],
+   [
+    "neutral",
+    "on neither side"
+   ],
+   [
+    "pledge",
+    "a promise you sign"
+   ],
+   [
+    "unanimous",
+    "something every person agrees on"
+   ],
+   [
+    "treason",
+    "turning against your own government"
+   ],
+   [
+    "point of view",
+    "the way a person sees things"
+   ],
+   [
+    "self-governance",
+    "people making their own laws"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: patr means “father”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "A patriot defends the fatherland.",
+   "do": "1. Tap the part meaning “father.” 2. Use patriot in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "patr",
+  "meaning": "father",
+  "words": [
+   {
+    "parts": [
+     "patr",
+     "iot"
+    ],
+    "root": 0,
+    "m": "patriot: a person who defends their fatherland, or country"
+   },
+   {
+    "parts": [
+     "pater",
+     "nal"
+    ],
+    "root": 0,
+    "m": "paternal: like a father"
+   },
+   {
+    "parts": [
+     "patr",
+     "on"
+    ],
+    "root": 0,
+    "m": "patron: a person who supports someone"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Patriot comes from the Greek word patris, “fatherland.” Patriots said they were defending their homeland.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "A patriot in 1775…",
+   "min": 8,
+   "must": "patriot",
+   "word": "patriot"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Front Page Brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "More Than Two Sides",
+     "ok": true,
+     "tip": "Neutral and in between.",
+     "fit": [
+      "street",
+      "reading",
+      "quaker",
+      "enslaved",
+      "six"
+     ],
+     "fitTip": "Good fits: your doors.",
+     "ideas": [
+      "More Than Two Sides",
+      "Patriot, Loyalist, or Neither"
+     ]
+    },
+    {
+     "t": "Hard Choices, Real Costs",
+     "ok": true,
+     "tip": "What each choice cost.",
+     "fit": [
+      "cost",
+      "street",
+      "door",
+      "choice"
+     ],
+     "fitTip": "Good fits: the costs.",
+     "ideas": [
+      "Hard Choices, Real Costs",
+      "No Choice Was Free"
+     ]
+    },
+    {
+     "t": "Pushed to Pick",
+     "ok": true,
+     "tip": "Pressure from neighbors.",
+     "fit": [
+      "picture",
+      "pledge",
+      "door",
+      "pov",
+      "maker"
+     ],
+     "fitTip": "Good fits: the cartoon.",
+     "ideas": [
+      "Pushed to Pick",
+      "A Pledge at the Door"
+     ]
+    },
+    {
+     "t": "Everyone Picked a Side!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your doors."
+    }
+   ]
+  },
+  "p1Label": "Colonist 1",
+  "p2Label": "Colonist 2",
+  "cmpHd": "Each colonist’s side, reason and cost.",
+  "cmpQ": "Which colonist had the harder choice?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "Neutral colonists",
+   "Reasons on every side",
+   "Costs of every choice",
+   "Pressure from neighbors",
+   "Enslaved people seeking freedom",
+   "Native nations split apart"
+  ],
+  "close": "Now write your brief below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two colonists. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Father and son",
+   "img": false,
+   "who": "Benjamin and William Franklin",
+   "from": "Fact from the lesson",
+   "t": "Benjamin Franklin helped lead the Patriots. His son William, royal governor of New Jersey, stayed loyal to the king. Patriots held William prisoner from 1776 to 1778.",
+   "q": "What does this family show about the Herald’s claim?",
+   "tags": [
+    "franklin",
+    "family",
+    "street"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 39 is in the Morgue.",
+  "claim": "Every colonist was either a Patriot or a Loyalist, with no hard choices."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the open door",
+   "Snap your street with its signs",
+   "Snap your dial answer",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "Many colonists stayed neutral because they feared losing their farms.",
+   "key": [
+    "Many",
+    "colonists",
+    "stayed",
+    "neutral",
+    "feared",
+    "losing",
+    "farms"
+   ],
+   "small": [
+    "because",
+    "they",
+    "their"
+   ],
+   "model": "Key words: colonists, neutral, feared, losing, farms."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "A Patriot reason",
+    "rx": "right|tax|vote|represent|liberty|free|govern|consent|independen|parliament",
+    "n": 1
+   },
+   {
+    "t": "A Loyalist reason",
+    "rx": "protect|safe|trade|king|crown|britain|british|war|order|loyal|lose|disorder",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "A reason",
+    "rx": "afraid|fear|scared|safe|faith|religio|quaker|fight|war|family|farm|peace|pressure|lose|danger|risk|both sides|hurt",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|patriot|loyalist|side",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|neutral|hard|choice|cost|enslaved|native|six nations|oneida|quaker|complicated|middle|neither",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "See the two speeches.",
+   "What did each side fear?",
+   "Try: “Patriots wanted ___. Loyalists feared ___.”"
+  ],
+  "journal-q2": [
+   "See the Quaker door.",
+   "What could they lose?",
+   "Try: “Many stayed neutral because ___.”"
+  ],
+  "journal-q3": [
+   "Were there Patriots and Loyalists?",
+   "Who doesn’t fit?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "B": "Many colonists were Loyalists or neutral.",
+   "C": "Patriots were a big group, about 40–45%."
+  },
+  {
+   "A": "Many had reasons: faith, family, fear.",
+   "B": "There’s no evidence for that."
+  },
+  {
+   "A": "Winning doesn’t erase the other sides.",
+   "C": "They didn’t agree. That’s the story."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · Patriots, Loyalists, and Others",
+  "head": "Two Sides, or More?",
+  "deck": "Was every colonist really either a Patriot or a Loyalist, or was choosing a side more complicated?",
+  "dateline": "Vol. I · No. 39 · Price: One Penny",
+  "ears": [
+   "Issue 39 · Road to Revolution Edition",
+   "🖼️ London cartoon, 1775"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Meet five colonists"
+   },
+   {
+    "key": "picture",
+    "t": "Read a real cartoon from 1775",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "WILLIAMSBURG",
+  "lede": "Five doors, one real cartoon from 1775.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the 1775 London cartoon.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a fact, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "More Than Two Sides",
+   "Hard Choices, Real Costs"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your claim and your evidence",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "How were colonists divided? Name a group and its reason.",
+    "ph": "Write your claim and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "Colonists did not simply pick one of two sides.",
+     "One group, the"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "What should readers understand?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1775 cartoon show, and not show?",
+    "ph": "For example, start with: The cartoon…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The cartoon was made in London in 1775, so",
+     "The cartoon shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Tell the honest story with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain. Supported: true. Misleading: true start, wrong idea. Not enough evidence: can’t tell yet."
+ },
+ "claimChecks": [
+  {
+   "id": "cartoon-proves",
+   "claim": "The 1775 cartoon proves that every Virginia merchant was forced to sign.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Can one picture show every merchant?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Some were pushed; that’s not every merchant."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": true,
+     "say": "Yes. One cartoon can’t show every merchant."
+    }
+   ],
+   "details": [
+    {
+     "from": "Who made it:",
+     "t": "Its makers were British printers who never saw Virginia.",
+     "ok": true,
+     "say": "Yes."
+    },
+    {
+     "from": "The reveal:",
+     "t": "A letter from 1774 says the threat was real.",
+     "ok": true,
+     "say": "Yes. Real, for some."
+    },
+    {
+     "from": "The reading:",
+     "t": "About 40–45% of colonists were Patriots.",
+     "ok": false,
+     "say": "That’s about Patriots, not merchants."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I named two groups and a reason for each.",
+  "I gave two details, each with a reason.",
+  "I said what the cartoon can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your drawer is empty. Try a door.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1775 cartoon.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(britain|british|england|english|parliament|king|crown|george|colon\\w*|boston|virginia|williamsburg|pennsylvania|new york|patriots?|loyalists?|neutral\\w*|tor(y|ies)|quakers?|faith|religio\\w*|fight\\w*|war|armies|army|militia|oath|fined?|treason|printers?|newspapers?|merchants?|trade\\w*|enslaved|slavery|freedom|free|governor|dunmore|nova scotia|disease|six nations|haudenosaunee|iroquois|oneida|mohawk|land|settlers?|towns?|burned|split|famil\\w*|father|son|franklin|william|pledge|committees?|congress|boycott\\w*|sign\\w*|vote\\w*|tax\\w*|rights?|liberty|independen\\w*|self-governance|unanimous|women|homes?|lost|left|cartoon|print\\w*|london|makers?|clubs?|crowd|tar|feathers|refractory|barrels?|importation|threat\\w*|1774|1775|1776|1777|1779|estimates?|percent|%)\\b",
+   "off": "Does this help show who stood where, or why? Try a door or the cartoon.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a door’s reason or cost.",
+    "go": [
+     {
+      "l": "The five doors",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try the Key Concept or a cost.",
+    "go": [
+     {
+      "l": "The five doors",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a cartoon note.",
+    "go": [
+     {
+      "l": "The cartoon",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Who’s at the door?",
+   "script": "The Herald says there were two sides, and no hard choices. Let’s test that. It’s November, seventeen seventy-four, and someone is knocking with a pledge to sign. Decide what you would do. Then look closely at what every choice could cost."
+  },
+  {
+   "at": "povdial",
+   "slot": "v2",
+   "label": "Who made this picture?",
+   "script": "Every picture has a maker. This one was printed in London, by people who never saw Virginia. So ask: whose side are they on? A picture can take a side and still show something true. A careful editor notices both."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^knocking",
+    "sel": "#panel-dispatch .rg-dr-scene",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^decide",
+    "sel": "#panel-dispatch .rg-dr-knock",
+    "fx": "point"
+   },
+   {
+    "at": "^cost",
+    "sel": "#panel-dispatch .rg-door",
+    "fx": "glow",
+    "calm": true
+   }
+  ],
+  "v2": [
+   {
+    "at": "^maker",
+    "sel": "#panel-desk .rg-pv-maker",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^side",
+    "sel": "#panel-desk .rg-pv-dial",
+    "fx": "glow"
+   },
+   {
+    "at": "^true",
+    "sel": "#panel-desk .rg-pv-dialbox",
+    "fx": "glow",
+    "calm": true
+   },
+   {
+    "at": "^both",
+    "sel": "#panel-desk .rg-povdial",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.2,
+    0.48,
+    "Herald"
+   ],
+   [
+    8.56,
+    8.88,
+    "knocking"
+   ],
+   [
+    10.48,
+    10.8,
+    "Decide"
+   ],
+   [
+    14.88,
+    15.36,
+    "cost."
+   ]
+  ],
+  "v2": [
+   [
+    1.2,
+    2.08,
+    "maker."
+   ],
+   [
+    7.44,
+    7.6,
+    "side"
+   ],
+   [
+    11.52,
+    12.32,
+    "true."
+   ],
+   [
+    13.92,
+    14.48,
+    "both."
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3826,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3841,28 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A colonial village street at dusk: a row of houses with three front doors, a lantern lit beside one door, a liberty pole at one end, a hanging crown sign at the other, and a weathervane on a roof." class="b0803">
+<defs>
+<linearGradient id="b0803Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22305A"/><stop offset=".5" stop-color="#5B5277"/><stop offset=".82" stop-color="#C98C6E"/><stop offset="1" stop-color="#EDB683"/></linearGradient>
+<linearGradient id="b0803Road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B5848"/><stop offset="1" stop-color="#3E3229"/></linearGradient>
+<radialGradient id="b0803Glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE2A0" stop-opacity=".9"/><stop offset="1" stop-color="#FFE2A0" stop-opacity="0"/></radialGradient>
+<style>
+.b0803 .b0803-vane{ transform-box:fill-box; transform-origin:50% 50%; animation:b0803turn 9s ease-in-out infinite alternate; }
+.b0803 .b0803-glow{ animation:b0803pulse 3.5s ease-in-out infinite; }
+.b0803 .b0803-win{ animation:b0803flick 4s ease-in-out infinite; }
+.b0803 .b0803-win.d1{ animation-delay:-1.2s } .b0803 .b0803-win.d2{ animation-delay:-2.4s } .b0803 .b0803-win.d3{ animation-delay:-3.3s }
+.b0803 .b0803-sign{ transform-box:fill-box; transform-origin:50% 0; animation:b0803sway 5s ease-in-out infinite alternate; }
+.b0803 .b0803-star{ animation:b0803tw 6s ease-in-out infinite; }
+@keyframes b0803turn{ from{ transform:scaleX(1) rotate(-6deg) } 45%{ transform:scaleX(.35) rotate(0deg) } to{ transform:scaleX(-1) rotate(6deg) } }
+@keyframes b0803pulse{ 0%,100%{ opacity:.95 } 50%{ opacity:.6 } }
+@keyframes b0803flick{ 0%,100%{ opacity:1 } 50%{ opacity:.7 } }
+@keyframes b0803sway{ from{ transform:rotate(-3deg) } to{ transform:rotate(3deg) } }
+@keyframes b0803tw{ 0%,100%{ opacity:.9 } 50%{ opacity:.25 } }
+@media (prefers-reduced-motion:reduce){ .b0803 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0803Sky)"/>
+<g fill="#FFF6DA"><circle class="b0803-star" style="animation-delay:-1.3s" cx="199" cy="36" r="1"/><circle class="b0803-star" style="animation-delay:-4.1s" cx="666" cy="8" r="1.2"/><circle class="b0803-star" style="animation-delay:-1.8s" cx="649" cy="77" r="0.8"/><circle class="b0803-star" style="animation-delay:-0.6s" cx="804" cy="13" r="0.8"/><circle class="b0803-star" style="animation-delay:-5.2s" cx="323" cy="65" r="0.8"/><circle class="b0803-star" style="animation-delay:-2.8s" cx="472" cy="30" r="0.8"/><circle class="b0803-star" style="animation-delay:-4.3s" cx="242" cy="31" r="0.8"/><circle class="b0803-star" style="animation-delay:-3.7s" cx="788" cy="55" r="1.5"/><circle class="b0803-star" style="animation-delay:-2.3s" cx="580" cy="66" r="1.2"/><circle class="b0803-star" style="animation-delay:-0.4s" cx="326" cy="18" r="1.5"/><circle class="b0803-star" style="animation-delay:-1.4s" cx="278" cy="57" r="1.2"/><circle class="b0803-star" style="animation-delay:-2.4s" cx="633" cy="58" r="0.8"/><circle class="b0803-star" style="animation-delay:-2.5s" cx="860" cy="71" r="0.8"/><circle class="b0803-star" style="animation-delay:-0.0s" cx="25" cy="60" r="1.5"/><circle class="b0803-star" style="animation-delay:-4.2s" cx="555" cy="51" r="1.5"/><circle class="b0803-star" style="animation-delay:-0.7s" cx="889" cy="62" r="1"/><circle class="b0803-star" style="animation-delay:-5.1s" cx="407" cy="23" r="1"/><circle class="b0803-star" style="animation-delay:-3.7s" cx="896" cy="25" r="0.8"/><circle class="b0803-star" style="animation-delay:-5.2s" cx="450" cy="72" r="1.2"/><circle class="b0803-star" style="animation-delay:-5.2s" cx="794" cy="68" r="1"/><circle class="b0803-star" style="animation-delay:-2.2s" cx="535" cy="21" r="1"/><circle class="b0803-star" style="animation-delay:-3.4s" cx="267" cy="11" r="1"/><circle class="b0803-star" style="animation-delay:-3.9s" cx="797" cy="11" r="0.8"/><circle class="b0803-star" style="animation-delay:-6.0s" cx="114" cy="16" r="1.5"/></g><path d="M0,168 C120,150 220,162 320,152 C430,142 520,160 640,150 C760,140 840,156 920,148 L920,200 L0,200 Z" fill="#3B3653" opacity=".85"/><path d="M0,214 L920,206 L920,260 L0,260 Z" fill="url(#b0803Road)"/><path d="M0,222 L920,214" stroke="#806A55" stroke-width="2" opacity=".5"/><rect x="150" y="118" width="120" height="92" fill="#7A4A3A"/><path d="M144,118 L210.0,84 L276,118 Z" fill="#3A2A2A"/><rect x="234.0" y="88" width="12" height="22" fill="#3A2A2A"/><rect class="b0803-win d0" x="164" y="132" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M174,132 V154 M164,143 H184" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d0" x="236" y="132" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M246,132 V154 M236,143 H256" stroke="#3a2a1a" stroke-width="1.5"/><rect x="196" y="160" width="28" height="50" rx="12" fill="#2B4E35"/><circle cx="218" cy="188" r="2" fill="#D6B25E"/><rect x="192" y="208" width="36" height="4" fill="#4a3a2e"/><rect x="276" y="130" width="92" height="80" fill="#5B5A72"/><path d="M270,130 L322.0,96 L374,130 Z" fill="#2E2B3E"/><rect x="340.4" y="100" width="12" height="22" fill="#2E2B3E"/><rect class="b0803-win d1" x="312" y="144" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M322,144 V166 M312,155 H332" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d1" x="312" y="178" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M322,178 V200 M312,189 H332" stroke="#3a2a1a" stroke-width="1.5"/><rect x="374" y="112" width="126" height="98" fill="#8A5B3E"/><path d="M368,112 L437.0,78 L506,112 Z" fill="#3A2A2A"/><rect x="462.2" y="82" width="12" height="22" fill="#3A2A2A"/><rect class="b0803-win d2" x="388" y="126" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M398,126 V148 M388,137 H408" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d0" x="466" y="126" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M476,126 V148 M466,137 H486" stroke="#3a2a1a" stroke-width="1.5"/><rect x="423" y="160" width="28" height="50" rx="12" fill="#2B4E35"/><circle cx="445" cy="188" r="2" fill="#D6B25E"/><rect x="419" y="208" width="36" height="4" fill="#4a3a2e"/><rect x="506" y="126" width="96" height="84" fill="#4F5E54"/><path d="M500,126 L554.0,92 L608,126 Z" fill="#2B3A30"/><rect x="573.2" y="96" width="12" height="22" fill="#2B3A30"/><rect class="b0803-win d3" x="544" y="140" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M554,140 V162 M544,151 H564" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d3" x="544" y="174" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M554,174 V196 M544,185 H564" stroke="#3a2a1a" stroke-width="1.5"/><rect x="608" y="116" width="124" height="94" fill="#6E4A44"/><path d="M602,116 L670.0,82 L738,116 Z" fill="#33262A"/><rect x="694.8" y="86" width="12" height="22" fill="#33262A"/><rect class="b0803-win d2" x="622" y="130" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M632,130 V152 M622,141 H642" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d2" x="698" y="130" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M708,130 V152 M698,141 H718" stroke="#3a2a1a" stroke-width="1.5"/><rect x="656" y="160" width="28" height="50" rx="12" fill="#2B4E35"/><circle cx="678" cy="188" r="2" fill="#D6B25E"/><rect x="652" y="208" width="36" height="4" fill="#4a3a2e"/><rect x="738" y="132" width="86" height="78" fill="#5A4E66"/><path d="M732,132 L781.0,98 L830,132 Z" fill="#2E2B3E"/><rect x="798.2" y="102" width="12" height="22" fill="#2E2B3E"/><rect class="b0803-win d0" x="771" y="146" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M781,146 V168 M771,157 H791" stroke="#3a2a1a" stroke-width="1.5"/><rect class="b0803-win d0" x="771" y="180" width="20" height="22" fill="#F7C96A" opacity=".92"/><path d="M781,180 V202 M771,191 H791" stroke="#3a2a1a" stroke-width="1.5"/><rect x="423" y="160" width="28" height="50" rx="12" fill="#F2C977"/><path d="M423,170 Q423,160 433,162 L435,212 L423,210 Z" fill="#244530"/><circle class="b0803-glow" cx="465" cy="172" r="26" fill="url(#b0803Glow)"/><rect x="460" y="164" width="10" height="15" rx="2" fill="#FFD37A" stroke="#3a2a1a" stroke-width="1.5"/><path d="M465,164 V156 H453" stroke="#3a2a1a" stroke-width="1.5" fill="none"/><path d="M413,212 L463,212 L493,240 L383,240 Z" fill="#F2C977" opacity=".18"/><path d="M670.0,82 V56" stroke="#2a2018" stroke-width="2.5"/><path d="M660.0,70 H680.0 M670.0,62 V78" stroke="#2a2018" stroke-width="1.5"/><g class="b0803-vane"><path d="M652.0,52 L684.0,52 L690.0,48 L684.0,44 L680.0,49 L658.0,49 L652.0,44 Z" fill="#2a2018"/></g><path d="M70,214 V44" stroke="#4a3426" stroke-width="6"/><path d="M60,214 H80" stroke="#3a2a1e" stroke-width="5"/><path d="M62,46 Q70,26 82,38 Q80,46 62,46 Z" fill="#9E2B25"/><path d="M72,70 Q100,74 118,64 L118,82 Q100,92 72,88 Z" fill="#E9DFC6" opacity=".9"/><path d="M860,214 V96 M860,104 H900" stroke="#3a2a1e" stroke-width="5"/><g class="b0803-sign"><path d="M872,104 V112 M892,104 V112" stroke="#3a2a1e" stroke-width="2"/><rect x="866" y="112" width="32" height="30" rx="3" fill="#2E3A5E" stroke="#C9A24A" stroke-width="2"/><path d="M872,134 L874,120 L879,128 L882,118 L885,128 L890,120 L892,134 Z" fill="#D8B24E"/></g><rect x="0" y="216" width="4" height="16" fill="#2a211b"/><rect x="10" y="216" width="4" height="16" fill="#2a211b"/><rect x="20" y="216" width="4" height="16" fill="#2a211b"/><rect x="30" y="216" width="4" height="16" fill="#2a211b"/><rect x="40" y="216" width="4" height="16" fill="#2a211b"/><rect x="50" y="216" width="4" height="16" fill="#2a211b"/><rect x="60" y="216" width="4" height="16" fill="#2a211b"/><rect x="70" y="216" width="4" height="16" fill="#2a211b"/><rect x="80" y="216" width="4" height="16" fill="#2a211b"/><rect x="90" y="216" width="4" height="16" fill="#2a211b"/><rect x="100" y="216" width="4" height="16" fill="#2a211b"/><rect x="110" y="216" width="4" height="16" fill="#2a211b"/><rect x="120" y="216" width="4" height="16" fill="#2a211b"/><rect x="130" y="216" width="4" height="16" fill="#2a211b"/><path d="M0,222 H140" stroke="#2a211b" stroke-width="3"/></svg>
   </div>
 
   <div class="hero-headline-strip serif">Patriots, Loyalists, and Other Colonists</div>
@@ -2677,7 +3874,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 20 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3888,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3895,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
-      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.CG.2.1 · TEKS 2(A)–(B)</div>
+      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.CG.1.1 · SS.5.CG.2.1 · SS.5.CG.2.2 · SS.5.CG.2.6 · TEKS 2(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 39 · Circulation ~3,600 · <em>Not every colonist saw it the same way.</em>
+      Vol. 1 · Issue 39 · Readers: about 3,600 · <em>Not every colonist saw it the same way.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3913,21 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 39</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 39</strong> — <em>Check big claims about the road to the Revolution.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,600</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Readership growing as the Revolution series continues.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2755,36 +3937,31 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — Not every colonist saw it the same way — the evidence demands we look at all sides.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-label">Rival paper</span>
       <span class="ns-row-value">
-        <span class="threat-meter">📢 The Hasty Herald · Aggressive</span>
+        <span class="threat-meter">📢 The Hasty Herald · pushy</span>
         <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
       </span>
     </div>
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: locked in the <em>Parliamentary Acts and Colonial Grievances</em> record. Tap to recap.
+      Last issue: <em>Parliamentary Acts and Colonial Grievances</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette investigated the Stamp Act, Townshend Acts, and Tea Act — and showed that colonial protests were about the principle of consent and representation, not just disliking taxes. The Herald's claim that "colonists protested only because they disliked paying taxes" missed the deeper argument about rights.
+      In 5.08.02 we found that the protests were about more than money. Colonists also wanted a say in their own taxes. Today: how colonists split over what to do next.
     </div>
   </div>
 </div>
@@ -2793,25 +3970,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.03</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Parliamentary Acts and Colonial Grievances</em> and proved that colonial anger ran deeper than tax bills. Today, a new file marked <em>5.08.03 — Patriots, Loyalists, and Other Colonists</em> arrives on the Front Page Desk. But The Hasty Herald has already rushed to print a claim that every colonist picked the same side. The Gazette may print only after we examine the full record.</p>
+      <p>Last issue, colonists argued with Parliament about taxes and rights. Today: did every colonist agree on what to do about it? A new file marked <em>5.08.03: Patriots, Loyalists, and Other Colonists</em> is on the <strong>Front Page Desk</strong>. The Hasty Herald has already printed that every colonist simply picked one of two sides. The Gazette prints only after you check the record.</p>
     </div>
   </div>
 
@@ -2821,14 +3991,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Was every colonist really either a Patriot or a Loyalist — or was choosing a side more complicated than the history books make it sound?</p>
       </div>
     </div>
@@ -2842,8 +4009,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify the different groups of colonists and their reasons for supporting or opposing independence.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Compare Patriot, Loyalist, and neutral perspectives using evidence.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Front Page Brief that represents colonial divisions honestly.</div>
@@ -2874,7 +4039,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-03-welcome -->
@@ -2893,24 +4057,19 @@ html, body {
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
       <!-- 📍 Meet the divided colonies &amp; spotlight courage — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>✏️ Step 1</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>🚪 Answer a knock at the door, 1774</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Gather perspectives at the Front Page Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Meet five colonists and read a real 1775 cartoon</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Publish your Front Page Brief</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor reports all sides of the story — even when it would be easier to pretend everyone agreed.</strong> Today, courage means showing that real people faced hard choices, not simple ones.
+      <strong>A courageous editor reports every side of the story, even when it would be easier to pretend everyone agreed.</strong> Today, courage means showing that real people faced hard choices.
     </div>
   </div>
 
@@ -2920,19 +4079,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Everyone Picked a Side — Easy!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Every colonist was either a Patriot or a Loyalist, with no hard choices.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Today you'll gather evidence about Patriots, Loyalists, and neutral colonists — and show the Herald that the reality was far more complicated than two simple sides.
+      <strong>Your job, junior editor:</strong> Find out if there were really only two sides.
     </div>
   </div>
 
@@ -2940,10 +4093,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to investigate who stood where during the road to revolution — and publish a Front Page Brief that tells the honest story of colonial divisions.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong>. Ms. Avery wants you to find out who stood where, and why, then publish a <strong>Front Page Brief</strong> (a short news story for the front page) that tells the honest story.
     </div>
   </div>
 
@@ -2954,20 +4104,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What do we notice, what does it mean, and why does it matter? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. A courageous editor doesn't flatten complicated choices into simple labels — even when the simple version would sell more papers.
+        A courageous editor doesn’t make hard choices sound simple.
       </div>
     </div>
   </div>
@@ -2977,18 +4119,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-03-explore-explainer -->
@@ -2997,25 +4129,17 @@ html, body {
     <div class="video-placeholder-title">At the Front Page Desk: Patriots, Loyalists, and Other Colonists</div>
     <div class="video-placeholder-filename">5-08-03-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the three groups: Patriots (~40-45%), Loyalists (~15-20%), and the neutral majority (~35-40%). Read both arguments aloud. Emphasize that choosing neutrality had its own risks. Use the Cause-Choice-Consequence framework. Connect to the Herald's claim — why is "everyone picked a side" wrong? 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the three groups: Patriots (about 40–45%), Loyalists (about 15–20%) and neutral colonists (about 35–40%). Say that these are historians’ estimates; no one counted at the time. Read both arguments aloud (they were written for the lesson). Show the 1775 London cartoon “The Alternative of Williams-Burg” and ask who made it and why. Emphasize that choosing neutrality had its own risks. Use the Cause-Choice-Consequence framework. Connect to the Herald's claim — why is "everyone picked a side" wrong? 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Front Page Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where junior editors gather the facts and write the brief.</div>
+      <div class="desk-subtitle">Where the facts are gathered.</div>
     </div>
   </div>
 
@@ -3028,51 +4152,51 @@ html, body {
   -->
     <div class="content-section">
     <h2>🗞️ The Divided Colonies: Who Stood Where?</h2>
-    <p>When we think about the American Revolution, it’s tempting to imagine every colonist waving a flag and marching toward independence. But the reality was far more complicated. Colonists were deeply divided — and each group had real reasons for their choices.</p>
+    <p>It’s easy to picture every colonist marching toward independence. The real story is more complicated. Colonists were deeply divided, and each group had real reasons for its choice.</p>
 
     <div class="callout callout-info" style="border-left-color: var(--gazette-gold);">
       <div class="callout-icon">🗞️</div>
       <div>
         <strong>Three Groups, Three Perspectives</strong>
-        <p>As you read about each group, pay attention to their <em>reasons</em> — not just their labels.</p>
+        <p>Read for each group’s <em>reasons</em>, not just its label. The numbers are historians’ <strong>estimates</strong> (careful guesses). No one took a count back then.</p>
       </div>
     </div>
 
     <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin:16px 0;">
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #2E6B4A;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#2E6B4A; font-size:16px; margin-bottom:6px;">Patriots</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          <strong>About 40–45% of colonists.</strong> Wanted independence from Britain. Believed in natural rights and self-governance. Leaders included Samuel Adams, Patrick Henry, and the Sons of Liberty. Willing to risk war for the principle of “no taxation without representation.”
-        </div>
+        <p style="margin:0; font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
+          <strong>About 40–45% of colonists.</strong> By 1776, they wanted independence from Britain. They believed in natural rights (rights every person is born with) and <strong>self-governance</strong> (people making their own laws). The Declaration of Independence later called these <strong>unalienable rights</strong>. Leaders included Samuel Adams, Patrick Henry and the Sons of Liberty (a Patriot protest group).
+        </p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #8B2D26;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#8B2D26; font-size:16px; margin-bottom:6px;">Loyalists</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          <strong>About 15–20% of colonists.</strong> Remained loyal to Britain. Feared war and instability. Included wealthy merchants with trade ties to Britain, royal officials, and some formerly enslaved people promised freedom by Britain. Believed the Crown still offered protection.
-        </div>
+        <p style="margin:0; font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
+          <strong>About 15–20% of colonists.</strong> They stayed loyal to Britain and the <strong>Crown</strong> (the king and his government). They feared war and disorder. They included merchants who traded with Britain, royal officials, and some enslaved people who joined the British after a 1775 offer of freedom.
+        </p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #7A8398;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#7A8398; font-size:16px; margin-bottom:6px;">Neutral / Undecided</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          <strong>About 35–40% of colonists — the largest group.</strong> Ordinary farmers, tradespeople, and families who wanted stability. Many changed sides depending on local events. Choosing not to choose carried its own risks: both sides pressured neutrals to commit.
-        </div>
+        <p style="margin:0; font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
+          <strong>About 35–40% of colonists, one of the largest groups.</strong> Many were farmers and families who wanted peace. Some, like Quakers, would not fight because of their faith. Many changed sides as armies came and went. Staying <strong>neutral</strong> (on neither side) was risky too: both sides pushed them to pick a side.
+        </p>
       </div>
     </div>
 
     <h3>🔍 Two Voices from the Colonies</h3>
-    <p>Read these two arguments carefully. One is from a Patriot perspective, the other from a Loyalist. Notice what each side values and fears.</p>
+    <p>Notice what each side values and fears. Both speeches were written for this lesson to sum up each side. They are not real quotes.</p>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
       <div style="background:var(--paper-newsprint); border:1.5px solid var(--paper-edge); border-radius:10px; padding:14px;">
-        <div style="font-family:'Special Elite',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#2E6B4A; margin-bottom:8px;">Patriot Argument</div>
+        <div style="font-family:'Special Elite',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#2E6B4A; margin-bottom:8px;">Patriot side · example written for this lesson</div>
         <blockquote style="font-family:'Crimson Text',serif; font-size:15px; font-style:italic; color:var(--ink); line-height:1.6; margin:0; padding-left:12px; border-left:3px solid #2E6B4A;">
-          “We have the natural right to govern ourselves. A government that taxes us without our consent has broken its contract with us. We did not choose these laws — Parliament made them without a single colonial voice. If we do not act now, our children will inherit chains instead of liberty.”
+          <p style="margin:0">We have the natural right to govern ourselves. Parliament taxes us without our consent, and not one colonist voted for it. If we do not act now, our children will lose their liberty.</p>
         </blockquote>
       </div>
       <div style="background:var(--paper-newsprint); border:1.5px solid var(--paper-edge); border-radius:10px; padding:14px;">
-        <div style="font-family:'Special Elite',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#8B2D26; margin-bottom:8px;">Loyalist Argument</div>
+        <div style="font-family:'Special Elite',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#8B2D26; margin-bottom:8px;">Loyalist side · example written for this lesson</div>
         <blockquote style="font-family:'Crimson Text',serif; font-size:15px; font-style:italic; color:var(--ink); line-height:1.6; margin:0; padding-left:12px; border-left:3px solid #8B2D26;">
-          “Britain has protected us for over a century. Our trade, our safety, our laws — all rest on the Crown’s authority. Breaking away means war, uncertainty, and the loss of everything we have built. Those who call for rebellion speak from passion, not reason.”
+          <p style="margin:0">Britain has protected us for over a century. Our trade, our safety and our laws rest on the Crown. Breaking away means war and the loss of everything we have built.</p>
         </blockquote>
       </div>
     </div>
@@ -3081,16 +4205,21 @@ html, body {
       <div class="callout-icon">⚖️</div>
       <div>
         <strong>Cause → Choice → Consequence</strong>
-        <p><strong>Cause:</strong> Parliament passed acts that colonists saw as violations of their rights — and Britain refused to give colonies a voice in those decisions.</p>
-        <p><strong>Choice:</strong> Every colonist had to decide: resist British authority, remain loyal to the Crown, or try to stay out of it entirely.</p>
-        <p><strong>Consequence:</strong> Communities split apart. Families were divided. Neighbors became enemies. The path to revolution was not a march — it was a fracture.</p>
+        <p><strong>Cause:</strong> Parliament passed acts that colonists said broke their rights, and the colonies had no vote in those decisions.</p>
+        <p><strong>Choice:</strong> Every colonist had to decide: resist British rule, stay loyal to the Crown, or try to stay out of it.</p>
+        <p><strong>Consequence:</strong> Families were divided. Neighbors became enemies. The road to revolution was not a parade. It was a crack that split towns apart.</p>
       </div>
     </div>
 
-    <div class="owl-buddy">
+    <div style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
+      <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">🗳️ Choosing, Then and Now</div>
+      <p style="margin:0;font-size:14px;line-height:1.6;">Women chose too. Many Patriot women signed pledges to <strong>boycott</strong> (refuse to buy) British goods, and many Loyalist women lost their homes when their families fled. In 1774, towns pushed people to sign pledges. Today, citizens choose by voting in private, and no one can force you to sign.</p>
+    </div>
+
+    <div class="owl-buddy rg-keep-off">
       <div class="owl-icon">🦉🗞️</div>
       <div class="owl-bubble">
-        Here’s something most people don’t realize: about a third of colonists didn’t pick a side at all. Choosing not to choose was its own kind of courage — especially when your neighbors were pressuring you.
+        Here’s something many people don’t realize: about a third of colonists tried not to pick a side. Staying out took its own kind of courage when neighbors were pushing.
       </div>
     </div>
 
@@ -3098,15 +4227,45 @@ html, body {
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
-        <p>The American Revolution was not a unanimous decision. Colonists were divided — Patriots, Loyalists, and many who were neutral — and each group had real reasons for their choices.</p>
+        <p>The American Revolution was not <strong>unanimous</strong> (something every person agreed on). Colonists were divided into Patriots, Loyalists and many who were neutral, and each group had real reasons for its choices.</p>
       </div>
     </div>
+  </div>
+
+  <!-- SOURCE STUDY IMAGE (added Nov 2026): a real 1775 London print -->
+  <div class="content-section">
+    <h2>🔎 Read the Source: A London Cartoon, 1775</h2>
+    <p>This real print was made and sold in London on February 16, 1775. It pictures Williamsburg, Virginia, where in November 1774 merchants were pushed to sign a pledge to stop bringing in British goods. Look closely. Who is signing? What is hanging overhead?</p>
+
+    <div class="source-image-frame">
+      <div class="source-image-placeholder" data-image="source-5-08-03-alternative-of-williamsburg-1775">
+        🖼️ <strong>Image:</strong> “The Alternative of Williams-Burg,” a print attributed to Philip Dawe, published in London by R. Sayer and J. Bennett, February 16, 1775. The Metropolitan Museum of Art.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-03-alternative-of-williamsburg-1775.jpg</code>
+      </div>
+      <div class="source-image-caption">
+        What choice are the men at the barrel making, and does it look like a free choice?<br><small style="font-style:normal;opacity:.85">Real source from the past. The Metropolitan Museum of Art, 83.2.182. Public domain.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>patr</em> means “father”</h2>
+    <p>Many English words come from the Latin and Greek words for <strong>father</strong> (<em>pater</em>). You can spot it as <strong>patr</strong> or <strong>pater</strong>.</p>
+    <ul>
+      <li><strong>patriot</strong> (patr + iot): a person who loves and defends their fatherland, or country</li>
+      <li><strong>paternal</strong> (pater + nal): like a father, or from the father’s side</li>
+      <li><strong>patron</strong> (patr + on): a person who supports someone, the way a father might</li>
+    </ul>
+    <p><strong>Discovery:</strong> <em>Patriot</em> comes from the Greek word <em>patris</em>, “fatherland.” Patriots said they were defending their homeland.</p>
+    <p><em>Try it: use the word <strong>patriot</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <div class="reflection-block">
     <h3>📓 Editor’s Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3143,10 +4302,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3155,14 +4310,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3171,13 +4318,13 @@ html, body {
       <span class="factcheck-q-text">About how many colonists actively supported independence during the Revolution?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>Nearly 100% — everyone wanted freedom from Britain.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
+        <span class="factcheck-option-letter">A</span>
         <span>About 40–45% — a large group, but not a majority of all colonists.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>Nearly 100% — everyone wanted freedom from Britain.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3198,13 +4345,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>They were cowards who refused to take any stand.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>They were the largest group, and many feared the consequences of picking either side.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>They were secretly working for the British military.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>They were a large group, and many feared the consequences of picking either side.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q2"></div>
@@ -3239,7 +4386,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3261,21 +4407,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-03-assignment-explainer -->
@@ -3296,8 +4429,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 39</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Front Page Brief</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3305,18 +4436,14 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
-          <span>(1) A clear claim about how colonists were divided. (2) One piece of evidence — name a specific group and their reasoning. (3) Why this matters — what does understanding colonial divisions teach us?</span>
+          <span>(1) A clear claim about how colonists were divided. (2) One piece of evidence: name a group and its reason. (3) Why this matters for readers.</span>
         </div>
 
         <textarea class="gazette-body-input" id="brief-body" data-label="Front Page Brief" placeholder="Write your Front Page Brief here. Start with a clear claim about colonial divisions..."></textarea>
@@ -3330,9 +4457,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about patriots, loyalists, and other colonists.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3361,8 +4485,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Front Page Brief</span></div>
@@ -3377,32 +4499,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 39 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you investigated the divided colonies with courage — reporting all three perspectives honestly, instead of flattening a complicated story into the Herald's two-sided headline.
+      <strong>Well done, Junior Editor.</strong> You showed that colonists faced hard choices, with real reasons and real costs.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.04) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Declaration of Independence: Unalienable Rights</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Declaration of Independence: Unalienable Rights</em> arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that the Declaration was nothing more than a list of complaints. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Declaration of Independence: Unalienable Rights</em>, is on its way to the Source Desk, and <strong>the Hasty Herald has already printed</strong> that the Declaration was just a list of complaints.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-03-closing -->
@@ -3677,7 +4788,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 39 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4000,7 +5111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script id="oao-std-tips">
 (function(){
 if(window.__oaoStdTips)return;window.__oaoStdTips=1;
-var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.2": "Students identify important people and groups in the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.CG.2.1": "Students discuss the ideas of Patriots, Loyalists, and other colonists about the Revolution."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
+var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.2": "Students identify important people and groups in the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.A.5.4": "Students examine the roles and impact of important women during the American Revolution.", "SS.5.CG.1.1": "Students recognize that the Declaration of Independence says every citizen has unalienable rights.", "SS.5.CG.2.1": "Students discuss the ideas of Patriots, Loyalists, and other colonists about the Revolution.", "SS.5.CG.2.2": "Students compare how people took part in government in colonial times and today.", "SS.5.CG.2.6": "Students explain the symbols and documents that represent the United States."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
 function codesFor(tok){var m=tok.match(/^SS\.(\d)\.([A-Z]+)(?:\.(\d+)\.(\d+)(.*))?$/);if(!m)return null;
  if(!m[3])return{strand:m[2],g:m[1]};var out=['SS.'+m[1]+'.'+m[2]+'.'+m[3]+'.'+m[4]],rest=m[5]||'',r=rest.match(/^\s*[–-]\s*(\d+)\.(\d+)/);
  if(r){for(var x=+m[4]+1;x<=+r[2];x++)out.push('SS.'+m[1]+'.'+m[2]+'.'+r[1]+'.'+x);}
@@ -4034,5 +5145,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

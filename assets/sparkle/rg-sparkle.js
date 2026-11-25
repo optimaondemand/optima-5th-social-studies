@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse   (explore.ribbons: optional, before the picture; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite | door
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse | street   (explore.ribbons / explore.povdial: optional, before the picture; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -1224,6 +1224,99 @@
     paint();
     return {el:g,done:done,journal:function(e,NA){ if(!Object.keys(st.put).length) return NA; return '<p class="a">'+RB.map(function(r){ var L=PH.filter(function(p,i){ return st.put[i]===r.k; }).map(function(p){ return '“'+e(p.old)+'”'; }); return L.length?'<b>'+e(r.t)+':</b> '+L.join(' '):''; }).filter(Boolean).join('<br>')+'</p>'; }}; };
 
+  /* ---------------------------------------------------------------- door: 1774, a knock at the door. Each knock shows one line of the committee's pledge; then the student picks Sign / Refuse / Let me think
+     and locks it. Once locked, ALL three outcomes show (no right door). The choice is the sealed answer the street reveals later.
+     DATA.scene1 = {type:'door', title, job, who, when, where, lines:[...], knockT, openedT, q, opts:[{t,out}], close, sealed, cardFrom, heraldFrom} */
+  MOD.door=function(c,anchor){ var st=mstate('door',{n:0}); var LN=c.lines||[], N=Math.max(1,LN.length), OP=c.opts||[];
+    var g=gameShell('rg-door','Dispatch · a knock at the door',c.title||'Who’s at the door?',c);
+    g.innerHTML+='<div class="rg-dr-scene" aria-hidden="true"><div class="rg-dr-frame"><div class="rg-dr-leaf"><span class="rg-dr-knob"></span><span class="rg-dr-knocker"></span></div></div><span class="rg-dr-lamp"></span></div>'+
+      '<div class="rg-dr-card"><div class="rg-dr-top">'+esc(c.when||'')+(c.where?' · '+esc(c.where):'')+'</div><div class="rg-dr-lines">'+LN.map(function(t,i){ return '<p class="rg-dr-ln" data-i="'+i+'">'+esc(t)+'</p>'; }).join('')+'</div><small class="rg-dr-from">'+esc(c.cardFrom||'')+'</small></div>'+
+      '<div class="rg-gh-ctl"><button type="button" class="rg-btn rg-dr-knock"></button></div><div class="rg-zm-close"></div><div class="rg-ads-seal rg-dr-seal"></div><div class="rg-dr-outs"></div>';
+    after(anchor,g);
+    var sc=$('.rg-dr-scene',g), card=$('.rg-dr-card',g), kb=$('.rg-dr-knock',g);
+    function show(){ sc.classList.toggle('open',st.n>=N); card.classList.toggle('out',st.n>=1);
+      $$('.rg-dr-ln',g).forEach(function(p,i){ p.classList.toggle('on',i<st.n); p.setAttribute('aria-hidden',i<st.n?'false':'true'); });
+      kb.disabled=st.n>=N; kb.textContent=st.n>=N?'🚪 '+(c.openedT||'The door is open'):'🚪 '+(c.knockT||'Knock, knock')+' ('+(st.n+1)+' of '+N+')'; }
+    kb.addEventListener('click',function(){ if(st.n>=N) return; st.n++; if(st.n>=N) st.out=true; save(); SFX.thud(); sc.classList.remove('shake'); void sc.offsetWidth; sc.classList.add('shake'); show(); paint(); refreshPress(); });
+    function paint(){ var sb=$('.rg-dr-seal',g);
+      $('.rg-zm-close',g).innerHTML=st.out?'':'<p class="rg-todo">🚪 '+esc(c.todoT||'Tap Knock until the door opens.')+'</p>';
+      if(!st.out){ sb.innerHTML=''; delete sb.dataset.on; $('.rg-dr-outs',g).innerHTML=''; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(c.q||'')+'</legend>'+OP.map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-dr-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o.t)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock rg-dr-lock">🔒 Lock my choice</button>';
+        $$('input[name="rg-dr-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-dr-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-dr-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-dr-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Locked':st.guess==null?'🔒 Pick one to lock it':'🔒 Lock my choice';
+      $('.rg-dr-outs',g).innerHTML=st.locked?'<p class="rg-dr-oh">'+esc(c.outsT||'Every door had a cost:')+'</p><ul class="rg-dr-ol">'+OP.map(function(o,i){ return '<li class="rg-dr-out'+(i===st.guess?' mine':'')+'" data-i="'+i+'"><b>'+esc(o.t)+(i===st.guess?' (your choice)':'')+':</b> '+esc(o.out||'')+'</li>'; }).join('')+'</ul>'+(c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':''):'';
+      g.classList.toggle('finished',!!st.locked); }
+    show(); paint();
+    function line(){ return st.locked?'At the door, I chose: “'+((OP[st.guess]||{}).t||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ if(!st.out) return NA; return '<p class="a"><b>The knock at the door:</b> '+(st.locked?e(line())+'<br>'+e(c.close||''):'')+'</p>'; },
+      state:function(){ return {locked:!!st.locked, line:line(), guess:st.locked?(OP[st.guess]||{}).t||'':'', built:[], vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- street: the lesson's reading stays on the page; then a 1775 street of doors. Tap a door: a kind of colonist steps out with one reason and one cost.
+     Hang a sign on the door (Patriot / Loyalist / Neutral / It's complicated). Wrong signs bounce with a hint. The almanac mini card opens when every door has its sign.
+     DATA.explore.reading = {type:'street', title, job, signs:[{k,t,icon}], people:[{id,icon,who,where,yr,reason,cost,ok:[k],no,say}], close, cols, times, srcLabel, readWho} */
+  MOD.street=function(c,anchor){ var st=mstate('sun',{sign:{},at:null}); if(!st.sign) st.sign={};
+    var PP=c.people||[], SG=c.signs||[];
+    var g=gameShell('rg-street','The Desk · a street of doors',c.title||'A street of doors',c);
+    if(c.keepReading!==false){ anchor.classList.remove('rg-off'); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); }); }
+    g.innerHTML+='<div class="rg-st-row" role="group" aria-label="'+esc(c.rowL||'The houses on the street')+'"></div><div class="rg-st-card" aria-live="polite"></div><p class="rg-st-say" aria-live="polite"></p><div class="rg-sun-close"></div>';
+    after(anchor,g); if(c.keepReading!==false){ g.insertBefore(anchor,$('.rg-st-row',g)); }
+    function person(id){ return PP.filter(function(p){ return p.id===id; })[0]||null; }
+    function sign(k){ return SG.filter(function(s){ return s.k===k; })[0]||{}; }
+    function done(){ return PP.every(function(p){ return st.sign[p.id]; }); }
+    function paint(){
+      $('.rg-st-row',g).innerHTML=PP.map(function(p,i){ var s=st.sign[p.id]; return '<button type="button" class="rg-st-house'+(st.at===p.id?' on':'')+(s?' signed':'')+'" data-id="'+esc(p.id)+'" aria-pressed="'+(st.at===p.id)+'"><span class="roof" aria-hidden="true"></span><span class="door" aria-hidden="true">'+esc(p.icon||'')+'</span><b>'+(i+1)+'. '+esc(p.short||p.who)+'</b>'+(s?'<span class="tag">'+esc(sign(s).icon||'')+' '+esc(sign(s).t||'')+'</span>':'<span class="tag none">'+esc(c.noSignT||'No sign yet')+'</span>')+'</button>'; }).join('');
+      var p=person(st.at), cd=$('.rg-st-card',g);
+      if(!p){ cd.innerHTML='<p class="rg-pb-pick">'+esc(c.pickT||'Tap a door to see who lives there.')+'</p>'; }
+      else { var s=st.sign[p.id];
+        cd.innerHTML='<div class="rg-st-who"><span class="ic" aria-hidden="true">'+esc(p.icon||'')+'</span><div><b>'+esc(p.who)+'</b><small>'+esc([p.where,p.yr].filter(Boolean).join(' · '))+'</small></div></div>'+
+          '<ul class="rg-st-lines"><li class="rg-st-li" data-id="'+esc(p.id)+'" data-f="reason"><b>'+esc(c.reasonL||'Reason')+':</b> '+esc(p.reason)+'</li><li class="rg-st-li" data-id="'+esc(p.id)+'" data-f="cost"><b>'+esc(c.costL||'Cost')+':</b> '+esc(p.cost)+'</li>'+(s&&p.say?'<li class="rg-st-li" data-id="'+esc(p.id)+'" data-f="say"><b>'+esc(c.sayL||'Note')+':</b> '+esc(p.say)+'</li>':'')+'</ul>'+
+          (s?'':'<p class="rg-st-ask">'+esc(c.askT||'Which sign goes on this door?')+'</p><div class="rg-st-signs">'+SG.map(function(x){ return '<button type="button" class="rg-st-sign" data-k="'+esc(x.k)+'"><span aria-hidden="true">'+esc(x.icon||'')+'</span> '+esc(x.t)+'</button>'; }).join('')+'</div>')+
+          (s&&!done()?'<button type="button" class="rg-btn rg-st-next">'+esc(c.nextT||'Next door →')+'</button>':''); }
+      var d=done(); var mini=$('.rg-almini',g); if(mini) mini.classList.toggle('rg-hide',!d);
+      var sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=DATA.scene1||{};
+      $('.rg-sun-close',g).innerHTML=d&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your choice at the door (tab 1):</b> “'+esc(((S1.opts||[])[sealed]||{}).t||'')+'” '+esc((c.reveal||[])[sealed]||'')+'</span>':'')+'</div>':'';
+      g.classList.toggle('finished',d); }
+    $('.rg-st-row',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-st-house'); if(!b) return; st.at=b.dataset.id; save(); SFX.paper(); $('.rg-st-say',g).textContent=''; paint(); if(e.detail===0){ var f=$('.rg-st-sign',g)||$('.rg-st-next',g); if(f) f.focus({preventScroll:true}); } });
+    $('.rg-st-card',g).addEventListener('click',function(e){
+      var nx=e.target.closest('.rg-st-next'); if(nx){ var nxt=PP.filter(function(p){ return !st.sign[p.id]; })[0]; if(nxt){ st.at=nxt.id; save(); SFX.paper(); $('.rg-st-say',g).textContent=''; paint(); var f=$('.rg-st-sign',g); if(f) f.focus({preventScroll:true}); } return; }
+      var b=e.target.closest('.rg-st-sign'); if(!b) return; var p=person(st.at); if(!p) return;
+      if((p.ok||[]).indexOf(b.dataset.k)<0){ SFX.bounce(); b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); $('.rg-st-say',g).textContent=p.no||'Read the reason and the cost again.'; return; }
+      st.sign[p.id]=b.dataset.k; save(); SFX.chime(); $('.rg-st-say',g).textContent=(sign(b.dataset.k).say||''); paint(); refreshPress();
+      if(done()) beat('sunDone'); var f=$('.rg-st-next',g); if(f) f.focus({preventScroll:true}); });
+    paint(); setTimeout(paint,0);
+    return {el:g,done:done,open:done,paint:paint,go:function(){ paint(); },
+      journal:function(e,NA){ var any=Object.keys(st.sign).length; if(!any) return NA; return '<p class="a">'+PP.filter(function(p){ return st.sign[p.id]; }).map(function(p){ return '<b>'+e(p.who)+':</b> '+e(sign(st.sign[p.id]).t||'')+'. '+e(p.reason)+' '+e(p.cost); }).join('<br>')+'</p>'; },
+      people:function(){ return (c.cols||[]).map(function(x){ return x.who; }); }}; };
+
+  /* ---------------------------------------------------------------- povdial: who made this picture? Read three facts about the maker, turn a dial from "on the Patriots' side" to "against the Patriots",
+     then check: the reveal says what the maker wanted AND what other evidence says. Placed before the red pencil.
+     DATA.explore.povdial = {title, job, maker:[...], left, right, marks:[...], q, checkT, want:[min,max], reveal, near, far, close} */
+  MOD.povdial=function(c,anchor){ var st=mstate('povdial',{v:null,checked:false}); var MK=c.marks||[], MX=MK.length-1;
+    var g=gameShell('rg-povdial','The Desk · who made this picture?',c.title||'Who made this picture?',c);
+    g.innerHTML+='<ul class="rg-pv-maker">'+(c.maker||[]).map(function(t,i){ return '<li class="rg-pv-li" data-i="'+i+'">'+esc(t)+'</li>'; }).join('')+'</ul>'+
+      '<div class="rg-pv-dialbox"><p class="rg-pv-q" id="rg-pv-q">'+esc(c.q||'')+'</p>'+
+      '<svg class="rg-pv-dial" viewBox="0 0 220 124" aria-hidden="true"><path d="M14 112 A96 96 0 0 1 206 112" fill="none" stroke="#e8dcc0" stroke-width="18" stroke-linecap="round"/><path d="M14 112 A96 96 0 0 1 206 112" fill="none" stroke="#b9a37a" stroke-width="1.5" stroke-dasharray="2 13"/><g class="needle"><line x1="110" y1="112" x2="110" y2="30" stroke="#8b2c1d" stroke-width="4" stroke-linecap="round"/><circle cx="110" cy="112" r="9" fill="#3b2a1a"/></g></svg>'+
+      '<div class="rg-pv-ends"><span>'+esc(c.left||'')+'</span><span>'+esc(c.right||'')+'</span></div>'+
+      '<input type="range" class="rg-pv-range" min="0" max="'+MX+'" step="1" value="'+(st.v==null?Math.round(MX/2):st.v)+'" aria-labelledby="rg-pv-q" aria-valuetext="">'+
+      '<p class="rg-pv-now" aria-live="polite"></p><button type="button" class="rg-btn rg-pv-check"></button></div><div class="rg-pv-out"></div>';
+    after(anchor,g);
+    var rg=$('.rg-pv-range',g), nd=$('.rg-pv-dial .needle',g);
+    function ang(v){ return -80+160*(v/Math.max(1,MX)); }
+    function done(){ return !!st.checked; }
+    function paint(){ var v=st.v==null?+rg.value:st.v; nd.setAttribute('transform','rotate('+ang(v)+' 110 112)'); rg.setAttribute('aria-valuetext',MK[v]||''); $('.rg-pv-now',g).textContent=st.v==null?(c.moveT||'Drag the knob to your answer.'):(c.nowT||'Your answer: ')+(MK[v]||'');
+      var cb=$('.rg-pv-check',g); cb.disabled=st.v==null; cb.textContent=st.checked?(c.againT||'✓ Checked (move it and check again if you like)'):(st.v==null?(c.checkWait||'Move the dial first'):(c.checkT||'Check my answer'));
+      var W=c.want||[MX,MX], near=st.v!=null&&st.v>=W[0]&&st.v<=W[1];
+      $('.rg-pv-out',g).innerHTML=st.checked?'<div class="rg-win'+(near?'':' soft')+'"><p class="rg-pv-li" data-i="r">'+esc(near?(c.near||''):(c.far||''))+'</p><p class="rg-pv-li" data-i="v">'+esc(c.reveal||'')+'</p></div>'+(c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':''):'';
+      g.classList.toggle('finished',done()); }
+    rg.addEventListener('input',function(){ st.v=+rg.value; save(); paint(); });
+    rg.addEventListener('change',function(){ SFX.clack(); });
+    $('.rg-pv-check',g).addEventListener('click',function(){ if(st.v==null) return; st.checked=true; save(); SFX.chime(); paint(); refreshPress(); beat('povDone'); });
+    paint();
+    return {el:g,done:done,journal:function(e,NA){ if(!st.checked) return NA; return '<p class="a"><b>Who made the picture:</b> I said “'+e(MK[st.v]||'')+'.” '+e(c.reveal||'')+'</p>'; }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -1444,6 +1537,7 @@
     if(ex.pins&&MOD.pins&&R.evidence){ var px=R.evidence.el.previousElementSibling; if(px){ R.pins=MOD.pins(ex.pins,px); var ed2=R.evidence.done; R.evidence.done=function(){ return ed2()&&R.pins.done(); }; } }
     if(ex.stereo&&MOD.stereo&&R.evidence){ var sx=R.evidence.el.previousElementSibling; if(sx){ R.stereo=MOD.stereo(ex.stereo,sx); var ed1=R.evidence.done; R.evidence.done=function(){ return ed1()&&R.stereo.done(); }; } }
     if(ex.ribbons&&MOD.ribbons&&R.evidence){ var rx=R.evidence.el.previousElementSibling; if(rx){ R.ribbons=MOD.ribbons(ex.ribbons,rx); var ed3=R.evidence.done; R.evidence.done=function(){ return ed3()&&R.ribbons.done(); }; } }
+    if(ex.povdial&&MOD.povdial&&R.evidence){ var pvx=R.evidence.el.previousElementSibling; if(pvx){ R.povdial=MOD.povdial(ex.povdial,pvx); var ed4=R.evidence.done; R.evidence.done=function(){ return ed4()&&R.povdial.done(); }; } }
     if(ex.tworec&&MOD.tworec&&R.evidence){ R.tworec=MOD.tworec(ex.tworec,R.evidence.el); var ed0=R.evidence.done; R.evidence.done=function(){ return ed0()&&R.tworec.done(); }; }
     buildAlmanac(); buildPair(); }
 
@@ -1455,7 +1549,7 @@
     listen:function(){ return $('#panel-desk .rg-vn[data-slot="v3"]')||(R.reading&&R.reading.el); },
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
-    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.ribbons&&R.ribbons.el)||(R.pins&&R.pins.el)||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
+    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.povdial&&R.povdial.el)||(R.ribbons&&R.ribbons.el)||(R.pins&&R.pins.el)||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
     almanac:function(){ return R.almanac&&R.almanac.el; },
     pair:function(){ return R.pair&&R.pair.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
@@ -1903,6 +1997,12 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    if(block.closest('.rg-dr-card')) return m({k:'routine', who:S1L.cardWho||'The pledge at the door', when:S1L.when||'', where:S1L.where||'', from:S1L.cardFrom||'Example written for this lesson', tags:['door','pledge','highlight']});
+    var dro=block.closest('.rg-dr-out'); if(dro){ var DO=(S1L.opts||[])[+dro.dataset.i]||{}; return m({k:'lesson', who:'At the door: '+(DO.t||''), when:S1L.when||'', where:S1L.where||'', from:S1L.outFrom||'Fact from the lesson', tags:['door','choice','highlight']}); }
+    var stl=block.closest('.rg-st-li'); if(stl){ var SP=(rd.people||[]).filter(function(x){ return x.id===stl.dataset.id; })[0]||{}; return m({k:'lesson', who:SP.who||'', when:SP.yr||'', where:SP.where||'', from:rd.srcLabel||'Fact from the lesson', ctx:stl.dataset.f==='cost'?'A cost of the choice':stl.dataset.f==='reason'?'A reason for the choice':'', tags:[SP.id||'','street',stl.dataset.f||'','highlight']}); }
+    if(block.closest('.rg-pv-li')){ var PVX=(DATA.explore||{}).povdial||{}; return m({k:'lesson', who:PVX.who||'Who made the picture', when:PVX.when||'', where:PVX.where||'', from:PVX.from||'Fact from the lesson', tags:['picture','maker','pov','highlight']}); }
+    if(block.closest('.rg-street blockquote')) return m({k:'routine', who:rd.voicesWho||'Two voices', from:rd.voicesFrom||'Example written for this lesson', tags:['reading','voices','highlight']});
+    if(block.closest('.rg-street .content-section')) return m({k:'lesson', who:rd.readWho||'The Desk reading', from:rd.readFrom||'Fact from the lesson', tags:['reading','highlight']});
     if(block.closest('.rg-iv-card')) return m({k:'routine', who:S1L.cardWho||'The invitation', when:S1L.when||'', where:S1L.where||'', from:S1L.cardFrom||'Example written for this lesson', tags:['invite','highlight']});
     var pbl=block.closest('.rg-pb-li,.rg-pb-chip'); if(pbl){ var PBA=null, PBC=null; (rd.acts||[]).forEach(function(a){ (a.chips||[]).forEach(function(x){ if(x.id===pbl.dataset.id){ PBA=a; PBC=x; } }); }); PBA=PBA||{}; PBC=PBC||{}; return m({k:'lesson', who:(PBA.name||'')+(PBA.yr?' ('+PBA.yr+')':''), when:PBA.yr||'', from:rd.srcLabel||'Fact from the lesson', ctx:PBC.k?(((rd.bins||{})[PBC.k]||{}).t||''):'', tags:['acts',PBA.id||'',PBC.k==='b'?'say':'money','highlight']}); }
     var rbg=block.closest('.rg-rb-got'); if(rbg){ var RBX=(DATA.explore||{}).ribbons||{}, RBP=(RBX.phrases||[])[+rbg.dataset.i]||{}; if(block.closest('.plain')) return m({k:'lesson', who:(RBX.who||'')+': plain words', when:RBX.when||'', from:'Fact from the lesson: plain words for the 1766 broadside', tags:['broadside',RBP.k||'','highlight']}); return m({k:'source', quote:true, who:RBX.who||'', when:RBX.when||'', where:RBX.where||'', from:RBX.from||'Real source from the past', ctx:RBP.plain||'', tags:['broadside',RBP.k||'','highlight']}); }
@@ -2037,6 +2137,7 @@
     s1done:function(){ var g=R.scene1&&R.scene1.el; return g&&[g,'after']; },
     desk:function(){ var g=R.reading&&R.reading.el; return g&&[g,'before']; },
     ribbons:function(){ var g=R.ribbons&&R.ribbons.el; return g&&[g,'before']; },
+    povdial:function(){ var g=R.povdial&&R.povdial.el; return g&&[g,'before']; },
     decode:function(){ var d=R.reading&&$('.rg-dc h4',R.reading.el); return d&&[d,'after']; },
     afterread:function(){ var g=R.reading&&R.reading.el; return g&&[g,'after']; },
     flip:function(){ var f=R.reading&&$('.rg-sc-flipbox',R.reading.el); return f&&[f,'before']; },
@@ -2137,7 +2238,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-dr-ln, .rg-dr-out, .rg-st-li, .rg-pv-li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -2318,7 +2419,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-dr-knock", "The door is open. Pick and lock your choice below."], [".rg-pv-check", "Drag the dial’s knob to your answer first."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
