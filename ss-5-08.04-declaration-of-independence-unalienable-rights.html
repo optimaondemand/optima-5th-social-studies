@@ -2258,6 +2258,1338 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.04",
+ "title": "Declaration of Independence: Unalienable Rights",
+ "issue": 40,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "part",
+ "place": "Philadelphia",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Was the Declaration just a list of complaints, or an argument about rights?<\/i> Use the 🖍 highlighter to save lines from the Declaration, the reading and the 1777 printing. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: colonists chose sides. Today: the Patriots explain their side to the world.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Try to erase it",
+   "k": "The Dispatch",
+   "why": "Some words won’t rub out."
+  },
+  {
+   "tab": "desk",
+   "t": "Complaints, or an argument?",
+   "k": "The Desk",
+   "why": "Build the argument, then read a real printing from 1777."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write the Gazette Correction",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "An honest editor reports the full truth, including the parts that are hard to hear.",
+ "recordFoot": "(The Declaration’s words and the 1777 printing are real sources from the past. The plain-language lines, the eraser and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today’s story is a famous document. Read the Herald first."
+   },
+   {
+    "t": "Then try to erase the words on the paper (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Erase what?",
+      "reply": "You’ll see."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Save a stone’s line.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the printing.",
+      "reply": "Save who printed it.",
+      "go": {
+       "tab": "desk",
+       "sel": ".rg-closeups"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Locked. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Next: a real printing from 1777.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 40 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "eraser",
+  "title": "Can you erase these rights?",
+  "cardWho": "The Declaration of Independence",
+  "when": "July 4, 1776",
+  "where": "Philadelphia",
+  "revealWho": "Unalienable rights",
+  "cardFrom": "Real source: the Declaration of Independence, 1776.",
+  "heraldFrom": "The Hasty Herald’s story, written for this lesson. It is a claim to check, not a fact.",
+  "job": {
+   "why": "Feel what “unalienable” means before you read it.",
+   "do": "1. Tap Rub it out 3 times. 2. Pick an answer and lock it.",
+   "use": "You’ll see your answer again on the Desk.",
+   "words": [
+    [
+     "pursuit",
+     "chasing after something"
+    ]
+   ]
+  },
+  "line": "Life, Liberty and the pursuit of Happiness",
+  "rubs": 3,
+  "rubT": "Rub it out",
+  "rubSay": [
+   "Still there.",
+   "Still there!",
+   "The words won’t come off."
+  ],
+  "reveal": "The Declaration calls these rights unalienable: no one can take them away. It says people are born with them.",
+  "q": "What do you think the Declaration is?",
+  "opts": [
+   "Just a list of complaints",
+   "An argument about rights",
+   "Not sure yet"
+  ],
+  "close": "Let’s read the real words."
+ },
+ "explore": {
+  "reading": {
+   "type": "arch",
+   "title": "Build the arch",
+   "srcWho": "The Declaration of Independence",
+   "srcWhen": "July 4, 1776",
+   "srcWhere": "Philadelphia",
+   "srcFrom": "Real source from the past: the Declaration of Independence (1776)",
+   "readWho": "The Desk reading",
+   "roles": [
+    {
+     "k": "big",
+     "t": "Big idea",
+     "icon": "💡",
+     "say": "Yes."
+    },
+    {
+     "k": "ev",
+     "t": "Evidence",
+     "icon": "📋",
+     "say": "Yes."
+    },
+    {
+     "k": "try",
+     "t": "We tried peace",
+     "icon": "🕊️",
+     "say": "Yes."
+    },
+    {
+     "k": "dec",
+     "t": "The decision",
+     "icon": "🔔",
+     "say": "Yes."
+    }
+   ],
+   "stones": [
+    {
+     "id": "taxes",
+     "role": "ev",
+     "short": "Taxes",
+     "line": "For imposing Taxes on us without our Consent",
+     "plain": "The king approved taxes the colonists never agreed to.",
+     "no": "Is this a big idea, or one wrong done to them?"
+    },
+    {
+     "id": "rights",
+     "role": "big",
+     "short": "Consent",
+     "line": "to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed",
+     "plain": "Governments exist to protect people’s rights. Their power comes from the people.",
+     "no": "Is this a wrong, or a reason governments exist?"
+    },
+    {
+     "id": "peace",
+     "role": "try",
+     "short": "Petitions",
+     "line": "In every stage of these Oppressions We have Petitioned for Redress in the most humble terms",
+     "plain": "Again and again, they politely asked the king to fix things.",
+     "no": "Look for the word “Petitioned.”"
+    },
+    {
+     "id": "troops",
+     "role": "ev",
+     "short": "Troops",
+     "line": "For quartering large bodies of armed troops among us",
+     "plain": "The king kept British soldiers in the colonies and made the colonies house them.",
+     "no": "Is this a wrong the king did?"
+    },
+    {
+     "id": "free",
+     "role": "dec",
+     "short": "Free",
+     "line": "these United Colonies are, and of Right ought to be Free and Independent States",
+     "plain": "The colonies announce that they are free from Britain.",
+     "no": "Does this line announce something?"
+    }
+   ],
+   "slots": {
+    "L1": [
+     "taxes"
+    ],
+    "L2": [
+     "troops"
+    ],
+    "K": [
+     "rights"
+    ],
+    "R2": [
+     "peace"
+    ],
+    "R1": [
+     "free"
+    ]
+   },
+   "pickT": "Tap a stone to read its words.",
+   "pullT": "🪨 Pull out the keystone",
+   "againT": "🪨 Pull the keystone again",
+   "fallT": "The arch falls. Without the big idea, the complaints are just complaints.",
+   "close": "The grievances are evidence. The big idea holds them up.",
+   "reveal": [
+    "Now you’ve seen what holds it up.",
+    "You saw it early.",
+    "Now you’ve seen the parts."
+   ],
+   "gap": {
+    "title": "Words that kept working",
+    "who": "Who the words left out",
+    "lines": [
+     "In 1776, “all men are created equal” did not include everyone. About one in five people in the colonies was enslaved. Almost no women could vote.",
+     "The list of grievances used insulting words for Native peoples. Thomas Jefferson, who wrote these words, enslaved more than 600 people in his life."
+    ],
+    "ask": "Did the words stop there? Tap each date.",
+    "taps": [
+     {
+      "yr": "1776",
+      "who": "Abigail Adams",
+      "t": "While Congress was meeting, Abigail Adams wrote to her husband John, a delegate: “Remember the Ladies.” She asked for laws that were fairer to women."
+     },
+     {
+      "yr": "1848",
+      "who": "Seneca Falls, New York",
+      "t": "Women and men wrote their own declaration. It said “all men and women are created equal.”"
+     }
+    ],
+    "close": "People who were left out used the Declaration’s own words to ask for their rights."
+   },
+   "times": [
+    "Real words",
+    "What it does"
+   ],
+   "cols": [
+    {
+     "id": "big",
+     "who": "Part 1: The big ideas",
+     "icon": "💡",
+     "lines": [
+      "“the consent of the governed”",
+      "Says why governments exist"
+     ]
+    },
+    {
+     "id": "ev",
+     "who": "Part 2: The evidence",
+     "icon": "📋",
+     "lines": [
+      "“For imposing Taxes on us without our Consent”",
+      "Shows the king broke the deal"
+     ]
+    },
+    {
+     "id": "try",
+     "who": "Part 3: We tried peace",
+     "icon": "🕊️",
+     "lines": [
+      "“We have Petitioned for Redress”",
+      "Shows they asked first"
+     ]
+    },
+    {
+     "id": "dec",
+     "who": "Part 4: The decision",
+     "icon": "🔔",
+     "lines": [
+      "“Free and Independent States”",
+      "Announces independence"
+     ]
+    }
+   ],
+   "job": {
+    "why": "Test the Herald’s “just complaints.”",
+    "do": "1. Read the parts above. 2. Tap a stone. 3. Pick its job. 4. Pull the keystone.",
+    "use": "The real words are evidence.",
+    "words": [
+     [
+      "self-evident",
+      "so clear it needs no proof"
+     ],
+     [
+      "endowed",
+      "given"
+     ],
+     [
+      "keystone",
+      "the top stone that holds an arch together"
+     ]
+    ]
+   }
+  },
+  "closeups": {
+   "title": "Look closer",
+   "who": "The 1777 printing",
+   "when": "January 1777",
+   "where": "Baltimore, Maryland",
+   "from": "Fact from the lesson",
+   "items": [
+    {
+     "img": "source-5-08-04-goddard-title",
+     "btn": "Look closer: the top",
+     "alt": "The top of the printed sheet. Large old-style capital letters read: In Congress, July 4, 1776. The unanimous Declaration of the thirteen United States of America.",
+     "cap": "The top says “In Congress, July 4, 1776,” the day Congress approved the Declaration."
+    },
+    {
+     "img": "source-5-08-04-goddard-printer",
+     "btn": "Look closer: the bottom",
+     "alt": "The bottom of the sheet: a printed order dated January 18, 1777, the handwritten words A true copy with John Hancock’s signature, and a last line: Baltimore, in Maryland: Printed by Mary Katharine Goddard.",
+     "cap": "The bottom says “Printed by Mary Katharine Goddard.” Congress sent her copies to every state."
+    }
+   ],
+   "close": "One sheet, two dates: when it was approved, and when it was printed.",
+   "job": {
+    "why": "Every source has a maker.",
+    "do": "1. Open both close-ups. 2. Read each caption.",
+    "use": "Then mark up the whole sheet."
+   }
+  },
+  "copy": {
+   "title": "Copy it by hand",
+   "checkT": "I copied the line by hand in my notebook.",
+   "doneT": "✓ Nice work.",
+   "job": {
+    "why": "Copying slowly helps you notice every word.",
+    "do": "1. Copy the line. 2. Tick the box.",
+    "use": "Your teacher may ask to see it."
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the 1777 printing",
+   "kind": "source",
+   "srcName": "the 1777 printing",
+   "srcWho": "The Goddard printing (1777)",
+   "srcCant": "This 1777 printing",
+   "showsWord": "The printing shows ",
+   "img": "source-5-08-04-goddard-declaration-1777",
+   "alt": "An old printed sheet of the Declaration of Independence. Big capital letters across the top, two columns of small print, John Hancock’s name in large letters, the signers’ names grouped by state, a short order dated January 18, 1777, some handwriting, and one last line naming the printer.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 50,
+     "y": 3.2,
+     "rx": 22,
+     "ry": 1.8,
+     "label": "The top",
+     "t": "“In Congress, July 4, 1776”: the day Congress approved it."
+    },
+    {
+     "x": 62,
+     "y": 26,
+     "rx": 10,
+     "ry": 1.2,
+     "label": "A grievance",
+     "t": "“For imposing Taxes on us without our Consent.”"
+    },
+    {
+     "x": 53.4,
+     "y": 73,
+     "rx": 40,
+     "ry": 6,
+     "label": "The signers",
+     "t": "The signers’ names, grouped by state."
+    },
+    {
+     "x": 45,
+     "y": 96.3,
+     "rx": 19,
+     "ry": 1.3,
+     "label": "The printer",
+     "t": "“Printed by Mary Katharine Goddard.”"
+    }
+   ],
+   "date": {
+    "x": 47.7,
+    "y": 85.5,
+    "w": 24,
+    "h": 2.2,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1777,
+    "shows": 1776,
+    "yearT": "January 1777",
+    "showsT": "July 4, 1776 (the day it was approved)",
+    "gapT": "about six months later",
+    "madeBy": "Mary Katharine Goddard",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: when was it printed, and what date is at the top?",
+    "check": [
+     "say 1777?",
+     "say 1776?"
+    ],
+    "model": "It was printed in January 1777. The top shows July 4, 1776, the day Congress approved it.",
+    "card": "Printed in Baltimore, January 1777. It shows the Declaration of July 4, 1776.",
+    "madeT": "printed January 1777",
+    "journalT": "The printing was made in January 1777, about six months after July 4, 1776."
+   },
+   "missing": {
+    "q": "What can this printing show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this printing",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this printing",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this printing alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "The Declaration’s words, in print",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look at the two columns."
+     },
+     {
+      "t": "The names of the signers",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look below John Hancock’s name."
+     },
+     {
+      "t": "The handwritten copy the delegates signed",
+      "k": "not",
+      "say": "Right. This is a printed copy.",
+      "hint": "Is this handwritten, or printed?"
+     },
+     {
+      "t": "What people who read it thought",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Can print show a reader’s thoughts?",
+      "calm": true
+     }
+    ]
+   },
+   "close": "A printed copy shows the words, not what readers thought.",
+   "lookQ": "Write one thing you notice on this sheet.",
+   "from": "Real source from the past: the Declaration printed by Mary Katharine Goddard, Baltimore, 1777 (Library of Congress)",
+   "zoomCap": "The Declaration of Independence, printed by Mary Katharine Goddard, Baltimore, January 1777. Library of Congress, Continental Congress Broadside Collection, item 90898037. No known copyright restrictions.",
+   "followup": {
+    "q": "This printing can’t show what readers thought. Which source could help?",
+    "opts": [
+     {
+      "t": "Letters and diaries from people who read it",
+      "ok": true,
+      "say": "Yes."
+     },
+     {
+      "t": "A bigger copy of this printing",
+      "ok": false,
+      "say": "Still the same words."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this printing can’t show (a limitation).",
+    "limPh": "This printing can’t show…"
+   },
+   "job": {
+    "why": "Check what a source can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "The Declaration of Independence is an argument with parts: big ideas, evidence, we tried peace, and the decision.",
+   "Unalienable rights are rights no one can take away, such as life, liberty and the pursuit of happiness.",
+   "Governments get their power from the consent of the governed: the people agree to it.",
+   "One grievance says “For imposing Taxes on us without our Consent,” the old complaint about taxation without representation.",
+   "A committee of five wrote it; Thomas Jefferson wrote the first draft. Loyalists said many grievances were unfair to the king.",
+   "In 1776, the words did not include enslaved people, women or Native peoples. Later, people used the same words to ask for their rights.",
+   "Mary Katharine Goddard printed the Declaration with the signers’ names in Baltimore in January 1777."
+  ],
+  "vocab": [
+   [
+    "unalienable",
+    "can’t be taken away"
+   ],
+   [
+    "consent of the governed",
+    "the people agree to it"
+   ],
+   [
+    "grievance",
+    "a serious wrong someone complains about"
+   ],
+   [
+    "social contract",
+    "the deal that a government protects the people’s rights"
+   ],
+   [
+    "petition",
+    "a written request to a leader"
+   ],
+   [
+    "self-evident",
+    "so clear it needs no proof"
+   ],
+   [
+    "primary source",
+    "something made at the time"
+   ],
+   [
+    "limitation",
+    "something a source can’t show"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: clar means “clear”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "To declare is to make something clear.",
+   "do": "1. Tap the part meaning “clear.” 2. Use declare in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "clar",
+  "meaning": "clear",
+  "words": [
+   {
+    "parts": [
+     "de",
+     "clar",
+     "e"
+    ],
+    "root": 1,
+    "m": "declare: to make something clear to everyone"
+   },
+   {
+    "parts": [
+     "clar",
+     "ify"
+    ],
+    "root": 0,
+    "m": "clarify: to make something easier to understand"
+   },
+   {
+    "parts": [
+     "clar",
+     "ity"
+    ],
+    "root": 0,
+    "m": "clarity: being clear"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Declare comes from the Latin word declarare, “to make clear.” The Declaration made the colonists’ reasons clear to the world.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "In 1776, Congress wanted to declare…",
+   "min": 8,
+   "must": "declar",
+   "word": "declare"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Gazette Correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "Complaints With a Purpose",
+     "ok": true,
+     "tip": "The grievances are evidence.",
+     "fit": [
+      "arch",
+      "ev",
+      "taxes",
+      "troops",
+      "reading"
+     ],
+     "fitTip": "Good fits: evidence stones.",
+     "ideas": [
+      "Complaints With a Purpose",
+      "More Than a List"
+     ]
+    },
+    {
+     "t": "An Argument About Rights",
+     "ok": true,
+     "tip": "The big ideas.",
+     "fit": [
+      "big",
+      "rights",
+      "eraser",
+      "quote",
+      "reading"
+     ],
+     "fitTip": "Good fits: the big ideas.",
+     "ideas": [
+      "An Argument About Rights",
+      "Rights That Stay"
+     ]
+    },
+    {
+     "t": "Big Words, Unfinished Promise",
+     "ok": true,
+     "tip": "Who was left out.",
+     "fit": [
+      "gap",
+      "honest",
+      "picture",
+      "printer"
+     ],
+     "fitTip": "Good fits: Words that kept working.",
+     "ideas": [
+      "Big Words, Unfinished Promise",
+      "Words That Kept Working"
+     ]
+    },
+    {
+     "t": "Just a List of Complaints!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your arch."
+    }
+   ]
+  },
+  "p1Label": "Part 1",
+  "p2Label": "Part 2",
+  "cmpHd": "Each part’s real words and what it does.",
+  "cmpQ": "Which part does the Herald leave out?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "Big ideas about rights",
+   "Grievances as evidence",
+   "They tried peace first",
+   "The decision",
+   "Who was left out"
+  ],
+  "close": "Now write your correction below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two parts. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? A team wrote it",
+   "img": false,
+   "who": "The Committee of Five",
+   "from": "Fact from the lesson",
+   "t": "Congress picked five men to write it: Thomas Jefferson, John Adams, Benjamin Franklin, Roger Sherman and Robert Livingston. Jefferson wrote the first draft, and Congress cut about a quarter of it. The colonies chose the delegates. Back then, mostly white men who owned land could vote. Today, citizens 18 and older can vote.",
+   "q": "",
+   "tags": [
+    "committee",
+    "jefferson",
+    "vote",
+    "arch"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 40 is in the Morgue.",
+  "claim": "The Declaration of Independence was just a list of complaints."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the words that wouldn’t erase",
+   "Snap your finished arch",
+   "Snap the printer’s name",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "The colonists said the king taxed them without their consent.",
+   "key": [
+    "colonists",
+    "king",
+    "taxed",
+    "without",
+    "consent"
+   ],
+   "small": [
+    "The",
+    "said",
+    "the",
+    "them",
+    "their"
+   ],
+   "model": "Key words: colonists, king, taxed, without, consent."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "The three rights",
+    "rx": "life|liberty|happiness",
+    "n": 1
+   },
+   {
+    "t": "Why “unalienable”",
+    "rx": "taken away|take away|can.?t be taken|cannot|born|creator|given|no one can|lose|unalien|forever|always",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "Consent",
+    "rx": "consent|agree|permission|the people|vote|say",
+    "n": 1
+   },
+   {
+    "t": "Taxes",
+    "rx": "tax|parliament|represent|stamp|tea",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|grievance|complain|list|long",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|argument|rights|big idea|reason|evidence|equal|peace|petition|independen|free|consent|govern",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "See the words that wouldn’t erase.",
+   "What does unalienable mean?",
+   "Try: “The rights are ___ because ___.”"
+  ],
+  "journal-q2": [
+   "See the taxes stone.",
+   "Did colonists agree to those taxes?",
+   "Try: “Consent means ___. Taxes ___.”"
+  ],
+  "journal-q3": [
+   "Is there a list?",
+   "What holds the arch up?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "B": "It says all people have them, not just owners.",
+   "C": "The king didn’t give them. People are born with them."
+  },
+  {
+   "A": "Each grievance was evidence, not an insult.",
+   "B": "The list made the case. It wasn’t filler."
+  },
+  {
+   "A": "Many people didn’t agree, and many were left out.",
+   "C": "It spoke for all thirteen colonies."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · The Declaration of Independence",
+  "head": "Just Complaints, or an Argument?",
+  "deck": "Was the Declaration just a list of complaints, or an argument about rights?",
+  "dateline": "Vol. I · No. 40 · Price: One Penny",
+  "ears": [
+   "Issue 40 · Road to Revolution Edition",
+   "🖼️ Printed copy, 1777"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Build the argument"
+   },
+   {
+    "key": "picture",
+    "t": "Read a real printing from 1777",
+    "fold": true
+   },
+   {
+    "key": "copy",
+    "t": "Copy it by hand"
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "PHILADELPHIA",
+  "lede": "Five stones, one real printing from 1777.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the Declaration or the 1777 printing.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a line, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "Complaints With a Purpose",
+   "An Argument About Rights"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your correction and your evidence",
+    "short": "Your correction and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "What does the Declaration really do? Use its real words.",
+    "ph": "Write your correction and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Declaration was more than a list of complaints.",
+     "One grievance says"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "What should readers understand, including who was left out?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1777 printing show, and not show?",
+    "ph": "For example, start with: The printing…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The printing was made in 1777, so",
+     "The printing shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Fix the Herald with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain."
+ },
+ "claimChecks": [
+  {
+   "id": "list-proves",
+   "claim": "The Declaration’s list of grievances proves that every charge against the king was true.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Can one side’s list prove itself?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. The list is real, but it is one side’s case."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": true,
+     "say": "Yes. We’d need other sources to check each charge."
+    }
+   ],
+   "details": [
+    {
+     "from": "The reading:",
+     "t": "Loyalists said many grievances were unfair to the king.",
+     "ok": true,
+     "say": "Yes. Another side disagreed."
+    },
+    {
+     "from": "An arch stone:",
+     "t": "“For imposing Taxes on us without our Consent.”",
+     "ok": true,
+     "say": "Yes. One charge, told by one side."
+    },
+    {
+     "from": "The printing:",
+     "t": "It was printed in Baltimore in 1777.",
+     "ok": false,
+     "say": "That’s about the printing, not the charges."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I used the Declaration’s real words.",
+  "I gave two details, each with a reason.",
+  "I said who the words left out in 1776."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your drawer is empty. Try a stone.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1777 printing.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(declaration|independen\\w*|congress|delegates?|signers?|signed|jefferson|adams|abigail|franklin|sherman|livingston|hancock|goddard|printers?|print\\w*|baltimore|philadelphia|king|george|britain|british|parliament|colon\\w*|states?|rights?|unalienable|life|liberty|happiness|equal|creator|govern\\w*|consent|social contract|grievances?|complaints?|charges?|tax\\w*|troops|soldiers|quarter\\w*|petition\\w*|peace|redress|free|freedom|honou?r|fortunes?|lives|loyalists?|patriots?|enslaved|slavery|women|ladies|native|vote\\w*|seneca|1776|1777|1848|july|january|argument|evidence|big idea|keystone|words?|left out)\\b",
+   "off": "Does this help show what the Declaration does? Try a stone or the printing.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a line from a stone.",
+    "go": [
+     {
+      "l": "The arch",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try Words that kept working.",
+    "go": [
+     {
+      "l": "The arch",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a note about the printing.",
+    "go": [
+     {
+      "l": "The printing",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Words that won’t rub out",
+   "script": "The Herald says the Declaration was just a list of complaints. Before you decide, try something. There’s a line from the Declaration on a scrap of paper. Try to rub it out, and notice what happens. Then think: why would the writers put those words first, before any complaint?"
+  },
+  {
+   "at": "closeups",
+   "slot": "v2",
+   "label": "Who printed this?",
+   "script": "In January seventeen seventy-seven, Congress needed new copies of the Declaration, with the signers’ names. A Baltimore printer named Mary Katharine Goddard set it in type, letter by letter. At the bottom, she printed her own name. Look closely at the top and the bottom. Then ask: what can a printed copy show, and what can’t it?"
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^scrap",
+    "sel": "#panel-dispatch .rg-er-card",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^rub",
+    "sel": "#panel-dispatch .rg-er-rub",
+    "fx": "point"
+   },
+   {
+    "at": "^first",
+    "sel": "#panel-dispatch .rg-eraser",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^goddard",
+    "sel": "#panel-desk .rg-closeups",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^top",
+    "sel": "#panel-desk .rg-cu-item",
+    "i": 0,
+    "fx": "glow"
+   },
+   {
+    "at": "^bottom",
+    "sel": "#panel-desk .rg-cu-item",
+    "i": 1,
+    "fx": "glow"
+   },
+   {
+    "at": "^can",
+    "sel": "#panel-desk .rg-closeups",
+    "fx": "glow",
+    "calm": true
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.2,
+    0.56,
+    "Herald"
+   ],
+   [
+    8.32,
+    8.56,
+    "scrap"
+   ],
+   [
+    10.08,
+    10.16,
+    "rub"
+   ],
+   [
+    15.36,
+    16.0,
+    "first,"
+   ]
+  ],
+  "v2": [
+   [
+    9.04,
+    9.52,
+    "Goddard"
+   ],
+   [
+    16.0,
+    16.32,
+    "top"
+   ],
+   [
+    16.64,
+    17.28,
+    "bottom."
+   ],
+   [
+    18.8,
+    18.88,
+    "can"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3821,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3836,30 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A printer's shop at night: a wooden printing press lit by candles, fresh blank sheets drying on a line, cases of type on the wall, and a window showing a church-like steeple against the early dawn." class="b0804">
+<defs>
+<linearGradient id="b0804Wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2220"/><stop offset="1" stop-color="#4A3A2E"/></linearGradient>
+<linearGradient id="b0804Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C2748"/><stop offset=".65" stop-color="#4E4A72"/><stop offset="1" stop-color="#E7A57A"/></linearGradient>
+<linearGradient id="b0804Floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A4434"/><stop offset="1" stop-color="#33271E"/></linearGradient>
+<radialGradient id="b0804Glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD98C" stop-opacity=".75"/><stop offset="1" stop-color="#FFD98C" stop-opacity="0"/></radialGradient>
+<style>
+.b0804 .b0804-fl{ transform-box:fill-box; transform-origin:50% 100%; animation:b0804fl 1.6s ease-in-out infinite alternate; }
+.b0804 .b0804-fl.d1{ animation-delay:-.7s }
+.b0804 .b0804-gl{ animation:b0804gl 2.4s ease-in-out infinite; }
+.b0804 .b0804-sh{ transform-box:fill-box; transform-origin:50% 0; animation:b0804sw 4.5s ease-in-out infinite alternate; }
+.b0804 .b0804-sh.d1{ animation-delay:-1.5s } .b0804 .b0804-sh.d2{ animation-delay:-3s }
+.b0804 .b0804-dawn{ animation:b0804dawn 14s ease-in-out infinite alternate; }
+.b0804 .b0804-star{ animation:b0804tw 5s ease-in-out infinite; }
+@keyframes b0804fl{ from{ transform:scaleY(1) rotate(-3deg) } to{ transform:scaleY(.82) rotate(3deg) } }
+@keyframes b0804gl{ 0%,100%{ opacity:.9 } 50%{ opacity:.65 } }
+@keyframes b0804sw{ from{ transform:rotate(-2.5deg) } to{ transform:rotate(2.5deg) } }
+@keyframes b0804dawn{ from{ opacity:.15 } to{ opacity:.7 } }
+@keyframes b0804tw{ 0%,100%{ opacity:.9 } 50%{ opacity:.2 } }
+@media (prefers-reduced-motion:reduce){ .b0804 *{ animation:none!important } }
+</style>
+</defs>
+<rect width="920" height="260" fill="url(#b0804Wall)"/>
+<path d="M0,22 H920" stroke="#1E1714" stroke-width="12"/><rect x="40" y="16" width="14" height="16" fill="#1E1714"/><rect x="180" y="16" width="14" height="16" fill="#1E1714"/><rect x="320" y="16" width="14" height="16" fill="#1E1714"/><rect x="460" y="16" width="14" height="16" fill="#1E1714"/><rect x="600" y="16" width="14" height="16" fill="#1E1714"/><rect x="740" y="16" width="14" height="16" fill="#1E1714"/><rect x="880" y="16" width="14" height="16" fill="#1E1714"/><rect x="632" y="40" width="216" height="144" fill="#3A2C22"/><rect x="640" y="48" width="200" height="128" fill="url(#b0804Sky)"/><rect class="b0804-dawn" x="640" y="130" width="200" height="46" fill="#F6C08A"/><circle class="b0804-star" style="animation-delay:-0.2s" cx="732" cy="101" r="1.2" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-1.0s" cx="770" cy="88" r="1.2" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-4.1s" cx="699" cy="94" r="1.5" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-3.2s" cx="813" cy="61" r="1.5" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-0.3s" cx="778" cy="100" r="1.5" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-1.6s" cx="706" cy="68" r="1.5" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-4.9s" cx="773" cy="82" r="1.2" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-1.6s" cx="809" cy="100" r="1.2" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-0.8s" cx="690" cy="62" r="1.2" fill="#FFF3D0"/><circle class="b0804-star" style="animation-delay:-3.9s" cx="776" cy="70" r="0.9" fill="#FFF3D0"/><path d="M640,176 V152 H680 V144 H726 V156 H840 V176 Z" fill="#1F1C2C"/><rect x="742" y="118" width="32" height="58" fill="#1F1C2C"/><rect x="747" y="94" width="22" height="26" fill="#1F1C2C"/><rect x="751" y="78" width="14" height="18" fill="#1F1C2C"/><path d="M751,78 L758,54 L765,78 Z" fill="#1F1C2C"/><circle cx="758" cy="108" r="4" fill="#E9C27A" opacity=".8"/><path d="M740.0,48 V176 M640,112.0 H840" stroke="#3A2C22" stroke-width="6"/><rect x="30" y="60" width="150" height="24" fill="#5A3E2A" stroke="#2A1E16" stroke-width="2"/><rect x="34" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="46" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="58" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="70" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="82" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="94" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="106" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="118" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="130" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="142" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="154" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="166" y="64" width="9" height="16" fill="#3B2A1E"/><rect x="30" y="90" width="150" height="24" fill="#5A3E2A" stroke="#2A1E16" stroke-width="2"/><rect x="34" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="46" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="58" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="70" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="82" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="94" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="106" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="118" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="130" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="142" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="154" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="166" y="94" width="9" height="16" fill="#3B2A1E"/><rect x="30" y="120" width="150" height="24" fill="#5A3E2A" stroke="#2A1E16" stroke-width="2"/><rect x="34" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="46" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="58" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="70" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="82" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="94" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="106" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="118" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="130" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="142" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="154" y="124" width="9" height="16" fill="#3B2A1E"/><rect x="166" y="124" width="9" height="16" fill="#3B2A1E"/><path d="M210,58 Q420,74 620,58" stroke="#C9B48A" stroke-width="1.5" fill="none"/><g class="b0804-sh d0"><rect x="240" y="61" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M246,71 H278" stroke="#D9CDAE" stroke-width="2"/><path d="M246,79 H278" stroke="#D9CDAE" stroke-width="2"/><path d="M246,87 H278" stroke="#D9CDAE" stroke-width="2"/><path d="M246,95 H278" stroke="#D9CDAE" stroke-width="2"/><path d="M246,103 H278" stroke="#D9CDAE" stroke-width="2"/><rect x="258" y="58" width="8" height="6" fill="#8A6A44"/></g><g class="b0804-sh d1"><rect x="300" y="67" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M306,77 H338" stroke="#D9CDAE" stroke-width="2"/><path d="M306,85 H338" stroke="#D9CDAE" stroke-width="2"/><path d="M306,93 H338" stroke="#D9CDAE" stroke-width="2"/><path d="M306,101 H338" stroke="#D9CDAE" stroke-width="2"/><path d="M306,109 H338" stroke="#D9CDAE" stroke-width="2"/><rect x="318" y="64" width="8" height="6" fill="#8A6A44"/></g><g class="b0804-sh d2"><rect x="360" y="70" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M366,80 H398" stroke="#D9CDAE" stroke-width="2"/><path d="M366,88 H398" stroke="#D9CDAE" stroke-width="2"/><path d="M366,96 H398" stroke="#D9CDAE" stroke-width="2"/><path d="M366,104 H398" stroke="#D9CDAE" stroke-width="2"/><path d="M366,112 H398" stroke="#D9CDAE" stroke-width="2"/><rect x="378" y="67" width="8" height="6" fill="#8A6A44"/></g><g class="b0804-sh d0"><rect x="420" y="71" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M426,81 H458" stroke="#D9CDAE" stroke-width="2"/><path d="M426,89 H458" stroke="#D9CDAE" stroke-width="2"/><path d="M426,97 H458" stroke="#D9CDAE" stroke-width="2"/><path d="M426,105 H458" stroke="#D9CDAE" stroke-width="2"/><path d="M426,113 H458" stroke="#D9CDAE" stroke-width="2"/><rect x="438" y="68" width="8" height="6" fill="#8A6A44"/></g><g class="b0804-sh d1"><rect x="480" y="69" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M486,79 H518" stroke="#D9CDAE" stroke-width="2"/><path d="M486,87 H518" stroke="#D9CDAE" stroke-width="2"/><path d="M486,95 H518" stroke="#D9CDAE" stroke-width="2"/><path d="M486,103 H518" stroke="#D9CDAE" stroke-width="2"/><path d="M486,111 H518" stroke="#D9CDAE" stroke-width="2"/><rect x="498" y="66" width="8" height="6" fill="#8A6A44"/></g><g class="b0804-sh d2"><rect x="540" y="66" width="44" height="58" fill="#F4ECD6" stroke="#CDBF9C"/><path d="M546,76 H578" stroke="#D9CDAE" stroke-width="2"/><path d="M546,84 H578" stroke="#D9CDAE" stroke-width="2"/><path d="M546,92 H578" stroke="#D9CDAE" stroke-width="2"/><path d="M546,100 H578" stroke="#D9CDAE" stroke-width="2"/><path d="M546,108 H578" stroke="#D9CDAE" stroke-width="2"/><rect x="558" y="63" width="8" height="6" fill="#8A6A44"/></g><path d="M0,212 H920 V260 H0 Z" fill="url(#b0804Floor)"/><path d="M60,212 L30,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M150,212 L120,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M240,212 L210,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M330,212 L300,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M420,212 L390,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M510,212 L480,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M600,212 L570,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M690,212 L660,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M780,212 L750,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><path d="M870,212 L840,260" stroke="#2B2019" stroke-width="2" opacity=".6"/><rect x="300" y="96" width="16" height="118" fill="#6B4A2E"/><rect x="420" y="96" width="16" height="118" fill="#6B4A2E"/><rect x="294" y="90" width="148" height="18" fill="#5A3C24"/><rect x="294" y="196" width="148" height="12" fill="#5A3C24"/><rect x="360" y="108" width="16" height="30" fill="#3A2A1C"/><path d="M376,122 L450,112" stroke="#2A1E14" stroke-width="5" stroke-linecap="round"/><circle cx="450" cy="112" r="5" fill="#2A1E14"/><rect x="330" y="138" width="76" height="12" fill="#4A3220"/><rect x="260" y="160" width="220" height="12" fill="#7A5634"/><rect x="320" y="152" width="96" height="9" fill="#2B2B2E"/><path d="M260,160 L230,128 L280,128 L308,160 Z" fill="#EFE5CC" stroke="#BFAE86"/><path d="M476,212 V150" stroke="#4A3220" stroke-width="4"/><circle cx="468" cy="146" r="10" fill="#2B2B2E"/><circle cx="486" cy="146" r="10" fill="#2B2B2E"/><rect x="520" y="168" width="96" height="10" fill="#5A3C24"/><rect x="530" y="178" width="8" height="34" fill="#4A3220"/><rect x="598" y="178" width="8" height="34" fill="#4A3220"/><rect x="534" y="160" width="70" height="8" fill="#F4ECD6" stroke="#CDBF9C"/><rect x="535" y="157" width="70" height="8" fill="#F4ECD6" stroke="#CDBF9C"/><rect x="536" y="154" width="70" height="8" fill="#F4ECD6" stroke="#CDBF9C"/><circle class="b0804-gl" cx="580" cy="141" r="58" fill="url(#b0804Glow)"/><rect x="576" y="151" width="8" height="18" fill="#F1E6C8"/><rect x="571" y="168" width="18" height="4" fill="#8A6A44"/><path class="b0804-fl d0" d="M580,135 Q586,145 580,151 Q574,145 580,135 Z" fill="#FFC45A"/><circle class="b0804-gl" cx="200" cy="140" r="58" fill="url(#b0804Glow)"/><rect x="196" y="150" width="8" height="18" fill="#F1E6C8"/><rect x="191" y="167" width="18" height="4" fill="#8A6A44"/><path class="b0804-fl d1" d="M200,134 Q206,144 200,150 Q194,144 200,134 Z" fill="#FFC45A"/><rect x="170" y="171" width="60" height="6" fill="#5A3C24"/></svg>
   </div>
 
   <div class="hero-headline-strip serif">Declaration of Independence: Unalienable Rights</div>
@@ -2677,7 +3871,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 20 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3885,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Honesty</div>
     </div>
   </div>
@@ -2700,27 +3892,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
-      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.3 · SS.5.A.5.5 · SS.5.A.5.6 · SS.5.CG.1.1 · SS.5.CG.2.6 · TEKS 2(A)–(C), 14(A)</div>
+      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.A.5.5 · SS.5.A.5.6 · SS.5.CG.1.1 · SS.5.CG.2.1 · SS.5.CG.2.2 · SS.5.CG.2.6 · TEKS 2(A)–(C), 14(A)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 40 · Circulation ~3,600 · <em>The Declaration isn't just a document — it's an argument.</em>
+      Vol. 1 · Issue 40 · Readers: about 3,600 · <em>The Declaration is an argument.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3910,21 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 40</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 40</strong> — <em>Check big claims about the road to the Revolution.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,600</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Readership holds steady through the Revolution series.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2755,36 +3934,31 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — The Declaration isn't just a document — it's an argument. Read it like an editor.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-label">Rival paper</span>
       <span class="ns-row-value">
-        <span class="threat-meter">📢 The Hasty Herald · Aggressive</span>
+        <span class="threat-meter">📢 The Hasty Herald · pushy</span>
         <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
       </span>
     </div>
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: locked in the <em>Patriots, Loyalists, and Other Colonists</em> record. Tap to recap.
+      Last issue: <em>Patriots, Loyalists, and Other Colonists</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that colonists were divided into three groups — Patriots who wanted independence, Loyalists who stayed loyal, and a large neutral majority caught in the middle. The Herald's claim that "every colonist was either a Patriot or a Loyalist" missed the complicated reality of hard personal choices.
+      In 5.08.03, colonists split three ways: Patriots, Loyalists and neutral colonists, one of the largest groups. Today: the Patriots explain their choice.
     </div>
   </div>
 </div>
@@ -2793,25 +3967,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.04</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Patriots, Loyalists, and Other Colonists</em> and proved that colonial opinions were far more divided than the Herald suggested. Today, a new file marked <em>5.08.04 — Declaration of Independence: Unalienable Rights</em> arrives on the Source Desk. The Herald has already rushed to print a claim that the Declaration was nothing but complaints. Time to read the actual words.</p>
+      <p>Last issue, colonists split into Patriots, Loyalists and neutral colonists. In July 1776, the Patriots in Congress explained their choice in writing. A new file marked <em>5.08.04: Declaration of Independence: Unalienable Rights</em> is on the <strong>Source Desk</strong>. The Hasty Herald has already printed that the Declaration was just a list of complaints. Time to read the real words.</p>
     </div>
   </div>
 
@@ -2821,14 +3988,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Was the Declaration of Independence just a list of complaints — or was it making an argument so powerful it changed what people believed about their own rights?</p>
       </div>
     </div>
@@ -2842,8 +4006,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify the key ideas in the Declaration of Independence, including unalienable rights and the social contract.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Analyze the Declaration as a structured argument with claims and evidence.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Gazette Correction that explains what the Declaration actually does.</div>
@@ -2874,7 +4036,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-04-welcome -->
@@ -2893,24 +4054,19 @@ html, body {
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
       <!-- 📍 Read the Declaration's big ideas &amp; spotlight honesty — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>✏️ Step 1</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>🧽 Erase the rights?</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study the Declaration at the Source Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Build the argument and read a real 1777 printing</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Publish your Gazette Correction</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Honesty ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>An honest editor reports the full truth — including the parts that are hard to hear.</strong> Today, honesty means acknowledging both the power of the Declaration's ideals and the gap between those words and who was actually included.
+      <strong>An honest editor reports the full truth, including the parts that are hard to hear.</strong> Today, honesty means telling about both the strong ideas in the Declaration and the people its words left out.
     </div>
   </div>
 
@@ -2920,19 +4076,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Declaration = Complaints. That's It!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">The Declaration of Independence was just a list of complaints.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Today you'll read the Declaration's actual words at the Source Desk — and show the Herald that it's a structured argument about natural rights, not just a list of grievances.
+      <strong>Your job, junior editor:</strong> Read the real words and find out: was it just complaints?
     </div>
   </div>
 
@@ -2940,10 +4090,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine the Declaration of Independence as a primary source — and publish a Gazette Correction that sets the record straight about what the Declaration actually says and does.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong>. Ms. Avery wants you to read the Declaration of Independence, a <strong>primary source</strong> (something made at the time), then publish a <strong>Gazette Correction</strong> (a notice that fixes what another paper got wrong).
     </div>
   </div>
 
@@ -2954,20 +4101,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Honesty</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this source say, what can we infer, and what must we still question? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. An honest editor reads the full document before drawing conclusions — and reports both the power of the ideas and the limits of who was included.
+        An honest editor reads the whole document, then reports its strong ideas and who it left out.
       </div>
     </div>
   </div>
@@ -2977,18 +4116,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-04-explore-explainer -->
@@ -2997,25 +4126,17 @@ html, body {
     <div class="video-placeholder-title">At the Source Desk: Declaration of Independence</div>
     <div class="video-placeholder-filename">5-08-04-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the four parts of the Declaration: the big ideas (unalienable rights, consent of the governed), the grievances as evidence, the attempts at peace, and the formal declaration. Read the Preamble excerpt aloud. Connect to the Herald's claim — why is "just a list of complaints" wrong? Address honesty: "all men are created equal" did not extend to everyone. 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the four parts of the Declaration: the big ideas (unalienable rights, consent of the governed), the grievances as evidence, the attempts at peace, and the formal declaration. Read the Preamble excerpt aloud. Connect to the Herald's claim — why is "just a list of complaints" wrong? Address honesty: "all men are created equal" did not extend to everyone. Read the taxes grievance aloud ("For imposing Taxes on us without our Consent") and connect it to taxation without representation. Say it was approved on July 4, 1776, and most delegates signed the clean copy on August 2. Show the 1777 printing by Mary Katharine Goddard and point to her name at the bottom. 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Source Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where one source is examined for what it says — and leaves out.</div>
+      <div class="desk-subtitle">Read one source: what it says, and what it leaves out.</div>
     </div>
   </div>
 
@@ -3028,95 +4149,148 @@ html, body {
   -->
     <div class="content-section">
     <h2>🔍 Reading the Declaration Like an Editor</h2>
-    <p>The Hasty Herald says the Declaration of Independence was "just a list of complaints." Today at the Source Desk, you'll read the actual words and decide for yourself. Was it just complaints — or was it something much bigger?</p>
+    <p class="rg-keep-off">The Hasty Herald says the Declaration of Independence was “just a list of complaints.” Read the real words and decide for yourself.</p>
 
-    <div class="callout callout-info" style="border-left-color: #4A6FB5;">
+    <div class="callout callout-info rg-keep-off" style="border-left-color: #4A6FB5;">
       <div class="callout-icon">🔍</div>
       <div>
         <strong>Source Study: The Declaration of Independence (1776)</strong>
-        <p>Read this excerpt carefully. Use the "What do I see? What does it mean? Why does it matter?" scaffold to guide your thinking.</p>
+        <p>Read this part slowly. Use the three questions below as you read.</p>
       </div>
     </div>
 
     <div style="background:var(--paper-newsprint); border:1.5px solid var(--paper-edge); border-radius:10px; padding:18px 20px; margin:16px 0;">
       <div style="font-family:'Special Elite',monospace; font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:#4A6FB5; margin-bottom:10px;">Primary Source · The Declaration of Independence · July 4, 1776</div>
       <blockquote style="font-family:'Crimson Text',serif; font-size:16px; font-style:italic; color:var(--ink); line-height:1.7; margin:0; padding:0;">
-        "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. — That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, — That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government..."
+        <p style="margin:0">"We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. — That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, — That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government..."</p>
       </blockquote>
-      <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-muted); margin-top:10px; font-style:italic;">— From the Preamble to the Declaration of Independence, drafted primarily by Thomas Jefferson</div>
+      <div style="font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-muted); margin-top:10px; font-style:italic;">— From the opening of the Declaration of Independence (often called the Preamble), drafted mostly by Thomas Jefferson</div>
+      <p class="rg-keep-off" style="font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); margin:10px 0 0;"><strong>Word help:</strong> <em>self-evident</em> = so clear it needs no proof · <em>endowed</em> = given · <em>unalienable</em> = can’t be taken away · <em>consent of the governed</em> = the people agree to it</p>
     </div>
 
     <h3>📖 What the Declaration Actually Does</h3>
-    <p>The Declaration isn't just one thing — it's a structured argument with four parts. An honest editor reads all four before drawing conclusions.</p>
+    <p>The Declaration is an argument with parts, like a case in court.</p>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 1: The Big Ideas</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">All people have <strong>unalienable rights</strong> — rights that cannot be taken away. Governments exist to protect those rights. Their power comes from the <strong>consent of the governed</strong>.</p>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">All people have <strong>unalienable rights</strong>, rights that cannot be taken away. Governments exist to protect those rights. A government’s power comes from the <strong>consent of the governed</strong>: the people agree to it.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 2: The Evidence</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">A long list of <strong>grievances</strong> against King George III — each one is a piece of evidence that the king broke the social contract. These aren't "just complaints." They're the <em>case</em>.</p>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">A long list of <strong>grievances</strong> (serious wrongs) against King George III. One says, “For imposing Taxes on us without our Consent.” That is the old complaint about <strong>taxation without representation</strong>. Each grievance is evidence that the king broke the <strong>social contract</strong>, the deal that a government protects the people’s rights. Loyalists said many grievances were unfair to the king.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
-        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 3: The Attempts</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">The colonists explain that they <strong>tried to resolve things peacefully</strong> — they petitioned, they appealed. Britain refused to listen. This matters: they didn't jump to revolution.</p>
+        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 3: We Tried Peace</div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">The colonists say they asked for peace first. They sent <strong>petitions</strong> (written requests) to the king, and he would not listen.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
-        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 4: The Declaration Itself</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">The final section formally <strong>declares independence</strong> and pledges "our Lives, our Fortunes and our sacred Honor." This is the conclusion — the action that follows the argument.</p>
+        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Part 4: The Decision</div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">The last part officially <strong>announces independence</strong>. The signers pledge “our Lives, our Fortunes and our sacred Honor.” That is the conclusion.</p>
       </div>
     </div>
 
-    <div class="callout callout-think">
+    <div class="callout callout-think rg-keep-off">
       <div class="callout-icon">⚖️</div>
       <div>
         <strong>The Honest Editor's Question</strong>
-        <p>The Declaration proclaimed "all men are created equal." But in 1776, those words did not extend rights equally to enslaved people, women, or Native peoples. An honest editor reports both the <em>power of the idea</em> and the <em>gap between the words and the reality</em>. The idea mattered — and so did who was left out.</p>
+        <p>The Declaration said “all men are created equal.” But in 1776, those words did not give equal rights to enslaved people, women or Native peoples. An honest editor reports both the <em>power of the idea</em> and the <em>gap between the words and real life</em>. The idea mattered, and so did who was left out.</p>
       </div>
     </div>
 
-    <h3>🔎 Question Like a Historian</h3>
-    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:12px 0;">
+    <div class="rg-keep-off" style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
+      <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">✍️ Who Wrote It?</div>
+      <p style="margin:0;font-size:14px;line-height:1.6;">Congress picked five men to write it: Thomas Jefferson, John Adams, Benjamin Franklin, Roger Sherman and Robert Livingston. Jefferson wrote the first draft, and Congress cut about a quarter of it. The delegates were chosen by their colonies, where mostly white men who owned land could vote. Today, citizens 18 and older can vote. In 1776, Abigail Adams wrote to her husband John, a delegate, asking Congress to “Remember the Ladies.”</p>
+    </div>
+
+    <h3 class="rg-keep-off">🔎 Question Like a Historian</h3>
+    <div class="rg-keep-off" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:12px 0;">
       <div style="background:#EAF8FD; border:1px solid #D6F2FB; border-radius:8px; padding:12px;">
         <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">What do I see?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">What specific words or phrases stand out? What is the document claiming?</div>
+        <div style="font-size:13px; color:var(--ink-soft);">Which words stand out? What is the document claiming?</div>
       </div>
       <div style="background:#FFF3DC; border:1px solid #F5E6C8; border-radius:8px; padding:12px;">
         <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">What does it mean?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">What is "unalienable"? What is the "consent of the governed"? How do these ideas connect to the colonists' arguments?</div>
+        <div style="font-size:13px; color:var(--ink-soft);">What do “unalienable” and “consent of the governed” mean? How do they connect to the colonists’ arguments?</div>
       </div>
       <div style="background:#E3F8ED; border:1px solid #B8E8CF; border-radius:8px; padding:12px;">
         <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">Why does it matter?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">Why do these ideas still matter today? What was powerful about them — and what was incomplete?</div>
+        <div style="font-size:13px; color:var(--ink-soft);">Why do these ideas still matter? What was strong about them, and what was missing?</div>
       </div>
     </div>
 
-    <div class="owl-buddy">
+    <div class="owl-buddy rg-keep-off">
       <div class="owl-icon">🦉🗞️</div>
       <div class="owl-bubble">
-        The Declaration of Independence is only about 1,320 words long — shorter than most essays you've written this year. But those words changed the course of history. That's the power of choosing each word carefully.
+        The Declaration of Independence is only about 1,300 words long, about the length of a short chapter in a book. But those words changed history. That’s the power of choosing each word carefully.
       </div>
     </div>
 
     <div style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
       <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">⚔️ The War Had Already Begun</div>
-      <p style="margin:0;font-size:14px;line-height:1.6;">By July 1776, fighting had already broken out at Lexington and Concord and at Bunker Hill (1775). Declaring independence also opened the door to help from other nations. After the Declaration and the American victory at Saratoga in 1777, <strong>France</strong> signed an alliance with the United States in 1778 and sent soldiers, ships, and money.</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;">By July 1776, fighting had already broken out at Lexington and Concord and at Bunker Hill (1775). Declaring independence also opened the door to help from other nations. After the Declaration and the American victory at Saratoga in 1777, <strong>France</strong> signed an alliance with the United States in 1778 and sent soldiers, ships and money.</p>
     </div>
 
-    <div class="callout callout-tip">
+    <div class="callout callout-tip rg-keep-off">
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
-        <p>The Declaration of Independence is not just a list of complaints — it is a structured argument claiming that all people have natural rights, that governments must protect those rights, and that when a government fails, the people have the right to change it.</p>
+        <p>The Declaration of Independence is not just a list of complaints. It is an argument that all people have natural rights, that governments must protect those rights, and that when a government fails, the people have the right to change it.</p>
       </div>
     </div>
+  </div>
+
+  <!-- SOURCE STUDY IMAGE (added Nov 2026): a real 1777 printing of the Declaration -->
+  <div class="content-section">
+    <h2>🔎 Read the Source: The Declaration in Print, 1777</h2>
+    <p>Congress wanted people everywhere to read the Declaration. In January 1777, it ordered a new printing that listed the signers’ names. Mary Katharine Goddard, a Baltimore printer who also ran a newspaper, printed it, and she put her own name at the bottom. Look closely. What is at the top? What is at the bottom?</p>
+
+    <div class="source-image-frame">
+      <div class="source-image-placeholder" data-image="source-5-08-04-goddard-declaration-1777">
+        🖼️ <strong>Image:</strong> The Declaration of Independence, printed in Baltimore by Mary Katharine Goddard, 1777. Library of Congress.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-04-goddard-declaration-1777.jpg</code>
+      </div>
+      <div class="source-image-caption">
+        Find the date at the top and the printer’s name at the bottom.<br><small style="font-style:normal;opacity:.85">Real source from the past. Library of Congress, item 90898037. No known copyright.</small>
+      </div>
+    </div>
+    <div class="source-image-frame">
+      <div class="source-image-placeholder" data-image="source-5-08-04-goddard-printer">
+        🖼️ <strong>Close-up:</strong> the bottom of the sheet: “In Congress, January 18, 1777,” John Hancock’s handwriting, and “Baltimore, in Maryland: Printed by Mary Katharine Goddard.”<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-04-goddard-printer.jpg</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPYWORK (added Nov 2026; Planning Table: short copywork) -->
+  <div class="content-section copywork">
+    <h2>✍️ Copywork: Write It by Hand</h2>
+    <p>Copy this line into your notebook in your best handwriting. Copy every comma and capital letter.</p>
+    <blockquote style="font-family:'Crimson Text',serif; font-size:19px; font-style:italic; color:var(--ink); line-height:1.6; margin:12px 0; padding:12px 16px; background:var(--paper-newsprint); border-left:4px solid #4A6FB5; border-radius:6px;">
+      <p style="margin:0">“We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights”</p>
+    </blockquote>
+    <p class="rg-keep-off" style="font-size:14px;">Printers like Mary Katharine Goddard set every letter by hand, one at a time. Go slowly, like a printer.</p>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>clar</em> means “clear”</h2>
+    <p>Many English words come from the Latin word <em>clarus</em>, “clear.” You can spot it as <strong>clar</strong>.</p>
+    <ul>
+      <li><strong>declare</strong> (de + clar + e): to make something clear to everyone</li>
+      <li><strong>clarify</strong> (clar + ify): to make something easier to understand</li>
+      <li><strong>clarity</strong> (clar + ity): being clear</li>
+    </ul>
+    <p><strong>Discovery:</strong> <em>Declare</em> comes from the Latin word <em>declarare</em>, “to make clear.” The Declaration made the colonists’ reasons clear to the world.</p>
+    <p><em>Try it: use the word <strong>declare</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3153,10 +4327,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3165,14 +4335,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3181,13 +4343,13 @@ html, body {
       <span class="factcheck-q-text">What does "unalienable rights" mean in the Declaration of Independence?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>Rights that only apply to people who own property.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
+        <span class="factcheck-option-letter">A</span>
         <span>Rights that cannot be taken away because all people are born with them.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>Rights that only apply to people who own property.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3208,13 +4370,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>The authors wanted to insult King George personally.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>Each grievance served as evidence that the king had broken the social contract with the colonists.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>The authors needed to fill space to make the document look important.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>Each grievance served as evidence that the king had broken the social contract with the colonists.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q2"></div>
@@ -3249,7 +4411,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3271,21 +4432,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-04-assignment-explainer -->
@@ -3306,8 +4454,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 40</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Gazette Correction</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3315,18 +4461,14 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Gazette Correction — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
-          <span>(1) Quote the Herald's claim about the Declaration. (2) Quote or describe evidence from the actual Declaration text. (3) Rewrite the claim so it is accurate and fair.</span>
+          <span>(1) Quote the Herald's claim. (2) Quote or describe evidence from the Declaration's real words. (3) Rewrite the claim so it is accurate and fair.</span>
         </div>
 
         <textarea class="gazette-body-input" id="brief-body" data-label="Gazette Correction" placeholder="Write your Gazette Correction here. Start by quoting the Herald's claim, then use evidence from the Declaration to correct it..."></textarea>
@@ -3340,9 +4482,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about the Declaration of Independence and unalienable rights.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3371,8 +4510,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Gazette Correction</span></div>
@@ -3387,32 +4524,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 40 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you read the Declaration of Independence with honesty — recognizing both the power of its ideas and the limits of its original reach. The Gazette's correction stands on evidence, not shortcuts.
+      <strong>Well done, Junior Editor.</strong> You showed that the Declaration was an argument about rights, and you were honest about who its words left out.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.05) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Significant Individuals and Groups in the Revolution</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Significant Individuals and Groups in the Revolution</em> arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that the Revolution was led by just a few famous men. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Significant Individuals and Groups in the Revolution</em>, is on its way to the Front Page Desk, and <strong>the Hasty Herald has already printed</strong> that the Revolution was led by just a few famous men.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-04-closing -->
@@ -3687,7 +4813,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 40 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4010,7 +5136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script id="oao-std-tips">
 (function(){
 if(window.__oaoStdTips)return;window.__oaoStdTips=1;
-var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.A.5.5": "Students examine and compare the major battles and campaigns of the Revolution.", "SS.5.A.5.6": "Students identify how foreign allies, like France, and key individuals helped win the Revolution.", "SS.5.CG.1.1": "Students recognize that the Declaration of Independence says every citizen has unalienable rights.", "SS.5.CG.2.6": "Students explain the symbols and documents that represent the United States."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
+var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.2": "Students identify important people and groups who played a part in the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.A.5.4": "Students examine the roles and impact of important women during the American Revolution.", "SS.5.A.5.5": "Students examine and compare the major battles and campaigns of the Revolution.", "SS.5.A.5.6": "Students identify how foreign allies, like France, and key individuals helped win the Revolution.", "SS.5.CG.1.1": "Students recognize that the Declaration of Independence says every citizen has unalienable rights.", "SS.5.CG.2.1": "Students discuss the ideas of Patriots, Loyalists, and other colonists about the Revolution.", "SS.5.CG.2.2": "Students compare how people took part in government in colonial times and today.", "SS.5.CG.2.6": "Students explain the symbols and documents that represent the United States."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
 function codesFor(tok){var m=tok.match(/^SS\.(\d)\.([A-Z]+)(?:\.(\d+)\.(\d+)(.*))?$/);if(!m)return null;
  if(!m[3])return{strand:m[2],g:m[1]};var out=['SS.'+m[1]+'.'+m[2]+'.'+m[3]+'.'+m[4]],rest=m[5]||'',r=rest.match(/^\s*[–-]\s*(\d+)\.(\d+)/);
  if(r){for(var x=+m[4]+1;x<=+r[2];x++)out.push('SS.'+m[1]+'.'+m[2]+'.'+r[1]+'.'+x);}
@@ -4044,5 +5170,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

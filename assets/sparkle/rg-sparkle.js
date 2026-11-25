@@ -215,7 +215,7 @@
     html.dataset.rgTab=currentScene(); markNow(currentScene()); }
   function markNow(tab){ if(!pressEl) return; var i=STAGES.map(function(s){return s.tab;}).indexOf(tab); $('.pg',pressEl).textContent='Tab '+(i+1)+' of '+STAGES.length; }
   var R={};
-  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.pair) ok=ok&&R.pair.done(); if(R.almanac&&R.almanac.el.closest('#panel-desk')) ok=ok&&R.almanac.done(); if(R.evidence) ok=ok&&R.evidence.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
+  function deskDone(){ var ok=true; if(R.reading) ok=ok&&R.reading.done(); if(R.pair) ok=ok&&R.pair.done(); if(R.almanac&&R.almanac.el.closest('#panel-desk')) ok=ok&&R.almanac.done(); if(R.evidence) ok=ok&&R.evidence.done(); if(R.copy) ok=ok&&R.copy.done(); return ok&&['journal-q1','journal-q2','journal-q3'].every(qDone); }
   function fcDone(){ var qs=$$('#panel-factcheck .factcheck-q'); return qs.length>0&&qs.every(function(q){ return !!q.querySelector('.factcheck-option.correct, .factcheck-option.incorrect'); })&&(typeof ccDone!=='function'||ccDone()); }
   /* the one stage rule: the tabs' ✓, the proof, the progress bar and the stepper all read this */
   function stageState(){ return [R.scene1?R.scene1.done():true, deskDone(), fcDone(), !!S.published]; }
@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite | door
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse | street   (explore.ribbons / explore.povdial: optional, before the picture; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite | door | eraser
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse | street | arch   (explore.ribbons / explore.povdial / explore.closeups: optional, before the picture; explore.copy: the page's .copywork block; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -1100,7 +1100,7 @@
       '<div class="rg-cs-head"></div>'+
       '<div class="rg-dc rg-hide"><h4>'+esc(D.title||'Decode the real words')+'</h4>'+(D.job?jobHTML(D.job):'')+'<div class="rg-dc-src">'+PH.map(function(p,i){ return '<div class="rg-dc-ph" data-i="'+i+'"><button type="button" class="rg-dc-btn" data-i="'+i+'" aria-expanded="false"><span class="rg-dc-old">'+esc(p.old)+'</span></button><div class="rg-dc-plain" hidden>'+esc(p.plain)+'</div></div>'; }).join('')+'</div><small class="rg-dc-cap">'+esc(D.cap||'')+'</small></div>'+
       '<div class="rg-sun-close"></div>';
-    after(anchor,g); if(c.keepReading!==false){ g.insertBefore(anchor,$('.rg-cs-wrap',g)); }
+    after(anchor,g); if(c.keepReading!==false){ move(anchor,function(n){ g.insertBefore(n,$('.rg-cs-wrap',g)); }); }
     function bk(id){ return BK.filter(function(b){ return b.id===id; })[0]||{}; }
     function locked(id){ return !!st.why[id]&&(bk(id).opts||[])[st.why[id]-1]&&(bk(id).opts||[])[st.why[id]-1].ok; }
     function cur(){ var l=st.set[st.set.length-1]; return l&&!locked(l)?l:null; }
@@ -1175,7 +1175,7 @@
     g.innerHTML+='<div class="rg-pb-acts" role="tablist" aria-label="'+esc(c.actsL||'The four acts')+'"></div><div class="rg-pb-act"></div>'+
       '<div class="rg-pb-bins">'+['p','b'].map(function(k){ var B=BN[k]||{}; return '<div class="rg-pb-bin" data-k="'+k+'"><button type="button" class="rg-pb-drop" data-k="'+k+'"><span class="ic">'+esc(B.icon||'')+'</span><b>'+esc(B.t||'')+'</b><small>'+esc(B.d||'')+'</small></button><ul class="rg-pb-in" aria-label="'+esc(B.t||'')+'"></ul></div>'; }).join('')+'</div>'+
       '<p class="rg-pb-say" aria-live="polite"></p><div class="rg-sun-close"></div>';
-    after(anchor,g); if(c.keepReading!==false){ g.insertBefore(anchor,$('.rg-pb-acts',g)); }
+    after(anchor,g); if(c.keepReading!==false){ move(anchor,function(n){ g.insertBefore(n,$('.rg-pb-acts',g)); }); }
     function chip(id){ for(var i=0;i<AC.length;i++) for(var j=0;j<(AC[i].chips||[]).length;j++) if(AC[i].chips[j].id===id) return {a:AC[i],c:AC[i].chips[j]}; return null; }
     function actDone(i){ return (AC[i].chips||[]).every(function(x){ return st.put[x.id]; }); }
     function done(){ return AC.every(function(a,i){ return actDone(i); }); }
@@ -1262,7 +1262,7 @@
     var g=gameShell('rg-street','The Desk · a street of doors',c.title||'A street of doors',c);
     if(c.keepReading!==false){ anchor.classList.remove('rg-off'); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); }); }
     g.innerHTML+='<div class="rg-st-row" role="group" aria-label="'+esc(c.rowL||'The houses on the street')+'"></div><div class="rg-st-card" aria-live="polite"></div><p class="rg-st-say" aria-live="polite"></p><div class="rg-sun-close"></div>';
-    after(anchor,g); if(c.keepReading!==false){ g.insertBefore(anchor,$('.rg-st-row',g)); }
+    after(anchor,g); if(c.keepReading!==false){ move(anchor,function(n){ g.insertBefore(n,$('.rg-st-row',g)); }); }
     function person(id){ return PP.filter(function(p){ return p.id===id; })[0]||null; }
     function sign(k){ return SG.filter(function(s){ return s.k===k; })[0]||{}; }
     function done(){ return PP.every(function(p){ return st.sign[p.id]; }); }
@@ -1316,6 +1316,126 @@
     $('.rg-pv-check',g).addEventListener('click',function(){ if(st.v==null) return; st.checked=true; save(); SFX.chime(); paint(); refreshPress(); beat('povDone'); });
     paint();
     return {el:g,done:done,journal:function(e,NA){ if(!st.checked) return NA; return '<p class="a"><b>Who made the picture:</b> I said “'+e(MK[st.v]||'')+'.” '+e(c.reveal||'')+'</p>'; }}; };
+
+  /* ---------------------------------------------------------------- eraser: the Declaration's three rights on a scrap of paper. Rub (button, or drag across the paper) three times: the words won't come off.
+     Then a sealed guess (radios + lock). Teaches "unalienable" by doing. The arch's close card reveals the guess later.
+     DATA.scene1 = {type:'eraser', title, job, when, where, line, cardFrom, rubs, rubT, rubSay:[...], doneT, reveal, q, opts:[t], close, todoT} */
+  MOD.eraser=function(c,anchor){ var st=mstate('eraser',{n:0}); var N=c.rubs||3, OP=c.opts||[], SAYS=c.rubSay||[];
+    var g=gameShell('rg-eraser','Dispatch · try to erase it',c.title||'Can you erase these rights?',c);
+    g.innerHTML+='<div class="rg-er-card" tabindex="-1"><div class="rg-er-top">'+esc(c.when||'')+(c.where?' · '+esc(c.where):'')+'</div><p class="rg-er-ln">'+esc(c.line||'')+'</p><small class="rg-er-from">'+esc(c.cardFrom||'')+'</small><span class="rg-er-rubber" aria-hidden="true"></span><span class="rg-er-crumbs" aria-hidden="true"></span></div>'+
+      '<div class="rg-gh-ctl"><button type="button" class="rg-btn rg-er-rub"></button></div><p class="rg-er-say" aria-live="polite"></p><div class="rg-er-reveal"></div><div class="rg-zm-close"></div><div class="rg-ads-seal rg-er-seal"></div><p class="rg-er-close"></p>';
+    after(anchor,g);
+    var card=$('.rg-er-card',g), rb=$('.rg-er-rub',g);
+    function rub(){ if(st.n>=N) return; st.n++; if(st.n>=N) st.out=true; save(); SFX.scratch(); card.classList.remove('rubbing'); void card.offsetWidth; card.classList.add('rubbing'); paint(); refreshPress(); }
+    rb.addEventListener('click',rub);
+    /* drag the eraser across the paper: every ~140px of travel counts as one rub */
+    var drag=null; card.addEventListener('pointerdown',function(e){ if(st.n>=N) return; drag={x:e.clientX,y:e.clientY,d:0}; try{ card.setPointerCapture(e.pointerId); }catch(x){} });
+    card.addEventListener('pointermove',function(e){ if(!drag) return; drag.d+=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y); drag.x=e.clientX; drag.y=e.clientY; if(drag.d>=140){ drag.d=0; rub(); } });
+    ['pointerup','pointercancel'].forEach(function(t){ card.addEventListener(t,function(){ drag=null; }); });
+    function paint(){ var sb=$('.rg-er-seal',g);
+      rb.disabled=st.n>=N; rb.textContent=st.n>=N?(c.doneT||'✓ The words stayed'):'🧽 '+(c.rubT||'Rub it out')+' ('+(st.n+1)+' of '+N+')';
+      card.classList.toggle('worn',st.n>0); card.dataset.n=st.n;
+      $('.rg-er-say',g).textContent=st.n>0&&st.n<=SAYS.length?SAYS[st.n-1]:'';
+      $('.rg-er-reveal',g).innerHTML=st.out&&c.reveal?'<div class="rg-win"><p class="rg-er-rv">'+esc(c.reveal)+'</p></div>':'';
+      $('.rg-zm-close',g).innerHTML=st.out?'':'<p class="rg-todo">🧽 '+esc(c.todoT||'Tap Rub it out, or drag across the paper.')+'</p>';
+      if(!st.out){ sb.innerHTML=''; delete sb.dataset.on; $('.rg-er-close',g).textContent=''; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(c.q||'')+'</legend>'+OP.map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-er-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock rg-er-lock">🔒 Lock my answer</button>';
+        $$('input[name="rg-er-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-er-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-er-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-er-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Locked':st.guess==null?'🔒 Pick one to lock it':'🔒 Lock my answer';
+      $('.rg-er-close',g).textContent=st.locked?(c.close||''):'';
+      g.classList.toggle('finished',!!st.locked); }
+    paint();
+    function line(){ return st.locked?'Before reading, I said the Declaration is: “'+(OP[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ if(!st.out) return NA; return '<p class="a"><b>The eraser:</b> '+e(c.reveal||'')+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ return {locked:!!st.locked, line:line(), guess:st.locked?OP[st.guess]||'':'', built:[], vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- arch: the lesson's reading stays on the page; then build the Declaration's argument as a stone arch.
+     Tap a stone: one real line from the Declaration + a plain sentence. Pick the stone's job (Big idea / Evidence / We tried peace / The decision);
+     wrong jobs bounce with a hint. When all five are set, pull the keystone: the arch falls ("without the big idea, the complaints are just complaints").
+     Then the honest last stop (gap): who the words left out in 1776, and two taps showing people who used the same words later.
+     DATA.explore.reading = {type:'arch', title, job, roles:[{k,t,icon}], stones:[{id,role,line,plain,cite}], slots:{k:[ids in slot order]}, pickT, pullT, fallT, backT, close, reveal:[per sealed guess],
+                             gap:{title,lines:[...],taps:[{yr,who,t}],close}, cols, times, srcLabel, readWho} */
+  MOD.arch=function(c,anchor){ var st=mstate('arch',{role:{},at:null,pulled:false,gap:{}}); if(!st.role) st.role={}; if(!st.gap) st.gap={};
+    var ST=c.stones||[], RL=c.roles||[], GP=c.gap||{}, TP=GP.taps||[];
+    var g=gameShell('rg-arch','The Desk · build the argument',c.title||'Build the arch',c);
+    if(c.keepReading!==false){ anchor.classList.remove('rg-off'); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); }); }
+    /* slot positions (percent of the arch box): two left, keystone, two right */
+    var POS={L1:[4,62],L2:[16,22],K:[39,4],R2:[62,22],R1:[74,62]};
+    g.innerHTML+='<div class="rg-ar-box"><div class="rg-ar-arch" aria-label="'+esc(c.archL||'The arch')+'" role="group">'+Object.keys(POS).map(function(p){ return '<div class="rg-ar-slot" data-p="'+p+'" style="left:'+POS[p][0]+'%;top:'+POS[p][1]+'%"></div>'; }).join('')+'<svg class="rg-ar-curve" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M8,100 V70 Q8,8 50,6 Q92,8 92,70 V100" fill="none" stroke="#cdbb95" stroke-width="1.2" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"/></svg><span class="rg-ar-pillar l" aria-hidden="true"></span><span class="rg-ar-pillar r" aria-hidden="true"></span></div></div>'+
+      '<div class="rg-ar-tray" role="group" aria-label="'+esc(c.trayL||'Stones to place')+'"></div><div class="rg-ar-card" aria-live="polite"></div><p class="rg-ar-say" aria-live="polite"></p>'+
+      '<div class="rg-ar-pullbox"></div><div class="rg-ar-done"></div><div class="rg-ar-gapwrap"></div>';
+    after(anchor,g); if(c.keepReading!==false){ move(anchor,function(n){ g.insertBefore(n,$('.rg-ar-box',g)); }); }
+    function stone(id){ return ST.filter(function(s){ return s.id===id; })[0]||null; }
+    function role(k){ return RL.filter(function(r){ return r.k===k; })[0]||{}; }
+    function placed(){ return ST.every(function(s){ return st.role[s.id]; }); }
+    function gapDone(){ return TP.every(function(t,i){ return st.gap[i]; }); }
+    function done(){ return placed()&&!!st.pulled&&gapDone(); }
+    function slotOf(s){ var M=c.slots||{}; for(var p in M){ if((M[p]||[]).indexOf(s.id)>-1) return p; } return null; }
+    function paint(){
+      $$('.rg-ar-slot',g).forEach(function(sl){ var id=null; ST.forEach(function(s){ if(st.role[s.id]&&slotOf(s)===sl.dataset.p) id=s.id; }); var s=stone(id);
+        sl.classList.toggle('set',!!s); sl.classList.toggle('key',sl.dataset.p==='K'); sl.innerHTML=s?'<b>'+esc(role(s.role).icon||'')+' '+esc(role(s.role).t||'')+'</b><small>'+esc(s.short||'')+'</small>':'<span class="q" aria-hidden="true">?</span>'; });
+      $('.rg-ar-tray',g).innerHTML=ST.map(function(s,i){ var on=st.at===s.id, set=!!st.role[s.id]; return '<button type="button" class="rg-ar-stone'+(on?' on':'')+(set?' set':'')+'" data-id="'+esc(s.id)+'" aria-pressed="'+on+'">'+(set?'✓ ':'')+esc(c.stoneT||'Stone')+' '+(i+1)+'</button>'; }).join('');
+      var s=stone(st.at), cd=$('.rg-ar-card',g);
+      if(!s){ cd.innerHTML='<p class="rg-pb-pick">'+esc(c.pickT||'Tap a stone to read its words.')+'</p>'; }
+      else { var set=st.role[s.id];
+        cd.innerHTML='<p class="rg-ar-li" data-id="'+esc(s.id)+'">“'+esc(s.line)+'”</p>'+(s.cite?'<small class="rg-ar-cite">'+esc(s.cite)+'</small>':'')+'<p class="rg-ar-plain" data-id="'+esc(s.id)+'">'+esc(s.plain||'')+'</p>'+
+          (set?'<p class="rg-ar-got">✓ '+esc(role(s.role).t||'')+'</p>':'<p class="rg-st-ask">'+esc(c.askT||'What job does this stone do?')+'</p><div class="rg-st-signs">'+RL.map(function(r){ return '<button type="button" class="rg-st-sign rg-ar-role" data-k="'+esc(r.k)+'"><span aria-hidden="true">'+esc(r.icon||'')+'</span> '+esc(r.t)+'</button>'; }).join('')+'</div>')+
+          (set&&!placed()?'<button type="button" class="rg-btn rg-ar-next">'+esc(c.nextT||'Next stone →')+'</button>':''); }
+      var P=placed(); g.classList.toggle('built',P);
+      $('.rg-ar-pullbox',g).innerHTML=P?'<button type="button" class="rg-btn rg-ar-pull">'+(st.pulled?esc(c.againT||'🪨 Pull the keystone again'):esc(c.pullT||'🪨 Pull out the keystone'))+'</button>'+(st.pulled?'<p class="rg-ar-fall">'+esc(c.fallT||'')+'</p>':''):'';
+      var sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=DATA.scene1||{};
+      $('.rg-ar-done',g).innerHTML=P&&st.pulled&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your answer on tab 1:</b> “'+esc((S1.opts||[])[sealed]||'')+'” '+esc((c.reveal||[])[sealed]||'')+'</span>':'')+'</div>':'';
+      var mini=$('.rg-almini',g); if(mini){ mini.classList.toggle('rg-hide',!(P&&st.pulled)); var gw=$('.rg-ar-gapwrap',g); if(mini.nextElementSibling!==gw) g.insertBefore(mini,gw); }
+      var gw2=$('.rg-ar-gapwrap',g);
+      if(P&&st.pulled&&GP.title){ if(!gw2.dataset.on){ gw2.dataset.on='1'; gw2.innerHTML='<div class="rg-ar-gap calm"><h4>'+esc(GP.title)+'</h4>'+(GP.lines||[]).map(function(t){ return '<p class="rg-ar-gli">'+esc(t)+'</p>'; }).join('')+'<p class="rg-ar-gask">'+esc(GP.ask||'')+'</p><div class="rg-ar-taps"></div><div class="rg-ar-gclose"></div></div>'; }
+        $('.rg-ar-taps',gw2).innerHTML=TP.map(function(t,i){ var o=!!st.gap[i]; return '<div class="rg-ar-tap'+(o?' open':'')+'"><button type="button" class="rg-btn soft rg-ar-tapb" data-i="'+i+'" aria-expanded="'+o+'">'+esc(t.yr)+' · '+esc(t.who)+(o?'':' ▸')+'</button>'+(o?'<p class="rg-ar-gli" data-i="'+i+'">'+esc(t.t)+'</p>':'')+'</div>'; }).join('');
+        $('.rg-ar-gclose',gw2).innerHTML=gapDone()&&GP.close?'<p class="rg-trail-close">'+esc(GP.close)+'</p>':''; }
+      else { gw2.innerHTML=''; delete gw2.dataset.on; }
+      g.classList.toggle('finished',done()); }
+    function pick(id){ st.at=id; save(); SFX.paper(); $('.rg-ar-say',g).textContent=''; paint(); }
+    $('.rg-ar-tray',g).addEventListener('click',function(e){ var b=e.target.closest('.rg-ar-stone'); if(!b) return; pick(b.dataset.id); if(e.detail===0){ var f=$('.rg-ar-role',g)||$('.rg-ar-next',g); if(f) f.focus({preventScroll:true}); } });
+    $('.rg-ar-card',g).addEventListener('click',function(e){
+      var nx=e.target.closest('.rg-ar-next'); if(nx){ var nxt=ST.filter(function(s){ return !st.role[s.id]; })[0]; if(nxt){ pick(nxt.id); var f=$('.rg-ar-role',g); if(f) f.focus({preventScroll:true}); } return; }
+      var b=e.target.closest('.rg-ar-role'); if(!b) return; var s=stone(st.at); if(!s) return;
+      if(b.dataset.k!==s.role){ SFX.bounce(); b.classList.add('bounce'); setTimeout(function(){ b.classList.remove('bounce'); },450); $('.rg-ar-say',g).textContent=(c.no||{})[b.dataset.k]||s.no||'Read the line again.'; return; }
+      st.role[s.id]=s.role; save(); SFX.chime(); $('.rg-ar-say',g).textContent=role(s.role).say||''; paint(); refreshPress();
+      var f=$('.rg-ar-next',g)||$('.rg-ar-pull',g); if(f) f.focus({preventScroll:true}); });
+    g.addEventListener('click',function(e){
+      if(e.target.closest('.rg-ar-pull')){ var a=$('.rg-ar-arch',g); a.classList.remove('fall'); void a.offsetWidth; a.classList.add('fall'); SFX.thud(); setTimeout(function(){ a.classList.remove('fall'); },RM?50:1900); var first=!st.pulled; st.pulled=true; save(); paint(); refreshPress(); if(first){ var gw=$('.rg-ar-gapwrap',g); if(gw&&!RM) setTimeout(function(){ var r=gw.getBoundingClientRect(); if(r.top>innerHeight-80) gw.scrollIntoView({behavior:'smooth',block:'center'}); },900); } return; }
+      var tb=e.target.closest('.rg-ar-tapb'); if(tb){ st.gap[+tb.dataset.i]=true; save(); SFX.soft(); paint(); refreshPress(); if(done()) beat('sunDone'); } });
+    paint(); setTimeout(paint,0);
+    return {el:g,done:done,open:done,paint:paint,go:function(){ paint(); },
+      journal:function(e,NA){ var any=Object.keys(st.role).length; if(!any) return NA; return '<p class="a">'+ST.filter(function(s){ return st.role[s.id]; }).map(function(s){ return '<b>'+e(role(s.role).t||'')+':</b> “'+e(s.line)+'” '+e(s.plain||''); }).join('<br>')+(st.pulled?'<br>'+e(c.fallT||''):'')+'</p>'; },
+      people:function(){ return (c.cols||[]).map(function(x){ return x.who; }); }}; };
+
+  /* ---------------------------------------------------------------- closeups: two close-up crops of the source picture, opened one at a time before the red pencil.
+     DATA.explore.closeups = {title, job, who, when, where, from, items:[{img, alt, btn, cap}], close} */
+  MOD.closeups=function(c,anchor){ var st=mstate('closeups',{open:{}}); if(!st.open) st.open={}; var IT=c.items||[];
+    var g=gameShell('rg-closeups','The Desk · look closer',c.title||'Look closer',c);
+    g.innerHTML+='<div class="rg-cu-row">'+IT.map(function(x,i){ return '<div class="rg-cu-item" data-i="'+i+'"><button type="button" class="rg-btn soft rg-cu-btn" data-i="'+i+'" aria-expanded="false"></button><figure class="rg-cu-fig rg-hide"><div class="rg-cu-img"></div><figcaption><p class="rg-cu-li" data-i="'+i+'">'+esc(x.cap||'')+'</p></figcaption></figure></div>'; }).join('')+'</div><div class="rg-cu-close"></div>';
+    after(anchor,g);
+    $$('.rg-cu-item',g).forEach(function(it,i){ $('.rg-cu-img',it).appendChild(srcImg(IT[i].img,'',IT[i].alt||'')); });
+    function done(){ return IT.every(function(x,i){ return st.open[i]; }); }
+    function paint(){ $$('.rg-cu-item',g).forEach(function(it,i){ var o=!!st.open[i], b=$('.rg-cu-btn',it); b.textContent=(o?'✓ ':'🔍 ')+(IT[i].btn||'Look closer'); b.setAttribute('aria-expanded',o); $('.rg-cu-fig',it).classList.toggle('rg-hide',!o); it.classList.toggle('open',o); });
+      $('.rg-cu-close',g).innerHTML=done()&&c.close?'<p class="rg-trail-close">'+esc(c.close)+'</p>':''; g.classList.toggle('finished',done()); }
+    g.addEventListener('click',function(e){ var b=e.target.closest('.rg-cu-btn'); if(!b) return; st.open[+b.dataset.i]=true; save(); SFX.paper(); paint(); refreshPress(); });
+    paint();
+    return {el:g,done:done,journal:function(e,NA){ if(!done()) return NA; return '<p class="a"><b>Close-ups:</b> '+IT.map(function(x){ return e(x.cap||''); }).join(' ')+'</p>'; }}; };
+
+  /* ---------------------------------------------------------------- copy: classical copywork. The page's own copywork block stays; the layer adds one honest tick box.
+     DATA.explore.copy = {title, job, checkT, doneT} — anchor: #panel-desk .copywork */
+  MOD.copy=function(c,anchor){ var st=mstate('copy',{});
+    var g=gameShell('rg-copy','The Desk · copywork',c.title||'Copy it by hand',c);
+    anchor.classList.remove('rg-off'); after(anchor,g); move(anchor,function(n){ g.appendChild(n); }); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); });
+    g.insertAdjacentHTML('beforeend','<label class="rg-cp-check"><input type="checkbox" class="rg-cp-box"'+(st.done?' checked':'')+'> '+esc(c.checkT||'I copied the line by hand in my notebook.')+'</label><p class="rg-cp-done" aria-live="polite"></p>');
+    var bx=$('.rg-cp-box',g);
+    function paint(){ $('.rg-cp-done',g).textContent=st.done?(c.doneT||''):''; g.classList.toggle('finished',!!st.done); }
+    bx.addEventListener('change',function(){ st.done=bx.checked; save(); if(st.done) SFX.soft(); paint(); refreshPress(); });
+    paint();
+    return {el:g,done:function(){ return !!st.done; },journal:function(e,NA){ return st.done?'<p class="a"><b>Copywork:</b> I copied the line by hand in my notebook.</p>':NA; }}; };
 
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
@@ -1538,6 +1658,8 @@
     if(ex.stereo&&MOD.stereo&&R.evidence){ var sx=R.evidence.el.previousElementSibling; if(sx){ R.stereo=MOD.stereo(ex.stereo,sx); var ed1=R.evidence.done; R.evidence.done=function(){ return ed1()&&R.stereo.done(); }; } }
     if(ex.ribbons&&MOD.ribbons&&R.evidence){ var rx=R.evidence.el.previousElementSibling; if(rx){ R.ribbons=MOD.ribbons(ex.ribbons,rx); var ed3=R.evidence.done; R.evidence.done=function(){ return ed3()&&R.ribbons.done(); }; } }
     if(ex.povdial&&MOD.povdial&&R.evidence){ var pvx=R.evidence.el.previousElementSibling; if(pvx){ R.povdial=MOD.povdial(ex.povdial,pvx); var ed4=R.evidence.done; R.evidence.done=function(){ return ed4()&&R.povdial.done(); }; } }
+    if(ex.closeups&&MOD.closeups&&R.evidence){ var cux=R.evidence.el.previousElementSibling; if(cux){ R.closeups=MOD.closeups(ex.closeups,cux); var ed5=R.evidence.done; R.evidence.done=function(){ return ed5()&&R.closeups.done(); }; } }
+    var cpw=p2&&$('.copywork',p2); if(ex.copy&&MOD.copy&&cpw){ R.copy=MOD.copy(ex.copy,cpw); }
     if(ex.tworec&&MOD.tworec&&R.evidence){ R.tworec=MOD.tworec(ex.tworec,R.evidence.el); var ed0=R.evidence.done; R.evidence.done=function(){ return ed0()&&R.tworec.done(); }; }
     buildAlmanac(); buildPair(); }
 
@@ -1549,9 +1671,10 @@
     listen:function(){ return $('#panel-desk .rg-vn[data-slot="v3"]')||(R.reading&&R.reading.el); },
     sun:function(){ return R.reading&&R.reading.el; },
     herald:function(){ return R.reading&&$('.rg-myths',R.reading.el); },
-    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.povdial&&R.povdial.el)||(R.ribbons&&R.ribbons.el)||(R.pins&&R.pins.el)||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
+    picture:function(){ return $('#panel-desk .rg-vn[data-slot="v4"]')||(R.closeups&&R.closeups.el)||(R.povdial&&R.povdial.el)||(R.ribbons&&R.ribbons.el)||(R.pins&&R.pins.el)||(R.stereo&&R.stereo.el)||(R.evidence&&R.evidence.el); },
     almanac:function(){ return R.almanac&&R.almanac.el; },
     pair:function(){ return R.pair&&R.pair.el; },
+    copy:function(){ return R.copy&&R.copy.el; },
     word:function(){ return R.vocab&&R.vocab.el; },
     notebook:function(){ return $('#panel-desk .reflection-block'); } };
   var BS_DONE={
@@ -1561,6 +1684,7 @@
     picture:function(){ return !!(R.evidence&&R.evidence.done()); },
     almanac:function(){ return !!(R.almanac&&R.almanac.done()); },
     pair:function(){ return !!(R.pair&&R.pair.done()); },
+    copy:function(){ return !!(R.copy&&R.copy.done()); },
     word:function(){ return !!(R.vocab&&R.vocab.done&&R.vocab.done()); },
     notebook:function(){ return ['journal-q1','journal-q2','journal-q3'].every(qDone); } };
   var bsEl=null, BS_GROUPS={}, BS_ORDER=[];
@@ -1997,6 +2121,14 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    if(block.closest('.rg-er-ln')) return m({k:'source', quote:true, who:S1L.cardWho||'The Declaration of Independence', when:S1L.when||'', where:S1L.where||'', from:S1L.cardFrom||'Real source from the past', tags:['eraser','rights','highlight']});
+    if(block.closest('.rg-er-rv')) return m({k:'lesson', who:S1L.revealWho||'Unalienable rights', from:'Fact from the lesson', tags:['eraser','rights','highlight']});
+    var arl=block.closest('.rg-ar-li'); if(arl){ var AS=(rd.stones||[]).filter(function(x){ return x.id===arl.dataset.id; })[0]||{}; return m({k:'source', quote:true, who:rd.srcWho||'The Declaration of Independence', when:rd.srcWhen||'', where:rd.srcWhere||'', from:rd.srcFrom||'Real source from the past', ctx:AS.plain||'', tags:['arch',AS.id||'',AS.role||'','highlight']}); }
+    var arp=block.closest('.rg-ar-plain'); if(arp){ var AP=(rd.stones||[]).filter(function(x){ return x.id===arp.dataset.id; })[0]||{}; return m({k:'lesson', who:'What the line does', from:'Fact from the lesson', tags:['arch',AP.id||'',AP.role||'','highlight']}); }
+    if(block.closest('.rg-ar-gli')) return m({k:'lesson', who:(rd.gap||{}).who||'Who the words left out', from:'Fact from the lesson', tags:['arch','gap','honest','highlight']});
+    if(block.closest('.rg-cu-li')){ var CUX=(DATA.explore||{}).closeups||{}; return m({k:'lesson', who:CUX.who||'The printed copy', when:CUX.when||'', where:CUX.where||'', from:CUX.from||'Fact from the lesson', tags:['picture','printer','highlight']}); }
+    if(block.closest('.rg-arch blockquote, .rg-copy blockquote')) return m({k:'source', quote:true, who:rd.srcWho||'The Declaration of Independence', when:rd.srcWhen||'', where:rd.srcWhere||'', from:rd.srcFrom||'Real source from the past', tags:['reading','quote','highlight']});
+    if(block.closest('.rg-arch .content-section')) return m({k:'lesson', who:rd.readWho||'The Desk reading', from:rd.readFrom||'Fact from the lesson', tags:['reading','highlight']});
     if(block.closest('.rg-dr-card')) return m({k:'routine', who:S1L.cardWho||'The pledge at the door', when:S1L.when||'', where:S1L.where||'', from:S1L.cardFrom||'Example written for this lesson', tags:['door','pledge','highlight']});
     var dro=block.closest('.rg-dr-out'); if(dro){ var DO=(S1L.opts||[])[+dro.dataset.i]||{}; return m({k:'lesson', who:'At the door: '+(DO.t||''), when:S1L.when||'', where:S1L.where||'', from:S1L.outFrom||'Fact from the lesson', tags:['door','choice','highlight']}); }
     var stl=block.closest('.rg-st-li'); if(stl){ var SP=(rd.people||[]).filter(function(x){ return x.id===stl.dataset.id; })[0]||{}; return m({k:'lesson', who:SP.who||'', when:SP.yr||'', where:SP.where||'', from:rd.srcLabel||'Fact from the lesson', ctx:stl.dataset.f==='cost'?'A cost of the choice':stl.dataset.f==='reason'?'A reason for the choice':'', tags:[SP.id||'','street',stl.dataset.f||'','highlight']}); }
@@ -2138,6 +2270,7 @@
     desk:function(){ var g=R.reading&&R.reading.el; return g&&[g,'before']; },
     ribbons:function(){ var g=R.ribbons&&R.ribbons.el; return g&&[g,'before']; },
     povdial:function(){ var g=R.povdial&&R.povdial.el; return g&&[g,'before']; },
+    closeups:function(){ var g=R.closeups&&R.closeups.el; return g&&[g,'before']; },
     decode:function(){ var d=R.reading&&$('.rg-dc h4',R.reading.el); return d&&[d,'after']; },
     afterread:function(){ var g=R.reading&&R.reading.el; return g&&[g,'after']; },
     flip:function(){ var f=R.reading&&$('.rg-sc-flipbox',R.reading.el); return f&&[f,'before']; },
@@ -2238,7 +2371,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-dr-ln, .rg-dr-out, .rg-st-li, .rg-pv-li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-er-ln, .rg-er-rv, .rg-ar-li, .rg-ar-plain, .rg-ar-gli, .rg-cu-li, .rg-dr-ln, .rg-dr-out, .rg-st-li, .rg-pv-li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -2419,7 +2552,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-dr-knock", "The door is open. Pick and lock your choice below."], [".rg-pv-check", "Drag the dial’s knob to your answer first."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-dr-knock", "The door is open. Pick and lock your choice below."], [".rg-er-rub", "The words stayed. Answer the question below and lock it."], [".rg-pv-check", "Drag the dial’s knob to your answer first."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
