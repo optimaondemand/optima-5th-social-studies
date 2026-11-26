@@ -2258,6 +2258,1324 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.07",
+ "title": "Political Participation Then and Now",
+ "issue": 43,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "stop",
+ "place": "The United States",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Does political participation mean the same thing today as it did in 1776, or has the meaning of “We the People” changed over time?<\/i> Use the 🖍 highlighter to save lines from the ID cards, the year slider and the 1867 picture. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: what women did in the Revolution. Today: who could vote then, and who can now.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Could they vote?",
+   "k": "The Dispatch",
+   "why": "Guess for six people in 1789."
+  },
+  {
+   "tab": "desk",
+   "t": "Slide through the years",
+   "k": "The Desk",
+   "why": "Six stops, then a real picture from 1867."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write your Front Page Brief",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor shows who was left out, and how people worked to change it.",
+ "recordFoot": "(The 1867 picture is a real source from the past. The ID cards, the year slider and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today the Herald says voting has never changed. Read its claim first."
+   },
+   {
+    "t": "Then guess for each ID card on tab 1.",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "ID cards?",
+      "reply": "You’ll see."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Save a line from one slider stop.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the picture.",
+      "reply": "Save a note about the 1867 picture.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Locked. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Next: a real picture from 1867.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 43 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "voters",
+  "title": "Could they vote in 1789?",
+  "year": "1789",
+  "nowYear": "Today",
+  "people": [
+   {
+    "id": "farm",
+    "icon": "🌾",
+    "who": "A farmer who owns land",
+    "where": "Pennsylvania",
+    "short": "Landowning farmer",
+    "then": true,
+    "thenT": "He’s over 21, owns land and pays taxes, so he can vote."
+   },
+   {
+    "id": "wife",
+    "icon": "🧺",
+    "who": "The farmer’s wife",
+    "where": "Pennsylvania",
+    "short": "Farmer’s wife",
+    "then": false,
+    "thenT": "Pennsylvania doesn’t let women vote."
+   },
+   {
+    "id": "smith",
+    "icon": "⚒️",
+    "who": "A free Black blacksmith who owns his shop",
+    "where": "Massachusetts",
+    "short": "Free Black blacksmith",
+    "then": true,
+    "thenT": "Massachusetts let some free Black men who owned property vote."
+   },
+   {
+    "id": "slave",
+    "icon": "⛓️",
+    "who": "An enslaved man",
+    "where": "Virginia",
+    "short": "Enslaved man",
+    "then": false,
+    "thenT": "Enslaved people can’t vote anywhere."
+   },
+   {
+    "id": "appr",
+    "icon": "🔨",
+    "who": "A 19-year-old apprentice",
+    "where": "New York",
+    "short": "19-year-old apprentice",
+    "then": false,
+    "thenT": "He’s under 21 and owns no property."
+   },
+   {
+    "id": "cher",
+    "icon": "🪶",
+    "who": "A Cherokee woman",
+    "where": "Cherokee Nation, in the Southeast",
+    "short": "Cherokee woman",
+    "then": false,
+    "thenT": "Native Americans aren’t counted as U.S. citizens."
+   }
+  ],
+  "noteT": "Example people. Their 1789 voting rules are real.",
+  "yesT": "Could vote",
+  "noT": "Couldn’t vote",
+  "askT": "In 1789?",
+  "nowT": "Today, someone like this can vote, as a citizen 18 or older.",
+  "flipT": "Flip every card to today →",
+  "todoT": "Guess for each card.",
+  "doneT": "In 1789: two of six. Today: all six.",
+  "job": {
+   "why": "See how different 1789 was before you read.",
+   "do": "1. Guess for each card. 2. Flip to today. 3. Pick an answer and lock it.",
+   "use": "You’ll see your answer again on the Desk.",
+   "words": [
+    [
+     "political participation",
+     "taking part in government, like voting"
+    ]
+   ]
+  },
+  "q": "How do you think the vote got this wide?",
+  "opts": [
+   "All at once, in one new law",
+   "Step by step, over many years",
+   "It was always this wide"
+  ],
+  "close": "Let’s check the record at the Desk."
+ },
+ "explore": {
+  "reading": {
+   "type": "yearslide",
+   "title": "Slide through the years",
+   "readWho": "The Desk reading",
+   "readFrom": "Fact from the lesson",
+   "peopleL": "The six ID cards",
+   "sliderL": "Year",
+   "people": [
+    {
+     "id": "farm",
+     "icon": "🌾",
+     "short": "Landowning farmer"
+    },
+    {
+     "id": "wife",
+     "icon": "🧺",
+     "short": "Farmer’s wife"
+    },
+    {
+     "id": "smith",
+     "icon": "⚒️",
+     "short": "Free Black blacksmith"
+    },
+    {
+     "id": "slave",
+     "icon": "⛓️",
+     "short": "Enslaved man"
+    },
+    {
+     "id": "appr",
+     "icon": "🔨",
+     "short": "19-year-old apprentice"
+    },
+    {
+     "id": "cher",
+     "icon": "🪶",
+     "short": "Cherokee woman"
+    }
+   ],
+   "start": [
+    "farm",
+    "smith"
+   ],
+   "stops": [
+    {
+     "yr": "1789",
+     "label": "The starting line",
+     "t": "Most states let only men who own property or pay taxes vote, and most of those men are white."
+    },
+    {
+     "yr": "1870",
+     "label": "15th Amendment",
+     "gain": [],
+     "paper": [
+      "slave"
+     ],
+     "t": "A man can’t be kept from voting because of his race.",
+     "who": "Black Civil War veterans, and leaders like Frederick Douglass."
+    },
+    {
+     "yr": "1920",
+     "label": "19th Amendment",
+     "gain": [
+      "wife"
+     ],
+     "t": "Women can’t be kept from voting because they are women.",
+     "who": "Women like Susan B. Anthony, Ida B. Wells and Alice Paul, for over 70 years."
+    },
+    {
+     "yr": "1924",
+     "label": "Indian Citizenship Act",
+     "gain": [
+      "cher"
+     ],
+     "t": "Native Americans born in the United States become citizens.",
+     "who": "Native leaders, after thousands of Native men served in World War I. Some states kept blocking Native voters for years."
+    },
+    {
+     "yr": "1965",
+     "label": "Voting Rights Act",
+     "gain": [
+      "slave"
+     ],
+     "t": "A law stops unfair tests and rules at the polls.",
+     "who": "Civil rights marchers, like those who walked from Selma to Montgomery, Alabama.",
+     "calm": "The 15th Amendment said race couldn’t stop a man from voting, but unfair rules kept many Black citizens from voting until the Voting Rights Act."
+    },
+    {
+     "yr": "1971",
+     "label": "26th Amendment",
+     "gain": [
+      "appr"
+     ],
+     "t": "The voting age drops from 21 to 18.",
+     "who": "Young people who said: if we’re old enough to be sent to war, we’re old enough to vote."
+    }
+   ],
+   "changedT": "What changed:",
+   "pushT": "Who pushed for it:",
+   "leftT": "Stops left to visit: {n}",
+   "close": "Six stops, about 180 years. The vote grew step by step, because people pushed for each change.",
+   "reveal": [
+    "Not all at once: it took five big changes.",
+    "Yes. Five changes, one at a time.",
+    "Your 1789 guesses showed it wasn’t."
+   ],
+   "times": [
+    "What changed",
+    "Who pushed for it"
+   ],
+   "cols": [
+    {
+     "id": "y1870",
+     "who": "1870 · 15th Amendment",
+     "icon": "🗳️",
+     "lines": [
+      "A man can’t be kept from voting because of his race.",
+      "Black Civil War veterans, and leaders like Frederick Douglass."
+     ]
+    },
+    {
+     "id": "y1920",
+     "who": "1920 · 19th Amendment",
+     "icon": "🗳️",
+     "lines": [
+      "Women can’t be kept from voting because they are women.",
+      "Women like Susan B. Anthony, Ida B. Wells and Alice Paul, for over 70 years."
+     ]
+    },
+    {
+     "id": "y1924",
+     "who": "1924 · Indian Citizenship Act",
+     "icon": "🗳️",
+     "lines": [
+      "Native Americans born in the United States become citizens.",
+      "Native leaders, after thousands of Native men served in World War I. Some states kept blocking Native voters for years."
+     ]
+    },
+    {
+     "id": "y1965",
+     "who": "1965 · Voting Rights Act",
+     "icon": "🗳️",
+     "lines": [
+      "A law stops unfair tests and rules at the polls.",
+      "Civil rights marchers, like those who walked from Selma to Montgomery, Alabama."
+     ]
+    },
+    {
+     "id": "y1971",
+     "who": "1971 · 26th Amendment",
+     "icon": "🗳️",
+     "lines": [
+      "The voting age drops from 21 to 18.",
+      "Young people who said: if we’re old enough to be sent to war, we’re old enough to vote."
+     ]
+    }
+   ],
+   "job": {
+    "why": "Test the Herald’s “the same in every time period.”",
+    "do": "1. Drag the slider (or tap ◀ ▶). 2. Read each stop. 3. Watch which cards change.",
+    "use": "Every stop is evidence for your brief.",
+    "words": [
+     [
+      "amendment",
+      "a change added to the Constitution"
+     ],
+     [
+      "citizen",
+      "a member of a country, with its rights"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the 1867 picture",
+   "kind": "source",
+   "srcName": "the 1867 picture",
+   "srcWho": "“The First Vote” (Harper’s Weekly, 1867)",
+   "srcCant": "This 1867 picture",
+   "showsWord": "The picture shows ",
+   "img": "source-5-08-07-first-vote-1867",
+   "alt": "A black-and-white wood engraving: a line of Black men waits to vote at a ballot box on a table. The first man, in work clothes, drops his ballot in. Behind him stand a man in a suit, a soldier in a Union army cap and coat, and an older man. A man behind the table watches. Striped cloth like a flag hangs overhead.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 43,
+     "y": 40,
+     "rx": 13,
+     "ry": 30,
+     "label": "The first voter",
+     "t": "An older man in work clothes drops his ballot into the box."
+    },
+    {
+     "x": 13,
+     "y": 54,
+     "rx": 9,
+     "ry": 8,
+     "label": "The ballot box",
+     "t": "A glass ballot box. Voters could see their ballot go in."
+    },
+    {
+     "x": 67,
+     "y": 27,
+     "rx": 8,
+     "ry": 11,
+     "label": "The man in the hat",
+     "t": "A man in a hat and suit waits his turn."
+    },
+    {
+     "x": 84,
+     "y": 38,
+     "rx": 8,
+     "ry": 20,
+     "label": "The soldier",
+     "t": "A soldier in a Union army uniform, with stripes on his sleeve."
+    }
+   ],
+   "date": {
+    "x": 2,
+    "y": 90,
+    "w": 12,
+    "h": 8,
+    "tapT": "Now tap the 📅 date mark (the artist’s initials).",
+    "year": 1867,
+    "shows": 1867,
+    "yearT": "1867",
+    "showsT": "Black men voting in the South, 1867",
+    "gapT": "the same year, drawn for that week’s magazine",
+    "madeBy": "Alfred R. Waud, an artist for Harper’s Weekly",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: who drew this, and how do we know when?",
+    "check": [
+     "say who drew it or where it was printed?",
+     "say it was made in 1867, at the time?"
+    ],
+    "model": "Alfred Waud drew it for Harper’s Weekly, printed on November 16, 1867, so it was made at the time it shows.",
+    "card": "Drawn by A. R. Waud for Harper’s Weekly, printed November 16, 1867.",
+    "madeT": "printed 1867",
+    "journalT": "The picture was printed in November 1867, the same year it shows."
+   },
+   "missing": {
+    "q": "What can this picture show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this picture",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this picture",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this picture alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Black men waiting in line to vote",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look at the line."
+     },
+     {
+      "t": "A soldier in uniform",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look at the third man."
+     },
+     {
+      "t": "Any women voting",
+      "k": "not",
+      "say": "Right. No women vote here.",
+      "hint": "Who is in the line?"
+     },
+     {
+      "t": "Whether every Black man could keep voting in later years",
+      "k": "cant",
+      "say": "Right. One picture shows one day.",
+      "hint": "Can one picture show the years after?",
+      "calm": true
+     }
+    ]
+   },
+   "close": "A picture shows one moment. It can’t show who was still left out, or what happened next.",
+   "lookQ": "Write one thing you notice in this picture.",
+   "from": "Real source from the past: “The First Vote,” drawn by A. R. Waud, Harper’s Weekly, 16 November 1867 (Library of Congress). No known restrictions.",
+   "zoomCap": "“The First Vote,” wood engraving drawn by A. R. Waud, from the cover of Harper’s Weekly, 16 November 1867. Library of Congress. No known restrictions on publication.",
+   "followup": {
+    "q": "This picture can’t show what happened to Black voters in later years. Which source could help?",
+    "opts": [
+     {
+      "t": "Voting records and laws from the 1880s to the 1960s",
+      "ok": true,
+      "say": "Yes. They show what changed later."
+     },
+     {
+      "t": "A bigger copy of this picture",
+      "ok": false,
+      "say": "Still the same day."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this picture can’t show (a limitation).",
+    "limPh": "This picture can’t show…"
+   },
+   "job": {
+    "why": "Check what a picture made at the time can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "In 1789, most states let only men who owned property vote, and most of them were white; a few states let some free Black men vote.",
+   "The vote grew step by step: the 15th Amendment (1870), the 19th (1920), Native citizenship (1924), the Voting Rights Act (1965) and the 26th (1971).",
+   "People pushed for each change: Black Civil War veterans, Frederick Douglass, Susan B. Anthony, Ida B. Wells, Native leaders, civil rights marchers and young people.",
+   "The 15th Amendment was a law on paper; unfair rules kept many Black citizens from voting until the Voting Rights Act of 1965.",
+   "Taking part means more than voting: town meetings and petitions then; juries, contacting leaders and volunteering now."
+  ],
+  "vocab": [
+   [
+    "political participation",
+    "taking part in government, like voting"
+   ],
+   [
+    "amendment",
+    "a change added to the Constitution"
+   ],
+   [
+    "citizen",
+    "a member of a country, with its rights"
+   ],
+   [
+    "petition",
+    "a written request to a leader, signed by many people"
+   ],
+   [
+    "property",
+    "land or things a person owns"
+   ],
+   [
+    "limitation",
+    "something a source can’t show"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: demo means “people”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "Democracy means people rule. Today’s question is which people.",
+   "do": "1. Tap the part meaning “people.” 2. Use democracy in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "demo",
+  "meaning": "people",
+  "words": [
+   {
+    "parts": [
+     "demo",
+     "cracy"
+    ],
+    "root": 0,
+    "m": "democracy: government by the people"
+   },
+   {
+    "parts": [
+     "demo",
+     "cratic"
+    ],
+    "root": 0,
+    "m": "democratic: run by the people"
+   },
+   {
+    "parts": [
+     "demo",
+     "graphic"
+    ],
+    "root": 0,
+    "m": "demographic: about groups of people"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Democracy comes from Greek words meaning “people” and “rule.” Each change on the slider let more of the people rule.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Our democracy changed over time because…",
+   "min": 8,
+   "must": "demo",
+   "word": "democracy"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Front Page Brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "Step by Step, the Vote Grew",
+     "ok": true,
+     "tip": "Each change, one at a time.",
+     "fit": [
+      "yearslide",
+      "voters",
+      "y1870",
+      "y1920",
+      "y1924",
+      "y1965",
+      "y1971",
+      "change",
+      "reading"
+     ],
+     "fitTip": "Good fits: any slider stop.",
+     "ideas": [
+      "Step by Step, the Vote Grew",
+      "Six Stops, 180 Years"
+     ]
+    },
+    {
+     "t": "From a Few to Most",
+     "ok": true,
+     "tip": "1789 vs. today.",
+     "fit": [
+      "voters",
+      "yearslide",
+      "y1971",
+      "picture",
+      "reading"
+     ],
+     "fitTip": "Good fits: the ID cards, 1971.",
+     "ideas": [
+      "From a Few to Most",
+      "Two of Six, Then Six of Six"
+     ]
+    },
+    {
+     "t": "People Pushed for Every Change",
+     "ok": true,
+     "tip": "Who made each change happen.",
+     "fit": [
+      "who",
+      "yearslide",
+      "y1870",
+      "y1920",
+      "y1965",
+      "y1971",
+      "picture"
+     ],
+     "fitTip": "Good fits: “Who pushed for it” lines, the 1867 picture.",
+     "ideas": [
+      "People Pushed for Every Change",
+      "Nobody Handed It Over"
+     ]
+    },
+    {
+     "t": "Participation Never Changes!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your slider."
+    }
+   ]
+  },
+  "p1Label": "Change 1",
+  "p2Label": "Change 2",
+  "cmpHd": "Each change and who pushed for it.",
+  "cmpQ": "Which changes does the Herald leave out?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "Amendments",
+   "Laws like the Voting Rights Act",
+   "People who pushed for change",
+   "Ways to take part besides voting"
+  ],
+  "close": "Now write your brief below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two changes. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Voting isn’t the only way",
+   "img": false,
+   "who": "Taking part, then and now",
+   "from": "Fact from the lesson",
+   "t": "People who couldn’t vote still took part: town meetings, petitions, boycotts. Today, citizens also serve on juries, contact leaders and volunteer.",
+   "q": "",
+   "tags": [
+    "civics",
+    "participation",
+    "yearslide"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 43 is in the Morgue.",
+  "claim": "Political participation means the same thing in every time period."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap your six ID cards in 1789",
+   "Snap the slider at 1971",
+   "Snap the soldier in the 1867 picture",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "In 1971 the 26th Amendment lowered the voting age from 21 to 18.",
+   "key": [
+    "1971",
+    "26th",
+    "Amendment",
+    "lowered",
+    "voting",
+    "age"
+   ],
+   "small": [
+    "In",
+    "the",
+    "from",
+    "to"
+   ],
+   "model": "Key words: 1971, 26th Amendment, lowered, voting age."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Two groups",
+    "rx": "wom[ae]n|wife|black|african|enslaved|slave|native|cherokee|indian|young|18|apprentice|poor|without property|no property",
+    "n": 2
+   },
+   {
+    "t": "What changed",
+    "rx": "amendment|15th|19th|26th|1870|1920|1924|1965|1971|voting rights|act|law|citizen",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "It changed",
+    "rx": "chang|grew|wider|expand|more people|different|not the same|isn|step|over time|amendment",
+    "n": 1
+   },
+   {
+    "t": "Evidence",
+    "rx": "1789|1870|1920|1924|1965|1971|amendment|women|black|native|18|property|law",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "Today",
+    "rx": "today|still|now|debate|argue|disagree|access|register|id|age|16|prison|mail|lines|represent",
+    "n": 1
+   },
+   {
+    "t": "Your reason",
+    "rx": "because|so|that|why|people|some|other|think|want",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at your ID cards.",
+   "Who turned green later?",
+   "Try: “___ couldn’t vote then. ___ changed that.”"
+  ],
+  "journal-q2": [
+   "Did the vote stay the same?",
+   "Name one slider stop.",
+   "Try: “It’s misleading because ___.”"
+  ],
+  "journal-q3": [
+   "People still disagree about some voting rules.",
+   "Think about signing up, or the voting age.",
+   "Try: “Today, people debate ___ because ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "B": "Your ID cards changed a lot.",
+   "C": "The slider showed more voters over time."
+  },
+  {
+   "A": "The 15th was about race (1870).",
+   "B": "The 26th lowered the age to 18 (1971)."
+  },
+  {
+   "A": "The past explains how today’s rules came to be.",
+   "C": "That leaves out every change since 1789."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · Who Takes Part",
+  "head": "Who Gets a Say?",
+  "deck": "Does political participation mean the same thing today as it did in 1776, or has the meaning of “We the People” changed over time?",
+  "dateline": "Vol. I · No. 43 · Price: One Penny",
+  "ears": [
+   "Issue 43 · Road to Revolution Edition",
+   "🖼️ Picture, 1867"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Slide through the years"
+   },
+   {
+    "key": "picture",
+    "t": "Read a real picture from 1867",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "THE UNITED STATES",
+  "lede": "Six stops on a year slider, one real picture from 1867.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the 1867 picture.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a line, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "Step by Step, the Vote Grew",
+   "From a Few to Most"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your claim and your evidence",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "How has taking part changed since 1789? Name at least two changes and what each did.",
+    "ph": "Write your claim and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "Voting today is very different from 1789.",
+     "One change the Herald left out was"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Why should readers know how the vote grew, and who pushed for it?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1867 picture show, and not show?",
+    "ph": "For example, start with: The picture…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The picture was made in 1867, so",
+     "The picture shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Beat the Herald with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain."
+ },
+ "claimChecks": [
+  {
+   "id": "one-law",
+   "claim": "After the 15th Amendment in 1870, every Black man in America could vote freely.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Look at your 1965 stop."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. The law changed in 1870, but unfair rules blocked many voters until 1965."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "We do have evidence. Check the 1965 stop."
+    }
+   ],
+   "details": [
+    {
+     "from": "A slider stop:",
+     "t": "Unfair rules kept many Black citizens from voting until the Voting Rights Act.",
+     "ok": true,
+     "say": "Yes. That shows the gap."
+    },
+    {
+     "from": "A slider stop:",
+     "t": "In 1965 a law stopped unfair tests and rules at the polls.",
+     "ok": true,
+     "say": "Yes. A new law was still needed."
+    },
+    {
+     "from": "The Herald:",
+     "t": "“Participation Never Changes!”",
+     "ok": false,
+     "say": "That’s the Herald’s claim, not evidence."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I named at least two changes and what each did.",
+  "I gave two details, each with a reason.",
+  "I said what the 1867 picture can and can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your drawer is empty. Try a slider stop.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1867 picture.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(vot\\w*|ballots?|elect\\w*|citizens?|amendments?|15th|19th|24th|26th|constitution|1789|1776|1867|1870|1920|1924|1965|1971|rights?|law|act|wom[ae]n|wife|black|african|enslaved|slave\\w*|free|native|cherokee|indian|age|18|21|young|apprentice|property|land|owns?|states?|pennsylvania|massachusetts|virginia|georgia|douglass|anthony|wells|paul|selma|montgomery|marchers?|civil|war|soldiers?|uniform|union|veterans?|unfair|tests?|rules?|participat\\w*|petitions?|town|meetings?|boycotts?|militias?|juries|jury|volunteer\\w*|office|leaders?|democra\\w*|harper|waud|picture|engraving|line|people|blacksmith|farmer)\\b",
+   "off": "Does this show how taking part changed? Try a slider stop.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a line from a slider stop.",
+    "go": [
+     {
+      "l": "The slider",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try a “Who pushed for it” line.",
+    "go": [
+     {
+      "l": "The slider",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a note about the picture.",
+    "go": [
+     {
+      "l": "The picture",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Could they vote?",
+   "script": "Here are six people from 1789. Guess for each one: could this person vote? Some answers may surprise you. Then flip the cards to today. Did it change all at once, or step by step?"
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "Slide through the years",
+   "script": "This slider runs from 1789 to 1971. Stop at every year: read what changed and who pushed for it, and watch the six cards. Look closely at 1870 and 1965. A law on paper and a vote in real life aren’t always the same."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^six",
+    "sel": "#panel-dispatch .rg-vt-grid",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^guess",
+    "sel": "#panel-dispatch .rg-vt-b",
+    "fx": "point"
+   },
+   {
+    "at": "^flip",
+    "sel": "#panel-dispatch .rg-vt-yr",
+    "fx": "glow"
+   },
+   {
+    "at": "^step",
+    "sel": "#panel-dispatch .rg-voters",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^slider",
+    "sel": "#panel-desk .rg-ys-ctrl",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^changed",
+    "sel": "#panel-desk .rg-ys-card",
+    "fx": "glow"
+   },
+   {
+    "at": "^cards",
+    "sel": "#panel-desk .rg-ys-people",
+    "fx": "point"
+   },
+   {
+    "at": "^paper",
+    "sel": "#panel-desk .rg-ys-ticks",
+    "fx": "glow"
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.48,
+    0.72,
+    "six"
+   ],
+   [
+    2.96,
+    3.12,
+    "Guess"
+   ],
+   [
+    8.24,
+    8.48,
+    "flip"
+   ],
+   [
+    12.0,
+    12.16,
+    "step"
+   ]
+  ],
+  "v2": [
+   [
+    0.44,
+    0.64,
+    "slider"
+   ],
+   [
+    6.56,
+    7.04,
+    "changed"
+   ],
+   [
+    9.48,
+    10.24,
+    "cards."
+   ],
+   [
+    14.88,
+    15.12,
+    "paper"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3807,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3822,83 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A long road at dusk, lined with lampposts that light up one by one, running from a small old meeting house on the left to a large town hall with columns on the right.">
+  <defs>
+    <linearGradient id="sk7" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2c3557"/><stop offset="0.6" stop-color="#7a6f8c"/><stop offset="1" stop-color="#e9b98a"/></linearGradient>
+    <linearGradient id="gr7" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b6a46"/><stop offset="1" stop-color="#3b4730"/></linearGradient>
+    <radialGradient id="lg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe7a8" stop-opacity="0.75"/><stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="920" height="260" fill="url(#sk7)"/>
+  <circle cx="470" cy="150" r="70" fill="#f6d39c" opacity="0.22"/>
+  <path d="M0,170 Q230,150 460,158 T920,150 V260 H0 Z" fill="url(#gr7)"/>
+  <path d="M60,260 C200,222 360,196 520,182 C640,172 740,166 860,160 L880,170 C760,176 660,184 540,198 C380,214 240,236 150,260 Z" fill="#8a7a62"/>
+  <path d="M110,260 C260,228 420,204 560,190 C680,178 780,170 868,165" stroke="#c9b895" stroke-width="2" stroke-dasharray="10 10" fill="none" opacity="0.7"/>
+  <!-- meeting house (left, 1700s) -->
+  <g transform="translate(36,120)">
+    <rect x="0" y="34" width="86" height="56" fill="#d9cdb4"/><path d="M-6,36 L43,4 L92,36 Z" fill="#7a3b2e"/>
+    <rect x="37" y="-22" width="12" height="30" fill="#efe6d2"/><path d="M33,-22 L43,-40 L53,-22 Z" fill="#7a3b2e"/>
+    <rect x="35" y="62" width="16" height="28" fill="#6b4a2e"/>
+    <rect x="10" y="48" width="14" height="14" fill="#ffe3a0" opacity="0.8"/><rect x="62" y="48" width="14" height="14" fill="#ffe3a0" opacity="0.8"/>
+  </g>
+  <!-- town hall (right, modern) -->
+  <g transform="translate(772,74)">
+    <rect x="0" y="40" width="140" height="64" fill="#e8e3d8"/><path d="M-8,42 L70,8 L148,42 Z" fill="#cfc7b6"/>
+    <rect x="48" y="-12" width="44" height="26" fill="#e8e3d8"/><path d="M44,-12 Q70,-46 96,-12 Z" fill="#b9a98a"/>
+    <rect x="10" y="48" width="8" height="54" fill="#f6f2ea"/><rect x="34" y="48" width="8" height="54" fill="#f6f2ea"/><rect x="58" y="48" width="8" height="54" fill="#f6f2ea"/><rect x="82" y="48" width="8" height="54" fill="#f6f2ea"/><rect x="106" y="48" width="8" height="54" fill="#f6f2ea"/><rect x="130" y="48" width="8" height="54" fill="#f6f2ea"/>
+    <rect x="-6" y="102" width="152" height="8" fill="#cfc7b6"/>
+    <rect x="18" y="56" width="10" height="16" fill="#ffe3a0" opacity="0.85"/><rect x="42" y="56" width="10" height="16" fill="#ffe3a0" opacity="0.85"/><rect x="66" y="56" width="10" height="16" fill="#ffe3a0" opacity="0.85"/><rect x="90" y="56" width="10" height="16" fill="#ffe3a0" opacity="0.85"/><rect x="114" y="56" width="10" height="16" fill="#ffe3a0" opacity="0.85"/>
+  </g>
+  <g transform="translate(150,196)">
+      <circle cx="0" cy="-34.1" r="11.0" fill="url(#lg)" class="bn-lp" style="animation-delay:0.0s"/>
+      <rect x="-0.9" y="-34.1" width="1.8" height="34.1" fill="#2b2a36"/>
+      <rect x="-2.8" y="-39.1" width="5.5" height="6.1" rx="1.1" fill="#3a3646"/>
+      <rect x="-1.9" y="-38.2" width="3.7" height="4.4" fill="#ffe3a0" class="bn-lc" style="animation-delay:0.0s"/>
+      <path d="M-3.3,-39.1 L0,-41.8 L3.3,-39.1 Z" fill="#2b2a36"/>
+    </g><g transform="translate(232,188)">
+      <circle cx="0" cy="-38.44" r="12.4" fill="url(#lg)" class="bn-lp" style="animation-delay:0.9s"/>
+      <rect x="-1.0" y="-38.44" width="2.0" height="38.44" fill="#2b2a36"/>
+      <rect x="-3.1" y="-44.0" width="6.2" height="6.8" rx="1.2" fill="#3a3646"/>
+      <rect x="-2.1" y="-43.1" width="4.2" height="5.0" fill="#ffe3a0" class="bn-lc" style="animation-delay:0.9s"/>
+      <path d="M-3.7,-44.0 L0,-47.1 L3.7,-44.0 Z" fill="#2b2a36"/>
+    </g><g transform="translate(318,181)">
+      <circle cx="0" cy="-43.4" r="14.0" fill="url(#lg)" class="bn-lp" style="animation-delay:1.8s"/>
+      <rect x="-1.1" y="-43.4" width="2.2" height="43.4" fill="#2b2a36"/>
+      <rect x="-3.5" y="-49.7" width="7.0" height="7.7" rx="1.4" fill="#3a3646"/>
+      <rect x="-2.4" y="-48.6" width="4.8" height="5.6" fill="#ffe3a0" class="bn-lc" style="animation-delay:1.8s"/>
+      <path d="M-4.2,-49.7 L0,-53.2 L4.2,-49.7 Z" fill="#2b2a36"/>
+    </g><g transform="translate(410,175)">
+      <circle cx="0" cy="-48.36" r="15.6" fill="url(#lg)" class="bn-lp" style="animation-delay:2.7s"/>
+      <rect x="-1.2" y="-48.36" width="2.5" height="48.36" fill="#2b2a36"/>
+      <rect x="-3.9" y="-55.4" width="7.8" height="8.6" rx="1.6" fill="#3a3646"/>
+      <rect x="-2.7" y="-54.2" width="5.3" height="6.2" fill="#ffe3a0" class="bn-lc" style="animation-delay:2.7s"/>
+      <path d="M-4.7,-55.4 L0,-59.3 L4.7,-55.4 Z" fill="#2b2a36"/>
+    </g><g transform="translate(508,170)">
+      <circle cx="0" cy="-53.32" r="17.2" fill="url(#lg)" class="bn-lp" style="animation-delay:3.6s"/>
+      <rect x="-1.4" y="-53.32" width="2.8" height="53.32" fill="#2b2a36"/>
+      <rect x="-4.3" y="-61.1" width="8.6" height="9.5" rx="1.7" fill="#3a3646"/>
+      <rect x="-2.9" y="-59.8" width="5.8" height="6.9" fill="#ffe3a0" class="bn-lc" style="animation-delay:3.6s"/>
+      <path d="M-5.2,-61.1 L0,-65.4 L5.2,-61.1 Z" fill="#2b2a36"/>
+    </g><g transform="translate(612,166)">
+      <circle cx="0" cy="-58.9" r="19.0" fill="url(#lg)" class="bn-lp" style="animation-delay:4.5s"/>
+      <rect x="-1.5" y="-58.9" width="3.0" height="58.9" fill="#2b2a36"/>
+      <rect x="-4.8" y="-67.5" width="9.5" height="10.4" rx="1.9" fill="#3a3646"/>
+      <rect x="-3.2" y="-66.0" width="6.5" height="7.6" fill="#ffe3a0" class="bn-lc" style="animation-delay:4.5s"/>
+      <path d="M-5.7,-67.5 L0,-72.2 L5.7,-67.5 Z" fill="#2b2a36"/>
+    </g><g transform="translate(722,163)">
+      <circle cx="0" cy="-65.10000000000001" r="21.0" fill="url(#lg)" class="bn-lp" style="animation-delay:5.4s"/>
+      <rect x="-1.7" y="-65.10000000000001" width="3.4" height="65.10000000000001" fill="#2b2a36"/>
+      <rect x="-5.2" y="-74.6" width="10.5" height="11.6" rx="2.1" fill="#3a3646"/>
+      <rect x="-3.6" y="-73.0" width="7.1" height="8.4" fill="#ffe3a0" class="bn-lc" style="animation-delay:5.4s"/>
+      <path d="M-6.3,-74.6 L0,-79.8 L6.3,-74.6 Z" fill="#2b2a36"/>
+    </g>
+  <style>
+    .bn-lp{opacity:.15;animation:bnLp 6.3s ease-in-out infinite}
+    .bn-lc{opacity:.35;animation:bnLc 6.3s ease-in-out infinite}
+    @keyframes bnLp{0%,8%{opacity:.15}20%,85%{opacity:.9}100%{opacity:.15}}
+    @keyframes bnLc{0%,8%{opacity:.35}20%,85%{opacity:1}100%{opacity:.35}}
+    @media (prefers-reduced-motion: reduce){.bn-lp,.bn-lc{animation:none;opacity:.9}}
+  </style>
+</svg>
   </div>
 
   <div class="hero-headline-strip serif">Political Participation Then and Now</div>
@@ -2677,7 +3910,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 22 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3924,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3931,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.CG.2.2 · TEKS 13(A)–(B), 17(A)–(C)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 43 · Circulation ~3,650 · <em>Participation meant something very different in 1776.</em>
+      Vol. 1 · Issue 43 · Readers: about 3,650 · <em>Participation meant something very different in 1776.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3949,21 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 43</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 43</strong> — <em>Who gets a say? Compare 1789 with today.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,650</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Readership steady as the Revolution series deepens.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2755,36 +3973,31 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — Participation meant something very different in 1776 — and a courageous editor explains how it changed.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-label">Rival paper</span>
       <span class="ns-row-value">
-        <span class="threat-meter">📢 The Hasty Herald · Aggressive</span>
+        <span class="threat-meter">📢 The Hasty Herald · pushy</span>
         <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
       </span>
     </div>
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: locked in the <em>Changing Roles and Impact of Women During the Revolution</em> record. Tap to recap.
+      Last issue: <em>Changing Roles and Impact of Women During the Revolution</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that women played essential roles in the Revolution — running the economy, organizing boycotts, serving as spies and soldiers, and advocating for rights. The Herald's claim that women "only watched" missed the full picture.
+      In 5.08.06, the records showed that women did much more than watch. Today: who could vote, then and now.
     </div>
   </div>
 </div>
@@ -2793,25 +4006,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.07</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Changing Roles and Impact of Women During the Revolution</em> and proved that women were far more than spectators. Today, a new file marked <em>5.08.07 — Political Participation Then and Now</em> arrives on the Front Page Desk. But The Hasty Herald has already rushed to print a claim that political participation means the same thing in every time period. The Gazette may print only after we examine the record.</p>
+      <p>Last issue, the Gazette showed that women did much more than watch. A new file marked <em>5.08.07: Political Participation Then and Now</em> is on the <strong>Front Page Desk</strong>. The Hasty Herald has already printed that it means the same thing in every time period. Time to check.</p>
     </div>
   </div>
 
@@ -2821,14 +4027,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Does political participation mean the same thing today as it did in 1776 — or has the meaning of 'We the People' changed over time?</p>
       </div>
     </div>
@@ -2842,8 +4045,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Compare who could participate in politics during the founding era with who participates today.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how political participation has expanded over time through amendments and laws.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Front Page Brief that accurately represents how political participation has changed.</div>
@@ -2874,7 +4075,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-07-welcome -->
@@ -2893,24 +4093,19 @@ html, body {
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
       <!-- 📍 Compare then and now &amp; spotlight courage — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>✏️ Step 1</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>🪪 Could they vote?</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Gather evidence at the Front Page Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🗳️ Slide through the years, then read a real 1867 picture</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Publish your Front Page Brief</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor reports how things have changed — even when the full story is more complicated than the headline.</strong> Today, courage means showing both who was excluded and how Americans fought to expand participation.
+      <strong>A courageous editor tells the whole story of change.</strong> Today, courage means showing who was left out, and how people worked to change that.
     </div>
   </div>
 
@@ -2920,19 +4115,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Participation Never Changes!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Political participation means the same thing in every time period.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Today you'll compare political participation then and now — and show the Herald that the story of who gets to participate has changed dramatically.
+      <strong>Your job, junior editor:</strong> Compare who could take part in 1789 with who can today.
     </div>
   </div>
 
@@ -2940,10 +4129,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to investigate how political participation has changed from the founding era to today — and publish a Front Page Brief that shows how participation has expanded over time.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong>. Find out how taking part in government changed since 1789, then publish a <strong>Front Page Brief</strong>: a short report with a claim and evidence.
     </div>
   </div>
 
@@ -2954,20 +4140,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What do we notice, what does it mean, and why does it matter? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. A courageous editor doesn't pretend the past and present are the same — especially when people fought to make things better.
+        A courageous editor doesn’t pretend the past and the present are the same.
       </div>
     </div>
   </div>
@@ -2977,18 +4155,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-07-explore-explainer -->
@@ -2997,25 +4165,17 @@ html, body {
     <div class="video-placeholder-title">At the Front Page Desk: Political Participation Then and Now</div>
     <div class="video-placeholder-filename">5-08-07-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the Then vs Now comparison: who could vote in the 1770s (white male property owners only) vs today (all citizens 18+). Cover the key expansions: 15th Amendment, 19th Amendment, 26th Amendment, Voting Rights Act. Emphasize that only about 6%% could vote in 1776. Connect to the Herald's claim — why is "means the same thing" wrong? 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the Then vs Now comparison: who could vote in the 1770s (mostly white men who owned property; a few states let some free Black men, and New Jersey some women, vote) vs today (citizens 18+). Cover the key expansions: 15th Amendment (1870), 19th (1920), Indian Citizenship Act (1924), Voting Rights Act (1965), 26th (1971), and who pushed for each. Say "a small share, about 6 in 100 people by one estimate" rather than an exact figure. Connect to the Herald's claim — why is "means the same thing" wrong? 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Front Page Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where junior editors gather the facts and write the brief.</div>
+      <div class="desk-subtitle">Gather the facts, then write your own front page brief.</div>
     </div>
   </div>
 
@@ -3028,9 +4188,9 @@ html, body {
   -->
     <div class="content-section">
     <h2>🗞️ Political Participation: Then and Now</h2>
-    <p>The Hasty Herald claims that "political participation means the same thing in every time period." But does the evidence support that? Let's compare who could participate in politics during the founding era with who participates today.</p>
+    <p>Let’s compare who could take part in government in the 1770s and 1780s with who can today.</p>
 
-    <div class="callout callout-info" style="border-left-color: var(--gazette-gold);">
+    <div class="callout callout-info rg-keep-off" style="border-left-color: var(--gazette-gold);">
       <div class="callout-icon">🗞️</div>
       <div>
         <strong>Then vs. Now</strong>
@@ -3042,33 +4202,34 @@ html, body {
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; border-top:4px solid #8B2D26;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#8B2D26; font-size:16px; margin-bottom:8px; text-align:center;">🏛️ Then (1770s–1790s)</div>
         <ul style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink); padding-left:18px; margin:0;">
-          <li><strong>Who could vote:</strong> White men who owned property (in most states)</li>
-          <li><strong>Who could not vote:</strong> Women, enslaved people, free Black men (in most states), Native Americans, men without property</li>
+          <li><strong>Who could vote:</strong> Mostly white men who owned property or paid taxes</li>
+          <li><strong>Who could not vote:</strong> Women and free Black men in most states (a few states let some vote), enslaved people, Native Americans, men without property</li>
           <li><strong>How people participated:</strong> Town meetings, petitions, pamphlets, protests, boycotts, militia service</li>
-          <li><strong>Key limitation:</strong> Political power was concentrated among a small group — most people living in the colonies had no formal voice</li>
+          <li><strong>Key limitation:</strong> Power was held by a small group. Most people had no vote.</li>
         </ul>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:16px; border-top:4px solid #2E6B4A;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#2E6B4A; font-size:16px; margin-bottom:8px; text-align:center;">🗳️ Now (Today)</div>
         <ul style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.6; color:var(--ink); padding-left:18px; margin:0;">
-          <li><strong>Who can vote:</strong> All U.S. citizens aged 18 and older, regardless of race, gender, or property</li>
-          <li><strong>How rights expanded:</strong> 15th Amendment (race), 19th Amendment (women), 26th Amendment (age 18), Voting Rights Act of 1965</li>
+          <li><strong>Who can vote:</strong> Almost all U.S. citizens 18 and older, whatever their race, gender or property</li>
+          <li><strong>How rights expanded:</strong> 15th Amendment (race, 1870), 19th Amendment (women, 1920), Voting Rights Act (1965), 26th Amendment (age 18, 1971). An <strong>amendment</strong> is a change added to the Constitution.</li>
           <li><strong>How people participate:</strong> Voting, contacting representatives, peaceful protest, community organizing, running for office, jury duty</li>
           <li><strong>Ongoing questions:</strong> Voter access, representation, and whether all voices are equally heard</li>
         </ul>
       </div>
     </div>
 
-    <div class="callout callout-think">
+    <div class="callout callout-think rg-keep-off">
       <div class="callout-icon">⚖️</div>
       <div>
         <strong>Cause — Choice — Consequence</strong>
-        <p><strong>Cause:</strong> The founding era limited political participation to a small group — mostly white male property owners.</p>
+        <p><strong>Cause:</strong> In the founding era, voting was limited to a small group, mostly white men who owned property.</p>
         <p><strong>Choice:</strong> Over centuries, Americans fought to expand who counts as "We the People" — through amendments, movements, and laws.</p>
         <p><strong>Consequence:</strong> Political participation today looks very different from 1776 — but the work of expanding it is ongoing.</p>
       </div>
     </div>
 
+    <div class="rg-keep-off">
     <h3>🗺️ Participation at a Glance</h3>
     <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:16px; margin:12px 0;">
       <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
@@ -3080,12 +4241,12 @@ html, body {
         <rect x="30" y="90" width="280" height="30" rx="6" fill="#ccc" opacity="0.3"/>
         <text x="170" y="110" text-anchor="middle" font-family="'Crimson Text',serif" font-size="12" fill="#666">Women — excluded</text>
         <rect x="30" y="130" width="280" height="30" rx="6" fill="#ccc" opacity="0.3"/>
-        <text x="170" y="150" text-anchor="middle" font-family="'Crimson Text',serif" font-size="12" fill="#666">Enslaved &amp; free Black people — excluded</text>
+        <text x="170" y="150" text-anchor="middle" font-family="'Crimson Text',serif" font-size="12" fill="#666">Enslaved people — excluded; free Black men: a few states</text>
         <rect x="30" y="170" width="280" height="30" rx="6" fill="#ccc" opacity="0.3"/>
         <text x="170" y="190" text-anchor="middle" font-family="'Crimson Text',serif" font-size="12" fill="#666">Native Americans — excluded</text>
 
         <!-- Arrow -->
-        <polygon points="340,100 360,90 360,110" fill="#C4A672"/>
+        <polygon points="360,100 340,90 340,110" fill="#C4A672"/>
 
         <!-- Now side -->
         <rect x="370" y="10" width="300" height="200" rx="10" fill="#F0FFF5" stroke="#C4A672" stroke-width="1.5"/>
@@ -3101,15 +4262,16 @@ html, body {
       </svg>
       <p style="font-family:'Crimson Text',serif; font-size:13px; color:var(--ink-soft); text-align:center; margin:8px 0 0;">Political participation has expanded dramatically — but it took centuries of effort.</p>
     </div>
+    </div>
 
-    <div class="owl-buddy">
+    <div class="owl-buddy rg-keep-off">
       <div class="owl-icon">🦉🗞️</div>
       <div class="owl-bubble">
-        In 1776, only about 6% of the population could vote. Today, every citizen over 18 has that right — but it took nearly 200 years and multiple amendments to get there. A courageous editor tells that whole story.
+        In the 1780s, only a small share of people could vote: about 6 in 100, by one estimate. Today, almost every citizen 18 or older can, but it took nearly 200 years and several amendments to get there.
       </div>
     </div>
 
-    <div class="callout callout-tip">
+    <div class="callout callout-tip rg-keep-off">
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
@@ -3118,10 +4280,39 @@ html, body {
     </div>
   </div>
 
+  <div class="content-section">
+    <h2>🔎 Read the Source: The First Vote, 1867</h2>
+    <p>In 1867, Congress passed a law that let Black men in much of the South vote for the first time. That November, the magazine <em>Harper’s Weekly</em> put this drawing on its cover. Look closely. Who is in line, and who is watching?</p>
+
+    <div class="source-image-frame">
+      <div class="source-image-placeholder" data-image="source-5-08-07-first-vote-1867">
+        🖼️ <strong>Image:</strong> “The First Vote,” drawn by A. R. Waud, Harper’s Weekly, November 16, 1867.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-07-first-vote-1867.jpg</code>
+      </div>
+      <div class="source-image-caption">
+        What can this picture show about how the vote changed? What can’t it show?<br><small style="font-style:normal;opacity:.85">Real source from the past. Wood engraving, Harper’s Weekly, November 16, 1867. Library of Congress. No known restrictions on publication.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>demo</em> means “people”</h2>
+    <p>Many English words come from the Greek word <em>demos</em>, “the people.” You can spot it as <strong>demo</strong>.</p>
+    <ul>
+      <li><strong>democracy</strong> (demo + cracy): government by the people</li>
+      <li><strong>democratic</strong> (demo + cratic): run by the people</li>
+      <li><strong>demographic</strong> (demo + graphic): about groups of people</li>
+    </ul>
+    <p><strong>Discovery:</strong> In 1789, only some of the people could vote. Each change let more of the people rule.</p>
+    <p><em>Try it: use the word <strong>democracy</strong> in a sentence about today’s lesson.</em></p>
+  </div>
+
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3153,7 +4344,7 @@ html, body {
   </div>
   <div style="background:#EAF4FD;border:2px solid #B0D4F1;border-radius:14px;padding:16px 20px;margin:16px 0;">
     <p style="font-size:16px;color:#0E1C42;font-weight:800;margin:0 0 8px;">🗳️ Texas Connection — Citizenship Duties &amp; Voting (TEKS 17)</p>
-    <p style="font-size:15px;color:#5A4D3E;line-height:1.65;margin:0;">Texas students learn specific civic duties and responsibilities: obeying laws, serving on juries, paying taxes, and — most importantly — voting. They also learn how to contact elected officials about issues that matter to them. Think about the gap between colonial participation and today: in the 1770s, only property-owning white men could vote. Today, the right to vote has expanded through the 15th, 19th, and 26th Amendments — but it took nearly 200 years of struggle to get there.</p>
+    <p style="font-size:15px;color:#5A4D3E;line-height:1.65;margin:0;">Texas students learn specific civic duties and responsibilities: obeying laws, serving on juries, paying taxes, and — most importantly — voting. They also learn how to contact elected officials about issues that matter to them.</p>
   </div>
 
 
@@ -3164,10 +4355,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3176,14 +4363,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3192,13 +4371,13 @@ html, body {
       <span class="factcheck-q-text">How has political participation changed since the founding era?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>It has not changed at all — the same people vote today as in 1776.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">A</span>
+        <span>It has expanded dramatically — from mostly white men who owned property to all citizens aged 18 and older.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">B</span>
-        <span>It has expanded dramatically — from only white male property owners to all citizens aged 18 and older.</span>
+        <span>It has not changed at all — the same people vote today as in 1776.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3219,13 +4398,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>The 15th Amendment.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>The 19th Amendment.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>The 26th Amendment.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>The 19th Amendment.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q2"></div>
@@ -3260,7 +4439,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3282,21 +4460,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-07-assignment-explainer -->
@@ -3317,8 +4482,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 43</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Front Page Brief</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3326,16 +4489,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
           <span>(1) A clear claim about how political participation has changed. (2) Name at least two specific changes with evidence (amendments, laws, or groups). (3) Why this matters — what does the expansion teach us?</span>
         </div>
@@ -3351,9 +4510,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about political participation then and now.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3382,8 +4538,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Front Page Brief</span></div>
@@ -3398,32 +4552,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 43 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you compared political participation then and now with courage — showing how Americans fought to expand who gets a voice in democracy.
+      <strong>Well done, Junior Editor.</strong> You showed how the vote grew, step by step, and who pushed for each change.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.08) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Patriot or Loyalist Evidence Response</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Patriot or Loyalist Evidence Response</em> arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that the Patriot side was obviously right to everyone. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Patriot or Loyalist Evidence Response</em>, is on its way to the Source Desk, and <strong>the Hasty Herald has already printed</strong> that the Patriot side was obviously right to everyone.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-07-closing -->
@@ -3698,7 +4841,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 43 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4055,5 +5198,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>

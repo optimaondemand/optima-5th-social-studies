@@ -250,8 +250,8 @@
     var ln=el('div','rg rg-lens','<b>Editor’s Lens</b><span>'+(virtue?'<em>'+esc(virtue)+'.</em> ':'')+esc(DATA.lens)+'</span>'); if(DETAILS) DETAILS.appendChild(ln); else after(two,ln); }
 
   /* ================================================================ THE LESSON MODULES (pick per lesson in DATA)
-     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite | door | eraser | frames | stands
-     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse | street | arch | chain | stamps   (explore.ribbons / explore.povdial / explore.closeups: optional, before the picture; explore.copy: the page's .copywork block; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
+     scene1.type            dateit | ads | plot | spyglass | trail | ledger | clip | zoom | ghost | invite | door | eraser | frames | stands | voters
+     explore.reading.type   suncolumns | ships | chains | scale | grid | maplayers | flips | ask | stick | purse | street | arch | chain | stamps | yearslide   (explore.ribbons / explore.povdial / explore.closeups: optional, before the picture; explore.copy: the page's .copywork block; explore.tworec: optional, after the picture; explore.stereo / explore.pins: optional, before it)
      explore.evidence.type  redpen
      planner.type           layout
      vocab.type             worddesk
@@ -1604,6 +1604,88 @@
       journal:function(e,NA){ if(!Object.keys(st.set).length) return NA; return '<p class="a">'+CD.filter(function(s){ return st.set[s.id]; }).map(function(s){ return '<b>'+e(s.who)+' ('+e(stamp(s.stamp).t||'')+'):</b> '+e(s.proof||''); }).join('<br>')+'</p>'; },
       people:function(){ return CD.map(function(x){ return x.who; }); }}; };
 
+  /* ---------------------------------------------------------------- voters: six ID cards. Guess "could vote / couldn't vote" in the first year for each,
+     read the answer, then flip every card to today. Then a sealed guess (radios + lock).
+     DATA.scene1 = {type:'voters', title, job, year, nowYear, people:[{id,icon,who,where,then:true|false,thenT}], yesT, noT, askT, flipT, nowT, doneT, todoT, q, opts:[t], close} */
+  MOD.voters=function(c,anchor){ var st=mstate('voters',{g:{}}); if(!st.g) st.g={}; var PP=c.people||[], OP=c.opts||[];
+    var g=gameShell('rg-voters','Dispatch · could they vote?',c.title||'Could they vote?',c);
+    g.innerHTML+='<div class="rg-vt-yr" aria-live="polite"></div>'+(c.noteT?'<p class="rg-vt-note">'+esc(c.noteT)+'</p>':'')+'<div class="rg-vt-grid" role="list"></div><p class="rg-vt-say" aria-live="polite"></p><div class="rg-zm-close rg-vt-todo"></div><div class="rg-vt-flipbox"></div><div class="rg-ads-seal rg-vt-seal"></div><p class="rg-vt-close"></p>';
+    after(anchor,g);
+    function answered(){ return PP.every(function(p){ return st.g[p.id]!=null; }); }
+    function paint(){ var A=answered(), F=!!st.flip, sb=$('.rg-vt-seal',g);
+      $('.rg-vt-yr',g).innerHTML='<span class="'+(F?'':'on')+'">'+esc(c.year||'1789')+'</span><span class="'+(F?'on':'')+'">'+esc(c.nowYear||'Today')+'</span>';
+      $('.rg-vt-grid',g).innerHTML=PP.map(function(p){ var a=st.g[p.id], ok=a!=null&&a===!!p.then;
+        return '<div class="rg-vt-card'+(F?' now':'')+(a!=null&&!F?(p.then?' yes':' no'):'')+'" role="listitem" data-id="'+esc(p.id)+'"><div class="rg-vt-top"><span class="rg-vt-ic" aria-hidden="true">'+esc(p.icon||'')+'</span><div><b class="rg-vt-who">'+esc(p.who)+'</b><small>'+esc(p.where||'')+'</small></div></div>'+
+          (F?'<p class="rg-vt-now">✅ '+esc(c.nowT||'Today: can vote.')+'</p><p class="rg-vt-was">'+esc(c.year||'1789')+': '+(p.then?esc(c.yesT||'Could vote'):esc(c.noT||'Couldn’t vote'))+'</p>'
+          :a==null?'<p class="rg-vt-ask">'+esc(c.askT||'In 1789?')+'</p><div class="rg-vt-btns"><button type="button" class="rg-btn soft rg-vt-b" data-id="'+esc(p.id)+'" data-v="1">🗳️ '+esc(c.yesT||'Could vote')+'</button><button type="button" class="rg-btn soft rg-vt-b" data-id="'+esc(p.id)+'" data-v="0">🚫 '+esc(c.noT||'Couldn’t vote')+'</button></div>'
+          :'<p class="rg-vt-then"><b>'+(ok?'✓ ':'')+(p.then?esc(c.yesT||'Could vote'):esc(c.noT||'Couldn’t vote'))+'.</b> '+esc(p.thenT||'')+'</p>')+'</div>'; }).join('');
+      var left=PP.filter(function(p){ return st.g[p.id]==null; }).length;
+      $('.rg-vt-todo',g).innerHTML=A?'':'<p class="rg-todo">👆 '+esc(c.todoT||'Guess for each card.')+' ('+left+' left)</p>';
+      $('.rg-vt-flipbox',g).innerHTML=A&&!F?'<button type="button" class="rg-btn rg-vt-flip">'+esc(c.flipT||'Flip every card to today →')+'</button>':'';
+      $('.rg-vt-say',g).textContent=F?(c.doneT||''):'';
+      if(!F){ sb.innerHTML=''; delete sb.dataset.on; $('.rg-vt-close',g).textContent=''; g.classList.remove('finished'); return; }
+      if(!sb.dataset.on){ sb.dataset.on='1'; sb.innerHTML='<fieldset class="rg-ad-q"><legend>'+esc(c.q||'')+'</legend>'+OP.map(function(o,i){ return '<label class="rg-radio"><input type="radio" name="rg-vt-q" value="'+i+'"'+(st.guess===i?' checked':'')+'> '+esc(o)+'</label>'; }).join('')+'</fieldset><button type="button" class="rg-btn rg-ads-lock rg-vt-lock">🔒 Lock my answer</button>';
+        $$('input[name="rg-vt-q"]',sb).forEach(function(r){ r.addEventListener('change',function(){ if(st.locked) return; st.guess=+r.value; save(); paint(); }); });
+        $('.rg-vt-lock',sb).addEventListener('click',function(){ if(st.guess==null||st.locked) return; st.locked=true; save(); SFX.stamp(); paint(); refreshPress(); beat('spyLocked'); }); }
+      $$('input[name="rg-vt-q"]',sb).forEach(function(r){ r.disabled=!!st.locked; });
+      var lk=$('.rg-vt-lock',sb); lk.disabled=!!st.locked||st.guess==null; lk.textContent=st.locked?'🔒 Locked':st.guess==null?'🔒 Pick one to lock it':'🔒 Lock my answer';
+      $('.rg-vt-close',g).textContent=st.locked?(c.close||''):'';
+      g.classList.toggle('finished',!!st.locked); }
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('.rg-vt-b'); if(b){ var id=b.dataset.id; if(st.g[id]!=null) return; st.g[id]=b.dataset.v==='1'; save(); var p=PP.filter(function(x){ return x.id===id; })[0]||{}; if(st.g[id]===!!p.then) SFX.chime(); else SFX.soft(); paint(); refreshPress();
+        if(e.detail===0){ var nx=$('.rg-vt-b',g)||$('.rg-vt-flip',g); if(nx) nx.focus({preventScroll:true}); } return; }
+      if(e.target.closest('.rg-vt-flip')){ st.flip=true; save(); SFX.paper(); paint(); refreshPress(); var r0=$('input[name="rg-vt-q"]',g); if(e.detail===0&&r0) r0.focus({preventScroll:true}); } });
+    paint();
+    function line(){ return st.locked?'Before reading, I guessed the vote widened: “'+(OP[st.guess]||'')+'”':''; }
+    return {el:g,done:function(){ return !!st.locked; },sealed:function(){ return st.locked?st.guess:null; },
+      journal:function(e,NA){ var n=PP.filter(function(p){ return st.g[p.id]!=null; }); if(!n.length) return NA; var right=n.filter(function(p){ return st.g[p.id]===!!p.then; }).length;
+        return '<p class="a"><b>Could they vote in '+e(c.year||'1789')+'?</b> I guessed '+right+' of '+n.length+' right.'+(st.locked?'<br>'+e(line()):'')+'</p>'; },
+      state:function(){ return {locked:!!st.locked, line:line(), guess:st.locked?OP[st.guess]||'':'', built:[], vetoed:[]}; }}; };
+
+  /* ---------------------------------------------------------------- yearslide: the reading stays on the page; a year slider (plus Back/Next buttons) walks the stops.
+     Each stop: what changed + who pushed for it (+ an optional calm line); the people cards light up (or go "on paper") as they gain the vote.
+     Done when every stop has been visited. Then a close card with the tab-1 answer and the Did-you-know mini.
+     DATA.explore.reading = {type:'yearslide', title, job, people:[{id,icon,short}], start:[ids that can vote at stop 0], stops:[{yr,label,t,who,calm,gain:[ids],paper:[ids]}],
+     changedT, pushT, sliderL, close, reveal:[per sealed guess], cols, times, readWho, readFrom} */
+  MOD.yearslide=function(c,anchor){ var st=mstate('yearslide',{at:0,seen:{0:true}}); if(!st.seen) st.seen={0:true};
+    var SP=c.stops||[], PP=c.people||[], N=SP.length;
+    var g=gameShell('rg-yslide','The Desk · slide through the years',c.title||'Slide through the years',c);
+    if(c.keepReading!==false){ anchor.classList.remove('rg-off'); $$('.rg-keep-off',anchor).forEach(function(x){ x.classList.add('rg-off'); }); }
+    g.innerHTML+='<div class="rg-ys-box"><div class="rg-ys-people" role="list" aria-label="'+esc(c.peopleL||'Who can vote')+'"></div>'+
+      '<div class="rg-ys-ctrl"><button type="button" class="rg-btn soft rg-ys-prev" aria-label="Back one stop">◀</button>'+
+      '<label class="rg-ys-lab"><span class="rg-sr">'+esc(c.sliderL||'Year')+'</span><input type="range" class="rg-ys-range" min="0" max="'+(N-1)+'" step="1" value="'+st.at+'" aria-valuetext=""></label>'+
+      '<button type="button" class="rg-btn soft rg-ys-next" aria-label="Next stop">▶</button></div>'+
+      '<div class="rg-ys-ticks" aria-hidden="true">'+SP.map(function(s,i){ return '<span data-i="'+i+'">'+esc(s.yr)+'</span>'; }).join('')+'</div>'+
+      '<div class="rg-ys-card" aria-live="polite"></div></div><div class="rg-ys-done"></div><div class="rg-ys-after"></div>';
+    after(anchor,g); if(c.keepReading!==false){ move(anchor,function(n){ g.insertBefore(n,$('.rg-ys-box',g)); }); }
+    function status(id,at){ var s=(c.start||[]).indexOf(id)>-1?'yes':'no'; for(var i=1;i<=at;i++){ var S=SP[i]; if((S.gain||[]).indexOf(id)>-1) s='yes'; else if((S.paper||[]).indexOf(id)>-1&&s==='no') s='paper'; } return s; }
+    function all(){ return SP.every(function(s,i){ return st.seen[i]; }); }
+    function go(i){ i=Math.max(0,Math.min(N-1,i)); st.at=i; st.seen[i]=true; save(); paint(); refreshPress(); if(all()&&!st.doneBeat){ st.doneBeat=true; save(); beat('sunDone'); } }
+    function paint(){ var i=st.at, S=SP[i]||{}, rg=$('.rg-ys-range',g);
+      if(+rg.value!==i) rg.value=i; rg.setAttribute('aria-valuetext',S.yr+(S.label?': '+S.label:''));
+      $('.rg-ys-prev',g).disabled=i===0; $('.rg-ys-next',g).disabled=i===N-1;
+      $$('.rg-ys-ticks span',g).forEach(function(t){ var k=+t.dataset.i; t.classList.toggle('on',k===i); t.classList.toggle('seen',!!st.seen[k]); });
+      $('.rg-ys-people',g).innerHTML=PP.map(function(p){ var s=status(p.id,i), nw=(S.gain||[]).indexOf(p.id)>-1||(S.paper||[]).indexOf(p.id)>-1;
+        return '<span class="rg-ys-p s-'+s+(nw?' new':'')+'" role="listitem"><span aria-hidden="true">'+esc(p.icon||'')+'</span> '+esc(p.short||p.who||'')+'<i>'+(s==='yes'?'✓ can vote':s==='paper'?'on paper only':'can’t vote')+'</i></span>'; }).join('');
+      $('.rg-ys-card',g).innerHTML='<div class="rg-ys-head"><b class="rg-ys-yr">'+esc(S.yr||'')+'</b>'+(S.label?'<span>'+esc(S.label)+'</span>':'')+'</div>'+
+        '<p class="rg-ys-li" data-i="'+i+'"><b>'+esc(c.changedT||'What changed:')+'</b> '+esc(S.t||'')+'</p>'+
+        (S.who?'<p class="rg-ys-li rg-ys-who" data-i="'+i+'"><b>'+esc(c.pushT||'Who pushed for it:')+'</b> '+esc(S.who)+'</p>':'')+
+        (S.calm?'<p class="rg-ys-li rg-ys-calm" data-i="'+i+'">'+esc(S.calm)+'</p>':'')+
+        (!all()?'<p class="rg-ys-left">'+esc((c.leftT||'Stops left to visit: {n}').replace('{n}',N-Object.keys(st.seen).length))+'</p>':'');
+      var A=all(), sealed=R.scene1&&R.scene1.sealed?R.scene1.sealed():null, S1=DATA.scene1||{};
+      $('.rg-ys-done',g).innerHTML=A&&c.close?'<div class="rg-win">'+esc(c.close)+(sealed!=null?'<span class="env"><b>Your answer on tab 1:</b> “'+esc((S1.opts||[])[sealed]||'')+'” '+esc((c.reveal||[])[sealed]||'')+'</span>':'')+'</div>':'';
+      var mini=$('.rg-almini',g), af=$('.rg-ys-after',g); if(mini){ mini.classList.toggle('rg-hide',!A); if(mini.parentNode!==af) af.appendChild(mini); }
+      g.classList.toggle('finished',A); }
+    var rg=$('.rg-ys-range',g);
+    rg.addEventListener('input',function(){ go(+rg.value); SFX.soft(); });
+    $('.rg-ys-prev',g).addEventListener('click',function(){ go(st.at-1); SFX.soft(); });
+    $('.rg-ys-next',g).addEventListener('click',function(){ go(st.at+1); SFX.soft(); });
+    $('.rg-ys-ticks',g).addEventListener('click',function(e){ var t=e.target.closest('span[data-i]'); if(t) go(+t.dataset.i); });
+    paint(); setTimeout(paint,0);
+    return {el:g,done:all,open:all,paint:paint,go:function(){ paint(); },
+      journal:function(e,NA){ var seen=SP.filter(function(s,i){ return st.seen[i]&&i>0; }); if(!seen.length) return NA; return '<p class="a">'+seen.map(function(s){ return '<b>'+e(s.yr)+(s.label?' ('+e(s.label)+')':'')+':</b> '+e(s.t||''); }).join('<br>')+'</p>'; },
+      people:function(){ return SP.map(function(x){ return x.yr; }); }}; };
+
   /* ---------------------------------------------------------------- redpen v2: look first, then mark it up; open the date (made vs. shown);
      sort what the picture shows / leaves out / CAN'T tell us; name another source; write the limitation in your own words */
   MOD.redpen=function(c,anchor){ var st=mstate('redpen',{seen:{},miss:{}}); if(!st.oi) st.oi={}; var OI=c.obsinf||null;
@@ -2288,6 +2370,9 @@
     if(block.closest('.rg-pair-tbl')) return m({k:'routine', who:'Study two people', from:rd.srcLabel||'Example written for this lesson', ctx:rd.period||'', tags:['routine','compare','highlight']});
     var sh=block.closest('.rg-ship'); if(sh){ var s0=(rd.cols||[]).filter(function(x){ return x.id===sh.dataset.id; })[0]||{}, ln=block.closest('.rg-ship-line'), li=ln?+ln.dataset.i:-1; return m({k:'lesson', who:s0.who||'', when:li>-1?(rd.times||[])[li]||'':'', where:s0.ship?'Ship: '+s0.ship:'', from:rd.srcLabel||'Fact from the lesson', tags:[s0.id||'','ship',li===2?'native':'motive','highlight']}); }
     var S1L=DATA.scene1||{};
+    var vtc=block.closest('.rg-vt-then'); if(vtc){ var VC=vtc.closest('.rg-vt-card'), VP=((S1L.people||[]).filter(function(x){ return VC&&x.id===VC.dataset.id; })[0])||{}; return m({k:'lesson', who:VP.who||'An ID card', when:S1L.year||'1789', where:VP.where||'', from:'Fact from the lesson', tags:['voters',VP.id||'','highlight']}); }
+    var ysl=block.closest('.rg-ys-li'); if(ysl){ var YS=(rd.stops||[])[+ysl.dataset.i]||{}; return m({k:'lesson', who:(YS.label||'The vote')+'', when:YS.yr||'', from:'Fact from the lesson', tags:['yearslide',String(YS.yr||''),ysl.classList.contains('rg-ys-who')?'who':'change','highlight']}); }
+    if(block.closest('.rg-yslide .content-section')) return m({k:'lesson', who:rd.readWho||'The Desk reading', from:rd.readFrom||'Fact from the lesson', tags:['reading','highlight']});
     if(block.closest('.rg-gs-cap')) return m({k:'lesson', who:S1L.standsWho||'The women the Herald left out', from:'Fact from the lesson', tags:['stands','women','highlight']});
     var sml=block.closest('.rg-sm-li, .rg-sm-pf'); if(sml){ var SC=(rd.cards||[]).filter(function(x){ return x.id===sml.dataset.id; })[0]||{}; return m({k:'lesson', who:SC.who||'A story card', from:'Fact from the lesson', ctx:sml.classList.contains('rg-sm-pf')?'The proof line':'', tags:['stamps',SC.id||'',SC.stamp||'',sml.classList.contains('rg-sm-pf')?'proof':'story','highlight']}); }
     if(block.closest('.rg-sm-ali')) return m({k:'lesson', who:((rd.after||{}).who)||'After the war', from:'Fact from the lesson', tags:['stamps','rights','courage','highlight']});
@@ -2548,7 +2633,7 @@
     m.onclick=function(e){ var b=e.target.closest('.rg-issue.filed'); if(!b) return; var L=C.lines[b.dataset.n]||{}; $('.rg-mg-open',m).innerHTML=L.rec?'<div class="rg-clip big">'+editionHTML(L.rec,true)+'</div>':'<div class="rg-clip"><div class="h">Issue '+esc(b.dataset.n)+(L.head?' · '+esc(L.head):'')+'</div><p>'+(L.line?'“'+esc(L.line)+'”':'Filed.')+'</p></div>'; SFX.paper(); }; }
 
   /* ================================================================ DESK TRAY — highlighter, press camera, newsroom props */
-  var HL_SEL='p, li, .rg-gs-cap, .rg-sm-li, .rg-sm-pf, .rg-sm-ali, .rg-fr-cap, .rg-ch-li, .rg-ch-gli, .rg-er-ln, .rg-er-rv, .rg-ar-li, .rg-ar-plain, .rg-ar-gli, .rg-cu-li, .rg-dr-ln, .rg-dr-out, .rg-st-li, .rg-pv-li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
+  var HL_SEL='p, li, .rg-vt-then, .rg-ys-li, .rg-gs-cap, .rg-sm-li, .rg-sm-pf, .rg-sm-ali, .rg-fr-cap, .rg-ch-li, .rg-ch-gli, .rg-er-ln, .rg-er-rv, .rg-ar-li, .rg-ar-plain, .rg-ar-gli, .rg-cu-li, .rg-dr-ln, .rg-dr-out, .rg-st-li, .rg-pv-li, .rg-iv-ln, .rg-pb-li, .rg-pb-chip, .rg-rb-got q, .rg-rb-got .plain, .source-type-defn, .source-type-examples, .rg-gh-h, .rg-gh-say, .rg-cs-line, .rg-cs-fixed, .rg-dc-ph, .rg-zm-h, .rg-zm-say, .rg-ask-ans, .rg-cl-h, .rg-cl-cut, .rg-st-txt p, .rg-lg-clerk, .rg-lg-honest, .rg-lg-fact, .rg-lg-tbl td, .rg-tr-clerk, .rg-tr-note, .rg-trail-t, .rg-trail-fact, .rg-trail-led td, .rg-col-line, .rg-ship-line, .rg-link-line, .rg-plot-say, .rg-sc-quote p, .rg-sc-flip .face p, .rg-spy-log li span, .rg-ad-quote, .rg-rp-notes li span, .dispatch-body, .herald-claim, .editors-desk-question, .factcheck-q-text, .rg-why div, .rg-myth .fact div, .rg-rp-ann .txt, .rg-rp-cur, .rg-al3-page td, .rg-al3-page .say, .rg-al3-ann > span, .rg-al3-day .lb, .rg-legal, .rg-pair-tbl td, .rg-job p';
   var HL_COLORS={ y:{n:'Key word',c:'#FFE58A'}, g:{n:'Evidence',c:'#B8EBC6'}, p:{n:'I wonder',c:'#FFC9DE'} };
   function store(k,v){ var key='oao.rg.'+LESSON+'.'+k; if(v===undefined){ try{ return localStorage.getItem(key); }catch(e){ return null; } } try{ localStorage.setItem(key,v); return true; }catch(e){ return false; } }
   function hlBlocks(){ return $$(HL_SEL).filter(function(b){ if(b.closest('.rg-tray, .rg-modal, .rg-hlbar, .gathered-card, textarea, .rg-wire, .rg-note, .rg-vn, .rg-off, script, style')) return false;
@@ -2729,7 +2814,7 @@
    5. "Watch this first · How to use your lesson" video card at the top of the first tab
    Grade settings live in OAO_CLARITY below. Nothing here holds lesson content. ── */
 (function(){
-  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-dr-knock", "The door is open. Pick and lock your choice below."], [".rg-er-rub", "The words stayed. Answer the question below and lock it."], [".rg-ch-pull", "Set all six links first. Tap each name and pick what they gave."], [".rg-pv-check", "Drag the dial’s knob to your answer first."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
+  var C = {"root": "rg-on", "header": ".oao-header", "skip": ".rg-hd-panel", "key": ["<b>👆</b> You can tap it.", "<b>🔊</b> You can listen.", "<b class=\"oao-dotw\">dotted word</b> Tap it to see what it means.", "<b>📞</b> Ms. Avery calls: tap Answer.", "<b>🧰</b> Tools: highlight and save evidence.", "<b class=\"oao-knob\" aria-hidden=\"true\"></b> Drag the knob.", "<b class=\"oao-ok\">✓</b> on a tab means done."], "hand": ".tab-panel button, .rg-name-card button", "noHand": ".rg-pn-zone, .tab-btn, .rg-pill, .rg-def, .rg-tb, .rg-rp-n, .rg-issue, .play, .dot, .rg-card, .rg-dock-main", "why": [[".rg-name-card button.go", "Type your first name first."], [".rg-rp-go", "Write at least 4 words about what you notice first."], [".rg-ads-lock", "Answer the question first."], [".rg-trail-next", "Answer this stop’s question first. After the last stop, the next step is the sealed question below."], [".rg-gh-light", "It is all lit up. Seal your answer below."], [".rg-iv-open", "It is open. Seal your answer below."], [".rg-dr-knock", "The door is open. Pick and lock your choice below."], [".rg-er-rub", "The words stayed. Answer the question below and lock it."], [".rg-ys-prev", "This is the first stop. Tap ▶ to go forward."], [".rg-ys-next", "This is the last stop. Tap ◀ to go back."], [".rg-ch-pull", "Set all six links first. Tap each name and pick what they gave."], [".rg-pv-check", "Drag the dial’s knob to your answer first."], [".rg-pb-drop", "First tap a chip (a short line) above. Then tap where it goes."], [".rg-pb-tab", "Finish sorting the act before it first."], [".rg-rb-drop", "First tap a line of the 1766 words above. Then tap its ribbon."], [".rg-cs-blk", "First pick why the line in the stick comes next (the question just above)."], [".rg-ask-next", "Ask all three regions, pick The same or Different, and fact-check the Herald if it shows up below."], [".rg-ask-btn", "Finish the question you are on first."], [".rg-fp-next", "Flip this card and answer its question first. If the Hasty Herald shows up below the card, fact-check it too."], [".rg-fp-tabs button", "Finish the cards before this one first."], [".rg-lg-next", "Pick the honest version on this page first. After the last page, the next step is the sealed question below."], [".rg-lg-tabs button", "Rewrite the pages before this one first."], [".rg-ml-legs button", "Answer the first three routes, then turn on layer 2. This route is on layer 2."], [".rg-ml-l2btn", "Answer the question on routes 1, 2 and 3 first. Then you can turn on layer 2."], [".rg-trail-route button", "Finish the stops before this one first."], [".rg-link-next", "Place this card first. When every card is placed, this part is done."], [".rg-rp-n", "Tap “Show the editor’s marks” first."], [".rg-card", "This one is locked in."], ["input[type=range]", "Finish the step above first."]], "noWhy": ".rg-issue, .play, [class*=nudge], .tab-btn", "whyArea": ".tab-panel, .rg-name-card", "whyDefault": "Finish the step before this one first.", "howto": {"panel": "#panel-dispatch", "before": null, "src": "assets/video/g5ss-howto.mp4", "poster": "assets/video/g5ss-howto.jpg", "face": "images/rg/ms-avery-320.jpg"}};
   var root = document.documentElement;
   function on(){ return root.classList.contains(C.root); }
   function $(s, r){ return (r||document).querySelector(s); }
