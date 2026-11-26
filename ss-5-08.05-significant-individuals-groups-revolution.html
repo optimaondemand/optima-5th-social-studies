@@ -2258,6 +2258,1334 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.05",
+ "title": "Significant Individuals and Groups in the Revolution",
+ "issue": 41,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "link",
+ "place": "The thirteen states",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Was the Revolution led by just a few famous men, or did many different people and groups make independence possible?<\/i> Use the 🖍 highlighter to save lines about the contributors and the 1781 drawing. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: the Declaration explained the Patriots’ choice. Today: the people who made it real.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Tap the empty frames",
+   "k": "The Dispatch",
+   "why": "See who the Herald left out."
+  },
+  {
+   "tab": "desk",
+   "t": "Link the contributors",
+   "k": "The Desk",
+   "why": "Six links, one chain, then a real drawing from 1781."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write your Front Page Brief",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor prints the names that are easy to leave out.",
+ "recordFoot": "(The 1781 drawing is a real source from the past. The chain, the frames and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today’s story: who really won the Revolution? Read the Herald first."
+   },
+   {
+    "t": "Then tap the empty frames on its front page (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "Empty frames?",
+      "reply": "You’ll see."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Save a contributor’s line.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the drawing.",
+      "reply": "Save a note about a soldier.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-picture"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Locked. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "Next: a real drawing from 1781.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 41 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "frames",
+  "title": "Who made the Herald’s front page?",
+  "framesWho": "The people the Herald left out",
+  "bigWho": "George Washington",
+  "bigCap": "Commander-in-Chief. The one portrait the Herald printed.",
+  "emptyT": "nobody important",
+  "frames": [
+   {
+    "icon": "✉️",
+    "who": "Wentworth Cheswell",
+    "t": "Rode with urgent war messages for his town."
+   },
+   {
+    "icon": "💰",
+    "who": "Haym Salomon",
+    "t": "Raised money that kept the army going."
+   },
+   {
+    "icon": "🤝",
+    "who": "The Sons of Liberty",
+    "t": "Organized protests across the colonies."
+   },
+   {
+    "icon": "⚔️",
+    "who": "Ordinary soldiers",
+    "t": "Thousands fought, often without pay."
+   },
+   {
+    "icon": "🕊️",
+    "who": "Benjamin Franklin",
+    "t": "Won France’s help for the war."
+   }
+  ],
+  "job": {
+   "why": "See who the Herald’s front page leaves out before you read.",
+   "do": "1. Tap each empty frame. 2. Pick an answer and lock it.",
+   "use": "You’ll see your answer again on the Desk.",
+   "words": [
+    [
+     "contributor",
+     "a person or group who gave something to a cause"
+    ]
+   ]
+  },
+  "doneT": "Five frames, five real contributors.",
+  "todoT": "Tap each empty frame.",
+  "q": "Why do you think the Herald printed only famous names?",
+  "opts": [
+   "Famous names sell more papers",
+   "It didn’t check the full record",
+   "It thinks no one else mattered"
+  ],
+  "close": "Let’s check the full record at the Desk."
+ },
+ "explore": {
+  "reading": {
+   "type": "chain",
+   "title": "The chain that held independence",
+   "readWho": "The Desk reading",
+   "readFrom": "Fact from the lesson",
+   "plaque": "INDEPENDENCE",
+   "chainL": "The chain of contributors",
+   "trayL": "The contributors",
+   "roles": [
+    {
+     "k": "fight",
+     "t": "Fighting",
+     "icon": "⚔️",
+     "say": "Yes."
+    },
+    {
+     "k": "money",
+     "t": "Money",
+     "icon": "💰",
+     "say": "Yes."
+    },
+    {
+     "k": "msg",
+     "t": "Messages",
+     "icon": "✉️",
+     "say": "Yes."
+    },
+    {
+     "k": "org",
+     "t": "Organizing",
+     "icon": "🤝",
+     "say": "Yes."
+    },
+    {
+     "k": "dip",
+     "t": "Help from allies",
+     "icon": "🕊️",
+     "say": "Yes."
+    }
+   ],
+   "figures": [
+    {
+     "id": "wash",
+     "who": "George Washington",
+     "short": "Washington",
+     "role": "fight",
+     "give": "Led the Continental Army through hard winters to victory at Yorktown.",
+     "no": "Read his card again. What did he lead?"
+    },
+    {
+     "id": "frank",
+     "who": "Benjamin Franklin",
+     "short": "Franklin",
+     "role": "dip",
+     "give": "Talked France into joining the war on America’s side.",
+     "no": "He worked with another country. Which job is that?"
+    },
+    {
+     "id": "ches",
+     "who": "Wentworth Cheswell",
+     "short": "Cheswell",
+     "role": "msg",
+     "give": "Carried urgent war news on horseback for his town’s safety committee.",
+     "no": "What did he carry?"
+    },
+    {
+     "id": "salo",
+     "who": "Haym Salomon",
+     "short": "Salomon",
+     "role": "money",
+     "give": "Raised the money that paid soldiers and bought supplies.",
+     "no": "What did he raise?"
+    },
+    {
+     "id": "sons",
+     "who": "The Sons of Liberty",
+     "short": "Sons of Liberty",
+     "role": "org",
+     "give": "Planned protests, like the Boston Tea Party, and spread the word.",
+     "no": "They brought people together. Which job is that?"
+    },
+    {
+     "id": "sold",
+     "who": "Ordinary soldiers and militias",
+     "short": "The soldiers",
+     "role": "fight",
+     "give": "Marched, camped and fought, often without pay or enough food.",
+     "no": "What did thousands of them do?"
+    }
+   ],
+   "times": [
+    "What they gave",
+    "The job"
+   ],
+   "cols": [
+    {
+     "id": "wash",
+     "who": "George Washington",
+     "icon": "⚔️",
+     "lines": [
+      "Led the Continental Army to Yorktown",
+      "Fighting"
+     ]
+    },
+    {
+     "id": "frank",
+     "who": "Benjamin Franklin",
+     "icon": "🕊️",
+     "lines": [
+      "Talked France into joining the war",
+      "Help from allies"
+     ]
+    },
+    {
+     "id": "ches",
+     "who": "Wentworth Cheswell",
+     "icon": "✉️",
+     "lines": [
+      "Carried urgent war news on horseback",
+      "Messages"
+     ]
+    },
+    {
+     "id": "salo",
+     "who": "Haym Salomon",
+     "icon": "💰",
+     "lines": [
+      "Raised the money that paid soldiers",
+      "Money"
+     ]
+    },
+    {
+     "id": "sons",
+     "who": "The Sons of Liberty",
+     "icon": "🤝",
+     "lines": [
+      "Planned protests and spread the word",
+      "Organizing"
+     ]
+    },
+    {
+     "id": "sold",
+     "who": "Ordinary soldiers and militias",
+     "icon": "⚔️",
+     "lines": [
+      "Marched, camped and fought, often without pay",
+      "Fighting"
+     ]
+    }
+   ],
+   "pickT": "Tap a name to read what they gave.",
+   "askT": "What did they give?",
+   "nextT": "Next name →",
+   "pullT": "⛓️ Pull out one link",
+   "againT": "⛓️ Pull a link again",
+   "fallT": "The chain sags. Take away one kind of help, and independence hangs by a thread.",
+   "close": "No single hero. Six links, one chain.",
+   "reveal": [
+    "Maybe. But a careful paper checks the record anyway.",
+    "Right. The record shows many hands.",
+    "You’ve just seen six reasons that’s wrong."
+   ],
+   "then": {
+    "title": "Taking part, then and now",
+    "who": "Taking part, then and now",
+    "lines": [
+     "Fighting wasn’t the only way to take part. People carried news, raised money, signed petitions and voted in town meetings."
+    ],
+    "ask": "How do people take part? Tap each one.",
+    "taps": [
+     {
+      "yr": "1770s",
+      "who": "Then",
+      "t": "Mostly white men who owned land could vote. Others took part by joining militias, signing petitions, organizing boycotts and carrying news."
+     },
+     {
+      "yr": "Today",
+      "who": "Now",
+      "t": "Citizens 18 and older can vote. People still serve, volunteer, sign petitions, write to leaders and report the news."
+     }
+    ],
+    "close": "The ways changed. The need for people who step up didn’t."
+   },
+   "job": {
+    "why": "Test the Herald’s “a few famous men.”",
+    "do": "1. Read the six cards above. 2. Tap a name. 3. Pick what they gave. 4. Pull one link.",
+    "use": "Every link is evidence for your brief.",
+    "words": [
+     [
+      "militia",
+      "ordinary people trained to fight in emergencies"
+     ],
+     [
+      "ally",
+      "a country or person on your side"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the 1781 drawing",
+   "kind": "source",
+   "srcName": "the 1781 drawing",
+   "srcWho": "The de Verger drawing (1781)",
+   "srcCant": "This 1781 drawing",
+   "showsWord": "The drawing shows ",
+   "img": "source-5-08-05-soldiers-1781",
+   "alt": "A watercolor drawing on a journal page: four American soldiers standing in a row. On the left, a Black soldier in a white uniform and plumed cap holds a musket. Next, a soldier in a brown coat and red overalls. Third, a man in a fringed hunting shirt and green hat carries a long rifle. On the right, a soldier in a blue coat with red trim holds a long stick with a lit end.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 15,
+     "y": 46,
+     "rx": 8,
+     "ry": 30,
+     "label": "The first soldier",
+     "t": "A Black soldier of the First Rhode Island Regiment."
+    },
+    {
+     "x": 31.5,
+     "y": 48,
+     "rx": 8,
+     "ry": 30,
+     "label": "The second soldier",
+     "t": "A foot soldier with a musket and crossed belts."
+    },
+    {
+     "x": 60,
+     "y": 49,
+     "rx": 9,
+     "ry": 28,
+     "label": "The rifleman",
+     "t": "A frontier rifleman in a fringed hunting shirt."
+    },
+    {
+     "x": 86,
+     "y": 45,
+     "rx": 8,
+     "ry": 28,
+     "label": "The fourth soldier",
+     "t": "He holds a lighted match, the kind used to fire cannons."
+    }
+   ],
+   "date": {
+    "x": 38,
+    "y": 1,
+    "w": 24,
+    "h": 4.5,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1781,
+    "shows": 1781,
+    "yearT": "about 1781",
+    "showsT": "soldiers of 1781, near Yorktown",
+    "gapT": "the same time — drawn by someone who was there",
+    "madeBy": "Jean-Baptiste-Antoine de Verger, a French officer",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: who drew this, and how do we know when?",
+    "check": [
+     "say who drew it?",
+     "say it was drawn at the time (1781)?"
+    ],
+    "model": "A French officer named de Verger drew it in his journal around 1781, so it was made at the time it shows.",
+    "card": "Drawn by de Verger, a French officer, in his journal, about 1781.",
+    "madeT": "drawn about 1781",
+    "journalT": "The drawing was made about 1781, by an officer who saw the army himself."
+   },
+   "missing": {
+    "q": "What can this drawing show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this drawing",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this drawing",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this drawing alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "Soldiers in very different clothes",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Compare the four uniforms."
+     },
+     {
+      "t": "A Black soldier serving in the army",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look at the first soldier."
+     },
+     {
+      "t": "The soldiers’ names",
+      "k": "not",
+      "say": "Right. The page doesn’t name them.",
+      "hint": "Is anyone named on the page?"
+     },
+     {
+      "t": "How the army treated these soldiers",
+      "k": "cant",
+      "say": "Right.",
+      "hint": "Can one drawing show how people were treated?",
+      "calm": true
+     }
+    ]
+   },
+   "close": "A drawing shows who was there, not how they were treated.",
+   "lookQ": "Write one thing you notice in this drawing.",
+   "from": "Real source from the past: watercolor by Jean-Baptiste-Antoine de Verger, about 1781 (Anne S.K. Brown Military Collection, Brown University). Public domain.",
+   "zoomCap": "Four American soldiers, watercolor in the journal of Jean-Baptiste-Antoine de Verger, a French officer, about 1781. Anne S.K. Brown Military Collection, Brown University. Public domain.",
+   "followup": {
+    "q": "This drawing can’t show how the soldiers were treated. Which source could help?",
+    "opts": [
+     {
+      "t": "Letters and pay records from the soldiers’ regiments",
+      "ok": true,
+      "say": "Yes."
+     },
+     {
+      "t": "A bigger copy of this drawing",
+      "ok": false,
+      "say": "Still the same picture."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this drawing can’t show (a limitation).",
+    "limPh": "This drawing can’t show…"
+   },
+   "job": {
+    "why": "Check what a source can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "The Revolution was won by a wide coalition: a coalition is a team of different people working for one goal.",
+   "George Washington led the Continental Army; thousands of ordinary soldiers and militias did the fighting, often without pay.",
+   "Benjamin Franklin won France’s help: soldiers, ships and money.",
+   "Haym Salomon, a Jewish immigrant from Poland, raised money that paid soldiers.",
+   "Wentworth Cheswell carried urgent war news for his town’s safety committee and was elected to town office, one of the first men of African descent elected in America.",
+   "The Sons of Liberty organized protests like the Boston Tea Party.",
+   "Free and enslaved Black soldiers served, including the First Rhode Island Regiment.",
+   "Not every colonist agreed: Patriots wanted independence, Loyalists stayed with Britain, and many stayed neutral."
+  ],
+  "vocab": [
+   [
+    "coalition",
+    "a team of different people working for one goal"
+   ],
+   [
+    "contributor",
+    "a person or group who gave something to a cause"
+   ],
+   [
+    "militia",
+    "ordinary people trained to fight in emergencies"
+   ],
+   [
+    "ally",
+    "a country or person on your side"
+   ],
+   [
+    "diplomat",
+    "a person who speaks for their country to other countries"
+   ],
+   [
+    "financier",
+    "a person who raises or lends money"
+   ],
+   [
+    "primary source",
+    "something made at the time"
+   ],
+   [
+    "limitation",
+    "something a source can’t show"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: cor means “heart”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "Courage means acting from the heart when it’s hard.",
+   "do": "1. Tap the part meaning “heart.” 2. Use courage in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "cour",
+  "meaning": "heart",
+  "words": [
+   {
+    "parts": [
+     "cour",
+     "age"
+    ],
+    "root": 0,
+    "m": "courage: doing what’s right even when you’re afraid"
+   },
+   {
+    "parts": [
+     "en",
+     "cour",
+     "age"
+    ],
+    "root": 1,
+    "m": "encourage: to put heart into someone"
+   },
+   {
+    "parts": [
+     "cor",
+     "e"
+    ],
+    "root": 0,
+    "m": "core: the heart or center of something"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Courage comes from the Latin word cor, “heart.” Long ago, people believed bravery lived in the heart. Today’s contributors showed courage in different ways: with muskets, money, messages and ink.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "One person who showed courage in the Revolution was…",
+   "min": 8,
+   "must": "cour|core",
+   "word": "courage"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Front Page Brief",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "More Than Famous Names",
+     "ok": true,
+     "tip": "The whole chain.",
+     "fit": [
+      "chain",
+      "frames",
+      "reading",
+      "wash",
+      "frank",
+      "ches",
+      "salo",
+      "sons",
+      "sold"
+     ],
+     "fitTip": "Good fits: any chain link.",
+     "ideas": [
+      "More Than Famous Names",
+      "It Took a Chain"
+     ]
+    },
+    {
+     "t": "Six Kinds of Courage",
+     "ok": true,
+     "tip": "Different jobs, same courage.",
+     "fit": [
+      "chain",
+      "fight",
+      "money",
+      "msg",
+      "org",
+      "dip",
+      "reading"
+     ],
+     "fitTip": "Good fits: what each link gave.",
+     "ideas": [
+      "Six Kinds of Courage",
+      "Courage Wore Many Coats"
+     ]
+    },
+    {
+     "t": "The Names You Weren’t Told",
+     "ok": true,
+     "tip": "The overlooked contributors.",
+     "fit": [
+      "ches",
+      "salo",
+      "frames",
+      "picture",
+      "civics",
+      "honest"
+     ],
+     "fitTip": "Good fits: Cheswell, Salomon, the drawing.",
+     "ideas": [
+      "The Names You Weren’t Told",
+      "Missing From the Front Page"
+     ]
+    },
+    {
+     "t": "A Few Great Men Did It All!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your chain."
+    }
+   ]
+  },
+  "p1Label": "Link 1",
+  "p2Label": "Link 2",
+  "cmpHd": "Each link’s contributor and what they gave.",
+  "cmpQ": "Which links does the Herald leave out?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "Money and supplies",
+   "Messages and news",
+   "Organizing protests",
+   "Help from allies",
+   "Ordinary soldiers"
+  ],
+  "close": "Now write your brief below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two links. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Not everyone agreed",
+   "img": false,
+   "who": "Patriots, Loyalists and neutral colonists",
+   "from": "Fact from the lesson",
+   "t": "Not every colonist supported the Revolution. Patriots wanted independence, Loyalists wanted to stay with Britain, and many stayed neutral. Choosing a side took courage. The Declaration of Independence, which promised rights no one can take away, became a symbol of the new country.",
+   "q": "",
+   "tags": [
+    "civics",
+    "loyalists",
+    "patriots",
+    "chain"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 41 is in the Morgue.",
+  "claim": "The Revolution was led by a few famous men and no one else mattered."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the frame that surprised you most",
+   "Snap your finished chain",
+   "Snap the First Rhode Island soldier",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "Wentworth Cheswell carried war messages and was elected to town office.",
+   "key": [
+    "Wentworth",
+    "Cheswell",
+    "carried",
+    "messages",
+    "elected",
+    "office"
+   ],
+   "small": [
+    "war",
+    "and",
+    "was",
+    "to",
+    "town"
+   ],
+   "model": "Key words: Cheswell, carried, messages, elected, office."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Who",
+    "rx": "washington|franklin|cheswell|salomon|sons of liberty|soldier|militia|first rhode island",
+    "n": 1
+   },
+   {
+    "t": "What they gave",
+    "rx": "led|army|fought|fight|money|rais|paid|messag|news|rode|carri|organiz|protest|tea party|france|french|ally|allies|help",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "Why it matters",
+    "rx": "overlook|left out|forgot|credit|remember|fair|full|whole|true|honest|matter|deserve|real story",
+    "n": 1
+   },
+   {
+    "t": "What they did",
+    "rx": "messag|rode|carri|money|rais|paid|soldier|serv|elect|office|teach|committee",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|right|true|famous|washington|franklin|led|leader",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|many|others|ordinary|soldier|black|women|money|messag|organiz|coalition|chain|more|mattered",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at your chain links.",
+   "What did each link give?",
+   "Try: “___ contributed by ___.”"
+  ],
+  "journal-q2": [
+   "Who got left out of the Herald’s page?",
+   "What happens to names history forgets?",
+   "Try: “It matters because ___.”"
+  ],
+  "journal-q3": [
+   "Were famous men part of it? Yes — and…",
+   "Who else is in your chain?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "Washington and Franklin mattered, but they weren’t alone.",
+   "B": "Fighting mattered, and so did money, messages and allies."
+  },
+  {
+   "B": "The Declaration’s main drafter was Thomas Jefferson.",
+   "C": "Washington commanded the army. Cheswell carried messages and served his town."
+  },
+  {
+   "A": "Readers deserve the full record, not just familiar names.",
+   "C": "Money, messages and allies helped win it too."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · The People Behind It",
+  "head": "Who Really Won the Revolution?",
+  "deck": "Was the Revolution led by just a few famous men, or did many different people and groups make independence possible?",
+  "dateline": "Vol. I · No. 41 · Price: One Penny",
+  "ears": [
+   "Issue 41 · Road to Revolution Edition",
+   "🖼️ Drawing, 1781"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Link the contributors"
+   },
+   {
+    "key": "picture",
+    "t": "Read a real drawing from 1781",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "THE THIRTEEN STATES",
+  "lede": "Six links, one real drawing from 1781.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Front Page Brief",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like the 1781 drawing.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a line, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "More Than Famous Names",
+   "The Names You Weren’t Told"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your claim and your evidence",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "Who contributed to the Revolution? Name at least two people or groups and what each gave.",
+    "ph": "Write your claim and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "The Revolution was won by many kinds of people.",
+     "One contributor the Herald left out was"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Why should readers hear the overlooked names too?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1781 drawing show, and not show?",
+    "ph": "For example, start with: The drawing…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The drawing was made at the time, so",
+     "The drawing shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Beat the Herald with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain."
+ },
+ "claimChecks": [
+  {
+   "id": "washington-alone",
+   "claim": "Because Washington commanded the army, the Revolution would have been won even without the other contributors.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Can one leader fight, fund and supply a war alone?"
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. Washington mattered, but the claim jumps to “no one else was needed.”"
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": true,
+     "say": "Fair. History can’t be re-run, but today’s record points the other way."
+    }
+   ],
+   "details": [
+    {
+     "from": "A chain link:",
+     "t": "Haym Salomon raised the money that paid soldiers.",
+     "ok": true,
+     "say": "Yes. An army needs pay and supplies."
+    },
+    {
+     "from": "A chain link:",
+     "t": "Franklin talked France into joining the war.",
+     "ok": true,
+     "say": "Yes. French soldiers, ships and money helped win Yorktown."
+    },
+    {
+     "from": "The Herald:",
+     "t": "“A Few Great Men Did It All!”",
+     "ok": false,
+     "say": "That’s the claim itself, not evidence."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I said what the Herald got right and missed.",
+  "I named at least two contributors and what each gave.",
+  "I gave two details, each with a reason.",
+  "I said what the 1781 drawing can and can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your brief"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your drawer is empty. Try a chain link.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try the 1781 drawing.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(revolution\\w*|independen\\w*|washington|franklin|cheswell|salomon|sons of liberty|adams|hancock|revere|jefferson|soldiers?|militias?|army|continental|yorktown|saratoga|valley forge|rhode island|regiment|black|enslaved|free|france|french|ally|allies|alliance|diplomat\\w*|money|financ\\w*|raised|paid|supplies|messages?|news|rode|rides?|horseback|committee|safety|protests?|boycotts?|tea party|boston|organiz\\w*|pamphlets?|patriots?|loyalists?|neutral|colon\\w*|britain|british|king|congress|declaration|rights?|vote\\w*|elected|office|town|petitions?|courage|coalition|contributors?|drawing|watercolor|verger|journal|1781|uniform\\w*|musket|rifle\\w*|cannons?|match)\\b",
+   "off": "Does this help show who contributed? Try a chain link or the drawing.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a line from a chain link.",
+    "go": [
+     {
+      "l": "The chain",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try the frames, or Taking part, then and now.",
+    "go": [
+     {
+      "l": "The chain",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a note about the drawing.",
+    "go": [
+     {
+      "l": "The drawing",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "The empty frames",
+   "script": "The Herald’s front page has one big portrait, and five empty frames marked nobody important. Before you decide if that’s the whole story, tap each empty frame and see who appears. Then ask yourself: why would a paper leave those people out?"
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "Six links, one chain",
+   "script": "On this desk, every contributor becomes a link in a chain. Read the six cards, then tap each name and pick what that person gave: fighting, money, messages, organizing, or help from allies. When your chain is finished, pull one link out, and watch what happens."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^Herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^portrait",
+    "sel": "#panel-dispatch .rg-fr-box.big",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^tap",
+    "sel": "#panel-dispatch .rg-fr-tap",
+    "fx": "point"
+   },
+   {
+    "at": "^why",
+    "sel": "#panel-dispatch .rg-frames",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^desk",
+    "sel": "#panel-desk .rg-ch-box",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^cards",
+    "sel": "#panel-desk .rg-chain .content-section",
+    "fx": "glow"
+   },
+   {
+    "at": "^name",
+    "sel": "#panel-desk .rg-ch-tray",
+    "fx": "point"
+   },
+   {
+    "at": "^pull",
+    "sel": "#panel-desk .rg-ch-pullbox",
+    "fx": "glow"
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.2,
+    0.56,
+    "Herald’s"
+   ],
+   [
+    2.16,
+    2.88,
+    "portrait,"
+   ],
+   [
+    9.12,
+    9.28,
+    "tap"
+   ],
+   [
+    13.44,
+    13.52,
+    "why"
+   ]
+  ],
+  "v2": [
+   [
+    0.6,
+    1.04,
+    "desk,"
+   ],
+   [
+    4.64,
+    5.28,
+    "cards,"
+   ],
+   [
+    6.16,
+    6.48,
+    "name"
+   ],
+   [
+    15.2,
+    15.36,
+    "pull"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3817,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3832,102 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A dark country road at night, lit by a line of small lanterns leading toward a faint dawn on the horizon.">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1026"/><stop offset="0.62" stop-color="#1a2138"/><stop offset="1" stop-color="#3a3354"/>
+    </linearGradient>
+    <linearGradient id="dawn" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#b8923e" stop-opacity="0"/><stop offset="1" stop-color="#e8a85c" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#141a2e"/><stop offset="1" stop-color="#0c1020"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffdf8c" stop-opacity="0.65"/><stop offset="1" stop-color="#ffdf8c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="road" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#3c3450"/><stop offset="1" stop-color="#2a2440"/>
+    </linearGradient>
+  </defs>
+  <rect width="920" height="260" fill="url(#sky)"/>
+  <circle cx="71" cy="17" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.31s"/><circle cx="372" cy="53" r="1.4" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:1.24s"/><circle cx="852" cy="6" r="1.1" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:0.84s"/><circle cx="231" cy="18" r="0.8" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.24s"/><circle cx="573" cy="88" r="1.4" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.51s"/><circle cx="658" cy="56" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.71s"/><circle cx="486" cy="71" r="1.1" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:1.26s"/><circle cx="313" cy="65" r="0.8" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:0.58s"/><circle cx="481" cy="81" r="1.4" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.51s"/><circle cx="458" cy="20" r="1.1" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:2.36s"/><circle cx="796" cy="23" r="1.1" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.84s"/><circle cx="474" cy="21" r="1.4" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.97s"/><circle cx="71" cy="93" r="0.8" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.66s"/><circle cx="828" cy="23" r="1.4" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.83s"/><circle cx="15" cy="60" r="1.1" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.60s"/><circle cx="458" cy="71" r="1.1" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:1.42s"/><circle cx="98" cy="96" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.74s"/><circle cx="877" cy="73" r="1.4" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:1.39s"/><circle cx="463" cy="26" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.74s"/><circle cx="239" cy="75" r="0.8" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:0.48s"/><circle cx="365" cy="37" r="1.1" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:0.97s"/><circle cx="826" cy="41" r="1.1" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:0.96s"/><circle cx="678" cy="83" r="0.8" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:0.15s"/><circle cx="811" cy="13" r="1.1" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.63s"/><circle cx="56" cy="49" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:2.04s"/><circle cx="249" cy="52" r="1.4" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.69s"/><circle cx="820" cy="16" r="0.8" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:0.57s"/><circle cx="285" cy="37" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.41s"/><circle cx="149" cy="79" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.50s"/><circle cx="82" cy="48" r="1.1" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.02s"/><circle cx="598" cy="58" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.22s"/><circle cx="231" cy="19" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:2.25s"/><circle cx="39" cy="12" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:0.72s"/><circle cx="284" cy="83" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.65s"/><circle cx="234" cy="76" r="0.8" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.79s"/><circle cx="538" cy="20" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:1.96s"/><circle cx="62" cy="78" r="1.4" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.18s"/><circle cx="599" cy="25" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.61s"/><circle cx="405" cy="67" r="0.8" fill="#e8ecff" opacity="0.75" class="bn-st" style="animation-delay:0.12s"/><circle cx="219" cy="81" r="1.1" fill="#e8ecff" opacity="0.55" class="bn-st" style="animation-delay:2.99s"/><circle cx="630" cy="15" r="1.4" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:1.93s"/><circle cx="267" cy="45" r="1.1" fill="#e8ecff" opacity="0.35" class="bn-st" style="animation-delay:2.71s"/>
+  <ellipse cx="760" cy="150" rx="260" ry="80" fill="url(#dawn)"/>
+  <path d="M0,170 Q180,146 400,152 T920,138 V260 H0 Z" fill="url(#ground)"/>
+  <path d="M0,258 C180,236 300,224 430,210 C560,196 640,182 700,170 C740,162 760,156 770,150 L830,150 C800,166 740,186 640,204 C520,226 300,248 80,260 L0,260 Z" fill="#241f38"/>
+  <path d="M60,260 C260,244 480,222 660,192 M110,260 C300,248 520,228 700,198" stroke="#584f78" stroke-width="1.4" fill="none" stroke-dasharray="7 9" opacity="0.6"/>
+  <path d="M0,176 Q140,160 260,166 L260,260 L0,260 Z" fill="#101528" opacity="0.7"/>
+  <g>
+    <path d="M858,168 l0,-34 M858,142 q-10,-8 -16,-2 M858,150 q10,-10 18,-4" stroke="#17203a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="842" cy="138" r="11" fill="#17203a"/><circle cx="876" cy="144" r="13" fill="#17203a"/><circle cx="858" cy="128" r="14" fill="#17203a"/>
+  </g>
+  <g transform="translate(690,148)">
+      <ellipse cx="0" cy="9" rx="7.5" ry="2.25" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="13.0" fill="url(#glow)" class="bn-gl" style="animation-duration:1.6s;animation-delay:0.00s"/>
+      <rect x="-2.75" y="-5" width="5.5" height="8.0" rx="1.0" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-1.7000000000000002" y="-3.75" width="3.4000000000000004" height="5.75" rx="0.6" fill="#ffd978"/>
+      <circle cx="0" cy="-0.8999999999999999" r="1.1" fill="#fff3c4" class="bn-fl" style="animation-duration:1.44s;animation-delay:0.00s"/>
+      <rect x="-3.1" y="-6.25" width="6.2" height="1.5" rx="0.5" fill="#1d1810"/>
+    </g><g transform="translate(612,156)">
+      <ellipse cx="0" cy="10" rx="9.0" ry="2.7" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="15.600000000000001" fill="url(#glow)" class="bn-gl" style="animation-duration:2.0s;animation-delay:0.37s"/>
+      <rect x="-3.3000000000000003" y="-6" width="6.6000000000000005" height="9.600000000000001" rx="1.2000000000000002" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-2.04" y="-4.5" width="4.08" height="6.8999999999999995" rx="0.72" fill="#ffd978"/>
+      <circle cx="0" cy="-1.08" r="1.32" fill="#fff3c4" class="bn-fl" style="animation-duration:1.80s;animation-delay:0.53s"/>
+      <rect x="-3.7199999999999998" y="-7.5" width="7.4399999999999995" height="1.7999999999999998" rx="0.6000000000000001" fill="#1d1810"/>
+    </g><g transform="translate(540,165)">
+      <ellipse cx="0" cy="11" rx="10.5" ry="3.15" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="18.2" fill="url(#glow)" class="bn-gl" style="animation-duration:2.4000000000000004s;animation-delay:0.74s"/>
+      <rect x="-3.8500000000000005" y="-7" width="7.700000000000001" height="11.200000000000001" rx="1.4000000000000001" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-2.3800000000000003" y="-5.25" width="4.760000000000001" height="8.049999999999999" rx="0.84" fill="#ffd978"/>
+      <circle cx="0" cy="-1.26" r="1.54" fill="#fff3c4" class="bn-fl" style="animation-duration:2.16s;animation-delay:1.06s"/>
+      <rect x="-4.34" y="-8.75" width="8.68" height="2.1" rx="0.7000000000000001" fill="#1d1810"/>
+    </g><g transform="translate(462,172)">
+      <ellipse cx="0" cy="12" rx="12.0" ry="3.6" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="20.8" fill="url(#glow)" class="bn-gl" style="animation-duration:1.6s;animation-delay:1.11s"/>
+      <rect x="-4.4" y="-8" width="8.8" height="12.8" rx="1.6" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-2.72" y="-6.0" width="5.44" height="9.2" rx="0.96" fill="#ffd978"/>
+      <circle cx="0" cy="-1.44" r="1.76" fill="#fff3c4" class="bn-fl" style="animation-duration:1.44s;animation-delay:0.09s"/>
+      <rect x="-4.96" y="-10.0" width="9.92" height="2.4" rx="0.8" fill="#1d1810"/>
+    </g><g transform="translate(386,182)">
+      <ellipse cx="0" cy="13" rx="13.5" ry="4.05" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="23.400000000000002" fill="url(#glow)" class="bn-gl" style="animation-duration:2.0s;animation-delay:1.48s"/>
+      <rect x="-4.95" y="-9" width="9.9" height="14.4" rx="1.8" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-3.06" y="-6.75" width="6.12" height="10.35" rx="1.08" fill="#ffd978"/>
+      <circle cx="0" cy="-1.6199999999999999" r="1.98" fill="#fff3c4" class="bn-fl" style="animation-duration:1.80s;animation-delay:0.62s"/>
+      <rect x="-5.58" y="-11.25" width="11.16" height="2.6999999999999997" rx="0.9" fill="#1d1810"/>
+    </g><g transform="translate(304,192)">
+      <ellipse cx="0" cy="15" rx="16.5" ry="4.95" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="28.6" fill="url(#glow)" class="bn-gl" style="animation-duration:2.4000000000000004s;animation-delay:0.05s"/>
+      <rect x="-6.050000000000001" y="-11" width="12.100000000000001" height="17.6" rx="2.2" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-3.74" y="-8.25" width="7.48" height="12.649999999999999" rx="1.3199999999999998" fill="#ffd978"/>
+      <circle cx="0" cy="-1.98" r="2.42" fill="#fff3c4" class="bn-fl" style="animation-duration:2.16s;animation-delay:1.15s"/>
+      <rect x="-6.82" y="-13.75" width="13.64" height="3.3" rx="1.1" fill="#1d1810"/>
+    </g><g transform="translate(218,205)">
+      <ellipse cx="0" cy="17" rx="19.5" ry="5.8500000000000005" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="33.800000000000004" fill="url(#glow)" class="bn-gl" style="animation-duration:1.6s;animation-delay:0.42s"/>
+      <rect x="-7.15" y="-13" width="14.3" height="20.8" rx="2.6" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-4.42" y="-9.75" width="8.84" height="14.95" rx="1.56" fill="#ffd978"/>
+      <circle cx="0" cy="-2.34" r="2.86" fill="#fff3c4" class="bn-fl" style="animation-duration:1.44s;animation-delay:0.18s"/>
+      <rect x="-8.06" y="-16.25" width="16.12" height="3.9" rx="1.3" fill="#1d1810"/>
+    </g><g transform="translate(128,221)">
+      <ellipse cx="0" cy="20" rx="24.0" ry="7.2" fill="#0c1020" opacity="0.5"/>
+      <circle cx="0" cy="0" r="41.6" fill="url(#glow)" class="bn-gl" style="animation-duration:2.0s;animation-delay:0.79s"/>
+      <rect x="-8.8" y="-16" width="17.6" height="25.6" rx="3.2" fill="#2b2416" stroke="#4a3b1e" stroke-width="0.8"/>
+      <rect x="-5.44" y="-12.0" width="10.88" height="18.4" rx="1.92" fill="#ffd978"/>
+      <circle cx="0" cy="-2.88" r="3.52" fill="#fff3c4" class="bn-fl" style="animation-duration:1.80s;animation-delay:0.71s"/>
+      <rect x="-9.92" y="-20.0" width="19.84" height="4.8" rx="1.6" fill="#1d1810"/>
+    </g>
+  <style>
+    .bn-fl{animation:bnFl 1.8s ease-in-out infinite alternate}
+    .bn-gl{animation:bnGl 2.4s ease-in-out infinite alternate}
+    .bn-st{animation:bnSt 3.4s ease-in-out infinite alternate}
+    @keyframes bnFl{from{opacity:.75}to{opacity:1}}
+    @keyframes bnGl{from{opacity:.55}to{opacity:.95}}
+    @keyframes bnSt{from{opacity:.25}to{opacity:.8}}
+    @media (prefers-reduced-motion: reduce){.bn-fl,.bn-gl,.bn-st{animation:none}}
+  </style>
+</svg>
   </div>
 
   <div class="hero-headline-strip serif">Significant Individuals and Groups in the Revolution</div>
@@ -2677,7 +3939,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 21 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3953,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3960,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
-      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · TEKS 2(B), 18(A)</div>
+      <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · SS.5.CG.1.1 · SS.5.CG.2.1 · SS.5.CG.2.2 · SS.5.CG.2.6 · TEKS 2(B), 18(A)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 41 · Circulation ~3,600 · <em>The Revolution needed more than a few famous names.</em>
+      Vol. 1 · Issue 41 · Readers: about 3,600 · <em>The Revolution needed more than a few famous names.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3978,21 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 41</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 41</strong> — <em>Check big claims about the road to the Revolution.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,600</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Readership steady as the Revolution series deepens.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2755,36 +4002,31 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — The Revolution needed more than a few famous names — the evidence demands we look at who was really there.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-label">Rival paper</span>
       <span class="ns-row-value">
-        <span class="threat-meter">📢 The Hasty Herald · Aggressive</span>
+        <span class="threat-meter">📢 The Hasty Herald · pushy</span>
         <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
       </span>
     </div>
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: locked in the <em>Declaration of Independence: Unalienable Rights</em> record. Tap to recap.
+      Last issue: <em>Declaration of Independence: Unalienable Rights</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette read the Declaration's actual words and showed it was a structured argument about natural rights — not just a list of complaints. The Herald's claim that the Declaration was "just complaints" missed the big ideas about unalienable rights and the consent of the governed.
+      In 5.08.04, the Gazette read the Declaration’s real words: an argument about rights, not just a list of complaints. Today: the people who made those words real.
     </div>
   </div>
 </div>
@@ -2793,25 +4035,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.05</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Declaration of Independence: Unalienable Rights</em> and proved that the Declaration was far more than the Herald claimed. Today, a new file marked <em>5.08.05 — Significant Individuals and Groups in the Revolution</em> arrives on the Front Page Desk. But The Hasty Herald has already rushed to print a claim that the Revolution was led by just a few famous men. The Gazette may print only after we examine the full record.</p>
+      <p>Last issue, the Declaration explained the Patriots’ choice. But words don’t win wars — people do. A new file marked <em>5.08.05: Significant Individuals and Groups in the Revolution</em> is on the <strong>Front Page Desk</strong>. The Hasty Herald has already printed that a few famous men did it all. Time to check the full record.</p>
     </div>
   </div>
 
@@ -2821,14 +4056,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Was the American Revolution really led by just a few famous men — or does the evidence show that many different people and groups made independence possible?</p>
       </div>
     </div>
@@ -2842,8 +4074,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify significant individuals and groups who contributed to the American Revolution.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Explain how people from different backgrounds contributed to the fight for independence.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Front Page Brief that represents the full range of Revolutionary contributors.</div>
@@ -2874,7 +4104,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-05-welcome -->
@@ -2893,24 +4122,19 @@ html, body {
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
       <!-- 📍 Meet the people behind the Revolution &amp; spotlight courage — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>✏️ Step 1</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>🖼️ Tap the empty frames</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Gather evidence at the Front Page Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>⛓️ Link the six contributors and read a real 1781 drawing</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Publish your Front Page Brief</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Front Page Brief</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor names every contributor — not just the ones everyone already knows.</strong> Today, courage means making sure the overlooked voices make the front page.
+      <strong>A courageous editor prints the names that are easy to leave out.</strong> Today, courage means making sure the overlooked contributors make the front page.
     </div>
   </div>
 
@@ -2920,19 +4144,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">A Few Great Men Did It All!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">The Revolution was led by a few famous men and no one else mattered.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Today you'll gather evidence about the many individuals and groups who contributed to the Revolution — and show the Herald that the real story is far bigger than a few famous names.
+      <strong>Your job, junior editor:</strong> Find out who really made independence possible.
     </div>
   </div>
 
@@ -2940,10 +4158,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to investigate who actually contributed to the American Revolution — and publish a Front Page Brief that names the full coalition behind independence.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Front Page Desk</strong>. Ms. Avery wants you to find out who contributed to the Revolution, then publish a <strong>Front Page Brief</strong>: a short front-page report with a claim and evidence.
     </div>
   </div>
 
@@ -2954,20 +4169,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What do we notice, what does it mean, and why does it matter? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. A courageous editor makes sure every contributor gets credit — not just the names that fit the headline.
+        A courageous editor gives credit to the contributors who don’t fit the headline.
       </div>
     </div>
   </div>
@@ -2977,18 +4184,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-05-explore-explainer -->
@@ -2997,25 +4194,17 @@ html, body {
     <div class="video-placeholder-title">At the Front Page Desk: Significant Individuals and Groups in the Revolution</div>
     <div class="video-placeholder-filename">5-08-05-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the six profiles: Washington, Franklin, Cheswell, Salomon, Sons of Liberty, and ordinary soldiers/militias. Emphasize the diversity of contributions — military, financial, diplomatic, organizational. Connect to the Herald's claim — why is "a few famous men" wrong? 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the six profiles: Washington, Franklin, Cheswell, Salomon, Sons of Liberty, and ordinary soldiers/militias. Emphasize the different kinds of contributions — fighting, money, messages, organizing, allies. For Cheswell, use the documented record: he carried war news for his town's safety committee, served at Saratoga, and was elected to town office (do NOT say he rode with Revere the same night — that story is undocumented). Connect to the Herald's claim — why is "a few famous men" wrong? 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header front-page">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🗞️</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Front Page Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where junior editors gather the facts and write the brief.</div>
+      <div class="desk-subtitle">Gather the facts, then write your own front page brief.</div>
     </div>
   </div>
 
@@ -3028,101 +4217,112 @@ html, body {
   -->
     <div class="content-section">
     <h2>🗞️ The People Behind the Revolution</h2>
-    <p>The Hasty Herald would have you believe the Revolution was the work of a handful of famous men. But the truth is far richer. The fight for independence drew on the courage of soldiers, spies, writers, diplomats, and ordinary people — many of whom history has overlooked.</p>
+    <p>The Hasty Herald says a handful of famous men led the Revolution and no one else mattered. The record says something bigger: independence was won by a <strong>coalition</strong> — a team of different people working for one goal. Soldiers, riders, money-raisers, organizers and diplomats all pulled together, and history has overlooked many of them.</p>
 
-    <div class="callout callout-info" style="border-left-color: var(--gazette-gold);">
+    <div class="callout callout-info rg-keep-off" style="border-left-color: var(--gazette-gold);">
       <div class="callout-icon">🗞️</div>
       <div>
         <strong>Beyond the Famous Few</strong>
-        <p>As you read about each figure, ask: what did they contribute, and why does the Herald leave them out?</p>
+        <p>As you read each card, ask: what did they give, and why does the Herald leave them out?</p>
       </div>
     </div>
 
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin:16px 0;">
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #2E6B4A;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#2E6B4A; font-size:15px; margin-bottom:6px;">George Washington</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          Commander-in-Chief of the Continental Army. Led an underfunded, undertrained force against the most powerful military in the world. His leadership at Valley Forge and Yorktown proved decisive — but he could not have won alone.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;"><strong>Commander-in-Chief</strong> — the top general — of the Continental Army. He led an army short on money, training and supplies against the most powerful military in the world, from the hard winter at Valley Forge to the victory at Yorktown. He could not have won alone.</p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #2E6B4A;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#2E6B4A; font-size:15px; margin-bottom:6px;">Benjamin Franklin</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          Diplomat, inventor, writer. Secured the French alliance that gave the colonies military support, money, and naval power. Without France's help — which Franklin personally negotiated — the Revolution might have failed.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;">A <strong>diplomat</strong>: a person who speaks for their country to other countries. Franklin talked France into joining the war as an <strong>ally</strong> — a country on your side. France sent soldiers, ships and money. Without that help, the Revolution might have failed.</p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #8B2D26;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#8B2D26; font-size:15px; margin-bottom:6px;">Wentworth Cheswell</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          A mixed-race patriot from New Hampshire. Like Paul Revere, he rode through the night to warn colonists of approaching British forces. He also served as a soldier, town official, and teacher — yet most people have never heard his name.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;">A teacher and town leader from New Hampshire, and the grandson of an enslaved man. He carried urgent war news on horseback for his town’s safety committee, fought in the Saratoga campaign, and was elected to town office year after year — one of the first men of African descent elected to public office in America.</p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #8B2D26;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#8B2D26; font-size:15px; margin-bottom:6px;">Haym Salomon</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          A Jewish immigrant from Poland who became one of the primary financiers of the Revolution. He raised money to pay soldiers and fund military operations. The war could not have continued without financial backers like Salomon.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;">A Jewish immigrant from Poland and a <strong>financier</strong>: a person who raises money. He raised the money that paid soldiers and bought supplies. The war could not have gone on without money raised by people like Salomon.</p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #7A8398;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#7A8398; font-size:15px; margin-bottom:6px;">The Sons of Liberty</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          A group of colonists — including Samuel Adams, John Hancock, and Paul Revere — who organized protests against British policies. They led the Boston Tea Party and spread revolutionary ideas through pamphlets and public action.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;">A group of colonists — including Samuel Adams, John Hancock and Paul Revere — who organized protests against British laws. They planned the Boston Tea Party and spread the news in <strong>pamphlets</strong>, small printed booklets.</p>
       </div>
       <div style="background:var(--paper-cream); border:1.5px solid #C4A672; border-radius:10px; padding:14px; border-top:4px solid #7A8398;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; color:#7A8398; font-size:15px; margin-bottom:6px;">Ordinary Soldiers &amp; Militias</div>
-        <div style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink);">
-          Thousands of farmers, tradespeople, and young men volunteered to fight — often without pay, proper clothing, or enough food. Enslaved and free Black soldiers also served, including in the First Rhode Island Regiment. Their sacrifice made independence possible.
-        </div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; color:var(--ink); margin:0;">Thousands of farmers, tradespeople and young people fought, often without pay or enough food. <strong>Militias</strong> — ordinary people trained to fight in emergencies — turned out when the war came. Free and enslaved Black soldiers served too, including the First Rhode Island Regiment.</p>
       </div>
     </div>
 
-    <div class="callout callout-think">
+    <div class="callout callout-think rg-keep-off">
       <div class="callout-icon">⚖️</div>
       <div>
         <strong>Cause — Choice — Consequence</strong>
-        <p><strong>Cause:</strong> The colonies needed more than ideas to win independence — they needed soldiers, money, diplomacy, intelligence, and organization.</p>
-        <p><strong>Choice:</strong> People from many backgrounds chose to contribute — some with their pens, some with their purses, some with their lives.</p>
-        <p><strong>Consequence:</strong> The Revolution succeeded because of a wide coalition of contributors, not just a few famous leaders.</p>
+        <p><strong>Cause:</strong> Winning independence took more than ideas. It took soldiers, money, messages, organizing and allies.</p>
+        <p><strong>Choice:</strong> People from many backgrounds chose to give what they had — their pens, their purses, their horses, their lives.</p>
+        <p><strong>Consequence:</strong> The Revolution was won by a wide coalition, not just a few famous leaders.</p>
       </div>
     </div>
 
-    <div class="owl-buddy">
+    <div style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
+      <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">⚖️ Not Everyone Agreed</div>
+      <p style="margin:0;font-size:14px;line-height:1.6;">Not every colonist supported the Revolution. <strong>Patriots</strong> wanted independence, <strong>Loyalists</strong> wanted to stay with Britain, and many colonists stayed neutral. Choosing a side took courage, because neighbors disagreed. The Declaration of Independence, which promised rights no one can take away, became a symbol of the new country.</p>
+    </div>
+
+    <div class="rg-keep-off" style="background:#fdf9f2;border:1.5px solid #e0cfa0;border-radius:10px;padding:14px 16px;margin:18px 0;">
+      <div style="font-weight:800;font-size:15px;color:#8B5A2E;margin-bottom:6px;">🗳️ Taking Part, Then and Now</div>
+      <p style="margin:0;font-size:14px;line-height:1.6;">Fighting wasn’t the only way to take part. In the 1770s, mostly white men who owned land could vote; others joined militias, signed petitions, organized boycotts and carried news. Today, citizens 18 and older can vote, and people still serve, volunteer, write to leaders and report the news. Wentworth Cheswell was elected to town offices almost every year of his adult life.</p>
+    </div>
+
+    <div class="owl-buddy rg-keep-off">
       <div class="owl-icon">🦉🗞️</div>
       <div class="owl-bubble">
-        Paul Revere gets all the credit for that famous midnight ride — but Wentworth Cheswell made a similar ride the same night. A courageous editor makes sure both names make the front page.
+        Paul Revere’s ride is famous mostly because of a poem written long afterward. Wentworth Cheswell rode with war news too, and almost no one knows his name. A courageous editor prints both.
       </div>
     </div>
 
-    <div class="callout callout-tip">
+    <div class="callout callout-tip rg-keep-off">
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
-        <p>The American Revolution was won by a wide coalition of individuals and groups — soldiers, financiers, diplomats, spies, writers, and ordinary people — not just a few famous men.</p>
+        <p>The American Revolution was won by a wide coalition of individuals and groups — soldiers, money-raisers, diplomats, riders, organizers and ordinary people — not just a few famous men.</p>
       </div>
     </div>
   </div>
 
   <div class="content-section">
-    <h2>🔎 A Revolutionary Portrait</h2>
-    <p>Look carefully at this portrait of a significant Revolutionary figure. What can you learn about their role from the image itself?</p>
+    <h2>🔎 Read the Source: Four Soldiers, 1781</h2>
+    <p>In 1781, near Yorktown, a French officer named Jean-Baptiste-Antoine de Verger drew four American soldiers in his journal. The soldier on the left serves in the <strong>First Rhode Island Regiment</strong>, a unit made up mostly of Black soldiers. Look closely. How are the four dressed differently, and what might that tell you?</p>
 
     <div class="source-image-frame">
-      <div class="source-image-placeholder" data-image="source-5-08-05-revolutionary-portrait">
-        🖼️ <strong>Image placeholder:</strong> Portrait or illustration of a significant Revolutionary figure (George Washington, Benjamin Franklin, Paul Revere, or Abigail Adams — public domain).<br><br>
-        <strong>Save your image as:</strong>
-        <code>source-5-08-05-revolutionary-portrait.jpg</code>
+      <div class="source-image-placeholder" data-image="source-5-08-05-soldiers-1781">
+        🖼️ <strong>Image:</strong> Four American soldiers, watercolor by Jean-Baptiste-Antoine de Verger, about 1781.<br><br>
+        <strong>Image file:</strong>
+        <code>source-5-08-05-soldiers-1781.jpg</code>
       </div>
       <div class="source-image-caption">
-        What does this portrait tell you about this person's role in the Revolution? What can't a portrait show?
+        What can this drawing show about who fought in the Revolution? What can’t it show?<br><small style="font-style:normal;opacity:.85">Real source from the past. Anne S.K. Brown Military Collection, Brown University. Public domain.</small>
       </div>
     </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>cor</em> means “heart”</h2>
+    <p>Many English words come from the Latin word <em>cor</em>, “heart.” You can spot it as <strong>cor</strong> or <strong>cour</strong>.</p>
+    <ul>
+      <li><strong>courage</strong> (cour + age): doing what’s right even when you’re afraid</li>
+      <li><strong>encourage</strong> (en + cour + age): to put heart into someone</li>
+      <li><strong>core</strong> (cor + e): the heart or center of something</li>
+    </ul>
+    <p><strong>Discovery:</strong> Long ago, people believed bravery lived in the heart. Today’s contributors showed courage in different ways: with muskets, money, messages and ink.</p>
+    <p><em>Try it: use the word <strong>courage</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Front Page Brief on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3164,10 +4364,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3176,14 +4372,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3196,13 +4384,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>Only George Washington and Benjamin Franklin — no one else played a significant role.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>A wide coalition of people — soldiers, financiers, diplomats, spies, and ordinary citizens from many backgrounds.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>Only soldiers on the battlefield — no other contributions mattered.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>A wide coalition of people — soldiers, financiers, diplomats, spies, and ordinary citizens from many backgrounds.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q1"></div>
@@ -3215,13 +4403,13 @@ html, body {
       <span class="factcheck-q-text">Why is Wentworth Cheswell an important figure in the Revolution?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>He wrote the Declaration of Independence.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
-        <span class="factcheck-option-letter">B</span>
+        <span class="factcheck-option-letter">A</span>
         <span>He made a midnight ride to warn colonists of British forces, served as a soldier and town official, yet is often left out of the story.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
+        <span class="factcheck-option-letter">B</span>
+        <span>He wrote the Declaration of Independence.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3260,7 +4448,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3282,21 +4469,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-05-assignment-explainer -->
@@ -3317,8 +4491,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 41</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Front Page Brief</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3326,16 +4498,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Front Page Brief — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Front Page Brief:</strong>
           <span>(1) A clear claim about who contributed to the American Revolution. (2) Name at least two specific individuals or groups and what they contributed. (3) Why this matters — what does the full picture teach us?</span>
         </div>
@@ -3351,9 +4519,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about significant individuals and groups in the revolution.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3382,8 +4547,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Front Page Brief</span></div>
@@ -3398,32 +4561,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 41 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you investigated the full coalition behind the Revolution with courage — naming contributors the Herald left out and showing that independence was won by many, not few.
+      <strong>Well done, Junior Editor.</strong> You named contributors the Herald left out and showed that independence was won by many, not few.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.06) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Changing Roles and Impact of Women During the Revolution</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Changing Roles and Impact of Women During the Revolution</em> arrives at the <em>Source Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim that women only watched the Revolution happen. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Changing Roles and Impact of Women During the Revolution</em>, is on its way to the Source Desk, and <strong>the Hasty Herald has already printed</strong> that women only watched the Revolution happen.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-05-closing -->
@@ -3698,7 +4850,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 41 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4021,7 +5173,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script id="oao-std-tips">
 (function(){
 if(window.__oaoStdTips)return;window.__oaoStdTips=1;
-var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.2": "Students identify important people and groups in the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.A.5.4": "Students examine the roles and impact of important women during the American Revolution."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
+var D={"SS.5.A.5.1": "Students identify and explain the key events that led to the American Revolution.", "SS.5.A.5.2": "Students identify important people and groups in the American Revolution.", "SS.5.A.5.3": "Students explain founding documents, like the Declaration of Independence, and the ideas behind them.", "SS.5.A.5.4": "Students examine the roles and impact of important women during the American Revolution.", "SS.5.CG.1.1": "Students recognize that the Declaration of Independence says every citizen has unalienable rights.", "SS.5.CG.2.1": "Students discuss the ideas of Patriots, Loyalists, and other colonists about the Revolution.", "SS.5.CG.2.2": "Students compare how people took part in government in colonial times and today.", "SS.5.CG.2.6": "Students explain symbols and documents that represent the United States."},S={"A": "American History", "AA": "African American History", "CG": "Civics and Government", "E": "Economics", "G": "Geography", "FL": "Financial Literacy", "HE": "Holocaust Education"},G=5;
 function codesFor(tok){var m=tok.match(/^SS\.(\d)\.([A-Z]+)(?:\.(\d+)\.(\d+)(.*))?$/);if(!m)return null;
  if(!m[3])return{strand:m[2],g:m[1]};var out=['SS.'+m[1]+'.'+m[2]+'.'+m[3]+'.'+m[4]],rest=m[5]||'',r=rest.match(/^\s*[–-]\s*(\d+)\.(\d+)/);
  if(r){for(var x=+m[4]+1;x<=+r[2];x++)out.push('SS.'+m[1]+'.'+m[2]+'.'+r[1]+'.'+x);}
@@ -4055,5 +5207,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>
