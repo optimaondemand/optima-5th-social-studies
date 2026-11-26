@@ -2258,6 +2258,1333 @@ html, body {
 </style>
 <!-- OAO-VIDEO-HIDE v1: empty video slots stay hidden; the manifest loader reveals a slot only when a ready video is placed in it -->
 <style>.video-ratio:not(.has-video){display:none !important;}</style>
+<link rel="stylesheet" href="assets/sparkle/rg-sparkle.css">
+<script type="application/json" id="rg-data">
+{
+ "lesson": "5.08.06",
+ "title": "Changing Roles and Impact of Women During the Revolution",
+ "issue": 42,
+ "quiet": false,
+ "minWords": 25,
+ "keepCase": false,
+ "pWho": "story",
+ "place": "The thirteen states",
+ "drawerSub": "<b>Evidence<\/b> is a detail that helps prove an idea. Today you are testing one question: <i>Did women just watch the Revolution happen, or does the evidence show they played roles history books often leave out?<\/i> Use the 🖍 highlighter to save lines from the story cards, the grandstand and Abigail Adams’s letter. Notes you write yourself land here too. On the Go to Press tab, you’ll pick at least two and explain what each one proves.",
+ "connector": "Last issue: many people won the Revolution. Today: the women the Herald left in the stands.",
+ "storySoFar": "You’re a Junior Editor at The Republic Gazette, a paper that checks before it prints. The Hasty Herald prints fast and checks little.",
+ "stages": [
+  {
+   "tab": "dispatch",
+   "t": "Empty the grandstand",
+   "k": "The Dispatch",
+   "why": "See what the Herald’s picture leaves out."
+  },
+  {
+   "tab": "desk",
+   "t": "Record or legend?",
+   "k": "The Desk",
+   "why": "Stamp six stories, then read a 1911 painting."
+  },
+  {
+   "tab": "factcheck",
+   "t": "Fact-check the claims",
+   "k": "Fact-Check",
+   "why": "Check three claims, then one harder one."
+  },
+  {
+   "tab": "press",
+   "t": "Write your Gazette Correction",
+   "k": "Go to Press",
+   "why": "Plan, write from your evidence, then print."
+  }
+ ],
+ "lens": "A courageous editor reports what women did, and what they were still denied.",
+ "recordFoot": "(Abigail Adams’s letter is a real source from the past. The 1911 painting was made long after the war. The grandstand, the stamps and the Herald’s story were written for this lesson.)",
+ "texts": {
+  "hello": "Good morning, Junior Editor. It’s Ms. Avery.",
+  "toast": "A new story just came in. Tap my picture at the top.",
+  "opening": [
+   {
+    "t": "Today the Herald says women only watched the Revolution. Read its claim first."
+   },
+   {
+    "t": "Then tap each seat in its grandstand (tab 1).",
+    "choice": "start"
+   }
+  ],
+  "choices": {
+   "start": {
+    "scene": "open",
+    "list": [
+     {
+      "t": "A grandstand?",
+      "reply": "You’ll see who’s really in it."
+     },
+     {
+      "t": "I’m ready.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge1": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me where.",
+      "reply": "Save a line from a story card.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’ve got it.",
+      "end": true,
+      "reply": "Good."
+     }
+    ]
+   },
+   "evnudge2": {
+    "scene": "desk",
+    "list": [
+     {
+      "t": "Show me the letter.",
+      "reply": "Save a line from Abigail’s letter.",
+      "go": {
+       "tab": "desk",
+       "sel": "#rg-bs-sun"
+      }
+     },
+     {
+      "t": "I’m okay.",
+      "end": true,
+      "reply": "All right."
+     }
+    ]
+   }
+  },
+  "beats": {
+   "spyLocked": [
+    {
+     "t": "Locked. Now go to the Desk tab (tab 2).",
+     "scene": "dispatch"
+    }
+   ],
+   "sunDone": [
+    {
+     "t": "All six stamped. Next: a painting made in 1911.",
+     "scene": "desk"
+    }
+   ],
+   "s2Done": [
+    {
+     "t": "Desk done. Next: the Fact-Check tab (tab 3).",
+     "scene": "desk"
+    }
+   ],
+   "quizDone": [
+    {
+     "t": "Claims checked. Now go to the Go to Press tab (tab 4). Plan your page first, then write.",
+     "scene": "factcheck"
+    }
+   ],
+   "published": [
+    {
+     "t": "Printed! Issue 42 is in the Morgue.",
+     "scene": "press"
+    }
+   ],
+   "cantTell": [
+    {
+     "t": "“Can’t tell” is an honest answer.",
+     "scene": "desk",
+     "quiet": true
+    }
+   ],
+   "revisePrompt": [
+    {
+     "t": "I circled one big word. Can you prove it?",
+     "scene": "press",
+     "quiet": true
+    }
+   ]
+  }
+ },
+ "scene1": {
+  "type": "stands",
+  "title": "Who is in the Herald’s grandstand?",
+  "standsWho": "The women the Herald left in the stands",
+  "standL": "The Herald’s grandstand",
+  "heraldCap": "The Herald’s picture: “The ladies watch the war.”",
+  "emptyT": "just watching?",
+  "leftT": "empty seat",
+  "seats": [
+   {
+    "icon": "🌾",
+    "who": "Women at home",
+    "t": "Ran farms, shops and trades while men were away."
+   },
+   {
+    "icon": "🧶",
+    "who": "Daughters of Liberty",
+    "t": "Spun their own cloth instead of buying British goods."
+   },
+   {
+    "icon": "🍲",
+    "who": "Camp followers",
+    "t": "Cooked, washed and nursed for the army."
+   },
+   {
+    "icon": "🎖️",
+    "who": "Deborah Sampson",
+    "t": "Served 17 months as a soldier."
+   },
+   {
+    "icon": "✒️",
+    "who": "Abigail Adams",
+    "t": "Wrote to the leaders: “Remember the Ladies.”"
+   }
+  ],
+  "job": {
+   "why": "See what the Herald’s picture leaves out before you read.",
+   "do": "1. Tap each seat. 2. Pick an answer and lock it.",
+   "use": "You’ll see your answer again on the Desk.",
+   "words": [
+    [
+     "spectator",
+     "a person who watches but doesn’t take part"
+    ]
+   ]
+  },
+  "doneT": "Every seat is empty. None of them only watched.",
+  "todoT": "Tap each seat.",
+  "q": "Why do you think the Herald missed all this work?",
+  "opts": [
+   "Much of it happened at home, where no one reported it",
+   "Old history books left it out",
+   "Women really did only watch"
+  ],
+  "close": "Let’s check the records at the Desk."
+ },
+ "explore": {
+  "reading": {
+   "type": "stamps",
+   "title": "Record or legend?",
+   "readWho": "The Desk reading",
+   "readFrom": "Fact from the lesson",
+   "trayL": "The stories",
+   "keyT": "The three stamps",
+   "stamps": [
+    {
+     "k": "doc",
+     "t": "Documented",
+     "icon": "📜",
+     "d": "Written in records made at the time."
+    },
+    {
+     "k": "part",
+     "t": "Part legend",
+     "icon": "🎭",
+     "d": "Real roots, but the story grew as people retold it."
+    },
+    {
+     "k": "unsure",
+     "t": "Not sure",
+     "icon": "❓",
+     "d": "Too little proof to know."
+    }
+   ],
+   "cards": [
+    {
+     "id": "home",
+     "who": "Women at home",
+     "short": "At home",
+     "icon": "🌾",
+     "stamp": "doc",
+     "lines": [
+      "When men went to war, many women ran the family farm, shop or trade alone. They grew food, kept the accounts and made goods. Families and the army depended on this work."
+     ],
+     "proof": "Letters and account books the women wrote at the time.",
+     "no": "Who wrote the proof, and when?"
+    },
+    {
+     "id": "dol",
+     "who": "The Daughters of Liberty",
+     "short": "Daughters of Liberty",
+     "icon": "🧶",
+     "stamp": "doc",
+     "lines": [
+      "A boycott means refusing to buy something to make a point. Starting in the late 1760s, the Daughters of Liberty spun their own cloth instead of buying British imports, goods brought in from another country."
+     ],
+     "proof": "Newspapers of the time reported their spinning meetings.",
+     "no": "Were the newspapers printed back then?"
+    },
+    {
+     "id": "camp",
+     "who": "Camp followers",
+     "short": "Camp followers",
+     "icon": "🍲",
+     "stamp": "doc",
+     "lines": [
+      "Thousands of women traveled with the Continental Army, the army of the thirteen states. These camp followers cooked, washed clothes and nursed sick and hurt soldiers."
+     ],
+     "proof": "Army orders and food lists from the war count the women.",
+     "no": "Who wrote the orders, and when?"
+    },
+    {
+     "id": "samp",
+     "who": "Deborah Sampson",
+     "short": "Deborah Sampson",
+     "icon": "🎖️",
+     "stamp": "doc",
+     "lines": [
+      "Deborah Sampson disguised herself (dressed to look like someone else) as a man named Robert Shurtliff. She served in the Continental Army for 17 months, until a doctor treating her fever found out in 1783."
+     ],
+     "proof": "Army records, and a 1792 Massachusetts law that paid her for her service.",
+     "no": "Is there a record with her name?"
+    },
+    {
+     "id": "molly",
+     "who": "“Molly Pitcher”",
+     "short": "Molly Pitcher",
+     "icon": "💧",
+     "stamp": "part",
+     "lines": [
+      "At the Battle of Monmouth in 1778, a woman brought water to soldiers and helped work a cannon. Mary Ludwig Hays is the woman most often linked to the story."
+     ],
+     "proof": "A soldier who was there later wrote about a woman at a cannon. Pennsylvania later paid Mary Hays for her war service. Historians think “Molly Pitcher” mixes several women’s stories.",
+     "no": "Part of it is on record. Is all of it?"
+    },
+    {
+     "id": "spy",
+     "who": "“Agent 355”",
+     "short": "Agent 355",
+     "icon": "🕵️",
+     "stamp": "unsure",
+     "lines": [
+      "Women did carry secret news during the war. Today, “Agent 355” is famous as a woman spy for George Washington."
+     ],
+     "proof": "One 1779 spy letter mentions “a 355,” the spy code for “lady.” No one knows who she was, or if she was a regular spy at all.",
+     "no": "How much proof is there? One line."
+    }
+   ],
+   "times": [
+    "What she did",
+    "The proof"
+   ],
+   "cols": [
+    {
+     "id": "home",
+     "who": "Women at home",
+     "icon": "🌾",
+     "lines": [
+      "When men went to war, many women ran the family farm, shop or trade alone. They grew food, kept the accounts and made goods. Families and the army depended on this work.",
+      "Letters and account books the women wrote at the time."
+     ]
+    },
+    {
+     "id": "dol",
+     "who": "The Daughters of Liberty",
+     "icon": "🧶",
+     "lines": [
+      "A boycott means refusing to buy something to make a point. Starting in the late 1760s, the Daughters of Liberty spun their own cloth instead of buying British imports, goods brought in from another country.",
+      "Newspapers of the time reported their spinning meetings."
+     ]
+    },
+    {
+     "id": "camp",
+     "who": "Camp followers",
+     "icon": "🍲",
+     "lines": [
+      "Thousands of women traveled with the Continental Army, the army of the thirteen states. These camp followers cooked, washed clothes and nursed sick and hurt soldiers.",
+      "Army orders and food lists from the war count the women."
+     ]
+    },
+    {
+     "id": "samp",
+     "who": "Deborah Sampson",
+     "icon": "🎖️",
+     "lines": [
+      "Deborah Sampson disguised herself (dressed to look like someone else) as a man named Robert Shurtliff. She served in the Continental Army for 17 months, until a doctor treating her fever found out in 1783.",
+      "Army records, and a 1792 Massachusetts law that paid her for her service."
+     ]
+    },
+    {
+     "id": "molly",
+     "who": "“Molly Pitcher”",
+     "icon": "💧",
+     "lines": [
+      "At the Battle of Monmouth in 1778, a woman brought water to soldiers and helped work a cannon. Mary Ludwig Hays is the woman most often linked to the story.",
+      "A soldier who was there later wrote about a woman at a cannon. Pennsylvania later paid Mary Hays for her war service. Historians think “Molly Pitcher” mixes several women’s stories."
+     ]
+    },
+    {
+     "id": "spy",
+     "who": "“Agent 355”",
+     "icon": "🕵️",
+     "lines": [
+      "Women did carry secret news during the war. Today, “Agent 355” is famous as a woman spy for George Washington.",
+      "One 1779 spy letter mentions “a 355,” the spy code for “lady.” No one knows who she was, or if she was a regular spy at all."
+     ]
+    }
+   ],
+   "proofT": "The proof:",
+   "pickT": "Tap a name to read its story.",
+   "askT": "Which stamp fits?",
+   "nextT": "Next story →",
+   "close": "Six stories, six stamps. A legend can be shaky, but the work was real.",
+   "reveal": [
+    "Yes. Work at home was easy to miss.",
+    "Partly. So editors check records.",
+    "Four stamps say “Documented.”"
+   ],
+   "after": {
+    "title": "What women did, and what they still couldn’t do",
+    "who": "After the war",
+    "lines": [
+     "Women helped win the war. But after it, most women still could not vote or hold office.",
+     "One state, New Jersey, let some women who owned property vote, until a new law took that away in 1807."
+    ]
+   },
+   "job": {
+    "why": "Test the Herald’s “only watched.”",
+    "do": "1. Tap a name. 2. Read the story and the proof. 3. Stamp it.",
+    "use": "Every card is evidence for your correction.",
+    "words": [
+     [
+      "documented",
+      "written down in records from the time"
+     ],
+     [
+      "legend",
+      "a story told and retold that may not be all true"
+     ]
+    ]
+   }
+  },
+  "evidence": {
+   "type": "redpen",
+   "title": "Mark up the 1911 painting",
+   "kind": "source",
+   "srcName": "the painting",
+   "srcWho": "Moran’s Molly Pitcher painting (about 1911)",
+   "srcCant": "This painting",
+   "showsWord": "The painting shows ",
+   "img": "source-5-08-06-women-revolution",
+   "alt": "A color painting of a battle. In the center, a woman in a white cap and pink skirt holds a burning stick to a brass cannon. A wooden bucket sits on the ground. Soldiers crowd behind her under a Stars and Stripes flag, a house burns in the distance, and redcoats march far off on the left.",
+   "need": 4,
+   "spots": [
+    {
+     "x": 49,
+     "y": 45,
+     "rx": 9,
+     "ry": 32,
+     "label": "The woman at the cannon",
+     "t": "She holds a burning stick to the cannon to fire it."
+    },
+    {
+     "x": 22,
+     "y": 71,
+     "rx": 5,
+     "ry": 6,
+     "label": "The bucket",
+     "t": "A wooden bucket. In the legend, she carried water to soldiers."
+    },
+    {
+     "x": 75,
+     "y": 18,
+     "rx": 7,
+     "ry": 14,
+     "label": "The flag",
+     "t": "A Stars and Stripes flag, placed where every viewer will see it."
+    },
+    {
+     "x": 9,
+     "y": 31,
+     "rx": 8,
+     "ry": 5,
+     "label": "The redcoats",
+     "t": "British soldiers, far off on the left."
+    }
+   ],
+   "date": {
+    "x": 40,
+    "y": 94.5,
+    "w": 18,
+    "h": 5,
+    "tapT": "Now tap the 📅 date mark.",
+    "year": 1911,
+    "shows": 1778,
+    "yearT": "about 1911",
+    "showsT": "the Battle of Monmouth, 1778",
+    "gapT": "133 years later, long after everyone who was there had died",
+    "madeBy": "E. Percy Moran, a painter born in 1862",
+    "showsWhy": "",
+    "text": "",
+    "q": "In your own words: when was this painted, and when did the battle happen?",
+    "check": [
+     "say it was painted about 1911?",
+     "say the battle was in 1778?"
+    ],
+    "model": "Percy Moran painted it about 1911, but the battle was in 1778, so he painted a story, not something he saw.",
+    "card": "Painted by E. Percy Moran about 1911. The battle was in 1778.",
+    "madeT": "painted about 1911",
+    "journalT": "The painting was made about 1911, 133 years after the battle it shows."
+   },
+   "missing": {
+    "q": "What can this painting show?",
+    "todo": "Tap a card, then its box.",
+    "cats": [
+     {
+      "k": "shown",
+      "t": "Shown in this painting",
+      "icon": "🖼️"
+     },
+     {
+      "k": "not",
+      "t": "Not shown in this painting",
+      "icon": "⬜"
+     },
+     {
+      "k": "cant",
+      "t": "Can’t tell from this painting alone",
+      "icon": "❓"
+     }
+    ],
+    "cards": [
+     {
+      "t": "A woman working a cannon",
+      "k": "shown",
+      "say": "Yes, the painting shows it.",
+      "hint": "Look at the center."
+     },
+     {
+      "t": "Soldiers all around her",
+      "k": "shown",
+      "say": "Yes.",
+      "hint": "Look behind her."
+     },
+     {
+      "t": "The woman’s real name",
+      "k": "not",
+      "say": "Right. No name is painted.",
+      "hint": "Is a name written anywhere?"
+     },
+     {
+      "t": "Whether it happened just like this",
+      "k": "cant",
+      "say": "Right. The painter wasn’t there.",
+      "hint": "Was the painter at the battle?",
+      "calm": true
+     }
+    ]
+   },
+   "close": "A painting made long after shows how people remembered a story. It isn’t proof of what happened.",
+   "lookQ": "Write one thing you notice in this painting.",
+   "from": "Painting by E. Percy Moran, about 1911, made long after the war (Library of Congress). No known restrictions.",
+   "zoomCap": "Molly Pitcher firing cannon at the Battle of Monmouth, color print of a painting by E. Percy Moran, about 1911. Library of Congress. No known restrictions on publication.",
+   "followup": {
+    "q": "This painting can’t prove the story happened this way. Which source could help?",
+    "opts": [
+     {
+      "t": "Accounts written by soldiers who were at Monmouth",
+      "ok": true,
+      "say": "Yes. They were there."
+     },
+     {
+      "t": "A bigger copy of this painting",
+      "ok": false,
+      "say": "Still the same painting."
+     },
+     {
+      "t": "The Herald’s headline",
+      "ok": false,
+      "say": "That’s a claim, not a source."
+     }
+    ],
+    "limQ": "In your own words: one thing this painting can’t show (a limitation).",
+    "limPh": "This painting can’t show…"
+   },
+   "job": {
+    "why": "Check what a later painting can and can’t show.",
+    "do": "1. Write what you notice. 2. Open 4 red marks and the 📅 date. 3. Sort the cards. 4. Write what it can’t show.",
+    "use": "Your notes go to your drawer.",
+    "words": [
+     [
+      "limitation",
+      "something a source can’t show"
+     ]
+    ]
+   }
+  }
+ },
+ "notes": {
+  "learned": [
+   "Women ran farms, shops and trades while men were at war; families and the army depended on this work.",
+   "The Daughters of Liberty boycotted British goods by spinning their own cloth.",
+   "Thousands of camp followers cooked, washed and nursed for the Continental Army.",
+   "Deborah Sampson served 17 months in the Continental Army as Robert Shurtliff; records show her service.",
+   "“Molly Pitcher” is part legend: real women worked at cannons, and Mary Ludwig Hays is most often linked to the story.",
+   "“Agent 355” rests on one line in one 1779 letter; no one knows who she was.",
+   "In 1776 Abigail Adams asked the leaders to “Remember the Ladies.”",
+   "After the war most women could not vote or hold office; New Jersey let some women vote until 1807."
+  ],
+  "vocab": [
+   [
+    "spectator",
+    "a person who watches but doesn’t take part"
+   ],
+   [
+    "boycott",
+    "refusing to buy something to make a point"
+   ],
+   [
+    "imports",
+    "goods brought in from another country"
+   ],
+   [
+    "camp follower",
+    "a person who traveled with the army to cook, wash and nurse"
+   ],
+   [
+    "disguise",
+    "to dress to look like someone else"
+   ],
+   [
+    "documented",
+    "written down in records from the time"
+   ],
+   [
+    "legend",
+    "a story told and retold that may not be all true"
+   ],
+   [
+    "limitation",
+    "something a source can’t show"
+   ]
+  ]
+ },
+ "vocab": {
+  "type": "worddesk",
+  "title": "Crack the root: spect means “look”",
+  "why": {
+   "icon": "🔤",
+   "q": "Why backwards letters?",
+   "t": "Printers built each word out of small metal letters called type. The letters were made backwards, so they printed the right way on paper. Tap the root to turn each word around."
+  },
+  "job": {
+   "why": "The Herald called women spectators. The root shows what that word claims.",
+   "do": "1. Tap the part meaning “look.” 2. Use spectator in a sentence.",
+   "use": "It can go on your front page.",
+   "words": [
+    [
+     "root",
+     "a word part that carries the main meaning"
+    ]
+   ]
+  },
+  "root": "spect",
+  "meaning": "look, watch",
+  "words": [
+   {
+    "parts": [
+     "spect",
+     "at",
+     "or"
+    ],
+    "root": 0,
+    "m": "spectator: a person who watches but doesn’t take part"
+   },
+   {
+    "parts": [
+     "in",
+     "spect"
+    ],
+    "root": 1,
+    "m": "inspect: to look at closely"
+   },
+   {
+    "parts": [
+     "re",
+     "spect"
+    ],
+    "root": 1,
+    "m": "respect: to look up to someone"
+   }
+  ],
+  "factQ": "Discovery",
+  "fact": "Spectator comes from the Latin word spectare, “to watch.” The Herald called women spectators. The records you stamped show women who did much more than watch.",
+  "claim": {
+   "prompt": "Finish the sentence with evidence from today.",
+   "starter": "Women in the Revolution were more than spectators because…",
+   "min": 8,
+   "must": "spect",
+   "word": "spectator"
+  }
+ },
+ "planner": {
+  "type": "layout",
+  "title": "Plan your Gazette Correction",
+  "why": {
+   "icon": "📰",
+   "q": "Why plan first?",
+   "t": "Before anything was printed, editors drew a quick plan of the page called a dummy. Your plan works the same way."
+  },
+  "head": {
+   "label": "Your angle: what will you argue?",
+   "own": "Or write your own:",
+   "choices": [
+    {
+     "t": "Not Watching: Working",
+     "ok": true,
+     "tip": "The work women did.",
+     "fit": [
+      "stamps",
+      "stands",
+      "home",
+      "dol",
+      "camp",
+      "samp",
+      "reading"
+     ],
+     "fitTip": "Good fits: any story card or seat.",
+     "ideas": [
+      "Not Watching: Working",
+      "Out of the Grandstand"
+     ]
+    },
+    {
+     "t": "Real Work, Real Records",
+     "ok": true,
+     "tip": "Documented stories vs. legends.",
+     "fit": [
+      "stamps",
+      "proof",
+      "samp",
+      "dol",
+      "camp",
+      "molly",
+      "spy",
+      "picture"
+     ],
+     "fitTip": "Good fits: proof lines and the painting.",
+     "ideas": [
+      "Real Work, Real Records",
+      "Check the Record"
+     ]
+    },
+    {
+     "t": "They Helped Win It, Then Waited for Rights",
+     "ok": true,
+     "tip": "What women did, and what they were denied.",
+     "fit": [
+      "rights",
+      "courage",
+      "abigail",
+      "quote",
+      "stamps",
+      "stands"
+     ],
+     "fitTip": "Good fits: Abigail’s letter, After the war.",
+     "ideas": [
+      "They Helped Win It, Then Waited for Rights",
+      "Remember the Ladies"
+     ]
+    },
+    {
+     "t": "Women Just Watched!",
+     "ok": false,
+     "hint": "That’s the Hasty Herald’s headline. Look back at your stamps."
+    }
+   ]
+  },
+  "p1Label": "Story 1",
+  "p2Label": "Story 2",
+  "cmpHd": "Each story and its proof.",
+  "cmpQ": "Which stories does the Herald leave out?",
+  "whyLabel": "What does the Herald leave out?",
+  "factors": [
+   "Work at home",
+   "Boycotts",
+   "Army camp work",
+   "Serving as a soldier",
+   "Speaking up for rights"
+  ],
+  "close": "Now write your correction below.",
+  "job": {
+   "why": "Your angle is your main idea.",
+   "do": "1. Pick an angle. 2. Pick two stories. 3. Pick what’s left out.",
+   "use": "The tray shows what fits."
+  }
+ },
+ "almanac": {
+  "mini": {
+   "title": "Did you know? Abigail Adams’s letter",
+   "img": false,
+   "k": "source",
+   "who": "Abigail Adams, letter to John Adams",
+   "when": "31 March 1776",
+   "where": "Braintree, Massachusetts",
+   "from": "Real source from the past",
+   "t": "In 1776, Abigail Adams wrote to her husband John, a leader in Congress: “I desire you would Remember the Ladies, and be more generous and favourable to them than your ancestors.” She warned that women would not obey “any Laws in which we have no voice, or Representation.” John wrote back that he could only laugh.",
+   "q": "What was she asking the leaders to do?",
+   "cap": "Real source from the past, spelled as she wrote it.",
+   "tags": [
+    "abigail",
+    "quote",
+    "rights",
+    "stamps"
+   ]
+  }
+ },
+ "redpencil": {
+  "why": {
+   "icon": "✏️",
+   "q": "Why strike the Herald?",
+   "t": "Honest papers fix what was printed wrong."
+  },
+  "win": "Printed. Issue 42 is in the Morgue.",
+  "claim": "Women only watched the Revolution happen."
+ },
+ "morgue": {
+  "realImg": "rg-boston-news-letter-1704.jpg",
+  "realCap": "The Boston News-Letter, April 24, 1704: the first newspaper printed regularly in the colonies. Public domain."
+ },
+ "camera": {
+  "missions": [
+   "Snap the empty grandstand",
+   "Snap the stamp that surprised you most",
+   "Snap the bucket in the 1911 painting",
+   "Snap your headline before you print"
+  ],
+  "how": "Tap 🧰 Tools at the bottom right, then 📷 Snap, then drag a box around anything. You can put your photo in your evidence drawer."
+ },
+ "hlCoach": {
+  "title": "Highlight like an editor",
+  "tips": [
+   [
+    "🔑",
+    "Key words carry the idea.",
+    "Mark names, numbers, and the words that tell who, what, or why."
+   ],
+   [
+    "✂️",
+    "Skip the glue words.",
+    "Words like the, a, was, and, on, and of hold a sentence together. Leave them plain."
+   ],
+   [
+    "🟩",
+    "Save evidence.",
+    "Drag across a detail you could use on your front page, then tap ＋ Save as evidence. It turns green and goes into your evidence drawer."
+   ],
+   [
+    "🗂",
+    "Your own notes count too.",
+    "When you write a note on this page, like what a picture can’t show, it goes into your evidence drawer by itself."
+   ]
+  ],
+  "practice": {
+   "q": "Tap the key words in this sentence. Pick 3 to 6.",
+   "text": "Deborah Sampson served in the Continental Army for 17 months as Robert Shurtliff.",
+   "key": [
+    "Deborah",
+    "Sampson",
+    "served",
+    "Army",
+    "17",
+    "months"
+   ],
+   "small": [
+    "in",
+    "the",
+    "for",
+    "as"
+   ],
+   "model": "Key words: Sampson, served, Army, 17 months."
+  }
+ },
+ "props": [
+  {
+   "icon": "📌",
+   "name": "The spike",
+   "fact": "Editors stuck stories they turned down onto a sharp metal spike on the desk. That’s why a story that won’t be printed is still called “spiked.”"
+  },
+  {
+   "icon": "📏",
+   "name": "The pica ruler",
+   "fact": "Printers measured type and columns in picas. One pica is about one-sixth of an inch."
+  },
+  {
+   "icon": "✂️",
+   "name": "Scissors and paste",
+   "fact": "Editors cut stories apart with scissors and glued them in a new order with paste. That’s where “cut and paste” comes from."
+  },
+  {
+   "icon": "🔠",
+   "name": "The type case",
+   "fact": "Printers kept capital letters in the upper case, a tray above the small letters in the lower case. That’s why we say uppercase and lowercase."
+  },
+  {
+   "icon": "🖋️",
+   "name": "Ink balls",
+   "fact": "Colonial printers dabbed ink onto the type with two leather balls stuffed with wool. Then they pulled a big lever to press the paper down."
+  }
+ ],
+ "flags": {
+  "journal-q1": [
+   {
+    "t": "Two roles",
+    "rx": "farm|shop|trade|business|boycott|spin|cloth|daughters|camp|cook|wash|nurs|soldier|sampson|spy|cannon|pitcher|hays|letter|adams|wrote|rights",
+    "n": 2
+   },
+   {
+    "t": "Evidence",
+    "rx": "record|letter|newspaper|order|proof|document|wrote|paid|law|account|evidence|army|1792|1783|1779",
+    "n": 1
+   }
+  ],
+  "journal-q2": [
+   {
+    "t": "What she asked",
+    "rx": "right|law|fair|voice|protect|generous|vote|remember|treat|power|say|equal",
+    "n": 1
+   },
+   {
+    "t": "Why it matters",
+    "rx": "vote|office|denied|couldn|could not|didn|left out|laugh|still|after|new jersey|fair|matter|change",
+    "n": 1
+   }
+  ],
+  "journal-q3": [
+   {
+    "t": "What’s partly right",
+    "rx": "partly|some|true|didn|could not|couldn|not allowed|vote|office|fight|battle|most|many|home",
+    "n": 1
+   },
+   {
+    "t": "What’s missing",
+    "rx": "missing|left out|leaves out|work|farm|shop|boycott|camp|soldier|sampson|spy|cannon|nurs|cook|letter|adams|record",
+    "n": 1
+   }
+  ]
+ },
+ "hints": {
+  "journal-q1": [
+   "Look at your stamped cards.",
+   "Which ones are documented?",
+   "Try: “Women ___. The proof is ___.”"
+  ],
+  "journal-q2": [
+   "Read her letter in the Did you know? card.",
+   "What did women still not get after the war?",
+   "Try: “She asked ___. It matters because ___.”"
+  ],
+  "journal-q3": [
+   "Most women couldn’t vote or fight in battle. Is that the same as watching?",
+   "Who left the grandstand?",
+   "Try: “Partly right because ___. Missing ___.”"
+  ]
+ },
+ "quizMiss": [
+  {
+   "A": "The stamps showed six kinds of work.",
+   "B": "Cooking was part of it, and so were farms, boycotts, the army and letters."
+  },
+  {
+   "B": "She wrote about laws, not parades.",
+   "C": "She asked for laws that are fair to women."
+  },
+  {
+   "A": "One famous story isn’t the full record.",
+   "C": "The records show big work: farms, camps, boycotts."
+  }
+ ],
+ "broadsheet": {
+  "tab": "desk",
+  "kicker": "Road to Revolution · Women in the War",
+  "head": "Did Women Only Watch?",
+  "deck": "Did women just watch the Revolution happen, or does the evidence show they played roles history books often leave out?",
+  "dateline": "Vol. I · No. 42 · Price: One Penny",
+  "ears": [
+   "Issue 42 · Road to Revolution Edition",
+   "🖼️ Painting, about 1911"
+  ],
+  "fold": "Below the fold",
+  "steps": [
+   {
+    "key": "sun",
+    "t": "Record or legend?"
+   },
+   {
+    "key": "picture",
+    "t": "Read a painting made in 1911",
+    "fold": true
+   },
+   {
+    "key": "word",
+    "t": "Crack the word"
+   },
+   {
+    "key": "notebook",
+    "t": "Write in your notebook"
+   }
+  ],
+  "place": "THE THIRTEEN STATES",
+  "lede": "Six stories to stamp, one letter, one later painting.",
+  "evIntro": "Evidence is a detail that helps answer today’s question. Tap 🧰 Tools, then 🖍 Highlight, drag across a detail, tap ＋ Save as evidence. Save 2."
+ },
+ "newsroom": {
+  "title": "Your Gazette Correction",
+  "todo": "Write each part in your own words. Attach evidence.",
+  "trayFoot": "“Real source from the past” means made back then, like Abigail’s 1776 letter.",
+  "trayEmpty": "Nothing saved yet. On the Desk tab, tap 🧰 Tools, then 🖍 Highlight, drag across a line, then tap <b>＋ Save as evidence<\/b>.",
+  "evMin": 2,
+  "whyMin": 6,
+  "corMin": 8,
+  "corAsk": "Rewrite the Herald’s claim so it is accurate and fair, in one or two sentences.",
+  "ideas": [
+   "Not Watching: Working",
+   "Real Work, Real Records"
+  ],
+  "paras": [
+   {
+    "k": "cmp",
+    "t": "Your claim and your evidence",
+    "short": "Your claim and evidence (at least 25 words)",
+    "kick": "The evidence",
+    "ask": "What did women do in the Revolution? Name at least two roles and the proof for each.",
+    "ph": "Write your claim and your evidence in your own words.",
+    "rows": 5,
+    "min": 25,
+    "ev": true,
+    "notes": [
+     "journal1",
+     "journal2",
+     "cardnotes"
+    ],
+    "starters": [
+     "Women did much more than watch.",
+     "One role the Herald left out was"
+    ]
+   },
+   {
+    "k": "exp",
+    "t": "Why it matters",
+    "short": "Why it matters (at least 15 words)",
+    "kick": "Why it matters",
+    "ask": "Why should readers know what women did, and what they were denied?",
+    "ph": "Write why this matters for readers.",
+    "rows": 4,
+    "min": 15,
+    "ev": true,
+    "notes": [
+     "journal3",
+     "claims",
+     "cardnotes"
+    ],
+    "starters": [
+     "Readers should know that",
+     "This matters because"
+    ]
+   },
+   {
+    "k": "cap",
+    "t": "About our source",
+    "short": "Your source note (at least 8 words)",
+    "ask": "What can the 1911 painting show, and not show?",
+    "ph": "For example, start with: The painting…",
+    "rows": 2,
+    "min": 8,
+    "ev": true,
+    "notes": [
+     "notice",
+     "date",
+     "limit"
+    ],
+    "starters": [
+     "The painting was made in 1911, so",
+     "The painting shows"
+    ]
+   }
+  ],
+  "job": {
+   "why": "Beat the Herald with evidence.",
+   "do": "1. Write each part. 2. Tap ＋ Add evidence and say what it proves.",
+   "use": "Your reasons matter most."
+  }
+ },
+ "claimIntro": {
+  "title": "One harder claim",
+  "todo": "Make your call, pick a detail, and explain."
+ },
+ "claimChecks": [
+  {
+   "id": "legend-means-none",
+   "claim": "Because the Molly Pitcher story is part legend, women didn’t really help in the war.",
+   "verdicts": [
+    {
+     "k": "sup",
+     "t": "Supported (the evidence shows it’s true)",
+     "ok": false,
+     "say": "Look at your Documented stamps."
+    },
+    {
+     "k": "mis",
+     "t": "Misleading (it starts with something true but leads to a wrong idea)",
+     "ok": true,
+     "say": "Yes. One story is part legend, but other records are solid."
+    },
+    {
+     "k": "nee",
+     "t": "Not enough evidence (we can’t tell yet)",
+     "ok": false,
+     "say": "We do have records. Check Deborah Sampson’s card."
+    }
+   ],
+   "details": [
+    {
+     "from": "A story card:",
+     "t": "Army records and a 1792 Massachusetts law show Deborah Sampson’s service.",
+     "ok": true,
+     "say": "Yes. That is documented."
+    },
+    {
+     "from": "A story card:",
+     "t": "Army orders and food lists count the camp followers.",
+     "ok": true,
+     "say": "Yes. The army wrote it down."
+    },
+    {
+     "from": "The Herald:",
+     "t": "“Women Just Watched!”",
+     "ok": false,
+     "say": "That’s the claim itself, not evidence."
+    }
+   ],
+   "whyQ": "How does it show that?"
+  }
+ ],
+ "selfIntro": "Tick a box only if it’s true.",
+ "selfCheck": [
+  "I quoted or described the Herald’s claim.",
+  "I named at least two roles women played, with proof.",
+  "I gave two details, each with a reason.",
+  "I said what the 1911 painting can and can’t show."
+ ],
+ "steps": [
+  {
+   "t": "Pick your angle"
+  },
+  {
+   "t": "Write your correction"
+  },
+  {
+   "t": "Write your Archive Line"
+  },
+  {
+   "t": "Check, then print"
+  }
+ ],
+ "evHints": {
+  "nudges": [
+   {
+    "after": 240,
+    "below": 1,
+    "t": "{name,}your drawer is empty. Try a story card.",
+    "choice": "evnudge1"
+   },
+   {
+    "after": 540,
+    "below": 2,
+    "t": "{name,}still hunting? Try Abigail’s letter.",
+    "choice": "evnudge2"
+   }
+  ],
+  "check": {
+   "rx": "\\b(revolution\\w*|independen\\w*|wom[ae]n|wives|wife|ladies|lady|daughters|liberty|boycott\\w*|spin\\w*|spun|cloth|homespun|imports?|british|britain|goods|farms?|shops?|trades?|accounts?|camp|followers?|cook\\w*|wash\\w*|nurs\\w*|army|continental|soldiers?|sampson|shurtliff|disguis\\w*|served|service|1783|1792|record\\w*|molly|pitcher|hays|monmouth|1778|cannons?|water|legend\\w*|355|spy|spies|secret\\w*|letters?|1779|code|abigail|adams|remember|laws?|voice|representation|vote\\w*|office|new jersey|1807|rights?|denied|documented|proof|newspapers?|orders?|painting|moran|1911|flag|bucket|redcoats?|spectators?|courage)\\b",
+   "off": "Does this help show what women did? Try a story card or Abigail’s letter.",
+   "herald": "That’s the Herald’s claim. A claim can’t be its own evidence.",
+   "direction": "Those are directions, not evidence."
+  },
+  "find": {
+   "cmp": {
+    "t": "Try a story card or its proof line.",
+    "go": [
+     {
+      "l": "The stamps",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "exp": {
+    "t": "Try Abigail’s letter or “What women still couldn’t do.”",
+    "go": [
+     {
+      "l": "The stamps",
+      "tab": "desk",
+      "sel": "#rg-bs-sun"
+     }
+    ]
+   },
+   "cap": {
+    "t": "Use a note about the painting.",
+    "go": [
+     {
+      "l": "The painting",
+      "tab": "desk",
+      "sel": "#rg-bs-picture"
+     }
+    ]
+   }
+  }
+ },
+ "readyGroups": [
+  {
+   "t": "Finish the Desk and Fact-Check",
+   "k": [
+    "notebook",
+    "fact"
+   ]
+  },
+  {
+   "t": "Write your front page",
+   "k": [
+    "head",
+    "by",
+    "cmp",
+    "exp",
+    "cap",
+    "cor",
+    "rev",
+    "arch"
+   ]
+  },
+  {
+   "t": "Add 2 evidence, with reasons",
+   "k": [
+    "ev"
+   ]
+  },
+  {
+   "t": "Check your own work",
+   "k": [
+    "self"
+   ]
+  }
+ ],
+ "voice": [
+  {
+   "at": "dispatch",
+   "slot": "v1",
+   "label": "Empty the grandstand",
+   "script": "The Herald drew women sitting in a grandstand, just watching the war. Before you believe that picture, tap each seat and see where each woman really went. When the stands are empty, ask yourself one thing: why would a newspaper miss all that work?"
+  },
+  {
+   "at": "desk",
+   "slot": "v2",
+   "label": "Record or legend?",
+   "script": "Some stories about women in the Revolution are written in records from the time. Others grew bigger every time people retold them. Read each story card, check its proof line, then stamp it: documented, part legend, or not sure. A careful editor needs to know the difference."
+  }
+ ],
+ "cues": {
+  "v1": [
+   {
+    "at": "^Herald",
+    "sel": "#panel-dispatch .herald-wrap",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^grandstand",
+    "sel": "#panel-dispatch .rg-gs-stand",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^seat",
+    "sel": "#panel-dispatch .rg-gs-seat",
+    "fx": "point"
+   },
+   {
+    "at": "^why",
+    "sel": "#panel-dispatch .rg-stands",
+    "fx": "glow"
+   }
+  ],
+  "v2": [
+   {
+    "at": "^records",
+    "sel": "#panel-desk .rg-sm-key",
+    "fx": "glow",
+    "scroll": true
+   },
+   {
+    "at": "^story",
+    "sel": "#panel-desk .rg-sm-tray",
+    "fx": "point"
+   },
+   {
+    "at": "^proof",
+    "sel": "#panel-desk .rg-sm-card",
+    "fx": "glow"
+   },
+   {
+    "at": "^stamp",
+    "sel": "#panel-desk .rg-sm-key",
+    "fx": "glow"
+   }
+  ]
+ },
+ "cueWords": {
+  "v1": [
+   [
+    0.2,
+    0.56,
+    "Herald"
+   ],
+   [
+    1.76,
+    2.72,
+    "grandstand,"
+   ],
+   [
+    6.96,
+    7.28,
+    "seat"
+   ],
+   [
+    13.04,
+    13.2,
+    "why"
+   ]
+  ],
+  "v2": [
+   [
+    2.8,
+    3.2,
+    "records"
+   ],
+   [
+    8.24,
+    8.48,
+    "story"
+   ],
+   [
+    9.6,
+    9.84,
+    "proof"
+   ],
+   [
+    10.72,
+    10.96,
+    "stamp"
+   ]
+  ]
+ }
+}
+</script>
 </head>
 <body>
 
@@ -2489,11 +3816,6 @@ html, body {
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ═══ HERO — NEWSPAPER MASTHEAD WITH STANDARD ILLUSTRATION ═══
-     ✏️ MASTHEAD: keep "The Republic Gazette" title and Honest Reporting tagline static.
-     ✏️ FLAGS: update Vol. (academic year), Issue # (count up across the year), and date.
-     HERO SVG: the "historian's desk" scene below is STANDARD across all G5 lessons.
-     Do NOT rebuild it. Only change the hero-headline-strip text (lesson title). -->
 <div class="hero-newspaper">
   <div class="masthead-overlay">
     <div class="masthead-flags">
@@ -2509,163 +3831,73 @@ html, body {
          Do NOT rebuild per lesson. The desk (letter, textbook, framed photo,
          magnifying glass, gazette pages, quill + inkwell) represents the
          Republic Gazette editorial workspace year-round. -->
-    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="deskGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#A67B45"/>
-        </linearGradient>
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFE5A0" stop-opacity="0.7"/>
-          <stop offset="1" stop-color="#FFE5A0" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="paperGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#FAF0E0"/>
-          <stop offset="1" stop-color="#F0E0C0"/>
-        </linearGradient>
-        <linearGradient id="lensGrad" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#B8E5FF" stop-opacity="0.45"/>
-          <stop offset="1" stop-color="#E5F4FF" stop-opacity="0.25"/>
-        </linearGradient>
-        <linearGradient id="bookGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#7B3A2A"/>
-          <stop offset="1" stop-color="#5C2818"/>
-        </linearGradient>
-        <linearGradient id="photoFrameGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#D4A574"/>
-          <stop offset="1" stop-color="#8B5A2E"/>
-        </linearGradient>
-        <pattern id="newsprint" patternUnits="userSpaceOnUse" width="60" height="6">
-          <rect width="60" height="1.5" fill="#1A2138" opacity="0.18"/>
-          <rect y="3" width="50" height="1.2" fill="#1A2138" opacity="0.15"/>
-        </pattern>
-      </defs>
-
-      <!-- Desk surface -->
-      <rect x="0" y="160" width="920" height="100" fill="url(#deskGrad)"/>
-      <line x1="0" y1="180" x2="920" y2="180" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-      <line x1="0" y1="210" x2="920" y2="210" stroke="#8B5A2E" stroke-width="0.5" opacity="0.3"/>
-      <line x1="0" y1="240" x2="920" y2="240" stroke="#8B5A2E" stroke-width="0.5" opacity="0.4"/>
-
-      <!-- Wall behind desk -->
-      <rect x="0" y="0" width="920" height="160" fill="#F4ECD8"/>
-
-      <!-- Lamp glow -->
-      <circle cx="180" cy="40" r="120" fill="url(#lampGlow)"/>
-
-      <!-- Floating Gazette newsprint pages -->
-      <g transform="translate(720, 30)">
-        <g style="animation: heroDrift1 7s ease-in-out infinite;">
-          <rect x="0" y="0" width="80" height="100" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(8)"/>
-          <rect x="6" y="10" width="68" height="3" fill="#1A2138" opacity="0.6" transform="rotate(8)"/>
-          <rect x="6" y="20" width="68" height="80" fill="url(#newsprint)" transform="rotate(8)"/>
-        </g>
-      </g>
-      <g transform="translate(800, 60)">
-        <g style="animation: heroDrift2 9s ease-in-out infinite 0.5s;">
-          <rect x="0" y="0" width="70" height="90" fill="url(#paperGrad)" stroke="#D4C9A8" stroke-width="1" transform="rotate(-6)"/>
-          <rect x="6" y="10" width="58" height="3" fill="#1A2138" opacity="0.6" transform="rotate(-6)"/>
-          <rect x="6" y="20" width="58" height="70" fill="url(#newsprint)" transform="rotate(-6)"/>
-        </g>
-      </g>
-
-      <!-- Quill + inkwell -->
-      <g transform="translate(50, 150)">
-        <ellipse cx="0" cy="40" rx="22" ry="6" fill="#5C2818" opacity="0.4"/>
-        <path d="M -18 36 L -22 5 L 22 5 L 18 36 Z" fill="#3D1F12"/>
-        <ellipse cx="0" cy="5" rx="22" ry="6" fill="#1A1F2E"/>
-        <ellipse cx="0" cy="5" rx="14" ry="3" fill="#0E1426"/>
-        <line x1="5" y1="0" x2="55" y2="-80" stroke="#8B5A2E" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 50 -75 Q 60 -82 65 -85 Q 70 -80 60 -70 Q 55 -65 48 -68 Z" fill="#FAF3E0" stroke="#D4C9A8" stroke-width="0.8"/>
-        <path d="M 52 -75 Q 58 -78 62 -80" stroke="#D4A574" stroke-width="0.6" fill="none"/>
-      </g>
-
-      <!-- Source 1: Handwritten letter -->
-      <g transform="translate(180, 70) rotate(-4)">
-        <rect x="0" y="0" width="160" height="180" fill="url(#paperGrad)" stroke="#8B7355" stroke-width="1.5"/>
-        <line x1="12" y1="22" x2="148" y2="22" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="34" x2="135" y2="34" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="46" x2="142" y2="46" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="58" x2="120" y2="58" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="70" x2="145" y2="70" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="82" x2="128" y2="82" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="94" x2="140" y2="94" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="106" x2="115" y2="106" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="118" x2="138" y2="118" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <line x1="12" y1="130" x2="100" y2="130" stroke="#5C3D24" stroke-width="0.8" opacity="0.6"/>
-        <path d="M 90 155 Q 100 150 110 155 T 130 158" stroke="#5C3D24" stroke-width="1.4" fill="none"/>
-        <circle cx="135" cy="155" r="14" fill="none" stroke="#8B2D26" stroke-width="1.5" opacity="0.5"/>
-        <circle cx="135" cy="155" r="9" fill="none" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-        <path d="M 128 155 L 142 155 M 135 148 L 135 162" stroke="#8B2D26" stroke-width="0.8" opacity="0.4"/>
-      </g>
-
-      <!-- Source 2: History textbook -->
-      <g transform="translate(360, 90) rotate(3)">
-        <rect x="0" y="0" width="140" height="170" fill="url(#bookGrad)" rx="3"/>
-        <rect x="0" y="0" width="6" height="170" fill="#4A1E10"/>
-        <rect x="20" y="20" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="28" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="35" y="50" width="70" height="50" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <circle cx="70" cy="75" r="14" fill="none" stroke="#D4A574" stroke-width="1.5" opacity="0.7"/>
-        <path d="M 60 75 L 80 75 M 70 65 L 70 85" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-        <rect x="20" y="115" width="100" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="123" width="80" height="2" fill="#D4A574" opacity="0.6"/>
-        <rect x="20" y="150" width="60" height="2" fill="#D4A574" opacity="0.5"/>
-      </g>
-
-      <!-- Source 3: Photograph in frame -->
-      <g transform="translate(520, 105) rotate(-2)">
-        <rect x="0" y="0" width="130" height="120" fill="url(#photoFrameGrad)"/>
-        <rect x="8" y="8" width="114" height="104" fill="#3D2A1C"/>
-        <rect x="14" y="14" width="102" height="92" fill="#E8C088"/>
-        <rect x="14" y="14" width="102" height="40" fill="#A8C4D4"/>
-        <circle cx="90" cy="30" r="8" fill="#FAE5A0"/>
-        <path d="M 14 54 L 30 38 L 50 50 L 75 32 L 100 48 L 116 42 L 116 54 Z" fill="#7B5C40"/>
-        <rect x="14" y="54" width="102" height="52" fill="#9D7A50"/>
-        <ellipse cx="30" cy="78" rx="10" ry="14" fill="#5C7A4A"/>
-        <ellipse cx="90" cy="82" rx="11" ry="15" fill="#4A6238"/>
-        <path d="M 0 0 L 18 0 L 0 18 Z" fill="#8B5A2E" opacity="0.4"/>
-      </g>
-
-      <!-- Magnifying lens (floating animation) -->
-      <g transform="translate(440, 60)" style="animation: heroLensFloat 4.5s ease-in-out infinite;">
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#8B5A2E" transform="rotate(35 55 60)"/>
-        <rect x="55" y="55" width="55" height="10" rx="3" fill="#5C3D24" opacity="0.5" transform="rotate(35 55 60)"/>
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#B8923E" stroke-width="6"/>
-        <circle cx="40" cy="40" r="38" fill="url(#lensGrad)"/>
-        <ellipse cx="30" cy="30" rx="14" ry="8" fill="#FFFFFF" opacity="0.35"/>
-        <path d="M 12 38 Q 18 22 30 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </g>
-
-      <!-- Ink sparkles (pulsing animation) -->
-      <g transform="translate(55, 105)" style="animation: heroSparkle 2.5s ease-in-out infinite;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-      <g transform="translate(675, 95)" style="animation: heroSparkle 3.2s ease-in-out infinite 1s;">
-        <circle cx="0" cy="0" r="2" fill="#FAE5A0"/>
-        <path d="M 0 -5 L 0 5 M -5 0 L 5 0" stroke="#FAE5A0" stroke-width="0.8" opacity="0.7"/>
-      </g>
-
-      <style>
-        @keyframes heroLensFloat {
-          0%, 100% { transform: translate(440px, 60px) rotate(0deg); }
-          50% { transform: translate(445px, 55px) rotate(-3deg); }
-        }
-        @keyframes heroDrift1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-4px) rotate(2deg); }
-        }
-        @keyframes heroDrift2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(3px) rotate(-2deg); }
-        }
-        @keyframes heroSparkle {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.4); }
-        }
-      </style>
-    </svg>
+    <svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A wooden spinning wheel and a basket of homespun yarn beside a farmhouse window at dawn, with a candle on the sill and fields outside.">
+  <defs>
+    <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5a3d26"/><stop offset="1" stop-color="#3e2a1a"/></linearGradient>
+    <linearGradient id="sky6" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7d8fb8"/><stop offset="0.55" stop-color="#f0c48a"/><stop offset="1" stop-color="#f7dca8"/></linearGradient>
+    <linearGradient id="floor" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6b4a2e"/><stop offset="1" stop-color="#4a321e"/></linearGradient>
+    <radialGradient id="sun6" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff2c8"/><stop offset="1" stop-color="#fff2c8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd978" stop-opacity="0.55"/><stop offset="1" stop-color="#ffd978" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="1" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffe6b0" stop-opacity="0.35"/><stop offset="1" stop-color="#ffe6b0" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="920" height="260" fill="url(#wall)"/>
+  <g stroke="#2e1f13" stroke-width="1" opacity="0.35"><line x1="30" y1="0" x2="30" y2="200"/><line x1="88" y1="0" x2="88" y2="200"/><line x1="146" y1="0" x2="146" y2="200"/><line x1="204" y1="0" x2="204" y2="200"/><line x1="262" y1="0" x2="262" y2="200"/><line x1="320" y1="0" x2="320" y2="200"/><line x1="378" y1="0" x2="378" y2="200"/><line x1="436" y1="0" x2="436" y2="200"/><line x1="494" y1="0" x2="494" y2="200"/><line x1="552" y1="0" x2="552" y2="200"/><line x1="610" y1="0" x2="610" y2="200"/><line x1="668" y1="0" x2="668" y2="200"/><line x1="726" y1="0" x2="726" y2="200"/><line x1="784" y1="0" x2="784" y2="200"/><line x1="842" y1="0" x2="842" y2="200"/><line x1="900" y1="0" x2="900" y2="200"/></g>
+  <rect x="0" y="198" width="920" height="62" fill="url(#floor)"/>
+  <g stroke="#2e1f13" stroke-width="1" opacity="0.4"><line x1="0" y1="214" x2="920" y2="214"/><line x1="0" y1="232" x2="920" y2="232"/><line x1="0" y1="250" x2="920" y2="250"/></g>
+  <!-- window -->
+  <rect x="610" y="34" width="230" height="138" fill="url(#sky6)"/>
+  <circle cx="725" cy="150" r="46" fill="url(#sun6)" class="bn-sun"/>
+  <circle cx="725" cy="156" r="16" fill="#fff4cf"/>
+  <path d="M610,150 Q680,132 760,142 T840,136 V172 H610 Z" fill="#7d8a52"/>
+  <path d="M610,160 Q700,148 840,156 V172 H610 Z" fill="#5f6d3c"/>
+  <g stroke="#8a7a4a" stroke-width="1" opacity="0.6"><line x1="612" y1="160" x2="642" y2="172"/><line x1="630" y1="160" x2="660" y2="172"/><line x1="648" y1="160" x2="678" y2="172"/><line x1="666" y1="160" x2="696" y2="172"/><line x1="684" y1="160" x2="714" y2="172"/><line x1="702" y1="160" x2="732" y2="172"/><line x1="720" y1="160" x2="750" y2="172"/><line x1="738" y1="160" x2="768" y2="172"/><line x1="756" y1="160" x2="786" y2="172"/><line x1="774" y1="160" x2="804" y2="172"/><line x1="792" y1="160" x2="822" y2="172"/><line x1="810" y1="160" x2="840" y2="172"/><line x1="828" y1="160" x2="858" y2="172"/></g>
+  <path d="M780,146 l0,-14 l10,-7 l10,7 l0,14 Z" fill="#6b4a3a"/><rect x="787" y="138" width="5" height="8" fill="#3e2a1a"/>
+  <g fill="none" stroke="#4a321e" stroke-width="7"><rect x="606" y="30" width="238" height="146"/><line x1="725" y1="30" x2="725" y2="176"/><line x1="606" y1="103" x2="844" y2="103"/></g>
+  <rect x="596" y="174" width="258" height="12" fill="#6b4a2e"/>
+  <polygon points="606,186 844,186 560,260 260,260" fill="url(#beam)"/>
+  <!-- candle on the sill -->
+  <circle cx="820" cy="150" r="30" fill="url(#cglow)" class="bn-gl"/>
+  <rect x="813" y="152" width="14" height="22" rx="2" fill="#efe4c8"/><ellipse cx="820" cy="174" rx="14" ry="3" fill="#8b6f2e"/>
+  <path d="M820,136 q-6,9 0,15 q6,-6 0,-15 Z" fill="#ffd978" class="bn-fl"/>
+  <!-- spinning wheel -->
+  <g transform="translate(300,118)">
+    <ellipse cx="20" cy="132" rx="150" ry="9" fill="#2e1f13" opacity="0.45"/>
+    <path d="M-60,96 L130,96" stroke="#6b4423" stroke-width="12" stroke-linecap="round"/>
+    <path d="M-50,96 L-66,138 M110,96 L128,138 M30,96 L40,138" stroke="#5a3a1e" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-8,96 L0,0 M8,96 L0,0" stroke="#6b4423" stroke-width="6"/>
+    <g class="bn-wheel">
+      <circle r="80" fill="none" stroke="#7a4f2a" stroke-width="9"/>
+      <circle r="72" fill="none" stroke="#5a3a1e" stroke-width="2"/>
+      <line x1="0" y1="0" x2="78.0" y2="0.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="67.5" y2="39.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="39.0" y2="67.5" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="0.0" y2="78.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-39.0" y2="67.5" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-67.5" y2="39.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-78.0" y2="0.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-67.5" y2="-39.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-39.0" y2="-67.5" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="-0.0" y2="-78.0" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="39.0" y2="-67.5" stroke="#6b4423" stroke-width="3"/><line x1="0" y1="0" x2="67.5" y2="-39.0" stroke="#6b4423" stroke-width="3"/>
+      <circle r="9" fill="#5a3a1e"/>
+    </g>
+    <path d="M118,96 L122,32" stroke="#6b4423" stroke-width="5"/>
+    <rect x="110" y="22" width="34" height="12" rx="4" fill="#7a4f2a"/>
+    <path d="M78,-6 Q100,6 126,28" stroke="#e9dcc0" stroke-width="1.6" fill="none"/>
+    <path d="M144,28 L196,10" stroke="#e9dcc0" stroke-width="2"/>
+    <path d="M-54,96 L-80,0" stroke="#6b4423" stroke-width="4"/>
+    <ellipse cx="-82" cy="-6" rx="14" ry="22" fill="#e9dcc0"/>
+  </g>
+  <!-- basket of yarn -->
+  <path d="M440,214 L516,214 L508,246 L448,246 Z" fill="#9a7444"/>
+  <g stroke="#6b4a2e" stroke-width="1.5"><line x1="442" y1="216" x2="449" y2="245"/><line x1="450" y1="216" x2="456" y2="245"/><line x1="458" y1="216" x2="462" y2="245"/><line x1="466" y1="216" x2="469" y2="245"/><line x1="474" y1="216" x2="475" y2="245"/><line x1="482" y1="216" x2="482" y2="245"/><line x1="490" y1="216" x2="489" y2="245"/><line x1="498" y1="216" x2="495" y2="245"/><line x1="506" y1="216" x2="502" y2="245"/><line x1="514" y1="216" x2="508" y2="245"/></g>
+  <g transform="translate(456,214)"><circle r="14" fill="#e9dcc0"/><path d="M-9.8,-2.8 Q0,-12.6 9.8,-2.8 M-11.2,3.5 Q0,-4.2 11.2,3.5 M-7.0,9.1 Q0,2.8 7.0,9.1" stroke="#00000033" stroke-width="1.4" fill="none"/></g><g transform="translate(480,210)"><circle r="15" fill="#c9b48a"/><path d="M-10.5,-3.0 Q0,-13.5 10.5,-3.0 M-12.0,3.8 Q0,-4.5 12.0,3.8 M-7.5,9.8 Q0,3.0 7.5,9.8" stroke="#00000033" stroke-width="1.4" fill="none"/></g><g transform="translate(468,196)"><circle r="13" fill="#d8c7a0"/><path d="M-9.1,-2.6 Q0,-11.7 9.1,-2.6 M-10.4,3.2 Q0,-3.9 10.4,3.2 M-6.5,8.5 Q0,2.6 6.5,8.5" stroke="#00000033" stroke-width="1.4" fill="none"/></g><g transform="translate(500,216)"><circle r="12" fill="#b89870"/><path d="M-8.4,-2.4 Q0,-10.8 8.4,-2.4 M-9.6,3.0 Q0,-3.6 9.6,3.0 M-6.0,7.8 Q0,2.4 6.0,7.8" stroke="#00000033" stroke-width="1.4" fill="none"/></g>
+  <path d="M440,214 Q478,204 516,214" stroke="#7a5a32" stroke-width="4" fill="none"/>
+  <!-- folded cloth on a stool -->
+  <rect x="120" y="196" width="110" height="10" rx="3" fill="#7a4f2a"/><path d="M134,206 L128,250 M216,206 L222,250" stroke="#5a3a1e" stroke-width="7"/>
+  <rect x="130" y="176" width="90" height="20" rx="3" fill="#c9b48a"/><rect x="136" y="162" width="80" height="16" rx="3" fill="#a8927a"/>
+  <g stroke="#00000022" stroke-width="1"><line x1="136" y1="176" x2="136" y2="196"/><line x1="142" y1="176" x2="142" y2="196"/><line x1="148" y1="176" x2="148" y2="196"/><line x1="154" y1="176" x2="154" y2="196"/><line x1="160" y1="176" x2="160" y2="196"/><line x1="166" y1="176" x2="166" y2="196"/><line x1="172" y1="176" x2="172" y2="196"/><line x1="178" y1="176" x2="178" y2="196"/><line x1="184" y1="176" x2="184" y2="196"/><line x1="190" y1="176" x2="190" y2="196"/><line x1="196" y1="176" x2="196" y2="196"/><line x1="202" y1="176" x2="202" y2="196"/><line x1="208" y1="176" x2="208" y2="196"/><line x1="214" y1="176" x2="214" y2="196"/></g>
+  <style>
+    .bn-wheel{animation:bnSpin 14s linear infinite;transform-box:fill-box;transform-origin:center}
+    .bn-fl{animation:bnFl 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}
+    .bn-gl{animation:bnGl 2.2s ease-in-out infinite alternate}
+    .bn-sun{animation:bnGl 5s ease-in-out infinite alternate}
+    @keyframes bnSpin{to{transform:rotate(360deg)}}
+    @keyframes bnFl{from{transform:scaleY(.86);opacity:.8}to{transform:scaleY(1.05);opacity:1}}
+    @keyframes bnGl{from{opacity:.55}to{opacity:.95}}
+    @media (prefers-reduced-motion: reduce){.bn-wheel,.bn-fl,.bn-gl,.bn-sun{animation:none}}
+  </style>
+</svg>
   </div>
 
   <div class="hero-headline-strip serif">Changing Roles and Impact of Women During the Revolution</div>
@@ -2677,7 +3909,6 @@ html, body {
     <div class="info-icon">📅</div>
     <div>
       <div class="info-label">Week</div>
-      <!-- ✏️ Week comes from planning table Week column. Q1=W1-8, Q2=W9-16, Q3=W17-24, Q4=W25+ -->
       <div class="info-value">Week 21 · Q3</div>
     </div>
   </div>
@@ -2692,7 +3923,6 @@ html, body {
     <div class="info-icon" style="background:#E8DCC0;">🌿</div>
     <div>
       <div class="info-label">Virtue Lens</div>
-      <!-- ✏️ Virtue rotates per lesson per planning table. Use the lesson's row's Virtue Lens column. -->
       <div class="info-value">Courage</div>
     </div>
   </div>
@@ -2700,27 +3930,17 @@ html, body {
     <div class="info-icon" style="background:#F0E8FF;">📋</div>
     <div>
       <div class="info-label">Standards</div>
-      <!-- ✏️ Standards from planning table. Use the lesson's row's Standards Focus column. -->
       <div class="info-value" style="font-size:12px;">SS.5.A.5.1 · SS.5.A.5.2 · SS.5.A.5.3 · SS.5.A.5.4 · TEKS 2(B), 21(A)–(B)</div>
     </div>
   </div>
 </div>
 
-<!-- ═══ NEWSROOM STATUS BLOCK (Grade 5 — REQUIRED ON EVERY LESSON, default collapsed) ═══
-     Tracks the Gazette's growth across the year. Equivalent to G4's HQ Status.
-     Update Issue #, Circulation, Open Desks, and Rival Watch each lesson.
-     - Issue #: increments by 1 each lesson (Vol. 1 = academic year 1).
-     - Circulation: see SKILL.md "Newsroom Status Growth Ladder" for milestones.
-     - Open Desks: chips marked open vs locked. Source Desk opens 5.01.02,
-       Map Room opens U2 (5.02.01), Editorial Board opens U5 (5.05.01).
-     - Editor-in-Chief: Ms. Avery (consistent character all year).
-     - Rival Watch: The Hasty Herald is "Active" until escalation arc later. -->
 <div class="story-block newsroom-status collapsed" id="newsroomStatusBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('newsroomStatusBlock')">
     <span class="story-block-icon">🗞️</span>
     <span class="story-block-label">Newsroom Status</span>
     <span class="story-block-summary">
-      Vol. 1 · Issue 42 · Circulation ~3,650 · <em>The Herald left out half the story.</em>
+      Vol. 1 · Issue 42 · Readers: about 3,650 · <em>The Herald left out half the story.</em>
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
@@ -2728,24 +3948,21 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Issue</span>
       <span class="ns-row-value">
-        <strong>Vol. 1 · Issue 42</strong> — <em>Rights, rumor, and resistance: test emotional claims about the road to revolution.</em>
+        <strong>Vol. 1 · Issue 42</strong> — <em>Who took part in the Revolution? Check the records.</em>
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Circulation</span>
+      <span class="ns-row-label">Readers</span>
       <span class="ns-row-value">
         <span class="circulation-meter">
           <span class="circulation-number">~3,650</span>
           <span class="circulation-unit">readers</span>
         </span>
-        — Readership steady as the Revolution series deepens.
       </span>
     </div>
     <div class="ns-row">
       <span class="ns-row-label">Open Desks</span>
       <span class="ns-row-value">
-        <!-- ✏️ Mark each desk as open (regular .desk-chip) or .desk-chip.locked.
-             Add "opens X.XX.XX" hint to locked desks for student anticipation. -->
         <span class="desk-chip">🗞️ Front Page Desk</span>
         <span class="desk-chip">🔍 Source Desk</span>
         <span class="desk-chip">🗺️ Map Room</span>
@@ -2755,36 +3972,31 @@ html, body {
     <div class="ns-row">
       <span class="ns-row-label">Editor-in-Chief</span>
       <span class="ns-row-value">
-        <strong>Ms. Avery</strong> — The Herald left out half the story — and a courageous editor sets the record straight.
+        <strong>Ms. Avery</strong>, careful and kind.
       </span>
     </div>
     <div class="ns-row">
-      <span class="ns-row-label">Rival Watch</span>
+      <span class="ns-row-label">Rival paper</span>
       <span class="ns-row-value">
-        <span class="threat-meter">📢 The Hasty Herald · Aggressive</span>
+        <span class="threat-meter">📢 The Hasty Herald · pushy</span>
         <span style="margin-left:8px;font-family:'Crimson Text',serif;font-size:14px;color:var(--ink-soft);font-style:italic;">— prints fast, checks little.</span>
       </span>
     </div>
   </div>
 </div>
 
-<!-- ═══ LAST EDITION BLOCK (Grade 5 — REQUIRED on every lesson EXCEPT year opener 5.01.01) ═══
-     ✏️ DELETE this entire block on lesson 5.01.01 ONLY.
-     ✏️ ON EVERY OTHER LESSON: keep this block and fill in the callback.
-     Story callback to the prior lesson. Default collapsed. Quote the prior
-     lesson's Archive Line when possible to stitch lessons together. -->
 <div class="story-block last-edition collapsed" id="lastEditionBlock">
   <div class="story-block-bar" onclick="toggleStoryBlock('lastEditionBlock')">
     <span class="story-block-icon">⏪</span>
     <span class="story-block-label">Last Edition</span>
     <span class="story-block-summary">
-      Last issue: locked in the <em>Significant Individuals and Groups in the Revolution</em> record. Tap to recap.
+      Last issue: <em>Significant Individuals and Groups in the Revolution</em>. Tap to recap.
     </span>
     <span class="story-block-toggle">▼</span>
   </div>
   <div class="story-block-body">
     <div style="font-family:'Crimson Text',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.6;padding:4px 0;">
-      The Gazette showed that the Revolution was won by a wide coalition — soldiers, financiers, diplomats, spies, and ordinary citizens from many backgrounds. The Herald's claim that "the Revolution was led by a few famous men" missed the full picture.
+      In 5.08.05, the Gazette showed that many kinds of people won the Revolution, not just a few famous men. Today: the women the Herald left out.
     </div>
   </div>
 </div>
@@ -2793,25 +4005,18 @@ html, body {
 <div class="intro-section" id="introSection">
   <div class="intro-collapsed-bar" onclick="toggleIntro()">
     <div class="intro-collapsed-icon">🗞️</div>
-    <div class="intro-collapsed-text">Today's Dispatch &amp; Beat</div>
+    <div class="intro-collapsed-text">Today's Dispatch &amp; Question</div>
     <div class="intro-collapsed-toggle">▼ Open</div>
   </div>
 
   <!-- The Dispatch (Tab 1 opener — every lesson) -->
   <div class="dispatch-card">
     <div class="dispatch-header">
-      <!-- ✏️ Dispatch label includes lesson code -->
       <span class="dispatch-label">▶ Dispatch · 5.08.06</span>
       <span class="dispatch-stamp">From the Editor's Desk</span>
     </div>
     <div class="dispatch-body">
-      <!-- ✏️ DISPATCH BODY — Use the planning table's Dispatch / Callback Prompt column.
-           Pattern: 2-3 short paragraphs.
-           Paragraph 1: callback to prior lesson (skip on 5.01.01).
-           Paragraph 2: today's file arrives at the [Desk]. Mention The Hasty Herald
-           has already rushed its own version into print.
-           Keep tone warm, fifth-grade reading level, evidence-first stance. -->
-      <p>Last issue, the Gazette examined <em>Significant Individuals and Groups in the Revolution</em> and proved that independence was the work of many, not few. Today, a new file marked <em>5.08.06 — Changing Roles and Impact of Women During the Revolution</em> arrives on the Source Desk. The Herald has already rushed to print a claim that women only watched the Revolution happen. Time to examine the evidence.</p>
+      <p>Last issue, the Gazette showed that many people won independence. A new file marked <em>5.08.06: Changing Roles and Impact of Women During the Revolution</em> is on the <strong>Source Desk</strong>. The Hasty Herald has already printed that women only watched. Time to check the records.</p>
     </div>
   </div>
 
@@ -2821,14 +4026,11 @@ html, body {
       <div class="intro-card-head">
         <div class="intro-card-head-icon">📝</div>
         <div>
-          <div class="intro-card-head-label">Today's Beat</div>
+          <div class="intro-card-head-label">Today's Question</div>
           <div class="intro-card-head-title">Junior Editor's Question</div>
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S BEAT — One open-ended question that frames the day's investigation.
-             5th-grade reading level. Connected to the lesson's content AND to the
-             Hasty Herald's incomplete claim. -->
         <p>Did women really just watch the Revolution happen — or does the evidence show they played roles the history books often leave out?</p>
       </div>
     </div>
@@ -2842,8 +4044,6 @@ html, body {
         </div>
       </div>
       <div class="intro-card-body">
-        <!-- ✏️ TODAY'S COVERAGE — 2-3 student-facing objectives. Concrete verbs.
-             Aligned to standards in the info strip. -->
         <div class="obj-line"><span class="obj-icon">▸</span> Identify specific roles women played during the American Revolution.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Analyze evidence of women's contributions and explain why they matter.</div>
         <div class="obj-line"><span class="obj-icon">▸</span> Write a Gazette Correction that accurately represents women's roles in the Revolution.</div>
@@ -2874,7 +4074,6 @@ html, body {
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel active" id="panel-dispatch">
 
-  <!-- ✏️ WELCOME VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-06-welcome -->
@@ -2893,24 +4092,19 @@ html, body {
     <div class="todays-path-title">🗺️ Today's Path</div>
     <div class="todays-path-steps">
       <!-- 📍 Discover women's roles &amp; spotlight courage — usually "Read the Hasty Herald's claim" or similar opening -->
-      <span class="todays-path-step"><span class="todays-path-step-num">1</span>✏️ Step 1</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">1</span>🪑 Empty the grandstand</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 2 — varies by desk: "Work the Front Page Desk" / "Study the source" / "Read the map" / "Hear the perspectives" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">2</span>🔍 Study the evidence at the Source Desk</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">2</span>📜 Stamp six stories: record or legend?</span>
       <span class="todays-path-arrow">→</span>
-      <!-- ✏️ Step 3 — varies by assignment type: "Publish your Front Page Brief" / "Print the Correction" / "File your Map Note" / "Send your Recommendation" -->
-      <span class="todays-path-step"><span class="todays-path-step-num">3</span>📰 Publish your Gazette Correction</span>
+      <span class="todays-path-step"><span class="todays-path-step-num">3</span>✏️ Fact-check, then 📰 publish your Gazette Correction</span>
     </div>
   </div>
 
   <!-- VIRTUE LENS — connects today's virtue to honest editorial practice -->
   <div class="virtue-lens">
-    <!-- ✏️ Replace "Honesty" with today's virtue from planning table (capitalized). -->
     <div class="virtue-lens-label">★ Editor's Lens · Courage ★</div>
     <div class="virtue-lens-text">
-      <!-- ✏️ 1-2 sentences connecting the virtue to careful journalism / careful history.
-           Pattern: "A [virtue] editor [does what]... it's tempting to [shortcut], but [virtue] means [careful action]." -->
-      <strong>A courageous editor reports the contributions that others leave out — especially when the missing names change the whole story.</strong> Today, courage means making sure women's roles in the Revolution make the record.
+      <strong>A courageous editor reports what others leave out.</strong> Today, courage means reporting what women did, and what they were still denied.
     </div>
   </div>
 
@@ -2920,19 +4114,13 @@ html, body {
     <div class="herald-clipping">
       <div class="herald-masthead">The Hasty Herald</div>
       <div class="herald-tagline">Today's News · Yesterday · Maybe</div>
-      <!-- ✏️ HERALD HEADLINE — a snappy headline-style version of the Herald's claim.
-           Should sound exaggerated, certain, or oversimplified. -->
       <div class="herald-headline">Women Just Watched!</div>
-      <!-- ✏️ HERALD CLAIM — EXACT quote from planning table's Hasty Herald Claim column.
-           Will be wrapped in quotation marks automatically by CSS. -->
       <p class="herald-claim">Women only watched the Revolution happen.</p>
       <div class="herald-byline">— Filed by The Herald, minutes ago</div>
       <div class="herald-stamp">Rushed to Print!</div>
     </div>
     <div class="herald-task">
-      <!-- ✏️ TASK PROMPT — invite the student to figure out what's wrong with the claim.
-           Keep it short. Reference "junior editor" and the day's investigation. -->
-      <strong>Your job, junior editor:</strong> Today you'll examine evidence of women's roles at the Source Desk — and show the Herald that women were essential to the Revolution, not spectators.
+      <strong>Your job, junior editor:</strong> Find out what women really did in the Revolution. (A <strong>spectator</strong> is someone who only watches.)
     </div>
   </div>
 
@@ -2940,10 +4128,7 @@ html, body {
   <div class="role-callout">
     <div class="role-icon">✒️</div>
     <div class="role-text">
-      <!-- ✏️ ROLE TEXT — name the specific desk and what the team's been asked to do today.
-           Pattern: "You are a Junior Editor on the [Desk Name] at The Republic Gazette.
-           The Editor-in-Chief has asked the team to [verb] [today's topic]." -->
-      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong> at The Republic Gazette. The Editor-in-Chief has asked the team to examine evidence of women's contributions to the American Revolution — and publish a Gazette Correction that sets the record straight about women's roles.
+      <strong>Your role today:</strong> You are a <strong>Junior Editor</strong> on the <strong>Source Desk</strong>. Ms. Avery wants you to check the records about women in the Revolution, then publish a <strong>Gazette Correction</strong>: a short piece that fixes what the Herald got wrong.
     </div>
   </div>
 
@@ -2954,20 +4139,12 @@ html, body {
       <span class="editors-desk-from">— from Ms. Avery, Editor-in-Chief</span>
     </div>
     <div class="editors-desk-body">
-      <!-- ✏️ Virtue tag matches the lesson's virtue from planning table. -->
       <span class="editors-desk-virtue-tag">Courage</span>
       <div class="editors-desk-question">
-        <!-- ✏️ SOCRATIC QUESTION — pulled from planning table's Editor's Desk Prompt column,
-             specifically the "Socratic focus:" line embedded in it.
-             Examples: "Which event changed what came next — and how do we know?"
-                       "What does this source say, what can we infer, what must we still question?"
-                       "What does this map show, and what choice or pattern does it help us explain?" -->
         "What does this source say, what can we infer, and what must we still question? Consider more than one perspective before forming your claim."
       </div>
       <div class="editors-desk-prompt">
-        <!-- ✏️ FOLLOW-UP — 1-2 sentences explaining how an editor practicing the day's virtue
-             should approach the question. Use phrases from planning table verbatim where helpful. -->
-        Keep this question on your desk as you investigate. A courageous editor doesn't accept incomplete stories — especially when the missing pieces change the meaning.
+        A courageous editor doesn’t print half a story.
       </div>
     </div>
   </div>
@@ -2977,18 +4154,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 2 — 🔍 THE DESK
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ DESK VARIANT — choose ONE based on the planning table's Planning Routine:
-       • Enter the Scene             → use `desk-header front-page`     (gold accent)
-       • Source Study                → use `desk-header source-desk`     (blue accent)
-       • Map Quest                   → use `desk-header map-room`        (green accent)
-       • Socratic Seminar + Notebook → use `desk-header editorial-board` (wood accent)
-     The desk identity in the header text changes accordingly. -->
 <div class="tab-panel" id="panel-desk">
 
-  <!-- ✏️ EXPLORE VIDEO PLACEHOLDER -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-06-explore-explainer -->
@@ -2997,25 +4164,17 @@ html, body {
     <div class="video-placeholder-title">At the Source Desk: Changing Roles and Impact of Women During the Revolution</div>
     <div class="video-placeholder-filename">5-08-06-explore-explainer.mp4</div>
     <div class="video-placeholder-notes">
-      <strong>Teacher recording notes:</strong> Walk through the four categories of women's contributions: running farms/businesses, boycotts (Daughters of Liberty), spies/soldiers (Sampson, Agent 355, Molly Pitcher), and voices for rights (Abigail Adams). Address the courage lens: women contributed despite being denied political equality afterward. Connect to the Herald's claim — why is "women only watched" wrong? 3-4 minutes.
+      <strong>Teacher recording notes:</strong> Walk through the kinds of women's contributions: running farms/businesses, boycotts (Daughters of Liberty), camp followers, Deborah Sampson's documented service, and voices for rights (Abigail Adams). Treat "Molly Pitcher" as part legend (Mary Ludwig Hays is most often linked to it) and "Agent 355" as unproven (one line in one 1779 letter) — do NOT present either as plain fact. Address the courage lens: women contributed despite being denied political equality afterward. Connect to the Herald's claim — why is "women only watched" wrong? 3-4 minutes.
     </div>
   </div>
 </div>
 
-  <!-- DESK HEADER — ✏️ swap variant class + icon + title to match today's desk -->
   <div class="desk-header source-desk">
-    <!-- ✏️ Icon options by desk: 🗞️ front-page · 🔍 source-desk · 🗺️ map-room · ⚖️ editorial-board -->
     <div class="desk-icon-wrap">🔍</div>
     <div class="desk-meta">
-      <div class="desk-label">Today's Workstation</div>
-      <!-- ✏️ Title options: Front Page Desk · Source Desk · Map Room · Editorial Board -->
+      <div class="desk-label">Today's Desk</div>
       <div class="desk-title">Source Desk</div>
-      <!-- ✏️ Subtitle reflects what the desk does:
-           Front Page Desk: "Where junior editors gather the facts and write the brief."
-           Source Desk:     "Where one source is examined for what it says — and leaves out."
-           Map Room:        "Where map evidence helps explain patterns and choices."
-           Editorial Board: "Where the team weighs perspectives before recommending." -->
-      <div class="desk-subtitle">Where one source is examined for what it says — and leaves out.</div>
+      <div class="desk-subtitle">Check what each source shows, and what it leaves out.</div>
     </div>
   </div>
 
@@ -3028,95 +4187,84 @@ html, body {
   -->
     <div class="content-section">
     <h2>🔍 Women in the Revolution: More Than Spectators</h2>
-    <p>The Hasty Herald says "Women only watched the Revolution happen." Today at the Source Desk, you'll examine the evidence and decide for yourself. Were women really just spectators — or did they shape the outcome?</p>
+    <p>The Hasty Herald says women were <strong>spectators</strong>, people who only watch. Today you’ll check the records. Some stories about women in the war are <strong>documented</strong>: written down at the time. Others are <strong>legends</strong>: stories that grew as people retold them.</p>
 
-    <div class="callout callout-info" style="border-left-color: #4A6FB5;">
-      <div class="callout-icon">🔍</div>
-      <div>
-        <strong>Source Study: Women's Roles in the Revolution</strong>
-        <p>Read about each role carefully. Use the "What do I see? What does it mean? Why does it matter?" scaffold to guide your thinking.</p>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
+    <div class="rg-keep-off" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Running Farms and Businesses</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">When men left to fight, women took over farms, shops, and trades. They kept the colonial economy running — feeding families, managing finances, and making supplies the army needed. Without this work, the war effort would have collapsed.</p>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">When men went to war, many women ran the family farm, shop or trade alone. They grew food, kept the accounts and made goods. Families and the army depended on this work.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
-        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Boycotts and Political Action</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">Groups like the <strong>Daughters of Liberty</strong> organized boycotts of British goods, spinning their own cloth instead of buying British imports. They turned everyday choices — what to buy, what to wear — into political acts of resistance.</p>
+        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Boycotts</div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">A <strong>boycott</strong> means refusing to buy something to make a point. Groups like the <strong>Daughters of Liberty</strong> spun their own cloth instead of buying British <strong>imports</strong>, goods brought in from another country.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
-        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Spies and Soldiers</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;"><strong>Deborah Sampson</strong> disguised herself as a man and fought in the Continental Army. <strong>Agent 355</strong> was an unidentified female spy in Washington's Culper Ring. <strong>Mary Ludwig Hays</strong> (Molly Pitcher) carried water to soldiers and took over a cannon when her husband fell.</p>
+        <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">In the Army</div>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;">Thousands of <strong>camp followers</strong> traveled with the Continental Army to cook, wash and nurse. <strong>Deborah Sampson</strong> disguised herself as a man and served 17 months as a soldier. The famous <strong>“Molly Pitcher”</strong> story is part legend: Mary Ludwig Hays, the woman most often linked to it, carried water and helped work a cannon at Monmouth in 1778. <strong>“Agent 355”</strong> appears in just one 1779 spy letter, and no one knows who she was.</p>
       </div>
       <div style="background:var(--surface); border:1px solid var(--border-soft); border-radius:10px; padding:14px; border-left:4px solid #4A6FB5;">
         <div style="font-family:'Playfair Display',serif; font-weight:800; font-size:14px; color:#4A6FB5; margin-bottom:4px;">Voices for Rights</div>
-        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;"><strong>Abigail Adams</strong> famously wrote to her husband John: "Remember the ladies." She argued that the new nation should extend rights to women — a reminder that the Revolution's ideals of liberty were not yet fully realized. Her words challenged leaders to live up to their own principles.</p>
+        <p style="font-family:'Crimson Text',serif; font-size:14px; line-height:1.5; margin:0;"><strong>Abigail Adams</strong> wrote to her husband John in 1776: “Remember the Ladies.” She asked the leaders writing new laws to be fair to women, and warned that women would not obey laws in which they had “no voice.”</p>
       </div>
     </div>
 
-    <div class="callout callout-think">
+    <div class="callout callout-think rg-keep-off">
       <div class="callout-icon">⚖️</div>
       <div>
         <strong>The Courageous Editor's Question</strong>
-        <p>Despite all these contributions, women were not given the right to vote or hold office after the Revolution. A courageous editor reports both what women <em>did</em> and what they were <em>denied</em>. The contributions were real — and so was the exclusion.</p>
+        <p>After the Revolution, most women still could not vote or hold office. (One state, New Jersey, let some women who owned property vote until 1807.) A courageous editor reports both what women <em>did</em> and what they were <em>denied</em>.</p>
       </div>
     </div>
 
-    <h3>🔎 Question Like a Historian</h3>
-    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:12px 0;">
-      <div style="background:#EAF8FD; border:1px solid #D6F2FB; border-radius:8px; padding:12px;">
-        <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">What do I see?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">What specific roles did women play? What evidence do we have?</div>
-      </div>
-      <div style="background:#FFF3DC; border:1px solid #F5E6C8; border-radius:8px; padding:12px;">
-        <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">What does it mean?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">How did women's contributions shape the outcome of the Revolution? What would have happened without them?</div>
-      </div>
-      <div style="background:#E3F8ED; border:1px solid #B8E8CF; border-radius:8px; padding:12px;">
-        <div style="font-weight:700; font-size:13px; color:#1A2138; margin-bottom:4px;">Why does it matter?</div>
-        <div style="font-size:13px; color:var(--ink-soft);">Why were these contributions left out of the Herald's story? What does including them change about how we understand the Revolution?</div>
-      </div>
-    </div>
-
-    <div class="owl-buddy">
+    <div class="owl-buddy rg-keep-off">
       <div class="owl-icon">🦉🗞️</div>
       <div class="owl-bubble">
-        Deborah Sampson served in the Continental Army for over a year before anyone discovered she was a woman. That's commitment to a cause — and proof that courage doesn't belong to just one group.
+        Deborah Sampson served for 17 months before a doctor found out she was a woman. Records from the time prove it, so a careful paper can print it.
       </div>
     </div>
 
-    <div class="callout callout-tip">
+    <div class="callout callout-tip rg-keep-off">
       <div class="callout-icon">💡</div>
       <div>
         <strong>Key Concept</strong>
-        <p>Women played essential roles in the American Revolution — running the economy, organizing boycotts, spying, fighting, and advocating for rights — even though they were denied political equality afterward.</p>
+        <p>Women played essential roles in the American Revolution, at home, in boycotts, with the army and in speaking up for rights, even though most were denied the vote afterward.</p>
       </div>
     </div>
   </div>
 
   <div class="content-section">
-    <h2>🔎 Women in the Revolution</h2>
-    <p>Look carefully at this image of women contributing to the Revolutionary War effort. What does it tell us about the roles women played?</p>
+    <h2>🔎 Read the Source: A Painting Made in 1911</h2>
+    <p>This famous painting shows the Molly Pitcher story at the Battle of Monmouth. But look at the date: E. Percy Moran painted it about 1911, 133 years after the battle. What can a painting made that late tell us, and what can’t it?</p>
 
     <div class="source-image-frame">
       <div class="source-image-placeholder" data-image="source-5-08-06-women-revolution">
-        🖼️ <strong>Image placeholder:</strong> Illustration or painting showing women contributing to the Revolutionary War effort (Molly Pitcher, Deborah Sampson, or women making supplies).<br><br>
-        <strong>Save your image as:</strong>
+        🖼️ <strong>Image:</strong> Molly Pitcher at the Battle of Monmouth, painting by E. Percy Moran, about 1911.<br><br>
+        <strong>Image file:</strong>
         <code>source-5-08-06-women-revolution.jpg</code>
       </div>
       <div class="source-image-caption">
-        What does this image show women doing during the Revolution? Does this match the Herald's claim that women "only watched"?
+        What does this painting show? Can it prove the story happened this way?<br><small style="font-style:normal;opacity:.85">Color print of a painting by E. Percy Moran, about 1911, made long after the war. Library of Congress. No known restrictions on publication.</small>
       </div>
     </div>
+  </div>
+
+  <!-- WORD DESK (word roots, added Nov 2026). The sparkle layer turns this into the crack-the-root game. -->
+  <div class="content-section word-desk">
+    <h2>🔤 The Word Desk: <em>spect</em> means “look”</h2>
+    <p>Many English words come from the Latin word <em>spectare</em>, “to watch.” You can spot it as <strong>spect</strong>.</p>
+    <ul>
+      <li><strong>spectator</strong> (spect + at + or): a person who watches but doesn’t take part</li>
+      <li><strong>inspect</strong> (in + spect): to look at closely</li>
+      <li><strong>respect</strong> (re + spect): to look up to someone</li>
+    </ul>
+    <p><strong>Discovery:</strong> The Herald called women spectators. The records show women who did much more than watch.</p>
+    <p><em>Try it: use the word <strong>spectator</strong> in a sentence about today’s lesson.</em></p>
   </div>
 
   <div class="reflection-block">
     <h3>📓 Editor's Notebook</h3>
     <p style="font-family:'Crimson Text',Georgia,serif;font-size:14px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;">
-      Write a few sentences for each. These notes will help you write your Gazette Correction on the next tab.
+      Write a few sentences for each.
     </p>
 
     <div class="reflection-q">
@@ -3153,10 +4301,6 @@ html, body {
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 3 — ✏️ FACT-CHECK
-     "Before the Gazette goes to print, fact-check the claims"
-     ═══════════════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="panel-factcheck">
 
   <div class="factcheck-intro">
@@ -3165,14 +4309,6 @@ html, body {
     <div class="factcheck-intro-sub">Check each claim carefully. An honest paper publishes only what holds up.</div>
   </div>
 
-  <!-- ═══ 3 MULTIPLE-CHOICE QUESTIONS ═══
-       ✏️ Question structure: each MC has 3 options, exactly ONE correct.
-       Mark correctness with the second parameter of checkAnswer(qId, this, true|false).
-       Question types to vary:
-       Q1 — identification/categorization (apply definitions)
-       Q2 — application to a new example
-       Q3 — editor's-judgment question (often "what would an honest editor do?")
-  -->
 
   <!-- QUESTION 1 -->
   <div class="factcheck-q" id="fc-q1">
@@ -3185,13 +4321,13 @@ html, body {
         <span class="factcheck-option-letter">A</span>
         <span>Women had no involvement in the Revolution at all.</span>
       </div>
-      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
-        <span class="factcheck-option-letter">B</span>
-        <span>Women ran farms and businesses, organized boycotts, served as spies and soldiers, and advocated for rights.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, false)">
-        <span class="factcheck-option-letter">C</span>
+        <span class="factcheck-option-letter">B</span>
         <span>Women only sewed flags and cooked meals for soldiers.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q1', this, true)">
+        <span class="factcheck-option-letter">C</span>
+        <span>Women ran farms and businesses, organized boycotts, served as spies and soldiers, and advocated for rights.</span>
       </div>
     </div>
     <div class="factcheck-feedback" id="fb-q1"></div>
@@ -3204,13 +4340,13 @@ html, body {
       <span class="factcheck-q-text">What did Abigail Adams mean when she wrote "Remember the ladies"?</span>
     </div>
     <div class="factcheck-options">
-      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
-        <span class="factcheck-option-letter">A</span>
-        <span>She wanted women to be allowed to attend military parades.</span>
-      </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, true)">
+        <span class="factcheck-option-letter">A</span>
+        <span>She was asking the leaders to make laws that are fair to women and give them a voice.</span>
+      </div>
+      <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">B</span>
-        <span>She was asking the new nation to extend rights to women, arguing that liberty should include everyone.</span>
+        <span>She wanted women to be allowed to attend military parades.</span>
       </div>
       <div class="factcheck-option" onclick="checkAnswer('fc-q2', this, false)">
         <span class="factcheck-option-letter">C</span>
@@ -3249,7 +4385,6 @@ html, body {
     <div class="factcheck-score-meta" id="factcheckScoreMeta"></div>
   </div>
 
-  <!-- ✏️ CONDITIONAL VIDEOS -->
   <div id="quizPerfectVideo" style="display:none;">
     <div class="video-placeholder">
       <span class="video-placeholder-icon">🎉</span>
@@ -3271,21 +4406,8 @@ html, body {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════════════
-     TAB 4 — 📰 GO TO PRESS
-     ═══════════════════════════════════════════════════════════════════════
-     ✏️ ASSIGNMENT ARTIFACT — choose ONE based on the planning table's routine:
-       • Enter the Scene    → Front Page Brief        (mini-masthead + headline + brief body)
-       • Source Study       → Gazette Correction      (mini-masthead + "CORRECTION NOTICE" + struck-through Herald wording + corrected text)
-       • Map Quest          → Gazette Map Note        (mini-masthead + "MAP NOTE" + map evidence callouts)
-       • Socratic Seminar   → Editorial Board Rec.    (mini-masthead + "EDITORIAL BOARD RECOMMENDATION" + perspectives + final rec)
-     The template below shows the Front Page Brief variant. Adapt the label and body
-     guidance per the routine. The structural shell (mini-masthead, headline input,
-     editable byline, body area, Archive Line, gathered answers, checklist, certificate)
-     is identical across all four. -->
 <div class="tab-panel" id="panel-press">
 
-  <!-- ✏️ ASSIGNMENT EXPLAINER VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-06-assignment-explainer -->
@@ -3306,8 +4428,6 @@ html, body {
       <div class="gazette-masthead-mini">
         <div class="gazette-masthead-mini-flags">
           <span>Vol. 1 · Issue 42</span>
-          <!-- ✏️ Label varies by assignment type:
-               "Front Page Brief" / "Gazette Correction" / "Map Note" / "Editorial Board" -->
           <span>Gazette Correction</span>
         </div>
         <div class="gazette-masthead-mini-title">The Republic Gazette</div>
@@ -3315,16 +4435,12 @@ html, body {
       </div>
 
       <div class="gazette-article-area">
-        <!-- ✏️ Article label — match the artifact type -->
         <div class="gazette-article-label">★ Gazette Correction — Junior Editor's Submission ★</div>
 
         <input class="gazette-headline-input" id="brief-headline" data-label="Headline" placeholder="Write your headline here..." />
         <div class="gazette-byline">By a Junior Editor of The Republic Gazette · <input type="text" class="gazette-byline-name-input" id="brief-byline-name" data-label="Student Name (byline)" placeholder="Type your name" /></div>
 
         <div class="gazette-body-guidance">
-          <!-- ✏️ Guidance content varies by assignment type. Use the planning table's
-               "Gazette Assignment Prompt" column for the exact wording.
-               General pattern: 3-part structure with numbered items. -->
           <strong>What goes in a Gazette Correction:</strong>
           <span>(1) Quote the Herald's claim about women in the Revolution. (2) Name at least two specific roles women played, with evidence. (3) Rewrite the claim so it is accurate and fair.</span>
         </div>
@@ -3340,9 +4456,6 @@ html, body {
     <div class="archive-line-label">★ For the Archive ★</div>
     <div class="archive-line-title">Today's Archive Line</div>
     <div class="archive-line-desc">
-      <!-- ✏️ Use planning table's Archive Line Prompt column. Pattern is consistent:
-           "Some sentences are too important to lose. In one careful sentence,
-           write what future citizens should remember about [today's topic]." -->
       Some sentences are too important to lose. In one careful sentence, write what <strong>future citizens</strong> should remember about changing roles and impact of women during the revolution.
     </div>
     <textarea class="archive-line-input" id="archive-line" data-label="Archive Line" placeholder="Future citizens should remember..."></textarea>
@@ -3371,8 +4484,6 @@ html, body {
   <!-- TURN-IN CHECKLIST — above Next Issue. Certificate unlocks when ALL checked. -->
   <div class="checklist-card">
     <h3>✓ Before You Submit</h3>
-    <!-- ✏️ 5-6 checklist items. Adjust to match the lesson's actual deliverables.
-         Recommended pattern: Notebook → Fact-Check → Headline+Brief → Byline → Archive Line → Copy/Download -->
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Answered all 3 questions in the Editor's Notebook</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Completed the Fact-Check questions</span></div>
     <div class="checklist-row" onclick="toggleCheck(this)"><div class="checklist-box"></div><span>Wrote a headline and Gazette Correction</span></div>
@@ -3387,32 +4498,21 @@ html, body {
   <!-- CERTIFICATE — locked by default. Reveals + fires confetti when checklist complete. -->
   <div class="cert-card locked" id="certCard">
     <div class="cert-label">★ The Republic Gazette Certifies ★</div>
-    <!-- ✏️ Certificate headline can vary per lesson:
-         General: "Issue ✏️ Published"
-         Synthesis lessons: "Special Edition Published"
-         Unit closers: "Volume ✏️ Issue ✏️ — Closed and Archived" -->
     <div class="cert-headline">Issue 42 Published</div>
     <div class="cert-message">
-      <!-- ✏️ 2-sentence celebration. Reference the day's accomplishment and tie back to virtue/the Herald. -->
-      <strong>Well done, Junior Editor.</strong> Today you examined the evidence with courage — reporting the contributions the Herald left out and showing that women shaped the Revolution in essential ways.
+      <strong>Well done, Junior Editor.</strong> You checked the records and reported what women did in the Revolution, and what they were still denied.
     </div>
   </div>
 
   <!-- NEXT ISSUE TEASER — points at the next lesson with a hook -->
   <div class="next-issue-teaser">
-    <!-- ✏️ Label includes the next lesson code. -->
     <div class="next-issue-label">★ In the Next Issue (5.08.07) ★</div>
-    <!-- ✏️ Title is the next lesson's exact title from the planning table. -->
     <div class="next-issue-title">Political Participation Then and Now</div>
     <div class="next-issue-tease">
-      <!-- ✏️ Pull from planning table's Next-Issue Cliffhanger column.
-           Pattern: name the desk where the dispatch will arrive, mention the Herald has
-           already rushed to print a related claim. -->
-      The editor locks today's notes in the archive, but a new dispatch titled <em>Political Participation Then and Now</em> arrives at the <em>Front Page Desk</em> — and <strong>The Hasty Herald has already rushed to print</strong> a claim about who gets to participate in democracy. Editors, sharpen your pencils.
+      Today’s notes go into the archive. A new file, <em>Political Participation Then and Now</em>, is on its way to the Front Page Desk, and <strong>the Hasty Herald has already printed</strong> a claim about who gets to take part.
     </div>
   </div>
 
-  <!-- ✏️ CLOSING VIDEO -->
   <div class="video-ratio">
 <div class="video-placeholder video-placeholder-id">
 <!-- slot: 5-08-06-closing -->
@@ -3687,7 +4787,7 @@ function checklistCheck() {
   } else {
     cert.classList.add('locked');
     cert.classList.remove('unlocked');
-    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 1 and certify the edition. (' + checked + ' of ' + rows.length + ')';
+    hint.innerHTML = '<strong>Almost there:</strong> Check every box above to publish Issue 42 and certify the edition. (' + checked + ' of ' + rows.length + ')';
     hint.style.borderLeftColor = 'var(--gazette-gold)';
     hint.style.background = 'var(--paper-cream)';
     confettiFired = false; // allow re-fire if user unchecks and re-completes
@@ -4044,5 +5144,6 @@ window.addEventListener('load',function(){run();setTimeout(run,800);setTimeout(r
 })();
 </script>
 <!-- /OAO-STD-TIPS -->
+<script src="assets/sparkle/rg-sparkle.js" defer></script>
 </body>
 </html>
